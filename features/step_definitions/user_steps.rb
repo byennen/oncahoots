@@ -30,8 +30,12 @@ end
 def sign_up
   delete_user
   visit '/users/sign_up'
-  fill_in "Name", :with => @visitor[:name]
+  fill_in "user_first_name", :with => @visitor[:first_name]
+  fill_in "user_last_name", :with => @visitor[:last_name]
   fill_in "Email", :with => @visitor[:email]
+  fill_in "user_university", with: @visitor[:university]
+  fill_in "user_graduation_year", with: @visitor[:graduation_year]
+  fill_in "user_major", with: @visitor[:major]
   fill_in "user_password", :with => @visitor[:password]
   fill_in "user_password_confirmation", :with => @visitor[:password_confirmation]
   click_button "Sign up"
@@ -123,7 +127,8 @@ end
 
 When /^I edit my account details$/ do
   click_link "Edit account"
-  fill_in "Name", :with => "newname"
+  fill_in "user_first_name", :with => "newname"
+  fill_in "user_last_name", :with => "newname"
   fill_in "user_current_password", :with => @visitor[:password]
   click_button "Update"
 end
