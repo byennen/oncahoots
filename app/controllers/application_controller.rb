@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   end
 
   def verifies_staging_user
-    unless cookies[:ccahoots_connect]
+    unless cookies[:cahoots_connect]
       authenticate_or_request_with_http_basic do |username, password|
         username == "cahoots" && password == "cahoots2013"
         cookies[:cahoots_connect] = {:value => "staging", :expires => 5.days.from_now.utc, :domain => :all}
