@@ -6,5 +6,6 @@ class UniversitiesController < ApplicationController
 
   def show
     @university = University.find(params[:id])
+    @users = User.find_all_by_university(@university.name)
   end
 end

@@ -2,6 +2,11 @@
   %h1 Welcome
   %p This is started of the homepage.
 
+  %h2 Universities
+  %ul
+    - @universities.each do |university|
+      %li= link_to university.name, university_path(university)
+
   %h2 Users
   %ul
     - @users.each do |user|

@@ -2,8 +2,8 @@
 %ul.nav
   - if user_signed_in?
     - if current_user.has_role? :super_admin || :university_admin
-      %li
-        = link_to 'Admin', admin_root_path
+      %li= link_to 'Admin', admin_root_path
+
     %li.dropdown
       %a#drop4.dropdown-toggle{"data-toggle" => "dropdown", :href => "#", :role => "button"}
         My Account
