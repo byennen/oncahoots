@@ -1,13 +1,15 @@
 #roles
-puts 'ROLES'
-YAML.load(ENV['ROLES']).each do |role|
-  Role.find_or_create_by_name({ :name => role }, :without_protection => true)
-  puts 'role: ' << role
-end
+Role.create(name: 'super_admin')
+Role.create(name: 'university_admin')
+Role.create(name: 'member')
+Role.create(name: 'club_owner')
+Role.create(name: 'club_admin')
+Role.create(name: 'event_admin')
+
 
 #super admin user
 puts 'DEFAULT USERS'
-user = User.find_or_create_by_email :first_name => ENV['ADMIN_FIRST_NAME'].dup, :last_name => ENV['ADMIN_LAST_NAME'].dup, :email => ENV['ADMIN_EMAIL'].dup, :password => ENV['ADMIN_PASSWORD'].dup, :password_confirmation => ENV['ADMIN_PASSWORD'].dup
+user = User.find_or_create_by_email :first_name => 'Lance', :last_name => 'Ennen', :email => 'super_admin@cahoots-connect.com', :password => 'cahoot2013', :password_confirmation => 'cahoot2013'
 puts 'user: ' << user.first_name
 user.add_role :super_admin
 Profile.create(user_id: user.id, skills: 'Super Admin', education: 'Super Admin', experience: 'Super Admin')
