@@ -1,0 +1,10 @@
+= simple_form_for([:user, @profile]) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :skills
+    = f.input :education
+    = f.input :experience
+
+  .form-actions
+    = f.button :submit

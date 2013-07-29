@@ -1,22 +1,22 @@
-:css
-  body {
-    background: url("../../assets/homepage-bg.jpg") fixed 100% 100%;
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    color: white;
-  }
+- if user_signed_in?
+  %h1 Welcome
+  %p This is started of the homepage.
 
-
-.container
-  .row-fluid
-    .span12
-      = simple_form_for("user", :url => user_session_path, :html => {:class => 'form-inline' }) do |f|
-        = f.input :email, autofocus: true, placeholder: "Email", label: false
-        = f.input :password, placeholder: "Password", label: false
-        = f.input :remember_me, inline_label: 'Yes, remember me', label: false, as: :boolean if devise_mapping.rememberable?
-        = f.button :submit, "Login", :class => 'btn-primary'
-  .row-fluid
-    .span12
-      = link_to 'Register', new_user_registration_path, class: 'btn'
-      = link_to 'Forgotten Password', 'users/password/new', class: 'btn'
+  %h2 Users
+  %ul
+    - @users.each do |user|
+      %li= link_to "#{user.first_name + ' ' + user.last_name}", user_path(user)
+- else
+  .container
+    .row-fluid
+      .span12
+        = simple_form_for("user", :url => user_session_path, :html => {:class => 'form-inline' }) do |f|
+          = f.input :email, autofocus: true, placeholder: "Email", label: false
+          = f.input :password, placeholder: "Password", label: false
+          = f.input :remember_me, inline_label: 'Yes, remember me', label: false, as: :boolean if devise_mapping.rememberable?
+          = f.button :submit, "Login", :class => 'btn-primary'
+    .row-fluid
+      .span12
+        = link_to 'Register', new_user_registration_path, class: 'btn'
+        = link_to 'Forgotten Password', 'users/password/new', class: 'btn'
 

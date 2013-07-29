@@ -1,5 +1,12 @@
-%h3 User
-%p
-  User: #{@user.name}
+%h1= @user.first_name + ' ' + @user.last_name
 %p
   Email: #{@user.email if @user.email}
+%p
+  %b Skills:
+  = @profile.skills
+%p
+  %b Education:
+  = @profile.education
+%p
+  %b Experience:
+  = @profile.experience

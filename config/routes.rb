@@ -1,8 +1,11 @@
-CahootsConnect::Application.routes.draw do
-  authenticated :user do
-    root :to => 'home#index'
+CahootsConnect::Application.routes.draw   do
+
+  devise_for :users, :controllers => { :registrations => "registrations" }
+
+  resources :users do
+    match 'build-your-profile', to: 'profiles#new', as: 'build_your_profile'
+    resources :profiles
   end
+
   root :to => "home#index"
-  devise_for :users
-  resources :users
 end

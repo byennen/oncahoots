@@ -5,14 +5,6 @@ class ApplicationController < ActionController::Base
     redirect_to root_path, :alert => exception.message
   end
 
-  #def after_sign_in_path_for(resource)
-  #  edit_user_path(current_user)
-  #end
-
-  #def after_sign_up_path_for(resource)
-  #
-  #end
-
   #password for staging
   if (ENV["RAILS_ENV"] == "staging")
     before_filter :verifies_staging_user
