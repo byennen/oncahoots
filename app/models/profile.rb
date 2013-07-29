@@ -1,5 +1,5 @@
 class Profile < ActiveRecord::Base
   belongs_to :user
 
-  attr_accessible :education, :experience, :skills
+  attr_accessible :user_id, :education, :experience, :skills
 end

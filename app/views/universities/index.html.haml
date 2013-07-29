@@ -1,0 +1,5 @@
+%h1 List of Universities
+
+%ul
+  - @universities.each do |university|
+    %li= link_to university.name, university_path(university)

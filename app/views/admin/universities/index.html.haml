@@ -1,0 +1,25 @@
+%h1 Universities
+
+%table.table.table-condensed
+  %thead
+    %tr
+      %th Name
+      %th Mascot
+      %th Location
+      %th
+      %th
+      %th
+
+  - @universities.each do |university|
+    %tbody
+      %tr
+        %td= university.name
+        %td= university.mascot
+        %td= university.location
+        %td= link_to 'Show', university
+        %td= link_to 'Edit', edit_admin_university_path(university)
+        %td= link_to 'Destroy', admin_university_path(university), :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New University', new_admin_university_path, class: 'btn'

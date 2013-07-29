@@ -1,5 +1,6 @@
 CahootsConnect::Application.routes.draw   do
 
+  resources :universities, only: [:index, :show]
   devise_for :users, :controllers => { :registrations => "registrations" }
 
   resources :users do
@@ -8,7 +9,9 @@ CahootsConnect::Application.routes.draw   do
   end
 
   namespace :admin do
+    resources :universities
     resources :users
+    root to: 'dashboard#index'
   end
 
   root :to => "home#index"
