@@ -12,4 +12,7 @@ class User < ActiveRecord::Base
   attr_accessible :role_ids, :as => :admin
   attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :university, :graduation_year, :major, :double_major
 
+  def full_name
+    [first_name, last_name].join(' ')
+  end
 end

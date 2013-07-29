@@ -7,5 +7,9 @@ CahootsConnect::Application.routes.draw   do
     resources :profiles
   end
 
+  namespace :admin do
+    resources :users
+  end
+
   root :to => "home#index"
 end
