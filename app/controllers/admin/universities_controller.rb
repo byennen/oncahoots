@@ -1,4 +1,5 @@
 class Admin::UniversitiesController < Admin::ApplicationController
+  load_and_authorize_resource :university
 
   def index
     @universities = University.all

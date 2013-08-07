@@ -1,5 +1,7 @@
 %h1 Admin Dashboard
-
 %ul
-  %li= link_to 'Users', admin_users_path
-  %li= link_to 'Universities', admin_universities_path
+  - if current_user.has_role? :super_admin
+    %li= link_to 'Users', admin_users_path
+    %li= link_to 'Universities', admin_universities_path
+  - else current_user.has_role? :university_admin
+    %li= link_to 'Users', admin_users_path
