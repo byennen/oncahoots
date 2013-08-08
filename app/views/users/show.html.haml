@@ -8,5 +8,9 @@
   %b Education:
   = @profile.education
 %p
-  %b Experience:
-  = @profile.experience
+  %h2 Experience:
+  - @experiences.each do |experience|
+    %b= experience.position_name
+    %p= experience.company_name
+    %p
+      = experience.date_started.strftime("%m-%Y") + " - " + experience.date_ended.strftime("%m-%Y")

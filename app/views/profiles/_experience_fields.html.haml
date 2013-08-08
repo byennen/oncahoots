@@ -1,0 +1,8 @@
+%fieldset
+  = f.input :position_name
+  = f.input :company_name
+  = f.input :date_started
+  = f.input :date_ended
+  = f.hidden_field :_destroy
+  = link_to "remove", '#', class: "remove_fields btn"
+  %hr

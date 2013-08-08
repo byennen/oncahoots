@@ -1,10 +1,17 @@
+- content_for :head do
+  = javascript_include_tag 'nested_form'
+
 = simple_form_for([:user, @profile]) do |f|
   = f.error_notification
 
   .form-inputs
     = f.input :skills
     = f.input :education
-    = f.input :experience
+
+    %h2 Experience
+    = f.fields_for :experiences do |builder|
+      = render 'experience_fields', f: builder
+    = link_to_add_fields "Add Experience", f, :experiences
 
   .form-actions
     = f.button :submit
