@@ -3,7 +3,7 @@ Role.create(name: 'super_admin')
 Role.create(name: 'university_admin')
 Role.create(name: 'member')
 Role.create(name: 'club_owner')
-Role.create(name: 'club_admin')1
+Role.create(name: 'club_admin')
 Role.create(name: 'event_admin')
 
 

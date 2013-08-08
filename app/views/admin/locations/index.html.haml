@@ -1,0 +1,20 @@
+%h1 Listing locations
+
+%table.table.table-condensed
+  %thead
+    %tr
+      %th Name
+      %th
+      %th
+      %th
+
+  - @locations.each do |location|
+    %tbody
+      %tr
+        %td= location.name
+        %td= link_to 'Edit', edit_admin_location_path(location)
+        %td= link_to 'Destroy', admin_location_path(location), :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Location', new_admin_location_path, class: 'btn'

@@ -10,6 +10,7 @@ CahootsConnect::Application.routes.draw   do
 
   namespace :admin do
     resources :universities
+    resources :locations
     resources :users
     root to: 'dashboard#index'
   end
