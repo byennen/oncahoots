@@ -3,10 +3,10 @@ class Admin::UsersController < Admin::ApplicationController
 
 
   def index
-    if current_user.super_admin
+    if current_user.super_admin?
       @users = User.all
     end
-    if current_user.university_admin
+    if current_user.university_admin?
       @users = User.where(university_id: current_user.university_id)
     end
     @user = User.new

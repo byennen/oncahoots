@@ -5,9 +5,9 @@
       %h3 New User
     .modal-body
       = f.error_notification
-      -#- if current_user.super_admin?
-      = f.input :role_ids, :collection => Role.all, :as => :radio_buttons, :label_method => lambda {|t| t.name.titleize}, :label => false, :item_wrapper_class => 'inline'
-      = f.association :university
+      - if current_user.super_admin?
+        = f.input :role_ids, :collection => Role.all, :as => :radio_buttons, :label_method => lambda {|t| t.name.titleize}, :label => false, :item_wrapper_class => 'inline'
+        = f.association :university
 
       = f.input :first_name
       = f.input :last_name

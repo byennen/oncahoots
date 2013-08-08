@@ -17,11 +17,11 @@ class User < ActiveRecord::Base
     [first_name, last_name].join(' ')
   end
 
-  def super_admin
+  def super_admin?
     has_role?(:super_admin)
   end
 
-  def university_admin
+  def university_admin?
     has_role?(:university_admin)
   end
 end
