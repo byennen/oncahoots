@@ -14,7 +14,7 @@ class ProfilesController < ApplicationController
     @profile = Profile.new(params[:profile])
     @profile.user_id = current_user.id
     if @profile.save
-      redirect_to user_path(current_user), notice: 'Profile was successfully created.'
+      redirect_to university_path(current_user.university_id), notice: 'Profile was successfully created.'
     else
       format.html { render action: "new" }
     end

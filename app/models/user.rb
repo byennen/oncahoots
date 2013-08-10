@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :role_ids
-  attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :university_id, :graduation_year, :major, :double_major
+  attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :university_id, :location_id, :graduation_year, :major, :double_major
 
   def full_name
     [first_name, last_name].join(' ')
