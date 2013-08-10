@@ -1,0 +1,10 @@
+.modal{:id => "new_update", :style => "display: none;"}
+  = simple_form_for @updates, :url => "#", :html => {:method => :put, :class => 'form-horizontal' } do |f|
+    .modal-header
+      %a.close{"data-dismiss" => "modal"} ×
+      %h3 Add Update
+    .modal-body
+      %p test
+    .modal-footer
+      = f.submit "Submit", :class => "btn btn-primary"
+      %a.btn{"data-dismiss" => "modal", :href => "#"} Close
