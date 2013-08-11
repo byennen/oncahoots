@@ -18,5 +18,6 @@
   %br
   = update.created_at.to_date
 %hr
-= link_to 'New Update', '', :class => 'btn btn-primary', "data-toggle" => "modal", :href => "#new_update", :type => "button"
-= render 'update'
+
+- if current_user.super_admin? || current_user.university_admin?
+  = link_to "New Update", [:new, @updateable, :update], :class => 'btn btn-primary'

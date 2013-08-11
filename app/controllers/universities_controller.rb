@@ -7,6 +7,10 @@ class UniversitiesController < ApplicationController
   def show
     @university = University.find(params[:id])
     @users = User.find_all_by_university_id(@university.id)
-    @updates = @university.updates.all
+
+    #@updates = @university.updates.all
+    @updateable = @university
+    @updates = @updateable.updates
+    @update = Update.new
   end
 end
