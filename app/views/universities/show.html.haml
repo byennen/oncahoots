@@ -1,6 +1,8 @@
 %h1
   Welcome to
   = @university.name
+  = image_tag @university.image_url if @university.image?
+
 %p
   %b Mascot:
   = @university.mascot

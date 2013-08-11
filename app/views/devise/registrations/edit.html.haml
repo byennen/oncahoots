@@ -6,8 +6,10 @@
   = f.input :first_name, :autofocus => true, :required => true
   = f.input :last_name, :required => true
   = f.input :email, :required => true
-  = f.input :university
-  = f.input :graduation_year
+  - unless current_user.super_admin? || current_user.university_admin?
+    = f.input :university_id, collection: University.all.sort_by(&:name)
+    = f.input :location_id, collection: Location.all.sort_by(&:name)
+    = f.input :graduation_year, collection: Time.now.year.to_i.downto(1940).to_a
   = f.input :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false
   = f.input :password_confirmation, :required => false
   = f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true
