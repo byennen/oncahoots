@@ -14,6 +14,7 @@
 
 %h3 Updates
 - @updates.each do |update|
+  = image_tag update.image_url if update.image?
   = update.body
   %br
   = update.created_at.to_date
