@@ -1,0 +1,12 @@
+= simple_form_for([:admin, @club]) do |f|
+  = f.error_notification
+
+  .form-inputs
+    - if current_user.super_admin?
+      = f.association :university
+    = f.input :name
+    = f.input :category, :required => true, :collection =>  0..Club::CLUB_TYPES.length, :label_method => lambda { |i| Club::CLUB_TYPES[i] }
+    = f.input :description
+
+  .form-actions
+    = f.button :submit

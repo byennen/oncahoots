@@ -4,5 +4,6 @@
     %li= link_to 'Users', admin_users_path
     %li= link_to 'Universities', admin_universities_path
     %li= link_to 'Locations', admin_locations_path
+    %li= link_to 'Clubs', admin_clubs_path
   - else current_user.has_role? :university_admin
     %li= link_to 'Users', admin_users_path

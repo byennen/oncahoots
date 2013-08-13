@@ -1,5 +1,7 @@
 CahootsConnect::Application.routes.draw   do
 
+  resources :clubs, only: [:show]
+
   resources :universities, only: [:index, :show] do
     resources :updates, only: [:new, :create, :update, :destroy]
   end
@@ -15,6 +17,7 @@ CahootsConnect::Application.routes.draw   do
   namespace :admin do
     resources :universities
     resources :locations
+    resources :clubs
     resources :users
     root to: 'dashboard#index'
   end
