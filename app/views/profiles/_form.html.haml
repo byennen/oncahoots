@@ -14,4 +14,8 @@
     = link_to_add_fields "Add Experience", f, :experiences
 
   .form-actions
-    = f.button :submit
+    = f.button :submit, class: 'btn btn-primary'
+    - if params[:action] == 'new'
+      |
+      = link_to 'Skip', user_skip_profile_path, class: 'btn'
+

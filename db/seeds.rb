@@ -26,3 +26,10 @@ University.create(name: 'Westmont College')
 University.create(name: 'Sewanee University')
 University.create(name: 'Middlebury College')
 University.create(name: 'Occidental College')
+
+#Locations
+Location.create(name: 'Davidson, NC')
+Location.create(name: 'Santa Barbara, CA')
+Location.create(name: 'Sewanee, TN')
+Location.create(name: 'Middlebury, VT')
+Location.create(name: 'Los Angeles, CA')

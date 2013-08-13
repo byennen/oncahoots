@@ -7,8 +7,8 @@ CahootsConnect::Application.routes.draw   do
   devise_for :users, :controllers => { :registrations => "registrations" }
 
   resources :users do
-    match 'build-your-profile', to: 'profiles#new', as: 'build_your_profile'
     resources :profiles
+    match '/skip', to: 'profiles#skip', as: 'skip_profile'
   end
 
 

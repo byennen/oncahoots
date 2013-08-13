@@ -29,4 +29,9 @@ class ProfilesController < ApplicationController
     end
   end
 
+  def skip
+    @profile = Profile.create(user_id: current_user.id)
+    redirect_to university_path(current_user.university_id), notice: 'Profile was successfully created.'
+  end
+
 end
