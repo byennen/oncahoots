@@ -10,6 +10,8 @@ FactoryGirl.define do
     major 'computer engineering'
     password 'changeme'
     password_confirmation 'changeme'
+    university_id '1'
+    location_id '1'
     # required if the Devise Confirmable module is used
     # confirmed_at Time.now
   end

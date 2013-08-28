@@ -33,7 +33,7 @@ puts 'Add Super Admin'
   password: 'cahoot2013',
   password_confirmation: 'cahoot2013',
   university_id: @university.id,
-  graduation_year: 2005,
+  graduation_year: '2005',
   major: 'Computer Science',
   location_id: @location.id
 )
@@ -49,7 +49,7 @@ puts @super_admin.inspect
   password: 'cahoot2013',
   password_confirmation: 'cahoot2013',
   university_id: @university.id,
-  graduation_year: 2005,
+  graduation_year: '2005',
   major: 'Computer Science',
   location_id: @location.id
 )

@@ -7,11 +7,14 @@ describe User do
       :first_name => "Example",
       :last_name => "User",
       :email => "user@example.com",
-      :university => "Iowa",
       :graduation_year => "2005",
       :major => "Computer Engineering",
       :password => "changeme",
-      :password_confirmation => "changeme"
+      :password_confirmation => "changeme",
+      university_id: '1',
+      graduation_year: '2005',
+      major: 'Computer Science',
+      location_id: '1'
     }
   end
 
