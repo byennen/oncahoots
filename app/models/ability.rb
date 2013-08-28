@@ -8,8 +8,8 @@ class Ability
     elsif user.has_role? :university_admin
       can :manage, User, university_id: user.university_id
       #can :manage, Club, university_id: user.university_id
-    elsif user.has_role? :member
-      #can
+    #elsif user.has_role? :member
+    #  #can
     end
   end
 end

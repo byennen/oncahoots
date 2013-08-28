@@ -13,7 +13,6 @@ CahootsConnect::Application.routes.draw   do
     match '/skip', to: 'profiles#skip', as: 'skip_profile'
   end
 
-
   namespace :admin do
     resources :universities
     resources :locations
