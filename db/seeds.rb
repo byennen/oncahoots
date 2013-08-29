@@ -7,19 +7,19 @@ end
 
 #Universities
 puts 'Adding Universities'
-@university = University.create(name: 'Davidson College')
-University.create(name: 'Westmont College')
-University.create(name: 'Sewanee University')
-University.create(name: 'Middlebury College')
-University.create(name: 'Occidental College')
+@university = University.find_or_create_by_name(name: 'Davidson College')
+University.find_or_create_by_name(name: 'Westmont College')
+University.find_or_create_by_name(name: 'Sewanee University')
+University.find_or_create_by_name(name: 'Middlebury College')
+University.find_or_create_by_name(name: 'Occidental College')
 
 #Locations
 puts 'Adding Locations'
-@location = Location.create(name: 'Davidson, NC')
-Location.create(name: 'Santa Barbara, CA')
-Location.create(name: 'Sewanee, TN')
-Location.create(name: 'Middlebury, VT')
-Location.create(name: 'Los Angeles, CA')
+@location = Location.find_or_create_by_name(name: 'Davidson, NC')
+Location.find_or_create_by_name(name: 'Santa Barbara, CA')
+Location.find_or_create_by_name(name: 'Sewanee, TN')
+Location.find_or_create_by_name(name: 'Middlebury, VT')
+Location.find_or_create_by_name(name: 'Los Angeles, CA')
 
 #super admin user
 puts 'DEFAULT USERS'

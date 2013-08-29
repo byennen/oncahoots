@@ -20,8 +20,11 @@ class User < ActiveRecord::Base
   after_create :create_user_profile
 
   extend FriendlyId
-  friendly_id :first_name, :use => :scoped, :scope => [:first_name, :last_name]
+  friendly_id :username, :use => :slugged
 
+  def username
+    "#{first_name}-#{last_name}"
+  end
 
   def full_name
     [first_name, last_name].join(' ')
