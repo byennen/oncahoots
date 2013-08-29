@@ -6,6 +6,7 @@ class CreateClubs < ActiveRecord::Migration
       t.text :description
       t.integer :university_id
       t.integer :user_id
+      t.string :slug
 
       t.timestamps
     end

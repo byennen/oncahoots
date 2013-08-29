@@ -4,6 +4,7 @@ class CreateUniversities < ActiveRecord::Migration
       t.string :name
       t.string :mascot
       t.string :location
+      t.string :slug
 
       t.timestamps
     end

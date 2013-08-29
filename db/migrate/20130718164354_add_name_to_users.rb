@@ -7,5 +7,6 @@ class AddNameToUsers < ActiveRecord::Migration
     add_column :users, :graduation_year, :string
     add_column :users, :major, :string
     add_column :users, :double_major, :string
+    add_column :users, :slug, :string
   end
 end

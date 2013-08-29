@@ -16,6 +16,7 @@ gem 'haml-rails'
 gem 'rolify'
 gem 'simple_form'
 gem 'thin'
+gem 'friendly_id'
 
 #image uploads
 #gem "rmagick", '>= 2.13.2'
