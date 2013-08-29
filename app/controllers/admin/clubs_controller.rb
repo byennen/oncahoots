@@ -16,10 +16,11 @@ class Admin::ClubsController < Admin::ApplicationController
   def create
     if current_user.super_admin?
       @club = Club.new(params[:club])
+      @club.update_attributes(user_id: current_user.id)
     end
     if current_user.university_admin?
       @club = Club.new(params[:club])
-      @club.update_attributes(:university_id => current_user.university_id)
+      @club.update_attributes(university_id: current_user.university_id, user_id: current_user.id)
     end
     if @club.save
       redirect_to admin_clubs_url, notice: 'Club was successfully created.'
