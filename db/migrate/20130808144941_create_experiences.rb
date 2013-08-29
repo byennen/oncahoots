@@ -3,8 +3,8 @@ class CreateExperiences < ActiveRecord::Migration
     create_table :experiences do |t|
       t.string :position_name
       t.string :company_name
-      t.datetime :date_started
-      t.datetime :date_ended
+      t.date :date_started
+      t.date :date_ended
       t.integer :profile_id
 
       t.timestamps

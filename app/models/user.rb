@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
 
   validates_presence_of :university_id, :graduation_year, :major, :location_id
 
+  after_create :create_user_profile
+
   def full_name
     [first_name, last_name].join(' ')
   end
@@ -25,5 +27,9 @@ class User < ActiveRecord::Base
 
   def university_admin?
     has_role?(:university_admin)
+  end
+
+  def create_user_profile
+    Profile.create(user_id: self.id)
   end
 end

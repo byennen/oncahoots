@@ -7,7 +7,7 @@
   = f.input :email, :required => true
   = f.input :university_id, collection: University.all.sort_by(&:name)
   = f.input :location_id, collection: Location.all.sort_by(&:name)
-  = f.input :graduation_year, collection: Time.now.year.to_i.downto(1940).to_a
+  = f.input :graduation_year, collection: 2020.downto(1940).to_a
   = f.input :major
   = f.input :double_major
   = f.input :password, :required => true
