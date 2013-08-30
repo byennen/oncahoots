@@ -1,16 +1,24 @@
-%p
-  %b Name:
-  = @club.name
-%p
-  %b Category:
-  = @club.category
-%p
-  %b Description:
-  = @club.description
+.row-fluid
+  .span8
+    %h1
+      = [@university.name, @club.name].join(' - ')
+
+    %p
+      %b Category:
+      = @club.category
+    %p
+      %b Description:
+      = @club.description
+  .span4
+    - unless @club.private?
+      %ul.inline.pull-right
+        %li= link_to "Join", university_club_memberships_path(@university, @club, @membership), :method => :post, class: 'btn btn-primary'
+        %li= link_to "Invite", "", :method => :post, class: 'btn btn-success'
 
 - unless @club.private?
-  = link_to "Join", university_club_memberships_path(@university, @club, @membership), :method => :post, class: 'btn btn-primary'
-
-  %ul
-    - @members.each do |member|
-      %li= link_to member.full_name, user_path(member)
+  .row-fluid
+    .span12
+      %h3 Members
+      %ul
+        - @members.each do |member|
+          %li= link_to member.full_name, user_path(member)

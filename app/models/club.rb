@@ -2,7 +2,7 @@ class Club < ActiveRecord::Base
   belongs_to :university
   has_many :memberships
   has_many :users
-  has_many :users, :through => :memberships
+  has_many :users, :through => :memberships, :uniq => true
 
   attr_accessible :category, :description, :name, :university_id, :image, :remote_image_url, :user_id, :slug, :private
 
