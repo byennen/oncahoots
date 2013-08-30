@@ -13,7 +13,7 @@
     - unless @club.private?
       %ul.inline.pull-right
         %li= link_to "Join", university_club_memberships_path(@university, @club, @membership), :method => :post, class: 'btn btn-primary'
-        %li= link_to "Invite", "", :method => :post, class: 'btn btn-success'
+        %li= link_to "Invite", new_university_club_invitation_path(@university, @club), class: 'btn btn-success'
 
 - unless @club.private?
   .row-fluid

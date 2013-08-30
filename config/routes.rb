@@ -4,6 +4,7 @@ CahootsConnect::Application.routes.draw   do
     resources :updates, only: [:new, :create, :update, :destroy]
     resources :clubs, only: [:show] do
       resource :memberships
+      resources :invitations
     end
   end
 

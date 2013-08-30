@@ -1,0 +1,3 @@
+= simple_form_for [@club, @invitation], :html => { :class => "form-horizontal" } do |f|
+  = f.input :recipient_id, collection: User.all.sort_by(&:first_name)
+  = f.submit :class => 'btn btn-primary'

@@ -1,5 +1,8 @@
 class MembershipsController < ApplicationController
 
+  def new
+    @user_invitation = Membership.new(:invitation_token => params[:invitation_token])
+  end
 
   def create
     @club = Club.find(params[:club_id])

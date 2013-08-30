@@ -6,6 +6,5 @@ class ClubsController < ApplicationController
     @club = Club.find(params[:id])
     @membership = Membership.new
     @members = @club.users
-
   end
 end
