@@ -17,6 +17,7 @@ gem 'rolify'
 gem 'simple_form'
 gem 'thin'
 gem 'friendly_id'
+gem 'bootstrap-generators', '~> 3.0'
 
 #image uploads
 gem "rmagick", '>= 2.13.2'
