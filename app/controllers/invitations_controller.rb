@@ -1,9 +1,9 @@
 class InvitationsController < ApplicationController
-  load_and_authorize_resource :university
-  load_and_authorize_resource :club, :through => :university
 
   def new
     @invitation = Invitation.new
+    @university = University.find(params[:university_id])
+    @club = Club.find(params[:club_id])
     @users = User.find_by_university_id(@university.id)
   end
 

@@ -4,8 +4,8 @@ class Membership < ActiveRecord::Base
 
   attr_accessible :admin, :manager, :club_id, :user_id, :invitation_token
 
-  validates_presence_of :invitation_id, :message => 'is required'
-  validates_uniqueness_of :invitation_id
+  #validates_presence_of :invitation_id, :message => 'is required'
+  #validates_uniqueness_of :invitation_id
 
   def invitation_token
     invitation.token if invitation
