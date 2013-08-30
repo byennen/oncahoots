@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 ruby '2.0.0'
-gem 'rails', '3.2.13'
+gem 'rails', '3.2.14'
 gem 'pg'
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -19,7 +19,7 @@ gem 'thin'
 gem 'friendly_id'
 
 #image uploads
-#gem "rmagick", '>= 2.13.2'
+gem "rmagick", '>= 2.13.2'
 gem "carrierwave"
 
 group :development do

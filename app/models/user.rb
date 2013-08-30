@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
   has_one :profile
   belongs_to :university
-  has_many :clubs
+  has_many :memberships
+  has_many :clubs, :through => :memberships
 
   rolify
   # Include default devise modules. Others available are:

@@ -1,5 +1,3 @@
-%p#notice= notice
-
 %p
   %b Name:
   = @club.name
@@ -10,3 +8,9 @@
   %b Description:
   = @club.description
 
+- unless @club.private?
+  = link_to "Join", university_club_memberships_path(@university, @club, @membership), :method => :post, class: 'btn btn-primary'
+
+  %ul
+    - @members.each do |member|
+      %li= link_to member.full_name, user_path(member)

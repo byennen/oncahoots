@@ -21,6 +21,10 @@ Location.find_or_create_by_name(name: 'Sewanee, TN')
 Location.find_or_create_by_name(name: 'Middlebury, VT')
 Location.find_or_create_by_name(name: 'Los Angeles, CA')
 
+#Clubs
+puts 'Adding Clubs'
+Club.find_or_create_by_name(name: 'Sports Club', university_id: @university.id)
+
 #super admin user
 puts 'DEFAULT USERS'
 puts 'Add Super Admin'

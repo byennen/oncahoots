@@ -8,6 +8,7 @@
     = f.input :name
     = f.input :category, :required => true, :collection =>  0..Club::CLUB_TYPES.length, :label_method => lambda { |i| Club::CLUB_TYPES[i] }
     = f.input :description
+    = f.input :private
 
   .form-actions
     = f.button :submit

@@ -1,9 +1,10 @@
 CahootsConnect::Application.routes.draw   do
 
-  resources :clubs, only: [:show]
-
   resources :universities, only: [:index, :show] do
     resources :updates, only: [:new, :create, :update, :destroy]
+    resources :clubs, only: [:show] do
+      resource :memberships
+    end
   end
 
   devise_for :users, :controllers => { :registrations => "registrations" }

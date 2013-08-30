@@ -12,5 +12,7 @@ class UniversitiesController < ApplicationController
     @updateable = @university
     @updates = @updateable.updates
     @update = Update.new
+
+    @clubs = Club.where(university_id: @university.id)
   end
 end

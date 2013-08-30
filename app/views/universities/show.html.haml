@@ -11,8 +11,15 @@
   = @university.location
 
 %h2 Users
+%ul
 - @users.each do |user|
-  = link_to user.full_name, user_path(user) if user.present?
+  %li= link_to user.full_name, user_path(user) if user.present?
+
+%h3 Clubs
+- if @clubs.present?
+  %ul
+    - @clubs.each do |club|
+      %li= link_to club.name, university_club_path(@university, club)
 
 %h3 Updates
 - @updates.each do |update|
@@ -22,5 +29,6 @@
   = update.created_at.to_date
 %hr
 
-- if current_user.super_admin? || current_user.university_admin?
-  = link_to "New Update", [:new, @updateable, :update], :class => 'btn btn-primary'
+- if current_user.present?
+  - if current_user.super_admin? || current_user.university_admin?
+    = link_to "New Update", [:new, @updateable, :update], :class => 'btn btn-primary'
