@@ -14,6 +14,16 @@
       = render 'experience_fields', f: builder
     = link_to_add_fields "Add Experience", f, :experiences
 
+    %h2 Portfolio
+    - if @profile.portfolio_items.present?
+      - @profile.portfolio_items.each do |item|
+        = image_tag item.file_url
+
+    %h2 Add Portfolio Items
+    = f.fields_for :portfolio_items do |builder|
+      = render 'portfolio_item_fields', f: builder
+    = link_to_add_fields "Add Portfolio Item", f, :portfolio_items
+
   .form-actions
     = f.button :submit, class: 'btn btn-primary'
     - if params[:action] == 'new'
