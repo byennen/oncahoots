@@ -4,6 +4,7 @@ class InvitationsController < ApplicationController
 
   def new
     @invitation = Invitation.new
+    @users = User.find_by_university_id(@university.id)
   end
 
   def create

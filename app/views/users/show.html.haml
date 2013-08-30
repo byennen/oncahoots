@@ -10,10 +10,14 @@
 %p
   %b Education:
   = @profile.education
-%p
-  %h2 Experience:
-  - @experiences.each do |experience|
-    %b= experience.position_name
-    %p= experience.company_name
-    %p
-      = experience.date_started.strftime("%m-%Y") + " - " + experience.date_ended.strftime("%m-%Y")
+%h2 Experience:
+- @experiences.each do |experience|
+  %b= experience.position_name
+  %p= experience.company_name
+  %p
+    = experience.date_started.strftime("%m-%Y") + " - " + experience.date_ended.strftime("%m-%Y")
+
+-#= @invitations.inspect
+-#- @invitations.each do |invitation|
+-#  = @token = invitation.token
+-#  = link_to "club invite", signup_url(@token)
