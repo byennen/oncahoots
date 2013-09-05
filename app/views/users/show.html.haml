@@ -16,6 +16,14 @@
   %p= experience.company_name
   %p
     = experience.date_started.strftime("%m-%Y") + " - " + experience.date_ended.strftime("%m-%Y")
+%h2 Portfolio:
+= @portfolio_items.size
+- @portfolio_items.each do |pi|
+  - if ["png", "jpg", "gif"].include?(pi.file.url.split('.').last)
+    %p= image_tag(pi.file.url)
+  - else
+    %p= link_to(pi.file.url)
+
 
 -#= @invitations.inspect
 -#- @invitations.each do |invitation|
