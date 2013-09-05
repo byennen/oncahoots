@@ -1,4 +1,5 @@
 .row-fluid
+  = image_tag @club.image_url if @club.image?
   .span8
     %h1
       = [@university.name, @club.name].join(' - ')
@@ -10,12 +11,12 @@
       %b Description:
       = @club.description
   .span4
-    - unless @club.private?
+    - unless @club.private? || !current_user
       %ul.inline.pull-right
         %li= link_to "Join", university_club_memberships_path(@university, @club, @membership), :method => :post, class: 'btn btn-primary'
         %li= link_to "Invite", new_university_club_invitation_path(@university, @club), class: 'btn btn-success'
 
-- unless @club.private?
+- unless @club.private? || !current_user
   .row-fluid
     .span12
       %h3 Members

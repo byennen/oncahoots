@@ -16,6 +16,7 @@
   %li= link_to user.full_name, user_path(user) if user.present?
 
 %h3 Clubs
+= link_to "Create A New Club", new_university_club_path(@university)
 - if @clubs.present?
   %ul
     - @clubs.each do |club|
