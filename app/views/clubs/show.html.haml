@@ -1,6 +1,7 @@
 .row-fluid
-  = image_tag @club.image_url if @club.image?
   .span8
+    .pull-left{style: "margin-top: 20px;margin-right: 20px;"}
+      = image_tag @club.image.thumb.url if @club.image?
     %h1
       = [@university.name, @club.name].join(' - ')
 
@@ -13,13 +14,38 @@
   .span4
     - unless @club.private? || !current_user
       %ul.inline.pull-right
+        - if @club.user_id == current_user.id
+          %li= link_to "Edit", edit_university_club_path(@university), class: "btn btn-primary"
         %li= link_to "Join", university_club_memberships_path(@university, @club, @membership), :method => :post, class: 'btn btn-primary'
         %li= link_to "Invite", new_university_club_invitation_path(@university, @club), class: 'btn btn-success'
 
-- unless @club.private? || !current_user
-  .row-fluid
-    .span12
-      %h3 Members
+.row-fluid.tabbable
+  %ul.nav.nav-tabs
+    %li.active
+      %a{href: "#lowdown", data: {toggle: "tab"}} Lowdown
+    %li
+      %a{href: "#members", data: {toggle: "tab"}} Members
+    %li
+      %a{href: "#mission_statement", data: {toggle: "tab"}} Mission Statement
+    %li
+      %a{href: "#calendar", data: {toggle: "tab"}} Calendar
+    %li
+      %a{href: "#records", data: {toggle: "tab"}} Records
+    %li
+      %a{href: "#e_board", data: {toggle: "tab"}} E-Board
+  .tab-content.clearfix
+    #lowdown.tab-pane.active
+      <p>This is where lowdown goes</p>
+    #members.tab-pane
       %ul
         - @members.each do |member|
           %li= link_to member.full_name, user_path(member)
+    #mission_statement.tab-pane
+      = @club.mission_statement
+    #calendar.tab-pane
+      <p>This is where calendar goes</p>
+    #records.tab-pane
+      <p>This is where records go.</p>
+    #e_board.tab-pane
+      <p>This is where eboard goes.</p>
+      
