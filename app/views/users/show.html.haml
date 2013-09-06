@@ -1,4 +1,4 @@
-= image_tag @profile.image_url if @profile.image?
+= image_tag @profile.image.thumb.url if @profile.image?
 
 %h1= @user.first_name + ' ' + @user.last_name
 %p
