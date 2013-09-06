@@ -1,10 +1,11 @@
 h1. Cahoots Connect
 
+"Staging URL(Staging URL)":http://cahoots:cahoots2013@oncahoots-staging.herokuapp.com
 
 h2. Test Users
 
-u: super_admin@cahoots-connect.com
-p: cahoot2013
+u: super_admin@oncahoots.com
+p: cahoots2013
 
-u: university_admin@cahoots-connect.com
-p: cahoot2013
+u: university_admin@oncahoots.com
+p: cahoots2013
