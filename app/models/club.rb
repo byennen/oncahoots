@@ -4,7 +4,8 @@ class Club < ActiveRecord::Base
   has_many :users
   has_many :users, :through => :memberships, :uniq => true
 
-  attr_accessible :category, :description, :name, :university_id, :image, :remote_image_url, :user_id, :slug, :private
+  attr_accessible :category, :description, :name, :university_id, :image, 
+                  :remote_image_url, :user_id, :slug, :private, :mission_statement
 
   CLUB_TYPES = %w(Social Gender Media Performance Recreational Religious Service Student Govt. Team Sports Metropolitan)
 
