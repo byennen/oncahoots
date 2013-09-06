@@ -22,6 +22,7 @@ gem 'bootstrap-generators', '~> 3.0'
 #image uploads
 gem "rmagick", '>= 2.13.2'
 gem "carrierwave"
+gem 'fog'
 
 group :development do
   gem 'better_errors'
