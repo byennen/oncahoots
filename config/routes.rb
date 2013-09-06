@@ -2,7 +2,7 @@ CahootsConnect::Application.routes.draw   do
 
   resources :universities, only: [:index, :show] do
     resources :updates, only: [:new, :create, :update, :destroy]
-    resources :clubs, only: [:show, :new, :create] do
+    resources :clubs, only: [:show, :new, :create, :edit, :update] do
       resource :memberships
       resources :invitations
     end
