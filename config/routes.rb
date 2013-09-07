@@ -5,6 +5,7 @@ CahootsConnect::Application.routes.draw   do
     resources :clubs, only: [:show, :new, :create, :edit, :update] do
       resource :memberships
       resources :invitations
+      resources :club_photos
     end
   end
 

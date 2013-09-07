@@ -19,6 +19,22 @@
         %li= link_to "Join", university_club_memberships_path(@university, @club, @membership), :method => :post, class: 'btn btn-primary'
         %li= link_to "Invite", new_university_club_invitation_path(@university, @club), class: 'btn btn-success'
 
+.row-fluid
+  - if @club.user_id == current_user.id
+    .pull-right
+      %a{href: "#add_photo", class: "btn btn-primary", data: {toggle: "modal"}} Add Photo
+      #add_photo.modal.hide
+        = simple_form_for([@university, @club, ClubPhoto.new]) do |f|
+          .modal-header
+            %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+            %h3 Add Photo
+          .modal-body
+            =f.input :image, as: :file
+          .modal-footer
+            =f.submit "Add Photo", class: "btn btn-primary"
+    .row.clearfix
+      - @club.club_photos.each do |photo|
+        = image_tag photo.image.thumb.url
 .row-fluid.tabbable
   %ul.nav.nav-tabs
     %li.active
