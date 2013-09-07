@@ -28,6 +28,16 @@ class ClubsController < ApplicationController
     end
   end
 
+  def update
+    @club = @university.clubs.find(params[:id])
+    @club.attributes = params[:club]
+    if @club.save
+      respond_to do |format|
+        format.html { redirect_to university_club_path(@university, @club) }
+      end
+    end
+  end
+
   private
 
     def ensure_user_university
