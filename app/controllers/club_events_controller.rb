@@ -1,15 +1,21 @@
-class ClubPhotosController < ApplicationController
+class ClubEventsController < ApplicationController
 
   before_filter :ensure_user_university
   before_filter :ensure_user_club
 
   def create
-    @photo = @club.club_photos.new(params[:club_photo])
-    if @photo.save
+    @club_event = @club.club_events.new(params[:club_event])
+    if @club_event.save
       respond_to do |format|
         format.html { redirect_to university_club_path(@university, @club) }
       end
-    else
+    end
+  end
+
+  def update
+    @club_event = @club.club_events.find(params[:id])
+    @club_event.attributes = params[:club_event]
+    if @club_event.save
       respond_to do |format|
         format.html { redirect_to university_club_path(@university, @club) }
       end
@@ -17,8 +23,8 @@ class ClubPhotosController < ApplicationController
   end
 
   def destroy
-    @photo = @club.club_photos.find(params[:id])
-    if @photo.destroy
+    @club_event = @club.club_events.find(params[:id])
+    if @club_event.destroy
       respond_to do |format|
         format.html { redirect_to university_club_path(@university, @club) }
       end

@@ -6,6 +6,7 @@ CahootsConnect::Application.routes.draw   do
       resource :memberships
       resources :invitations
       resources :club_photos
+      resources :club_events
     end
   end
 
