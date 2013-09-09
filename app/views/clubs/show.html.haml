@@ -101,23 +101,23 @@
                 = f.input :image, as: :file
               .modal-footer
                 = f.submit "Add Event", class: "btn btn-primary"
-          #add_event.modal.hide
-            = simple_form_for([@university, @club, ClubEvent.new], html: {class: 'form-horizontal'}) do |f|
-              .modal-header
-                %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
-                %h3 Add Event
-              .modal-body
-                = f.input :title
-                -# Probably need a calendar picker
-                = f.input :date
-                -# Probably need a time picker
-                = f.input :time
-                = f.input :location
-                = f.input :description
-                = f.input :category, as: :category 
-                = f.input :image, as: :file
-              .modal-footer
-                = f.submit "Add Event", class: "btn btn-primary"
+        #add_event.modal.hide
+          = simple_form_for([@university, @club, ClubEvent.new], html: {class: 'form-horizontal'}) do |f|
+            .modal-header
+              %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+              %h3 Add Event
+            .modal-body
+              = f.input :title
+              -# Probably need a calendar picker
+              = f.input :date
+              -# Probably need a time picker
+              = f.input :time
+              = f.input :location
+              = f.input :description
+              = f.input :category, as: :category 
+              = f.input :image, as: :file
+            .modal-footer
+              = f.submit "Add Event", class: "btn btn-primary"
     #records.tab-pane
       <p>This is where records go.</p>
     #e_board.tab-pane
