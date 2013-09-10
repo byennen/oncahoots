@@ -9,6 +9,8 @@ class ClubsController < ApplicationController
     @membership = Membership.new
     @members = @club.users
     @memberships = @club.memberships
+    @current_membership = @club.memberships.find_by_user_id(current_user.id)
+    @admins = @club.memberships.where(admin: true)
   end
 
   def new

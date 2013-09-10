@@ -16,7 +16,8 @@
       %ul.inline.pull-right
         - if @club.user_id == current_user.id
           %li= link_to "Edit", edit_university_club_path(@university), class: "btn btn-primary"
-        %li= link_to "Join", university_club_memberships_path(@university, @club, @membership), :method => :post, class: 'btn btn-primary'
+        - unless @current_membership 
+          %li= link_to "Join", university_club_memberships_path(@university, @club, @membership), :method => :post, class: 'btn btn-primary'
         %li= link_to "Invite", new_university_club_invitation_path(@university, @club), class: 'btn btn-success'
 
 .row-fluid
@@ -130,5 +131,9 @@
     #records.tab-pane
       <p>This is where records go.</p>
     #e_board.tab-pane
-      <p>This is where eboard goes.</p>
+      - @admins.each do |admin|
+        .pull-left
+          = image_tag admin.user.profile.image.thumb.url
+          %br
+          = admin.user.full_name
       
