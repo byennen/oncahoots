@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130910042832) do
+ActiveRecord::Schema.define(:version => 20130910050025) do
 
   create_table "club_events", :force => true do |t|
     t.integer  "club_id"
@@ -99,6 +99,13 @@ ActiveRecord::Schema.define(:version => 20130910042832) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "image"
+  end
+
+  create_table "records", :force => true do |t|
+    t.integer  "club_id"
+    t.string   "file"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "roles", :force => true do |t|

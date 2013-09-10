@@ -75,9 +75,6 @@
           = status.status
           - if @club.admins.include?(current_user)
             = link_to "Delete", university_club_status_path(@university, @club, status), method: :delete, class: "btn btn-mini btn-danger"
-
-
-        
     #members.tab-pane
       %ul
         - @memberships.each do |membership|
@@ -150,7 +147,25 @@
             .modal-footer
               = f.submit "Add Event", class: "btn btn-primary"
     #records.tab-pane
-      <p>This is where records go.</p>
+      .pull-right
+        - if @club.admins.include?(current_user)
+          %a{href: "#add-record", class: 'btn btn-success', data: {toggle: "modal"}} Add Record
+      - @club.records.each do |record|
+        - unless record.file.url.nil?
+          = record.file.url.split("/").last
+          = link_to "Download", record.file.url
+          - if @club.admins.include?(current_user)
+            = link_to "Delete", university_club_record_path(@university, @club, record), method: :delete, confirm: "Are you sure?", class: "btn btn-danger btn-mini"
+        %br
+      #add-record.modal.hide
+        = simple_form_for([@university, @club, Record.new]) do |f|
+          .modal-header
+            %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+            %h3 Add Record
+          .modal-body
+            = f.input :file, as: :file
+          .modal-footer
+            = f.submit "Add Record", class: "btn btn-primary"
     #e_board.tab-pane
       - @admins.each do |admin|
         .pull-left

@@ -11,6 +11,7 @@ CahootsConnect::Application.routes.draw   do
       resources :club_photos
       resources :club_events
       resources :statuses
+      resources :records
     end
   end
 
