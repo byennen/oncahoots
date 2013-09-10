@@ -1,6 +1,8 @@
 class Club < ActiveRecord::Base
   belongs_to :university
+
   has_many :memberships
+
   has_many :users
   has_many :users, :through => :memberships, :uniq => true
   has_many :club_photos

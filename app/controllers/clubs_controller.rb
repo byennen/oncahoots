@@ -8,6 +8,7 @@ class ClubsController < ApplicationController
     @club = @university.clubs.find(params[:id])
     @membership = Membership.new
     @members = @club.users
+    @memberships = @club.memberships
   end
 
   def new

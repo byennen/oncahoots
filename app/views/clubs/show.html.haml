@@ -58,8 +58,17 @@
       <p>This is where lowdown goes</p>
     #members.tab-pane
       %ul
-        - @members.each do |member|
-          %li= link_to member.full_name, user_path(member)
+        - @memberships.each do |membership|
+          %li
+            = link_to membership.user.full_name, user_path(membership.user)
+            - if @club.user_id == current_user.id 
+              - if @club.user_id == current_user.id && membership.admin? && current_user.id != membership.user_id
+                = link_to "Remove Admin", remove_admin_university_club_membership_path(@university, @club, membership.id), class: 'btn btn-mini btn-danger', method: :post
+              - if !membership.admin?
+                = link_to "Make Admin", make_admin_university_club_membership_path(@university, @club, membership.id), class: 'btn btn-mini', method: :post
+              - if membership.user.id != current_user.id
+                = link_to "Delete", university_club_membership_path(@university, @club, membership.id), method: :delete, class: 'btn btn-mini btn-danger', confirm: "Are you sure?"
+            
     #mission_statement.tab-pane
       .pull-right
         %a{href: "#edit_mission_statement", class: "btn btn-primary", data: {toggle: "modal"}} Edit
