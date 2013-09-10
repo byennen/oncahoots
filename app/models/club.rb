@@ -7,6 +7,7 @@ class Club < ActiveRecord::Base
   has_many :users, :through => :memberships, :uniq => true
   has_many :club_photos
   has_many :club_events
+  has_many :statuses
 
   attr_accessible :category, :description, :name, :university_id, :image, 
                   :remote_image_url, :user_id, :slug, :private, :mission_statement
@@ -17,5 +18,16 @@ class Club < ActiveRecord::Base
 
   extend FriendlyId
   friendly_id :name, use: :slugged
+
+
+  def admins
+    @admins = []
+    memberships.where(admin: true).each do |m|
+      Rails.logger.debug("m is #{m.user.inspect}")
+      @admins << m.user
+    end
+    Rails.logger.debug(@admins.inspect)
+    return @admins
+  end
 
 end

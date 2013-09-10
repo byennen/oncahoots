@@ -56,7 +56,28 @@
       %a{href: "#e_board", data: {toggle: "tab"}} E-Board
   .tab-content.clearfix
     #lowdown.tab-pane.active
-      <p>This is where lowdown goes</p>
+      .pull-right
+        %a{href: "#add-lowdown", class: 'btn btn-success', data: {toggle: "modal"}} Add Lowdown
+        #add-lowdown.modal.hide
+          = simple_form_for([@university, @club, Status.new]) do |f|
+            .modal-header
+              %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+              %h3 Add Lowdown
+            .modal-body
+              = f.input :status, label: false, as: :text, input_html: {cols: 800, rows: 2, class: 'span-8'}
+            .modal-footer
+              %a{href: "#", class: "btn", data: {dismiss: "modal"}} Close
+              = f.submit "Save Lowdown", class: "btn btn-primary" 
+      - @club.statuses.order("created_at DESC").each do |status|
+        .pull-left{style: 'margin-right: 10px;'}
+          = image_tag status.user.profile.image.thumb.url
+        %div{style: "border-bottom: 1px solid #ccc; width: 400px; padding: 20px;"}
+          = status.status
+          - if @club.admins.include?(current_user)
+            = link_to "Delete", university_club_status_path(@university, @club, status), method: :delete, class: "btn btn-mini btn-danger"
+
+
+        
     #members.tab-pane
       %ul
         - @memberships.each do |membership|
