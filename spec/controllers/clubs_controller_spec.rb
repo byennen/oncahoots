@@ -10,6 +10,7 @@ describe ClubsController do
     let!(:membership) { Membership.create(club_id: club.id, user_id: user.id) }
 
     before do
+      sign_in user
       get :show, id: club.id, university_id: university.id
     end
 
