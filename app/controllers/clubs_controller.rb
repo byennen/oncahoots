@@ -1,5 +1,6 @@
 class ClubsController < ApplicationController
 
+
   before_filter :authenticate_user!, except: [:show]
   before_filter :ensure_user_university, except: [:show]
 
