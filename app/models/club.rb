@@ -9,6 +9,7 @@ class Club < ActiveRecord::Base
   has_many :club_events
   has_many :statuses # this is lowdowns here
   has_many :records
+  has_many :updates, as: :updateable
 
   attr_accessible :category, :description, :name, :university_id, :image, 
                   :remote_image_url, :user_id, :slug, :private, :mission_statement

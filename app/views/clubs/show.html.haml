@@ -20,8 +20,52 @@
           %li= link_to "Join", university_club_memberships_path(@university, @club, @membership), :method => :post, class: 'btn btn-primary'
         %li= link_to "Invite", new_university_club_invitation_path(@university, @club), class: 'btn btn-success'
 
-.row-fluid
-  - if @club.user_id == current_user.id
+.row-fluid{style: "width: 800px; height: 400px;"}
+  #big-picture.span5
+    = image_tag "http://placehold.it/350x350"
+  .span7
+    %ul.unstyled
+      - if @club.admins.include?(current_user)
+        %li.text-right
+          %a{href: "#add-update", class: "btn btn-primary", data: {toggle: "modal"}} Add Newsletter
+      - @club.updates.each do |update|
+        %li{style: "padding: 10px; clear: both;"}
+          .span2
+            = image_tag "http://placehold.it/125x125"
+          .span10
+            %strong
+              = update.headline
+              %a{href: "#edit-update-#{update.id}", class: "btn btn-mini", data: {toggle: "modal"}} Edit
+            %br
+            = update.body.truncate(500)
+          - if @club.admins.include?(current_user)
+            .modal.hide{id: "edit-update-#{update.id}"}
+              = simple_form_for update, url: university_club_club_newsletter_path(@university, @club, update.id), method: :put do |f|
+                .modal-header
+                  %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+                  %h3 Edit Newsletter
+                .modal-body
+                  = f.input :headline
+                  = f.input :image, as: :file, input_html: {class: 'span-8'}
+                  = f.input :body, as: :text, input_html: {cols: 800, rows: 10, class: 'span-8'}
+                .modal-footer
+                  = f.submit "Add Newsletter", class: "btn btn-primary"
+ 
+  #add-update.modal.hide
+    = simple_form_for Update.new, url: university_club_club_newsletters_path(@university, @club), method: :post do |f|
+      .modal-header
+        %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+        %h3 Add Newsletter
+      .modal-body
+        = f.input :headline
+        = f.input :image, as: :file, input_html: {class: 'span-8'}
+        = f.input :body, as: :text, input_html: {cols: 800, rows: 10, class: 'span-8'}
+      .modal-footer
+        = f.submit "Add Newsletter", class: "btn btn-primary"
+ 
+%br{style: "clear: both;"}
+.row-fluid.clearfix
+  - if @club.admins.include?(current_user)
     .pull-right
       %a{href: "#add_photo", class: "btn btn-primary", data: {toggle: "modal"}} Add Photo
       #add_photo.modal.hide
@@ -33,13 +77,13 @@
             =f.input :image, as: :file
           .modal-footer
             =f.submit "Add Photo", class: "btn btn-primary"
-    .row.clearfix
-      - @club.club_photos.each do |photo|
-        .pull-left
-          = image_tag photo.image.thumb.url
-          - if @club.user_id == current_user.id
-            %br
-            = link_to "Delete", university_club_club_photo_path(@university, @club, photo), method: :delete, confirm: "Are you sure?"
+  .row.clearfix
+    - @club.club_photos.each do |photo|
+      .pull-left
+        = image_tag photo.image.thumb.url
+        - if @club.admins.include?(current_user)
+          %br
+          = link_to "Delete", university_club_club_photo_path(@university, @club, photo), method: :delete, confirm: "Are you sure?"
 .row-fluid.tabbable
   %ul.nav.nav-tabs
     %li.active

@@ -14,5 +14,6 @@ class UniversitiesController < ApplicationController
     @update = Update.new
 
     @clubs = Club.where(university_id: @university.id)
+    @club_updates = Update.where(updateable_type: "Club").order("created_at DESC").all
   end
 end

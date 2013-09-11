@@ -23,11 +23,28 @@
       %li= link_to club.name, university_club_path(@university, club)
 
 %h3 Updates
-- @updates.each do |update|
-  = image_tag update.image_url if update.image?
-  = update.body
-  %br
-  = update.created_at.to_date
+%ul.unstyled
+  - @updates.each do |update|
+    %li
+      = image_tag update.image_url if update.image?
+      = update.body
+      %br
+      = update.created_at.to_date
+  - @club_updates.each do |update|
+    - if current_user && update.updateable.memberships.map(&:user_id).include?(current_user.id)
+      %li 
+        .row-fluid
+          .span1= image_tag update.updateable.image.thumb.url
+          .span11
+            %h4= update.updateable.name
+        %br
+        = image_tag update.image_url if update.image?
+        %strong= update.headline
+        %br
+        = update.created_at.to_date
+        %br
+        =update.body
+
 %hr
 
 - if current_user.present?
