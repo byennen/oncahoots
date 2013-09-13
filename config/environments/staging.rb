@@ -86,7 +86,7 @@ CahootsConnect::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
   #password for staging
-  config.middleware.insert_after(Rack::Runtime, "::Rack::Auth::Basic", "MetalsDirectory") do |u, p|
+  config.middleware.insert_after(Rack::Runtime, "::Rack::Auth::Basic", "OnCahoots Staging") do |u, p|
     [u, p] == [ENV['STAGING_USERNAME'], ENV['STAGING_PASSWORD']]
   end
 end
