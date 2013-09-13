@@ -133,8 +133,9 @@
                 = link_to "Delete", university_club_membership_path(@university, @club, membership.id), method: :delete, class: 'btn btn-mini btn-danger', confirm: "Are you sure?"
             
     #mission_statement.tab-pane
-      .pull-right
-        %a{href: "#edit_mission_statement", class: "btn btn-primary", data: {toggle: "modal"}} Edit
+      - if @club.user_id == current_user.id
+        .pull-right
+          %a{href: "#edit_mission_statement", class: "btn btn-primary", data: {toggle: "modal"}} Edit
       = @club.mission_statement
       - if @club.user_id == current_user.id
         #edit_mission_statement.modal.hide
@@ -145,7 +146,7 @@
             .modal-body
               =f.input :mission_statement, input_html: {cols: 100, rows: 10, style: "width: 500px; height: 100px;"}
             .modal-footer
-              %a{href: "#", class: "btn"} Close
+              %a{href: "#", class: "btn", data: {dismiss: "modal"}} Close
               =f.submit "Save Mission Statement", class: "btn btn-primary"
     #calendar.tab-pane
       - if @club.user_id == current_user.id
