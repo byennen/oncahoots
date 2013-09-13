@@ -6,9 +6,8 @@
   .form-inputs
     = f.input :image, label: "Logo"
     = f.input :name
-    = f.input :category
+    = f.input :category, as: :category 
     = f.input :description
-    = f.input :mission_statement
 
   .form-actions
     = f.button :submit, class: 'btn btn-primary'
