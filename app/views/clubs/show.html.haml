@@ -133,11 +133,11 @@
                 = link_to "Delete", university_club_membership_path(@university, @club, membership.id), method: :delete, class: 'btn btn-mini btn-danger', confirm: "Are you sure?"
             
     #mission_statement.tab-pane
-      - if @club.user_id == current_user.id
+      - if @club.admins.include?(current_user)
         .pull-right
           %a{href: "#edit_mission_statement", class: "btn btn-primary", data: {toggle: "modal"}} Edit
       = @club.mission_statement
-      - if @club.user_id == current_user.id
+      - if @club.admins.include?(current_user)
         #edit_mission_statement.modal.hide
           = simple_form_for([@university, @club]) do |f|
             .modal-header
@@ -149,12 +149,13 @@
               %a{href: "#", class: "btn", data: {dismiss: "modal"}} Close
               =f.submit "Save Mission Statement", class: "btn btn-primary"
     #calendar.tab-pane
-      - if @club.user_id == current_user.id
+      - if @club.admins.include?(current_user)
         .pull-right
           %a{href: "#add_event", class: "btn btn-primary", data: {toggle: "modal"}} Add Event
-        - @club.club_events.each do |ce|
-          %strong= "#{ce.date} #{ce.time}"
-          = ce.title
+      - @club.club_events.each do |ce|
+        %strong= "#{ce.date} #{ce.time}"
+        = ce.title
+        - if @club.admins.include?(current_user)
           %a{href:"#edit-event-#{ce.id}", data: {toggle: "modal"}} Edit
           = link_to("Delete", university_club_club_event_path(@university, @club, ce), method: :delete, confirm: "Are you sure?")
           .modal.hide{id: "edit-event-#{ce.id}"}
