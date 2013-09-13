@@ -5,6 +5,9 @@
   Email: #{@user.email if @user.email}
 %b= @user.university.name
 %p
+  %b Current Location:
+  = @user.location.name
+%p
   %b Skills:
   = @profile.skills
 %p
