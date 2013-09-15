@@ -34,6 +34,10 @@ class ClubsController < ApplicationController
     end
   end
 
+  def edit
+    @club = @university.clubs.find(params[:id])
+  end
+
   def update
     @club = @university.clubs.find(params[:id])
     @club.attributes = params[:club]
