@@ -35,7 +35,8 @@
           .span10
             %strong
               = update.headline
-              %a{href: "#edit-update-#{update.id}", class: "btn btn-mini", data: {toggle: "modal"}} Edit
+              - if @club.admins.include?(current_user)
+                %a{href: "#edit-update-#{update.id}", class: "btn btn-mini", data: {toggle: "modal"}} Edit
             %br
             = update.body.truncate(500)
           - if @club.admins.include?(current_user)
@@ -115,6 +116,10 @@
         .pull-left{style: 'margin-right: 10px;'}
           = image_tag status.user.profile.image.thumb.url
         %div{style: "border-bottom: 1px solid #ccc; width: 400px; padding: 20px;"}
+          %strong= status.user.full_name
+          %br
+          %em= status.created_at.strftime('%m/%d/%Y %H:%M')
+          %br
           = status.status
           - if @club.admins.include?(current_user)
             = link_to "Delete", university_club_status_path(@university, @club, status), method: :delete, class: "btn btn-mini btn-danger"
