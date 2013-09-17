@@ -219,8 +219,8 @@
             = f.submit "Add Record", class: "btn btn-primary"
     #e_board.tab-pane
       - @admins.each do |admin|
-        .pull-left
-          = image_tag admin.user.profile.image.thumb.url
-          %br
-          = admin.user.full_name
-      
+        - unless admin.user.super_admin? || admin.user.university_admin?
+          .pull-left
+            = image_tag admin.user.profile.image.thumb.url
+            %br
+            = admin.user.full_name
