@@ -179,6 +179,7 @@
                 = f.input :image, as: :file
               .modal-footer
                 = f.submit "Add Event", class: "btn btn-primary"
+      - if @club.admins.include?(current_user)
         #add_event.modal.hide
           = simple_form_for([@university, @club, ClubEvent.new], html: {class: 'form-horizontal'}) do |f|
             .modal-header
