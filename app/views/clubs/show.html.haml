@@ -129,10 +129,6 @@
           %li
             = link_to membership.user.full_name, user_path(membership.user)
             - if @club.user_id == current_user.id 
-              - if @club.user_id == current_user.id && membership.admin? && current_user.id != membership.user_id
-                = link_to "Remove Admin", remove_admin_university_club_membership_path(@university, @club, membership.id), class: 'btn btn-mini btn-danger', method: :post
-              - if !membership.admin?
-                = link_to "Make Admin", make_admin_university_club_membership_path(@university, @club, membership.id), class: 'btn btn-mini', method: :post
               - if membership.user.id != current_user.id
                 = link_to "Delete", university_club_membership_path(@university, @club, membership.id), method: :delete, class: 'btn btn-mini btn-danger', confirm: "Are you sure?"
             
@@ -218,9 +214,25 @@
           .modal-footer
             = f.submit "Add Record", class: "btn btn-primary"
     #e_board.tab-pane
+      - if @club.admins.include?(current_user)
+        .pull-right
+          %a{href: "#add-admin", class: "btn btn-success", data: {toggle: "modal"}} Add E-Board Member
+          #add-admin.modal.hide
+            = simple_form_for Membership.new, url: make_admin_university_club_memberships_path(@university, @club) do |f|
+              .modal-header 
+                %button{type: "button", class: "close", data: {dismiss: 'modal'}} &times;
+                %h3 Add E-Board member
+              .modal-body
+                = f.input :user_id, collection: @non_admins, label_method: :full_name, value_method: :id
+                = f.input :title
+              .modal-footer
+                = f.submit "Add E-Board Member", class: "btn btn-primary"
       - @admins.each do |admin|
         - unless admin.user.super_admin? || admin.user.university_admin?
           .pull-left
             = image_tag admin.user.profile.image.thumb.url
             %br
             = admin.user.full_name
+            %br
+            = admin.title
+

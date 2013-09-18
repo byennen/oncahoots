@@ -4,7 +4,7 @@ CahootsConnect::Application.routes.draw   do
     resources :updates, only: [:new, :create, :update, :destroy]
     resources :clubs, only: [:show, :new, :create, :edit, :update] do
       resources :memberships do
-        post 'make_admin', on: :member
+        post 'make_admin', on: :collection
         post 'remove_admin', on: :member
       end
       resources :invitations

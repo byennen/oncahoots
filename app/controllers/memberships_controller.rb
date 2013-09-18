@@ -2,7 +2,7 @@ class MembershipsController < ApplicationController
 
   before_filter :find_university, except: [:new]
   before_filter :find_club, except: [:new]
-  before_filter :find_membership, except: [:new, :create]
+  before_filter :find_membership, except: [:new, :create, :make_admin]
 
   def new
     @user_invitation = Membership.new(:invitation_token => params[:invitation_token])
@@ -18,7 +18,10 @@ class MembershipsController < ApplicationController
   end
 
   def make_admin
-    if @membership.update_attribute(:admin, true)
+    @membership = @club.memberships.find_by_user_id(params[:membership][:user_id])
+    @membership.title = params[:membership][:title]
+    @membership.admin = true
+    if @membership.save
       respond_to do |format|
         format.html { redirect_to university_club_path(@university, @club), notice: "Member - #{@membership.user.full_name} is now an admin" }
       end
@@ -54,4 +57,5 @@ class MembershipsController < ApplicationController
   def find_membership
     @membership = @club.memberships.find(params[:id])
   end
+
 end

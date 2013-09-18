@@ -23,13 +23,7 @@ class Club < ActiveRecord::Base
 
 
   def admins
-    @admins = []
-    memberships.where(admin: true).each do |m|
-      Rails.logger.debug("m is #{m.user.inspect}")
-      @admins << m.user
-    end
-    Rails.logger.debug(@admins.inspect)
-    return @admins
+    @admins ||= memberships.where(admin: true).all.map(&:user)
   end
 
 end
