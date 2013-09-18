@@ -6,14 +6,14 @@ class UniversitiesController < ApplicationController
 
   def show
     @university = University.find(params[:id])
-    @users = User.find_all_by_university_id(@university.id)
+    @users = @university.users
 
     #@updates = @university.updates.all
     @updateable = @university
     @updates = @updateable.updates
     @update = Update.new
 
-    @clubs = Club.where(university_id: @university.id)
-    @club_updates = Update.where(updateable_type: "Club").order("created_at DESC").all
+    @clubs = @university.clubs
+    @club_updates = Update.where(updateable_type: "Club").where(updateable_id: @clubs.map(&:id)).order("created_at DESC").all
   end
 end

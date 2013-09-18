@@ -22,6 +22,15 @@ class ClubNewslettersController < ApplicationController
     end
   end
 
+  def destroy
+    @update = @club.updates.find(params[:id])
+    if @update.destroy
+      respond_to do |format|
+        format.html { redirect_to university_club_path(@university, @club), notice: "Newsletter - #{@update.headline} deleted" }
+      end
+    end
+  end
+
   private
 
   def find_university

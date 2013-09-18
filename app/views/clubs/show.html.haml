@@ -35,8 +35,9 @@
           .span10
             %strong
               = update.headline
-              - if @club.admins.include?(current_user)
+              - if @club.admins.include?(current_user) || current_user.super_admin? || current_user.university_admin?
                 %a{href: "#edit-update-#{update.id}", class: "btn btn-mini", data: {toggle: "modal"}} Edit
+                =link_to "Delete", university_club_club_newsletter_path(@university,@club, update), class: "btn btn-mini btn-danger", method: :delete, confirm: "Are You Sure?"
             %br
             = update.body.truncate(500)
           - if @club.admins.include?(current_user)
