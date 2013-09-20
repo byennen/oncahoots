@@ -9,6 +9,9 @@
     = f.input :skills
     = f.input :education
 
+    %h2 Who Can View Your Profile?
+    = f.input :view_profile, collection: ["Alumni", "Students", "Everyone"], label: false
+
     %h2 Experience
     = f.fields_for :experiences do |builder|
       = render 'experience_fields', f: builder
