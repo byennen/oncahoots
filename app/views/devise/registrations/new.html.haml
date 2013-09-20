@@ -6,7 +6,8 @@
   = f.input :last_name, :required => true
   = f.input :email, :required => true
   = f.input :university_id, collection: University.all.sort_by(&:name)
-  = f.input :location_id, collection: Location.all.sort_by(&:name), label: "Current Location"
+  = f.input :city
+  = f.input :state
   = f.input :graduation_year, collection: 2020.downto(1940).to_a
   = f.input :major
   = f.input :double_major
