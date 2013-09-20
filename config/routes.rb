@@ -3,6 +3,7 @@ CahootsConnect::Application.routes.draw   do
   resources :universities, only: [:index, :show] do
     resources :updates, only: [:new, :create, :update, :destroy]
     resources :clubs, only: [:show, :new, :create, :edit, :update] do
+      post 'transfer_ownership', on: :member 
       resources :memberships do
         post 'make_admin', on: :collection
         post 'remove_admin', on: :member

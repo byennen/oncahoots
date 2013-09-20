@@ -19,6 +19,17 @@
         - unless @current_membership 
           %li= link_to "Join", university_club_memberships_path(@university, @club, @membership), :method => :post, class: 'btn btn-primary'
         %li= link_to "Invite", new_university_club_invitation_path(@university, @club), class: 'btn btn-success'
+        - if @club.user_id == current_user.id
+          %a{href: "#transfer-ownership", class: "btn btn-danger", data: {toggle: "modal"}} Transfer Ownership
+          #transfer-ownership.modal.hide
+            = simple_form_for @club, url: transfer_ownership_university_club_path(@university, @club), method: :post do |f|
+              .modal-header
+                %button{type: "button", class: "close", data: {dismiss: :modal}} &times;
+                %h3 Transfer Ownership
+              .modal-body
+                = f.input :user_id, collection: @club.admins, label_method: :full_name, value_method: :id
+              .modal-footer
+                = f.submit "Transfer Ownership", class: "btn btn-primary"
 
 .row-fluid{style: "width: 800px; height: 400px;"}
   #big-picture.span5

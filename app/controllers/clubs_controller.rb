@@ -50,6 +50,20 @@ class ClubsController < ApplicationController
     end
   end
 
+  def transfer_ownership
+    @club = @university.clubs.find(params[:id])
+    @user = User.find(@club.user_id)
+    @membership = @club.memberships.find_by_user_id(@user.id)
+    @membership.admin = false
+    @new_owner = User.find(params[:club][:user_id])
+    @club.user_id = params[:club][:user_id]
+    if @membership.save && @club.save
+      respond_to do |format|
+        format.html { redirect_to university_club_path(@university, @club), notice: "Ownership transferred to #{@new_owner.full_name}" }
+      end
+    end
+  end
+
   private
 
     def ensure_user_university
