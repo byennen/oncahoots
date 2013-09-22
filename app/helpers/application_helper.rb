@@ -37,4 +37,5 @@ module ApplicationHelper
   def close_modal_button
     "<button type='button' class='close' data-dismiss='modal'>&times;</button>"
   end
+
 end
