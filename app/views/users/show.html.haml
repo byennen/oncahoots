@@ -18,7 +18,7 @@
   %b= experience.position_name
   %p= experience.company_name
   %p
-    = experience.date_started.strftime("%m-%Y") + " - " + experience.date_ended.strftime("%m-%Y")
+    = experience_string(experience)
 %h2 Portfolio:
 - @portfolio_items.each do |pi|
   - if ["png", "jpg", "gif"].include?(pi.file.url.split('.').last)

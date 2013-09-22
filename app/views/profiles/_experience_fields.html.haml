@@ -7,6 +7,7 @@
   = f.input :date_ended, :as => :date, start_year: Date.today.year,
                          end_year: 1950, discard_day: true,
                          order: [:month, :year], :prompt => { :month => 'Select month', :year => 'Select year' }
+  = f.input :present, label: "I Currently Work Here"
   = f.hidden_field :_destroy
   = link_to "remove", '#', class: "remove_fields btn"
   %hr
