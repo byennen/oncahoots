@@ -33,4 +33,8 @@ module ApplicationHelper
     end
     link_to(name, '#', class: "add_fields btn", data: {id: id, fields: fields.gsub("\n", "")})
   end
+
+  def close_modal_button
+    "<button type='button' class='close' data-dismiss='modal'>&times;</button>"
+  end
 end

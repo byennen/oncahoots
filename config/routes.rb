@@ -1,7 +1,9 @@
 CahootsConnect::Application.routes.draw   do
 
   resources :universities, only: [:index, :show] do
-    resources :updates, only: [:new, :create, :update, :destroy]
+    resources :updates, only: [:new, :create, :update, :destroy] do
+      resources :comments
+    end
     resources :clubs, only: [:show, :new, :create, :edit, :update] do
       post 'transfer_ownership', on: :member 
       resources :memberships do
@@ -13,8 +15,13 @@ CahootsConnect::Application.routes.draw   do
       resources :club_events
       resources :statuses
       resources :records
-      resources :club_newsletters
+      resources :club_newsletters do 
+        resources :comments
+      end
     end
+  end
+  resources :updates do
+    resources :comments 
   end
 
   match '/signup/:invitation_token', to: 'memberships#new', as: 'signup'

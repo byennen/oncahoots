@@ -48,31 +48,7 @@
       - if @club.admins.include?(current_user)
         %li.text-right
           %a{href: "#add-update", class: "btn btn-primary", data: {toggle: "modal"}} Add Newsletter
-      - @club.updates.each do |update|
-        %li{style: "padding: 10px; clear: both;"}
-          .span2
-            = image_tag "http://placehold.it/125x125"
-          .span10
-            %strong
-              = update.headline
-              - if @club.admins.include?(current_user) || current_user.super_admin? || current_user.university_admin?
-                %a{href: "#edit-update-#{update.id}", class: "btn btn-mini", data: {toggle: "modal"}} Edit
-                =link_to "Delete", university_club_club_newsletter_path(@university,@club, update), class: "btn btn-mini btn-danger", method: :delete, confirm: "Are You Sure?"
-            %br
-            = update.body.truncate(500)
-          - if @club.admins.include?(current_user)
-            .modal.hide{id: "edit-update-#{update.id}"}
-              = simple_form_for update, url: university_club_club_newsletter_path(@university, @club, update.id), method: :put do |f|
-                .modal-header
-                  %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
-                  %h3 Edit Newsletter
-                .modal-body
-                  = f.input :headline
-                  = f.input :image, as: :file, input_html: {class: 'span-8'}
-                  = f.input :body, as: :text, input_html: {cols: 800, rows: 10, class: 'span-8'}
-                .modal-footer
-                  = f.submit "Add Newsletter", class: "btn btn-primary"
- 
+      = render partial: "update", collection: @club.updates
   #add-update.modal.hide
     = simple_form_for Update.new, url: university_club_club_newsletters_path(@university, @club), method: :post do |f|
       .modal-header
