@@ -23,6 +23,7 @@ class ClubsController < ApplicationController
   def create
     @club = @university.clubs.new(params[:club])
     @club.user_id = current_user.id
+    @just_created = true
     #@club.memberships.create(user_id: current_user.id, admin: true)
     if @club.save
       @club.memberships.create(user_id: current_user.id, admin: true)
