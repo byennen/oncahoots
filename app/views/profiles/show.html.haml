@@ -1,0 +1,19 @@
+= current_user.full_name
+
+.row-fluid.tabbable
+  %ul.nav.nav-tabs
+    %li.active
+      %a{href: "#contacts", data: {toggle: "tab"}} Contacts
+    %li
+      %a{href: "#requests", data: {toggle: "tab"}} Requests
+    %li
+      %a{href: "#notifications", data: {toggle: "tab"}} Notifications
+    %li
+      %a{href: "#messages", data: {toggle: "tab"}} Messages
+  .tab-content.clearfix
+    #messages.tab-pane.active
+      .row-fluid
+        #messages.span6
+          .row-fluid
+            %a{href: "#new-message", class: "btn btn-success", data: {toggle: "modal"}} New Message
+        #current_conversation.span6

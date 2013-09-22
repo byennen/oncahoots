@@ -31,6 +31,7 @@ CahootsConnect::Application.routes.draw   do
 
   resources :users do
     resources :profiles
+    resource :profile
     match '/skip', to: 'profiles#skip', as: 'skip_profile'
   end
 

@@ -19,6 +19,8 @@
                 %li= link_to 'Edit Profile', edit_user_profile_path(current_user.id, current_user.profile.id) if current_user.profile.present?
                 %li= link_to 'Settings', edit_user_registration_path
                 %li= link_to 'Logout', destroy_user_session_path, :method=>'delete'
+            %li
+              = link_to "Professional Page", user_profile_path(current_user, current_user.profile)
           - else
             %li
               = link_to 'Login', new_user_session_path
