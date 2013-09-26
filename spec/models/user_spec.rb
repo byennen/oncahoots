@@ -14,7 +14,8 @@ describe User do
       university_id: '1',
       graduation_year: '2005',
       major: 'Computer Science',
-      location_id: '1'
+      city: 'Chicago',
+      state: 'IL'
     }
   end
 

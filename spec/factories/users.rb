@@ -11,7 +11,8 @@ FactoryGirl.define do
     password 'changeme'
     password_confirmation 'changeme'
     university_id '1'
-    location_id '1'
+    city 'Chicago'
+    state 'IL'
     # required if the Devise Confirmable module is used
     # confirmed_at Time.now
   end
