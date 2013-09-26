@@ -2,18 +2,52 @@
 
 .row-fluid.tabbable
   %ul.nav.nav-tabs
-    %li.active
+    %li
       %a{href: "#contacts", data: {toggle: "tab"}} Contacts
     %li
       %a{href: "#requests", data: {toggle: "tab"}} Requests
     %li
       %a{href: "#notifications", data: {toggle: "tab"}} Notifications
-    %li
-      %a{href: "#messages", data: {toggle: "tab"}} Messages
+    %li.active
+      %a{href: "#messages", data: {toggle: "tab"}} 
+        Messages
+        - if @unread_messages.size != 0
+          %span#unread_messages.badge.badge-important
+            = @unread_messages.size
   .tab-content.clearfix
+    #contacts.tab-pane
+      %p Contacts go here
+    #requests.tab-pane
+      %p Requests go here
+    #notifications.tab-pane
+      %p Notifications go here.
     #messages.tab-pane.active
       .row-fluid
         #messages.span6
-          .row-fluid
-            %a{href: "#new-message", class: "btn btn-success", data: {toggle: "modal"}} New Message
+          .row-fluid{style: "margin-bottom: 20px; "}
+            %a{href: "#new-message", id: "new-message", class: "btn btn-success"} New Message
+          - @messages.each do |message|
+            .row-fluid{id: "message-#{message.id}"}
+              .span3
+                = image_tag message.originator.profile.image
+              .span9
+                = link_to message.originator.full_name, user_profile_path(message.originator, message.originator.profile)
+                %br
+                %strong Subject:
+                = message.messages.first.subject
+                %br
+                = truncate(message.messages.first.body)
+                %br
+                = link_to "Read More", read_message_path(message), remote: true
         #current_conversation.span6
+        #conversation_reply.span6.hide
+          %p There should be a reply form here.
+        #new_conversation.hide.span6
+          = simple_form_for Message.new do |f|
+            = f.label :recipients, required: false
+            = f.input_field :recipients, data: { autocomplete_source: User.all.map(&:full_name) }
+            = f.label :subject, required: false
+            = f.input_field :subject
+            = f.label :body, required: false
+            = f.input_field :body, as: :text, rows: 10, class: "span12"
+            = f.button :submit, 'Send message' 

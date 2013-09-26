@@ -9,6 +9,7 @@
   = f.input :city
   = f.input :state
   = f.input :graduation_year, collection: 2020.downto(1940).to_a
+  = f.input :metropolitan_club, collect: City.all.sort_by(&:name)
   = f.input :major
   = f.input :double_major
   = f.input :password, :required => true

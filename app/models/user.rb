@@ -24,6 +24,8 @@ class User < ActiveRecord::Base
   extend FriendlyId
   friendly_id :username, :use => :slugged
 
+  acts_as_messageable
+
   def username
     "#{first_name}-#{last_name}"
   end

@@ -8,6 +8,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'bootstrap-sass'
 gem 'cancan'
 gem 'devise'
@@ -23,6 +24,10 @@ gem 'bootstrap-generators', '~> 3.0'
 gem "rmagick", '>= 2.13.2'
 gem "carrierwave"
 gem 'fog'
+
+
+# messages
+gem 'mailboxer'
 
 group :development do
   gem 'better_errors'

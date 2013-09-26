@@ -9,6 +9,10 @@ class ProfilesController < ApplicationController
     @profile = Profile.find(params[:id])
   end
 
+  def show
+    @messages = current_user.mailbox.conversations
+    @unread_messages = current_user.mailbox.inbox(unread: true)
+  end
 
   def create
     @profile = Profile.new(params[:profile])

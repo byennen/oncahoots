@@ -1,0 +1,11 @@
+.row-fluid
+  .span3
+    = image_tag message.sender.profile.image
+  .span9
+    = link_to message.sender.full_name, user_profile_path(message.sender, message.sender)
+    %br
+    %strong Subject:
+    = message.subject
+    %br
+    = truncate(message.body)
+    %br

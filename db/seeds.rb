@@ -56,3 +56,31 @@ Profile.create(user_id: @super_admin.id, skills: 'Super Admin', education: 'Supe
 )
 @university_admin.add_role :university_admin
 Profile.create(user_id: @university_admin.id, skills: 'University Admin', education: 'University Admin', experience: 'University Admin')
+
+
+cities = [
+  "New York",
+  "Los Angeles",
+  "Chicago",
+  "San Francisco",
+  "Charlotte",
+  "Raleigh-Durham",
+  "Dallas-Fort Worth",
+  "Boston",
+  "Washington DC",
+  "Baltimore",
+  "Miami",
+  "Nashville",
+  "Seattle",
+  "Denver",
+  "San Diego",
+  "Atlanta",
+  "Philadelphia",
+  "Houston",
+  "Cincinnati",
+  "Minneapolis"
+]
+
+cities.each do |city|
+  c = City.find_or_create_by_name(city)
+end

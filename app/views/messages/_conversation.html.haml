@@ -1,0 +1,2 @@
+.conversation{id: "conversation-#{@conversation.id}"}
+  = render partial: 'message', collection: @conversation.messages.reverse
