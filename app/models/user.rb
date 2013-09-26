@@ -15,9 +15,10 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :role_ids
   attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me,
-                  :university_id, :location_id, :graduation_year, :major, :double_major, :slug
+                  :university_id, :location_id, :graduation_year, :major, :double_major, :slug,
+                  :city, :state
 
-  validates_presence_of :university_id, :graduation_year, :major, :location_id
+  validates_presence_of :university_id, :graduation_year, :major, :city, :state
 
   after_create :create_user_profile
 
