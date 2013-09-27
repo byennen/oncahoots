@@ -11,6 +11,7 @@
   = f.input :graduation_year, collection: 2020.downto(1940).to_a
   = f.input :major
   = f.input :double_major
+  = f.input :alumni, label: "Register As Alumni?"
   = f.input :password, :required => true
   = f.input :password_confirmation, :required => true
   = f.button :submit, 'Sign up', :class => 'btn-primary'
