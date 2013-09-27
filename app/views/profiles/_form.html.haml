@@ -27,6 +27,11 @@
       = render 'portfolio_item_fields', f: builder
     = link_to_add_fields "Add Portfolio Item", f, :portfolio_items
 
+  - if @profile.user.alumni?
+    = f.fields_for :faqs do |builder|
+      = render 'faq_fields', f: builder
+    = link_to_add_fields "Add FAQ", f, :faqs
+
   .form-actions
     = f.button :submit, class: 'btn btn-primary'
     - if params[:action] == 'new'
