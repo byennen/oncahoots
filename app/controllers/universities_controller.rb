@@ -13,7 +13,7 @@ class UniversitiesController < ApplicationController
     @updates = @updateable.updates
     @update = Update.new
 
-    @clubs = @university.clubs
+    @clubs = @university.clubs.order(:name)
     @club_updates = Update.where(updateable_type: "Club").where(updateable_id: @clubs.map(&:id)).order("created_at DESC").all
   end
 end
