@@ -15,3 +15,11 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require_tree .
+//
+$(function() {
+
+  $('#user_alumni').click(function () {
+    alert("alumni clicked");
+    $("#professional_fields").toggle(this.checked);
+  });
+});

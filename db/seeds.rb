@@ -84,3 +84,32 @@ cities = [
 cities.each do |city|
   c = City.find_or_create_by_name(city)
 end
+
+professional_fields = [
+  "Accounting",
+  "Art and Design",
+  "Banking",
+  "Business",
+  "Communication",
+  "Computer/ IT",
+  "Consulting",
+  "Education",
+  "Entertainment",
+  "Entrepreneurship",
+  "Finance",
+  "Government",
+  "Health/Medicine",
+  "Homemaker",
+  "Human Resources",
+  "Insurance",
+  "Journalism and Writing",
+  "Marketing",
+  "Non Profit & Social Service",
+  "Public Relations",
+  "Real Estate",
+  "Transportation"
+]
+
+professional_fields.each do |professional_field|
+  pf = ProfessionalField.find_or_create_by_name(professional_field)
+end
