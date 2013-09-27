@@ -1,9 +1,9 @@
 .row-fluid
-  - if @just_created && @club.admins.include?(current_user)
+  - if  @club.admins.include?(current_user) && @club.mission_statement.nil?
     .alert.alert-info
       %strong Add A Mission Statement
       Now that you've created your club, you should add a mission statement.
-  - if @just_created && @club.admins.include?(current_user)
+  - if @club.admins.include?(current_user) && @club.club_events.size == 0
     .alert.alert-info
       %strong Add An Event
       Now that you've create your club, you should add some events.
