@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   attr_accessible :role_ids
   attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me,
                   :university_id, :location_id, :graduation_year, :major, :double_major, :slug,
-                  :city, :state
+                  :city, :state, :alumni, :professional_field_id
 
   validates_presence_of :university_id, :graduation_year, :major, :city, :state
 

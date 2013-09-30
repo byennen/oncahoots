@@ -27,7 +27,7 @@
       = render 'portfolio_item_fields', f: builder
     = link_to_add_fields "Add Portfolio Item", f, :portfolio_items
 
-  - if @profile.user.alumni?
+  - if current_user.alumni
     = f.fields_for :faqs do |builder|
       = render 'faq_fields', f: builder
     = link_to_add_fields "Add FAQ", f, :faqs

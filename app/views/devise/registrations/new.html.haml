@@ -13,7 +13,7 @@
   = f.input :major
   = f.input :double_major
   #professional_fields.hide
-    = f.input :professional_field, collection: ProfessionalField.all.sort_by(&:name), include_blank: false
+    = f.input :professional_field_id, collection: ProfessionalField.all.sort_by(&:name), include_blank: false
   = f.input :password, :required => true
   = f.input :password_confirmation, :required => true
   = f.button :submit, 'Sign up', :class => 'btn-primary'
