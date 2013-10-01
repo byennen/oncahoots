@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130927034931) do
+ActiveRecord::Schema.define(:version => 20130930021344) do
 
   create_table "cities", :force => true do |t|
     t.string   "name"
@@ -179,6 +179,16 @@ ActiveRecord::Schema.define(:version => 20130927034931) do
     t.string   "file"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "relationships", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "relation_id"
+    t.text     "message"
+    t.string   "status"
+    t.datetime "accepted_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "roles", :force => true do |t|

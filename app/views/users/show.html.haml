@@ -1,3 +1,7 @@
+- if current_user.relatable?(@user) 
+  .pull-right
+    %a{href: "#add-contact", class: "btn btn-primary", data: {toggle: "modal"}} Add Contact
+
 = image_tag @profile.image.thumb.url if @profile.image?
 
 %h1= @user.first_name + ' ' + @user.last_name
@@ -6,7 +10,7 @@
 %b= @user.university.name
 %p
   %b Current Location:
-  = @user.location.name
+  = "#{@user.city}, #{@user.state}"
 %p
   %b Skills:
   = @profile.skills
@@ -31,3 +35,15 @@
 -#- @invitations.each do |invitation|
 -#  = @token = invitation.token
 -#  = link_to "club invite", signup_url(@token)
+
+#add-contact.modal.hide
+  = simple_form_for Relationship.new(user_id: current_user.id) do |f|
+    .modal-header
+      %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+      %h3 Add Contact
+    .modal-body
+      = f.input :relation_id, as: :hidden, input_html: {value: @user.id}
+      = f.input :message, as: :text, input_html: {class: 'span5', rows: 10}
+    .modal-footer
+      = f.submit "Add Record", class: "btn btn-primary"
+ 

@@ -12,6 +12,8 @@ class ProfilesController < ApplicationController
   def show
     @messages = current_user.mailbox.conversations
     @unread_messages = current_user.mailbox.inbox(unread: true)
+    @requests = current_user.relationships.where(status: 'pending')
+    @contacts = current_user.relationships.where(status: 'accepted')
   end
 
   def create

@@ -4,8 +4,8 @@ FactoryGirl.define do
   factory :user do
     first_name 'Test'
     last_name 'User'
-    email 'example@example.com'
-    university 'Iowa'
+    sequence(:email) { |n| "example#{n}@example.com" }
+    university
     graduation_year '2005'
     major 'computer engineering'
     password 'changeme'

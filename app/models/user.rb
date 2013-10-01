@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
 
   has_many :memberships
   has_many :clubs, :through => :memberships
+  has_many :relationships
+  has_many :relations, through: :relationships
 
   rolify
   # Include default devise modules. Others available are:
@@ -29,6 +31,14 @@ class User < ActiveRecord::Base
   friendly_id :username, :use => :slugged
 
   acts_as_messageable
+
+  def relatable?(user)
+    if self.university_id != user.university_id || self == user || Relationship.exists?(self, user)
+      return false
+    else
+      return true
+    end
+  end
 
   def username
     "#{first_name}-#{last_name}"

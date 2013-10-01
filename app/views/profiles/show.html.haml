@@ -5,9 +5,14 @@
     %li
       %a{href: "#contacts", data: {toggle: "tab"}} Contacts
     %li
-      %a{href: "#requests", data: {toggle: "tab"}} Requests
+      %a{href: "#requests", data: {toggle: "tab"}} 
+        Requests
+        - if @requests.size != 0
+          %span#unread_requests.badge.badge-important
+            = @requests.size
     %li
-      %a{href: "#notifications", data: {toggle: "tab"}} Notifications
+      %a{href: "#notifications", data: {toggle: "tab"}} 
+        Notifications
     %li.active
       %a{href: "#messages", data: {toggle: "tab"}} 
         Messages
@@ -16,9 +21,25 @@
             = @unread_messages.size
   .tab-content.clearfix
     #contacts.tab-pane
-      %p Contacts go here
+      - @contacts.each do |contact|
+        = image_tag contact.relation.profile.image
+        %br
+        = contact.relation.full_name
     #requests.tab-pane
-      %p Requests go here
+      .row-fluid
+        #messages.span6
+          .row-fluid{style: "margin-bottom: 20px; "}
+          - @requests.each do |relationship|
+            .row-fluid{id: "request-#{relationship.id}"}
+              .span3
+                = image_tag relationship.user.profile.image
+              .span9
+                = relationship.relation.full_name
+                %br
+                = relationship.message
+                %br
+                = link_to "View Request", read_relationship_path(relationship), remote: true
+        #current_request.span6
     #notifications.tab-pane
       %p Notifications go here.
     #messages.tab-pane.active

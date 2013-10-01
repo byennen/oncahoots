@@ -1,0 +1,4 @@
+$("#current_request").show();
+$("#request-#{@relationship.id}").css("background", "#ddd");
+$("#current_request").html("#{escape_javascript(render partial: 'request', locals: {contact_request: @relationship})}");
+$("#current_request").append("#{escape_javascript(render partial: 'actions')}")

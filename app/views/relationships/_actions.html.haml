@@ -1,0 +1,6 @@
+.row-fluid
+  .span3
+  .span9
+    = link_to "Accept", accept_relationship_path(@relationship), method: :post, class: 'btn btn-success'
+    = link_to "Decline", decline_relationship_path(@relationship), method: :post, class: "btn btn-danger"
+    = link_to "Recommend", nil, class: "btn btn-warning"
