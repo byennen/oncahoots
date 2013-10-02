@@ -22,9 +22,9 @@
   .tab-content.clearfix
     #contacts.tab-pane
       - @contacts.each do |contact|
-        = image_tag contact.relation.profile.image
+        = link_to image_tag(contact.relation.profile.image), user_path(contact.relation)
         %br
-        = contact.relation.full_name
+        = link_to contact.relation.full_name, user_path(contact.relation)
     #requests.tab-pane
       .row-fluid
         #messages.span6
