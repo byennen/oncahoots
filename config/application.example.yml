@@ -9,7 +9,14 @@
 #
 GMAIL_USERNAME: Your_Username
 GMAIL_PASSWORD: Your_Password
-ADMIN_NAME: First User
-ADMIN_EMAIL: user@example.com
-ADMIN_PASSWORD: changeme
+SUPER_ADMIN_FIRST_NAME: First
+SUPER_ADMIN_LAST_NAME: Admin
+SUPER_ADMIN_EMAIL: user@example.com
+SUPER_ADMIN_PASSWORD: changeme
+
+UNIVERSITY_ADMIN_FIRST_NAME: First
+UNIVERSITY_ADMIN_LAST_NAME: University
+UNIVERSITY_ADMIN_EMAIL: university@example.com
+UNIVERSITY_ADMIN_PASSWORD: changeme
+
 ROLES: [admin, user, VIP]
