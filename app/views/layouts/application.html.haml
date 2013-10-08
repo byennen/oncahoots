@@ -12,18 +12,13 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
     = yield(:head)
-  %body{:class => "#{controller_name} #{action_name} bg"}
-    .navbar.navbar-fixed-top
-      %nav.navbar-inner
-        .container
-          = render 'layouts/navigation'
-    #main{:role => "main"}
-      .container-fluid
-        .content
-          .row-fluid
-            .span12
-              = render 'layouts/messages'
-              = yield
-          %footer
-      / ! end of .container
-    / ! end of #main
+  %body{:class => "#{controller_name} #{action_name}"}
+    .container-fluid
+      %header
+        = render 'layouts/search'
+        = render 'layouts/navigation'
+        = yield(:header)
+      .seps
+      = yield
+      = render 'layouts/footer'
+

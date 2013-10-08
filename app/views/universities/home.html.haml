@@ -1,1 +1,133 @@
-University
+= content_for :header do
+  .row-fluid.mod3
+    .container
+      .span2
+        .left-menu.mns
+          %ul
+            %li
+              %i
+              = link_to "javascript:void(0);" do
+                = image_tag('jobs.png')
+                %br
+                Jobs
+      .span3
+        = link_to "javascript:void(0);", class: 'mono mn' do
+          = image_tag("mono3.png")
+      .span7
+        .carus
+          %ul#flexiselDemo1
+            - 3.times do |i|
+              %li
+                = link_to "javascript:void(0);" do
+                  = image_tag("car-img.png")
+                %br
+                %h4 Basketball Game
+                %p
+                  Friday, June 29
+                  %br
+                  7:00PM - GYM
+  .clearfix
+
+.row-fluid
+  .container
+    .span10.offset2
+      %ul.tabs3
+        %li= link_to "Community", "#tab1"
+        %li= link_to "Clubs", "#tab2"
+        %li= link_to "Free Food", "#tab3"
+        %li= link_to "Alumni Map", "#tab4"
+        %li= link_to "Rgister New", "#tab5"
+      .clearfix
+      .tab_container
+        #tab1.tab_content
+          .filters
+            %p Filter by:
+            = link_to "Students", "javascript:void(0);"
+            = link_to "Alumni", "javascript:void(0);"
+          %ul.two-users
+            %li
+              = link_to "javascript:void(0);" do
+                = image_tag("members.png")
+                %h2 Josh Compton
+                %br
+                %span 2013
+            %li
+              = link_to "javascript:void(0);" do
+                = image_tag("members2.png")
+                %h2 Josh Compton
+                %br
+                %span 2013
+        #tab2.tab_content.list_carousel
+          %ul#foo2
+            %li
+              .users
+                = link_to "javascript:void(0);" do
+                  = image_tag("img01.png")
+                  %span Food Club
+            %li
+              .users
+                = link_to "javascript:void(0);" do
+                  = image_tag("img02.png")
+                  %span Soccer Club
+            %li
+              .users
+                = link_to "javascript:void(0);" do
+                  = image_tag("img03.png")
+                  %span Fan Club
+            %li
+              .users
+                = link_to "javascript:void(0);" do
+                  = image_tag("img01.png")
+                  %span Food Club
+            %li
+              .users
+                = link_to "javascript:void(0);" do
+                  = image_tag("img02.png")
+                  %span Soccer Club
+            %li
+              .users
+                = link_to "javascript:void(0);" do
+                  = image_tag("img03.png")
+                  %span Fan Club
+          %a.prev#prev2{href: "#"} &lt;
+          %a.next#next2{href: "#"} &gt;
+          %center
+            %buttuon.btn.btn3{name: 'btn'} See all
+        #tab3.tab_content
+        #tab4.tab_content
+.clearfix
+.row-fluid
+  .container
+    .span10.offset2
+      %ul.tabs4
+        %li= link_to "Club Updates", "#tabss1"
+        %li= link_to "College Updates", "#tabss"
+      .tab_container
+        #tabss1.tab_content2
+          %ul.posts.newp
+            %li
+              = link_to "javascript:void(0);", class: 'avatr' do
+                %span Golf Team
+              %p The Official Davidson Club is happy to announce that it has reached over 3,000 members! To repay all the support from our fans we'd like to give away a 15% coupon code to the book store.
+              = link_to "1 day ago", "javascript:void(0);", class: "com ncom"
+              .clearfix
+            %li
+              = link_to "javascript:void(0);", class: 'avatr' do
+                %span Golf Team
+              %p The Official Davidson Club is happy to announce that it has reached over 3,000 members! To repay all the support from our fans we'd like to give away a 15% coupon code to the book store.
+              = link_to "1 day ago", "javascript:void(0);", class: "com ncom"
+              .clearfix
+            %li
+              = link_to "javascript:void(0);", class: 'avatr' do
+                %span Golf Team
+              %p The Official Davidson Club is happy to announce that it has reached over 3,000 members! To repay all the support from our fans we'd like to give away a 15% coupon code to the book store.
+              = link_to "1 day ago", "javascript:void(0);", class: "com ncom"
+              .clearfix
+        #tabss.tab_content2
+.clearfix
+
+.row-fluid
+  .container
+    .span12
+      .seperator
+.clearfix
