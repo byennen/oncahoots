@@ -52,7 +52,9 @@ class MessagesController < ApplicationController
     @recipient_list = []
     params[:message][:recipients].split(',').each do |s|
       name = s.split(" ")
-      @recipient_list << User.where(first_name: name[0], last_name: name[1]).first
+      if name.size > 0
+        @recipient_list << User.where(first_name: name[0], last_name: name[1]).first
+      end
     end
     Rails.logger.debug("recipients are #{@recipient_list.inspect}")
   end
