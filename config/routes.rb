@@ -5,7 +5,7 @@ CahootsConnect::Application.routes.draw   do
       resources :comments
     end
     resources :clubs, only: [:show, :new, :create, :edit, :update] do
-      post 'transfer_ownership', on: :member 
+      post 'transfer_ownership', on: :member
       resources :memberships do
         post 'make_admin', on: :collection
         post 'remove_admin', on: :member
@@ -15,13 +15,13 @@ CahootsConnect::Application.routes.draw   do
       resources :club_events
       resources :statuses
       resources :records
-      resources :club_newsletters do 
+      resources :club_newsletters do
         resources :comments
       end
     end
   end
   resources :updates do
-    resources :comments 
+    resources :comments
   end
   resources :relationships do
     get :read, on: :member
@@ -32,7 +32,7 @@ CahootsConnect::Application.routes.draw   do
   match '/signup/:invitation_token', to: 'memberships#new', as: 'signup'
 
 
-  devise_for :users, :controllers => { :registrations => "registrations" }
+  devise_for :users, :controllers => { :registrations => "registrations", :sessions => "sessions" }
 
   resources :users do
     resources :profiles
@@ -53,5 +53,5 @@ CahootsConnect::Application.routes.draw   do
     root to: 'dashboard#index'
   end
 
-  root :to => "home#index"
+  root :to => "universities#home"
 end
