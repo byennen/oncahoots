@@ -25,39 +25,6 @@ Location.find_or_create_by_name(name: 'Los Angeles, CA')
 puts 'Adding Clubs'
 Club.find_or_create_by_name(name: 'Sports Club', university_id: @university.id)
 
-#super admin user
-puts 'DEFAULT USERS'
-puts 'Add Super Admin'
-@super_admin = User.find_or_create_by_email(
-  first_name: ENV['SUPER_ADMIN_FIRST_NAME'].dup,
-  last_name: ENV['SUPER_ADMIN_LAST_NAME'].dup,
-  email: ENV['SUPER_ADMIN_EMAIL'].dup,
-  password: ENV['SUPER_ADMIN_PASSWORD'].dup,
-  password_confirmation: ENV['SUPER_ADMIN_PASSWORD'].dup,
-  university_id: @university.id,
-  graduation_year: '2005',
-  major: 'Computer Science',
-  location_id: @location.id
-)
-@super_admin.add_role :super_admin
-Profile.create(user_id: @super_admin.id, skills: 'Super Admin', education: 'Super Admin', experience: 'Super Admin')
-
-#university admin user
-@university_admin = User.find_or_create_by_email(
-  first_name: ENV['UNIVERSITY_ADMIN_FIRST_NAME'].dup,
-  last_name: ENV['UNIVERSITY_ADMIN_LAST_NAME'].dup,
-  email: ENV['UNIVERSITY_ADMIN_EMAIL'].dup,
-  password: ENV['UNIVERSITY_ADMIN_PASSWORD'].dup,
-  password_confirmation: ENV['UNIVERSITY_ADMIN_PASSWORD'].dup,
-  university_id: @university.id,
-  graduation_year: '2005',
-  major: 'Computer Science',
-  location_id: @location.id
-)
-@university_admin.add_role :university_admin
-Profile.create(user_id: @university_admin.id, skills: 'University Admin', education: 'University Admin', experience: 'University Admin')
-
-
 cities = [
   "New York",
   "Los Angeles",
@@ -113,3 +80,39 @@ professional_fields = [
 professional_fields.each do |professional_field|
   pf = ProfessionalField.find_or_create_by_name(professional_field)
 end
+
+#super admin user
+puts 'DEFAULT USERS'
+puts 'Add Super Admin'
+@super_admin = User.find_or_create_by_email!(
+  first_name: ENV['SUPER_ADMIN_FIRST_NAME'].dup,
+  last_name: ENV['SUPER_ADMIN_LAST_NAME'].dup,
+  email: ENV['SUPER_ADMIN_EMAIL'].dup,
+  password: ENV['SUPER_ADMIN_PASSWORD'].dup,
+  password_confirmation: ENV['SUPER_ADMIN_PASSWORD'].dup,
+  university_id: @university.id,
+  graduation_year: '2005',
+  major: 'Computer Science',
+  location_id: @location.id,
+  city: "New York",
+  state: "US"
+)
+@super_admin.add_role :super_admin
+Profile.create(user_id: @super_admin.id, skills: 'Super Admin', education: 'Super Admin', experience: 'Super Admin')
+
+#university admin user
+@university_admin = User.find_or_create_by_email!(
+  first_name: ENV['UNIVERSITY_ADMIN_FIRST_NAME'].dup,
+  last_name: ENV['UNIVERSITY_ADMIN_LAST_NAME'].dup,
+  email: ENV['UNIVERSITY_ADMIN_EMAIL'].dup,
+  password: ENV['UNIVERSITY_ADMIN_PASSWORD'].dup,
+  password_confirmation: ENV['UNIVERSITY_ADMIN_PASSWORD'].dup,
+  university_id: @university.id,
+  graduation_year: '2005',
+  major: 'Computer Science',
+  location_id: @location.id,
+  city: 'New York',
+  state: 'US'
+)
+@university_admin.add_role :university_admin
+Profile.create(user_id: @university_admin.id, skills: 'University Admin', education: 'University Admin', experience: 'University Admin')
