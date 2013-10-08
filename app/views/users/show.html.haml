@@ -12,6 +12,9 @@
   %b Current Location:
   = "#{@user.city}, #{@user.state}"
 %p
+  %b Professional Field:
+  = @user.professional_field.name
+%p
   %b Skills:
   = @profile.skills
 %p
