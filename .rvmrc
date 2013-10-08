@@ -1,1 +1,1 @@
-rvm use 2.0.0-p195
+rvm use 2.0.0-p195@cahoot-connect --create

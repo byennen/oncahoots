@@ -4,6 +4,10 @@ class UniversitiesController < ApplicationController
     @universities = University.all
   end
 
+  def home
+    @university = current_user.university
+  end
+
   def show
     @university = University.find(params[:id])
     @users = @university.users
