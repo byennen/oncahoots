@@ -1,7 +1,14 @@
-%h2 Sign in
-= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-vertical' }) do |f|
-  = f.input :email, :autofocus => true
-  = f.input :password
-  = f.input :remember_me, :as => :boolean if devise_mapping.rememberable?
-  = f.button :submit, "Sign in", :class => 'btn-primary'
-= render "devise/shared/links"
+.offset4.span4
+  .login
+
+    = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-vertical login-form'}) do |f|
+      = link_to "javascript:void(0);", :class => 'logo2' do
+        = image_tag('logo.png')
+      %input#user_email.string.email.fioled0{:name => 'user[email]', :autofocus => 'autofocus', :type => 'email', :placeholder => 'Email'}
+      %input#user_password.password.fioled0{:name => 'user[password]', :autofocus => 'autofocus', :type => 'password', :placeholder => 'Password'}
+      = link_to "Forgot password?", "#"
+      .clearfix
+      %button.btn.btn4 Login
+      %button.btn.btn4 Register
+.offset4
+
