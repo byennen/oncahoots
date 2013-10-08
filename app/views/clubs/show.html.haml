@@ -42,7 +42,8 @@
 
 .row-fluid{style: "width: 800px; height: 400px;"}
   #big-picture.span5
-    = image_tag @club.updates.first.image_url, style: {width: 350, height: 350}
+    - if @club.updates.size > 0
+      = image_tag @club.updates.first.image_url, style: {width: 350, height: 350}
   .span7
     %ul.unstyled
       - if @club.admins.include?(current_user)
