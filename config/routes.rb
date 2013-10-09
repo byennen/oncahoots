@@ -33,6 +33,9 @@ CahootsConnect::Application.routes.draw   do
 
 
   devise_for :users, :controllers => { :registrations => "registrations", :sessions => "sessions" }
+  devise_scope :user do
+    get "sign_out", :to => "sessions#destroy"
+  end
 
   resources :users do
     resources :profiles

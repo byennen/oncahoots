@@ -1,5 +1,6 @@
 class ProfilesController < ApplicationController
   respond_to :html
+  layout "profile"
 
   def new
     @profile = Profile.new
