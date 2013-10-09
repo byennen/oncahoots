@@ -8,7 +8,7 @@
       %input#user_password.password.fioled0{:name => 'user[password]', :autofocus => 'autofocus', :type => 'password', :placeholder => 'Password'}
       = link_to "Forgot password?", "#"
       .clearfix
-      %button.btn.btn4 Login
-      %button.btn.btn4 Register
+      = link_to_function "Login", "$(this).closest('form').submit()", class: "btn btn4", style: "width: 35%"
+      %a.btn.btn4{href: new_user_registration_path, style: "width: 35%"} Register
 .offset4
 
