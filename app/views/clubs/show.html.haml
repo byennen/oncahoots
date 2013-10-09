@@ -10,7 +10,7 @@
                 = image_tag('message.png')
                 %br
                 Messages
-            #myModal2.modal.mod4.hide.fade{tabindex: "-1", role: "dialog", :"aria-labellebby" => "myModalLabel", :"aria-hidden" => "true"}
+            #myModal2.modal.mod4.hide.fade{tabindex: "-1", role: "dialog", :"aria-labelledby" => "myModalLabel", :"aria-hidden" => "true", style: "top: 180px"}
               .modal-body
                 %span.arr
                   =image_tag "popup-arrow.png"
@@ -19,8 +19,8 @@
                   .clearfix
                   = text_field_tag :subject, "", class: "field3", placeholder: "Subject"
                   = text_area_tag :content, "", class: "tarea", placeholder: "Great to hear from you Matt! Glad you accepted my connection request!!"
-                  %a.btn.btn7 Send
-                  %a.btn6.mod5 Cancel
+                  %button.btn.btn7{type: "button", data: {dismiss: "modal"}} Send
+                  %button.btn6.mod5{type: "button", data: {dismiss: "modal"}} Cancel
             %li
               %i
               = link_to "#myModal", :"data-toggle" => "modal" do
@@ -28,7 +28,7 @@
                 = image_tag "request.png"
                 %br
                 Request
-            #myModal.modal.hide.fade{tabindex: "-1", role: "dialog", :"aria-labelledby" => "myModalLabel", :"aria-hidden" => "true"}
+            #myModal.modal.hide.fade{tabindex: "-1", role: "dialog", :"aria-labelledby" => "myModalLabel", :"aria-hidden" => "true", style: "top: 360px"}
               .modal-body
                 %span.arr
                   =image_tag "popup-arrow.png"
@@ -61,6 +61,8 @@
                     %button.btn6 Delete
                     %strong 1 day ago
                 .clearfix
+              .modal-footer
+                %button.btn{type: "button", data: {dismiss: "modal"}} Close
             %li
               %i
               = link_to "javascript:;" do
@@ -71,8 +73,8 @@
       .span6
         = link_to "javascript:;", class: "mono" do
           = image_tag "mono3.png"
-        = link_to "javascript:;", class: "mono2" do
-          = image_tag "mono4.png"
+        .mono2
+          %h1= @club.name
         .clearfix
         .img-box
       .span3
@@ -106,240 +108,103 @@
             %p Text of the announcement or circle
       .span1{style: "margin: 0;"}
   .clearfix
+.seps
+.row-fluid
+  .container
+    .offset2.span10
+      %ul.slider4
+        - 20.times do
+          %li.slide
+            %a{href: "javascript:;"}
+      .clearfix
+      %button.btn.btn2.chang4 View My Photos
+.clearfix
 
 .row-fluid
-  - if  @club.admins.include?(current_user) && @club.mission_statement.nil?
-    .alert.alert-info
-      %strong Add A Mission Statement
-      Now that you've created your club, you should add a mission statement.
-  - if @club.admins.include?(current_user) && @club.club_events.size == 0
-    .alert.alert-info
-      %strong Add An Event
-      Now that you've create your club, you should add some events.
+  .container
+    .offset2.span10
+      .boll-box
+        %h1 City Bulletin Board
+        %button.btn.btn2.chang5 Post Bulletin
+        .clearfix
+.clearfix
 
 .row-fluid
-  .span8
-    .pull-left{style: "margin-top: 20px;margin-right: 20px;"}
-      = image_tag @club.image.thumb.url if @club.image?
-    %h1
-      = [@university.name, @club.name].join(' - ')
-    %p
-      %b Category:
-      = @club.category
-    %p
-      %b Description:
-      = @club.description
-  .span4
-    - unless @club.private? || !current_user
-      %ul.inline.pull-right
-        - if @club.user_id == current_user.id
-          %li= link_to "Edit", edit_university_club_path(@university), class: "btn btn-primary"
-        - unless @current_membership 
-          %li= link_to "Join", university_club_memberships_path(@university, @club, @membership), :method => :post, class: 'btn btn-primary'
-        %li= link_to "Invite", new_university_club_invitation_path(@university, @club), class: 'btn btn-success'
-        - if @club.user_id == current_user.id
-          %a{href: "#transfer-ownership", class: "btn btn-danger", data: {toggle: "modal"}} Transfer Ownership
-          #transfer-ownership.modal.hide
-            = simple_form_for @club, url: transfer_ownership_university_club_path(@university, @club), method: :post do |f|
-              .modal-header
-                %button{type: "button", class: "close", data: {dismiss: :modal}} &times;
-                %h3 Transfer Ownership
-              .modal-body
-                = f.input :user_id, collection: @club.admins, label_method: :full_name, value_method: :id
-              .modal-footer
-                = f.submit "Transfer Ownership", class: "btn btn-primary"
+  .container
+    .offset2.span10
+      %ul.posts
+        - 3.times do
+          %li
+            %a.avatr{href: "javascript:;"}
+            %h4 Post title
+            %p The Davidons Alumni Association will be hosting a meetup this Thursday in Chicago at the Rockit Bar &amp; Grill dropdown.
+            %a.com{href: "javascript:;"} Comment
+            .clearfix
 
-.row-fluid{style: "width: 800px; height: 400px;"}
-  #big-picture.span5
-    - if @club.updates.size > 0
-      = image_tag @club.updates.first.image_url, style: {width: 350, height: 350}
-  .span7
-    %ul.unstyled
-      - if @club.admins.include?(current_user)
-        %li.text-right
-          %a{href: "#add-update", class: "btn btn-primary", data: {toggle: "modal"}} Add Newsletter
-      = render partial: "update", collection: @club.updates
-  #add-update.modal.hide
-    = simple_form_for Update.new, url: university_club_club_newsletters_path(@university, @club), method: :post do |f|
-      .modal-header
-        %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
-        %h3 Add Newsletter
-      .modal-body
-        = f.input :headline
-        = f.input :image, as: :file, input_html: {class: 'span-8'}
-        = f.input :body, as: :text, input_html: {cols: 800, rows: 10, class: 'span-8'}
-      .modal-footer
-        = f.submit "Add Newsletter", class: "btn btn-primary"
- 
-- if @club.users.include?(current_user)
-  %br{style: "clear: both;"}
-  .row-fluid.clearfix
-    .pull-right
-      %a{href: "#add_photo", class: "btn btn-primary", data: {toggle: "modal"}} Add Photo
-      #add_photo.modal.hide
-        = simple_form_for([@university, @club, ClubPhoto.new]) do |f|
-          .modal-header
-            %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
-            %h3 Add Photo
-          .modal-body
-            =f.input :image, as: :file
-          .modal-footer
-            =f.submit "Add Photo", class: "btn btn-primary"
-    .row.clearfix
-      - @club.club_photos.each do |photo|
-        .pull-left
-          = image_tag photo.image.thumb.url
-          - if @club.admins.include?(current_user)
-            %br
-            = link_to "Delete", university_club_club_photo_path(@university, @club, photo), method: :delete, confirm: "Are you sure?"
-  .row-fluid.tabbable
-    %ul.nav.nav-tabs
-      %li.active
-        %a{href: "#lowdown", data: {toggle: "tab"}} Lowdown
-      %li
-        %a{href: "#members", data: {toggle: "tab"}} Members
-      %li
-        %a{href: "#mission_statement", data: {toggle: "tab"}} Mission Statement
-      %li
-        %a{href: "#calendar", data: {toggle: "tab"}} Calendar
-      %li
-        %a{href: "#records", data: {toggle: "tab"}} Records
-      %li
-        %a{href: "#e_board", data: {toggle: "tab"}} E-Board
-    .tab-content.clearfix
-      #lowdown.tab-pane.active
-        .pull-right
-          %a{href: "#add-lowdown", class: 'btn btn-success', data: {toggle: "modal"}} Add Lowdown
-          #add-lowdown.modal.hide
-            = simple_form_for([@university, @club, Status.new]) do |f|
-              .modal-header
-                %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
-                %h3 Add Lowdown
-              .modal-body
-                = f.input :status, label: false, as: :text, input_html: {cols: 800, rows: 2, class: 'span-8'}
-              .modal-footer
-                %a{href: "#", class: "btn", data: {dismiss: "modal"}} Close
-                = f.submit "Save Lowdown", class: "btn btn-primary" 
-        - @club.statuses.order("created_at DESC").each do |status|
-          .pull-left{style: 'margin-right: 10px;'}
-            = image_tag status.user.profile.image.thumb.url
-          %div{style: "border-bottom: 1px solid #ccc; width: 400px; padding: 20px;"}
-            %strong= status.user.full_name
-            %br
-            %em= status.created_at.strftime('%m/%d/%Y %H:%M')
-            %br
-            = status.status
-            - if @club.admins.include?(current_user)
-              = link_to "Delete", university_club_status_path(@university, @club, status), method: :delete, class: "btn btn-mini btn-danger"
-      #members.tab-pane
-        %ul
-          - @memberships.each do |membership|
-            %li
-              = link_to membership.user.full_name, user_path(membership.user)
-              - if @club.user_id == current_user.id 
-                - if membership.user.id != current_user.id
-                  = link_to "Delete", university_club_membership_path(@university, @club, membership.id), method: :delete, class: 'btn btn-mini btn-danger', confirm: "Are you sure?"
-              
-      #mission_statement.tab-pane
-        - if @club.admins.include?(current_user)
-          .pull-right
-            %a{href: "#edit_mission_statement", class: "btn btn-primary", data: {toggle: "modal"}} Edit
-        = @club.mission_statement
-        - if @club.admins.include?(current_user)
-          #edit_mission_statement.modal.hide
-            = simple_form_for([@university, @club]) do |f|
-              .modal-header
-                %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
-                %h3 Edit Mission Statement
-              .modal-body
-                =f.input :mission_statement, input_html: {cols: 100, rows: 10, style: "width: 500px; height: 100px;"}
-              .modal-footer
-                %a{href: "#", class: "btn", data: {dismiss: "modal"}} Close
-                =f.submit "Save Mission Statement", class: "btn btn-primary"
-      #calendar.tab-pane
-        - if @club.admins.include?(current_user)
-          .pull-right
-            %a{href: "#add_event", class: "btn btn-primary", data: {toggle: "modal"}} Add Event
-        - @club.club_events.each do |ce|
-          %strong= "#{ce.date} #{ce.time}"
-          = ce.title
-          - if @club.admins.include?(current_user)
-            %a{href:"#edit-event-#{ce.id}", data: {toggle: "modal"}} Edit
-            = link_to("Delete", university_club_club_event_path(@university, @club, ce), method: :delete, confirm: "Are you sure?")
-            .modal.hide{id: "edit-event-#{ce.id}"}
-              = simple_form_for([@university, @club, ce], html: {class: 'form-horizontal'}) do |f|
-                .modal-header
-                  %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
-                  %h3 Edit Event - #{ce.title}
-                .modal-body
-                  = f.input :title
-                  -# Probably need a calendar picker
-                  = f.input :date
-                  -# Probably need a time picker
-                  = f.input :time
-                  = f.input :location
-                  = f.input :description
-                  = f.input :category, as: :category 
-                  = f.input :image, as: :file
-                .modal-footer
-                  = f.submit "Save Event", class: "btn btn-primary"
-        - if @club.admins.include?(current_user)
-          #add_event.modal.hide
-            = simple_form_for([@university, @club, ClubEvent.new], html: {class: 'form-horizontal'}) do |f|
-              .modal-header
-                %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
-                %h3 Add Event
-              .modal-body
-                = f.input :title
-                -# Probably need a calendar picker
-                = f.input :date
-                -# Probably need a time picker
-                = f.input :time
-                = f.input :location
-                = f.input :description
-                = f.input :category, as: :category 
-                = f.input :image, as: :file
-              .modal-footer
-                = f.submit "Add Event", class: "btn btn-primary"
-      #records.tab-pane
-        .pull-right
-          - if @club.admins.include?(current_user)
-            %a{href: "#add-record", class: 'btn btn-success', data: {toggle: "modal"}} Add Record
-        - @club.records.each do |record|
-          - unless record.file.url.nil?
-            = record.file.url.split("/").last
-            = link_to "Download", record.file.url
-            - if @club.admins.include?(current_user)
-              = link_to "Delete", university_club_record_path(@university, @club, record), method: :delete, confirm: "Are you sure?", class: "btn btn-danger btn-mini"
-          %br
-        #add-record.modal.hide
-          = simple_form_for([@university, @club, Record.new]) do |f|
-            .modal-header
-              %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
-              %h3 Add Record
-            .modal-body
-              = f.input :file, as: :file
-            .modal-footer
-              = f.submit "Add Record", class: "btn btn-primary"
-      #e_board.tab-pane
-        - if @club.admins.include?(current_user)
-          .pull-right
-            %a{href: "#add-admin", class: "btn btn-success", data: {toggle: "modal"}} Add E-Board Member
-            #add-admin.modal.hide
-              = simple_form_for Membership.new, url: make_admin_university_club_memberships_path(@university, @club) do |f|
-                .modal-header 
-                  %button{type: "button", class: "close", data: {dismiss: 'modal'}} &times;
-                  %h3 Add E-Board member
-                .modal-body
-                  = f.input :user_id, collection: @non_admins, label_method: :full_name, value_method: :id
-                  = f.input :title
-                .modal-footer
-                  = f.submit "Add E-Board Member", class: "btn btn-primary"
-        - @admins.each do |admin|
-          - unless admin.user.super_admin? || admin.user.university_admin?
-            .pull-left
-              = image_tag admin.user.profile.image.thumb.url
-              %br
-              = admin.user.full_name
-              %br
-              = admin.title
+.row-fluid
+  .container
+    .offset2.span10
+      %ul.tabs2
+        %li
+          %a{href: "#tab1"}Lowdown
+        %li
+          %a{href: "#tab2"}Members
+        %li
+          %a.mis{href: "#tab3"}Mission Statement
+        %li
+          %a{href: "#tab4"}Calendar
+        %li
+          %a{href: "#tab5"}E-Board
+        %li
+          %a{href: "#tab6"}Records
+        %li
+          %a{href: "#tab7"}Messages
+      .clearfix
+      .tab_container
+        #tab1.tab_content
+          %ul.posts.newp
+            - 3.times do
+              %li
+                %a.avatr{href: "javascript:;"}
+                %p The Official Davidson Club is happy to announce that it has reached over 3,000 members! To repay all the support from our fans we'd like to give away a 15% coupon code to the book store.
+                %a.com.ncom{href: "javascript:;"} 1 day ago
+                .clearfix
+        #tab2.tab_content
+        #tab3.tab_content
+        #tab4.tab_content
+        #tab5.tab_content
+        #tab6.tab_content
+        #tab7.tab_content
+.clearfix
+.row-fluid
+  .container
+    .span12
+      .seperator
+.clearfix
+
+:javascript
+  jQuery(document).ready(function() {//Default Action
+    $(".tab_content").hide(); //Hide all content
+    $("ul.tabs2 li:first").addClass("active").show(); //Activate first tab
+    $(".tab_content:first").show(); //Show first tab content
+    
+    //On Click Event
+    $("ul.tabs2 li").click(function() {
+      $("ul.tabs2 li").removeClass("active"); //Remove any "active" class
+      $("ul.tabs2 a").removeClass("selected");
+      $(this).addClass("active"); //Add "active" class to selected tab
+      jQuery(this).children("a").addClass('selected');
+      //console.log($(this).toSource());
+      $(".tab_content").hide(); //Hide all tab content
+      var activeTab = $(this).find("a").attr("href"); //Find the rel attribute value to identify the active tab + content
+      $(activeTab).fadeIn(); //Fade in the active content
+      return false;
+    });
+    $('.slider4').bxSlider({
+      slideWidth: 300,
+      minSlides: 2,
+      maxSlides: 3,
+      moveSlides: 1,
+      slideMargin: 10
+    });
+  });
