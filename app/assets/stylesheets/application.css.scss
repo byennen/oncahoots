@@ -9,38 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- * require bootstrap
  *= require bootstrap_and_overrides
- * require bootstrap-responsive
- *= require style
+ *= require layout
 */
-
-.content {
-  padding: 20px;
-  margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
-}
-
-ul.ui-autocomplete {
-  position: absolute;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  border: solid 1px #999;
-  cursor: default;
-}
-ul.ui-autocomplete li {
-  background-color: #FFF;
-  border-top: solid 1px #DDD;
-  margin: 0;
-  padding: 0;
-}
-ul.ui-autocomplete li a {
-  color: #000;
-  display: block;
-  padding: 3px;
-  font-size: 18px;
-}
-ul.ui-autocomplete li a.ui-state-hover, a.ui-state-active {
-  background-color: #FFFCB2
-}
-
+.no-lmar{margin-left: 0px;}

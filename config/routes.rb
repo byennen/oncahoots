@@ -1,5 +1,7 @@
 CahootsConnect::Application.routes.draw   do
 
+  devise_for :users, :controllers => { :registrations => "registrations", :sessions => "sessions" }
+
   resources :universities, only: [:index, :show] do
     resources :updates, only: [:new, :create, :update, :destroy] do
       resources :comments
@@ -30,7 +32,6 @@ CahootsConnect::Application.routes.draw   do
   end
 
   match '/signup/:invitation_token', to: 'memberships#new', as: 'signup'
-
 
   devise_for :users, :controllers => { :registrations => "registrations", :sessions => "sessions" }
   devise_scope :user do
