@@ -46,7 +46,8 @@ header {
 	background-image:url('login-bg.png');
 	width:100%;
 	background-position: center;
- padding:0  background-size: cover;
+ padding:0;
+ background-size: cover;
 	-moz-background-size: cover;
 }
 .img-container {
