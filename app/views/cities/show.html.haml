@@ -72,9 +72,9 @@
                 Notifications
       .span6
         = link_to "javascript:;", class: "mono" do
-          = image_tag "mono3.png"
+          = image_tag "brand.png"
         .mono2
-          %h1= @club.name
+          = image_tag "chicago.png"
         .clearfix
         .img-box
       .span3
@@ -112,7 +112,7 @@
 .row-fluid
   .container
     .offset2.span10
-      %ul.slider4
+      %ul.slider4.jcarousel-skin-tango
         - 20.times do
           %li.slide
             %a{href: "javascript:;"}
@@ -144,37 +144,53 @@
 .row-fluid
   .container
     .offset2.span10
-      %ul.tabs2
+      %ul.tabs
         %li
-          %a{href: "#tab1"}Lowdown
+          %a{href: "#tab1"}Members
         %li
-          %a{href: "#tab2"}Members
+          %a{href: "#tab2"}About Us
         %li
-          %a.mis{href: "#tab3"}Mission Statement
-        %li
-          %a{href: "#tab4"}Calendar
-        %li
-          %a{href: "#tab5"}E-Board
-        %li
-          %a{href: "#tab6"}Records
-        %li
-          %a{href: "#tab7"}Messages
+          %a{href: "#tab3"}Leadership
       .clearfix
       .tab_container
         #tab1.tab_content
-          %ul.posts.newp
-            - 3.times do
-              %li
-                %a.avatr{href: "javascript:;"}
-                %p The Official Davidson Club is happy to announce that it has reached over 3,000 members! To repay all the support from our fans we'd like to give away a 15% coupon code to the book store.
-                %a.com.ncom{href: "javascript:;"} 1 day ago
-                .clearfix
+          %button.btn.btn2.mod1
+            %i
+              = image_tag "search-icon.png"
+          = text_field_tag :term, "", placeholder: "Search Members", class: "field mod2"
+          .clearfix
+          .users
+            %a{href: "javascript:;"}
+              = image_tag "members.png"
+              %span Josh Compton
+          .users
+            %a{href: "javascript:;"}
+              = image_tag "members2.png"
+              %span Gabe Copper
+          .users
+            %a{href: "javascript:;"}
+              = image_tag "members3.png"
+              %span Mathew Bush
         #tab2.tab_content
         #tab3.tab_content
-        #tab4.tab_content
-        #tab5.tab_content
-        #tab6.tab_content
-        #tab7.tab_content
+          %button.btn.btn2.mod1
+            %i
+              = image_tag "search-icon.png"
+          = text_field_tag :term, "", placeholder: "Search Members", class: "field mod2"
+          .clearfix
+          .users
+            %a{href: "javascript:;"}
+              = image_tag "members.png"
+              %span Josh Compton
+          .users
+            %a{href: "javascript:;"}
+              = image_tag "members2.png"
+              %span Gabe Copper
+          .users
+            %a{href: "javascript:;"}
+              = image_tag "members3.png"
+              %span Mathew Bush
+
 .clearfix
 .row-fluid
   .container
@@ -185,13 +201,13 @@
 :javascript
   jQuery(document).ready(function() {//Default Action
     $(".tab_content").hide(); //Hide all content
-    $("ul.tabs2 li:first").addClass("active").show(); //Activate first tab
+    $("ul.tabs li:first").addClass("active").show(); //Activate first tab
     $(".tab_content:first").show(); //Show first tab content
     
     //On Click Event
-    $("ul.tabs2 li").click(function() {
-      $("ul.tabs2 li").removeClass("active"); //Remove any "active" class
-      $("ul.tabs2 a").removeClass("selected");
+    $("ul.tabs li").click(function() {
+      $("ul.tabs li").removeClass("active"); //Remove any "active" class
+      $("ul.tabs a").removeClass("selected");
       $(this).addClass("active"); //Add "active" class to selected tab
       jQuery(this).children("a").addClass('selected');
       //console.log($(this).toSource());

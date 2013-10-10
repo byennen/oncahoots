@@ -2,13 +2,13 @@
   %nav.navbar
     .top-nav
       .container
-        .img-container3
+        .img-container4{style: "min-height:0px !important; margin-top:-50px;"}
           %a.btn.btn-navbar{:'data-toggle' => 'collapse', :'data-target' => '.nav-collapse'}
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
           .nav-collapse.collapse
-            %ul.nav
+            %ul.nav{style: "margin-top: 0"}
               %li.logo
                 %a{href: "/"}
                   = image_tag('logo.png')
@@ -43,4 +43,3 @@
                   %br
                   Settings
 .clearfix
-
