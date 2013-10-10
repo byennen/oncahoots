@@ -1,6 +1,5 @@
 @import "bootstrap.scss";
 body { padding-top: 60px; }
-@import "bootstrap-responsive";
 
 .btn {
   display: inline-block;
@@ -109,3 +108,5 @@ body { padding-top: 60px; }
     overflow: visible;
   }
 }
+
+@import "bootstrap-responsive";
