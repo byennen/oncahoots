@@ -1,0 +1,226 @@
+= content_for :header do
+  .row-fluid.mod3.span12.no-lmar
+    .container
+      .span2
+        .left-menu
+          %ul
+            %li
+              %i
+              = link_to "#myModal2", :"data-toggle" => "modal" do
+                = image_tag('message.png')
+                %br
+                Messages
+            #myModal2.modal.mod4.hide.fade{tabindex: "-1", role: "dialog", :"aria-labelledby" => "myModalLabel", :"aria-hidden" => "true", style: "top: 180px"}
+              .modal-body
+                %span.arr
+                  =image_tag "popup-arrow.png"
+                ~ form_tag url_for, class: "contact-form" do
+                  = text_field_tag :to, "", class: "field2", placeholder: "to"
+                  .clearfix
+                  = text_field_tag :subject, "", class: "field3", placeholder: "Subject"
+                  = text_area_tag :content, "", class: "tarea", placeholder: "Great to hear from you Matt! Glad you accepted my connection request!!"
+                  %button.btn.btn7{type: "button", data: {dismiss: "modal"}} Send
+                  %button.btn6.mod5{type: "button", data: {dismiss: "modal"}} Cancel
+            %li
+              %i
+              = link_to "#myModal", :"data-toggle" => "modal" do
+                %p 2
+                = image_tag "request.png"
+                %br
+                Request
+            #myModal.modal.hide.fade{tabindex: "-1", role: "dialog", :"aria-labelledby" => "myModalLabel", :"aria-hidden" => "true", style: "top: 360px"}
+              .modal-body
+                %span.arr
+                  =image_tag "popup-arrow.png"
+                .left-side
+                  %button.btn.btn5 New Message
+                  %ul.msg
+                    %li
+                      = link_to "javascript:;" do
+                        = image_tag 'small-avatar.png'
+                      %h4 Josh Compton
+                      %br
+                      %p Great hear from you...
+                    %li
+                      = link_to "javascript:;" do
+                        = image_tag 'small-avatar2.png'
+                      %h4 Josh Compton
+                      %br
+                      %p Great hear from you...
+                .right-side
+                  .comment-box
+                    = text_area_tag :comment, "", class: "tex-area", placeholder: "Create to hear from you Matt!! Glad you accepted my connection request!"
+                    = link_to "javascript:;" do
+                      = image_tag "small-avatar.png"
+                    %button.btn6 Delete
+                    %strong 1 day ago
+                  .comment-box
+                    = text_area_tag :comment, "", class: "tex-area", placeholder: "Create to hear from you Matt!! Glad you accepted my connection request!"
+                    = link_to "javascript:;" do
+                      = image_tag "small-avatar.png"
+                    %button.btn6 Delete
+                    %strong 1 day ago
+                .clearfix
+              .modal-footer
+                %button.btn{type: "button", data: {dismiss: "modal"}} Close
+            %li
+              %i
+              = link_to "javascript:;" do
+                %p 1
+                = image_tag "request.png"
+                %br
+                Notifications
+      .span6
+        = link_to "javascript:;", class: "mono" do
+          = image_tag "brand.png"
+        .mono2
+          = image_tag "chicago.png"
+        .clearfix
+        .img-box
+      .span3
+        .rig
+          %button.btn.btn2.chang
+            %i
+              = image_tag "dropdown-arrow.png"
+          = text_field_tag :join_city, "", class: "field", placeholder: "Join City"
+          %button.btn.chang2 Upcoming Events
+          .clearfix
+          %button.btn.chang3 Edit
+          %button.btn.chang3 Transactions
+        .offset1
+        .clearfix
+        %ul.listing
+          %li
+            = link_to "", "javascript;;"
+            %h4 Headline
+            %p Text of the announcement or circle
+          %li
+            = link_to "", "javascript;;"
+            %h4 Headline
+            %p Text of the announcement or circle
+          %li
+            = link_to "", "javascript;;"
+            %h4 Headline
+            %p Text of the announcement or circle
+          %li
+            = link_to "", "javascript;;"
+            %h4 Headline
+            %p Text of the announcement or circle
+      .span1{style: "margin: 0;"}
+  .clearfix
+.seps
+.row-fluid
+  .container
+    .offset2.span10
+      %ul.slider4.jcarousel-skin-tango
+        - 20.times do
+          %li.slide
+            %a{href: "javascript:;"}
+      .clearfix
+      %button.btn.btn2.chang4 View My Photos
+.clearfix
+
+.row-fluid
+  .container
+    .offset2.span10
+      .boll-box
+        %h1 City Bulletin Board
+        %button.btn.btn2.chang5 Post Bulletin
+        .clearfix
+.clearfix
+
+.row-fluid
+  .container
+    .offset2.span10
+      %ul.posts
+        - 3.times do
+          %li
+            %a.avatr{href: "javascript:;"}
+            %h4 Post title
+            %p The Davidons Alumni Association will be hosting a meetup this Thursday in Chicago at the Rockit Bar &amp; Grill dropdown.
+            %a.com{href: "javascript:;"} Comment
+            .clearfix
+
+.row-fluid
+  .container
+    .offset2.span10
+      %ul.tabs
+        %li
+          %a{href: "#tab1"}Members
+        %li
+          %a{href: "#tab2"}About Us
+        %li
+          %a{href: "#tab3"}Leadership
+      .clearfix
+      .tab_container
+        #tab1.tab_content
+          %button.btn.btn2.mod1
+            %i
+              = image_tag "search-icon.png"
+          = text_field_tag :term, "", placeholder: "Search Members", class: "field mod2"
+          .clearfix
+          .users
+            %a{href: "javascript:;"}
+              = image_tag "members.png"
+              %span Josh Compton
+          .users
+            %a{href: "javascript:;"}
+              = image_tag "members2.png"
+              %span Gabe Copper
+          .users
+            %a{href: "javascript:;"}
+              = image_tag "members3.png"
+              %span Mathew Bush
+        #tab2.tab_content
+        #tab3.tab_content
+          %button.btn.btn2.mod1
+            %i
+              = image_tag "search-icon.png"
+          = text_field_tag :term, "", placeholder: "Search Members", class: "field mod2"
+          .clearfix
+          .users
+            %a{href: "javascript:;"}
+              = image_tag "members.png"
+              %span Josh Compton
+          .users
+            %a{href: "javascript:;"}
+              = image_tag "members2.png"
+              %span Gabe Copper
+          .users
+            %a{href: "javascript:;"}
+              = image_tag "members3.png"
+              %span Mathew Bush
+
+.clearfix
+.row-fluid
+  .container
+    .span12
+      .seperator
+.clearfix
+
+:javascript
+  jQuery(document).ready(function() {//Default Action
+    $(".tab_content").hide(); //Hide all content
+    $("ul.tabs li:first").addClass("active").show(); //Activate first tab
+    $(".tab_content:first").show(); //Show first tab content
+    
+    //On Click Event
+    $("ul.tabs li").click(function() {
+      $("ul.tabs li").removeClass("active"); //Remove any "active" class
+      $("ul.tabs a").removeClass("selected");
+      $(this).addClass("active"); //Add "active" class to selected tab
+      jQuery(this).children("a").addClass('selected');
+      //console.log($(this).toSource());
+      $(".tab_content").hide(); //Hide all tab content
+      var activeTab = $(this).find("a").attr("href"); //Find the rel attribute value to identify the active tab + content
+      $(activeTab).fadeIn(); //Fade in the active content
+      return false;
+    });
+    $('.slider4').bxSlider({
+      slideWidth: 300,
+      minSlides: 2,
+      maxSlides: 3,
+      moveSlides: 1,
+      slideMargin: 10
+    });
+  });

@@ -1,7 +1,6 @@
 CahootsConnect::Application.routes.draw   do
 
-  devise_for :users, :controllers => { :registrations => "registrations", :sessions => "sessions" }
-
+  resources :cities
   resources :universities, only: [:index, :show] do
     resources :updates, only: [:new, :create, :update, :destroy] do
       resources :comments
