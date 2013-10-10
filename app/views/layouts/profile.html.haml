@@ -13,12 +13,28 @@
     = csrf_meta_tags
     = yield(:head)
 
-  %body{:class => "#{controller_name} #{action_name}"}
+  %body
     .container-fluid
       %header
         = render 'layouts/search'
-        = render 'layouts/navigation'
-        = yield(:header)
+        = render 'layouts/nav_without_bg'
+        .row-fluid
+          .container
+            .span2
+              .left-menu
+                %ul
+                  %li
+                    %i
+                    %a{href: "javascript:void(0);"}
+                      = image_tag "jobs.png"
+                      %br
+                      Jobs
+            .span10
+              = yield
+        = yield(:content_bottom)
       .seps
-      = yield
+      .row-fluid
+        .container
+          .span12
+            .seperator
       = render 'layouts/footer'

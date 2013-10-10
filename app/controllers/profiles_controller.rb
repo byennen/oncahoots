@@ -1,5 +1,6 @@
 class ProfilesController < ApplicationController
   respond_to :html
+  layout "profile"
 
   def new
     @profile = Profile.new
@@ -10,10 +11,11 @@ class ProfilesController < ApplicationController
   end
 
   def show
-    @messages = current_user.mailbox.conversations
-    @unread_messages = current_user.mailbox.inbox(unread: true)
-    @requests = current_user.relationships.where(status: 'pending')
-    @contacts = current_user.relationships.where(status: 'accepted')
+    @user = User.find_by_id(params[:user_id]) || current_user
+    @messages = @user.mailbox.conversations
+    @unread_messages = @user.mailbox.inbox(unread: true)
+    @requests = @user.relationships.where(status: 'pending')
+    @contacts = @user.relationships.where(status: 'accepted')
   end
 
   def create

@@ -1,41 +1,37 @@
-- content_for :head do
-  = javascript_include_tag 'nested_form'
-
-= simple_form_for([:user, @profile]) do |f|
+= simple_form_for([:user, @profile], :html => {:class => 'infos', style: "width: 100%" }) do |f|
   = f.error_notification
+  .up-photo
+    %p Upload photo
+    = f.file_field :image
+  .clearfix
+  %label Skills
+  = f.text_area :skills, class: "tarea", style: "width: 60%"
+  %label Education
+  = f.text_field :education, class: "field2"
+  %label Who Can View Your Profile?
+  = f.select :view_profile, options_for_select(["Alumni", "Students", "Everyone"])
+  .clearfix
+  %label Experience
+  = f.fields_for :experiences do |builder|
+    = render 'experience_fields', f: builder
+  = link_to_add_fields "Add Experience", f, :experiences
 
-  .form-inputs
-    = f.input :image
-    = f.input :skills
-    = f.input :education
-    = f.input :hometown
+  %label Portfolio
+  - if @profile.portfolio_items.present?
+    - @profile.portfolio_items.each do |item|
+      = image_tag item.file_url
 
-    %h2 Who Can View Your Profile?
-    = f.input :view_profile, collection: ["Alumni", "Students", "Everyone"], label: false
-
-    %h2 Experience
-    = f.fields_for :experiences do |builder|
-      = render 'experience_fields', f: builder
-    = link_to_add_fields "Add Experience", f, :experiences
-
-    %h2 Portfolio
-    - if @profile.portfolio_items.present?
-      - @profile.portfolio_items.each do |item|
-        = image_tag item.file_url
-
-    %hr
-    = f.fields_for :portfolio_items do |builder|
-      = render 'portfolio_item_fields', f: builder
-    = link_to_add_fields "Add Portfolio Item", f, :portfolio_items
+  = f.fields_for :portfolio_items do |builder|
+    = render 'portfolio_item_fields', f: builder
+  = link_to_add_fields "Add Portfolio Item", f, :portfolio_items
 
   - if current_user.alumni
     = f.fields_for :faqs do |builder|
       = render 'faq_fields', f: builder
     = link_to_add_fields "Add FAQ", f, :faqs
-
-  .form-actions
-    = f.button :submit, class: 'btn btn-primary'
+  .clearfix
+  .sepe
+  .btn-link
+    %button.btn.btn8 Update Profile
     - if params[:action] == 'new'
-      |
-      = link_to 'Skip', user_skip_profile_path, class: 'btn'
-
+      %a{href: "user_skip_profile_path"} Skip
