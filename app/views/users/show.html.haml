@@ -12,92 +12,49 @@
         %ul.tabs5
           %li
             %a{href: "#tab1"}Contacts
-          %li
-            %a{href: "#tab2"}
-              Requests
-              - if @requests.size > 0
-                %i= @requests.size
-          %li
-            %a{href: "#tab3"}
-              Notifications
-          %li
-            %a{href: "#tab4"}
-              Messages
-              - if @unread_messages.size > 0
-                %i#unread_messages=  @unread_messages.size
+          - if @user == current_user
+            %li
+              %a{href: "#tab2"}
+                Requests
+                - if @requests.size > 0
+                  %i= @requests.size
+            %li
+              %a{href: "#tab3"}
+                Notifications
+            %li
+              %a{href: "#tab4"}
+                Messages
+                - if @unread_messages.size > 0
+                  %i#unread_messages=  @unread_messages.size
         .clearfix
         .tab_container
           #tab1.tab_content
-            %button.btn.btn2.mod1
-              %i= image_tag "search-icon.png"
-            = text_field_tag :term, "", class: "field mod2"
-            .clearfix
-            .list_carousel
-              %ul#foo2.sss
-                - @contacts.each do |contact|
-                  %li
-                    .users
-                      %a{href: user_path(contact.relation)}= image_tag (contact.relation.profile.image.xlarge)
-                      .hovers
-                        %p Hi! I am another user from chicago and i am excited about business
-                        = link_to contact.relation.full_name, user_path(contact.relation)
-              %a#prev2.prev{href: "#"}
-              %a#next2.next{href: "#"}
-            %center
-              %button.btn.btn3 See all &nbsp;&nbsp;&nbsp;&nbsp; >
-          #tab2.tab_content
-            %br
-            .left-side
-              %ul.msg.msh
-                - @requests.each do |relationship|
-                  %li{id: "request-#{relationship.id}"}
-                    = link_to image_tag("#{relationship.relation.profile.image.thumb}"), read_relationship_path(relationship), remote: true
-                    %h4= relationship.relation.full_name
-                    %br
-                    %p= relationship.relation.graduation_year
-            .right-side
-              #current_request.comment-box.ne
-                = render partial: "relationships/request", locals: {request: @requests.first} unless @requests.blank?
-            .clearfix
-          #tab3.tab_content
-            %br
-            .left-side
-              %ul.msg.msh
-                %li
-                  %a{href: "javascript:;"}
-                    = image_tag "avatar-medium.png"
-                  %h4 Josh Compton
-                  %br
-                  %p 2013
-                %li
-                  %a{href: "javascript:;"}
-                    = image_tag "avatar-medium.png"
-                  %h4 Josh Compton
-                  %br
-                  %p 2014
-            .right-side
-              .comment-box.ne
-                %a{href: "javascript:;", style: "margin-right: 25px;"}
-                  = image_tag "avatar-big.png"
-                %p.comp
-                  Josh Compton update his experience.
-                  %br
-                %button.btn.btn7{style: "float: left;"} View Profile
-                = text_area_tag :comment, "", placeholder: "Hi Mathew! Looks like we have similar interests", class: "tarea chang7"
-                .clearfix
-                %button.btnred Delete
-            .clearfix
-          #tab4.tab_content
-            .left-side.msh
-              %a{href: "#message-form", data: {toggle: "modal"}, class: "btn btn-success"} New Message
-              %ul.msg
-                - @messages.each do |message|
-                  %li{id: "message-#{message.id}"}
-                    = link_to image_tag(message.originator.profile.image.small), read_message_path(message), remote: true
-                    %h4= message.originator.full_name
-                    %br
-                    %p= truncate(message.messages.first.body)
-            #current_conversation.right-side
+            - if @contacts.blank?
+              %br
+              %br
+              .span11.top2
+                %center
+                  %h4 No contact
+            - else
+              %button.btn.btn2.mod1
+                %i= image_tag "search-icon.png"
+              = text_field_tag :term, "", class: "field mod2"
+              .clearfix
+              .list_carousel
+                %ul#foo2.sss
+                  - @contacts.each do |contact|
+                    %li
+                      .users
+                        %a{href: user_path(contact.relation)}= image_tag (contact.relation.profile.image.xlarge)
+                        .hovers
+                          %p Hi! I am another user from chicago and i am excited about business
+                          = link_to contact.relation.full_name, user_path(contact.relation)
+                %a#prev2.prev{href: "#"}
+                %a#next2.next{href: "#"}
+              %center
+                %button.btn.btn3 See all &nbsp;&nbsp;&nbsp;&nbsp; >
+          - if @user == current_user
+            = render partial: "private_tabs"
 
   .clearfix
   %br
@@ -203,7 +160,7 @@
     .modal-body
       = f.input :recipients, input_html: {class: "tagauto tags", value: ""}
       = f.input :subject
-      = f.input :body, input_html: {rows: 10, class: "span12"}
+      = f.text_area :body, rows: 10, class: "span12"
     .modal-footer
       = f.button :submit, 'Send message'
 :javascript
