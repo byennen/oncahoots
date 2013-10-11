@@ -14,7 +14,7 @@
                   = image_tag('logo.png')
                 %i
               %li.same
-                %a{href: "javascript:void(0);"}
+                %a{href: user_path(current_user)}
                   = image_tag('proffesional.png')
                   %br
                   Professional
@@ -32,7 +32,7 @@
                   Calendar
                 %i
               %li.same
-                %a{href: "javascript:void(0);"}
+                %a{href: edit_user_registration_path(current_user.id)}
                   = image_tag('edit.png')
                   %br
                   Edit

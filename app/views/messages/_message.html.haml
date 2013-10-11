@@ -1,11 +1,6 @@
-.row-fluid
-  .span3
-    = image_tag message.sender.profile.image
-  .span9
-    = link_to message.sender.full_name, user_profile_path(message.sender, message.sender)
-    %br
-    %strong Subject:
-    = message.subject
-    %br
-    = truncate(message.body)
-    %br
+.comment-box
+  = text_area_tag :comment, "", placeholder: message.body, class: "tex-area"
+  %a{href: user_profile_path(message.sender)}
+    = image_tag message.sender.profile.image.small
+  %button.btn6 Delete
+  %strong= time_ago_in_words(message.created_at) + " ago"

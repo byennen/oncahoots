@@ -21,7 +21,7 @@ class RelationshipsController < ApplicationController
     @relationship = Relationship.find(params[:id])
     @relationship.accept!
     respond_to do |format|
-      format.html { redirect_to user_profile_path(@relationship.user, @relationship.user.profile), noticiation: "You are now contacts with - #{@relationship.relation.full_name}" }
+      format.html { redirect_to user_profile_path(@relationship.user, @relationship.user.profile), notice: "You are now contacts with - #{@relationship.relation.full_name}" }
     end
   end
 
@@ -29,7 +29,7 @@ class RelationshipsController < ApplicationController
     @relationship = Relationship.find(params[:id])
     @relationship.decline!
     respond_to do |format|
-      format.html { redirect_to user_profile_path(@relationship.user, @relationship.user.profile), notification: "You have declined the contact - #{@relationship.relation.full_name}" }
+      format.html { redirect_to user_profile_path(@relationship.user, @relationship.user.profile), notice: "You have declined the contact - #{@relationship.relation.full_name}" }
     end
   end
 
