@@ -1,5 +1,4 @@
 body { padding-top: 60px; }
-.no-lmar{margin-left: 0px;}
 
 .btn {
   display: inline-block;
@@ -107,4 +106,9 @@ body { padding-top: 60px; }
     position: relative;
     overflow: visible;
   }
+}
+
+.no-lmar{margin-left: 0px !important;}
+.login-form select{
+  margin-left: 10px;
 }

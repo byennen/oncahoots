@@ -8,7 +8,8 @@
           swipe: {
             onMouse: true,
             onTouch: true
-          }
+          }, 
+          height: 272
         });
   $("#flexiselDemo1").flexisel();
   $(".tab_content").hide(); //Hide all content

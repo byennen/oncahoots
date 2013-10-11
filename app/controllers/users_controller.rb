@@ -1,6 +1,19 @@
 class UsersController < ApplicationController
+  layout "profile"
+  
+  def search
+    users = User.where("lower(first_name) like ? or lower(last_name) like ?", "%#{params[:term].downcase}%", "%#{params[:term].downcase}%")
+    results = []
+    users.each do |user|
+      results << {id: user.id, label: user.full_name, value: user.full_name}
+    end
+    respond_to do |format|
+      format.json {render json: results}
+    end
+  end
+
   def show
-    @user = User.find(params[:id])
+    @user = current_user
     @profile = @user.profile
     @experiences = @profile.experiences
     @invitations = Invitation.where(recipient_id: current_user.id)
