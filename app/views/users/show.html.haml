@@ -4,92 +4,92 @@
 
 = image_tag @profile.image.thumb.url if @profile.image?
 
-%h1= @user.first_name + ' ' + @user.last_name
-%p
-  Email: #{@user.email if @user.email}
-%b= @user.university.name
-%p
-  %b Current Location:
-  = "#{@user.city}, #{@user.state}"
-%p
-  %b Hometown:
-  = @profile.hometown
-%p
-  %b Professional Field:
-  = @user.professional_field.name
-.row-fluid.tabbable
-  %ul.nav.nav-tabs
-    %li
-      %a{href: "#contacts", data: {toggle: "tab"}} Contacts
-    %li
-      %a{href: "#requests", data: {toggle: "tab"}} 
-        Requests
-        - if @requests.size != 0
-          %span#unread_requests.badge.badge-important
-            = @requests.size
-    %li
-      %a{href: "#notifications", data: {toggle: "tab"}} 
-        Notifications
-    %li.active
-      %a{href: "#messages", data: {toggle: "tab"}} 
-        Messages
-        - if @unread_messages.size != 0
-          %span#unread_messages.badge.badge-important
-            = @unread_messages.size
-  .tab-content.clearfix
-    #contacts.tab-pane
-      - @contacts.each do |contact|
-        = link_to image_tag(contact.relation.profile.image), user_path(contact.relation)
-        %br
-        = link_to contact.relation.full_name, user_path(contact.relation)
-    #requests.tab-pane
-      .row-fluid
-        #messages.span6
-          .row-fluid{style: "margin-bottom: 20px; "}
-          - @requests.each do |relationship|
-            .row-fluid{id: "request-#{relationship.id}"}
-              .span3
-                = image_tag relationship.user.profile.image
-              .span9
-                = relationship.relation.full_name
-                %br
-                = relationship.message
-                %br
-                = link_to "View Request", read_relationship_path(relationship), remote: true
-        #current_request.span6
-    #notifications.tab-pane
-      %p Notifications go here.
-    #messages.tab-pane.active
-      .row-fluid
-        #messages.span6
-          .row-fluid{style: "margin-bottom: 20px; "}
-            %a{href: "#new-message", id: "new-message", class: "btn btn-success"} New Message
-          - @messages.each do |message|
-            .row-fluid{id: "message-#{message.id}"}
-              .span3
-                = image_tag message.originator.profile.image
-              .span9
-                = link_to message.originator.full_name, user_profile_path(message.originator, message.originator.profile)
-                %br
-                %strong Subject:
-                = message.messages.first.subject
-                %br
-                = truncate(message.messages.first.body)
-                %br
-                = link_to "Read More", read_message_path(message), remote: true
-        #current_conversation.span6
-        #conversation_reply.span6.hide
-          %p There should be a reply form here.
-        #new_conversation.hide.span6
-          = simple_form_for Message.new do |f|
-            = f.label :recipients, required: false
-            = f.input_field :recipients, data: { autocomplete_source: User.all.map(&:full_name) }
-            = f.label :subject, required: false
-            = f.input_field :subject
-            = f.label :body, required: false
-            = f.input_field :body, as: :text, rows: 10, class: "span12"
-            = f.button :submit, 'Send message' 
-  
+.row-fluid
+  %h1= @user.first_name + ' ' + @user.last_name
+  %p
+    Email: #{@user.email if @user.email}
+  %b= @user.university.name
+  %p
+    %b Current Location:
+    = "#{@user.city}, #{@user.state}"
+  %p
+    %b Hometown:
+    = @profile.hometown
+  %p
+    %b Professional Field:
+    = @user.professional_field.name
+.clearfix
+.row-fluid{style: "height: 200px;"}
+  .container
+    .span10.offset2
+      %ul.tabs3
+        %li= link_to "Contacts", "#contacts"
+        %li
+          = link_to "Requests", "#requests"
+          - if @requests.size != 0
+            %span#unread_requests.badge.badge-important
+              = @requests.size
+        %li= link_to "Notifications", "#notifications"
+        %li
+          = link_to "Messages", "#messages"
+          - if @unread_messages.size != 0
+            %span#unread_messages.badge.badge-important
+              = @unread_messages.size
+      .clearfix
+      .tab_container{style: "height: 200px;"}
+        #contacts.tab_content
+          - @contacts.each do |contact|
+            = link_to image_tag(contact.relation.profile.image), user_path(contact.relation)
+            %br
+            = link_to contact.relation.full_name, user_path(contact.relation)
+        #requests.tab_content
+          .row-fluid
+            #messages.span6
+              .row-fluid{style: "margin-bottom: 20px; "}
+                - @requests.each do |relationship|
+                  .row-fluid{id: "request-#{relationship.id}"}
+                    .span3
+                      = image_tag relationship.user.profile.image
+                    .span9
+                      = relationship.relation.full_name
+                      %br
+                      = relationship.message
+                      %br
+                      = link_to "View Request", read_relationship_path(relationship), remote: true
+            #current_request.span6
+        #notifications.tab_content
+          %p Notifications go here.
+        #messages.tab_content
+          .row-fluid
+            #messages.span6
+              .row-fluid{style: "margin-bottom: 20px; "}
+                %a{href: "#new-message", id: "new-message", class: "btn btn-success"} New Message
+              - @messages.each do |message|
+                .row-fluid{id: "message-#{message.id}"}
+                  .span3
+                    = image_tag message.originator.profile.image
+                  .span9
+                    = link_to message.originator.full_name, user_profile_path(message.originator, message.originator.profile)
+                    %br
+                    %strong Subject:
+                    = message.messages.first.subject
+                    %br
+                    = truncate(message.messages.first.body)
+                    %br
+                    = link_to "Read More", read_message_path(message), remote: true
+            #current_conversation.span6
+              #conversation_reply.span6.hide
+                %p There should be a reply form here.
+            #new_conversation.hide.span6
+              = simple_form_for Message.new do |f|
+                = f.label :recipients, required: false
+                = f.input_field :recipients, data: { autocomplete_source: User.all.map(&:full_name) }
+                = f.label :subject, required: false
+                = f.input_field :subject
+                = f.label :body, required: false
+                = f.input_field :body, as: :text, rows: 10, class: "span12"
+                = f.button :submit, 'Send message' 
+
 %p
   %b Skills:
   = @profile.skills
