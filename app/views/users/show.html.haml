@@ -35,7 +35,7 @@
           - if @unread_messages.size != 0
             %span#unread_messages.badge.badge-important= @unread_messages.size
       .clearfix
-      .tab_container{style: "height: 200px; border: 1px solid red;"}
+      .tab_container{style: "height: 300px;"}
         #contacts.tab_content
           - @contacts.each do |contact|
             = link_to image_tag(contact.relation.profile.image), user_path(contact.relation)
