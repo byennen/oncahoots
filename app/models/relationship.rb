@@ -9,6 +9,7 @@ class Relationship < ActiveRecord::Base
 
   scope :by_user, ->(user) { where(user_id: user.id) }
   scope :by_relationship, ->(relation) { where(user_id: relation.id) }
+  scope :accepted, where("status = ?", "accepted") 
 
   def self.exists?(user, relation)
      relationships = find_by_user_id_and_relation_id(user.id, relation.id)
