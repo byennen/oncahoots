@@ -18,7 +18,7 @@ class MessagesController < ApplicationController
       Rails.logger.debug("reciept is #{receipt.inspect}")
     end
     flash[:notice] = "Message sent."
-    redirect_to user_profile_path(current_user, current_user.profile)
+    redirect_to user_path(current_user)
   end
   
   def read

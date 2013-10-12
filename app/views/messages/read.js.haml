@@ -1,6 +1,4 @@
-$("#new_conversation").hide();
-$("#current_conversation").show();
+$(".left-side ul.msg li").css("background", "none");
 $("#message-#{@conversation.id}").css("background", "#ddd");
-$("#current_conversation").html("#{escape_javascript(render partial: 'conversation')}");
-$("#current_conversation").append("#{escape_javascript(render partial: 'reply')}")
+$("#current_conversation").html("#{escape_javascript(render partial: 'message', collection: @conversation.messages.reverse)}");
 $("#unread_messages").html("#{@unread_messages.size}")
