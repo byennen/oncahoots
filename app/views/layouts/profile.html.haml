@@ -31,7 +31,8 @@
                       Jobs
             .span10
               = yield
-        = yield(:content_bottom)
+        - if Relationship.exists?(current_user, @user)
+          = yield(:content_bottom)
       .seps
       .row-fluid
         .container
