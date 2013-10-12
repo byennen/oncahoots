@@ -4,6 +4,7 @@ class ClubEvent < ActiveRecord::Base
                   :image
 
   belongs_to :club
+  has_many :events, as: :eventable
 
   mount_uploader :image, ImageUploader
 
