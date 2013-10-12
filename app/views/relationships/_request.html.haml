@@ -1,18 +1,13 @@
-.contact_request{id: "contact_request-#{@relationship.id}"}
-  .row-fluid
-    .span3
-      = image_tag contact_request.relation.profile.image
-      %br
-      %br
-      %br
-      = link_to "View Profile", user_path(contact_request.relation), class: "btn btn-primary"
-    .span9
-      = contact_request.relation.full_name
-      %br 
-      %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nibh metus, condimentum sed turpis quis, adipiscing ultricies magna. Integer posuere nibh id mauris venenatis, ac volutpat urna aliquet. Nulla commodo purus in elit laoreet, at iaculis leo posuere. Vivamus facilisis, velit non aliquet tempus, magna turpis semper quam, ac hendrerit nisi quam eget neque. Curabitur quis lobortis urna.
-      %br
-      %strong Request Message
-      %br
-      = contact_request.message
-      %br
-      %br
+%a{href: "javascript:;", style: "margin-right: 25px;"}
+  = image_tag request.relation.profile.image.medium
+%a.btn.btn7.mar2{href: user_path(request.relation)} View Profile
+%p.comp= request.message
+= text_area_tag :comment, "", placeholder: "Hi Mathew! Looks like we have similar interests and Hi Mathew! Looks like we have similar interests", class: "tarea chang7"
+.clearfix
+%ul.thre-tabs
+  %li.no-lmar
+    = link_to "Accept",  accept_relationship_path(request), method: :post, class: 'btngree'
+  %li
+    = link_to "Decline", decline_relationship_path(request), method: :post, class: "btnred"
+  %li.no-lmar
+    = link_to "Recommend", nil, class: "btnyellow"

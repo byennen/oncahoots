@@ -1,118 +1,146 @@
-- if current_user.relatable?(@user) 
-  .pull-right
+.pro-user
+  %a{href: "javascript:;"}
+    = image_tag @user.profile.image.xxlarge
+  %p Hi! My name #{@user.full_name} and i'm a user interface designer from chicago, IL. Let's connect!
+  - if current_user.relatable?(@user) 
     %a{href: "#add-contact", class: "btn btn-primary", data: {toggle: "modal"}} Add Contact
+= content_for :content_bottom do
+  .clearfix
+  .row-fluid
+    .container
+      .offset2.span10
+        %ul.tabs5
+          %li
+            %a{href: "#tab1"}Contacts
+          - if @user == current_user
+            %li
+              %a{href: "#tab2"}
+                Requests
+                - if @requests.size > 0
+                  %i= @requests.size
+            %li
+              %a{href: "#tab3"}
+                Notifications
+            %li
+              %a{href: "#tab4"}
+                Messages
+                - if @unread_messages.size > 0
+                  %i#unread_messages=  @unread_messages.size
+        .clearfix
+        .tab_container
+          #tab1.tab_content
+            - if @contacts.blank?
+              %br
+              %br
+              .span11.top2
+                %center
+                  %h4 No contact
+            - else
+              %button.btn.btn2.mod1
+                %i= image_tag "search-icon.png"
+              = text_field_tag :term, "", class: "field mod2"
+              .clearfix
+              .list_carousel
+                %ul#foo2.sss
+                  - @contacts.each do |contact|
+                    %li
+                      .users
+                        %a{href: user_path(contact.relation)}= image_tag (contact.relation.profile.image.xlarge)
+                        .hovers
+                          %p Hi! I am another user from chicago and i am excited about business
+                          = link_to contact.relation.full_name, user_path(contact.relation)
+                %a#prev2.prev{href: "#"}
+                %a#next2.next{href: "#"}
+              %center
+                %button.btn.btn3 See all &nbsp;&nbsp;&nbsp;&nbsp; >
+          - if @user == current_user
+            = render partial: "private_tabs"
 
-= image_tag @profile.image.thumb.url if @profile.image?
-
-.row-fluid
-  %h1= @user.first_name + ' ' + @user.last_name
-  %p
-    Email: #{@user.email if @user.email}
-  %b= @user.university.name
-  %p
-    %b Current Location:
-    = "#{@user.city}, #{@user.state}"
-  %p
-    %b Hometown:
-    = @profile.hometown
-  %p
-    %b Professional Field:
-    = @user.professional_field.name
-.clearfix
-.row-fluid{style: "height: 200px;"}
-  .container
-    .span12
-      %ul.tabs3
-        %li= link_to "Contacts", "#contacts"
-        %li
-          = link_to "Requests", "#requests"
-          - if @requests.size != 0
-            %span#unread_requests.badge.badge-important
-              = @requests.size
-        %li= link_to "Notifications", "#notifications"
-        %li
-          = link_to "Messages", "#messages"
-          - if @unread_messages.size != 0
-            %span#unread_messages.badge.badge-important= @unread_messages.size
-      .clearfix
-      .tab_container{style: "height: 300px;"}
-        #contacts.tab_content
-          - @contacts.each do |contact|
-            = link_to image_tag(contact.relation.profile.image), user_path(contact.relation)
-            %br
-            = link_to contact.relation.full_name, user_path(contact.relation)
-        #requests.tab_content
-          .row-fluid
-            #request_messages.span6
-              .row-fluid{style: "margin-bottom: 20px; "}
-                - @requests.each do |relationship|
-                  .row-fluid{id: "request-#{relationship.id}"}
-                    .span3
-                      = image_tag relationship.user.profile.image
-                    .span9
-                      = relationship.relation.full_name
-                      %br
-                      = relationship.message
-                      %br
-                      = link_to "View Request", read_relationship_path(relationship), remote: true
-            #current_request.span6
-        #notifications.tab_content
-          %p Notifications go here.
-        #messages.tab_content
-          #messages.span6
-            .row-fluid{style: "margin-bottom: 20px; "}
-              %a{href: "#new-message", id: "new-message", class: "btn btn-success"} New Message
-            - @messages.each do |message|
-              .row-fluid{id: "message-#{message.id}"}
-                .span3
-                  = image_tag message.originator.profile.image
-                .span9
-                  = link_to message.originator.full_name, user_profile_path(message.originator, message.originator.profile)
+  .clearfix
+  %br
+  %br
+  .row-fluid
+    .container
+      .offset2.span10
+        %ul.tabs6
+          %li
+            %a{href: "#tab11"} Education &amp; Skills
+          %li
+            %a{href: "#tab22"} Experience
+          %li
+            %a{href: "#tab33"} Portfolio
+          %li
+            %a{href: "#tab44"} FAQs
+        .clearfix
+        .tab_container
+          #tab11.tab_content2
+            .two-col
+              %h3 Education
+              %p= @profile.education
+            .two-col
+              %h3 Skills &amp; Interests
+              %p= @profile.skills
+          #tab22.tab_content2
+            %ul.posts.po2
+              - @experiences.each do |experience|
+                %li
+                  %a.avatr{href: "javascript:;"}
+                  %h4 
+                    = experience.company_name
+                    %br
+                    %span= experience.position_name
+                  %p = experience_string(experience)
+                  .clearfix
+              
+          #tab33.tab_content2
+            .profile
+              %a.gb{href: "javascript:;"}
+              %ul.ssap
+                %li
+                  %a{href: "javascript:;"}
+                %li
+                  %a{href: "javascript:;"}
+                %li
+                  %a{href: "javascript:;"}
+              %h3
+                Project name
+                %br
+                %span Project organization name
+              %p As a communication intern I was responsible for producing the following pamphlets explaining our processes to clients.
+          #tab44.tab_content2
+            .faq
+              %h2 FAQ
+              .half
+                %p
+                  %b= "- What do you look for in a new hire?"
                   %br
-                  %strong Subject:
-                  = message.messages.first.subject
+                  People with passion and experience.
                   %br
-                  = truncate(message.messages.first.body)
                   %br
-                  = link_to "Read More", read_message_path(message), remote: true
-          #current_conversation.span6
-            #conversation_reply.span6.hide
-              %p There should be a reply form here.
-          #new_conversation.hide.span6
-            = simple_form_for Message.new do |f|
-              = f.label :recipients, required: false
-              = f.input_field :recipients, data: { autocomplete_source: User.all.map(&:full_name) }
-              = f.label :subject, required: false
-              = f.input_field :subject
-              = f.label :body, required: false
-              = f.input_field :body, as: :text, rows: 10, class: "span12"
-              = f.button :submit, 'Send message' 
-
-%p
-  %b Skills:
-  = @profile.skills
-%p
-  %b Education:
-  = @profile.education
-%h2 Experience:
-- @experiences.each do |experience|
-  %b= experience.position_name
-  %p= experience.company_name
-  %p
-    = experience_string(experience)
-%h2 Portfolio:
-- @portfolio_items.each do |pi|
-  - if ["png", "jpg", "gif"].include?(pi.file.url.split('.').last)
-    %p= image_tag(pi.file.url)
-  - else
-    %p= link_to(pi.file.url)
-
-
--#= @invitations.inspect
--#- @invitations.each do |invitation|
--#  = @token = invitation.token
--#  = link_to "club invite", signup_url(@token)
-
+                  %b= "- What do you do on a daily basis?"
+                  %br
+                  Meet withy clients.
+                  %br
+                  %br
+                  %b= "- How many hours a week do you work?"
+                  %br
+                  Between 45 and 60.
+              .half
+                %p
+                  %b= "- What do you look for in a new hire?"
+                  %br
+                  People with passion and experience.
+                  %br
+                  %br
+                  %b= "- What do you do on a daily basis?"
+                  %br
+                  Meet withy clients.
+                  %br
+                  %br
+                  %b= "- How many hours a week do you work?"
+                  %br
+                  Between 45 and 60.
+  .clearfix
 #add-contact.modal.hide
   = simple_form_for Relationship.new(user_id: current_user.id) do |f|
     .modal-header
@@ -123,4 +151,117 @@
       = f.input :message, as: :text, input_html: {class: 'span5', rows: 10}
     .modal-footer
       = f.submit "Add Contact", class: "btn btn-primary"
- 
+
+#message-form.modal.hide.span6
+  .modal-header
+    %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+    %h3 New Message
+  = simple_form_for Message.new do |f|
+    .modal-body
+      = f.input :recipients, input_html: {class: "tagauto tags", value: ""}
+      = f.input :subject
+      = f.text_area :body, rows: 10, class: "span12"
+    .modal-footer
+      = f.button :submit, 'Send message'
+:javascript
+  
+  $(function () {
+    $(".tab_content").hide(); //Hide all content
+    $("ul.tabs5 li:first").addClass("active").show(); //Activate first tab
+    $(".tab_content:first").show(); //Show first tab content
+      
+    //On Click Event
+    $("ul.tabs5 li").click(function() {
+      $("ul.tabs5 li").removeClass("active"); //Remove any "active" class
+      $("ul.tabs5 a").removeClass("selected");
+      $(this).addClass("active"); //Add "active" class to selected tab
+      jQuery(this).children("a").addClass('selected');
+      //console.log($(this).toSource());
+      $(".tab_content").hide(); //Hide all tab content
+      var activeTab = $(this).find("a").attr("href"); //Find the rel attribute value to identify the active tab + content
+      $(activeTab).fadeIn(); //Fade in the active content
+      return false;
+    });
+    $(".tab_content2").hide(); //Hide all content
+    $("ul.tabs6 li:first").addClass("active").show(); //Activate first tab
+    $(".tab_content2:first").show(); //Show first tab content
+      
+      //On Click Event
+    $("ul.tabs6 li").click(function() {
+      $("ul.tabs6 li").removeClass("active"); //Remove any "active" class
+      $("ul.tabs6 a").removeClass("selected");
+      $(this).addClass("active"); //Add "active" class to selected tab
+      jQuery(this).children("a").addClass('selected');
+      //console.log($(this).toSource());
+      $(".tab_content2").hide(); //Hide all tab content
+      var activeTab = $(this).find("a").attr("href"); //Find the rel attribute value to identify the active tab + content
+      $(activeTab).fadeIn(); //Fade in the active content
+      return false;
+    });
+  
+  });
+  // Iterate over each select element
+  $('select.select').each(function() {
+
+    // Cache the number of options
+    var $this = $(this),
+    numberOfOptions = $(this).children('option').length;
+
+    // Hides the select element
+    $this.addClass('s-hidden');
+
+    // Wrap the select element in a div
+    $this.wrap('<div class="select"></div>');
+
+    // Insert a styled div to sit over the top of the hidden select element
+    $this.after('<div class="styledSelect"></div>');
+
+    // Cache the styled div
+    var $styledSelect = $this.next('div.styledSelect');
+
+    // Show the first select option in the styled div
+    $styledSelect.text($this.children('option').eq(0).text());
+
+    // Insert an unordered list after the styled div and also cache the list
+    var $list = $('<ul />', {
+      'class': 'options'
+    }).insertAfter($styledSelect);
+
+    // Insert a list item into the unordered list for each select option
+    for (var i = 0; i < numberOfOptions; i++) {
+      $('<li />', {
+        text: $this.children('option').eq(i).text(),
+        rel: $this.children('option').eq(i).val()
+      }).appendTo($list);
+    }
+
+    // Cache the list items
+    var $listItems = $list.children('li');
+
+    // Show the unordered list when the styled div is clicked (also hides it if the div is clicked again)
+    $styledSelect.click(function(e) {
+      e.stopPropagation();
+      $('div.styledSelect.active').each(function() {
+        $(this).removeClass('active').next('ul.options').hide();
+      });
+      $(this).toggleClass('active').next('ul.options').toggle();
+    });
+
+    // Hides the unordered list when a list item is clicked and updates the styled div to show the selected list item
+    // Updates the select element to have the value of the equivalent option
+    $listItems.click(function(e) {
+      e.stopPropagation();
+      $styledSelect.text($(this).text()).removeClass('active');
+      $this.val($(this).attr('rel'));
+      $list.hide();
+      /* alert($this.val()); Uncomment this for demonstration! */
+    });
+
+    // Hides the unordered list when clicking outside of it
+    $(document).click(function() {
+      $styledSelect.removeClass('active');
+      $list.hide();
+    });
+
+    
+  });
