@@ -33,4 +33,12 @@ class RelationshipsController < ApplicationController
     end
   end
 
+  def destroy
+    @relationship = Relationship.find(params[:id])
+    @relationship.remove!
+    respond_to do |format|
+      format.html { redirect_to user_contacts_path(current_user), notice: "You have removed the contact - #{@relationship.relation.full_name}" }
+    end
+  end
+
 end

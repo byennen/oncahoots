@@ -1,6 +1,6 @@
 class Relationship < ActiveRecord::Base
 
-  VALID_STATES = %w(pending requested accepted declined).freeze
+  VALID_STATES = %w(pending requested accepted declined deleted).freeze
 
   attr_accessible :user_id, :relation_id, :status, :message
 
@@ -75,6 +75,11 @@ class Relationship < ActiveRecord::Base
     inverse.update_attribute(:status, 'declined')
   end
 
+  def remove!
+    inverse = find_inverse
+    self.update_attribute(:status, "deleted")
+    inverse.update_attribute(:status, "deleted")
+  end
 
   private
 
