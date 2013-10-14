@@ -9,4 +9,10 @@ module ProfilesHelper
     end
     return experience_string
   end
+
+  def can_view?(current_user, user)
+     current_user == @user || Relationship.reciprocal?(current_user, user) || Relationship.requested?(current_user, user)
+  end
+
 end
+

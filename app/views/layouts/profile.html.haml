@@ -16,6 +16,7 @@
   %body
     .container-fluid
       %header
+        = link_to "logout", destroy_user_session_path, class: 'logout', :method=> :delete
         = render 'layouts/search'
         = render 'layouts/nav_without_bg'
         .row-fluid
@@ -31,7 +32,8 @@
                       Jobs
             .span10
               = yield
-        = yield(:content_bottom)
+        - if can_view?(current_user, @user)
+          = yield(:content_bottom)
       .seps
       .row-fluid
         .container
