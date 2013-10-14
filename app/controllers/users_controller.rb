@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-  layout "profile"
-  
+ 
   def search
     users = User.where("lower(first_name) like ? or lower(last_name) like ?", "%#{params[:term].downcase}%", "%#{params[:term].downcase}%")
     results = []
