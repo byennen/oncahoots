@@ -5,66 +5,17 @@
   %ul
     %li
       %i
-      = link_to "#myModal2", :"data-toggle" => "modal" do
+      = link_to "#messages-popup", :"data-toggle" => "modal" do
         = image_tag('message.png')
         %br
         Messages
-    #myModal2.modal.mod4.hide.fade{tabindex: "-1", role: "dialog", :"aria-labelledby" => "myModalLabel", :"aria-hidden" => "true", style: "top: 180px"}
-      .modal-body
-        %span.arr
-          =image_tag "popup-arrow.png"
-        .left-side.msh
-          %a{href: "#message-form", data: {toggle: "modal"}, class: "btn btn-success"} New Message
-          %ul.msg
-            - @messages.each do |message|
-              %li{id: "message-#{message.id}"}
-                = link_to image_tag(message.originator.profile.image.small), read_message_path(message), remote: true
-                %h4= message.originator.full_name
-                %br
-                %p= truncate(message.messages.first.body)
-        #current_conversation.right-side
     %li
       %i
-      = link_to "#myModal", :"data-toggle" => "modal" do
-        %p 2
+      = link_to "#requests-popup", :"data-toggle" => "modal" do
+        %p= @requests.size
         = image_tag "request.png"
         %br
         Requests
-    #myModal.modal.hide.fade{tabindex: "-1", role: "dialog", :"aria-labelledby" => "myModalLabel", :"aria-hidden" => "true", style: "top: 360px"}
-      .modal-body
-        %span.arr
-          =image_tag "popup-arrow.png"
-        .left-side
-          %button.btn.btn5 New Message
-          %ul.msg
-            %li
-              = link_to "javascript:;" do
-                = image_tag 'small-avatar.png'
-              %h4 Josh Compton
-              %br
-              %p Great hear from you...
-            %li
-              = link_to "javascript:;" do
-                = image_tag 'small-avatar2.png'
-              %h4 Josh Compton
-              %br
-              %p Great hear from you...
-        .right-side
-          .comment-box
-            = text_area_tag :comment, "", class: "tex-area", placeholder: "Create to hear from you Matt!! Glad you accepted my connection request!"
-            = link_to "javascript:;" do
-              = image_tag "small-avatar.png"
-            %button.btn6 Delete
-            %strong 1 day ago
-          .comment-box
-            = text_area_tag :comment, "", class: "tex-area", placeholder: "Create to hear from you Matt!! Glad you accepted my connection request!"
-            = link_to "javascript:;" do
-              = image_tag "small-avatar.png"
-            %button.btn6 Delete
-            %strong 1 day ago
-      .clearfix
-      .modal-footer
-        %button.btn{type: "button", data: {dismiss: "modal"}} Close
     %li
       %i
       = link_to "javascript:;" do
@@ -147,6 +98,48 @@
         #tab7.tab_content
 .clearfix
 
+#messages-popup.modal.mod4.hide.fade{tabindex: "-1", role: "dialog", :"aria-labelledby" => "myModalLabel", :"aria-hidden" => "true", style: "top: 180px"}
+  .modal-body
+    %span.arr
+      =image_tag "popup-arrow.png"
+    .left-side.msh
+      %a{href: "#message-form", data: {toggle: "modal"}, class: "btn btn-success"} New Message
+      %ul.msg
+        - @messages.each do |message|
+          %li{id: "message-#{message.id}"}
+            = link_to image_tag(message.originator.profile.image.small), read_message_path(message), remote: true
+            %h4= message.originator.full_name
+            %br
+            %p= truncate(message.messages.first.body)
+    #current_conversation.right-side
+  .clearfix
+  .modal-footer
+    %button.btn{type: "button", data: {dismiss: "modal"}} Close
+
+#requests-popup.modal.hide.fade{tabindex: "-1", role: "dialog", :"aria-labelledby" => "myModalLabel", :"aria-hidden" => "true", style: "top: 360px"}
+  .modal-body{style: "min-height: 200px;"}
+    %span.arr
+      =image_tag "popup-arrow.png"
+    - if @requests.blank?
+      %br
+      .span11.top2
+        %center
+          %h4 No request
+    - else
+      .left-side
+        %ul.msg.msh
+          - @requests.each do |relationship|
+            %li{id: "request-#{relationship.id}"}
+              = link_to image_tag("#{relationship.relation.profile.image.thumb}"), read_relationship_path(relationship), remote: true
+              %h4= relationship.relation.full_name
+              %br
+              %p= relationship.relation.graduation_year
+      .right-side
+        #current_request.comment-box.ne
+          = render partial: "relationships/request", locals: {request: @requests.first} unless @requests.blank?
+  .clearfix
+  .modal-footer
+    %button.btn{type: "button", data: {dismiss: "modal"}} Close
 :javascript
   jQuery(document).ready(function() {//Default Action
     $(".tab_content").hide(); //Hide all content
