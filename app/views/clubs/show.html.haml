@@ -13,13 +13,16 @@
       .modal-body
         %span.arr
           =image_tag "popup-arrow.png"
-        ~ form_tag url_for, class: "contact-form" do
-          = text_field_tag :to, "", class: "field2", placeholder: "to"
-          .clearfix
-          = text_field_tag :subject, "", class: "field3", placeholder: "Subject"
-          = text_area_tag :content, "", class: "tarea", placeholder: "Great to hear from you Matt! Glad you accepted my connection request!!"
-          %button.btn.btn7{type: "button", data: {dismiss: "modal"}} Send
-          %button.btn6.mod5{type: "button", data: {dismiss: "modal"}} Cancel
+        .left-side.msh
+          %a{href: "#message-form", data: {toggle: "modal"}, class: "btn btn-success"} New Message
+          %ul.msg
+            - @messages.each do |message|
+              %li{id: "message-#{message.id}"}
+                = link_to image_tag(message.originator.profile.image.small), read_message_path(message), remote: true
+                %h4= message.originator.full_name
+                %br
+                %p= truncate(message.messages.first.body)
+        #current_conversation.right-side
     %li
       %i
       = link_to "#myModal", :"data-toggle" => "modal" do

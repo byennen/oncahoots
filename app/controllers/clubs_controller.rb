@@ -13,6 +13,7 @@ class ClubsController < ApplicationController
     @current_membership = @club.memberships.find_by_user_id(current_user.id)
     @admins = @club.memberships.where(admin: true)
     @non_admins = @club.memberships.where("admin is NULL").all.map(&:user)
+    @messages = @current_user.mailbox.conversations
     Rails.logger.debug("non admins are #{@non_admins.inspect}")
   end
 
