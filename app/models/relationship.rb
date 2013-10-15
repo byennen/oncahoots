@@ -18,32 +18,32 @@ class Relationship < ActiveRecord::Base
 
   def self.reciprocal?(user, relation)
     relationship = find_by_user_id_and_relation_id(user.id, relation.id)
-    relationship.accepted? ? true : false
+    (relationship && relationship.accepted?) ? true : false
   end
 
   def self.requested?(user, relation)
     relationship = find_relationship(user, relation)
-    relationship.requested? ? true : false
+    (relationship && relationship.requested?) ? true : false
   end
 
   def self.pending?(user, relation)
     relationship = find_relationship(user, relation)
-    relationship.pending? ? true : false
+    (relationship && relationship.pending?) ? true : false
   end
 
   def self.declined?(user, relation)
     relationship = find_relationship(user, relation)
-    relationship.declined? ? true : false
+    (relationship && relationship.declined?) ? true : false
   end
 
   def self.pending?(user, relation)
     relationship = find_relationship(user, relation)
-    relationship.pending? ? true : false
+    (relationship && relationship.pending?) ? true : false
   end
 
   def self.recommended?(user, relation)
     relationship = find_relationship(user,relation)
-    relationship.recommended? ? true : false
+    (relationship && relationship.recommended?) ? true : false
   end
 
   def self.request(user, relation, message='')

@@ -25,6 +25,9 @@ class User < ActiveRecord::Base
 
   validates_presence_of :university_id, :graduation_year, :major, :city, :state
 
+  scope :alumni, where(alumni: true)
+  scope :student, where("alumni is null or alumni=false")
+
   after_create :create_user_profile
 
   extend FriendlyId
