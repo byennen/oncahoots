@@ -163,7 +163,8 @@
     .modal-footer
       = f.submit "Add Contact", class: "btn btn-primary"
 
-#message-form.modal.hide.span6
+#message-form.modal.hide.fade{tabindex: "-1", role: "dialog", :"aria-labelledby" => "myModalLabel", :"aria-hidden" => "true", style: "top: 500px"}
+
   .modal-header
     %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
     %h3 New Message
