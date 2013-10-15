@@ -61,36 +61,13 @@
 
         #tab2.tab_content.list_carousel
           %ul#foo2
-            %li
-              .users
-                = link_to "javascript:void(0);" do
-                  = image_tag("img01.png")
-                  %span Food Club
-            %li
-              .users
-                = link_to "javascript:void(0);" do
-                  = image_tag("img02.png")
-                  %span Soccer Club
-            %li
-              .users
-                = link_to "javascript:void(0);" do
-                  = image_tag("img03.png")
-                  %span Fan Club
-            %li
-              .users
-                = link_to "javascript:void(0);" do
-                  = image_tag("img01.png")
-                  %span Food Club
-            %li
-              .users
-                = link_to "javascript:void(0);" do
-                  = image_tag("img02.png")
-                  %span Soccer Club
-            %li
-              .users
-                = link_to "javascript:void(0);" do
-                  = image_tag("img03.png")
-                  %span Fan Club
+            - @clubs.each do |club|
+              %li
+                .users
+                  = link_to university_club_path(@university, club) do
+                    = image_tag club.image.xlarge
+                    %span= club.name
+          
           %a.prev#prev2{href: "#"} &lt;
           %a.next#next2{href: "#"} &gt;
           %center
