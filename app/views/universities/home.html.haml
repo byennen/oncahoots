@@ -1,37 +1,25 @@
-
 = content_for :header do
-  .row-fluid.mod3.span12.no-lmar
-    .container
-      .span2
-        .left-menu.mns
-          %ul
-            %li
-              %i
-              = link_to "javascript:void(0);" do
-                = image_tag('jobs.png')
-                %br
-                Jobs
-      .span3
-        = link_to "javascript:void(0);", class: 'mono mn' do
-          = image_tag("mono3.png")
-      .span7
-        .carus
-          %ul#flexiselDemo1
-            - 3.times do |i|
-              %li
-                = link_to "javascript:void(0);" do
-                  = image_tag("car-img.png")
-                %br
-                %h4 Basketball Game
-                %p
-                  Friday, June 29
-                  %br
-                  7:00PM - GYM
+  .span3
+    = link_to "javascript:void(0);", class: 'mono mn' do
+      = image_tag("mono3.png")
+  .span7
+    .carus
+      %ul#flexiselDemo1
+        - 3.times do |i|
+          %li
+            = link_to "javascript:void(0);" do
+              = image_tag("car-img.png")
+            %br
+            %h4 Basketball Game
+            %p
+              Friday, June 29
+              %br
+              7:00PM - GYM
   .clearfix
 
 .row-fluid
   .container
-    .span10.offset2
+    .span10.offset2.top2
       %ul.tabs3
         %li= link_to "Community", "#tab1"
         %li= link_to "Clubs", "#tab2"
