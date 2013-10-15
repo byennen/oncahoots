@@ -144,13 +144,6 @@
                   %b= "- How many hours a week do you work?"
                   %br
                   Between 45 and 60.
-.clearfix
-
-.row-fluid
-  .container
-    .span12
-      .seperator
-.clearfix
 
 #add-contact.modal.hide
   = simple_form_for Relationship.new(user_id: current_user.id) do |f|
