@@ -1,28 +1,16 @@
 = content_for :header do
-  .row-fluid.mod3.span12.no-lmar
-    .container
-      .span2
-        .left-menu.mns
-          %ul
-            %li
-              %i
-              = link_to "javascript:void(0);" do
-                = image_tag('jobs.png')
-                %br
-                Jobs
-      .span10
-        .span10
-          %a.mono.mn{href: "javascript:;"}
-            = image_tag @user.profile.image.xxlarge
-          .pro-user.span8
-            %p Hi! My name #{@user.full_name} and i'm a user interface designer from chicago, IL. Let's connect!
-        .span2
-          - if current_user.relatable?(@user) 
-            %a{href: "#add-contact", class: "btn btn-primary", data: {toggle: "modal"}, style: "margin-right: 10px;"} Add Contact
-        .span8
-          
+  .span3
+    = link_to "javascript:void(0);", class: 'mono mn' do
+      = image_tag @user.profile.image.xxlarge
+  .span8
+    .carus
+      .pro-user
+        %p Hi! My name #{@user.full_name} and i'm a user interface designer from chicago, IL. Let's connect!
+    - if current_user.relatable?(@user) 
+      %a{href: "#add-contact", class: "btn btn-primary", data: {toggle: "modal"}, style: "margin-right: 10px;"} Add Contact
+            
   .clearfix
-
+.clearfix
 - if can_view?(current_user, @user)
   .row-fluid
     .container
@@ -156,13 +144,6 @@
                   %b= "- How many hours a week do you work?"
                   %br
                   Between 45 and 60.
-.clearfix
-
-.row-fluid
-  .container
-    .span12
-      .seperator
-.clearfix
 
 #add-contact.modal.hide
   = simple_form_for Relationship.new(user_id: current_user.id) do |f|
@@ -175,7 +156,8 @@
     .modal-footer
       = f.submit "Add Contact", class: "btn btn-primary"
 
-#message-form.modal.hide.span6
+#message-form.modal.hide.fade{tabindex: "-1", role: "dialog", :"aria-labelledby" => "myModalLabel", :"aria-hidden" => "true", style: "top: 500px"}
+
   .modal-header
     %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
     %h3 New Message

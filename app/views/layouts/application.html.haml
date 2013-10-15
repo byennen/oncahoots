@@ -16,15 +16,13 @@
   %body{:class => "#{controller_name} #{action_name}"}
     .container-fluid
       %header
-        =# render 'layouts/search'
         = render 'layouts/navigation'
-        =# yield(:header)
         .row-fluid.span12.no-lmar
           .container
             .span2
               = render partial: "layouts/left_menu"
-            .span10
-              .bg-image3
+            .span10{style: "height: 435px;"}
+              .bg-image.bg-image2
                 .offset9
                   %button.btn.btn2{name: 'btn', style: "margin-right: 10px;"}
                     %i
@@ -34,4 +32,10 @@
                 = yield(:header)
       .seps
       = yield
+      .clearfix
+      .row-fluid
+        .container
+          .span12
+            .seperator
+      .clearfix
       = render 'layouts/footer'
