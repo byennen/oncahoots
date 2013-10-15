@@ -46,6 +46,12 @@ describe Relationship do
 
     end
 
+  end
+
+  context "#requested?" do
+
+    let!(:relationship) { Relationship.request(user, user2) }
+
     describe 'when requested' do
 
       it "should not be reciprocal?" do
@@ -53,11 +59,20 @@ describe Relationship do
       end
 
       it "should be requested" do
-        expect(Relationship.requested?(user2, user)).to be_true
+        expect(Relationship.requested?(user, user2)).to be_true
+      end
+      
+      it "should have a pending relationship" do
+        expect(Relationship.pending?(user2, user)).to be_true
       end
 
     end
 
+  end
+
+  context "#declined?" do
+
+    let!(:relationship) { Relationship.request(user, user2) }
 
     describe 'when declined' do
 
@@ -75,12 +90,28 @@ describe Relationship do
 
     end
 
-
-
-
   end
 
-  context "#requested?" do
+  context "#recommended" do
+
+    let!(:relationship)       { Relationship.request(user, user2) }
+    let!(:refer_relationship) { relationship.recommend!(user3) }
+
+    describe 'when referred' do
+
+      it "should create new requested relationship" do
+        expect(Relationship.recommended?(user, user3)).to be_true
+      end
+
+      it "should create new pending relationship" do
+        expect(Relationship.recommended?(user3, user)).to be_true
+      end
+
+      it "should return  the new requested relationship" do 
+        expect(refer_relationship.recommended?).to be_true
+      end
+
+    end
 
   end
 

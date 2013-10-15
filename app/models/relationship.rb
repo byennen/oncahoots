@@ -1,6 +1,6 @@
 class Relationship < ActiveRecord::Base
 
-  VALID_STATES = %w(pending requested accepted declined deleted).freeze
+  VALID_STATES = %w(pending requested accepted declined deleted recommended).freeze
 
   attr_accessible :user_id, :relation_id, :status, :message
 
@@ -13,38 +13,37 @@ class Relationship < ActiveRecord::Base
 
   def self.exists?(user, relation)
      relationships = find_by_user_id_and_relation_id(user.id, relation.id)
-     if relationships.nil?
-       return false
-     else
-       return true
-     end
+     relationships.nil? ? false : true
   end
 
   def self.reciprocal?(user, relation)
     relationship = find_by_user_id_and_relation_id(user.id, relation.id)
-    if relationship.accepted?
-      return true
-    else
-      return false
-    end
+    relationship.accepted? ? true : false
   end
 
   def self.requested?(user, relation)
-    relationship = find_by_user_id_and_relation_id(relation.id, user.id)
-    if relationship.requested?
-      return true
-    else
-      return false
-    end
+    relationship = find_relationship(user, relation)
+    relationship.requested? ? true : false
+  end
+
+  def self.pending?(user, relation)
+    relationship = find_relationship(user, relation)
+    relationship.pending? ? true : false
   end
 
   def self.declined?(user, relation)
-    relationship = find_by_user_id_and_relation_id(user.id, relation.id)
-    if relationship.declined?
-      return true
-    else
-      return false
-    end
+    relationship = find_relationship(user, relation)
+    relationship.declined? ? true : false
+  end
+
+  def self.pending?(user, relation)
+    relationship = find_relationship(user, relation)
+    relationship.pending? ? true : false
+  end
+
+  def self.recommended?(user, relation)
+    relationship = find_relationship(user,relation)
+    relationship.recommended? ? true : false
   end
 
   def self.request(user, relation, message='')
@@ -52,6 +51,10 @@ class Relationship < ActiveRecord::Base
       create(user_id: user.id, relation_id: relation.id, status: 'requested', message: message)
       create(user_id: relation.id, relation_id: user.id, status: 'pending', message: message)
     end
+  end
+
+  def self.find_relationship(user, relation)
+    return find_by_user_id_and_relation_id(user.id, relation.id)
   end
 
   # States
@@ -79,6 +82,16 @@ class Relationship < ActiveRecord::Base
     inverse = find_inverse
     self.update_attribute(:status, "deleted")
     inverse.update_attribute(:status, "deleted")
+  end
+
+  def recommend!(new_user)
+    inverse = find_inverse
+    message = "#{user.full_name} has recommended you to #{new_user.full_name}.  Do you wish to proceed?"
+    unless user == relation || Relationship.exists?(user, new_user) 
+      Relationship.create(user_id: relation_id, relation_id: new_user.id, status: 'recommended', message: message)
+      new_relationship = Relationship.create(user_id: new_user.id, relation_id: relation_id, status: 'recommended', message: message)
+    end
+    return new_relationship
   end
 
   private
