@@ -84,25 +84,30 @@
       .tab_container
         #tabss1.tab_content2
           %ul.posts.newp
-            %li
-              = link_to "javascript:void(0);", class: 'avatr' do
-                %span Golf Team
-              %p The Official Davidson Club is happy to announce that it has reached over 3,000 members! To repay all the support from our fans we'd like to give away a 15% coupon code to the book store.
-              = link_to "1 day ago", "javascript:void(0);", class: "com ncom"
-              .clearfix
-            %li
-              = link_to "javascript:void(0);", class: 'avatr' do
-                %span Golf Team
-              %p The Official Davidson Club is happy to announce that it has reached over 3,000 members! To repay all the support from our fans we'd like to give away a 15% coupon code to the book store.
-              = link_to "1 day ago", "javascript:void(0);", class: "com ncom"
-              .clearfix
-            %li
-              = link_to "javascript:void(0);", class: 'avatr' do
-                %span Golf Team
-              %p The Official Davidson Club is happy to announce that it has reached over 3,000 members! To repay all the support from our fans we'd like to give away a 15% coupon code to the book store.
-              = link_to "1 day ago", "javascript:void(0);", class: "com ncom"
-              .clearfix
+            - @club_updates.each do |update|
+              %li
+                = link_to "javascript:void(0);", class: 'avatr' do
+                  %span
+                    - if update.updateable.image.blank?
+                      = update.updateable.name
+                    - else
+                      = image_tag update.updateable.image.thumb
+                %p= update.body
+                = link_to time_ago_in_words(update.created_at) + "ago", "javascript:void(0);", class: "com ncom"
+                .clearfix
         #tabss.tab_content2
+          %ul.posts.newp
+            - @updates.each do |update|
+              %li
+                = link_to "javascript:void(0);", class: 'avatr' do
+                  %span
+                    - if update.updateable.image.blank?
+                      = update.updateable.name
+                    - else
+                      = image_tag update.updateable.image.thumb
+                %p= update.body
+                = link_to time_ago_in_words(update.created_at) + "ago", "javascript:void(0);", class: "com ncom"
+                .clearfix
 .clearfix
 
 .row-fluid
