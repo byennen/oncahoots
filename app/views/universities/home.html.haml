@@ -1,7 +1,7 @@
 = content_for :header do
   .span3
     = link_to "javascript:void(0);", class: 'mono mn' do
-      = image_tag("mono3.png")
+      = image_tag @university.image.xxlarge
   .span7
     .carus
       %ul#flexiselDemo1
@@ -31,53 +31,43 @@
         #tab1.tab_content
           .filters
             %p Filter by:
-            = link_to "Students", "javascript:void(0);"
-            = link_to "Alumni", "javascript:void(0);"
-          %ul.two-users
-            %li
-              = link_to "javascript:void(0);" do
-                = image_tag("members.png")
-                %h2 Josh Compton
+            = link_to "All", "javascript:;", :"data-toggle" => ".users-list", :"data-target" => "#all-users", class: 'toggle'
+            = link_to "Students", "javascript:;", :"data-toggle" => ".users-list", :"data-target" => "#students", class: 'toggle'
+            = link_to "Alumni", "javascript:;", :"data-toggle" => ".users-list", :"data-target" => "#alumnis", class: 'toggle'
+          %ul#all-users.two-users.users-list
+            - @users.each do |user|
+              %li{style: "margin-left: 0"}
+                = link_to user_path(user) do
+                  = image_tag user.profile.image.large
+                %h2= user.full_name
                 %br
-                %span 2013
-            %li
-              = link_to "javascript:void(0);" do
-                = image_tag("members2.png")
-                %h2 Josh Compton
+                %span= user.graduation_year
+          %ul#students.two-users.users-list.hide
+            - @users.student.each do |user|
+              %li{style: "margin-left: 0"}
+                = link_to user_path(user) do
+                  = image_tag user.profile.image.large
+                %h2= user.full_name
                 %br
-                %span 2013
+                %span= user.graduation_year
+          %ul#alumnis.two-users.users-list.hide
+            - @users.alumni.each do |user|
+              %li{style: "margin-left: 0"}
+                = link_to user_path(user) do
+                  = image_tag user.profile.image.large
+                %h2= user.full_name
+                %br
+                %span= user.graduation_year
+
         #tab2.tab_content.list_carousel
           %ul#foo2
-            %li
-              .users
-                = link_to "javascript:void(0);" do
-                  = image_tag("img01.png")
-                  %span Food Club
-            %li
-              .users
-                = link_to "javascript:void(0);" do
-                  = image_tag("img02.png")
-                  %span Soccer Club
-            %li
-              .users
-                = link_to "javascript:void(0);" do
-                  = image_tag("img03.png")
-                  %span Fan Club
-            %li
-              .users
-                = link_to "javascript:void(0);" do
-                  = image_tag("img01.png")
-                  %span Food Club
-            %li
-              .users
-                = link_to "javascript:void(0);" do
-                  = image_tag("img02.png")
-                  %span Soccer Club
-            %li
-              .users
-                = link_to "javascript:void(0);" do
-                  = image_tag("img03.png")
-                  %span Fan Club
+            - @clubs.each do |club|
+              %li
+                .users
+                  = link_to university_club_path(@university, club) do
+                    = image_tag club.image.xlarge
+                    %span= club.name
+          
           %a.prev#prev2{href: "#"} &lt;
           %a.next#next2{href: "#"} &gt;
           %center
@@ -94,25 +84,30 @@
       .tab_container
         #tabss1.tab_content2
           %ul.posts.newp
-            %li
-              = link_to "javascript:void(0);", class: 'avatr' do
-                %span Golf Team
-              %p The Official Davidson Club is happy to announce that it has reached over 3,000 members! To repay all the support from our fans we'd like to give away a 15% coupon code to the book store.
-              = link_to "1 day ago", "javascript:void(0);", class: "com ncom"
-              .clearfix
-            %li
-              = link_to "javascript:void(0);", class: 'avatr' do
-                %span Golf Team
-              %p The Official Davidson Club is happy to announce that it has reached over 3,000 members! To repay all the support from our fans we'd like to give away a 15% coupon code to the book store.
-              = link_to "1 day ago", "javascript:void(0);", class: "com ncom"
-              .clearfix
-            %li
-              = link_to "javascript:void(0);", class: 'avatr' do
-                %span Golf Team
-              %p The Official Davidson Club is happy to announce that it has reached over 3,000 members! To repay all the support from our fans we'd like to give away a 15% coupon code to the book store.
-              = link_to "1 day ago", "javascript:void(0);", class: "com ncom"
-              .clearfix
+            - @club_updates.each do |update|
+              %li
+                = link_to "javascript:void(0);", class: 'avatr' do
+                  %span
+                    - if update.updateable.image.blank?
+                      = update.updateable.name
+                    - else
+                      = image_tag update.updateable.image.thumb
+                %p= update.body
+                = link_to time_ago_in_words(update.created_at) + "ago", "javascript:void(0);", class: "com ncom"
+                .clearfix
         #tabss.tab_content2
+          %ul.posts.newp
+            - @updates.each do |update|
+              %li
+                = link_to "javascript:void(0);", class: 'avatr' do
+                  %span
+                    - if update.updateable.image.blank?
+                      = update.updateable.name
+                    - else
+                      = image_tag update.updateable.image.thumb
+                %p= update.body
+                = link_to time_ago_in_words(update.created_at) + "ago", "javascript:void(0);", class: "com ncom"
+                .clearfix
 .clearfix
 
 .row-fluid
