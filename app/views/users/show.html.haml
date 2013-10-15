@@ -1,140 +1,162 @@
-.pro-user
-  %a{href: "javascript:;"}
-    = image_tag @user.profile.image.xxlarge
-  %p Hi! My name #{@user.full_name} and i'm a user interface designer from chicago, IL. Let's connect!
-  - if current_user.relatable?(@user) 
-    %a{href: "#add-contact", class: "btn btn-primary", data: {toggle: "modal"}} Add Contact
-= content_for :content_bottom do
-  .clearfix
-  .row-fluid
+= content_for :header do
+  .row-fluid.mod3.span12.no-lmar
     .container
-      .offset2.span10
-        %ul.tabs5
-          %li
-            %a{href: "#tab1"}Contacts
-          - if @user == current_user
+      .span2
+        .left-menu.mns
+          %ul
             %li
-              %a{href: "#tab2"}
-                Requests
-                - if @requests.size > 0
-                  %i= @requests.size
-            %li
-              %a{href: "#tab3"}
-                Notifications
-            %li
-              %a{href: "#tab4"}
-                Messages
-                - if @unread_messages.size > 0
-                  %i#unread_messages=  @unread_messages.size
-        .clearfix
-        .tab_container
-          #tab1.tab_content
-            - if @contacts.blank?
-              %br
-              %br
-              .span11.top2
-                %center
-                  %h4 No contact
-            - else
-              %button.btn.btn2.mod1
-                %i= image_tag "search-icon.png"
-              = text_field_tag :term, "", class: "field mod2"
-              .clearfix
-              .list_carousel
-                %ul#foo2.sss
-                  = render partial: "contacts/contact", collection: @contacts
-                %a#prev2.prev{href: "#"}
-                %a#next2.next{href: "#"}
-              %center
-                = link_to raw("See All &nbsp;&nbsp;&nbsp;&nbsp;>"), user_contacts_path(@user), class: "btn btn3"
-          - if @user == current_user
-            = render partial: "private_tabs"
-
-  .clearfix
-  %br
-  %br
-  .row-fluid
-    .container
-      .offset2.span10
-        %ul.tabs6
-          %li
-            %a{href: "#tab11"} Education &amp; Skills
-          %li
-            %a{href: "#tab22"} Experience
-          %li
-            %a{href: "#tab33"} Portfolio
-          %li
-            %a{href: "#tab44"} FAQs
-        .clearfix
-        .tab_container
-          #tab11.tab_content2
-            .two-col
-              %h3 Education
-              %p= @profile.education
-            .two-col
-              %h3 Skills &amp; Interests
-              %p= @profile.skills
-          #tab22.tab_content2
-            %ul.posts.po2
-              - @experiences.each do |experience|
-                %li
-                  %a.avatr{href: "javascript:;"}
-                  %h4 
-                    = experience.company_name
-                    %br
-                    %span= experience.position_name
-                  %p = experience_string(experience)
-                  .clearfix
-              
-          #tab33.tab_content2
-            .profile
-              %a.gb{href: "javascript:;"}
-              %ul.ssap
-                %li
-                  %a{href: "javascript:;"}
-                %li
-                  %a{href: "javascript:;"}
-                %li
-                  %a{href: "javascript:;"}
-              %h3
-                Project name
+              %i
+              = link_to "javascript:void(0);" do
+                = image_tag('jobs.png')
                 %br
-                %span Project organization name
-              %p As a communication intern I was responsible for producing the following pamphlets explaining our processes to clients.
-          #tab44.tab_content2
-            .faq
-              %h2 FAQ
-              .half
-                %p
-                  %b= "- What do you look for in a new hire?"
-                  %br
-                  People with passion and experience.
-                  %br
-                  %br
-                  %b= "- What do you do on a daily basis?"
-                  %br
-                  Meet withy clients.
-                  %br
-                  %br
-                  %b= "- How many hours a week do you work?"
-                  %br
-                  Between 45 and 60.
-              .half
-                %p
-                  %b= "- What do you look for in a new hire?"
-                  %br
-                  People with passion and experience.
-                  %br
-                  %br
-                  %b= "- What do you do on a daily basis?"
-                  %br
-                  Meet withy clients.
-                  %br
-                  %br
-                  %b= "- How many hours a week do you work?"
-                  %br
-                  Between 45 and 60.
+                
+      .span10
+        .span10
+          %a.mono.mn{href: "javascript:;"}
+            = image_tag @user.profile.image.xxlarge
+          .pro-user.span8
+            %p Hi! My name #{@user.full_name} and i'm a user interface designer from chicago, IL. Let's connect!
+        .span2
+          - if current_user.relatable?(@user) 
+            %a{href: "#add-contact", class: "btn btn-primary", data: {toggle: "modal"}, style: "margin-right: 10px;"} Add Contact
+        .span8
+          
   .clearfix
+
+
+.row-fluid
+  .container
+    .offset2.span10
+      %ul.tabs5
+        %li
+          %a{href: "#tab1"}Contacts
+        - if @user == current_user
+          %li
+            %a{href: "#tab2"}
+              Requests
+              - if @requests.size > 0
+                %i= @requests.size
+          %li
+            %a{href: "#tab3"}
+              Notifications
+          %li
+            %a{href: "#tab4"}
+              Messages
+              - if @unread_messages.size > 0
+                %i#unread_messages=  @unread_messages.size
+      .clearfix
+      .tab_container
+        #tab1.tab_content
+          - if @contacts.blank?
+            %br
+            %br
+            .span11.top2
+              %center
+                %h4 No contact
+          - else
+            %button.btn.btn2.mod1
+              %i= image_tag "search-icon.png"
+            = text_field_tag :term, "", class: "field mod2"
+            .clearfix
+            .list_carousel
+              %ul#foo2.sss
+                - @contacts.each do |contact|
+                  %li
+                    .users
+                      %a{href: user_path(contact.relation)}= image_tag (contact.relation.profile.image.xlarge)
+                      .hovers
+                        %p Hi! I am another user from chicago and i am excited about business
+                        = link_to contact.relation.full_name, user_path(contact.relation)
+              %a#prev2.prev{href: "#"}
+              %a#next2.next{href: "#"}
+            %center
+              %button.btn.btn3 See all &nbsp;&nbsp;&nbsp;&nbsp; >
+        - if @user == current_user
+          = render partial: "private_tabs"
+.clearfix
+%br
+%br
+.row-fluid
+  .container
+    .offset2.span10
+      %ul.tabs6
+        %li
+          %a{href: "#tab11"} Education &amp; Skills
+        %li
+          %a{href: "#tab22"} Experience
+        %li
+          %a{href: "#tab33"} Portfolio
+        %li
+          %a{href: "#tab44"} FAQs
+      .clearfix
+      .tab_container
+        #tab11.tab_content2
+          .two-col
+            %h3 Education
+            %p= @profile.education
+          .two-col
+            %h3 Skills &amp; Interests
+            %p= @profile.skills
+        #tab22.tab_content2
+          %ul.posts.po2
+            - @experiences.each do |experience|
+              %li
+                %a.avatr{href: "javascript:;"}
+                %h4 
+                  = experience.company_name
+                  %br
+                  %span= experience.position_name
+                %p = experience_string(experience)
+                .clearfix           
+        #tab33.tab_content2
+          .profile
+            %a.gb{href: "javascript:;"}
+            %ul.ssap
+              %li
+                %a{href: "javascript:;"}
+              %li
+                %a{href: "javascript:;"}
+              %li
+                %a{href: "javascript:;"}
+            %h3
+              Project name
+              %br
+              %span Project organization name
+            %p As a communication intern I was responsible for producing the following pamphlets explaining our processes to clients.
+        #tab44.tab_content2
+          .faq
+            %h2 FAQ
+            .half
+              %p
+                %b= "- What do you look for in a new hire?"
+                %br
+                People with passion and experience.
+                %br
+                %br
+                %b= "- What do you do on a daily basis?"
+                %br
+                Meet withy clients.
+                %br
+                %br
+                %b= "- How many hours a week do you work?"
+                %br
+                Between 45 and 60.
+            .half
+              %p
+                %b= "- What do you look for in a new hire?"
+                %br
+                People with passion and experience.
+                %br
+                %br
+                %b= "- What do you do on a daily basis?"
+                %br
+                Meet withy clients.
+                %br
+                %br
+                %b= "- How many hours a week do you work?"
+                %br
+                Between 45 and 60.
+.clearfix
 #add-contact.modal.hide
   = simple_form_for Relationship.new(user_id: current_user.id) do |f|
     .modal-header
