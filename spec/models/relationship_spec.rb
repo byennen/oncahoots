@@ -95,7 +95,7 @@ describe Relationship do
   context "#recommended" do
 
     let!(:relationship)       { Relationship.request(user, user2) }
-    let!(:refer_relationship) { relationship.recommend!(user3, "hi mary, I'm referring you to Jim") }
+    let!(:refer_relationship) { relationship.recommend!(user3) }
 
     describe 'when referred' do
 
