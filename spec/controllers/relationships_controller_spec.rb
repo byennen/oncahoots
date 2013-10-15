@@ -81,7 +81,7 @@ describe RelationshipsController do
       it { should redirect_to(user_path(user2)) }
 
       it "should assign to referred relationship that is pending" do
-        expect(assigns(:refer_relationship).pending?).to be_true
+        expect(assigns(:refer_relationship).recommended?).to be_true
       end
 
     end

@@ -32,7 +32,7 @@ class RelationshipsController < ApplicationController
 
   def refer
     @refer_user = User.find(params[:relationship][:user_id])
-    @refer_relationship = @relationship.refer!(@refer_user, params[:message])
+    @refer_relationship = @relationship.recommend!(@refer_user)
     respond_to do |format|
       format.html { redirect_to user_path(current_user), notice: "You have referred - #{@refer_relationship.relation.full_name}" }
     end
