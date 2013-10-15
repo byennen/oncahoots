@@ -32,7 +32,7 @@
                       Jobs
             .span10
               = yield
-        - if !params[:action] == "new" && can_view?(current_user, @user)
+        - if params[:action] != "new" && can_view?(current_user, @user)
           = yield(:content_bottom)
       .seps
       .row-fluid
