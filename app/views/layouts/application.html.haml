@@ -16,9 +16,22 @@
   %body{:class => "#{controller_name} #{action_name}"}
     .container-fluid
       %header
-        = render 'layouts/search'
+        =# render 'layouts/search'
         = render 'layouts/navigation'
-        = yield(:header)
+        =# yield(:header)
+        .row-fluid.span12.no-lmar
+          .container
+            .span2
+              = render partial: "layouts/left_menu"
+            .span10
+              .bg-image3
+                .offset9
+                  %button.btn.btn2{name: 'btn', style: "margin-right: 10px;"}
+                    %i
+                      = image_tag('search-icon.png')
+                  %input.field{name: 'text', type: 'text'}
+                  = link_to "Advanced", search_path, class: 'advance'
+                = yield(:header)
       .seps
       = yield
       = render 'layouts/footer'

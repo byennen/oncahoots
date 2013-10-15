@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
-
+  before_filter :load_data
   protect_from_forgery
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -14,5 +14,12 @@ class ApplicationController < ActionController::Base
   #    redirect_to edit_user_profile_url(current_user, current_user.profile), notice: 'Please finish filling out your profile.'
   #  end
   #end
+
+  def load_data
+    if current_user
+      @messages = current_user.mailbox.conversations
+      @requests = current_user.relationships.where(status: 'pending')
+    end
+  end
 
 end

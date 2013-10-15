@@ -12,6 +12,7 @@
           height: 272
         });
   $("#flexiselDemo1").flexisel();
+
   $(".tab_content").hide(); //Hide all content
   $("ul.tabs3 li:first").addClass("active").show(); //Activate first tab
   $(".tab_content:first").show(); //Show first tab content
