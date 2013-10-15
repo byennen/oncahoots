@@ -1,70 +1,51 @@
-= content_for :top_background do
-  .top-background
+= content_for :header do
+  .span3
+    = link_to "javascript:void(0);", class: 'mono mn' do
+      = image_tag @club.image.xxlarge
+  .span5
+    .carus{style: "margin-top: 200px"}
+      .page-title= @club.name
+  .span3.top2
+    .rig
+      %button.btn.btn2.chang
+        %i
+          = image_tag "dropdown-arrow.png"
+      = text_field_tag :join_city, "", class: "field", placeholder: "Join Club"
+      %button.btn.chang2 Upcoming Events
+      .clearfix
+      %button.btn.chang3 Edit
+      %button.btn.chang3 Transactions
+  .clearfix
 
-= content_for :left_menu do
-  %ul
-    %li
-      %i
-      = link_to "#messages-popup", :"data-toggle" => "modal" do
-        = image_tag('message.png')
-        %br
-        Messages
-    %li
-      %i
-      = link_to "#requests-popup", :"data-toggle" => "modal" do
-        %p= @requests.size
-        = image_tag "request.png"
-        %br
-        Requests
-    %li
-      %i
-      = link_to "javascript:;" do
-        %p 1
-        = image_tag "request.png"
-        %br
-        Notifications
-.span8
-  = link_to "javascript:;", class: "mono" do
-    = image_tag "mono3.png"
-  .mono2
-    %h1= @club.name
-  .clearfix
-  .img-box
-.span3
-  .rig
-    %button.btn.btn2.chang
-      %i
-        = image_tag "dropdown-arrow.png"
-    = text_field_tag :join_city, "", class: "field", placeholder: "Join Club"
-    %button.btn.chang2 Upcoming Events
-    .clearfix
-    %button.btn.chang3 Edit
-    %button.btn.chang3 Transactions
-  .offset1
-  .clearfix
-  %ul.listing
-    %li
-      = link_to "", "javascript;;"
-      %h4 Headline
-      %p Text of the announcement or circle
-    %li
-      = link_to "", "javascript;;"
-      %h4 Headline
-      %p Text of the announcement or circle
-    %li
-      = link_to "", "javascript;;"
-      %h4 Headline
-      %p Text of the announcement or circle
-    %li
-      = link_to "", "javascript;;"
-      %h4 Headline
-      %p Text of the announcement or circle
+.clearfix
+.row-fluid
+  .container
+    .span10.offset2
+      .span7
+        .img-box
+      %ul.listing.span3
+        %li
+          = link_to "", "javascript;;"
+          %h4 Headline
+          %p Text of the announcement or circle
+        %li
+          = link_to "", "javascript;;"
+          %h4 Headline
+          %p Text of the announcement or circle
+        %li
+          = link_to "", "javascript;;"
+          %h4 Headline
+          %p Text of the announcement or circle
+        %li
+          = link_to "", "javascript;;"
+          %h4 Headline
+          %p Text of the announcement or circle
 
 .clearfix
 
 .row-fluid
   .container
-    .span10
+    .span10.offset2
       %ul.tabs2
         %li
           %a{href: "#tab1"}Lowdown
@@ -98,48 +79,7 @@
         #tab7.tab_content
 .clearfix
 
-#messages-popup.modal.mod4.hide.fade{tabindex: "-1", role: "dialog", :"aria-labelledby" => "myModalLabel", :"aria-hidden" => "true", style: "top: 180px"}
-  .modal-body
-    %span.arr
-      =image_tag "popup-arrow.png"
-    .left-side.msh
-      %a{href: "#message-form", data: {toggle: "modal"}, class: "btn btn-success"} New Message
-      %ul.msg
-        - @messages.each do |message|
-          %li{id: "message-#{message.id}"}
-            = link_to image_tag(message.originator.profile.image.small), read_message_path(message), remote: true
-            %h4= message.originator.full_name
-            %br
-            %p= truncate(message.messages.first.body)
-    #current_conversation.right-side
-  .clearfix
-  .modal-footer
-    %button.btn{type: "button", data: {dismiss: "modal"}} Close
 
-#requests-popup.modal.hide.fade{tabindex: "-1", role: "dialog", :"aria-labelledby" => "myModalLabel", :"aria-hidden" => "true", style: "top: 360px"}
-  .modal-body{style: "min-height: 200px;"}
-    %span.arr
-      =image_tag "popup-arrow.png"
-    - if @requests.blank?
-      %br
-      .span11.top2
-        %center
-          %h4 No request
-    - else
-      .left-side
-        %ul.msg.msh
-          - @requests.each do |relationship|
-            %li{id: "request-#{relationship.id}"}
-              = link_to image_tag("#{relationship.relation.profile.image.thumb}"), read_relationship_path(relationship), remote: true
-              %h4= relationship.relation.full_name
-              %br
-              %p= relationship.relation.graduation_year
-      .right-side
-        #current_request.comment-box.ne
-          = render partial: "relationships/request", locals: {request: @requests.first} unless @requests.blank?
-  .clearfix
-  .modal-footer
-    %button.btn{type: "button", data: {dismiss: "modal"}} Close
 :javascript
   jQuery(document).ready(function() {//Default Action
     $(".tab_content").hide(); //Hide all content

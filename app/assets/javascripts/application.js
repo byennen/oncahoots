@@ -23,4 +23,9 @@ $(function() {
     alert("alumni clicked");
     $("#professional_fields").toggle(this.checked);
   });
+
+  $(".toggle").click(function(){
+    $($(this).data("toggle")).hide();
+    $($(this).data("target")).show();
+  });
 });
