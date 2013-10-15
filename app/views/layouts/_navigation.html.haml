@@ -20,7 +20,7 @@
                   Professional
                 %i
               %li.same
-                %a{href: "javascript:void(0);"}
+                %a{href: "/"}
                   = image_tag('community.png')
                   %br
                   Community
@@ -32,13 +32,13 @@
                   Calendar
                 %i
               %li.same
-                %a{href: edit_user_registration_path(current_user.id)}
+                %a{href: edit_user_profile_path(current_user, current_user.profile)}
                   = image_tag('edit.png')
                   %br
                   Edit
                 %i
               %li.same
-                %a{href: edit_user_profile_path(current_user, current_user.profile)}
+                %a{href: edit_user_registration_path(current_user.id)}
                   = image_tag('settings.png')
                   %br
                   Settings
