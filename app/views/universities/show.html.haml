@@ -64,8 +64,11 @@
 
         #tab2.tab_content.list_carousel
           %ul#foo2
+            - item_mar = ""
+            - item_mar = "margin-left: 100px;" if @clubs.size == 2
+            - item_mar = "margin-left: 300px;" if @clubs.size == 1
             - @clubs.each do |club|
-              %li
+              %li{style: item_mar}
                 .users
                   = link_to university_club_path(@university, club) do
                     = image_tag club.image.xlarge
