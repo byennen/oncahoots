@@ -15,7 +15,23 @@ class Club < ActiveRecord::Base
                   :remote_image_url, :user_id, :slug, :private, :mission_statement
 
   CLUB_TYPES = %w(Social Gender Media Performance Recreational Religious Service Student Govt. Team Sports Metropolitan)
-
+  CATEGORIES = [
+    "Academic",
+    "Alumni",
+    "Arts",
+    "Social",
+    "Gender",
+    "Health",
+    "Media",
+    "Performance",
+    "Political",
+    "Recreational",
+    "Sports",
+    "Religious",
+    "Service",
+    "Student Govt",
+    "Union Board"
+  ]
   mount_uploader :image, ImageUploader
 
   extend FriendlyId
