@@ -5,7 +5,7 @@ CahootsConnect::Application.routes.draw   do
     resources :updates, only: [:new, :create, :update, :destroy] do
       resources :comments
     end
-    resources :clubs, only: [:show, :new, :create, :edit, :update] do
+    resources :clubs, only: [:show, :new, :create, :edit, :update, :index] do
       post 'transfer_ownership', on: :member
       resources :memberships do
         post 'make_admin', on: :collection
