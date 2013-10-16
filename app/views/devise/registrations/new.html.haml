@@ -24,7 +24,7 @@
       #professional_fields.hide
         = f.input :professional_field_id, collection: ProfessionalField.all.sort_by(&:name), include_blank: false
 
-      %button.btn.btn4.chang6 Register
+      %button.btn.btn-success.btn4.chang6 Register
       
       %strong
         = link_to "Forgot your password?", new_password_path(resource_name)

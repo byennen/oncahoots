@@ -3,6 +3,16 @@ class ClubsController < ApplicationController
   before_filter :authenticate_user!, except: [:show]
   before_filter :ensure_user_university, except: [:show]
 
+  def by_category
+    @clubs = @university.clubs.where(category: params[:category])
+    respond_to :js
+  end
+
+  def index
+    @bg_image=""
+    @clubs = @university.clubs 
+  end
+
   def show
     @university = University.find(params[:university_id])
     @club = @university.clubs.find(params[:id])

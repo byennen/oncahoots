@@ -1,13 +1,9 @@
 %a{href: "javascript:;", style: "margin-right: 25px;"}
   = image_tag request.relation.profile.image.medium
-%a.btn.btn7.mar2{href: user_path(request.relation)} View Profile
+%a.btn.btn-success.mar2{href: user_path(request.relation)} View Profile
 %p.comp= request.message
 = text_area_tag :comment, "", placeholder: "Hi Mathew! Looks like we have similar interests and Hi Mathew! Looks like we have similar interests", class: "tarea chang7"
 .clearfix
-%ul.thre-tabs
-  %li.no-lmar
-    = link_to "Accept",  accept_relationship_path(request), method: :post, class: 'btngree'
-  %li
-    = link_to "Decline", decline_relationship_path(request), method: :post, class: "btnred"
-  %li.no-lmar
-    = link_to "Recommend", nil, class: "btnyellow"
+.span3= link_to "Accept",  accept_relationship_path(request), method: :post, class: 'btn btn-success btn-small'
+.span3= link_to "Decline", decline_relationship_path(request), method: :post, class: "btn btn-danger btn-small"
+.span3= link_to "Recommend", nil, class: "btn btn-warning btn-small"
