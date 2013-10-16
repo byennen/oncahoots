@@ -11,6 +11,7 @@ CahootsConnect::Application.routes.draw   do
         post 'make_admin', on: :collection
         post 'remove_admin', on: :member
       end
+      get :by_category, on: :collection
       resources :invitations
       resources :club_photos
       resources :club_events

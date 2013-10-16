@@ -1,0 +1,11 @@
+.span12.top2
+  - @clubs.each do |club|
+    .fleft.left2.top4.bottom2
+      .users
+        = link_to university_club_path(@university, club) do
+          = image_tag club.image.xlarge
+          %span{style: "margin-left: 20px"}= club.name
+    
+  - if @clubs.blank?
+    .top2
+      No club found on this category
