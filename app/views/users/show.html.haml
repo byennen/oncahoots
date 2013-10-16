@@ -42,7 +42,7 @@
                 %center
                   %h4 No contact
             - else
-              %button.btn.btn2.mod1
+              %button.btn.btn-success.btn2.mod1
                 %i= image_tag "search-icon.png"
               = text_field_tag :term, "", class: "field mod2"
               .clearfix
@@ -58,7 +58,7 @@
                 %a#prev2.prev{href: "#"}
                 %a#next2.next{href: "#"}
               %center
-                %button.btn.btn3 See all &nbsp;&nbsp;&nbsp;&nbsp; >
+                %button.btn.btn-success.btn3 See all &nbsp;&nbsp;&nbsp;&nbsp; >
           - if @user == current_user
             = render partial: "private_tabs"
   .clearfix
