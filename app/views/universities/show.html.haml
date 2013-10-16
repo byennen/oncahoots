@@ -38,31 +38,37 @@
             - @users.each do |user|
               %li{style: "margin-left: 0"}
                 = link_to user_path(user) do
-                  = image_tag user.profile.image.large
-                %h2= user.full_name
-                %br
-                %span= user.graduation_year
+                  = image_tag user.profile.image.thumb
+                .span4
+                  %h4= user.full_name
+                  %br
+                  = user.graduation_year
           %ul#students.two-users.users-list.hide
             - @users.student.each do |user|
               %li{style: "margin-left: 0"}
                 = link_to user_path(user) do
-                  = image_tag user.profile.image.large
-                %h2= user.full_name
-                %br
-                %span= user.graduation_year
+                  = image_tag user.profile.image.thumb
+                .span4
+                  %h4= user.full_name
+                  %br
+                  = user.graduation_year
           %ul#alumnis.two-users.users-list.hide
             - @users.alumni.each do |user|
               %li{style: "margin-left: 0"}
                 = link_to user_path(user) do
-                  = image_tag user.profile.image.large
-                %h2= user.full_name
-                %br
-                %span= user.graduation_year
+                  = image_tag user.profile.image.thumb
+                .span4
+                  %h4= user.full_name
+                  %br
+                  = user.graduation_year
 
         #tab2.tab_content.list_carousel
           %ul#foo2
+            - item_mar = ""
+            - item_mar = "margin-left: 100px;" if @clubs.size == 2
+            - item_mar = "margin-left: 300px;" if @clubs.size == 1
             - @clubs.each do |club|
-              %li
+              %li{style: item_mar}
                 .users
                   = link_to university_club_path(@university, club) do
                     = image_tag club.image.xlarge

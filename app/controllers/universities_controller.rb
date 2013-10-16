@@ -7,11 +7,12 @@ class UniversitiesController < ApplicationController
   def home
     @university = current_user.university
     load_details_data
+    render :show
   end
 
   def show
     @university = University.find(params[:id])
-    load_details_data 
+    load_details_data
   end
 
   private
