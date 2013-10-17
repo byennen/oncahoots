@@ -89,9 +89,12 @@ class Relationship < ActiveRecord::Base
     message = "#{user.full_name} has recommended you to #{new_user.full_name}.  Do you wish to proceed?"
     unless user == relation || Relationship.exists?(user, new_user) 
       Relationship.create(user_id: relation_id, relation_id: new_user.id, status: 'recommended', message: message)
-      new_relationship = Relationship.create(user_id: new_user.id, relation_id: relation_id, status: 'recommended', message: message)
     end
     return new_relationship
+  end
+
+  def accept_recommendation!
+
   end
 
   private

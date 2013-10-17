@@ -29,6 +29,8 @@ CahootsConnect::Application.routes.draw   do
     post :accept, on: :member
     post :decline, on: :member
     post :refer, on: :member
+    post :accept_recommendation, on: :member
+    post :decline_recommendation, on: :member
   end
 
   match '/signup/:invitation_token', to: 'memberships#new', as: 'signup'
