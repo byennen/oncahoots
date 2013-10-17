@@ -1,5 +1,8 @@
 body { padding-top: 60px; }
 
+.ui-autocomplete {
+  z-index: 10000000;
+}
 
 .navbar .container {
   width: 1170px;
