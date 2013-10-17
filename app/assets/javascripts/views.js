@@ -1,5 +1,6 @@
   jQuery(document).ready(function() {//Default Action
-    $('#foo2').carouFredSel({
+    $('.carou-fred-sel').carouFredSel({
+          items: 3,
           auto: false,
           prev: '#prev2',
           next: '#next2',
@@ -9,9 +10,9 @@
             onMouse: true,
             onTouch: true
           }, 
-          height: 272
+          height: 232
         });
-  $("#flexiselDemo1").flexisel();
+  $(".flexisel").flexisel();
 
   $(".tab_content").hide(); //Hide all content
   $("ul.tabs3 li:first").addClass("active").show(); //Activate first tab
