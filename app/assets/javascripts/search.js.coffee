@@ -6,3 +6,10 @@ $ ->
   $('.dropdown input[type=text]').attr('readonly', true);
   $(document).on 'click', '.dropdown-menu li a', ->
     $(this).closest(".dropdown").find("input").val($(this).text())
+  $(".search_type a").click ->
+    if $(this).text() == 'Person'
+      $("#club-option").hide
+      $("#person-option").show
+    else
+      $("#person-option").hide
+      $("#club-option").shows
