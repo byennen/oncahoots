@@ -90,7 +90,6 @@ class Relationship < ActiveRecord::Base
     unless user == relation || Relationship.exists?(user, new_user) 
       Relationship.create(user_id: relation_id, relation_id: new_user.id, status: 'recommended', message: message)
     end
-    return new_relationship
   end
 
   def accept_recommendation!
