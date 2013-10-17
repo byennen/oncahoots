@@ -4,7 +4,7 @@
       = image_tag @university.image.xxlarge
   .span7
     .carus
-      %ul#flexiselDemo1
+      %ul#flexiselDemo1.flexisel
         - 3.times do |i|
           %li
             = link_to "javascript:void(0);" do
@@ -63,7 +63,7 @@
                   = user.graduation_year
 
         #tab2.tab_content.list_carousel
-          %ul#foo2
+          %ul#foo2.carou-fred-sel
             - item_mar = ""
             - item_mar = "margin-left: 100px;" if @clubs.size == 2
             - item_mar = "margin-left: 300px;" if @clubs.size == 1
