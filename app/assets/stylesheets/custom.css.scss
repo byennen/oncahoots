@@ -1,34 +1,5 @@
 body { padding-top: 60px; }
 
-.btn {
-  display: inline-block;
-  *display: inline;
-  padding: 4px 12px;
-  margin-bottom: 0;
-  *margin-left: .3em;
-  font-size: 14px;
-  line-height: 20px;
-  color: #333333;
-  text-align: center;
-  background-color:#52be80;
-  background-image: linear-gradient(to bottom, #52be80, #52be80);
-  border:1px solid #CCC;
-  vertical-align: middle;
-  cursor: pointer;
-  text-shadow: none;
-}
-
-.btn:hover,
-.btn:focus,
-.btn:active,
-.btn.active,
-.btn.disabled,
-.btn[disabled] {
-  color: #333333;
-  background-color: #3dad6d;
-  *background-color: #3dad6d;
-  background-image: linear-gradient(to bottom, #3dad6d, #3dad6d);
-}
 
 .navbar .container {
   width: 1170px;
@@ -38,7 +9,7 @@ body { padding-top: 60px; }
     display: block;
     float: left;
     left: 0;
-    margin: -215px 10px 0 0;
+    margin: 0px 10px 0 0;
     position: relative;
     width: 100%;
 }

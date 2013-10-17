@@ -1,0 +1,74 @@
+.left-menu.mns
+  %ul
+    - if controller_name == "users" or controller_name == 'profiles'
+      %li
+        %i
+        = link_to "javascript:void(0);" do
+          = image_tag('jobs.png')
+          %br
+          Jobs
+    - else
+      %li
+        %i
+        = link_to "#messages-popup", :"data-toggle" => "modal" do
+          = image_tag('message.png')
+          %br
+          Messages
+      %li
+        %i
+        = link_to "#requests-popup", :"data-toggle" => "modal" do
+          %p= @requests.size
+          = image_tag "request.png"
+          %br
+          Requests
+      %li
+        %i
+        = link_to "javascript:;" do
+          %p 1
+          = image_tag "request.png"
+          %br
+          Notifications
+
+      #messages-popup.modal.mod4.hide.fade{tabindex: "-1", role: "dialog", :"aria-labelledby" => "myModalLabel", :"aria-hidden" => "true", style: "top: 120px"}
+        .modal-body
+          %span.arr
+            =image_tag "popup-arrow.png"
+          .left-side.msh
+            %a{href: "#message-form", data: {toggle: "modal"}, class: "btn btn-success"} New Message
+            %ul.msg
+              - @messages.each do |message|
+                %li{id: "message-#{message.id}"}
+                  = link_to image_tag(message.originator.profile.image.small), read_message_path(message), remote: true
+                  %h4= message.originator.full_name
+                  %br
+                  %p= truncate(message.messages.first.body)
+          #current_conversation.right-side
+        .clearfix
+        .modal-footer
+          %button.btn.btn-warning{type: "button", data: {dismiss: "modal"}} Close
+
+      #requests-popup.modal.hide.fade{tabindex: "-1", role: "dialog", :"aria-labelledby" => "myModalLabel", :"aria-hidden" => "true", style: "top: 300px"}
+        .modal-body{style: "min-height: 200px;"}
+          %span.arr
+            =image_tag "popup-arrow.png"
+          - if @requests.blank?
+            %br
+            .span11.top2
+              %center
+                %h4 No request
+          - else
+            .left-side
+              %ul.msg.msh
+                - @requests.each do |relationship|
+                  %li{id: "request-#{relationship.id}"}
+                    = link_to image_tag("#{relationship.relation.profile.image.thumb}"), read_relationship_path(relationship), remote: true
+                    %h4= relationship.relation.full_name
+                    %br
+                    %p= relationship.relation.graduation_year
+            .right-side
+              #current_request.comment-box.ne
+                = render partial: "relationships/request", locals: {request: @requests.first} unless @requests.blank?
+        .clearfix
+        .modal-footer
+          %button.btn.btn-warning{type: "button", data: {dismiss: "modal"}} Close
+.clearfix

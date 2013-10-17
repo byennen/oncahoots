@@ -1,4 +1,47 @@
-.heading
-  %h2 Edit Profile
-.clearfix
-= render 'form'
+= content_for :header do
+  .span3
+    = link_to "javascript:void(0);", class: 'mono mn' do
+      = image_tag @profile.image.xxlarge
+  .span8
+    .carus
+      .pro-user
+        %p Hi! My name is #{@profile.user.full_name} and I'm a user interface designer from chicago, IL. Let's connect!
+
+.row-fluid
+  .container
+    .span10.offset2.top2
+      %a.span11.top2.slide-tab.toggle{href: "javascript:;", :"data-toggle" => ".slide-content", :"data-target" => "#title"}
+        = image_tag 'edit.png', style: "width: 40px;"
+        Key Info
+        %i.icon-white.icon-minus{style: "float:right; margin-top: 10px; margin-right: 10px"}
+      #title.slide-content.hide
+        .pro-user.left
+          %p.span11
+            Hi! My name is #{text_field_tag :full_name} and I'm a #{text_field_tag :job} from #{text_field_tag :city}, #{text_field_tag :state}. Let's connect!
+        .span11{style: "margin-right: 10px;"}
+          %a.btn.btn-small.btn-danger.fright cancel
+          %a.btn.btn-small.btn-success.fright save
+          
+      %a.span11.slide-tab.toggle{href: "javascript:;", :"data-toggle" => ".slide-content", :"data-target" => "#education"}
+        = image_tag 'edit.png', style: "width: 40px;"
+        Education
+        %i.icon-white.icon-minus{style: "float:right; margin-top: 10px; margin-right: 10px"}
+      #education.slide-content.hide
+
+      %a.span11.slide-tab.toggle{href: "javascript:;", :"data-toggle" => ".slide-content", :"data-target" => "#skill"}
+        = image_tag 'edit.png', style: "width: 40px;"
+        Skills
+        %i.icon-white.icon-minus{style: "float:right; margin-top: 10px; margin-right: 10px"}
+      #skill.slide-content.hide
+
+      %a.span11.slide-tab.toggle{href: "javascript:;", :"data-toggle" => ".slide-content", :"data-target" => "#experience"}
+        = image_tag 'edit.png', style: "width: 40px;"
+        Experience
+        %i.icon-white.icon-minus{style: "float:right; margin-top: 10px; margin-right: 10px"}
+      #experience.slide-content.hide
+
+      %a.span11.slide-tab.toggle{href: "javascript:;", :"data-toggle" => ".slide-content", :"data-target" => "#education"}
+        = image_tag 'edit.png', style: "width: 40px;"
+        Portfolio
+        %i.icon-white.icon-minus{style: "float:right; margin-top: 10px; margin-right: 10px"}
+      #portfolio.slide-content.hide

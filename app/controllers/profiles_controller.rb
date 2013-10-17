@@ -1,13 +1,12 @@
 class ProfilesController < ApplicationController
   respond_to :html
-  layout "profile"
 
   def new
     @profile = Profile.new
   end
 
   def edit
-    @profile = Profile.find(params[:id])
+    @profile = current_user.profile
   end
 
   def show
