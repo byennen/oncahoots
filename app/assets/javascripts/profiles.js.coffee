@@ -11,7 +11,7 @@ $(document).on 'ready page:load', ->
   $('.tagauto').tagsInput({
     width:'530px', 
     height: "35px",
-    defaultText: 'add recipients',
+    defaultText: 'recipients',
     autocomplete_url: "/users/search",
   });
 $ ->
