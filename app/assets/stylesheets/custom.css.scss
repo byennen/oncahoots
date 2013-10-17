@@ -89,3 +89,12 @@ body { padding-top: 60px; }
 .login-form select{
   margin-left: 10px;
 }
+
+.wide-modal{
+  margin-left: -25%;
+  width: 50%;
+  .modal-body {
+    max-height: 30em;
+    overflow-y: auto;
+  }
+}
