@@ -5,11 +5,11 @@
         %i
           = image_tag "dropdown-arrow.png"
       %ul.dropdown-menu{style: "margin: -10px 0 0 22px"}
-        %li
+        %li.search_type
           %a Person
-        %li 
+        %li.search_type 
           %a Club
-      = text_field_tag :object, "Person", class: "field dropdown-toggle", :"data-toggle" => 'dropdown'
+      = text_field_tag :search_object, "Person", class: "field dropdown-toggle", :"data-toggle" => 'dropdown'
     .span3.no-lmar
       = text_field_tag :name, "",class: "field", placeholder: "Name", style: "width: 80%"
     .span3.no-lmar.dropdown
@@ -22,7 +22,8 @@
             %a= city.name
       = text_field_tag :location, "", class: "field dropdown-toggle", :"data-toggle" => 'dropdown', placeholder: "location"
   .span10.no-lmar
-    = render partial: "person_options"
+    #person-option= render partial: "person_options"
+    #club-option.hide= render partial: "club_options"
  
   .span10.offset8.top2
     = link_to "Search", "#search", class: "btn btn-success"
