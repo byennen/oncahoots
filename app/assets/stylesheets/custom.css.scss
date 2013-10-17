@@ -64,11 +64,14 @@ body { padding-top: 60px; }
 .modal {
   background-color: #FFFFFF;
   border: 1px solid rgba(0, 0, 0, 0.3);
+  /* 
   left: 39%;
   margin-left: -280px;
+  */
   outline: medium none;
-  position: absolute;
-  width: 860px;
+  /*position: absolute;
+   width: 860px;
+  */
   z-index: 1050;
   .modal-body {
     background-color: #F7F7F7;
