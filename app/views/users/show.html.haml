@@ -48,13 +48,7 @@
               .clearfix
               .list_carousel
                 %ul#foo2.sss
-                  - @contacts.each do |contact|
-                    %li
-                      .users
-                        %a{href: user_path(contact.relation)}= image_tag (contact.relation.profile.image.xlarge)
-                        .hovers
-                          %p Hi! I am another user from chicago and i am excited about business
-                          = link_to contact.relation.full_name, user_path(contact.relation)
+                  = render partial: 'contacts/contact', collection: @contacts
                 %a#prev2.prev{href: "#"}
                 %a#next2.next{href: "#"}
               %center
