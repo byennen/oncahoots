@@ -1,0 +1,32 @@
+.span3.no-lmar.dropdown
+  %a.btn.btn-success.btn2.chang.dropdown-toggle{:href => "javascript:;", :"data-toggle" => 'dropdown'}
+    %i
+      = image_tag "dropdown-arrow.png"
+  %ul.dropdown-menu{style: "margin: -10px 0 0 22px"}
+    %li
+      %a Student
+    %li 
+      %a Alumni
+    %li 
+      %a Both
+  = text_field_tag :type, "Student", class: "field dropdown-toggle", :"data-toggle" => 'dropdown'
+.span3.no-lmar.dropdown
+  %a.btn.btn-success.btn2.chang.dropdown-toggle{:href => "javascript:;", :"data-toggle" => 'dropdown'}
+    %i
+      = image_tag "dropdown-arrow.png"
+  %ul.dropdown-menu{style: "margin: -10px 0 0 22px"}
+    - ProfessionalField.order(:name).each do |major|
+      %li
+        %a= major.name
+
+  = text_field_tag :major, "", class: "field dropdown-toggle", :"data-toggle" => 'dropdown', placeholder: "Major"
+.span3.no-lmar.dropdown
+  %a.btn.btn-success.btn2.chang.dropdown-toggle{:href => "javascript:;", :"data-toggle" => 'dropdown'}
+    %i
+      = image_tag "dropdown-arrow.png"
+  %ul.dropdown-menu{style: "margin: -10px 0 0 22px"}
+    - (Date.today.year + 7).downto(1940).to_a.each do |year|
+      %li
+        %a= year
+
+  = text_field_tag :graduaration_year, "", class: "field dropdown-toggle", :"data-toggle" => 'dropdown', placeholder: "Grad year"
