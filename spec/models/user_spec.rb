@@ -108,4 +108,52 @@ describe User do
 
   end
 
+  describe '#relatable' do
+
+    let!(:university) { FactoryGirl.create(:university) }
+    let(:user) { FactoryGirl.create(:user, university_id: university.id) }
+    
+    context 'with same university' do
+
+      let(:user2) { FactoryGirl.create(:user, university_id: university.id) }
+
+      it "should be relatable" do
+        expect(user.relatable?(user2)).to be_true
+      end
+
+   end
+
+   context 'with different universities' do
+
+     let(:university2) { FactoryGirl.create(:university) }
+     let(:user2)       { FactoryGirl.create(:user, university_id: university2.id) }
+
+     it "should not be relatable" do
+       expect(user.relatable?(user2)).to_not be_true
+     end
+
+   end
+
+   context 'with self' do
+
+     it "should not be relatable" do
+       expect(user.relatable?(user)).to_not be_true
+     end
+
+   end
+
+   context 'already related' do
+
+     let!(:user2)       { FactoryGirl.create(:user, university_id: university.id) }
+     let!(:relationship) { FactoryGirl.create(:relationship, user_id: user.id, relation_id: user2.id) }
+
+     it "should not be relateable" do
+       expect(user.relatable?(user2)).to_not be_true
+     end
+
+   end
+
+    
+  end
+
 end
