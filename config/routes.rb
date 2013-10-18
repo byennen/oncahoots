@@ -2,6 +2,8 @@ CahootsConnect::Application.routes.draw   do
 
   resources :cities
   resources :universities, only: [:index, :show] do
+    resources :events
+        
     resources :updates, only: [:new, :create, :update, :destroy] do
       resources :comments
     end
@@ -22,6 +24,11 @@ CahootsConnect::Application.routes.draw   do
       end
     end
   end
+
+  match "/calendar", to: "events#index"
+  match "/next_week/:week_start", to: "events#next_week"
+  match "/prev_week/:week_start", to: "events#prev_week"
+
   resources :updates do
     resources :comments
   end
