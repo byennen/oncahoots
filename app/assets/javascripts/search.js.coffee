@@ -8,8 +8,22 @@ $ ->
     $(this).closest(".dropdown").find("input").val($(this).text())
   $(".search_type a").click ->
     if $(this).text() == 'Person'
-      $("#club-option").hide
-      $("#person-option").show
+      $("#club-option").hide()
+      $("#person-option").show()
     else
-      $("#person-option").hide
-      $("#club-option").shows
+      $("#person-option").hide()
+      $("#club-option").show()
+
+  $("#search-button").click ->
+    data = {}
+    obj = $("input#search_object").val()
+    data['name'] = $("input#name").val()
+    data['loc'] = $("input#location").val
+    if obj=="Person"
+      data['ptype']= $("input#ptype").val()
+      data['major']= $("input#major").val()
+      data['graduaration_year']= $("input#graduaration_year").val()
+      $.get("/search/person", user: data)
+    else if obj=="Club"
+      data['category']=$("#category").val()
+      $.get("/search/club", club: data)

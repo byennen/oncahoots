@@ -17,13 +17,17 @@
         %i
           = image_tag "dropdown-arrow.png"
       %ul.dropdown-menu{style: "margin: -10px 0 0 22px"}
-        - City.order(:name).each do |city|
+        - Location.order(:name).each do |loc|
           %li
-            %a= city.name
+            %a= loc.name
       = text_field_tag :location, "", class: "field dropdown-toggle", :"data-toggle" => 'dropdown', placeholder: "location"
   .span10.no-lmar
     #person-option= render partial: "person_options"
     #club-option.hide= render partial: "club_options"
  
   .span10.offset8.top2
-    = link_to "Search", "#search", class: "btn btn-success"
+    = link_to "Search", "#search", class: "btn btn-success", id: "search-button"
+
+.row-fluid
+  .container
+    #search-results.span10.offset2.top2
