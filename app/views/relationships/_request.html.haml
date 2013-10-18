@@ -1,8 +1,8 @@
 %a{href: "javascript:;", style: "margin-right: 25px;"}
   = image_tag request.relation.profile.image.medium
-%a.btn.btn-success.mar2{href: user_path(request.relation)} View Profile
+%a.btn.btn-success.btn-small.mar2{href: user_path(request.relation)} View Profile
 %p.comp= request.relation.full_name
-= text_area_tag :comment, "", placeholder: "#{request.message}", class: "tarea chang7"
+= request.message
 .clearfix
 .span3= link_to "Accept",  accept_relationship_path(request), method: :post, class: 'btn btn-success btn-small'
 .span3= link_to "Decline", decline_relationship_path(request), method: :post, class: "btn btn-danger btn-small"
