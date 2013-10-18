@@ -1,0 +1,15 @@
+= content_for :header do
+  .span12.header-box{style: "margin-left: -30px; width: 103%;"}
+    %center.bottom2
+      %strong Calendar
+    .fright.top2.bottom2
+      = link_to "Add Event", "javascript:;", class: "btn btn-success"
+
+  .clearfix
+  .span12
+    %center
+      - @week_start ||= DateTime.now.beginning_of_week.strftime("%d")
+      - @week_end ||= DateTime.now.end_of_week.strftime("%d")
+      .calendar-bar
+        = DateTime.now.strftime("%b")
+        = "#{@week_start} - #{@week_end}"

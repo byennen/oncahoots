@@ -2,6 +2,8 @@ CahootsConnect::Application.routes.draw   do
 
   resources :cities
   resources :universities, only: [:index, :show] do
+    resources :events
+        
     resources :updates, only: [:new, :create, :update, :destroy] do
       resources :comments
     end
@@ -22,6 +24,9 @@ CahootsConnect::Application.routes.draw   do
       end
     end
   end
+
+  match "/calendar", to: "events#index"
+  
   resources :updates do
     resources :comments
   end
