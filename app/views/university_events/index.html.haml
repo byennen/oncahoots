@@ -1,0 +1,13 @@
+/ #STYLE-ME
+
+%h5 List of University Events
+
+%ul
+  - @university_events.each do |event|
+    %li
+      %strong
+        = link_to event.title, university_university_event_path(@university, event)            
+      %em
+        =event.date.to_date.strftime("%A, %B %e %Y at %g:%m %p")
+
+      = link_to 'delete', university_university_event_path(@university, event), :confirm => "Are you sure?", :method=>:delete if current_user.super_admin? || current_user.university_admin?
