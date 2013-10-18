@@ -43,6 +43,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def display_location
+    location ? location.name : city
+  end
+
   def username
     "#{first_name}-#{last_name}"
   end
