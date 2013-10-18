@@ -32,12 +32,14 @@ class RelationshipsController < ApplicationController
 
   def refer
     Rails.logger.debug("@relationship is #{@relationship.inspect}")
-    @refer_user = User.find(params[:relationship][:relation_id])
-    @refer_relationship = @relationship.recommend!(@refer_user)
-    Rails.logger.debug("refer relationship is #{@refer_relationship.inspect}")
+    refer_users = User.where(id: params[:relation_ids])
+    refer_users.each do |user|
+      @relationship.recommend!(user)
+      Rails.logger.debug("refer relationship is #{user.inspect}")
+    end
     @relationship.decline!
     respond_to do |format|
-      format.html { redirect_to user_path(current_user), notice: "You have referred - #{@refer_relationship.relation.full_name}" }
+      format.html { redirect_to user_path(current_user), notice: "You have referred - #{refer_users.count} contact#{'s' if refer_users.count != 1}" }
     end
   end
 

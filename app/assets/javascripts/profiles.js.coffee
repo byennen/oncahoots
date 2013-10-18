@@ -9,11 +9,19 @@ extractLast = (term) ->
 
 $(document).on 'ready page:load', -> 
   $('.tagauto').tagsInput({
-    width:'530px', 
+    width:'90%', 
     height: "35px",
     defaultText: 'recipients',
     autocomplete_url: "/users/search",
   });
+
+  $(".contact-auto").tagsInput({
+    width:'90%', 
+    height: "35px",
+    defaultText: 'contacts',
+    autocomplete_url: "/users/0/contacts/search",
+  });
+
 $ ->
 
   #recipients = $('#message_recipients').data('autocomplete-source')
