@@ -31,9 +31,11 @@ class RelationshipsController < ApplicationController
   end
 
   def refer
+    Rails.logger.debug("@relationship is #{@relationship.inspect}")
     refer_users = User.where(id: params[:relation_ids])
     refer_users.each do |user|
       @relationship.recommend!(user)
+      Rails.logger.debug("refer relationship is #{user.inspect}")
     end
     @relationship.decline!
     respond_to do |format|
@@ -45,6 +47,20 @@ class RelationshipsController < ApplicationController
     @relationship.remove!
     respond_to do |format|
       format.html { redirect_to user_contacts_path(current_user), notice: "You have removed the contact - #{@relationship.relation.full_name}" }
+    end
+  end
+
+  def accept_recommendation
+    @relationship.accept_recommendation!
+    respond_to do |format|
+      format.html { redirect_to user_path(current_user), notice: "You have accepted the recommendation to #{@relationship.relation.full_name}" }
+    end
+  end
+
+  def decline_recommendation
+    @relationship.decline_recommendation!
+    respond_to do |format|
+      format.html { redirect_to user_path(current_user), notice: "You have declined the recommendation to #{@relationship.relation.full_name}" }
     end
   end
 

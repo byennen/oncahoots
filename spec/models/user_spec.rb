@@ -108,7 +108,7 @@ describe User do
 
   end
 
-  describe '#relatable' do
+  describe '#relatable?' do
 
     let!(:university) { FactoryGirl.create(:university) }
     let(:user) { FactoryGirl.create(:user, university_id: university.id) }

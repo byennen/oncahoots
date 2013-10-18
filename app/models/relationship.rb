@@ -2,18 +2,19 @@ class Relationship < ActiveRecord::Base
 
   VALID_STATES = %w(pending requested accepted declined deleted recommended).freeze
 
-  attr_accessible :user_id, :relation_id, :status, :message
+  attr_accessible :user_id, :relation_id, :status, :message, :recommended_by_id
 
   belongs_to :user
   belongs_to :relation, class_name: 'User', foreign_key: 'relation_id'
+  belongs_to :recommended_by, class_name: 'User', foreign_key: 'recommended_by_id'
 
   scope :by_user, ->(user) { where(user_id: user.id) }
   scope :by_relationship, ->(relation) { where(user_id: relation.id) }
   scope :accepted, where("status = ?", "accepted") 
 
   def self.exists?(user, relation)
-     relationships = find_by_user_id_and_relation_id(user.id, relation.id)
-     relationships.nil? ? false : true
+     relationship = find_by_user_id_and_relation_id(user.id, relation.id)
+     relationship.nil? ? false : true
   end
 
   def self.reciprocal?(user, relation)
@@ -47,7 +48,7 @@ class Relationship < ActiveRecord::Base
   end
 
   def self.request(user, relation, message='')
-    unless user == relation || Relationship.exists?(user, relation)
+    unless user == relation || Relationship.reciprocal?(user, relation)
       create(user_id: user.id, relation_id: relation.id, status: 'requested', message: message)
       create(user_id: relation.id, relation_id: user.id, status: 'pending', message: message)
     end
@@ -81,19 +82,25 @@ class Relationship < ActiveRecord::Base
   def remove!
     inverse = find_inverse
     self.update_attribute(:status, "deleted")
-    inverse.update_attribute(:status, "deleted")
+    inverse.update_attribute(:status, "deleted") if inverse
   end
 
-  def recommend!(new_user)
+  def recommend!(refer_user)
     inverse = find_inverse
-    message = "#{user.full_name} has recommended you to #{new_user.full_name}.  Do you wish to proceed?"
-    unless user == relation || Relationship.exists?(user, new_user) 
-      Relationship.create(user_id: relation_id, relation_id: new_user.id, status: 'recommended', message: message)
+    message = "#{user.full_name} has recommended you to #{refer_user.full_name}.  Do you wish to proceed?"
+    unless user == refer_user || Relationship.exists?(relation, refer_user) 
+      relationship = Relationship.create!(user_id: relation_id, relation_id: refer_user.id, status: 'recommended', recommended_by_id: user.id, message: message)
     end
+    return relationship
   end
 
   def accept_recommendation!
+    self.remove!
+    Relationship.request(user, relation, "#{recommended_by.full_name} has recommended you to #{user.full_name}")
+  end
 
+  def decline_recommendation!
+    update_attribute(:status, "deleted")
   end
 
   private
