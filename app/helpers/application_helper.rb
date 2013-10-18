@@ -38,4 +38,10 @@ module ApplicationHelper
     "<button type='button' class='close' data-dismiss='modal'>&times;</button>"
   end
 
+  def week_title(week_start)
+    week_end = week_start + 6.days
+    str = "#{week_start.strftime("%b")} #{week_start.strftime("%d")} - "
+    str = "#{str}#{week_end.strftime("%b")}" if week_start.month != week_end.month
+    str = "#{str}#{week_end.strftime("%d")}"
+  end
 end

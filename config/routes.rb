@@ -26,7 +26,9 @@ CahootsConnect::Application.routes.draw   do
   end
 
   match "/calendar", to: "events#index"
-  
+  match "/next_week/:week_start", to: "events#next_week"
+  match "/prev_week/:week_start", to: "events#prev_week"
+
   resources :updates do
     resources :comments
   end
