@@ -2,11 +2,10 @@ class Club < ActiveRecord::Base
   belongs_to :university
 
   has_many :memberships
-
   has_many :users
   has_many :users, :through => :memberships, :uniq => true
   has_many :club_photos
-  has_many :club_events
+  has_many :events, as: :eventable
   has_many :statuses # this is lowdowns here
   has_many :records
   has_many :updates, as: :updateable
