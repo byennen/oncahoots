@@ -149,6 +149,29 @@ describe Relationship do
 
   end
 
+  describe "#accept_reccomendation" do
+
+    let!(:relationship)       { Relationship.request(user, user2) }
+    let!(:refer_relationship) { relationship.recommend!(user3) }
+
+    describe 'when referred' do
+
+      before do
+        refer_relationship.accept_recommendation!
+      end
+
+      it "should create new requested relationship" do
+        #expect(Relationship.pending?(user, user3)).to be_true
+      end
+
+      it "should return  the new requested relationship" do 
+        expect(refer_relationship.deleted?).to be_true
+      end
+
+    end
+
+  end
+
   context "states" do
 
     let!(:relationship) { Relationship.request(user, user2) }

@@ -84,6 +84,30 @@ describe RelationshipsController do
         expect(assigns(:refer_relationship).recommended?).to be_true
       end
 
+      it "should decline the relationship" do
+        expect(assigns(:relationship).declined?).to be_true
+      end
+
+    end
+
+  end
+
+  context 'POST to accept_recommendation' do
+
+    let!(:user)         { FactoryGirl.create(:user) }
+    let!(:user2)        { FactoryGirl.create(:user) }
+    let!(:user3)        { FactoryGirl.create(:user) }
+    let!(:relationship) { Relationship.request(user, user2) }
+
+    before do
+      relationship.recommend!(user3)
+      recommended_relationship = Relationship.find_by_user_id_and_relation_id(user.id, user3.id)
+      sign_in user
+      post :accept_recommendation, id: recommended_relationship
+    end
+
+    it "should assign the relationship" do
+      #expects(assigns(relationship).pending?).to be_true
     end
 
   end
