@@ -1,3 +1,4 @@
+= link_to "Lougout", destroy_user_session_path, method: :delete
 = content_for :header do
   .span3
     = link_to "javascript:void(0);", class: 'mono mn' do
@@ -52,7 +53,7 @@
                 %a#prev2.prev{href: "#"}
                 %a#next2.next{href: "#"}
               %center
-                %button.btn.btn-success.btn3 See all &nbsp;&nbsp;&nbsp;&nbsp; >
+                = link_to "See All &nbsp;&nbsp;&nbsp;&nbsp; >".html_safe, user_contacts_path(@user), class: "btn btn-success btn3"
           - if @user == current_user
             = render partial: "private_tabs"
   .clearfix
@@ -209,7 +210,7 @@
     numberOfOptions = $(this).children('option').length;
 
     // Hides the select element
-    $this.addClass('s-hidden');
+    //$this.addClass('s-hidden');
 
     // Wrap the select element in a div
     $this.wrap('<div class="select"></div>');
