@@ -23,16 +23,14 @@
           Requests
       %li
         %i
-        = link_to "javascript:;" do
+        = link_to "#notifications-popup", :"data-toggle" => "modal" do
           %p 1
           = image_tag "request.png"
           %br
           Notifications
 
-      #messages-popup.modal.mod4.hide.fade{tabindex: "-1", role: "dialog", :"aria-labelledby" => "myModalLabel", :"aria-hidden" => "true", style: "top: 120px"}
+      #messages-popup.modal.wide-modal.hide.fade{tabindex: "-1", role: "dialog", :"aria-labelledby" => "myModalLabel", :"aria-hidden" => "true"}
         .modal-body
-          %span.arr
-            =image_tag "popup-arrow.png"
           .left-side.msh
             %a{href: "#message-form", data: {toggle: "modal"}, class: "btn btn-success"} New Message
             %ul.msg
@@ -47,10 +45,8 @@
         .modal-footer
           %button.btn.btn-warning{type: "button", data: {dismiss: "modal"}} Close
 
-      #requests-popup.modal.hide.fade{tabindex: "-1", role: "dialog", :"aria-labelledby" => "myModalLabel", :"aria-hidden" => "true", style: "top: 300px"}
+      #requests-popup.modal.wide-modal.hide.fade{tabindex: "-1", role: "dialog", :"aria-labelledby" => "myModalLabel", :"aria-hidden" => "true"}
         .modal-body{style: "min-height: 200px;"}
-          %span.arr
-            =image_tag "popup-arrow.png"
           - if @requests.blank?
             %br
             .span11.top2
@@ -71,4 +67,35 @@
         .clearfix
         .modal-footer
           %button.btn.btn-warning{type: "button", data: {dismiss: "modal"}} Close
+      #notifications-popup.modal.wide-modal.hide.fade{tabindex: "-1", role: "dialog", :"aria-labelledby" => "myModalLabel", :"aria-hidden" => "true"}
+        .modal-body{style: "min-height: 200px;"}
+          .left-side
+            %ul.msg.msh
+              %li
+                %a{href: "javascript:;"}
+                  = image_tag "avatar-medium.png"
+                %h4 Josh Compton
+                %br
+                %p 2013
+              %li
+                %a{href: "javascript:;"}
+                  = image_tag "avatar-medium.png"
+                %h4 Josh Compton
+                %br
+                %p 2014
+          .right-side
+            .comment-box.ne
+              %a{href: "javascript:;", style: "margin-right: 25px;"}
+                = image_tag "avatar-big.png"
+              %p.comp
+                Josh Compton update his experience.
+              %br
+              %button.btn.btn-success.btn7{style: "float: left;"} View Profile
+              = text_area_tag :comment, "", placeholder: "Hi Mathew! Looks like we have similar interests", class: "tarea chang7"
+              .clearfix
+              %button.btn.btn-danger.fright{style: "margin-right: 50px"} Delete
+        .clearfix
+        .modal-footer
+          %button.btn.btn-warning{type: "button", data: {dismiss: "modal"}} Close
+      = render partial: "shared/new_message", locals: {top: 120}
 .clearfix

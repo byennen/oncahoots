@@ -1,5 +1,8 @@
 body { padding-top: 60px; }
 
+.ui-autocomplete {
+  z-index: 10000000;
+}
 
 .navbar .container {
   width: 1170px;
@@ -85,4 +88,13 @@ body { padding-top: 60px; }
 .no-lmar{margin-left: 0px !important;}
 .login-form select{
   margin-left: 10px;
+}
+
+.wide-modal{
+  margin-left: -30%;
+  width: 60%;
+  .modal-body {
+    max-height: 30em;
+    overflow-y: auto;
+  }
 }
