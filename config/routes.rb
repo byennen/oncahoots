@@ -45,7 +45,11 @@ CahootsConnect::Application.routes.draw   do
   resources :users do
     resources :profiles
     resource :profile
-    resources :contacts
+    resources :contacts do
+      collection do
+        get :search
+      end
+    end
     match '/skip', to: 'profiles#skip', as: 'skip_profile'
     collection do
       get :search

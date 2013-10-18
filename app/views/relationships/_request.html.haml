@@ -8,12 +8,13 @@
 .span3= link_to "Decline", decline_relationship_path(request), method: :post, class: "btn btn-danger btn-small"
 .span3
   = link_to "Recommend", "#recommend-#{request.id}", class: "btn btn-warning btn-small", data: {toggle: "modal"}
-  .modal.hide{id: "recommend-#{request.id}"}
+  .modal.hide.fade{id: "recommend-#{request.id}"}
     = simple_form_for(request, url: refer_relationship_path(request), method: 'post') do |f|
       .modal-header
         %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
         %h3 Recommend Another Contact
       .modal-body
-        = f.input :relation_id, collection: current_user.relationships.where(status: 'accepted').map(&:user), label_method: :full_name, value_method: :id
+        =# f.input :relation_id, collection: current_user.relationships.where(status: 'accepted').map(&:user), label_method: :full_name, value_method: :id
+        =f.input :relation_id, input_html: {class: 'contact-auto', value: ""}
       .modal-footer
         = f.submit "Recommend Contact", class: "btn btn-success"

@@ -99,4 +99,15 @@
         .modal-footer
           %button.btn.btn-warning{type: "button", data: {dismiss: "modal"}} Close
       = render partial: "shared/new_message", locals: {top: 120}
+- @requests.each do |request|
+  .modal.hide.fade{id: "recommend-#{request.id}"}
+    = simple_form_for(request, url: refer_relationship_path(request), method: 'post') do |f|
+      .modal-header
+        %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+        %h3 Recommend Another Contact
+      .modal-body
+        =# f.input :relation_id, collection: current_user.relationships.where(status: 'accepted').map(&:user), label_method: :full_name, value_method: :id
+        =text_field_tag :relation_ids, "", class: 'contact-auto'
+      .modal-footer
+        = f.submit "Recommend Contact", class: "btn btn-success"
 .clearfix
