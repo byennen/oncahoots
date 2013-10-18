@@ -4,16 +4,22 @@
 %p.comp= request.relation.full_name
 = text_area_tag :comment, "", placeholder: "#{request.message}", class: "tarea chang7"
 .clearfix
-.span3= link_to "Accept",  accept_relationship_path(request), method: :post, class: 'btn btn-success btn-small'
-.span3= link_to "Decline", decline_relationship_path(request), method: :post, class: "btn btn-danger btn-small"
-.span3
-  = link_to "Recommend", "#recommend-#{request.id}", class: "btn btn-warning btn-small", data: {toggle: "modal"}
-  .modal.hide{id: "recommend-#{request.id}"}
-    = simple_form_for(request, url: refer_relationship_path(request), method: 'post') do |f|
-      .modal-header
-        %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
-        %h3 Recommend Another Contact
-      .modal-body
-        = f.input :relation_id, collection: current_user.relationships.where(status: 'accepted').map(&:user), label_method: :full_name, value_method: :id
-      .modal-footer
-        = f.submit "Recommend Contact", class: "btn btn-success"
+- if request.pending?
+  .span3= link_to "Accept",  accept_relationship_path(request), method: :post, class: 'btn btn-success btn-small'
+  .span3= link_to "Decline", decline_relationship_path(request), method: :post, class: "btn btn-danger btn-small"
+  .span3
+    = link_to "Recommend", "#recommend-#{request.id}", class: "btn btn-warning btn-small", data: {toggle: "modal"}
+    .modal.hide{id: "recommend-#{request.id}"}
+      = simple_form_for(request, url: refer_relationship_path(request), method: 'post') do |f|
+        .modal-header
+          %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+          %h3 Recommend Another Contact
+        .modal-body
+          = f.input :relation_id, collection: current_user.relationships.where(status: 'accepted').map(&:relation), label_method: :full_name, value_method: :id
+        .modal-footer
+          = f.submit "Recommend Contact", class: "btn btn-success"
+- else
+  .span4{style: "padding-left: 100px;"}
+    = link_to "Yes", accept_recommendation_relationship_path(request), method: :post, class: 'btn btn-success btn-small'
+  .span4{style: "padding-left: 100px;"}
+    = link_to "No", decline_recommendation_relationship_path(request), method: :post, class: 'btn btn-danger btn-small'
