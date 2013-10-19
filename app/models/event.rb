@@ -1,9 +1,8 @@
-class ClubEvent < ActiveRecord::Base
-  # attr_accessible :title, :body
+class Event < ActiveRecord::Base
   attr_accessible :title, :date, :time, :location, :description, :category,
-                  :image
+                  :image, :free_food
 
-  belongs_to :club
+  belongs_to :eventable, polymorphic: true
 
   mount_uploader :image, ImageUploader
 

@@ -3,8 +3,12 @@ class ClubEventsController < ApplicationController
   before_filter :ensure_user_university
   before_filter :ensure_user_club
 
+  def index
+    @club_events = @club.events.all
+  end
+
   def create
-    @club_event = @club.club_events.new(params[:club_event])
+    @club_event = @club.events.new(params[:club_event])
     if @club_event.save
       respond_to do |format|
         format.html { redirect_to university_club_path(@university, @club) }
@@ -13,7 +17,7 @@ class ClubEventsController < ApplicationController
   end
 
   def update
-    @club_event = @club.club_events.find(params[:id])
+    @club_event = @club.events.find(params[:id])
     @club_event.attributes = params[:club_event]
     if @club_event.save
       respond_to do |format|
@@ -23,7 +27,7 @@ class ClubEventsController < ApplicationController
   end
 
   def destroy
-    @club_event = @club.club_events.find(params[:id])
+    @club_event = @club.events.find(params[:id])
     if @club_event.destroy
       respond_to do |format|
         format.html { redirect_to university_club_path(@university, @club) }
