@@ -1,0 +1,4 @@
+$(".prev-week").attr('href',"/prev_week/#{@week_start.strftime('%y%m%d')}");
+$(".next-week").attr('href',"/next_week/#{@week_start.strftime('%y%m%d')}");
+$("#week-title").html("#{week_title(@week_start)}");
+$(".day-list").html("#{escape_javascript(render partial: "one_week")}");
