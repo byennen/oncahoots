@@ -10,11 +10,11 @@ class UniversityEventsController < ApplicationController
     @university_event = @university.events.find(params[:id])
   end
 
-  def create
-    @university_event = @university.events.new(params[:club_event])
+  def create    
+    @university_event = @university.events.new(params["/universities/#{params[:university_id]}/calendar"])
     if @university_event.save
       respond_to do |format|
-        format.html { redirect_to university_club_path(@university, @university_event) }
+        format.html { redirect_to university_university_event_path(@university, @university_event)}
       end
     end
   end
