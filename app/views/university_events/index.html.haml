@@ -4,19 +4,17 @@
 
 - if current_user.super_admin? || current_user.university_admin?
   #add_event.modal.hide
-    = simple_form_for([@university, Event.new], html: {class: 'form-horizontal'}) do |f|
+    = simple_form_for(university_university_events_path(@university, Event.new), html: {class: 'form-horizontal'}) do |f|
       .modal-header
         %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
         %h3 Add University Event
       .modal-body
         = f.input :title
-        -# Probably need a calendar picker
         = f.input :date
-        -# Probably need a time picker
         = f.input :time
         = f.input :location
         = f.input :description
-        = f.input :category, as: :category 
+        = f.input :category, as: :category
         = f.input :image, as: :file
       .modal-footer
         = f.submit "Add Event", class: "btn btn-primary"
@@ -28,11 +26,10 @@
         = link_to event.title, university_university_event_path(@university, event)            
       %em
         =event.date.to_date.strftime("%A, %B %e %Y at %g:%m %p")
-      
         (
         = link_to 'delete', university_university_event_path(@university, event), :confirm => "Are you sure?", :method=>:delete if current_user.super_admin? || current_user.university_admin?
         )
 
-        .pull-right
-          - if current_user.super_admin? || current_user.university_admin?
-            %a{href: "#add_event", class: "btn btn-primary", data: {toggle: "modal"}} Add Event
+.pull-right
+  - if current_user.super_admin? || current_user.university_admin?
+    %a{href: "#add_event", class: "btn btn-primary", data: {toggle: "modal"}} Add Event
