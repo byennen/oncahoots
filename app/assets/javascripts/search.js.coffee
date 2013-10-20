@@ -18,11 +18,11 @@ $ ->
     data = {}
     obj = $("input#search_object").val()
     data['name'] = $("input#name").val()
-    data['loc'] = $("input#location").val
     if obj=="Person"
-      data['ptype']= $("input#ptype").val()
+      data['loc'] = $("input#location").val()
+      data['type']= $("input#ptype").val()
       data['major']= $("input#major").val()
-      data['graduaration_year']= $("input#graduaration_year").val()
+      data['year']= $("input#graduaration_year").val()
       $.get("/search/person", user: data)
     else if obj=="Club"
       data['category']=$("#category").val()
