@@ -64,4 +64,35 @@ class User < ActiveRecord::Base
   def create_user_profile
     Profile.create(user_id: self.id)
   end
+
+  class << self 
+    def search_all(params)
+      search_name(params[:name]).search_location(params[:loc]).search_type(params[:type])
+      .search_major(params[:major]).search_graduaration_year(params[:year])
+    end
+    def search_name(name)
+      return where(true) if name.blank?
+      where("lower(name) like ?", "%#{name}%")
+    end
+
+    def search_location(location_id)
+      return where(true) if location_id.blank?
+      where(location_id: location_id)
+    end
+
+    def search_type(utype)
+      return where(true) if utype.blank? || utype == "Both"
+      utype=="Alumni" ? alumni : student
+    end
+
+    def search_major(major)
+      return where(true) if major.blank?
+      where(major: major)
+    end
+
+    def search_graduaration_year(year)
+      return where(true) if year.blank?
+      where(graduation_year: year)
+    end
+  end
 end

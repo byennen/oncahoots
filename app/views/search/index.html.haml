@@ -12,22 +12,15 @@
       = text_field_tag :search_object, "Person", class: "field dropdown-toggle", :"data-toggle" => 'dropdown'
     .span3.no-lmar
       = text_field_tag :name, "",class: "field", placeholder: "Name", style: "width: 80%"
-    .span3.no-lmar.dropdown
-      %a.btn.btn-success.btn2.chang.dropdown-toggle{:href => "javascript:;", :"data-toggle" => 'dropdown'}
-        %i
-          = image_tag "dropdown-arrow.png"
-      %ul.dropdown-menu{style: "margin: -10px 0 0 22px"}
-        - Location.order(:name).each do |loc|
-          %li
-            %a= loc.name
-      = text_field_tag :location, "", class: "field dropdown-toggle", :"data-toggle" => 'dropdown', placeholder: "location"
-  .span10.no-lmar
+    
     #person-option= render partial: "person_options"
     #club-option.hide= render partial: "club_options"
  
-  .span10.offset8.top2
-    = link_to "Search", "#search", class: "btn btn-success", id: "search-button"
+  .span10.bottom2
+    .offset8.top2
+      = link_to "Search", "javascript:;", class: "btn btn-success", id: "search-button"
 
-.row-fluid
-  .container
-    #search-results.span10.offset2.top2
+  .row-fluid
+    .container
+      .span10.top2
+        #search-results.top2
