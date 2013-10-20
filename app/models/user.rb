@@ -71,27 +71,29 @@ class User < ActiveRecord::Base
       .search_major(params[:major]).search_graduaration_year(params[:year])
     end
     def search_name(name)
-      return where(true) if name.blank?
-      where("lower(name) like ?", "%#{name}%")
+      return where("1=1") if name.blank?
+      where("lower(first_name) like ? or lower(last_name) like ?", "%#{name.downcase}%", "%#{name.downcase}%")
     end
 
-    def search_location(location_id)
-      return where(true) if location_id.blank?
-      where(location_id: location_id)
+    def search_location(location)
+      return where("1=1") if location.blank? || location == "All locations"
+      loc = Location.find_by_name(location)
+      return where("1=2") unless loc
+      where(location_id: loc.id)
     end
 
     def search_type(utype)
-      return where(true) if utype.blank? || utype == "Both"
+      return where("1=1") if utype.blank? || utype == "Both"
       utype=="Alumni" ? alumni : student
     end
 
     def search_major(major)
-      return where(true) if major.blank?
+      return where("1=1") if major.blank?
       where(major: major)
     end
 
     def search_graduaration_year(year)
-      return where(true) if year.blank?
+      return where("1=1") if year.blank?
       where(graduation_year: year)
     end
   end

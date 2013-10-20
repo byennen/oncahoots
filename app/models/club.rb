@@ -48,7 +48,7 @@ class Club < ActiveRecord::Base
     end
     def search_name(name)
       return where(true) if name.blank?
-      where("lower(name) like ?", "%#{name}%")
+      where("lower(name) like ?", "%#{name.downcase}%")
     end
 
     def search_category(category)
