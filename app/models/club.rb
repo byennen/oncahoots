@@ -42,4 +42,18 @@ class Club < ActiveRecord::Base
     @admins ||= memberships.where(admin: true).all.map(&:user)
   end
 
+  class << self 
+    def search_all(params)
+      search_name(params[:name]).search_category(params[:category])
+    end
+    def search_name(name)
+      return where(true) if name.blank?
+      where("lower(name) like ?", "%#{name.downcase}%")
+    end
+
+    def search_category(category)
+      return where(true) if(category.blank? || category == "All categories")
+      where("category=?", category)
+    end
+  end
 end

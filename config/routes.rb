@@ -43,6 +43,8 @@ CahootsConnect::Application.routes.draw   do
 
   match '/signup/:invitation_token', to: 'memberships#new', as: 'signup'
   get '/search', to: 'search#index', as: 'search'
+  get '/search/club', to: "search#club"
+  get '/search/person', to: "search#person"
 
   devise_for :users, :controllers => { :registrations => "registrations", :sessions => "sessions" }
   devise_scope :user do
