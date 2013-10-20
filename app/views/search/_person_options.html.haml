@@ -3,6 +3,8 @@
     %i
       = image_tag "dropdown-arrow.png"
   %ul.dropdown-menu{style: "margin: -10px 0 0 22px"}
+    %li
+      %a= "All locations"
     - Location.order(:name).each do |loc|
       %li
         %a= loc.name
