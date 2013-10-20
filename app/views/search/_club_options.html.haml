@@ -1,0 +1,11 @@
+.span3.no-lmar.dropdown
+  %a.btn.btn-success.btn2.chang.dropdown-toggle{:href => "javascript:;", :"data-toggle" => 'dropdown'}
+    %i
+      = image_tag "dropdown-arrow.png"
+  %ul.dropdown-menu{style: "margin: -10px 0 0 22px"}
+    %li
+      %a All categories
+    - Club::CATEGORIES.each do |cat|
+      %li
+        %a= cat
+  = text_field_tag :category, "All categories", class: "field dropdown-toggle", :"data-toggle" => 'dropdown'

@@ -156,4 +156,63 @@ describe User do
     
   end
 
+  describe '#search' do
+
+    let!(:user) { FactoryGirl.create(:user) }
+
+    context 'without filters' do
+
+      it "should return one user do" do
+        expect(User.search(user.email)).to eq([user])
+      end
+
+    end
+
+    context 'with type filter' do
+
+      it "should return one user" do
+        expect(User.search(nil, {by_alumni_student: true})).to eq([user])
+      end
+
+    end
+
+    context 'with graduation_year filter' do
+
+      it "should return a user" do
+        expect(User.search(nil, {by_graduation_year: 2008})).to eq([user])
+      end
+
+    end
+
+    context 'with location filter' do
+
+      let(:location) { FactoryGirl.create(:location) }
+
+      it "should return one user" do
+        expect(User.search(nil, {by_location: location.id})).to eq([user])
+      end
+
+    end
+
+    context 'with major filter' do
+
+      it "should return one user" do
+        expect(User.search(nil, {by_major: "CS"})).to eq([user])
+      end
+
+    end
+
+    context 'with field filter' do
+
+      let(:professional_field) { FactoryGirl.create(:professional_field) }
+
+      it "should return one user" do
+        expect(User.search(nil, {by_professional_field: professional_field.id})).to eq([user])
+      end
+
+    end
+
+  end
+
+
 end
