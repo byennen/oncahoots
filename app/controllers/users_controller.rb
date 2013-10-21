@@ -24,5 +24,7 @@ class UsersController < ApplicationController
       @requests = current_user.relationships.where("status IN (?)", ['pending', 'recommended'])
       @contacts = current_user.relationships.where(status: 'accepted')
     end
+    @bg_image = ""
   end
+
 end

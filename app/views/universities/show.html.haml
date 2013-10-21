@@ -1,7 +1,7 @@
 = content_for :header do
   .span3
     = link_to "javascript:void(0);", class: 'mono mn' do
-      = image_tag @university.image.xxlarge
+      = image_tag @university.image.xxlarge, class: "circular"
   .span7
     .carus
       %ul#flexiselDemo1.flexisel
@@ -38,7 +38,7 @@
             - @users.each do |user|
               %li{style: "margin-left: 0"}
                 = link_to user_path(user) do
-                  = image_tag user.profile.image.thumb
+                  = image_tag user.profile.image.thumb, class: "circular"
                 .span4
                   %h4= user.full_name
                   %br
@@ -47,7 +47,7 @@
             - @users.student.each do |user|
               %li{style: "margin-left: 0"}
                 = link_to user_path(user) do
-                  = image_tag user.profile.image.thumb
+                  = image_tag user.profile.image.thumb, class: "circular"
                 .span4
                   %h4= user.full_name
                   %br
@@ -56,7 +56,7 @@
             - @users.alumni.each do |user|
               %li{style: "margin-left: 0"}
                 = link_to user_path(user) do
-                  = image_tag user.profile.image.thumb
+                  = image_tag user.profile.image.thumb, class: "circular"
                 .span4
                   %h4= user.full_name
                   %br
@@ -71,7 +71,7 @@
               %li{style: item_mar}
                 .users
                   = link_to university_club_path(@university, club) do
-                    = image_tag club.image.xlarge
+                    = image_tag club.image.xlarge, class: "circular"
                     %span= club.name
           
           %a.prev#prev2{href: "#"} &lt;
@@ -93,11 +93,11 @@
             - @club_updates.each do |update|
               %li
                 = link_to "javascript:void(0);", class: 'avatr' do
-                  %span
-                    - if update.updateable.image.blank?
-                      = update.updateable.name
+                  %span{style: "padding-top: 0"}
+                    - if update.image.blank?
+                      No Image
                     - else
-                      = image_tag update.updateable.image.thumb
+                      = image_tag update.image.thumb
                 %p= update.body
                 = link_to time_ago_in_words(update.created_at) + " ago", "javascript:void(0);", class: "com ncom"
                 .clearfix
@@ -106,11 +106,11 @@
             - @updates.each do |update|
               %li
                 = link_to "javascript:void(0);", class: 'avatr' do
-                  %span
-                    - if update.updateable.image.blank?
-                      = update.updateable.name
+                  %span{style: "padding-top: 0"}
+                    - if !update.image.blank?
+                      No Image
                     - else
-                      = image_tag update.updateable.image.thumb
+                      = image_tag update.image.thumb
                 %p= update.body
                 = link_to time_ago_in_words(update.created_at) + " ago", "javascript:void(0);", class: "com ncom"
                 .clearfix

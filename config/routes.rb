@@ -13,6 +13,7 @@ CahootsConnect::Application.routes.draw   do
         post 'make_admin', on: :collection
         post 'remove_admin', on: :member
       end
+      get :search, on: :collection
       resources :invitations
       resources :club_photos
       resources :club_events
@@ -49,7 +50,10 @@ CahootsConnect::Application.routes.draw   do
     collection do
       get :search
     end
+
   end
+
+  match "upload_avatar", to: "profiles#upload_avatar", via: :post
 
   resources :messages, only: [:create] do
     get :read, on: :member

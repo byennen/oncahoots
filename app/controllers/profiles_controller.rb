@@ -7,6 +7,7 @@ class ProfilesController < ApplicationController
 
   def edit
     @profile = current_user.profile
+    @bg_image = ""
   end
 
   def show
@@ -34,6 +35,12 @@ class ProfilesController < ApplicationController
     else
       format.html { render action: "edit" }
     end
+  end
+
+  def upload_avatar
+    @profile = current_user.profile
+    @profile.update_attributes(params[:profile])
+    redirect_to edit_user_profile_path(current_user, @profile)
   end
 
   def skip
