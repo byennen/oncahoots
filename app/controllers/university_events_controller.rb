@@ -20,11 +20,11 @@ class UniversityEventsController < ApplicationController
   end
 
   def update
-    @club_event = @university.events.find(params[:id])
-    @club_event.attributes = params[:club_event]
-    if @club_event.save
+    @event = @university.events.find(params[:id])
+    @event.attributes = params[:event]
+    if @event.save
       respond_to do |format|
-        format.html { redirect_to university_club_path(@university, @club) }
+        format.html { redirect_to university_university_events_path(@university)}
       end
     end
   end
