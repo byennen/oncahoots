@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(:version => 20131022092519) do
     t.boolean  "private"
     t.text     "mission_statement"
     t.integer  "city_id"
+    t.string   "type"
   end
 
   create_table "comments", :force => true do |t|
