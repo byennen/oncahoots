@@ -79,6 +79,13 @@
           %center
             %buttuon.btn.btn-success.btn3{name: 'btn'} See all
         #tab3.tab_content
+        %p
+          Free Food Events:
+          %ul
+            - @free_food_events.each do |event|
+              %li{style: "margin-left: 0"}
+                = link_to event.title, university_university_event_path(@university, event)
+
         #tab4.tab_content
 .clearfix
 .row-fluid
