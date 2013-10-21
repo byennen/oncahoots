@@ -26,4 +26,5 @@ class UsersController < ApplicationController
     end
     @bg_image = ""
   end
+
 end

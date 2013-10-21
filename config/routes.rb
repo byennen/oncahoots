@@ -63,7 +63,10 @@ CahootsConnect::Application.routes.draw   do
     collection do
       get :search
     end
+
   end
+
+  match "upload_avatar", to: "profiles#upload_avatar", via: :post
 
   resources :messages, only: [:create] do
     get :read, on: :member
