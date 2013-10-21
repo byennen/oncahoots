@@ -3,10 +3,12 @@ CahootsConnect::Application.routes.draw   do
   resources :universities, only: [:index, :show] do
     resources :events
     resources :university_events, :path => 'calendar', :controller => :university_events
+        
     resources :updates, only: [:new, :create, :update, :destroy] do
       resources :comments
     end
-    resources :clubs, only: [:show, :new, :create, :edit, :update, :index] do    
+
+    resources :clubs, only: [:show, :new, :create, :edit, :update, :index] do
       resources :club_events, :path => 'events', :controller => :club_events
       post 'transfer_ownership', on: :member
       resources :memberships do
@@ -24,6 +26,11 @@ CahootsConnect::Application.routes.draw   do
       end
     end
   end
+
+  match "/calendar", to: "events#index"
+  match "/next_week/:week_start", to: "events#next_week"
+  match "/prev_week/:week_start", to: "events#prev_week"
+
   resources :updates do
     resources :comments
   end
@@ -31,6 +38,9 @@ CahootsConnect::Application.routes.draw   do
     get :read, on: :member
     post :accept, on: :member
     post :decline, on: :member
+    post :refer, on: :member
+    post :accept_recommendation, on: :member
+    post :decline_recommendation, on: :member
   end
 
   match '/signup/:invitation_token', to: 'memberships#new', as: 'signup'
@@ -46,6 +56,11 @@ CahootsConnect::Application.routes.draw   do
   resources :users do
     resources :profiles
     resource :profile
+    resources :contacts do
+      collection do
+        get :search
+      end
+    end
     match '/skip', to: 'profiles#skip', as: 'skip_profile'
     collection do
       get :search
