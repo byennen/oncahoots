@@ -16,6 +16,8 @@
         = f.input :description
         = f.input :category, as: :category
         = f.input :image, as: :file
+        = f.input :free_food, :as => :boolean, :label => 'Free Food Event?'
+
       .modal-footer
         = f.submit "Add Event", class: "btn btn-primary"
 
@@ -23,7 +25,7 @@
   - @university_events.each do |event|
     %li
       %strong
-        = link_to event.title, university_university_event_path(@university, event)            
+        = link_to event.title, university_university_event_path(@university, event)
       %em
         =event.date.to_date.strftime("%A, %B %e %Y at %g:%m %p")
         (
@@ -46,7 +48,7 @@
                 = f.input :location
                 = f.input :description
                 = f.input :category, as: :category
-                = f.input :image, as: :file
+                = f.input :free_food, :as => :boolean, :label => 'Free Food Event?'
               .modal-footer
                 = f.submit "Edit Event", class: "btn btn-primary"
 
