@@ -36,7 +36,7 @@
             %ul.msg
               - @messages.each do |message|
                 %li{id: "message-#{message.id}"}
-                  = link_to image_tag(message.originator.profile.image.small), read_message_path(message), remote: true
+                  = link_to image_tag(message.originator.profile.image.small, class: "circular"), read_message_path(message), remote: true
                   %h4= message.originator.full_name
                   %br
                   %p= truncate(message.messages.first.body)
@@ -57,7 +57,7 @@
               %ul.msg.msh
                 - @requests.each do |relationship|
                   %li{id: "request-#{relationship.id}"}
-                    = link_to image_tag("#{relationship.relation.profile.image.thumb}"), read_relationship_path(relationship), remote: true
+                    = link_to image_tag("#{relationship.relation.profile.image.thumb}", class: "circular"), read_relationship_path(relationship), remote: true
                     %h4= relationship.relation.full_name
                     %br
                     %p= relationship.relation.graduation_year

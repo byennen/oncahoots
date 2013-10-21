@@ -3,7 +3,7 @@
     %li.span3{style: "margin-left: 20px; margin-top: 50px;"}
       .users
         = link_to university_club_path(@university, club) do
-          = image_tag club.image.xlarge
+          = image_tag club.image.xlarge, class: "circular"
           %span{style: "margin-left: 21px;"}= club.name
 
 %h3
