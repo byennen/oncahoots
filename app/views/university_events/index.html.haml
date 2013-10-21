@@ -29,6 +29,26 @@
         (
         = link_to 'delete', university_university_event_path(@university, event), :confirm => "Are you sure?", :method=>:delete if current_user.super_admin? || current_user.university_admin?
         )
+        (
+        - if current_user.super_admin? || current_user.university_admin?
+          %a{href: "#edit_event_#{event.id}", data: {toggle: "modal"}} edit event
+        )
+        - if current_user.super_admin? || current_user.university_admin?
+          %div{:id => "edit_event_#{event.id}", :class => "modal hide"}
+            = simple_form_for event, url: university_university_event_path(@university, event.id), method: :put, class: 'form-horizontal' do |f|
+              .modal-header
+                %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+                %h3 Edit University Event
+              .modal-body
+                = f.input :title
+                = f.input :date
+                = f.input :time
+                = f.input :location
+                = f.input :description
+                = f.input :category, as: :category
+                = f.input :image, as: :file
+              .modal-footer
+                = f.submit "Edit Event", class: "btn btn-primary"
 
 .pull-right
   - if current_user.super_admin? || current_user.university_admin?
