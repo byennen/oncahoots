@@ -1,144 +1,131 @@
 = link_to "Lougout", destroy_user_session_path, method: :delete
 = content_for :header do
   .span3
-    = link_to "javascript:void(0);", class: 'mono mn' do
+    = link_to "javascript:void(0);" do
       = image_tag @user.profile.image.xxlarge
   .span8
-    .carus
-      .pro-user
-        %p Hi! My name is #{@user.full_name} and I'm a #{@user.major} from #{@user.display_location}. Let's connect!
-    - if current_user.relatable?(@user) 
-      %a{href: "#add-contact", class: "btn btn-primary", data: {toggle: "modal"}, style: "margin-right: 10px;"} Add Contact
-            
+    .pro-user{style: "min-height: 120px;"}
+      %p Hi! My name is #{@user.full_name} and I'm a #{@user.major} from #{@user.display_location}. Let's connect!
+    .offset9
+      - if current_user.relatable?(@user) 
+        %a{href: "#add-contact", class: "btn btn-primary", data: {toggle: "modal"}, style: "margin-right: 10px;"} Add Contact
+      - elsif Relationship.reciprocal?(current_user, @user)
+        %a{href: "javascript:;", class: "btn btn-danger", style: "margin-right: 10px;"} UnContact
   .clearfix
-.clearfix
-- if can_view?(current_user, @user)
-  .row-fluid
-    .container
-      .offset2.span10
-        %ul.tabs5
-          %li
-            %a{href: "#tab1"}Contacts
-          - if @user == current_user
+  - if @user == current_user
+    = render partial: "private_tabs"
+    .clearfix
+  - if can_view?(current_user, @user)
+    %br
+    %br
+    .row-fluid
+      .container
+        .span10
+          %ul.tabs6
             %li
-              %a{href: "#tab2"}
-                Requests
-                - if @requests.size > 0
-                  %i= @requests.size
+              %a{href: "#tab11"} Education &amp; Skills
             %li
-              %a{href: "#tab3"}
-                Notifications
+              %a{href: "#tab22"} Experience
             %li
-              %a{href: "#tab4"}
-                Messages
-                - if @unread_messages.size > 0
-                  %i#unread_messages=  @unread_messages.size
-        .clearfix
-        .tab_container
-          #tab1.tab_content
-            - if @contacts.blank?
-              %br
-              %br
-              .span11.top2
-                %center
-                  %h4 No contact
-            - else
-              %button.btn.btn-success.btn2.mod1
-                %i= image_tag "search-icon.png"
-              = text_field_tag :term, "", class: "field mod2"
-              .clearfix
-              .list_carousel
-                %ul#foo2.sss
-                  = render partial: 'contacts/contact', collection: @contacts
-                %a#prev2.prev{href: "#"}
-                %a#next2.next{href: "#"}
-              %center
-                = link_to "See All &nbsp;&nbsp;&nbsp;&nbsp; >".html_safe, user_contacts_path(@user), class: "btn btn-success btn3"
-          - if @user == current_user
-            = render partial: "private_tabs"
-  .clearfix
-  %br
-  %br
-  .row-fluid
-    .container
-      .offset2.span10
-        %ul.tabs6
-          %li
-            %a{href: "#tab11"} Education &amp; Skills
-          %li
-            %a{href: "#tab22"} Experience
-          %li
-            %a{href: "#tab33"} Portfolio
-          %li
-            %a{href: "#tab44"} FAQs
-        .clearfix
-        .tab_container
-          #tab11.tab_content2
-            .two-col
-              %h3 Education
-              %p= @profile.education
-            .two-col
-              %h3 Skills &amp; Interests
-              %p= @profile.skills
-          #tab22.tab_content2
-            %ul.posts.po2
-              - @experiences.each do |experience|
-                %li
-                  %a.avatr{href: "javascript:;"}
-                  %h4 
-                    = experience.company_name
+              %a{href: "#tab33"} Portfolio
+            %li
+              %a{href: "#tab44"} FAQs
+          .clearfix
+          .tab_container
+            #tab11.tab_content2
+              .two-col
+                %h3 Education
+                %p= @profile.education
+              .two-col
+                %h3 Skills &amp; Interests
+                %p= @profile.skills
+            #tab22.tab_content2
+              %ul.posts.po2
+                - @experiences.each do |experience|
+                  %li
+                    %a.avatr{href: "javascript:;"}
+                    %h4 
+                      = experience.company_name
+                      %br
+                      %span= experience.position_name
+                    %p = experience_string(experience)
+                    .clearfix           
+            #tab33.tab_content2
+              .profile
+                %a.gb{href: "javascript:;"}
+                %ul.ssap
+                  %li
+                    %a{href: "javascript:;"}
+                  %li
+                    %a{href: "javascript:;"}
+                  %li
+                    %a{href: "javascript:;"}
+                %h3
+                  Project name
+                  %br
+                  %span Project organization name
+                %p As a communication intern I was responsible for producing the following pamphlets explaining our processes to clients.
+            #tab44.tab_content2
+              .faq
+                %h2 FAQ
+                .half
+                  %p
+                    %b= "- What do you look for in a new hire?"
                     %br
-                    %span= experience.position_name
-                  %p = experience_string(experience)
-                  .clearfix           
-          #tab33.tab_content2
-            .profile
-              %a.gb{href: "javascript:;"}
-              %ul.ssap
-                %li
-                  %a{href: "javascript:;"}
-                %li
-                  %a{href: "javascript:;"}
-                %li
-                  %a{href: "javascript:;"}
-              %h3
-                Project name
-                %br
-                %span Project organization name
-              %p As a communication intern I was responsible for producing the following pamphlets explaining our processes to clients.
-          #tab44.tab_content2
-            .faq
-              %h2 FAQ
-              .half
-                %p
-                  %b= "- What do you look for in a new hire?"
-                  %br
-                  People with passion and experience.
-                  %br
-                  %br
-                  %b= "- What do you do on a daily basis?"
-                  %br
-                  Meet withy clients.
-                  %br
-                  %br
-                  %b= "- How many hours a week do you work?"
-                  %br
-                  Between 45 and 60.
-              .half
-                %p
-                  %b= "- What do you look for in a new hire?"
-                  %br
-                  People with passion and experience.
-                  %br
-                  %br
-                  %b= "- What do you do on a daily basis?"
-                  %br
-                  Meet withy clients.
-                  %br
-                  %br
-                  %b= "- How many hours a week do you work?"
-                  %br
-                  Between 45 and 60.
+                    People with passion and experience.
+                    %br
+                    %br
+                    %b= "- What do you do on a daily basis?"
+                    %br
+                    Meet withy clients.
+                    %br
+                    %br
+                    %b= "- How many hours a week do you work?"
+                    %br
+                    Between 45 and 60.
+                .half
+                  %p
+                    %b= "- What do you look for in a new hire?"
+                    %br
+                    People with passion and experience.
+                    %br
+                    %br
+                    %b= "- What do you do on a daily basis?"
+                    %br
+                    Meet withy clients.
+                    %br
+                    %br
+                    %b= "- How many hours a week do you work?"
+                    %br
+                    Between 45 and 60.
+    - unless @user == current_user
+      .clearfix
+      %br
+      %br
+      .row-fluid
+        .container
+          .span10
+            %ul.tabs5
+              %li{style: "width: 49.2%"}
+                %a{href: "#tab-cor"} Our Correspondence  
+              %li{style: "width: 49.2%"}
+                %a{href: "#tab-clubs"} Our Clubs
+
+            .clearfix
+            .tab_container
+              #tab-cor.tab_content
+                %ul.posts.newp
+                  - 2.times do
+                    %li.left
+                      = link_to "javascript:void(0);", class: 'avatr' do
+                        No Image
+                      %p A paragraph of text
+                      = link_to "1 day ago", "javascript:void(0);", class: "com ncom"
+                      =# link_to time_ago_in_words(update.created_at) + " ago", "javascript:void(0);", class: "com ncom"
+                      .clearfix
+              #tab-clubs.tab_content
+                     
+
 
 #add-contact.modal.hide
   = simple_form_for Relationship.new(user_id: current_user.id) do |f|
