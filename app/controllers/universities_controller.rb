@@ -7,6 +7,7 @@ class UniversitiesController < ApplicationController
   def home
     @university = current_user.university
     load_details_data
+    @free_food_events =  @university.events.free_food
     render :show
   end
 
