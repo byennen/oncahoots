@@ -6,4 +6,7 @@ class Event < ActiveRecord::Base
 
   mount_uploader :image, ImageUploader
 
+  scope :free_food, where(free_food: true)
+  scope :non_free_food, where(free_food: !true)
+
 end
