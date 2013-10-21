@@ -5,4 +5,4 @@
       %p Hi! I am another user from #{contact.relation.display_location} and I am excited about business
       = link_to contact.relation.full_name, user_path(contact.relation)
       - if @user == current_user
-        = link_to "Remove", relationship_path(contact), method: :delete, class: "btn btn-mini btn-danger", confirm: "Are you sure?", style: "color: #fff; width: 50px; font-size: .8em; margin-left: 80px; margin-top: 5px; "
+        = link_to "Message", "#message-form", data: {toggle: "modal"}
