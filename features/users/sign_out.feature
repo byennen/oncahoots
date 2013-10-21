@@ -3,6 +3,7 @@ Feature: Sign out
   A signed in user
   Should be able to sign out
 
+    @wip
     Scenario: User signs out
       Given I am logged in
       When I sign out
