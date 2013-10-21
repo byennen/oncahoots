@@ -19,4 +19,14 @@ namespace :dev do
       )
     end
   end
+
+  task :create_metropolitant_clubs => :environment do
+    University.all.each do |university|
+      puts "create metropolitant clubs for #{university.name}"
+      City.all.each do |city|
+        puts "............at #{city.name}"
+        university.metropolitant_clubs.create(city_id: city.id)
+      end
+    end
+  end
 end

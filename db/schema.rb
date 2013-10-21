@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131017040231) do
+ActiveRecord::Schema.define(:version => 20131021143834) do
 
   create_table "cities", :force => true do |t|
     t.string   "name"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(:version => 20131017040231) do
     t.boolean  "private"
     t.text     "mission_statement"
     t.integer  "city_id"
+    t.string   "type"
   end
 
   create_table "comments", :force => true do |t|
