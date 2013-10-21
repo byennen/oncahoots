@@ -1,6 +1,6 @@
 .comment-box
   %a{href: user_path(message.sender), style: "margin-top: 0"}
-    = image_tag message.sender.profile.image.small
-  .span8= message.body + "aa aa a" * 50
+    = image_tag message.sender.profile.image.small, class: "circular"
+  .span8= message.body
   %strong= time_ago_in_words(message.created_at) + " ago"
   %button.btn.btn-danger.btn-mini.fright Delete
