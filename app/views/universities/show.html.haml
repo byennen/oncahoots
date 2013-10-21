@@ -93,11 +93,11 @@
             - @club_updates.each do |update|
               %li
                 = link_to "javascript:void(0);", class: 'avatr' do
-                  %span
-                    - if update.updateable.image.blank?
-                      = update.updateable.name
+                  %span{style: "padding-top: 0"}
+                    - if update.image.blank?
+                      No Image
                     - else
-                      = image_tag update.updateable.image.thumb
+                      = image_tag update.image.thumb
                 %p= update.body
                 = link_to time_ago_in_words(update.created_at) + " ago", "javascript:void(0);", class: "com ncom"
                 .clearfix
@@ -106,11 +106,11 @@
             - @updates.each do |update|
               %li
                 = link_to "javascript:void(0);", class: 'avatr' do
-                  %span
-                    - if update.updateable.image.blank?
-                      = update.updateable.name
+                  %span{style: "padding-top: 0"}
+                    - if !update.image.blank?
+                      No Image
                     - else
-                      = image_tag update.updateable.image.thumb
+                      = image_tag update.image.thumb
                 %p= update.body
                 = link_to time_ago_in_words(update.created_at) + " ago", "javascript:void(0);", class: "com ncom"
                 .clearfix
