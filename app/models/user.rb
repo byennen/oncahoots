@@ -35,9 +35,9 @@ class User < ActiveRecord::Base
   scope :by_graduation_year, ->(grad_year) { where(graduation_year: grad_year) }
   scope :by_professional_field, ->(field) { where(professional_field_id: field) }
   scope :by_major, ->(major) { where("major like ?", "%#{major}%") }
-  scope :by_name, -> (query) { where('((users.first_name || ' ' || users.last_name) ILIKE ?) OR (users.first_name ILIKE ?) OR (users.last_name ILIKE ?)', "%#{query}%", "%#{query}%", "%#{query}%") }
-  scope :by_email, -> (query) { where("email ILIKE ?", "%{query}%") }
-  scope :by_name_and_email, ->(query) { by_name(query).by_email(query) } 
+  #scope :by_name, -> (query) { where('((users.first_name || ' ' || users.last_name) ILIKE ?) OR (users.first_name ILIKE ?) OR (users.last_name ILIKE ?)', "%#{query}%", "%#{query}%", "%#{query}%") }
+  #scope :by_email, -> (query) { where("email ILIKE ?", "%{query}%") }
+  scope :by_name_and_email, ->(query) { by_name(query).by_email(query) }
 
   extend FriendlyId
   friendly_id :username, :use => :slugged
@@ -49,7 +49,7 @@ class User < ActiveRecord::Base
     cscope = scoped({})
     # Add filte scopes.
     filters.each do |key, value|
-      cscope.merge(User.send(key, value))
+      cscope.merge(User.send(key, value)) if !value.nil?
     end
     cscope.merge(User.send(:by_name_and_email, query)) unless query.nil?
     return cscope.all
@@ -87,7 +87,7 @@ class User < ActiveRecord::Base
     Profile.create(user_id: self.id)
   end
 
-  class << self 
+  class << self
     def search_all(params)
       search_name(params[:name]).search_location(params[:loc]).search_type(params[:type])
       .search_major(params[:major]).search_graduaration_year(params[:year])

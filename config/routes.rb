@@ -3,7 +3,7 @@ CahootsConnect::Application.routes.draw   do
   resources :cities
   resources :universities, only: [:index, :show] do
     resources :events
-        
+
     resources :updates, only: [:new, :create, :update, :destroy] do
       resources :comments
     end
@@ -53,7 +53,9 @@ CahootsConnect::Application.routes.draw   do
 
   resources :users do
     resources :profiles
-    resource :profile
+    resource :profile do
+      post :contact_requirements, on: :member
+    end
     resources :contacts do
       collection do
         get :search

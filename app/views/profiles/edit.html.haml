@@ -21,7 +21,7 @@
         .span11{style: "margin-right: 10px;"}
           %a.btn.btn-small.btn-danger.fright cancel
           %a.btn.btn-small.btn-success.fright save
-          
+
       %a.span11.slide-tab.toggle{href: "javascript:;", :"data-toggle" => ".slide-content", :"data-target" => "#education"}
         = image_tag 'edit.png', style: "width: 40px;"
         Education
@@ -45,3 +45,19 @@
         Portfolio
         %i.icon-white.icon-minus{style: "float:right; margin-top: 10px; margin-right: 10px"}
       #portfolio.slide-content.hide
+      - if current_user.alumni?
+        %a.span11.slide-tab.toggle{href: "javascript:;", :"data-toggle" => ".slide-content", :"data-target" => "#contact_requirements"}
+          = image_tag 'edit.png', style: "width: 40px;"
+          Contact Requirements
+          %i.icon-white.icon-minus{style: "float:right; margin-top: 10px; margin-right: 10px"}
+        #contact_requirements.slide-content.hide
+          .clearfix
+          .pro-user.left
+            = simple_form_for @contact_requirements, url: contact_requirements_user_profile_path do |f|
+              = f.input :gpa_requirement, label: "GPA Requirements", input_html: {style: "border 1px solid red;"}
+              = f.input :major_requirement, label: "Major Requirements"
+              = f.input :years_working_experience, label: "Years Working Experience"
+              = f.input :fields_of_interest, label: "Fields Of Interest"
+              .buttons
+                = f.submit "save", class: "btn btn-success btn-small"
+                %a.btn.btn-small.btn-danger{style: "display: inline-block;float: none; margin-left: 10px; margin-top: 0px;"} cancel
