@@ -3,6 +3,7 @@ class ProfilesController < ApplicationController
 
   def new
     @profile = Profile.new
+    @profile.build_contact_requirement
   end
 
   def edit
