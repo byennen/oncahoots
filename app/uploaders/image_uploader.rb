@@ -23,7 +23,9 @@ class ImageUploader < CarrierWave::Uploader::Base
   #
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   # end
-
+  def default_url
+    ActionController::Base.helpers.asset_path("fallback/#{model.class.to_s.underscore}/#{version_name}.png")
+  end
   # Process files as they are uploaded:
   # process :scale => [200, 300]
   #
@@ -32,8 +34,25 @@ class ImageUploader < CarrierWave::Uploader::Base
   # end
 
   # Create different versions of your uploaded files:
+  version :small do
+    process :resize_to_fill => [77, 77]
+  end
   version :thumb do
-     process :resize_to_fit => [80, 80]
+    process :resize_to_fill => [100, 100]
+  end
+  version :medium do
+    process :resize_to_fill => [145, 145]
+  end
+  version :large do
+    process :resize_to_fill => [185, 185]
+  end
+
+  version :xlarge do
+    process :resize_to_fill => [226, 226]
+  end
+
+  version :xxlarge do
+    process :resize_to_fill => [240, 240]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.

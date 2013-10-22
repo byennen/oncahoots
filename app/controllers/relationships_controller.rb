@@ -1,36 +1,73 @@
 class RelationshipsController < ApplicationController
 
+  before_filter :find_relationship, except: [:create]
 
   def create
     @relation = User.find(params[:relationship][:relation_id])
     Relationship.request(current_user, @relation, params[:relationship][:message])
     respond_to do |format|
-      format.html { redirect_to user_path(@relation), notification: "A request has been sent to #{@relation.full_name}" }
+      format.html { redirect_to user_path(@relation), notice: "A request has been sent to #{@relation.full_name}" }
     end
   end
 
-
   def read
-    @relationship = Relationship.find(params[:id])
     respond_to do |format|
       format.js { }
     end
   end
 
   def accept
-    @relationship = Relationship.find(params[:id])
     @relationship.accept!
     respond_to do |format|
-      format.html { redirect_to user_profile_path(@relationship.user, @relationship.user.profile), noticiation: "You are now contacts with - #{@relationship.relation.full_name}" }
+      format.html { redirect_to user_path(current_user), notice: "You are now contacts with - #{@relationship.relation.full_name}" }
     end
   end
 
   def decline
-    @relationship = Relationship.find(params[:id])
     @relationship.decline!
     respond_to do |format|
-      format.html { redirect_to user_profile_path(@relationship.user, @relationship.user.profile), notification: "You have declined the contact - #{@relationship.relation.full_name}" }
+      format.html { redirect_to user_path(current_user), notice: "You have declined the contact - #{@relationship.relation.full_name}" }
     end
+  end
+
+  def refer
+    Rails.logger.debug("@relationship is #{@relationship.inspect}")
+    refer_users = User.where(id: params[:relation_ids])
+    refer_users.each do |user|
+      @relationship.recommend!(user)
+      Rails.logger.debug("refer relationship is #{user.inspect}")
+    end
+    @relationship.decline!
+    respond_to do |format|
+      format.html { redirect_to user_path(current_user), notice: "You have referred - #{refer_users.count} contact#{'s' if refer_users.count != 1}" }
+    end
+  end
+
+  def destroy
+    @relationship.remove!
+    respond_to do |format|
+      format.html { redirect_to user_contacts_path(current_user), notice: "You have removed the contact - #{@relationship.relation.full_name}" }
+    end
+  end
+
+  def accept_recommendation
+    @relationship.accept_recommendation!
+    respond_to do |format|
+      format.html { redirect_to user_path(current_user), notice: "You have accepted the recommendation to #{@relationship.relation.full_name}" }
+    end
+  end
+
+  def decline_recommendation
+    @relationship.decline_recommendation!
+    respond_to do |format|
+      format.html { redirect_to user_path(current_user), notice: "You have declined the recommendation to #{@relationship.relation.full_name}" }
+    end
+  end
+
+  private
+
+  def find_relationship
+    @relationship = Relationship.find(params[:id])
   end
 
 end

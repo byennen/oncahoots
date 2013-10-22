@@ -1,52 +1,123 @@
-%h1
-  Welcome to
-  = @university.name
-  = image_tag @university.image_url if @university.image?
+= content_for :header do
+  .span3
+    = link_to "javascript:void(0);", class: 'mono mn' do
+      = image_tag @university.image.xxlarge, class: "circular"
+  .span7
+    .carus
+      %ul#flexiselDemo1.flexisel
+        - 3.times do |i|
+          %li
+            = link_to "javascript:void(0);" do
+              = image_tag("car-img.png")
+            %br
+            %h4 Basketball Game
+            %p
+              Friday, June 29
+              %br
+              7:00PM - GYM
+  .clearfix
 
-%p
-  %b Mascot:
-  = @university.mascot
-%p
-  %b Location:
-  = @university.location
+.row-fluid
+  .container
+    .span10.offset2.top2
+      %ul.tabs3
+        %li= link_to "Community", "#tab1"
+        %li= link_to "Clubs", "#tab2"
+        %li= link_to "Free Food", "#tab3"
+        %li= link_to "Alumni Map", "#tab4"
+        %li= link_to "Register New", "#tab5"
+      .clearfix
+      .tab_container
+        #tab1.tab_content
+          .filters
+            %p Filter by:
+            = link_to "All", "javascript:;", :"data-toggle" => ".users-list", :"data-target" => "#all-users", class: 'toggle'
+            = link_to "Students", "javascript:;", :"data-toggle" => ".users-list", :"data-target" => "#students", class: 'toggle'
+            = link_to "Alumni", "javascript:;", :"data-toggle" => ".users-list", :"data-target" => "#alumnis", class: 'toggle'
+          %ul#all-users.two-users.users-list
+            - @users.each do |user|
+              %li{style: "margin-left: 0"}
+                = link_to user_path(user) do
+                  = image_tag user.profile.image.thumb, class: "circular"
+                .span4
+                  %h4= user.full_name
+                  %br
+                  = user.graduation_year
+          %ul#students.two-users.users-list.hide
+            - @users.student.each do |user|
+              %li{style: "margin-left: 0"}
+                = link_to user_path(user) do
+                  = image_tag user.profile.image.thumb, class: "circular"
+                .span4
+                  %h4= user.full_name
+                  %br
+                  = user.graduation_year
+          %ul#alumnis.two-users.users-list.hide
+            - @users.alumni.each do |user|
+              %li{style: "margin-left: 0"}
+                = link_to user_path(user) do
+                  = image_tag user.profile.image.thumb, class: "circular"
+                .span4
+                  %h4= user.full_name
+                  %br
+                  = user.graduation_year
 
-%h2 Users
-%ul
-- @users.each do |user|
-  %li= link_to user.full_name, user_path(user) if user.present?
+        #tab2.tab_content.list_carousel
+          %ul#foo2.carou-fred-sel
+            - item_mar = ""
+            - item_mar = "margin-left: 100px;" if @clubs.size == 2
+            - item_mar = "margin-left: 300px;" if @clubs.size == 1
+            - @clubs.each do |club|
+              %li{style: item_mar}
+                .users
+                  = link_to university_club_path(@university, club) do
+                    = image_tag club.image.xlarge, class: "circular"
+                    %span= club.name
+          
+          %a.prev#prev2{href: "#"} &lt;
+          %a.next#next2{href: "#"} &gt;
+          %center
+            %buttuon.btn.btn-success.btn3{name: 'btn'} See all
+        #tab3.tab_content
+        %p
+          Free Food Events:
+          %ul
+            - @free_food_events.each do |event|
+              %li{style: "margin-left: 0"}
+                = link_to event.title, university_university_event_path(@university, event)
 
-%h3 Clubs
-= link_to "Create A New Club", new_university_club_path(@university)
-- if @clubs.present?
-  %ul
-    - @clubs.each do |club|
-      %li= link_to club.name, university_club_path(@university, club)
-
-%h3 Updates
-%ul.unstyled
-  - @updates.each do |update|
-    %li
-      = image_tag update.image_url if update.image?
-      = update.body
-      %br
-      = update.created_at.to_date
-  - @club_updates.each do |update|
-    - if current_user && update.updateable.memberships.map(&:user_id).include?(current_user.id)
-      %li 
-        .row-fluid
-          .span1= image_tag update.updateable.image.thumb.url
-          .span11
-            %h4= update.updateable.name
-        %br
-        = image_tag update.image_url if update.image?
-        %strong= update.headline
-        %br
-        = update.created_at.to_date
-        %br
-        =update.body
-
-%hr
-
-- if current_user.present?
-  - if current_user.super_admin? || current_user.university_admin?
-    = link_to "New Update", [:new, @updateable, :update], :class => 'btn btn-primary'
+        #tab4.tab_content
+.clearfix
+.row-fluid
+  .container
+    .span10.offset2
+      %ul.tabs4
+        %li= link_to "Club Updates", "#tabss1"
+        %li= link_to "College Updates", "#tabss"
+      .tab_container
+        #tabss1.tab_content2
+          %ul.posts.newp
+            - @club_updates.each do |update|
+              %li
+                = link_to "javascript:void(0);", class: 'avatr' do
+                  %span{style: "padding-top: 0"}
+                    - if update.image.blank?
+                      No Image
+                    - else
+                      = image_tag update.image.thumb
+                %p= update.body
+                = link_to time_ago_in_words(update.created_at) + " ago", "javascript:void(0);", class: "com ncom"
+                .clearfix
+        #tabss.tab_content2
+          %ul.posts.newp
+            - @updates.each do |update|
+              %li
+                = link_to "javascript:void(0);", class: 'avatr' do
+                  %span{style: "padding-top: 0"}
+                    - if !update.image.blank?
+                      No Image
+                    - else
+                      = image_tag update.image.thumb
+                %p= update.body
+                = link_to time_ago_in_words(update.created_at) + " ago", "javascript:void(0);", class: "com ncom"
+                .clearfix

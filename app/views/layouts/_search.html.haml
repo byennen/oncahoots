@@ -1,9 +1,9 @@
 .row-fluid
   .container
-    .span3.offset9
-      %button.btn.btn2{name: 'btn'}
+    .span3.offset9{style: "margin-top: 120px;"}
+      %button.btn.btn2{name: 'btn', style: "margin-right: 10px;"}
         %i
           = image_tag('search-icon.png')
       %input.field{name: 'text', type: 'text'}
-      %a.advance{ href: "javascript:void(0);"}Advanced
+      = link_to "Advanced", search_path, class: 'advance'
 .clearfix

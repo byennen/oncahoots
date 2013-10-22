@@ -16,6 +16,7 @@ gem 'figaro'
 gem 'haml-rails'
 gem 'rolify'
 gem 'simple_form'
+gem 'tagsinput-rails'
 gem 'thin'
 gem 'friendly_id'
 gem 'bootstrap-generators', '~> 3.0'
@@ -45,6 +46,7 @@ end
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
+  gem 'shoulda-matchers'
 end
 group :test do
   gem 'capybara'

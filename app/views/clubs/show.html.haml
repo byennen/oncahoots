@@ -1,149 +1,51 @@
 = content_for :header do
-  .row-fluid.mod3.span12.no-lmar
-    .container
-      .span2
-        .left-menu
-          %ul
-            %li
-              %i
-              = link_to "#myModal2", :"data-toggle" => "modal" do
-                = image_tag('message.png')
-                %br
-                Messages
-            #myModal2.modal.mod4.hide.fade{tabindex: "-1", role: "dialog", :"aria-labelledby" => "myModalLabel", :"aria-hidden" => "true", style: "top: 180px"}
-              .modal-body
-                %span.arr
-                  =image_tag "popup-arrow.png"
-                ~ form_tag url_for, class: "contact-form" do
-                  = text_field_tag :to, "", class: "field2", placeholder: "to"
-                  .clearfix
-                  = text_field_tag :subject, "", class: "field3", placeholder: "Subject"
-                  = text_area_tag :content, "", class: "tarea", placeholder: "Great to hear from you Matt! Glad you accepted my connection request!!"
-                  %button.btn.btn7{type: "button", data: {dismiss: "modal"}} Send
-                  %button.btn6.mod5{type: "button", data: {dismiss: "modal"}} Cancel
-            %li
-              %i
-              = link_to "#myModal", :"data-toggle" => "modal" do
-                %p 2
-                = image_tag "request.png"
-                %br
-                Request
-            #myModal.modal.hide.fade{tabindex: "-1", role: "dialog", :"aria-labelledby" => "myModalLabel", :"aria-hidden" => "true", style: "top: 360px"}
-              .modal-body
-                %span.arr
-                  =image_tag "popup-arrow.png"
-                .left-side
-                  %button.btn.btn5 New Message
-                  %ul.msg
-                    %li
-                      = link_to "javascript:;" do
-                        = image_tag 'small-avatar.png'
-                      %h4 Josh Compton
-                      %br
-                      %p Great hear from you...
-                    %li
-                      = link_to "javascript:;" do
-                        = image_tag 'small-avatar2.png'
-                      %h4 Josh Compton
-                      %br
-                      %p Great hear from you...
-                .right-side
-                  .comment-box
-                    = text_area_tag :comment, "", class: "tex-area", placeholder: "Create to hear from you Matt!! Glad you accepted my connection request!"
-                    = link_to "javascript:;" do
-                      = image_tag "small-avatar.png"
-                    %button.btn6 Delete
-                    %strong 1 day ago
-                  .comment-box
-                    = text_area_tag :comment, "", class: "tex-area", placeholder: "Create to hear from you Matt!! Glad you accepted my connection request!"
-                    = link_to "javascript:;" do
-                      = image_tag "small-avatar.png"
-                    %button.btn6 Delete
-                    %strong 1 day ago
-                .clearfix
-              .modal-footer
-                %button.btn{type: "button", data: {dismiss: "modal"}} Close
-            %li
-              %i
-              = link_to "javascript:;" do
-                %p 1
-                = image_tag "request.png"
-                %br
-                Notifications
-      .span6
-        = link_to "javascript:;", class: "mono" do
-          = image_tag "mono3.png"
-        .mono2
-          %h1= @club.name
-        .clearfix
-        .img-box
-      .span3
-        .rig
-          %button.btn.btn2.chang
-            %i
-              = image_tag "dropdown-arrow.png"
-          = text_field_tag :join_city, "", class: "field", placeholder: "Join City"
-          %button.btn.chang2 Upcoming Events
-          .clearfix
-          %button.btn.chang3 Edit
-          %button.btn.chang3 Transactions
-        .offset1
-        .clearfix
-        %ul.listing
-          %li
-            = link_to "", "javascript;;"
-            %h4 Headline
-            %p Text of the announcement or circle
-          %li
-            = link_to "", "javascript;;"
-            %h4 Headline
-            %p Text of the announcement or circle
-          %li
-            = link_to "", "javascript;;"
-            %h4 Headline
-            %p Text of the announcement or circle
-          %li
-            = link_to "", "javascript;;"
-            %h4 Headline
-            %p Text of the announcement or circle
-      .span1{style: "margin: 0;"}
-  .clearfix
-.seps
-.row-fluid
-  .container
-    .offset2.span10
-      %ul.slider4
-        - 20.times do
-          %li.slide
-            %a{href: "javascript:;"}
+  .span3
+    = link_to "javascript:void(0);", class: 'mono mn' do
+      = image_tag @club.image.xxlarge
+  .span5
+    .carus{style: "margin-top: 200px"}
+      .page-title= @club.name
+  .span3.top2
+    .rig
+      %button.btn.btn-success.btn2.chang
+        %i
+          = image_tag "dropdown-arrow.png"
+      = text_field_tag :join_city, "", class: "field", placeholder: "Join Club"
+      %button.btn.btn-success.chang2 Upcoming Events
       .clearfix
-      %button.btn.btn2.chang4 View My Photos
+      %button.btn.btn-success.chang3 Edit
+      %button.btn.btn-success.chang3 Transactions
+  .clearfix
+
+.clearfix
+.row-fluid
+  .container
+    .span10.offset2
+      .span7
+        .img-box
+      %ul.listing.span3
+        %li
+          = link_to "", "javascript;;"
+          %h4 Headline
+          %p Text of the announcement or circle
+        %li
+          = link_to "", "javascript;;"
+          %h4 Headline
+          %p Text of the announcement or circle
+        %li
+          = link_to "", "javascript;;"
+          %h4 Headline
+          %p Text of the announcement or circle
+        %li
+          = link_to "", "javascript;;"
+          %h4 Headline
+          %p Text of the announcement or circle
+
 .clearfix
 
 .row-fluid
   .container
-    .offset2.span10
-      .boll-box
-        %h1 City Bulletin Board
-        %button.btn.btn2.chang5 Post Bulletin
-        .clearfix
-.clearfix
-
-.row-fluid
-  .container
-    .offset2.span10
-      %ul.posts
-        - 3.times do
-          %li
-            %a.avatr{href: "javascript:;"}
-            %h4 Post title
-            %p The Davidons Alumni Association will be hosting a meetup this Thursday in Chicago at the Rockit Bar &amp; Grill dropdown.
-            %a.com{href: "javascript:;"} Comment
-            .clearfix
-
-.row-fluid
-  .container
-    .offset2.span10
+    .span10.offset2
       %ul.tabs2
         %li
           %a{href: "#tab1"}Lowdown
@@ -176,11 +78,7 @@
         #tab6.tab_content
         #tab7.tab_content
 .clearfix
-.row-fluid
-  .container
-    .span12
-      .seperator
-.clearfix
+
 
 :javascript
   jQuery(document).ready(function() {//Default Action

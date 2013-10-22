@@ -108,4 +108,111 @@ describe User do
 
   end
 
+  describe '#relatable?' do
+
+    let!(:university) { FactoryGirl.create(:university) }
+    let(:user) { FactoryGirl.create(:user, university_id: university.id) }
+
+    context 'with same university' do
+
+      let(:user2) { FactoryGirl.create(:user, university_id: university.id) }
+
+      it "should be relatable" do
+        expect(user.relatable?(user2)).to be_true
+      end
+
+   end
+
+   context 'with different universities' do
+
+     let(:university2) { FactoryGirl.create(:university) }
+     let(:user2)       { FactoryGirl.create(:user, university_id: university2.id) }
+
+     it "should not be relatable" do
+       expect(user.relatable?(user2)).to_not be_true
+     end
+
+   end
+
+   context 'with self' do
+
+     it "should not be relatable" do
+       expect(user.relatable?(user)).to_not be_true
+     end
+
+   end
+
+   context 'already related' do
+
+     let!(:user2)       { FactoryGirl.create(:user, university_id: university.id) }
+     let!(:relationship) { FactoryGirl.create(:relationship, user_id: user.id, relation_id: user2.id) }
+
+     it "should not be relateable" do
+       expect(user.relatable?(user2)).to_not be_true
+     end
+
+   end
+
+
+  end
+
+  describe '#search' do
+
+    let!(:user) { FactoryGirl.create(:user) }
+
+    context 'without filters' do
+
+      #it "should return one user do" do
+      #  expect(User.search(user.email)).to eq([user])
+      #end
+
+    end
+
+    context 'with type filter' do
+
+      it "should return one user" do
+        expect(User.search(nil, {by_alumni_student: true})).to eq([user])
+      end
+
+    end
+
+    context 'with graduation_year filter' do
+
+      it "should return a user" do
+        expect(User.search(nil, {by_graduation_year: 2008})).to eq([user])
+      end
+
+    end
+
+    context 'with location filter' do
+
+      let(:location) { FactoryGirl.create(:location) }
+
+      it "should return one user" do
+        expect(User.search(nil, {by_location: location.id})).to eq([user])
+      end
+
+    end
+
+    context 'with major filter' do
+
+      it "should return one user" do
+        expect(User.search(nil, {by_major: "CS"})).to eq([user])
+      end
+
+    end
+
+    context 'with field filter' do
+
+      let(:professional_field) { FactoryGirl.create(:professional_field) }
+
+      it "should return one user" do
+        expect(User.search(nil, {by_professional_field: professional_field.id})).to eq([user])
+      end
+
+    end
+
+  end
+
+
 end

@@ -9,9 +9,6 @@
       = f.input :password, :required => true, label: false, input_html: {placeholder: "password", class: "fioled0"}
       = f.input :password_confirmation, :required => true, label: false, input_html: {placeholder: "password confirmation", class: "fioled0"}
       .clearfix
-      = f.check_box :alumni, class: "checkb"
-      %span Sign up As Alumni
-      .clearfix
       = f.select :university_id, options_from_collection_for_select(University.all.sort_by(&:name), :id, :name), prompt: "University"
       .clearfix
       = f.input :city, label: false, input_html: {placeholder: "city", class: "fioled0"}
@@ -20,10 +17,14 @@
       .clearfix
       = f.input :major, label: false, input_html: {placeholder: "major", class: "fioled0"}
       = f.input :double_major, label: false, input_html: {placeholder: "double major", class: "fioled0"}
+      .clearfix
+      = f.check_box :alumni, class: "checkb"
+      %span Sign up As Alumni
+      .clearfix
       #professional_fields.hide
         = f.input :professional_field_id, collection: ProfessionalField.all.sort_by(&:name), include_blank: false
 
-      %button.btn.btn4.chang6 Register
+      %button.btn.btn-success.btn4.chang6 Register
       
       %strong
         = link_to "Forgot your password?", new_password_path(resource_name)

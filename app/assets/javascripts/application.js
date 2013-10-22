@@ -14,6 +14,7 @@
 //= require jquery.ui.all
 //= require jquery_ujs
 //= require bootstrap
+//= require jquery.tagsinput
 //= require_tree .
 //
 $(function() {
@@ -21,5 +22,13 @@ $(function() {
   $('#user_alumni').click(function () {
     alert("alumni clicked");
     $("#professional_fields").toggle(this.checked);
+  });
+
+  $(".toggle").click(function(){
+    hidding = $($(this).data("target")).hasClass("hide");
+    $($(this).data("toggle")).addClass("hide");
+    if(hidding){
+      $($(this).data("target")).removeClass("hide");
+    }
   });
 });

@@ -3,10 +3,9 @@ class Club < ActiveRecord::Base
 
   has_many :memberships
 
-  has_many :users
   has_many :users, :through => :memberships, :uniq => true
   has_many :club_photos
-  has_many :club_events
+  has_many :events, as: :eventable
   has_many :statuses # this is lowdowns here
   has_many :records
   has_many :updates, as: :updateable
@@ -15,7 +14,23 @@ class Club < ActiveRecord::Base
                   :remote_image_url, :user_id, :slug, :private, :mission_statement
 
   CLUB_TYPES = %w(Social Gender Media Performance Recreational Religious Service Student Govt. Team Sports Metropolitan)
-
+  CATEGORIES = [
+    "Academic",
+    "Alumni",
+    "Arts",
+    "Social",
+    "Gender",
+    "Health",
+    "Media",
+    "Performance",
+    "Political",
+    "Recreational",
+    "Sports",
+    "Religious",
+    "Service",
+    "Student Govt",
+    "Union Board"
+  ]
   mount_uploader :image, ImageUploader
 
   extend FriendlyId
@@ -26,4 +41,18 @@ class Club < ActiveRecord::Base
     @admins ||= memberships.where(admin: true).all.map(&:user)
   end
 
+  class << self 
+    def search_all(params)
+      search_name(params[:name]).search_category(params[:category])
+    end
+    def search_name(name)
+      return where("1=1") if name.blank?
+      where("lower(name) like ?", "%#{name.downcase}%")
+    end
+
+    def search_category(category)
+      return where("1=1") if(category.blank? || category == "All categories")
+      where("category=?", category)
+    end
+  end
 end

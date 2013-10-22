@@ -1,8 +1,17 @@
 class ClubsController < ApplicationController
 
-
   before_filter :authenticate_user!, except: [:show]
   before_filter :ensure_user_university, except: [:show]
+
+  def search
+    @clubs = @university.clubs.search_all(params[:club])
+    respond_to :js
+  end
+
+  def index
+    @bg_image=""
+    @clubs = @university.clubs 
+  end
 
   def show
     @university = University.find(params[:university_id])
@@ -13,6 +22,9 @@ class ClubsController < ApplicationController
     @current_membership = @club.memberships.find_by_user_id(current_user.id)
     @admins = @club.memberships.where(admin: true)
     @non_admins = @club.memberships.where("admin is NULL").all.map(&:user)
+    @messages = current_user.mailbox.conversations
+    @requests = current_user.relationships.where(status: 'pending')
+    
     Rails.logger.debug("non admins are #{@non_admins.inspect}")
   end
 

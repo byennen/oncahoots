@@ -1,0 +1,8 @@
+%li
+  .users
+    %a{href: user_path(contact.relation)}= image_tag (contact.relation.profile.image.xlarge), class: "circular"
+    .hovers
+      %p Hi! I am another user from #{contact.relation.display_location} and I am excited about business
+      = link_to contact.relation.full_name, user_path(contact.relation)
+      - if @user == current_user
+        = link_to "Message", "#message-form", data: {toggle: "modal"}

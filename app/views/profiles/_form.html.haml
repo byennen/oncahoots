@@ -11,6 +11,14 @@
   %label Who Can View Your Profile?
   = f.select :view_profile, options_for_select(["Alumni", "Students", "Everyone"])
   .clearfix
+  %label Contact Requirements (Alumni Only)
+  %p
+    %em Do you want to limit the types of students who can contact you? If so, set contact requirements based on experience, GPA, major etc.  We know your time is valuable.
+  = f.simple_fields_for :contact_requirement do |cr|
+    = cr.input :gpa_requirement, label: "GPA Requirements"
+    = cr.input :major_requirement, label: "Major Requirements"
+    = cr.input :years_working_experience, label: "Years Working Experience"
+    = cr.input :fields_of_interest, label: "Fields of Interest"
   %label Experience
   = f.fields_for :experiences do |builder|
     = render 'experience_fields', f: builder
@@ -32,6 +40,6 @@
   .clearfix
   .sepe
   .btn-link
-    %button.btn.btn8 Update Profile
+    %button.btn.btn-success Update Profile
     - if params[:action] == 'new'
       %a{href: "user_skip_profile_path"} Skip
