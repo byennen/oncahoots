@@ -18,20 +18,20 @@
         ~ form_for @user do |f|
           %p.span11
             Hi! My name is
-            = f.text_field :first_name
-            = f.text_field :last_name
+            = f.text_field :first_name, placeholder: "First Name"
+            = f.text_field :last_name, placeholder: "Last Name"
             - if @user.alumni?
               I was a/an
             - else
               I am a/an 
-            = f.text_field :major
+            = f.text_field :major, placeholder: "Major"
             and 
-            = f.text_field :double_major
+            = f.text_field :double_major, placeholder: "Double Major"
             major at 
-            = f.select :university_id, options_from_collection_for_select(University.all, :id, :name, @user.university_id)
+            = f.select :university_id, options_from_collection_for_select(University.all, :id, :name, @user.university_id), prompt: "University"
             =". I graduated in" if @user.alumni?
             =". I will graduate in" unless @user.alumni?
-            = f.select :graduation_year, options_for_select((Date.today.year + 7).downto(1940).to_a, @user.graduation_year)
+            = f.select :graduation_year, options_for_select((Date.today.year + 7).downto(1940).to_a, @user.graduation_year), placeholder: "Grad Year"
             =". I am from"
             = f.select :location_id, options_from_collection_for_select(Location.all, :id, :name, @user.location_id)
             - if @user.alumni?
@@ -47,16 +47,19 @@
         %i.icon-white.icon-minus{style: "float:right; margin-top: 10px; margin-right: 10px"}
       #education.slide-content.hide
         ~ form_tag do
-          .span11= select_tag :completed, options_for_select(["Completed", "In Studying"])
+          .span11= select_tag :completed, options_for_select(["Completed Additional School", "Still in Additional School"]), style: "width: 220px;"
           %p.span11
             I studied
-            = text_field_tag :major, ""
+            = text_field_tag :major, "", placeholder: "Study"
             at
-            = text_field_tag :university, ""
+            = text_field_tag :university, "", placeholder: "University"
             = ". I graduated with a"
-            = text_field_tag :degree_type
+            = text_field_tag :degree_type, "", placeholder: "Degree Type"
             in
             = select_tag :graduation_year, options_for_select((Date.today.year + 7).downto(1940).to_a, @user.graduation_year)
+            =". "
+            I attended
+            = text_field_tag :high_school, "", placeholder: "High School Name"
           .span11.fright
             %a.btn.btn-small.btn-success.fright{href: "javascript:;"} Add
       %a.span11.slide-tab.toggle{href: "javascript:;", :"data-toggle" => ".slide-content", :"data-target" => "#skill"}
@@ -67,11 +70,11 @@
         ~ form_for [@user, @profile] do |f|
           %p.span11
             I am skilled at
-            = f.text_field :skill1
+            = f.text_field :skill1, placeholder: "skill 1"
             =", "
-            = f.text_field :skill2
+            = f.text_field :skill2, placeholder: "skill 2"
             and
-            = f.text_field :skill3
+            = f.text_field :skill3, placeholder: "last skill"
           .span11.fright
             = submit_tag "Save", class: "btn btn-small btn-success fright" 
       %a.span11.slide-tab.toggle{href: "javascript:;", :"data-toggle" => ".slide-content", :"data-target" => "#experience"}
@@ -84,13 +87,13 @@
           = f.fields_for :experiences do |ef|
             %p.span11
               I worked as a/an
-              = ef.text_field :position_name
+              = ef.text_field :position_name, placeholder: "Position Name"
               at
-              = ef.text_field :company_name
+              = ef.text_field :company_name, placeholder: "Company Name"
               from
-              = ef.text_field :date_started, class: "datepicker"
+              = ef.text_field :date_started, class: "datepicker", placeholder: "Date Started"
               to
-              = ef.text_field :date_ended, class: "datepicker"
+              = ef.text_field :date_ended, class: "datepicker", placeholder: "Date Ended"
               = ef.link_to_remove "<i class='icon-remove'></i>".html_safe
           = f.link_to_add "Add", :experiences, class: "btn btn-primary btn-mini fleft", style: "margin-right: 100px"
           .span11.fright
@@ -104,7 +107,7 @@
         %p.span11
           Here is a portfolio of my work:
           %br
-
+        - @profile.portfolio_items.build if @profile.portfolio_items.blank?
         ~ nested_form_for [@user, @profile] do |f|
           = f.fields_for :portfolio_items do |pf|
             .span11
