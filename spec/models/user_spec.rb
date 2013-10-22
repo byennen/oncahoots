@@ -112,7 +112,7 @@ describe User do
 
     let!(:university) { FactoryGirl.create(:university) }
     let(:user) { FactoryGirl.create(:user, university_id: university.id) }
-    
+
     context 'with same university' do
 
       let(:user2) { FactoryGirl.create(:user, university_id: university.id) }
@@ -153,7 +153,7 @@ describe User do
 
    end
 
-    
+
   end
 
   describe '#search' do
@@ -162,9 +162,9 @@ describe User do
 
     context 'without filters' do
 
-      it "should return one user do" do
-        expect(User.search(user.email)).to eq([user])
-      end
+      #it "should return one user do" do
+      #  expect(User.search(user.email)).to eq([user])
+      #end
 
     end
 

@@ -1,20 +1,23 @@
 CahootsConnect::Application.routes.draw   do
-
   resources :cities
   resources :universities, only: [:index, :show] do
     resources :events
-        
+    resources :university_events, :path => 'calendar', :controller => :university_events
     resources :updates, only: [:new, :create, :update, :destroy] do
       resources :comments
     end
+
     resources :clubs, only: [:show, :new, :create, :edit, :update, :index] do
+      resources :club_events, :path => 'events', :controller => :club_events
       post 'transfer_ownership', on: :member
       resources :memberships do
         post 'make_admin', on: :collection
         post 'remove_admin', on: :member
       end
       get :search, on: :collection
-      resources :invitations
+      resources :invitations do
+        get :search, on: :collection
+      end
       resources :club_photos
       resources :club_events
       resources :statuses
@@ -53,7 +56,9 @@ CahootsConnect::Application.routes.draw   do
 
   resources :users do
     resources :profiles
-    resource :profile
+    resource :profile do
+      post :contact_requirements, on: :member
+    end
     resources :contacts do
       collection do
         get :search

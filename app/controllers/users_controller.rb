@@ -27,4 +27,15 @@ class UsersController < ApplicationController
     @bg_image = ""
   end
 
+  def update
+    @user = current_user
+    if @user.update_attributes(params[:user])
+      redirect_to edit_user_profile_path(current_user, current_user.profile)
+    else
+      @profile = current_user.profile
+      @contact_requirements = @profile.contact_requirement.present? ? @profile.contact_requirement : @profile.build_contact_requirement
+      @bg_image = ""
+      render controller: :profile, action: :edit
+    end
+  end
 end

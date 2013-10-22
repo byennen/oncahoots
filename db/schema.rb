@@ -11,25 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131021143834) do
+
+ActiveRecord::Schema.define(:version => 20131022092519) do
+
 
   create_table "cities", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-  end
-
-  create_table "club_events", :force => true do |t|
-    t.integer  "club_id"
-    t.string   "title"
-    t.string   "time"
-    t.string   "date"
-    t.string   "location"
-    t.string   "description"
-    t.string   "category"
-    t.string   "image"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
   end
 
   create_table "club_photos", :force => true do |t|
@@ -64,10 +53,36 @@ ActiveRecord::Schema.define(:version => 20131021143834) do
     t.datetime "updated_at",       :null => false
   end
 
+  create_table "contact_requirements", :force => true do |t|
+    t.integer  "profile_id"
+    t.string   "gpa_requirement"
+    t.string   "major_requirement"
+    t.string   "years_working_experience"
+    t.string   "fields_of_interest"
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
+
   create_table "conversations", :force => true do |t|
     t.string   "subject",    :default => ""
     t.datetime "created_at",                 :null => false
     t.datetime "updated_at",                 :null => false
+  end
+
+  create_table "events", :force => true do |t|
+    t.integer  "club_id"
+    t.string   "title"
+    t.string   "time"
+    t.string   "date"
+    t.string   "location"
+    t.string   "description"
+    t.string   "category"
+    t.string   "image"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.boolean  "free_food"
+    t.integer  "eventable_id"
+    t.string   "eventable_type"
   end
 
   create_table "experiences", :force => true do |t|
@@ -160,6 +175,9 @@ ActiveRecord::Schema.define(:version => 20131021143834) do
     t.string   "image"
     t.string   "view_profile"
     t.string   "hometown"
+    t.string   "skill1"
+    t.string   "skill2"
+    t.string   "skill3"
   end
 
   create_table "receipts", :force => true do |t|

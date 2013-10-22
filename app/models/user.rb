@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
 
   attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me,
                   :university_id, :location_id, :graduation_year, :major, :double_major, :slug,
-                  :city, :state, :alumni, :professional_field_id, :role_ids
+                  :city, :state, :alumni, :professional_field_id, :role_ids, :university_id, :graduation_year
 
   validates_presence_of :university_id, :graduation_year, :major, :city, :state
 
@@ -35,9 +35,9 @@ class User < ActiveRecord::Base
   scope :by_graduation_year, ->(grad_year) { where(graduation_year: grad_year) }
   scope :by_professional_field, ->(field) { where(professional_field_id: field) }
   scope :by_major, ->(major) { where("major like ?", "%#{major}%") }
-  scope :by_name, -> (query) { where('((users.first_name || ' ' || users.last_name) ILIKE ?) OR (users.first_name ILIKE ?) OR (users.last_name ILIKE ?)', "%#{query}%", "%#{query}%", "%#{query}%") }
-  scope :by_email, -> (query) { where("email ILIKE ?", "%{query}%") }
-  scope :by_name_and_email, ->(query) { by_name(query).by_email(query) } 
+  #scope :by_name, -> (query) { where('((users.first_name || ' ' || users.last_name) ILIKE ?) OR (users.first_name ILIKE ?) OR (users.last_name ILIKE ?)', "%#{query}%", "%#{query}%", "%#{query}%") }
+  #scope :by_email, -> (query) { where("email ILIKE ?", "%{query}%") }
+  scope :by_name_and_email, ->(query) { by_name(query).by_email(query) }
 
   extend FriendlyId
   friendly_id :username, :use => :slugged
@@ -49,7 +49,7 @@ class User < ActiveRecord::Base
     cscope = scoped({})
     # Add filte scopes.
     filters.each do |key, value|
-      cscope.merge(User.send(key, value))
+      cscope.merge(User.send(key, value)) if !value.nil?
     end
     cscope.merge(User.send(:by_name_and_email, query)) unless query.nil?
     return cscope.all
@@ -65,6 +65,10 @@ class User < ActiveRecord::Base
 
   def display_location
     location ? location.name : city
+  end
+
+  def display_major
+    "#{major}#{' and ' unless double_major.blank?}#{double_major}"
   end
 
   def username
@@ -87,10 +91,14 @@ class User < ActiveRecord::Base
     Profile.create(user_id: self.id)
   end
 
+  def join_club?(club)
+    clubs.include?(club)
+  end
+
   class << self 
     def search_all(params)
       search_name(params[:name]).search_location(params[:loc]).search_type(params[:type])
-      .search_major(params[:major]).search_graduaration_year(params[:year])
+      .search_major(params[:major]).search_graduation_year(params[:year])
     end
     def search_name(name)
       return where("1=1") if name.blank?
@@ -114,7 +122,7 @@ class User < ActiveRecord::Base
       where(major: major)
     end
 
-    def search_graduaration_year(year)
+    def search_graduation_year(year)
       return where("1=1") if year.blank?
       where(graduation_year: year)
     end
