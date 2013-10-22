@@ -2,11 +2,10 @@ class Club < ActiveRecord::Base
   belongs_to :university
 
   has_many :memberships
-
   has_many :users
   has_many :users, :through => :memberships, :uniq => true
   has_many :club_photos
-  has_many :club_events
+  has_many :events, as: :eventable
   has_many :statuses # this is lowdowns here
   has_many :records
   has_many :updates, as: :updateable
@@ -47,12 +46,12 @@ class Club < ActiveRecord::Base
       search_name(params[:name]).search_category(params[:category])
     end
     def search_name(name)
-      return where(true) if name.blank?
+      return where("1=1") if name.blank?
       where("lower(name) like ?", "%#{name.downcase}%")
     end
 
     def search_category(category)
-      return where(true) if(category.blank? || category == "All categories")
+      return where("1=1") if(category.blank? || category == "All categories")
       where("category=?", category)
     end
   end

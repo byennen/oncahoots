@@ -1,60 +1,99 @@
-#tab2.tab_content
-  %br
-  - if @requests.blank?
-    %br
-    .span11.top2
-      %center
-        %h4 No request
-  - else
-    .left-side
-      %ul.msg.msh
-        - @requests.each do |relationship|
-          %li{id: "request-#{relationship.id}"}
-            = link_to image_tag("#{relationship.relation.profile.image.thumb}"), read_relationship_path(relationship), remote: true
-            %h4= relationship.relation.full_name
-            %br
-            %p= relationship.relation.graduation_year
-    .right-side
-      #current_request.comment-box.ne
-        = render partial: "relationships/request", locals: {request: @requests.first} unless @requests.blank?
-.clearfix
-#tab3.tab_content
-  %br
-  .left-side
-    %ul.msg.msh
-      %li
-        %a{href: "javascript:;"}
-          = image_tag "avatar-medium.png"
-        %h4 Josh Compton
-        %br
-        %p 2013
-      %li
-        %a{href: "javascript:;"}
-          = image_tag "avatar-medium.png"
-        %h4 Josh Compton
-        %br
-        %p 2014
-  .right-side
-    .comment-box.ne
-      %a{href: "javascript:;", style: "margin-right: 25px;"}
-        = image_tag "avatar-big.png"
-      %p.comp
-        Josh Compton update his experience.
-      %br
-      %button.btn.btn-success.btn7{style: "float: left;"} View Profile
-      = text_area_tag :comment, "", placeholder: "Hi Mathew! Looks like we have similar interests", class: "tarea chang7"
+.row-fluid
+  .container
+    .span10
+      %ul.tabs5
+        %li
+          %a{href: "#tab1"}Contacts
+        %li
+          %a{href: "#tab2"}
+            Requests
+            - if @requests.size > 0
+              %i= @requests.size
+        %li
+          %a{href: "#tab3"}
+            Notifications
+        %li
+          %a{href: "#tab4"}
+            Messages
+            - if @unread_messages.size > 0
+              %i#unread_messages=  @unread_messages.size
       .clearfix
-      %button.btn.btn-danger.fright{style: "margin-right: 50px"} Delete
-.clearfix
-#tab4.tab_content
-  %br
-  .left-side.msh
-    %a{href: "#message-form", data: {toggle: "modal"}, class: "btn btn-success"} New Message
-    %ul.msg
-      - @messages.each do |message|
-        %li{id: "message-#{message.id}"}
-          = link_to image_tag(message.originator.profile.image.small), read_message_path(message), remote: true
-          %h4= message.originator.full_name
+      .tab_container
+        #tab1.tab_content
+          - if @contacts.blank?
+            %br
+            %br
+            .span11.top2
+              %center
+                %h4 No contact
+          - else
+            %button.btn.btn-success.btn2.mod1
+              %i= image_tag "search-icon.png"
+            = text_field_tag :term, "", class: "field mod2"
+            .clearfix
+            .list_carousel
+              %ul#foo2.sss
+                = render partial: 'contacts/contact', collection: @contacts
+              %a#prev2.prev{href: "#"}
+              %a#next2.next{href: "#"}
+            %center
+              = link_to "See All &nbsp;&nbsp;&nbsp;&nbsp; >".html_safe, user_contacts_path(@user), class: "btn btn-success btn3"
+        #tab2.tab_content
           %br
-          %p= truncate(message.messages.first.body)
-  #current_conversation.right-side
+          - if @requests.blank?
+            %br
+            .span11.top2
+              %center
+                %h4 No request
+          - else
+            .left-side
+              %ul.msg.msh
+                - @requests.each do |relationship|
+                  %li{id: "request-#{relationship.id}"}
+                    = link_to image_tag("#{relationship.relation.profile.image.thumb}", class: "circular"), read_relationship_path(relationship), remote: true
+                    %h4= relationship.relation.full_name
+                    %br
+                    %p= relationship.relation.graduation_year
+            .right-side
+              #current_request.comment-box.ne
+                = render partial: "relationships/request", locals: {request: @requests.first} unless @requests.blank?
+        .clearfix
+        #tab3.tab_content
+          %br
+          .left-side
+            %ul.msg.msh
+              %li
+                %a{href: "javascript:;"}
+                  = image_tag "avatar-medium.png"
+                %h4 Josh Compton
+                %br
+                %p 2013
+              %li
+                %a{href: "javascript:;"}
+                  = image_tag "avatar-medium.png"
+                %h4 Josh Compton
+                %br
+                %p 2014
+          .right-side
+            .comment-box.ne
+              %a{href: "javascript:;", style: "margin-right: 25px;"}
+                = image_tag "avatar-big.png"
+              %p.comp
+                Josh Compton update his experience.
+              %br
+              %button.btn.btn-success.btn7{style: "float: left;"} View Profile
+              .clearfix
+              %button.btn.btn-danger.fright{style: "margin-right: 50px"} Delete
+        .clearfix
+        #tab4.tab_content
+          %br
+          .left-side.msh
+            %a{href: "#message-form", data: {toggle: "modal"}, class: "btn btn-success"} New Message
+            %ul.msg
+              - @messages.each do |message|
+                %li{id: "message-#{message.id}"}
+                  = link_to image_tag(message.originator.profile.image.small, class: "circular"), read_message_path(message), remote: true
+                  %h4= message.originator.full_name
+                  %br
+                  %p= truncate(message.messages.first.body)
+          #current_conversation.right-side

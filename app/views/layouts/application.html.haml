@@ -26,10 +26,10 @@
               %div{class: @bg_image}
                 - unless controller_name=="search"
                   .offset9
-                    %button.btn.btn2.btn-success{name: 'btn', style: "margin-right: 10px;"}
+                    %a#search-btn.btn.btn2.btn-success{style: "margin-right: 10px;", href: "javascript:;"}
                       %i
                         = image_tag('search-icon.png')
-                    %input.field{name: 'text', type: 'text'}
+                    %input#search_field.field{name: 'search_field', type: 'text'}
                     = link_to "Advanced", search_path, class: 'advance'
                 = yield(:header)
       .seps

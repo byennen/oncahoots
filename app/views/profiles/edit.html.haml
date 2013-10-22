@@ -1,11 +1,11 @@
 = content_for :header do
-  .span3
-    = link_to "javascript:void(0);", class: 'mono mn' do
-      = image_tag @profile.image.xxlarge
+  #avatar.span3
+    = link_to "<i class='icon-plus icon-white'></i>".html_safe, "javascript:;", class: "btn btn-success btn-mini", style: "margin-top: 40px; margin-left: 160px; position: absolute;"
+    = link_to "javascript:void(0);" do
+      = image_tag @profile.image.xxlarge, id: "profile-avatar", class: "circular"
   .span8
-    .carus
-      .pro-user
-        %p Hi! My name is #{@profile.user.full_name} and I'm a user interface designer from chicago, IL. Let's connect!
+    .pro-user
+      %p Hi! My name is #{@profile.user.full_name} and I'm a user interface designer from chicago, IL. Let's connect!
 
 .row-fluid
   .container
@@ -61,3 +61,16 @@
               .buttons
                 = f.submit "save", class: "btn btn-success btn-small"
                 %a.btn.btn-small.btn-danger{style: "display: inline-block;float: none; margin-left: 10px; margin-top: 0px;"} cancel
+#avatar_form{style: "opacity: 0"}
+  = form_for @profile, url: upload_avatar_path, method: :post do |f|
+    = f.file_field :image, id: "avatar_field"
+:javascript
+  $(document).ready(function(){
+    $("#avatar").on("click", "a", function(){
+      $("#avatar_form input").trigger("click");
+    });
+    $("#avatar_form").on("change", "input[type=file]",function(){
+      $("a#show_waiting").click();
+      $(this).closest("form").submit();
+    });
+  });

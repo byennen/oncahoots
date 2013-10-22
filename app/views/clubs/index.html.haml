@@ -3,7 +3,7 @@
     .page-title.bottom2
       What kind of club are you looking for?
     - Club::CLUB_TYPES.each do |cate|
-      = link_to cate, by_category_university_clubs_path(@university, category: cate), class: "btn btn-inverse toggle-btn span2 top", remote: true
+      = link_to cate, search_university_clubs_path(@university, club: {category: cate}), class: "btn btn-inverse toggle-btn span2 top", remote: true
   #club-list.span10
 
 
@@ -13,4 +13,20 @@
     $(".toggle-btn").addClass("btn-inverse");
     $(this).addClass("btn-success");
     $(this).removeClass("btn-inverse");
+  });
+
+  $(document).ready(function(){
+    $("#search_field").keydown(function (e){
+      if(e.keyCode == 13){
+        $(".toggle-btn").removeClass("btn-success");
+        $(".toggle-btn").addClass("btn-inverse");
+        $.get("#{search_university_clubs_path(@university)}", {club: {name: $(this).val()}});
+      }
+    });
+
+    $("#search-btn").click(function(){
+      $(".toggle-btn").removeClass("btn-success");
+      $(".toggle-btn").addClass("btn-inverse");
+      $.get("#{search_university_clubs_path(@university)}", {club: {name: $("#search_field").val()}});
+    });
   });
