@@ -87,7 +87,11 @@ class User < ActiveRecord::Base
     Profile.create(user_id: self.id)
   end
 
-  class << self
+  def join_club?(club)
+    clubs.include?(club)
+  end
+
+  class << self 
     def search_all(params)
       search_name(params[:name]).search_location(params[:loc]).search_type(params[:type])
       .search_major(params[:major]).search_graduaration_year(params[:year])
