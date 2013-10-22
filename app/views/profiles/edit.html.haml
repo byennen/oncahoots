@@ -15,45 +15,65 @@
         Key Info
         %i.icon-white.icon-minus{style: "float:right; margin-top: 10px; margin-right: 10px"}
       #title.slide-content.hide
-        .pro-user.left 
-          ~ form_for @user do |f|
-            %p.span11
-              Hi! My name is
-              = f.text_field :first_name
-              = f.text_field :last_name
-              - if @user.alumni?
-                I was a/an
-              - else
-                I am a/an 
-              = f.text_field :major
-              and 
-              = f.text_field :double_major
-              major at 
-              = f.select :university_id, options_from_collection_for_select(University.all, :id, :name, @user.university_id)
-              =". I graduated in" if @user.alumni?
-              =". I will graduate in" unless @user.alumni?
-              = f.select :graduation_year, options_for_select((Date.today.year + 7).downto(1940).to_a, @user.graduation_year)
-              =". I am from"
-              = f.select :location_id, options_from_collection_for_select(Location.all, :id, :name, @user.location_id)
-              - if @user.alumni?
-                =". I work in"
-                = f.select :professional_field_id, options_from_collection_for_select(ProfessionalField.all, :id, :name, @user.professional_field_id)
-            .span11.fright{style: "margin-right: 10px;"}
-              %a.cancel.btn.btn-small.btn-danger.fright cancel
-              = f.submit "Save", class: "button btn btn-small btn-success fright"
+        ~ form_for @user do |f|
+          %p.span11
+            Hi! My name is
+            = f.text_field :first_name
+            = f.text_field :last_name
+            - if @user.alumni?
+              I was a/an
+            - else
+              I am a/an 
+            = f.text_field :major
+            and 
+            = f.text_field :double_major
+            major at 
+            = f.select :university_id, options_from_collection_for_select(University.all, :id, :name, @user.university_id)
+            =". I graduated in" if @user.alumni?
+            =". I will graduate in" unless @user.alumni?
+            = f.select :graduation_year, options_for_select((Date.today.year + 7).downto(1940).to_a, @user.graduation_year)
+            =". I am from"
+            = f.select :location_id, options_from_collection_for_select(Location.all, :id, :name, @user.location_id)
+            - if @user.alumni?
+              =". I work in"
+              = f.select :professional_field_id, options_from_collection_for_select(ProfessionalField.all, :id, :name, @user.professional_field_id)
+          .span11.fright{style: "margin-right: 10px;"}
+            %a.cancel.btn.btn-small.btn-danger.fright cancel
+            = f.submit "Save", class: "button btn btn-small btn-success fright"
 
       %a.span11.slide-tab.toggle{href: "javascript:;", :"data-toggle" => ".slide-content", :"data-target" => "#education"}
         = image_tag 'edit.png', style: "width: 40px;"
         Education
         %i.icon-white.icon-minus{style: "float:right; margin-top: 10px; margin-right: 10px"}
       #education.slide-content.hide
-
+        ~ form_tag do
+          .span11= select_tag :completed, options_for_select(["Completed", "In Studying"])
+          %p.span11
+            I studied
+            = text_field_tag :major, ""
+            at
+            = text_field_tag :university, ""
+            = ". I graduated with a"
+            = text_field_tag :degree_type
+            in
+            = select_tag :graduation_year, options_for_select((Date.today.year + 7).downto(1940).to_a, @user.graduation_year)
+          .span11.fright
+            %a.btn.btn-small.btn-success.fright{href: "javascript:;"} Add
       %a.span11.slide-tab.toggle{href: "javascript:;", :"data-toggle" => ".slide-content", :"data-target" => "#skill"}
         = image_tag 'edit.png', style: "width: 40px;"
         Skills
         %i.icon-white.icon-minus{style: "float:right; margin-top: 10px; margin-right: 10px"}
       #skill.slide-content.hide
-
+        ~ form_for [@user, @profile] do |f|
+          %p.span11
+            I am skilled at
+            = f.text_field :skill1
+            =", "
+            = f.text_field :skill2
+            and
+            = f.text_field :skill3
+          .span11.fright
+            =submit_tag "Save", class: "btn btn-small btn-success fright" 
       %a.span11.slide-tab.toggle{href: "javascript:;", :"data-toggle" => ".slide-content", :"data-target" => "#experience"}
         = image_tag 'edit.png', style: "width: 40px;"
         Experience
