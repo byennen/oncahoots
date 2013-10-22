@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
   after_create :create_user_profile
 
   extend FriendlyId
-  friendly_id :username, :use => :slugged
+  friendly_id :username_for_friendlyid, :use => :slugged
 
   acts_as_messageable
 
@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def username
+  def username_for_friendlyid
     "#{first_name}-#{last_name}"
   end
 
