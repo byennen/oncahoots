@@ -101,6 +101,19 @@
         Portfolio
         %i.icon-white.icon-minus{style: "float:right; margin-top: 10px; margin-right: 10px"}
       #portfolio.slide-content.hide
+        %p.span11
+          Here is a portfolio of my work:
+          %br
+
+        ~ nested_form_for [@user, @profile] do |f|
+          = f.fields_for :portfolio_items do |pf|
+            .span11
+              .span2= link_to pf.object.file.file.filename, pf.object.file.url if pf.object.file.file
+              .span4= pf.file_field :file, style: "width: 100%"
+              .span1= pf.link_to_remove "<i class='icon-remove'></i>".html_safe
+          = f.link_to_add "Add", :portfolio_items, class: "btn btn-primary btn-mini fleft", style: "margin-right: 100px"
+          .span11.fright
+            = submit_tag "Save", class: "btn btn-small btn-success fright"
       - if current_user.alumni?
         %a.span11.slide-tab.toggle{href: "javascript:;", :"data-toggle" => ".slide-content", :"data-target" => "#contact_requirements"}
           = image_tag 'edit.png', style: "width: 40px;"
