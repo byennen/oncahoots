@@ -22,6 +22,7 @@ $(document).on 'ready page:load', ->
     autocomplete_url: "/users/0/contacts/search",
   });
 
+
 $ ->
 
   #recipients = $('#message_recipients').data('autocomplete-source')
