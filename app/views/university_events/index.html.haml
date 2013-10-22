@@ -52,5 +52,4 @@
                 = f.submit "Edit Event", class: "btn btn-primary"
 
 .pull-right
-  - if current_user.super_admin? || current_user.university_admin?
-    %a{href: "#add_event", class: "btn btn-primary", data: {toggle: "modal"}} Add Event
+  %a{href: "#add_event", class: "btn btn-primary", data: {toggle: "modal"}} Add Event
