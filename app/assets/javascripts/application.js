@@ -14,10 +14,13 @@
 //= require jquery.ui.all
 //= require jquery_ujs
 //= require bootstrap
+//= require bootstrap-datepicker
 //= require jquery.tagsinput
+//= require jquery_nested_form
 //= require_tree .
 //
 $(function() {
+  $('.datepicker').datepicker({ format: 'yyyy-mm-dd' });
 
   $('#user_alumni').click(function () {
     alert("alumni clicked");
