@@ -3,6 +3,7 @@ class University < ActiveRecord::Base
   has_many :updates, as: :updateable
 
   has_many :clubs, dependent: :destroy
+  has_many :metropolitant_clubs, dependent: :destroy
   has_many :events, as: :eventable
   has_many :metropolitant_clubs, dependent: :destroy
 
