@@ -5,7 +5,9 @@
         = link_to university_club_path(@university, club) do
           = image_tag club.image.xlarge
           %span{style: "margin-left: 20px"}= club.name
-    
+        .hovers{style: "margin-left: -5px;"}
+          %p= club.description
+          = link_to "view", university_club_path(@university, club)
   - if @clubs.blank?
     .top2
       No club found on this category
