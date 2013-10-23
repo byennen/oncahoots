@@ -4,7 +4,7 @@
       = image_tag @university.image.xxlarge, class: "circular"
   .span7
     .carus
-      %ul#flexiselDemo1.flexisel
+      %ul#events.flexisel
         - 3.times do |i|
           %li
             = link_to "javascript:void(0);" do
@@ -78,13 +78,18 @@
           %a.next#next2{href: "#"} &gt;
           %center
             %buttuon.btn.btn-success.btn3{name: 'btn'} See all
-        #tab3.tab_content
-          %p.left
-            Free Food Events:
-            %ul
-              - @free_food_events.each do |event|
-                %li{style: "margin-left: 0"}
-                  = link_to event.title, university_university_event_path(@university, event)
+        #tab3.tab_content.span8{style: "margin-left: 60px;"}
+          %h3 Free Food Events:
+          %ul#free-food.flexisel
+            - @free_food_events.each do |event|
+              - 10.times do
+                %li
+                  = link_to university_university_event_path(@university, event) do
+                    = image_tag event.image.medium
+                  %br
+                  %h4= event.title
+                  %p= event.date
+                  %p= event.time
 
         #tab4.tab_content
 .clearfix
