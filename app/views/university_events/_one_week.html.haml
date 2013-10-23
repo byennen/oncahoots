@@ -1,5 +1,6 @@
 - (0..6).each do |i|
-  - day = (@week_start + i.days).strftime("%d")
-  %span{class: "#{'active' if Date.today.day==day.to_i}"}
+  - day = (@week_start + i.days)
+  - day_fm = day.strftime("%d")
+  %span{class: "#{'active' if Date.today.day==day_fm.to_i}"}
     %i.triangle-down
-    = link_to day, "javascript:;", class: "btn #{'btn-success' if Date.today.day==day.to_i}", id: "day-#{i}"
+    = link_to day_fm, load_events_path(day.strftime('%y%m%d')), class: "btn #{'btn-success' if Date.today.day==day_fm.to_i}", remote: true

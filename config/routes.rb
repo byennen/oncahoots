@@ -33,6 +33,7 @@ CahootsConnect::Application.routes.draw   do
 
   match "/next_week/:week_start", to: "university_events#next_week"
   match "/prev_week/:week_start", to: "university_events#prev_week"
+  match "/load_events/:day", to: "university_events#load_events", as: "load_events"
 
   resources :updates do
     resources :comments

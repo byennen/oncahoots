@@ -1,6 +1,6 @@
 class UniversityEventsController < ApplicationController
 
-  before_filter :ensure_user_university, except: [:next_week, :prev_week]
+  before_filter :ensure_user_university, except: [:load_events, :next_week, :prev_week]
 
   def create    
     @event = @university.events.build(params[:event])
@@ -24,6 +24,12 @@ class UniversityEventsController < ApplicationController
   def index
     @event = Event.new
     init
+  end
+
+  def load_events
+    day=Date.strptime(params[:day],"%y%m%d")
+    @events = events_of_day(day)
+    respond_to :js
   end
 
   def next_week
@@ -63,9 +69,14 @@ class UniversityEventsController < ApplicationController
       end
     end
 
+    def events_of_day(day)
+      current_user.university.events.where(on_date: day)
+    end
+
     def init
       @bg_image=""
       @week_start = DateTime.now.beginning_of_week - 1.days
       @university_events = @university.events.all
+      @events = events_of_day(Date.today)
     end
 end
