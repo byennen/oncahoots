@@ -1,16 +1,58 @@
-/ #TODO STYLE
+= content_for :header do
+  .span12.header-box{style: "margin-left: -30px; width: 103%;"}
+    %center.bottom2
+      %strong Calendar
+    .fright.top2.bottom2
+      = link_to "Add Event", "#add_event", class: "btn btn-success", data: {toggle: "modal"}, id: "add-event"
 
-%h5 List of University Events
+  .clearfix
+  .span10.top2
+    %center.calendar-bar
+      = link_to "<i class='icon-white icon-chevron-left'></i>".html_safe, "/prev_week/#{@week_start.strftime('%y%m%d')}", class: "btn btn-success btn-large prev-week", remote: true
+      %span#week-title.btn.btn-success.btn-large
+        = week_title(@week_start)
+      = link_to "<i class='icon-white icon-chevron-right'></i>".html_safe, "/next_week/#{@week_start.strftime('%y%m%d')}", class: "btn btn-success btn-large next-week", remote: true
+  .span10.top2
+    %center
+      %span.switch-view.top20
+        %strong= link_to "MONTHLY VIEW", "javascript:;"
+  .span12.top2{style: "margin-left: -30px; width: 103%;"}
+    .week-bar
+      %span SUN
+      %span MON
+      %span TUE
+      %span WED
+      %span THU
+      %span FRI
+      %span SAT
+  .span12.top2.bottm2{style: "margin-left: -30px; width: 103%;"}
+    .day-list
+      = render partial: "one_week"
+  .clearfix
+  #event-list
+    .span12.top2{style: "margin-left: -30px; width: 103%;"}
+      .span12.event-item
+        .span12.left2.ev-title= link_to "Event Title", "javascript:;"
+        .span12.ev-description.top= "This Sunday the Davidson College Choir will be sponsoring a concert in ther union."
+    .span12.top2{style: "margin-left: -30px; width: 103%;"}
+      .span12.event-item
+        .span12.left2.ev-title= link_to "Event Title", "javascript:;"
+        .span12.ev-description.top= "This Sunday the Davidson College Choir will be sponsoring a concert in ther union."
+    .span12.top2{style: "margin-left: -30px; width: 103%;"}
+      .span12.event-item
+        .span12.left2.ev-title= link_to "Event Title", "javascript:;"
+        .span12.ev-description.top= "This Sunday the Davidson College Choir will be sponsoring a concert in ther union."
 
 #add_event.modal.hide
-  = simple_form_for(university_university_events_path(@university, Event.new), html: {class: 'form-horizontal'}) do |f|
+  = simple_form_for @event, url: university_university_events_path(@university), html: {class: 'form-horizontal'} do |f|
     .modal-header
       %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
       %h3 Add University Event
     .modal-body
+      #event-errors
       = f.input :title
-      = f.input :date, input_html: {class: "datepicker"}
-      = f.input :time, as: :time, ampm: true, minute_step: 5,default: {hour: 0, minute: 0},input_html: {style: "width: 80px"}
+      = f.input :on_date, as: :string, label: "Date", input_html: {class: "datepicker"}
+      = f.input :at_time, label: "Time", as: :time, ampm: true, minute_step: 5,default: {hour: 0, minute: 0},input_html: {style: "width: 80px"}
       = f.input :location
       = f.input :description, as: :text, input_html: {rows: 5}
       = f.input :category, as: :category
@@ -18,38 +60,19 @@
       = f.input :free_food, :as => :boolean, :label => 'Free Food Event?'
     .clearfix
     .modal-footer
-      = f.submit "Add Event", class: "btn btn-primary"
+      = f.submit "Add Event", class: "btn btn-success"
 
-%ul
-  - @university_events.each do |event|
-    %li
-      %strong
-        = link_to event.title, university_university_event_path(@university, event)
-      %em
-        =event.date.to_date.strftime("%A, %B %e %Y at %g:%m %p")
-        (
-        = link_to 'delete', university_university_event_path(@university, event), :confirm => "Are you sure?", :method=>:delete if current_user.super_admin? || current_user.university_admin?
-        )
-        (
-        - if current_user.super_admin? || current_user.university_admin?
-          %a{href: "#edit_event_#{event.id}", data: {toggle: "modal"}} edit event
-        )
-        - if current_user.super_admin? || current_user.university_admin?
-          %div{:id => "edit_event_#{event.id}", :class => "modal hide"}
-            = simple_form_for event, url: university_university_event_path(@university, event.id), method: :put, class: 'form-horizontal' do |f|
-              .modal-header
-                %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
-                %h3 Edit University Event
-              .modal-body
-                = f.input :title
-                = f.input :date
-                = f.input :time
-                = f.input :location
-                = f.input :description
-                = f.input :category, as: :category
-                = f.input :free_food, :as => :boolean, :label => 'Free Food Event?'
-              .modal-footer
-                = f.submit "Edit Event", class: "btn btn-primary"
+:javascript
+  $(document).ready(function(){
+    $(".day-list").on("click", ".btn", function(){
+      $(".day-list span").removeClass("active");
+      $(".day-list a").removeClass("btn-success");
+      $(this).addClass("btn-success");
+      $(this).closest('span').addClass("active");
+    });
 
-.pull-right
-  %a{href: "#add_event", class: "btn btn-primary", data: {toggle: "modal"}} Add Event
+    error = "#{@event.errors.any?}";
+    if(error=="true"){
+      $("#add-event").click();
+    }
+  });

@@ -1,31 +1,14 @@
 class UniversityEventsController < ApplicationController
 
-  before_filter :ensure_user_university
-
-  def index
-    @university_events = @university.events.all
-  end
-
-  def show
-    @university_event = @university.events.find(params[:id])
-  end
+  before_filter :ensure_user_university, except: [:next_week, :prev_week]
 
   def create    
-    @university_event = @university.events.new(params["/universities/#{params[:university_id]}/calendar"])
-    if @university_event.save
-      respond_to do |format|
-        format.html { redirect_to university_university_event_path(@university, @university_event)}
-      end
-    end
-  end
-
-  def update
-    @event = @university.events.find(params[:id])
-    @event.attributes = params[:event]
+    @event = @university.events.build(params[:event])
     if @event.save
-      respond_to do |format|
-        format.html { redirect_to university_university_events_path(@university)}
-      end
+      redirect_to university_university_event_path(@university, @event)
+    else
+      init
+      render :index
     end
   end
 
@@ -34,6 +17,37 @@ class UniversityEventsController < ApplicationController
     if @university_event.destroy
       respond_to do |format|        
         format.html { redirect_to university_university_events_path(@university) }
+      end
+    end
+  end
+
+  def index
+    @event = Event.new
+    init
+  end
+
+  def next_week
+    week_start=Date.strptime(params[:week_start],"%y%m%d")
+    @week_start = week_start + 7.days
+    render :show_week
+  end
+
+  def prev_week
+    week_start=Date.strptime(params[:week_start],"%y%m%d")
+    @week_start = week_start - 7.days
+    render :show_week
+  end
+
+  def show
+    @event = @university.events.find(params[:id])
+  end
+
+  def update
+    @event = @university.events.find(params[:id])
+    @event.attributes = params[:event]
+    if @event.save
+      respond_to do |format|
+        format.html { redirect_to university_university_events_path(@university)}
       end
     end
   end
@@ -49,4 +63,9 @@ class UniversityEventsController < ApplicationController
       end
     end
 
+    def init
+      @bg_image=""
+      @week_start = DateTime.now.beginning_of_week - 1.days
+      @university_events = @university.events.all
+    end
 end
