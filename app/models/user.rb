@@ -64,8 +64,12 @@ class User < ActiveRecord::Base
     end
   end
 
+  def display_city
+    city ? city.name : "Other"
+  end
+
   def display_location
-    location ? location.name : city
+    location ? location.name : city.name
   end
 
   def display_major
