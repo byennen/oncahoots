@@ -2,8 +2,8 @@
   .span10
     .page-title.bottom2
       What kind of club are you looking for?
-    - Club::CLUB_TYPES.each do |cate|
-      = link_to cate, search_university_clubs_path(@university, club: {category: cate}), class: "btn btn-inverse toggle-btn span2 top", remote: true
+    - Club::CATEGORIES.each do |category|
+      = link_to category, search_university_clubs_path(@university, club: {category: category}), class: "btn btn-inverse toggle-btn span2 top", remote: true
   #club-list.span10
 
 

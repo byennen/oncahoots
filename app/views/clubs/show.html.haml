@@ -1,7 +1,7 @@
 = content_for :header do
   .span3
     = link_to "javascript:void(0);", class: 'mono mn' do
-      = image_tag @club.image.xxlarge
+      = image_tag @club.image.xxlarge, class: "img-circle"
   .span5
     .carus{style: "margin-top: 200px"}
       .page-title= @club.name
@@ -48,35 +48,52 @@
     .span10.offset2
       %ul.tabs2
         %li
-          %a{href: "#tab1"}Lowdown
+          %a{href: "#lowdown"}Lowdown
         %li
-          %a{href: "#tab2"}Members
+          %a{href: "#members"}Members
         %li
-          %a.mis{href: "#tab3"}Mission Statement
+          %a.mis{href: "#mission_statment"}Mission Statement
         %li
-          %a{href: "#tab4"}Calendar
+          %a{href: "#calendar"}Calendar
         %li
-          %a{href: "#tab5"}E-Board
+          %a{href: "#eboard"}E-Board
         %li
-          %a{href: "#tab6"}Records
+          %a{href: "#records"}Records
         %li
-          %a{href: "#tab7"}Messages
+          %a{href: "#messages"}Messages
       .clearfix
       .tab_container
-        #tab1.tab_content
+        #lowdown.tab_content
+          .pull-right
+            %a{href: "#add-lowdown", class: 'btn btn-success', data: {toggle: "modal"}, style: "margin-right: 62px; margin-top: 10px;"} Add Lowdown
+            #add-lowdown.modal.hide
+              = simple_form_for([@university, @club, Status.new]) do |f|
+                .modal-header
+                  %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+                  %h3 Add Lowdown
+                .modal-body
+                  = f.input :status, label: false, as: :text, input_html: {cols: 800, rows: 2, class: 'span-8'}
+                .modal-footer
+                  %a{href: "#", class: "btn", data: {dismiss: "modal"}} Close
+                  = f.submit "Save Lowdown", class: "btn btn-success"
           %ul.posts.newp
-            - 3.times do
+            - @club.statuses.reverse.each do |status|
               %li
-                %a.avatr{href: "javascript:;"}
-                %p The Official Davidson Club is happy to announce that it has reached over 3,000 members! To repay all the support from our fans we'd like to give away a 15% coupon code to the book store.
-                %a.com.ncom{href: "javascript:;"} 1 day ago
+                = link_to image_tag(status.user.profile.image_url), user_path(status.user), class: "avatr"
+                %p= status.status
+                .com.ncom
+                  = time_ago_in_words(status.created_at)
+                  ago
+                  %br
+                  - if @club.admins.include?(current_user)
+                    = link_to "Delete", university_club_status_path(@university, @club, status), method: :delete, class: "btn btn-mini btn-danger"
                 .clearfix
-        #tab2.tab_content
-        #tab3.tab_content
-        #tab4.tab_content
-        #tab5.tab_content
-        #tab6.tab_content
-        #tab7.tab_content
+        #members.tab_content
+        #mission_statement.tab_content
+        #calendar.tab_content
+        #eboard.tab_content
+        #records.tab_content
+        #messages.tab_content
 .clearfix
 
 
@@ -85,7 +102,7 @@
     $(".tab_content").hide(); //Hide all content
     $("ul.tabs2 li:first").addClass("active").show(); //Activate first tab
     $(".tab_content:first").show(); //Show first tab content
-    
+
     //On Click Event
     $("ul.tabs2 li").click(function() {
       $("ul.tabs2 li").removeClass("active"); //Remove any "active" class
