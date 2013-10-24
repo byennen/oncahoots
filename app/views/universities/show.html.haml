@@ -71,13 +71,13 @@
               %li{style: item_mar}
                 .users
                   = link_to university_club_path(@university, club) do
-                    = image_tag club.image.xlarge, class: "circular"
+                    = image_tag club.image.xlarge, class: "circular img-circle"
                     %span= club.name
-          
+
           %a.prev#prev2{href: "#"} &lt;
           %a.next#next2{href: "#"} &gt;
           %center
-            %buttuon.btn.btn-success.btn3{name: 'btn'} See all
+            = link_to "See all", university_clubs_path(@university), class: "btn btn-success btn3"
         #tab3.tab_content.span8{style: "margin-left: 60px;"}
           %h3 Free Food Events:
           %ul#free-food.flexisel
