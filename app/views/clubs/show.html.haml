@@ -52,15 +52,15 @@
         %li
           %a{href: "#members"}Members
         %li
-          %a.mis{href: "#mission_statment"}Mission Statement
+          %a.mis{href: "#mission_statement"}Mission Statement
         %li
           %a{href: "#calendar"}Calendar
         %li
           %a{href: "#eboard"}E-Board
         %li
           %a{href: "#records"}Records
-        %li
-          %a{href: "#messages"}Messages
+        /%li
+        /  %a{href: "#messages"}Messages
       .clearfix
       .tab_container
         #lowdown.tab_content
@@ -89,10 +89,118 @@
                     = link_to "Delete", university_club_status_path(@university, @club, status), method: :delete, class: "btn btn-mini btn-danger"
                 .clearfix
         #members.tab_content
+          %ul{style: "margin-top: 20px; margin-left: 5px;"}
+            - @memberships.each do |membership|
+              %li{class: "pull-left"}
+                = link_to image_tag(membership.user.profile.image_url), user_path(membership.user), class: "avatr"
+                %br
+                = link_to membership.user.full_name, user_path(membership.user)
+                - if @club.user_id == current_user.id
+                  - if membership.user.id != current_user.id
+                    = link_to "Delete", university_club_membership_path(@university, @club, membership.id), method: :delete, class: 'btn btn-mini btn-danger', confirm: "Are you sure?"
         #mission_statement.tab_content
+          - if @club.admins.include?(current_user)
+            .pull-right
+              %a{href: "#edit_mission_statement", class: "btn btn-success", data: {toggle: "modal"}, style: "margin-right: 62px; margin-top: 10px;" } Edit
+          %p{style: "margin-left: 5px; margin-top: 20px;"}= @club.mission_statement
+          - if @club.admins.include?(current_user)
+            #edit_mission_statement.modal.hide
+              = simple_form_for([@university, @club]) do |f|
+                .modal-header
+                  %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+                  %h3 Edit Mission Statement
+                .modal-body
+                  =f.input :mission_statement, input_html: {cols: 100, rows: 10, style: "width: 500px; height: 100px;"}
+                .modal-footer
+                  %a{href: "#", class: "btn", data: {dismiss: "modal"}} Close
+                  =f.submit "Save Mission Statement", class: "btn btn-success"
         #calendar.tab_content
+          - if @club.admins.include?(current_user)
+            .pull-right
+              %a{href: "#add_event", class: "btn btn-success", data: {toggle: "modal"}, style: "margin-right: 62px; margin-top: 10px;"} Add Event
+          - @club.events.each do |ce|
+            %strong= "#{ce.date} #{ce.time}"
+            = ce.title
+            - if @club.admins.include?(current_user)
+              %a{href:"#edit-event-#{ce.id}", data: {toggle: "modal"}, class: "btn btn-success"} Edit
+              = link_to("Delete", university_club_club_event_path(@university, @club, ce), method: :delete, confirm: "Are you sure?")
+              .modal.hide{id: "edit-event-#{ce.id}"}
+                = simple_form_for([@university, @club, ce], html: {class: 'form-horizontal'}) do |f|
+                  .modal-header
+                    %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+                    %h3 Edit Event - #{ce.title}
+                  .modal-body
+                    = f.input :title
+                    -# Probably need a calendar picker
+                    = f.input :date
+                    -# Probably need a time picker
+                    = f.input :time
+                    = f.input :location
+                    = f.input :description
+                    = f.input :category, as: :category
+                    = f.input :image, as: :file
+                  .modal-footer
+                    = f.submit "Save Event", class: "btn btn-primary"
+          - if @club.admins.include?(current_user)
+            #add_event.modal.hide
+              = simple_form_for([@university, @club, Event.new], html: {class: 'form-horizontal'}) do |f|
+                .modal-header
+                  %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+                  %h3 Add Event
+                .modal-body
+                  = f.input :title
+                  -# Probably need a calendar picker
+                  = f.input :date
+                  -# Probably need a time picker
+                  = f.input :time
+                  = f.input :location
+                  = f.input :description
+                  = f.input :category, as: :category
+                  = f.input :image, as: :file
+                .modal-footer
+                  = f.submit "Add Event", class: "btn btn-primary"
         #eboard.tab_content
+          - if @club.admins.include?(current_user)
+            .pull-right
+              %a{href: "#add-admin", class: "btn btn-success", data: {toggle: "modal"}, style: "margin-right: 62px; margin-top: 10px;"} Add E-Board Member
+              #add-admin.modal.hide
+                = simple_form_for Membership.new, url: make_admin_university_club_memberships_path(@university, @club) do |f|
+                  .modal-header
+                    %button{type: "button", class: "close", data: {dismiss: 'modal'}} &times;
+                    %h3 Add E-Board member
+                  .modal-body
+                    = f.input :user_id, collection: @non_admins, label_method: :full_name, value_method: :id
+                    = f.input :title
+                  .modal-footer
+                    = f.submit "Add E-Board Member", class: "btn btn-success"
+          - @admins.each do |admin|
+            - unless admin.user.super_admin? || admin.user.university_admin?
+              .pull-left
+                = image_tag admin.user.profile.image.thumb.url
+                %br
+                = admin.user.full_name
+                %br
+                = admin.title
         #records.tab_content
+          .pull-right
+            - if @club.admins.include?(current_user)
+              %a{href: "#add-record", class: 'btn btn-success', data: {toggle: "modal"}, style: "margin-right: 62px; margin-top: 10px;"} Add Record
+          - @club.records.each do |record|
+            - unless record.file.url.nil?
+              = record.file.url.split("/").last
+              = link_to "Download", record.file.url
+              - if @club.admins.include?(current_user)
+                = link_to "Delete", university_club_record_path(@university, @club, record), method: :delete, confirm: "Are you sure?", class: "btn btn-danger btn-mini"
+            %br
+          #add-record.modal.hide
+            = simple_form_for([@university, @club, Record.new]) do |f|
+              .modal-header
+                %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+                %h3 Add Record
+              .modal-body
+                = f.input :file, as: :file
+              .modal-footer
+                = f.submit "Add Record", class: "btn btn-success"
         #messages.tab_content
 .clearfix
 

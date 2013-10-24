@@ -3,15 +3,15 @@ CahootsConnect::Application.routes.draw   do
   resources :universities, only: [:show] do
     resources :events
     resources :university_events, :path => 'calendar', :controller => :university_events do
-      
+
     end
-    
+
     resources :updates, only: [:new, :create, :update, :destroy] do
       resources :comments
     end
 
     resources :clubs, only: [:show, :new, :create, :edit, :update, :index] do
-      resources :club_events, :path => 'events', :controller => :club_events
+      resources :events, :path => 'events', :controller => :club_events
       post 'transfer_ownership', on: :member
       resources :memberships do
         post 'make_admin', on: :collection
