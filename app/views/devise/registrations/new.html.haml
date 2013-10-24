@@ -31,3 +31,14 @@
         &nbsp;
         = link_to "Sign in", new_session_path(resource_name)
         .clearfix
+
+:javascript
+  $(document).ready(function(){
+    $("#user_graduation_year").change(function(){
+      if($(this).val() < "#{Date.today.year}"){
+        $("#user_alumni").prop('checked', true);
+      }else{
+        $("#user_alumni").prop('checked', false);
+      }
+    });
+  });
