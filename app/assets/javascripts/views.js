@@ -12,7 +12,8 @@
           }, 
           height: 232
         });
-  $(".flexisel").flexisel();
+  $("#events").flexisel();
+  $("#free-food").flexisel({visibleItems: 3});
 
   $(".tab_content").hide(); //Hide all content
   $("ul.tabs3 li:first").addClass("active").show(); //Activate first tab

@@ -1,8 +1,11 @@
 CahootsConnect::Application.routes.draw   do
   resources :cities
-  resources :universities, only: [:index, :show] do
+  resources :universities, only: [:show] do
     resources :events
-    resources :university_events, :path => 'calendar', :controller => :university_events
+    resources :university_events, :path => 'calendar', :controller => :university_events do
+      
+    end
+    
     resources :updates, only: [:new, :create, :update, :destroy] do
       resources :comments
     end
@@ -28,9 +31,9 @@ CahootsConnect::Application.routes.draw   do
     end
   end
 
-  match "/calendar", to: "events#index"
-  match "/next_week/:week_start", to: "events#next_week"
-  match "/prev_week/:week_start", to: "events#prev_week"
+  match "/next_week/:week_start", to: "university_events#next_week"
+  match "/prev_week/:week_start", to: "university_events#prev_week"
+  match "/load_events/:day", to: "university_events#load_events", as: "load_events"
 
   resources :updates do
     resources :comments

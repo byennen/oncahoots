@@ -27,3 +27,9 @@ $ ->
     else if obj=="Club"
       data['category']=$("#category").val()
       $.get("/search/club", club: data)
+
+  $(".search_all #search_field").keydown (e) ->
+    if e.keyCode == 13
+      window.location.href="/search?term=#{$(this).val()}"
+  $(".search_all #search-btn").click ->
+      window.location.href="/search?term=#{$("#search_field").val()}"

@@ -716,7 +716,7 @@ html ul
   display: block
   position: relative
   color: #fff
-  margin-top: 20%
+  margin-top: 50px
   font-family: 'LatoRegular'
 
 .logout
@@ -958,7 +958,7 @@ html ul
 
 .register
   strong a
-    color: #248f50
+    color: #fff
     font-size: 20px
     margin-top: 15px
     float: left
@@ -1086,7 +1086,8 @@ html ul
     height: 35px
     width: 180px
 #tab1 .users,
-#search-results .users
+#search-results .users,
+#club-list .users
   margin-left: 4%
   position: relative
   .hovers
@@ -1390,7 +1391,7 @@ html ul
   display: block
   margin-left: 10px !important
 
-.prev
+.list_carousel .prev
   float: left
   margin-top: -170px
   background: url('right-arrow.png') no-repeat
@@ -1398,7 +1399,7 @@ html ul
   width: 29px
   height: 125px
 
-.next
+.list_carousel .next
   margin-top: -170px
   background: url('left-arrow.png') no-repeat
   text-indent: -999999px
@@ -1446,7 +1447,18 @@ clearout
   overflow: hidden
   float: left
   width: 100%
-
+.tab_content
+  .nbs-flexisel-inner
+    p
+      font-family: "LatoRegular"
+      color: black
+      line-height: 18px
+      margin-top: -10px
+    h4
+      font-family: "LatoBold"
+      font-size: 17px
+      color: #50bc7e
+      margin-top: 20px
 .nbs-flexisel-item
   float: left
   margin: 0px
@@ -1455,7 +1467,6 @@ clearout
   position: relative
   line-height: 0px
   img
-    width: 100%
     cursor: pointer
     position: relative
     margin-top: 10px
@@ -1707,3 +1718,5 @@ span.switch-view
   select
     height: 35px
     width: 180px
+.errors
+  color: red
