@@ -25,7 +25,10 @@ $(function() {
   });
 
   $(".toggle").click(function(){
-    $($(this).data("toggle")).hide();
-    $($(this).data("target")).show();
+    hidding = $($(this).data("target")).hasClass("hide");
+    $($(this).data("toggle")).addClass("hide");
+    if(hidding){
+      $($(this).data("target")).removeClass("hide");
+    }
   });
 });

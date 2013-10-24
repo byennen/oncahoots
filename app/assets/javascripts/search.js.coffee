@@ -22,7 +22,7 @@ $ ->
       data['loc'] = $("input#location").val()
       data['type']= $("input#ptype").val()
       data['major']= $("input#major").val()
-      data['year']= $("input#graduaration_year").val()
+      data['year']= $("input#graduation_year").val()
       $.get("/search/person", user: data)
     else if obj=="Club"
       data['category']=$("#category").val()

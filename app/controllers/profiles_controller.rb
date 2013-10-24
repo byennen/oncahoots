@@ -7,6 +7,7 @@ class ProfilesController < ApplicationController
   end
 
   def edit
+    @user = current_user
     @profile = current_user.profile
     @contact_requirements = @profile.contact_requirement.present? ? @profile.contact_requirement : @profile.build_contact_requirement
     @bg_image = ""
@@ -31,9 +32,10 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    @profile = Profile.find(params[:id])
+    @user = current_user
+    @profile = current_user.profile
     if @profile.update_attributes(params[:profile])
-      redirect_to user_path(current_user), notice: 'Profile was successfully updated.'
+      redirect_to edit_user_profile_path(current_user, current_user.profile), notice: 'Profile was successfully updated.'
     else
       format.html { render action: "edit" }
     end

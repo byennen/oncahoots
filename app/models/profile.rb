@@ -7,7 +7,7 @@ class Profile < ActiveRecord::Base
   has_many :portfolio_items
   has_many :faqs
 
-  attr_accessible :user_id, :education, :experience, :skills, :view_profile,
+  attr_accessible :user_id, :education, :experience, :skills, :skill1, :skill2, :skill3, :view_profile,
                   :experiences_attributes, :image, :portfolio_items_attributes,
                   :faqs_attributes, :hometown, :contact_requirement_attributes
 

@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
 
   attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me,
                   :university_id, :location_id, :graduation_year, :major, :double_major, :slug,
-                  :city, :state, :alumni, :professional_field_id, :role_ids
+                  :city, :state, :alumni, :professional_field_id, :role_ids, :university_id, :graduation_year
 
   validates_presence_of :university_id, :graduation_year, :major, :city, :state
 
@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
   scope :by_name_and_email, ->(query) { by_name(query).by_email(query) }
 
   extend FriendlyId
-  friendly_id :username, :use => :slugged
+  friendly_id :username_for_friendlyid, :use => :slugged
 
 
   acts_as_messageable
@@ -67,7 +67,11 @@ class User < ActiveRecord::Base
     location ? location.name : city
   end
 
-  def username
+  def display_major
+    "#{major}#{' and ' unless double_major.blank?}#{double_major}"
+  end
+
+  def username_for_friendlyid
     "#{first_name}-#{last_name}"
   end
 
@@ -87,10 +91,14 @@ class User < ActiveRecord::Base
     Profile.create(user_id: self.id)
   end
 
-  class << self
+  def join_club?(club)
+    clubs.include?(club)
+  end
+
+  class << self 
     def search_all(params)
       search_name(params[:name]).search_location(params[:loc]).search_type(params[:type])
-      .search_major(params[:major]).search_graduaration_year(params[:year])
+      .search_major(params[:major]).search_graduation_year(params[:year])
     end
     def search_name(name)
       return where("1=1") if name.blank?
@@ -114,7 +122,7 @@ class User < ActiveRecord::Base
       where(major: major)
     end
 
-    def search_graduaration_year(year)
+    def search_graduation_year(year)
       return where("1=1") if year.blank?
       where(graduation_year: year)
     end

@@ -8,18 +8,23 @@ class InvitationsController < ApplicationController
   end
 
   def create
-    @invitation = Invitation.new(params[:invitation])
-    @invitation.sender = current_user
-    @club = Club.find(params[:club_id])
-    @invitation.update_attributes(club_id: @club.id)
-    if @invitation.save
-      #Mailer.deliver_invitation(@invitation, signup_url(@invitation.token))
-      flash[:notice] = "Thank you, invitation sent."
-      redirect_to root_path
-    else
-      flash[:notice] = "Invitations failed."
-      render :action => 'new'
+    @recipients = User.where(slug: params[:recipient_ids])
+    @recipients.each do |recipient|
+      Invitation.create(sender_id: current_user.id, recipient_id: recipient.id, club_id: params[:club_id])
     end
+    flash[:notice] = "Thank you, invitation sent."
+    redirect_to root_path
   end
 
+  def search
+    users = University.find(params[:university_id]).users.where("lower(first_name) like ? or lower(last_name) like ?", "%#{params[:term].downcase}%", "%#{params[:term].downcase}%")
+    club = Club.find params[:club_id]
+    results = []
+    users.each do |user|
+      results << {id: user.id, label: user.full_name, value: user.slug} unless (user.join_club?(club) || current_user == user)
+    end
+    respond_to do |format|
+      format.json {render json: results}
+    end
+  end
 end
