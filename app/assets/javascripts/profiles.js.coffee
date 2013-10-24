@@ -12,7 +12,7 @@ $(document).on 'ready page:load', ->
     width:'90%', 
     height: "35px",
     defaultText: 'recipients',
-    autocomplete_url: "/users/search",
+    autocomplete_url: "/users/search"
   });
 
   $(".contact-auto").tagsInput({
@@ -21,7 +21,6 @@ $(document).on 'ready page:load', ->
     defaultText: 'contacts',
     autocomplete_url: "/users/0/contacts/search",
   });
-
 
 $ ->
 

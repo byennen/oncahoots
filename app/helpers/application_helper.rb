@@ -55,7 +55,7 @@ module ApplicationHelper
 
   def display_image_square(image, size)
     if image.blank?
-      "<img src='assets/bg.png' class='square cir-img #{size}'></image><div class='no-img-title title-#{size}'><div class='title-in'>No Image</div></div>".html_safe
+      "<img src='/assets/bg.png' class='square cir-img #{size}'></image><div class='no-img-title title-#{size}'><div class='title-in'>No Image</div></div>".html_safe
     else
       image_tag image.send(size), class: "square cir-img"
     end

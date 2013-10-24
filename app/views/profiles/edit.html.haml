@@ -111,8 +111,15 @@
         ~ nested_form_for [@user, @profile] do |f|
           = f.fields_for :portfolio_items do |pf|
             .span11
-              .span2= link_to pf.object.file.file.filename, pf.object.file.url if pf.object.file.file
-              .span4= pf.file_field :file, style: "width: 100%"
+              .span2
+                = display_image_square pf.object.image, 'thumb'
+                
+              .span9
+                .span9= pf.file_field :image, style: "width: 100%"
+                .clearfix
+                .span9.no-lmar= pf.text_field :name, placeholder: "Project Name", class: "span9"
+                .span9.no-lmar= pf.text_field :organization_name, placeholder: "Project Organization Name", class: "span9"
+                .span9.no-lmar= pf.text_area :description, placeholder: "Description", rows: 5, class: "span9"
               .span1= pf.link_to_remove "<i class='icon-remove'></i>".html_safe
           = f.link_to_add "Add", :portfolio_items, class: "btn btn-primary btn-mini fleft", style: "margin-right: 100px"
           .span11.fright
