@@ -28,8 +28,9 @@
               %a{href: "#tab22"} Experience
             %li
               %a{href: "#tab33"} Portfolio
-            %li
-              %a{href: "#tab44"} FAQs
+            - if @user.alumni
+              %li
+                %a{href: "#tab44"} FAQs
           .clearfix
           .tab_container
             #tab11.tab_content2
@@ -64,40 +65,40 @@
                           %span= portfolio.organization_name
                       .span9
                         = simple_format portfolio.description
-
-            #tab44.tab_content2
-              .faq
-                %h2 FAQ
-                .half
-                  %p
-                    %b= "- What do you look for in a new hire?"
-                    %br
-                    People with passion and experience.
-                    %br
-                    %br
-                    %b= "- What do you do on a daily basis?"
-                    %br
-                    Meet withy clients.
-                    %br
-                    %br
-                    %b= "- How many hours a week do you work?"
-                    %br
-                    Between 45 and 60.
-                .half
-                  %p
-                    %b= "- What do you look for in a new hire?"
-                    %br
-                    People with passion and experience.
-                    %br
-                    %br
-                    %b= "- What do you do on a daily basis?"
-                    %br
-                    Meet withy clients.
-                    %br
-                    %br
-                    %b= "- How many hours a week do you work?"
-                    %br
-                    Between 45 and 60.
+            - if @user.alumni?
+              #tab44.tab_content2
+                .faq
+                  %h2 FAQ
+                  .half
+                    %p
+                      %b= "- What do you look for in a new hire?"
+                      %br
+                      People with passion and experience.
+                      %br
+                      %br
+                      %b= "- What do you do on a daily basis?"
+                      %br
+                      Meet withy clients.
+                      %br
+                      %br
+                      %b= "- How many hours a week do you work?"
+                      %br
+                      Between 45 and 60.
+                  .half
+                    %p
+                      %b= "- What do you look for in a new hire?"
+                      %br
+                      People with passion and experience.
+                      %br
+                      %br
+                      %b= "- What do you do on a daily basis?"
+                      %br
+                      Meet withy clients.
+                      %br
+                      %br
+                      %b= "- How many hours a week do you work?"
+                      %br
+                      Between 45 and 60.
     - unless @user == current_user
       .clearfix
       %br
