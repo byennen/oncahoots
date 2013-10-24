@@ -3,7 +3,7 @@
     .fleft.left2.top4.bottom2
       .users
         = link_to university_club_path(@university, club) do
-          = image_tag club.image.xlarge
+          = image_tag club.image.xlarge, class: "img-circle"
           %span{style: "margin-left: 20px"}= club.name
         .hovers{style: "margin-left: -5px;"}
           %p= club.description
