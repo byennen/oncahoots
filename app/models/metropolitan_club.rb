@@ -1,4 +1,4 @@
-class MetropolitantClub < Club
+class MetropolitanClub < Club
   belongs_to :city
   attr_accessible :city_id
 

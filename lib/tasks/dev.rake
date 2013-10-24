@@ -20,12 +20,30 @@ namespace :dev do
     end
   end
 
-  task :create_metropolitant_clubs => :environment do
+  task :create_metropolitan_clubs => :environment do
     University.all.each do |university|
-      puts "create metropolitant clubs for #{university.name}"
+      puts "create metropolitan clubs for #{university.name}"
       City.all.each do |city|
         puts "............at #{city.name}"
-        university.metropolitant_clubs.create(city_id: city.id)
+        university.metropolitan_clubs.create(city_id: city.id)
+      end
+    end
+  end
+
+  task :add_hero_banner_image_for_all_metropolitan_clubs => :environment do
+    file_path = "#{Rails.root}/public/raw-images/metropolitan-clubs/banner/"
+    MetropolitanClub.all.each do |club|
+      if File.exist?("#{file_path}#{club.city.slug}.jpeg")
+        @image_file = "#{file_path}#{club.city.slug}.jpeg"
+      elsif File.exist?("#{file_path}#{club.city.slug}.jpg")
+        @image_file = "#{file_path}#{club.city.slug}.jpg"
+      end
+      next if @image_file.nil?
+      club.image.store!(File.open(@image_file))
+      if club.save
+        puts "Created image for #{club.name}"
+      else
+        puts "Something went wrong!"
       end
     end
   end
