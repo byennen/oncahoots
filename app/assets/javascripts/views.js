@@ -10,7 +10,7 @@
             onMouse: true,
             onTouch: true
           }, 
-          height: 232
+          height: 252
         });
   $("#events").flexisel();
   $("#free-food").flexisel({visibleItems: 3});

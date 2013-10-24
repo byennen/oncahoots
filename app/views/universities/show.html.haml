@@ -1,7 +1,7 @@
 = content_for :header do
   .span3
     = link_to "javascript:void(0);", class: 'mono mn' do
-      = image_tag @university.image.xxlarge, class: "circular"
+      = display_image(@university.image, "xxlarge")#image_tag @university.image.xxlarge, class: "circular"
   .span7
     .carus
       %ul#events.flexisel
@@ -38,7 +38,7 @@
             - @users.each do |user|
               %li{style: "margin-left: 0"}
                 = link_to user_path(user) do
-                  = image_tag user.profile.image.thumb, class: "circular"
+                  = display_image user.profile.image, 'thumb'
                 .span4
                   %h4= user.full_name
                   %br
@@ -47,7 +47,7 @@
             - @users.student.each do |user|
               %li{style: "margin-left: 0"}
                 = link_to user_path(user) do
-                  = image_tag user.profile.image.thumb, class: "circular"
+                  = display_image user.profile.image, 'thumb'
                 .span4
                   %h4= user.full_name
                   %br
@@ -56,7 +56,7 @@
             - @users.alumni.each do |user|
               %li{style: "margin-left: 0"}
                 = link_to user_path(user) do
-                  = image_tag user.profile.image.thumb, class: "circular"
+                  = display_image user.profile.image, 'thumb'
                 .span4
                   %h4= user.full_name
                   %br
@@ -71,24 +71,24 @@
               %li{style: item_mar}
                 .users
                   = link_to university_club_path(@university, club) do
-                    = image_tag club.image.xlarge, class: "circular"
-                    %span= club.name
+                    = display_image club.image, 'xlarge'
+                    %span.fleft= club.name
           
           %a.prev#prev2{href: "#"} &lt;
           %a.next#next2{href: "#"} &gt;
           %center
             %buttuon.btn.btn-success.btn3{name: 'btn'} See all
-        #tab3.tab_content.span8{style: "margin-left: 60px;"}
+        #tab3.tab_content.span10{style: "margin-left: 60px;"}
           %h3 Free Food Events:
           %ul#free-food.flexisel
             - @free_food_events.each do |event|
               %li
                 = link_to university_university_event_path(@university, event) do
-                  = image_tag event.image.medium
-                %br
-                %h4= event.title
-                %p= event.date
-                %p= event.time
+                  = display_image_square event.image, "large"
+                .span10.left3
+                  %h4= event.title
+                  %p= event.date
+                  %p= event.time
 
         #tab4.tab_content
 .clearfix

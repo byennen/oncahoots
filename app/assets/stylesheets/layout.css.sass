@@ -515,6 +515,7 @@ header
   a
     text-align: center
     position: relative
+    float: left
     span
       font-family: 'LatoBold'
       background: url('name-bar.png') no-repeat
@@ -524,9 +525,8 @@ header
       font-size: 16px
       color: #FFF
       padding-top: 3px
-      position: relative
-      margin: 0 auto
-      margin-top: -69px
+      position: absolute
+      margin: 170px 0 0 25px
       z-index: 1000
 
 html ul
@@ -1103,7 +1103,7 @@ html ul
   top: 0
   z-index: 1000
   text-align: center
-  margin-left: 15px
+  margin-left: 0px
   p
     display: block
     color: #EBEBEB
@@ -1459,6 +1459,8 @@ clearout
       font-size: 17px
       color: #50bc7e
       margin-top: 20px
+    .cir-img
+      margin-top: 12px
 .nbs-flexisel-item
   float: left
   margin: 0px
@@ -1469,9 +1471,13 @@ clearout
   img
     cursor: pointer
     position: relative
-    margin-top: 10px
-    margin-bottom: 10px
+    margin: 10px 0 10px 0px
+  .no-img-title
+    margin: 10px 0 10px 50px
 
+.nbs-flexisel-item
+  img.cir-img
+    margin-left: 50px
 /*** Navigation **
 
 .nbs-flexisel-nav-left, .nbs-flexisel-nav-right
@@ -1563,6 +1569,8 @@ a.ui-state-active
   margin-left: 10px !important
 .left2
   margin-left: 20px !important
+.left3
+  margin-left: 30px !important
 .top
   margin-top: 10px
 .top2
@@ -1702,6 +1710,10 @@ span.switch-view
   box-shadow: 0 0 8px rgba(0, 0, 0, .8)
   -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8)
   -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8)
+.square
+  box-shadow: 0 0 8px rgba(0, 0, 0, .8)
+  -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8)
+  -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8)
 
 .slide-content
   margin-left: 10px
@@ -1720,3 +1732,43 @@ span.switch-view
     width: 180px
 .errors
   color: red
+
+.cir-img
+  background-color: #ccc
+  float: left
+  text-align: center
+.no-img-title
+  color: #ccc
+  position: absolute
+  text-align: center
+  .title-in
+    margin-top: 40%
+.caroufredsel_wrapper
+  margin-left: 30px !important
+
+
+.xxlarge, 
+.title-xxlarge
+  width: 240px
+  height: 240px
+.xlarge,
+.title-xlarge
+  width: 226px
+  height: 226px
+.large,
+.title-large
+  width: 185px
+  height: 185px
+.medium,
+.title-medium
+  width: 145px
+  height: 145px
+.thumb,
+.title-thumb
+  width: 100px
+  height: 100px
+
+.small,
+.title-small
+  width: 77px
+  height: 77px

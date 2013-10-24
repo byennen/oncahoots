@@ -2,7 +2,7 @@
 = content_for :header do
   .span3
     = link_to "javascript:void(0);" do
-      = image_tag @user.profile.image.xxlarge, class: "circular"
+      = display_image @user.profile.image, "xxlarge"
   .span8
     .pro-user{style: "min-height: 120px;"}
       %p Hi! My name is #{@user.full_name} and I'm a #{@user.major} from #{@user.display_location}. Let's connect!

@@ -1,8 +1,8 @@
 = content_for :header do
   #avatar.span3
-    = link_to "<i class='icon-plus icon-white'></i>".html_safe, "javascript:;", class: "btn btn-success btn-mini", style: "margin-top: 40px; margin-left: 160px; position: absolute;"
+    = link_to "<i class='icon-plus icon-white'></i>".html_safe, "javascript:;", class: "btn btn-success btn-mini", style: "margin-top: 40px; margin-left: -70px; position: absolute;"
     = link_to "javascript:void(0);" do
-      = image_tag @profile.image.xxlarge, id: "profile-avatar", class: "circular"
+      = display_image @profile.image, "xxlarge", id: "profile-avatar"
   .span8
     .pro-user
       %p Hi! My name is #{@user.full_name} and I'm a #{@user.display_major} from #{@user.display_location}. Let's connect!
