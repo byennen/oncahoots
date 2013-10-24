@@ -1,0 +1,7 @@
+- @events.each do |event|
+  .span12.top2{style: "margin-left: -30px; width: 103%;"}
+    .span12.event-item
+      .span12.left2.ev-title= link_to event.title, university_university_event_path(current_user.university, event)
+      .span12.ev-description.top= event.description
+- if @events.blank?
+  .page-title No event this day.

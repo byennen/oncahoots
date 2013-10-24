@@ -1,0 +1,7 @@
+- today = Date.today.strftime("%y%m%d")
+- (0..6).each do |i|
+  - day = (@week_start + i.days).strftime('%y%m%d')
+  - day_fm = (@week_start + i.days).strftime("%d")
+  %span{class: "#{'active' if today==day}"}
+    %i.triangle-down
+    = link_to day_fm, load_events_path(day), class: "btn #{'btn-success' if today==day}", remote: true

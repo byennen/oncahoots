@@ -16,7 +16,7 @@
   });
 
   $(document).ready(function(){
-    $("#search_field").keydown(function (e){
+    $(".search_club #search_field").keydown(function (e){
       if(e.keyCode == 13){
         $(".toggle-btn").removeClass("btn-success");
         $(".toggle-btn").addClass("btn-inverse");
@@ -24,7 +24,7 @@
       }
     });
 
-    $("#search-btn").click(function(){
+    $(".search_club #search-btn").click(function(){
       $(".toggle-btn").removeClass("btn-success");
       $(".toggle-btn").addClass("btn-inverse");
       $.get("#{search_university_clubs_path(@university)}", {club: {name: $("#search_field").val()}});

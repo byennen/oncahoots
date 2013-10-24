@@ -1,5 +1,0 @@
-- (0..6).each do |i|
-  - day = (@week_start + i.days).strftime("%d")
-  %span{class: "#{'active' if Date.today.day==day.to_i}"}
-    %i.triangle-down
-    = link_to day, "javascript:;", class: "btn #{'btn-success' if Date.today.day==day.to_i}", id: "day-#{i}"
