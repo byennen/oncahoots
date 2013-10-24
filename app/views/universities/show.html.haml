@@ -81,14 +81,15 @@
         #tab3.tab_content.span8{style: "margin-left: 60px;"}
           %h3 Free Food Events:
           %ul#free-food.flexisel
-            - @free_food_events.each do |event|
-              %li
-                = link_to university_university_event_path(@university, event) do
-                  = image_tag event.image.medium
-                %br
-                %h4= event.title
-                %p= event.date
-                %p= event.time
+            - unless @free_food_events.nil?
+              - @free_food_events.each do |event|
+                %li
+                  = link_to university_university_event_path(@university, event) do
+                    = image_tag event.image.medium
+                  %br
+                  %h4= event.title
+                  %p= event.date
+                  %p= event.time
 
         #tab4.tab_content
 .clearfix
