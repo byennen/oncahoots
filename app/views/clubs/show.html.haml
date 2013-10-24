@@ -13,8 +13,9 @@
       = text_field_tag :join_city, "", class: "field", placeholder: "Join Club"
       %button.btn.btn-success.chang2 Upcoming Events
       .clearfix
-      %button.btn.btn-success.chang3 Edit
-      %button.btn.btn-success.chang3 Transactions
+      - if @club.admins.include?(current_user)
+        = link_to "Edit", edit_university_club_path(@university, @club), class: "btn btn-success chang3"
+      /%button.btn.btn-success.chang3 Transactions
   .clearfix
 
 .clearfix
@@ -65,7 +66,7 @@
       .tab_container
         #lowdown.tab_content
           .pull-right
-            %a{href: "#add-lowdown", class: 'btn btn-success', data: {toggle: "modal"}, style: "margin-right: 62px; margin-top: 10px;"} Add Lowdown
+            %a{href: "#add-lowdown", class: 'btn btn-success chang3', data: {toggle: "modal"}, style: "margin-right: 62px; margin-top: 10px;"} Add Lowdown
             #add-lowdown.modal.hide
               = simple_form_for([@university, @club, Status.new]) do |f|
                 .modal-header
@@ -101,7 +102,7 @@
         #mission_statement.tab_content
           - if @club.admins.include?(current_user)
             .pull-right
-              %a{href: "#edit_mission_statement", class: "btn btn-success", data: {toggle: "modal"}, style: "margin-right: 62px; margin-top: 10px;" } Edit
+              %a{href: "#edit_mission_statement", class: "btn btn-success chang3", data: {toggle: "modal"}, style: "margin-right: 62px; margin-top: 10px;" } Edit
           %p{style: "margin-left: 5px; margin-top: 20px;"}= @club.mission_statement
           - if @club.admins.include?(current_user)
             #edit_mission_statement.modal.hide
@@ -117,7 +118,7 @@
         #calendar.tab_content
           - if @club.admins.include?(current_user)
             .pull-right
-              %a{href: "#add_event", class: "btn btn-success", data: {toggle: "modal"}, style: "margin-right: 62px; margin-top: 10px;"} Add Event
+              %a{href: "#add_event", class: "btn btn-success chang3", data: {toggle: "modal"}, style: "margin-right: 62px; margin-top: 10px;"} Add Event
           - @club.events.each do |ce|
             %strong= "#{ce.date} #{ce.time}"
             = ce.title
@@ -162,7 +163,7 @@
         #eboard.tab_content
           - if @club.admins.include?(current_user)
             .pull-right
-              %a{href: "#add-admin", class: "btn btn-success", data: {toggle: "modal"}, style: "margin-right: 62px; margin-top: 10px;"} Add E-Board Member
+              %a{href: "#add-admin", class: "btn btn-success chang3", data: {toggle: "modal"}, style: "margin-right: 62px; margin-top: 10px;"} Add E-Board Member
               #add-admin.modal.hide
                 = simple_form_for Membership.new, url: make_admin_university_club_memberships_path(@university, @club) do |f|
                   .modal-header
@@ -184,7 +185,7 @@
         #records.tab_content
           .pull-right
             - if @club.admins.include?(current_user)
-              %a{href: "#add-record", class: 'btn btn-success', data: {toggle: "modal"}, style: "margin-right: 62px; margin-top: 10px;"} Add Record
+              %a{href: "#add-record", class: 'btn btn-success chang3', data: {toggle: "modal"}, style: "margin-right: 62px; margin-top: 10px;"} Add Record
           - @club.records.each do |record|
             - unless record.file.url.nil?
               = record.file.url.split("/").last
