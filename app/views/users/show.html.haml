@@ -48,23 +48,23 @@
                       = experience.company_name
                       %br
                       %span= experience.position_name
-                    %p = experience_string(experience)
+                    %p= experience_string(experience)
                     .clearfix           
             #tab33.tab_content2
               .profile
-                %a.gb{href: "javascript:;"}
-                %ul.ssap
-                  %li
-                    %a{href: "javascript:;"}
-                  %li
-                    %a{href: "javascript:;"}
-                  %li
-                    %a{href: "javascript:;"}
-                %h3
-                  Project name
-                  %br
-                  %span Project organization name
-                %p As a communication intern I was responsible for producing the following pamphlets explaining our processes to clients.
+                - @portfolio_items.each do |portfolio|
+                  .span12.left2.top.bottom
+                    .span2
+                      = display_image_square portfolio.image, "thumb"
+                    .span10
+                      .span9
+                        %h3
+                          = portfolio.name
+                          %br
+                          %span= portfolio.organization_name
+                      .span9
+                        = simple_format portfolio.description
+
             #tab44.tab_content2
               .faq
                 %h2 FAQ
