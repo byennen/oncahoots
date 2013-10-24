@@ -29,4 +29,22 @@ namespace :dev do
       end
     end
   end
+
+  task :add_hero_banner_image_for_all_metropolitan_clubs => :environment do
+    file_path = "#{Rails.root}/public/raw-images/metropolitan-clubs/banner/"
+    MetropolitanClub.all.each do |club|
+      if File.exist?("#{file_path}#{club.city.slug}.jpeg")
+        @image_file = "#{file_path}#{club.city.slug}.jpeg"
+      elsif File.exist?("#{file_path}#{club.city.slug}.jpg")
+        @image_file = "#{file_path}#{club.city.slug}.jpg"
+      end
+      next if @image_file.nil?
+      club.image.store!(File.open(@image_file))
+      if club.save
+        puts "Created image for #{club.name}"
+      else
+        puts "Something went wrong!"
+      end
+    end
+  end
 end
