@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   belongs_to :university
   belongs_to :location
   belongs_to :professional_field
+  belongs_to :city
 
   has_one :profile
 
@@ -19,9 +20,9 @@ class User < ActiveRecord::Base
 
   attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me,
                   :university_id, :location_id, :graduation_year, :major, :double_major, :slug,
-                  :city, :state, :alumni, :professional_field_id, :role_ids, :university_id, :graduation_year
+                  :city_id, :state, :alumni, :professional_field_id, :role_ids, :university_id, :graduation_year
 
-  validates_presence_of :university_id, :graduation_year, :major, :city, :state
+  validates_presence_of :university_id, :graduation_year, :major
 
   after_create :create_user_profile
 
@@ -69,6 +70,11 @@ class User < ActiveRecord::Base
 
   def display_major
     "#{major}#{' and ' unless double_major.blank?}#{double_major}"
+  end
+
+  def metropolitan_club
+    return if city_id.blank? || university_id.blank?
+    MetropolitanClub.where(city_id: city_id, university_id: university_id)
   end
 
   def username_for_friendlyid

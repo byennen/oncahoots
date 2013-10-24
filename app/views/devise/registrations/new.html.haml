@@ -11,8 +11,8 @@
       .clearfix
       = f.select :university_id, options_from_collection_for_select(University.all.sort_by(&:name), :id, :name), prompt: "University"
       .clearfix
-      = f.input :city, label: false, input_html: {placeholder: "city", class: "fioled0"}
-      = f.input :state, label: false, input_html: {placeholder: "state", class: "fioled0"}
+      %label.left Current City
+      = f.select :city_id, options_from_collection_for_select(City.order(:name), :id, :name), prompt: "other"
       = f.select :graduation_year, options_for_select(2020.downto(1940).to_a), { prompt: "Graduation year", class: "fioled0" } 
       .clearfix
       = f.input :major, label: false, input_html: {placeholder: "major", class: "fioled0"}
