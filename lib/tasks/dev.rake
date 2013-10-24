@@ -28,9 +28,7 @@ namespace :dev do
         university.metropolitan_clubs.create(city_id: city.id)
       end
     end
-  end
 
-  task :add_hero_banner_image_for_all_metropolitan_clubs => :environment do
     file_path = "#{Rails.root}/public/raw-images/metropolitan-clubs/banner/"
     MetropolitanClub.all.each do |club|
       if File.exist?("#{file_path}#{club.city.slug}.jpeg")
@@ -46,5 +44,7 @@ namespace :dev do
         puts "Something went wrong!"
       end
     end
+    Club.where(type: "MetropolitantClub").delete_all
   end
+
 end

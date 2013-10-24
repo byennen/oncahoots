@@ -1,0 +1,3 @@
+class MetropolitantClub < Club
+
+end
