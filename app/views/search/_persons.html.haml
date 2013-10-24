@@ -3,7 +3,7 @@
   - @users.each do |user|
     %li.span3{style: "margin-left: 20px; margin-top: 50px;"}
       .users
-        %a{href: user_path(user)}= image_tag user.profile.image.xxlarge, class: "circular"
+        %a{href: user_path(user)}= display_image user.profile.image, "xlarge"
         .hovers{style: "margin-left: 0;"}
           %p  Hi! I am #{user.full_name} from #{user.display_location} and I am excited about business
           - if current_user.relatable?(user) 

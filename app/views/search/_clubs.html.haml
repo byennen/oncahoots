@@ -3,10 +3,10 @@
     %li.span3{style: "margin-left: 20px; margin-top: 50px;"}
       .users
         = link_to university_club_path(@university, club) do
-          = image_tag club.image.xxlarge, class: "circular"
+          = display_image club.image, "xlarge"
           %span{style: "margin-left: 21px;"}= club.name
-        .hovers{style: "margin-left: -5px"}
+        .hovers
           %p= club.description
-          = link_to "view", university_club_path(@university, club)
+          = link_to "view", university_club_path(@university, club), style: "margin-left: 45%"
 %h4.left
   = "No results found" if @clubs.blank?
