@@ -5,16 +5,18 @@
   .span7
     .carus
       %ul#events.flexisel
-        - 3.times do |i|
+        - @university_events.each do |event|
           %li
-            = link_to "javascript:void(0);" do
-              = image_tag("car-img.png")
+            = link_to university_university_event_path(@university, event) do
+              = image_tag(event.image)
             %br
-            %h4 Basketball Game
+            %h4
+              = event.title
             %p
-              Friday, June 29
+              = event.date
               %br
-              7:00PM - GYM
+              = event.time
+
   .clearfix
 
 .row-fluid
