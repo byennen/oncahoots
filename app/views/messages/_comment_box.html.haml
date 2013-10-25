@@ -1,0 +1,12 @@
+.conversation{:id => "conversation-#{@conversation.id}"}
+  = render partial: 'message', collection: @conversation.messages.reverse
+#conversation_reply.hide
+  = render partial: 'reply'
+  
+:javascript
+  $(function () {
+    // On Click messsage received from another user
+    $("div.comment-box").click(function(){
+      $("#conversation_reply").show();
+    });  
+  });
