@@ -30,6 +30,7 @@ class UniversitiesController < ApplicationController
 
   private
     def load_details_data
+      @bg_style = "background-image: url('#{@university.banner.url}')" unless @university.banner.blank?
       @users = @university.users
       @updateable = @university
       @updates = @updateable.updates
