@@ -51,7 +51,7 @@
       }, 
         height: 400
     });
-  $("#events").flexisel();
+  $("#events").flexisel({visibleItems: 3});
   $("#free-food").flexisel({visibleItems: 3});
 
   $(".tab_content").hide(); //Hide all content
