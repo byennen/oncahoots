@@ -38,7 +38,7 @@
         %li= link_to "Clubs", "#tab2"
         %li= link_to "Free Food", "#tab3"
         %li= link_to "Alumni Map", "#tab4"
-        %li= link_to "Register New", "#tab5"
+        %li= link_to "Register New", "#tab5", id: "new-club"
       .clearfix
       .tab_container
         #tab1.tab_content
@@ -109,6 +109,11 @@
 
 
         #tab4.tab_content
+
+        #tab5.tab_content
+          .span11.left2 
+            %h4 Create Club
+          .span11= render partial: "club_form"
 .clearfix
 .row-fluid
   .container
@@ -144,3 +149,11 @@
                 %p= update.body
                 = link_to time_ago_in_words(update.created_at) + " ago", "javascript:void(0);", class: "com ncom"
                 .clearfix
+
+:javascript
+  $(document).ready(function(){
+    if("#{@club.errors.any?}" == "true"){
+      $("#new-club").click();
+      $(document).scrollTop( $("#new-club").offset().top );
+    }
+  });
