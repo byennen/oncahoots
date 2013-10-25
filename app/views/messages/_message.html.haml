@@ -5,4 +5,4 @@
     %h5= message.sender.full_name
     = message.body
   %small= time_ago_in_words(message.created_at) + " ago"
-  = link_to "Delete", message_path(message), method: :delete, class: "btn btn-danger btn-mini"
+  = link_to "Delete", "javascript:;", method: :delete, class: "btn btn-danger btn-mini"
