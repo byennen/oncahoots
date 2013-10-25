@@ -12,6 +12,45 @@
           }, 
           height: 252
         });
+    $('.community-slide').carouFredSel({
+      items: 3,
+      auto: false,
+      prev: '.cprev',
+      next: '.cnext',
+      pagination: "#pager2",
+      mousewheel: true,
+      swipe: {
+        onMouse: true,
+        onTouch: true
+      }, 
+        height: 400
+    });
+    $('.community-slide1').carouFredSel({
+      items: 3,
+      auto: false,
+      prev: '.cprev1',
+      next: '.cnext1',
+      pagination: "#pager2",
+      mousewheel: true,
+      swipe: {
+        onMouse: true,
+        onTouch: true
+      }, 
+        height: 400
+    });
+    $('.community-slide2').carouFredSel({
+      items: 3,
+      auto: false,
+      prev: '.cprev2',
+      next: '.cnext2',
+      pagination: "#pager2",
+      mousewheel: true,
+      swipe: {
+        onMouse: true,
+        onTouch: true
+      }, 
+        height: 400
+    });
   $("#events").flexisel();
   $("#free-food").flexisel({visibleItems: 3});
 

@@ -31,36 +31,56 @@
         #tab1.tab_content
           .filters
             %p Filter by:
-            = link_to "All", "javascript:;", :"data-toggle" => ".users-list", :"data-target" => "#all-users", class: 'toggle'
-            = link_to "Students", "javascript:;", :"data-toggle" => ".users-list", :"data-target" => "#students", class: 'toggle'
-            = link_to "Alumni", "javascript:;", :"data-toggle" => ".users-list", :"data-target" => "#alumnis", class: 'toggle'
-          %ul#all-users.two-users.users-list
-            - @users.each do |user|
-              %li{style: "margin-left: 0"}
-                = link_to user_path(user) do
-                  = display_image user.profile.image, 'thumb'
-                .span4
-                  %h4= user.full_name
-                  %br
-                  = user.graduation_year
-          %ul#students.two-users.users-list.hide
-            - @users.student.each do |user|
-              %li{style: "margin-left: 0"}
-                = link_to user_path(user) do
-                  = display_image user.profile.image, 'thumb'
-                .span4
-                  %h4= user.full_name
-                  %br
-                  = user.graduation_year
-          %ul#alumnis.two-users.users-list.hide
-            - @users.alumni.each do |user|
-              %li{style: "margin-left: 0"}
-                = link_to user_path(user) do
-                  = display_image user.profile.image, 'thumb'
-                .span4
-                  %h4= user.full_name
-                  %br
-                  = user.graduation_year
+            = link_to "All", "javascript:;", :"data-toggle" => ".users-list", :"data-target" => "#all-users", class: 'toggle1 active'
+            = link_to "Students", "javascript:;", :"data-toggle" => ".users-list", :"data-target" => "#students", class: 'toggle1'
+            = link_to "Alumni", "javascript:;", :"data-toggle" => ".users-list", :"data-target" => "#alumnis", class: 'toggle1'
+          .clearfix
+          #all-users.users-list.offset1
+            .span9.list_carousel
+              %ul.community-slide
+                - @users.each_slice(3) do |slide|
+                  %li{style: "width: 190px;line-height: 20px;"}
+                    - slide.each do |user|
+                      .span10.image
+                        = link_to user_path(user) do
+                          = display_image user.profile.image, 'thumb'
+                      .info
+                        .span10
+                          = user.full_name
+
+              %a.cprev.prev{href: "#", style: "margin-right: 20px; margin-top: -250px"} &lt;
+              %a.cnext.next{href: "#", style: "margin-right: 0; margin-top: -250px"} &gt;
+          #students.users-list.offset1.transparent
+            .span9.list_carousel
+              %ul.community-slide1
+                - @users.student.each_slice(3) do |slide|
+                  %li{style: "width: 190px;line-height: 20px;"}
+                    - slide.each do |user|
+                      .span10.image
+                        = link_to user_path(user) do
+                          = display_image user.profile.image, 'thumb'
+                      .info
+                        .span10
+                          = user.full_name
+
+              %a.cprev1.prev{href: "#", style: "margin-right: 20px; margin-top: -250px"} &lt;
+              %a.cnext1.next{href: "#", style: "margin-right: 0; margin-top: -250px"} &gt;
+          #alumnis.users-list.offset1.transparent
+            .span9.list_carousel
+              %ul.community-slide2
+                - @users.alumni.each_slice(3) do |slide|
+                  %li{style: "width: 190px;line-height: 20px;"}
+                    - slide.each do |user|
+                      .span10.image
+                        = link_to user_path(user) do
+                          = display_image user.profile.image, 'thumb'
+                      .info
+                        .span10
+                          = user.full_name
+
+              %a.cprev2.prev{href: "#", style: "margin-right: 20px; margin-top: -250px"} &lt;
+              %a.cnext2.next{href: "#", style: "margin-right: 0; margin-top: -250px"} &gt;          
+
 
         #tab2.tab_content.list_carousel
           %ul#foo2.carou-fred-sel

@@ -35,4 +35,11 @@ $(function() {
     }
   });
 
+  $(".toggle1").click(function(){
+    $($(this).data("toggle")).addClass("transparent");
+    $($(this).data("target")).removeClass("transparent");
+    $(".toggle1").removeClass('active');
+    $(this).addClass('active');
+  });
+
 });
