@@ -6,9 +6,10 @@ class University < ActiveRecord::Base
   has_many :metropolitan_clubs, dependent: :destroy
   has_many :events, as: :eventable
 
-  attr_accessible :location, :mascot, :name, :image, :slug
+  attr_accessible :location, :mascot, :name, :image, :banner, :slug
 
   mount_uploader :image, ImageUploader
+  mount_uploader :banner, BannerUploader
 
   extend FriendlyId
   friendly_id :name, use: :slugged

@@ -263,6 +263,7 @@ ActiveRecord::Schema.define(:version => 20131028010521) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "image"
+    t.string   "banner"
   end
 
   create_table "updates", :force => true do |t|
