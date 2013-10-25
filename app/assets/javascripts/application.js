@@ -34,4 +34,5 @@ $(function() {
       $($(this).data("target")).removeClass("hide");
     }
   });
+
 });

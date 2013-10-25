@@ -44,4 +44,21 @@ module ApplicationHelper
     str = "#{str}#{week_end.strftime("%b")} " if week_start.month != week_end.month
     str = "#{str}#{week_end.strftime("%d")}"
   end
+
+  def display_image(image, size, options={})
+    if image.blank?
+      "<img id='#{options[:id]}' src='/assets/bg.png' class='circular cir-img #{size}'></image><div class='no-img-title title-#{size}'><div class='title-in'>No Image</div></div>".html_safe
+    else
+      image_tag image.send(size), class: "circular cir-img", id: options[:id]
+    end
+  end
+
+  def display_image_square(image, size)
+    if image.blank?
+      "<img src='/assets/bg.png' class='square cir-img #{size}'></image><div class='no-img-title title-#{size}'><div class='title-in'>No Image</div></div>".html_safe
+    else
+      image_tag image.send(size), class: "square cir-img"
+    end
+  end
+
 end

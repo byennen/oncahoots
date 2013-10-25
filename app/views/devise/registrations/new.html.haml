@@ -11,8 +11,7 @@
       .clearfix
       = f.select :university_id, options_from_collection_for_select(University.all.sort_by(&:name), :id, :name), prompt: "University"
       .clearfix
-      = f.input :city, label: false, input_html: {placeholder: "city", class: "fioled0"}
-      = f.input :state, label: false, input_html: {placeholder: "state", class: "fioled0"}
+      = f.select :city_id, options_for_select(City.order(:name).collect{ |c| [c.name, c.id] } + ["Other"]), prompt: "Current City"
       = f.select :graduation_year, options_for_select(2020.downto(1940).to_a), { prompt: "Graduation year", class: "fioled0" } 
       .clearfix
       = f.input :major, label: false, input_html: {placeholder: "major", class: "fioled0"}
@@ -31,3 +30,14 @@
         &nbsp;
         = link_to "Sign in", new_session_path(resource_name)
         .clearfix
+
+:javascript
+  $(document).ready(function(){
+    $("#user_graduation_year").change(function(){
+      if($(this).val() < "#{Date.today.year}"){
+        $("#user_alumni").prop('checked', true);
+      }else{
+        $("#user_alumni").prop('checked', false);
+      }
+    });
+  });

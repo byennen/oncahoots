@@ -3,9 +3,8 @@ class University < ActiveRecord::Base
   has_many :updates, as: :updateable
 
   has_many :clubs, dependent: :destroy
-  has_many :metropolitant_clubs, dependent: :destroy
+  has_many :metropolitan_clubs, dependent: :destroy
   has_many :events, as: :eventable
-  has_many :metropolitant_clubs, dependent: :destroy
 
   attr_accessible :location, :mascot, :name, :image, :slug
 
@@ -14,12 +13,12 @@ class University < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: :slugged
 
-  after_create :create_metropolitant_clubs
+  after_create :create_metropolitan_clubs
 
   private
-    def create_metropolitant_clubs
+    def create_metropolitan_clubs
       City.all.each do |city|
-        metropolitant_clubs.create(city_id: city.id)
+        metropolitan_clubs.create(city_id: city.id)
       end
     end
 end

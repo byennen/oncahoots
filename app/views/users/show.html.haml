@@ -2,10 +2,10 @@
 = content_for :header do
   .span3
     = link_to "javascript:void(0);" do
-      = image_tag @user.profile.image.xxlarge, class: "circular"
+      = display_image @user.profile.image, "xxlarge"
   .span8
     .pro-user{style: "min-height: 120px;"}
-      %p Hi! My name is #{@user.full_name} and I'm a #{@user.major} from #{@user.display_location}. Let's connect!
+      %p Hi! My name is #{@user.full_name} and I'm a #{@user.major} from #{@user.display_city}. Let's connect!
     .offset9
       - if current_user.relatable?(@user) 
         %a{href: "#add-contact", class: "btn btn-primary", data: {toggle: "modal"}, style: "margin-right: 10px;"} Add Contact
@@ -28,8 +28,9 @@
               %a{href: "#tab22"} Experience
             %li
               %a{href: "#tab33"} Portfolio
-            %li
-              %a{href: "#tab44"} FAQs
+            - if @user.alumni
+              %li
+                %a{href: "#tab44"} FAQs
           .clearfix
           .tab_container
             #tab11.tab_content2
@@ -48,56 +49,56 @@
                       = experience.company_name
                       %br
                       %span= experience.position_name
-                    %p = experience_string(experience)
+                    %p= experience_string(experience)
                     .clearfix           
             #tab33.tab_content2
               .profile
-                %a.gb{href: "javascript:;"}
-                %ul.ssap
-                  %li
-                    %a{href: "javascript:;"}
-                  %li
-                    %a{href: "javascript:;"}
-                  %li
-                    %a{href: "javascript:;"}
-                %h3
-                  Project name
-                  %br
-                  %span Project organization name
-                %p As a communication intern I was responsible for producing the following pamphlets explaining our processes to clients.
-            #tab44.tab_content2
-              .faq
-                %h2 FAQ
-                .half
-                  %p
-                    %b= "- What do you look for in a new hire?"
-                    %br
-                    People with passion and experience.
-                    %br
-                    %br
-                    %b= "- What do you do on a daily basis?"
-                    %br
-                    Meet withy clients.
-                    %br
-                    %br
-                    %b= "- How many hours a week do you work?"
-                    %br
-                    Between 45 and 60.
-                .half
-                  %p
-                    %b= "- What do you look for in a new hire?"
-                    %br
-                    People with passion and experience.
-                    %br
-                    %br
-                    %b= "- What do you do on a daily basis?"
-                    %br
-                    Meet withy clients.
-                    %br
-                    %br
-                    %b= "- How many hours a week do you work?"
-                    %br
-                    Between 45 and 60.
+                - @portfolio_items.each do |portfolio|
+                  .span12.left2.top.bottom
+                    .span2
+                      = display_image_square portfolio.image, "thumb"
+                    .span10
+                      .span9
+                        %h3
+                          = portfolio.name
+                          %br
+                          %span= portfolio.organization_name
+                      .span9
+                        = simple_format portfolio.description
+            - if @user.alumni?
+              #tab44.tab_content2
+                .faq
+                  %h2 FAQ
+                  .half
+                    %p
+                      %b= "- What do you look for in a new hire?"
+                      %br
+                      People with passion and experience.
+                      %br
+                      %br
+                      %b= "- What do you do on a daily basis?"
+                      %br
+                      Meet withy clients.
+                      %br
+                      %br
+                      %b= "- How many hours a week do you work?"
+                      %br
+                      Between 45 and 60.
+                  .half
+                    %p
+                      %b= "- What do you look for in a new hire?"
+                      %br
+                      People with passion and experience.
+                      %br
+                      %br
+                      %b= "- What do you do on a daily basis?"
+                      %br
+                      Meet withy clients.
+                      %br
+                      %br
+                      %b= "- How many hours a week do you work?"
+                      %br
+                      Between 45 and 60.
     - unless @user == current_user
       .clearfix
       %br

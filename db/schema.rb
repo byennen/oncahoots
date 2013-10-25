@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131023094103) do
+ActiveRecord::Schema.define(:version => 20131024164735) do
 
   create_table "cities", :force => true do |t|
     t.string   "name"
@@ -79,8 +79,8 @@ ActiveRecord::Schema.define(:version => 20131023094103) do
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
     t.boolean  "free_food"
-    t.integer  "eventable_id",   :null => false
-    t.string   "eventable_type", :null => false
+    t.integer  "eventable_id"
+    t.string   "eventable_type"
     t.date     "on_date"
     t.time     "at_time"
   end
@@ -155,8 +155,12 @@ ActiveRecord::Schema.define(:version => 20131023094103) do
   create_table "portfolio_items", :force => true do |t|
     t.string   "file"
     t.integer  "profile_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.string   "name"
+    t.string   "organization_name"
+    t.string   "image"
+    t.text     "description"
   end
 
   create_table "professional_fields", :force => true do |t|
@@ -241,19 +245,6 @@ ActiveRecord::Schema.define(:version => 20131023094103) do
     t.string   "image"
   end
 
-  create_table "university_events", :force => true do |t|
-    t.integer  "club_id"
-    t.string   "title"
-    t.string   "time"
-    t.string   "date"
-    t.string   "location"
-    t.string   "description"
-    t.string   "category"
-    t.string   "image"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
-
   create_table "updates", :force => true do |t|
     t.text     "body"
     t.integer  "updateable_id"
@@ -291,6 +282,7 @@ ActiveRecord::Schema.define(:version => 20131023094103) do
     t.string   "state"
     t.boolean  "alumni"
     t.integer  "professional_field_id"
+    t.integer  "city_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -1,11 +1,11 @@
 = content_for :header do
   #avatar.span3
-    = link_to "<i class='icon-plus icon-white'></i>".html_safe, "javascript:;", class: "btn btn-success btn-mini", style: "margin-top: 40px; margin-left: 160px; position: absolute;"
+    = link_to "<i class='icon-plus icon-white'></i>".html_safe, "javascript:;", class: "btn btn-success btn-mini", style: "margin-top: 40px; margin-left: -70px; position: absolute;"
     = link_to "javascript:void(0);" do
-      = image_tag @profile.image.xxlarge, id: "profile-avatar", class: "circular"
+      = display_image @profile.image, "xxlarge", id: "profile-avatar"
   .span8
     .pro-user
-      %p Hi! My name is #{@user.full_name} and I'm a #{@user.display_major} from #{@user.display_location}. Let's connect!
+      %p Hi! My name is #{@user.full_name} and I'm a #{@user.display_major} from #{@user.display_city}. Let's connect!
 
 .row-fluid
   .container
@@ -32,8 +32,8 @@
             =". I graduated in" if @user.alumni?
             =". I will graduate in" unless @user.alumni?
             = f.select :graduation_year, options_for_select((Date.today.year + 7).downto(1940).to_a, @user.graduation_year), placeholder: "Grad Year"
-            =". I am from"
-            = f.select :location_id, options_from_collection_for_select(Location.all, :id, :name, @user.location_id)
+            =". My current city"
+            = f.select :city_id, options_for_select(City.order(:name).collect{ |c| [c.name, c.id] } + ["Other"])
             - if @user.alumni?
               =". I work in"
               = f.select :professional_field_id, options_from_collection_for_select(ProfessionalField.all, :id, :name, @user.professional_field_id)
@@ -111,8 +111,15 @@
         ~ nested_form_for [@user, @profile] do |f|
           = f.fields_for :portfolio_items do |pf|
             .span11
-              .span2= link_to pf.object.file.file.filename, pf.object.file.url if pf.object.file.file
-              .span4= pf.file_field :file, style: "width: 100%"
+              .span2
+                = display_image_square pf.object.image, 'thumb'
+                
+              .span9
+                .span9= pf.file_field :image, style: "width: 100%"
+                .clearfix
+                .span9.no-lmar= pf.text_field :name, placeholder: "Project Name", class: "span9"
+                .span9.no-lmar= pf.text_field :organization_name, placeholder: "Project Organization Name", class: "span9"
+                .span9.no-lmar= pf.text_area :description, placeholder: "Description", rows: 5, class: "span9"
               .span1= pf.link_to_remove "<i class='icon-remove'></i>".html_safe
           = f.link_to_add "Add", :portfolio_items, class: "btn btn-primary btn-mini fleft", style: "margin-right: 100px"
           .span11.fright

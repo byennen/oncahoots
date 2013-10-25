@@ -1,11 +1,32 @@
-.span3.no-lmar.dropdown
-  %a.btn.btn-success.btn2.chang.dropdown-toggle{:href => "javascript:;", :"data-toggle" => 'dropdown'}
+.span3.no-lmar
+  %a#search-club.btn.btn2.btn-success{style: "margin-right: 10px;", href: "javascript:;"}
     %i
-      = image_tag "dropdown-arrow.png"
-  %ul.dropdown-menu{style: "margin: -10px 0 0 22px"}
-    %li
-      %a All categories
-    - Club::CATEGORIES.each do |cat|
-      %li
-        %a= cat
-  = text_field_tag :category, "All categories", class: "field dropdown-toggle", :"data-toggle" => 'dropdown'
+      = image_tag('search-icon.png')
+  %input#club_field.field{name: 'search_field', type: 'text'}
+.span12
+  - Club::CATEGORIES.each do |category|
+    = link_to category, "/search/club?club[category]=#{category}", class: "btn btn-inverse toggle-btn span2 top left", remote: true
+
+:javascript
+  $(".toggle-btn").click(function(){
+    $(".toggle-btn").removeClass("btn-success");
+    $(".toggle-btn").addClass("btn-inverse");
+    $(this).addClass("btn-success");
+    $(this).removeClass("btn-inverse");
+  });
+
+  $(document).ready(function(){
+    $("#club_field").keydown(function (e){
+      if(e.keyCode == 13){
+        $(".toggle-btn").removeClass("btn-success");
+        $(".toggle-btn").addClass("btn-inverse");
+        $.get("/search/club", {club: {name: $(this).val()}});
+      }
+    });
+
+    $("#search-club").click(function(){
+      $(".toggle-btn").removeClass("btn-success");
+      $(".toggle-btn").addClass("btn-inverse");
+      $.get("/search/club", {club: {name: $("#club_field").val()}});
+    });
+  });

@@ -9,10 +9,16 @@ $ ->
   $(".search_type a").click ->
     if $(this).text() == 'Person'
       $("#club-option").hide()
+      $("#club-title").hide()
       $("#person-option").show()
+      $("#person-title").show()
+      $(".search_club").hide()
     else
       $("#person-option").hide()
+      $("#person-title").hide()
       $("#club-option").show()
+      $("#club-title").show()
+      $(".search_club").show()
 
   $("#search-button").click ->
     data = {}
