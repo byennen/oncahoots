@@ -13,6 +13,9 @@ class Club < ActiveRecord::Base
   attr_accessible :category, :description, :name, :university_id, :image,
                   :remote_image_url, :user_id, :slug, :private, :mission_statement
 
+  validates :name, presence: true
+  validates :university_id, presence: true
+
   CATEGORIES = [
     "Academic",
     "Alumni",
