@@ -93,7 +93,7 @@
               - @messages.each do |message|
                 %li{id: "message-#{message.id}"}
                   = link_to display_image(message.originator.profile.image, "small"), read_message_path(message), remote: true
-                  %h4= message.originator.full_name
+                  %h4= message.messages.first.sender.full_name
                   %br
                   %p= truncate(message.messages.first.body)
-          #current_conversation.right-side
+          .right-side#current_conversation
