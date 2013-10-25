@@ -79,16 +79,19 @@
           %center
             %buttuon.btn.btn-success.btn3{name: 'btn'} See all
         #tab3.tab_content.span10{style: "margin-left: 60px;"}
-          %h3 Free Food Events:
-          %ul#free-food.flexisel
-            - @free_food_events.each do |event|
-              %li
-                = link_to university_university_event_path(@university, event) do
-                  = display_image_square event.image, "large"
-                .span10.left3
-                  %h4= event.title
-                  %p= event.date
-                  %p= event.time
+          - if @free_food_events.blank?
+            %center
+              %h4 No event
+          - else
+            %ul#free-food.flexisel
+              - @free_food_events.each do |event|
+                %li
+                  = link_to university_university_event_path(@university, event) do
+                    = display_image_square event.image, "large"
+                  .span10.left3
+                    %h4= event.title
+                    %p= event.date
+                    %p= event.time
 
         #tab4.tab_content
 .clearfix
