@@ -24,7 +24,7 @@
             = f.input :image, as: :file, input_html: {class: 'span-8'}
             = f.input :body, as: :text, input_html: {cols: 800, rows: 10, class: 'span-8'}
           .modal-footer
-            = f.submit "Add Newsletter", class: "btn btn-primary"
+            = f.submit "Add Newsletter", class: "btn btn-success"
 
     .modal.hide{id: "comments-#{update.id}"}
       .modal-header
@@ -48,7 +48,7 @@
         .modal-body
           = f.input :comment
         .modal-footer
-          = f.submit "Add Comment"
+          = f.submit "Add Comment", class: "btn btn-success"
 
 
   .clearfix

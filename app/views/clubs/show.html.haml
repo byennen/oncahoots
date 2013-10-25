@@ -15,6 +15,8 @@
       .clearfix
       - if @club.admins.include?(current_user)
         = link_to "Edit", edit_university_club_path(@university, @club), class: "btn btn-success chang3"
+      - if @club.user_id == current_user.id
+        %a{href: "#transfer-ownership", class: "btn danger3 btn-danger", data: {toggle: "modal"}} Transfer
       /%button.btn.btn-success.chang3 Transactions
   .clearfix
 
@@ -129,7 +131,7 @@
                     = f.input :category, as: :category
                     = f.input :image, as: :file
                   .modal-footer
-                    = f.submit "Save Event", class: "btn btn-primary"
+                    = f.submit "Save Event", class: "btn btn-success"
           - if @club.admins.include?(current_user)
             #add_event.modal.hide
               = simple_form_for([@university, @club, Event.new], html: {class: 'form-horizontal'}) do |f|
@@ -147,7 +149,7 @@
                   = f.input :category, as: :category
                   = f.input :image, as: :file
                 .modal-footer
-                  = f.submit "Add Event", class: "btn btn-primary"
+                  = f.submit "Add Event", class: "btn btn-success"
         #eboard.tab_content
           - if @club.admins.include?(current_user)
             .pull-right
@@ -204,7 +206,18 @@
         = f.input :image, as: :file, input_html: {class: 'span-8'}
         = f.input :body, as: :text, input_html: {cols: 800, rows: 10, class: 'span-8'}
       .modal-footer
-        = f.submit "Add Newsletter", class: "btn btn-primary"
+        = f.submit "Add Newsletter", class: "btn btn-success"
+
+- if @club.user_id == current_user.id
+  #transfer-ownership.modal.hide
+    = simple_form_for @club, url: transfer_ownership_university_club_path(@university, @club), method: :post do |f|
+      .modal-header
+        %button{type: "button", class: "close", data: {dismiss: :modal}} &times;
+        %h3 Transfer Ownership
+      .modal-body
+        = f.input :user_id, collection: @club.admins, label_method: :full_name, value_method: :id
+      .modal-footer
+        = f.submit "Transfer Ownership", class: "btn btn-success"
 
 :javascript
   jQuery(document).ready(function() {//Default Action
