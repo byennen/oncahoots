@@ -23,11 +23,11 @@
             - if @user.alumni?
               I was a/an
             - else
-              I am a/an 
+              I am a/an
             = f.text_field :major, placeholder: "Major"
-            and 
+            and
             = f.text_field :double_major, placeholder: "Double Major"
-            major at 
+            major at
             = f.select :university_id, options_from_collection_for_select(University.all, :id, :name, @user.university_id), prompt: "University"
             =". I graduated in" if @user.alumni?
             =". I will graduate in" unless @user.alumni?
@@ -76,7 +76,7 @@
             and
             = f.text_field :skill3, placeholder: "last skill"
           .span11.fright
-            = submit_tag "Save", class: "btn btn-small btn-success fright" 
+            = submit_tag "Save", class: "btn btn-small btn-success fright"
       %a.span11.slide-tab.toggle{href: "javascript:;", :"data-toggle" => ".slide-content", :"data-target" => "#experience"}
         = image_tag 'edit.png', style: "width: 40px;"
         Experience
@@ -113,7 +113,7 @@
             .span11
               .span2
                 = display_image_square pf.object.image, 'thumb'
-                
+
               .span9
                 .span9= pf.file_field :image, style: "width: 100%"
                 .clearfix
@@ -125,21 +125,26 @@
           .span11.fright
             = submit_tag "Save", class: "btn btn-small btn-success fright"
       - if current_user.alumni?
+        %a.span11.slide-tab.toggle{href: "javascript:;", data: {toggle: ".slide-content", target: "#faqs"}}
+          = image_tag 'edit.png', style: "width: 40px;"
+          FAQ's
         %a.span11.slide-tab.toggle{href: "javascript:;", :"data-toggle" => ".slide-content", :"data-target" => "#contact_requirements"}
           = image_tag 'edit.png', style: "width: 40px;"
           Contact Requirements
           %i.icon-white.icon-minus{style: "float:right; margin-top: 10px; margin-right: 10px"}
         #contact_requirements.slide-content.hide
-          .clearfix
-          .pro-user.left
-            = simple_form_for @contact_requirements, url: contact_requirements_user_profile_path do |f|
-              = f.input :gpa_requirement, label: "GPA Requirements", input_html: {style: "border 1px solid red;"}
-              = f.input :major_requirement, label: "Major Requirements"
-              = f.input :years_working_experience, label: "Years Working Experience"
-              = f.input :fields_of_interest, label: "Fields Of Interest"
-              .buttons
-                = f.submit "save", class: "btn btn-success btn-small"
-                %a.btn.btn-small.btn-danger{style: "display: inline-block;float: none; margin-left: 10px; margin-top: 0px;"} cancel
+          ~ form_for @contact_requirements, url: contact_requirements_user_profile_path do |f|
+            %p.span11
+              My contact requirements for students include: GPA Requirement
+              = f.text_field :gpa_requirement
+              , Major Requirement
+              = f.text_field :major_requirement
+              , Years of Experience
+              = f.text_field :years_working_experience
+              , Field of Experience
+              = f.text_field :fields_of_interest
+            .span11.fright
+              = f.submit "save", class: "btn btn-success btn-small fright"
 #avatar_form{style: "opacity: 0"}
   = form_for @profile, url: upload_avatar_path, method: :post do |f|
     = f.file_field :image, id: "avatar_field"
