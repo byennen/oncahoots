@@ -143,9 +143,8 @@
               = f.text_field :years_working_experience
               , Field of Experience
               = f.text_field :fields_of_interest
-              .buttons
-                = f.submit "save", class: "btn btn-success btn-small"
-                %a.btn.btn-small.btn-danger{style: "display: inline-block;float: none; margin-left: 10px; margin-top: 0px;"} cancel
+            .span11.fright
+              = f.submit "save", class: "btn btn-success btn-small fright"
 #avatar_form{style: "opacity: 0"}
   = form_for @profile, url: upload_avatar_path, method: :post do |f|
     = f.file_field :image, id: "avatar_field"
