@@ -10,10 +10,9 @@ class Club < ActiveRecord::Base
   has_many :records
   has_many :updates, as: :updateable
 
-  attr_accessible :category, :description, :name, :university_id, :image, 
+  attr_accessible :category, :description, :name, :university_id, :image,
                   :remote_image_url, :user_id, :slug, :private, :mission_statement
 
-  CLUB_TYPES = %w(Social Gender Media Performance Recreational Religious Service Student Govt. Team Sports Metropolitan)
   CATEGORIES = [
     "Academic",
     "Alumni",
@@ -41,7 +40,7 @@ class Club < ActiveRecord::Base
     @admins ||= memberships.where(admin: true).all.map(&:user)
   end
 
-  class << self 
+  class << self
     def search_all(params)
       search_name(params[:name]).search_category(params[:category])
     end

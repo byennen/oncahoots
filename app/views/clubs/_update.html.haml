@@ -1,18 +1,18 @@
 %li{style: "padding: 10px; clear: both;"}
   .span2
-    = image_tag update.image_url, style: {width: 160, height: 160}
+    = image_tag update.image_url
   .span10
-    %strong
-      = update.headline
-      - if @club.admins.include?(current_user) || current_user.super_admin? || current_user.university_admin?
-        %a{href: "#edit-update-#{update.id}", class: "btn btn-mini", data: {toggle: "modal"}} Edit
-        =link_to "Delete", university_club_club_newsletter_path(@university,@club, update), class: "btn btn-mini btn-danger", method: :delete, confirm: "Are You Sure?"
-    %br
-    = update.body.truncate(500)
+    %h4= update.headline
+    %p= update.body.truncate(500)
     .pull-right
-      %a{href: "#comments-#{update.id}", data: {toggle: "modal"}} #{update.comments.size} Comments 
+      %a{href: "#comments-#{update.id}", data: {toggle: "modal"}} #{update.comments.size} Comments
       |
       %a{href: "#add-comment-#{update.id}", data: {toggle: "modal"}} Add Comment
+      - if @club.admins.include?(current_user) || current_user.super_admin? || current_user.university_admin?
+        |
+        %a{href: "#edit-update-#{update.id}", data: {toggle: "modal"}} Edit
+        |
+        =link_to "Delete", university_club_club_newsletter_path(@university,@club, update), method: :delete, confirm: "Are You Sure?"
     - if @club.admins.include?(current_user)
       .modal.hide{id: "edit-update-#{update.id}"}
         = simple_form_for update, url: university_club_club_newsletter_path(@university, @club, update.id), method: :put do |f|
@@ -25,7 +25,7 @@
             = f.input :body, as: :text, input_html: {cols: 800, rows: 10, class: 'span-8'}
           .modal-footer
             = f.submit "Add Newsletter", class: "btn btn-primary"
- 
+
     .modal.hide{id: "comments-#{update.id}"}
       .modal-header
         %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
@@ -51,3 +51,4 @@
           = f.submit "Add Comment"
 
 
+  .clearfix

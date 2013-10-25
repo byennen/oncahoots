@@ -23,25 +23,13 @@
   .container
     .span10.offset2
       .span7
-        .img-box
-      %ul.listing.span3
-        %li
-          = link_to "", "javascript;;"
-          %h4 Headline
-          %p Text of the announcement or circle
-        %li
-          = link_to "", "javascript;;"
-          %h4 Headline
-          %p Text of the announcement or circle
-        %li
-          = link_to "", "javascript;;"
-          %h4 Headline
-          %p Text of the announcement or circle
-        %li
-          = link_to "", "javascript;;"
-          %h4 Headline
-          %p Text of the announcement or circle
-
+        = image_tag @club.updates.first.image_url
+      %ul.listing.span5
+        - if @club.admins.include?(current_user)
+          %li.text-right{style: "border: 0px;"}
+            %a{href: "#add-update", class: "btn btn-success", data: {toggle: "modal"}, style: "height: 20px; width: 100px;"} Add Newsletter
+            .clearfix
+        = render partial: "update", collection: @club.updates
 .clearfix
 
 .row-fluid
@@ -205,6 +193,18 @@
         #messages.tab_content
 .clearfix
 
+- if @club.admins.include?(current_user)
+  #add-update.modal.hide
+    = simple_form_for Update.new, url: university_club_club_newsletters_path(@university, @club), method: :post do |f|
+      .modal-header
+        %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+        %h3 Add Newsletter
+      .modal-body
+        = f.input :headline
+        = f.input :image, as: :file, input_html: {class: 'span-8'}
+        = f.input :body, as: :text, input_html: {cols: 800, rows: 10, class: 'span-8'}
+      .modal-footer
+        = f.submit "Add Newsletter", class: "btn btn-primary"
 
 :javascript
   jQuery(document).ready(function() {//Default Action
