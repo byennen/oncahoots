@@ -73,7 +73,7 @@
                   = link_to university_club_path(@university, club) do
                     = display_image club.image, 'xlarge'
                     %span.fleft= club.name
-          
+
           %a.prev#prev2{href: "#"} &lt;
           %a.next#next2{href: "#"} &gt;
           %center
@@ -109,6 +109,7 @@
                       No Image
                     - else
                       = image_tag update.image.thumb
+                %h4= update.headline
                 %p= update.body
                 = link_to time_ago_in_words(update.created_at) + " ago", "javascript:void(0);", class: "com ncom"
                 .clearfix
