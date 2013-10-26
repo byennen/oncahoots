@@ -29,6 +29,7 @@ $ ->
       data['type']= $("input#ptype").val()
       data['major']= $("input#major").val()
       data['year']= $("input#graduation_year").val()
+      data['field']= $("input#professional_field").val()
       $.get("/search/person", user: data)
     else if obj=="Club"
       data['category']=$("#category").val()
@@ -40,6 +41,7 @@ $ ->
     data['type']= $("input#ptype").val()
     data['major']= $("input#major").val()
     data['year']= $("input#graduation_year").val()
+    data['field']= $("input#professional_field").val()
     $.get("/users/1/contacts/multi_search", user: data)
 
 
