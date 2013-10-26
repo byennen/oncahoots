@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :clubs, :through => :memberships
   has_many :relationships
   has_many :relations, through: :relationships
+  has_many :contacts, :through => :relationships, :source => :relation, :conditions => {"relationships.status" => "accepted"}
 
   rolify
   # Include default devise modules. Others available are:
@@ -107,6 +108,7 @@ class User < ActiveRecord::Base
 
   class << self 
     def search_all(params)
+      return where("1=1") if params.blank?
       search_name(params[:name]).search_location(params[:loc]).search_type(params[:type])
       .search_major(params[:major]).search_graduation_year(params[:year])
     end

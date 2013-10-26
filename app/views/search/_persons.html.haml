@@ -1,6 +1,6 @@
 .clearfix
 %ul
-  - @users.each do |user|
+  - persons.each do |user|
     %li.span3{style: "margin-left: 20px; margin-top: 50px;"}
       .users
         %a{href: user_path(user)}= display_image user.profile.image, "xlarge"
@@ -11,10 +11,10 @@
           - else
             = link_to "view", user_path(user)
 
-          - unless @user == current_user
-            = link_to "Message", "#message-form", data: {toggle: "modal"}
+          - unless user == current_user
+            = link_to "Message", "#message-form", style: "float: right;", data: {toggle: "modal"}
           - if user.alumni
-            = link_to "contact requirement", "javascript:;"
+            = link_to "contact requirement", "javascript:;", style: "margin-left: 45px;"
 
 %h4.left
-  = "No results found" if @users.blank?
+  = "No results found" if persons.blank?

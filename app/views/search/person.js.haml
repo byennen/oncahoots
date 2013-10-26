@@ -1,1 +1,1 @@
-$("#search-results").html("#{escape_javascript(render partial: "persons")}");
+$("#search-results").html("#{escape_javascript(render partial: "persons", locals: {persons: @users})}");
