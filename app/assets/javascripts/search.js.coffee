@@ -44,6 +44,9 @@ $ ->
     data['field']= $("input#professional_field").val()
     $.get("/users/1/contacts/multi_search", user: data)
 
+  $(document).on "click", ".message_link", ->
+    $('.tagauto').importTags('')
+    $('.tagauto').addTag($(this).attr("rel"))
 
   $(".search_all #search_field").keydown (e) ->
     if e.keyCode == 13
