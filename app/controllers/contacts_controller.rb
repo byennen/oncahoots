@@ -1,8 +1,10 @@
 class ContactsController < ApplicationController
 
   def index
-    @user = User.find(params[:user_id])
-    @contacts = @user.relationships.accepted
+    @user = current_user
+    @contacts = @user.contacts
+    @bg_image=""
+    
   end
 
   def search
@@ -14,5 +16,10 @@ class ContactsController < ApplicationController
     respond_to do |format|
       format.json {render json: results}
     end
+  end
+
+  def multi_search
+    @contacts = current_user.contacts.search_all(params[:user])
+    respond_to :js
   end
 end

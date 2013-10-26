@@ -25,7 +25,7 @@
               - @bg_image ||= "bg-image bg-image2"
               - @bg_style ||= ""
               %div{class: @bg_image, style: "#{@bg_style}"}
-                - unless controller_name=="search"
+                - unless controller_name=="search" || controller_name=='contacts'
                   .offset9.search_all
                     %a#search-btn.btn.btn2.btn-success{style: "margin-right: 10px;", href: "javascript:;"}
                       %i

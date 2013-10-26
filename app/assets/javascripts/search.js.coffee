@@ -33,6 +33,15 @@ $ ->
     else if obj=="Club"
       data['category']=$("#category").val()
       $.get("/search/club", club: data)
+  $("#search-contact").click ->
+    data = {}
+    data['name'] = $("input#name").val()
+    data['loc'] = $("input#location").val()
+    data['type']= $("input#ptype").val()
+    data['major']= $("input#major").val()
+    data['year']= $("input#graduation_year").val()
+    $.get("/users/1/contacts/multi_search", user: data)
+
 
   $(".search_all #search_field").keydown (e) ->
     if e.keyCode == 13
