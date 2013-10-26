@@ -1,12 +1,13 @@
-%ul#foo2.sss
-  - @contacts.each do |contact|
-    %li
-      .users
-        %a{href: user_path(contact.relation)}= image_tag (contact.relation.profile.image.xlarge)
-        .hovers
-          %p Hi! I am another user from chicago and i am excited about business
-          = link_to contact.relation.full_name, user_path(contact.relation)
-          - if @user == current_user
-            = link_to "Remove", relationship_path(contact), method: :delete, class: "btn btn-mini btn-danger", confirm: "Are you sure?", style: "color: #fff; width: 50px; font-size: .8em; margin-left: 80px; margin-top: 5px; "
-
- 
+= content_for :header do
+  .span10.page-title.top2.bottom2
+    %span#person-title which contacts are you looking for?
+  .span10.no-lmar
+    = render partial: "search/person_options"
+    .span10.bottom2
+      .offset8.top2
+        = link_to "Search", "javascript:;", class: "btn btn-success", id: "search-contact"
+  .row-fluid
+    .container
+      .span10.top2
+        #search-results.top2
+          =  render partial: "search/persons", locals: {persons: @contacts}
