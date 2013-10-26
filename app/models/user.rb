@@ -152,6 +152,5 @@ class User < ActiveRecord::Base
       return where("1=2") unless field
       where(professional_field_id: field.id)
     end
-
   end
 end
