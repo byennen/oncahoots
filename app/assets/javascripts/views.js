@@ -51,6 +51,19 @@
       }, 
         height: 400
     });
+    $('.city-slide').carouFredSel({
+      items: 3,
+      auto: false,
+      prev: '.city-prev',
+      next: '.city-next',
+      pagination: "#pager2",
+      mousewheel: true,
+      swipe: {
+        onMouse: true,
+        onTouch: true
+      }, 
+        height: 252
+    });
   $("#events").flexisel({visibleItems: 3});
   $("#free-food").flexisel({visibleItems: 3});
 

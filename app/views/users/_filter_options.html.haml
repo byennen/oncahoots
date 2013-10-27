@@ -1,0 +1,33 @@
+.span3.no-lmar
+  = text_field_tag :name, "",class: "field", placeholder: "Name", style: "width: 80%"
+
+.span3.no-lmar
+  = text_field_tag :major, "", class: "field", style: "width: 80%", placeholder: "Major"
+.span3.no-lmar.dropdown
+  %a.btn.btn-success.btn2.chang.dropdown-toggle{:href => "javascript:;", :"data-toggle" => 'dropdown'}
+    %i
+      = image_tag "dropdown-arrow.png"
+  %ul.dropdown-menu{style: "margin: -10px 0 0 22px"}
+    %li
+      %a Any Year
+    - (Date.today.year + 7).downto(1940).to_a.each do |year|
+      %li
+        %a= year
+
+  = text_field_tag :graduation_year, "", class: "field dropdown-toggle", :"data-toggle" => 'dropdown', placeholder: "Grad year"
+
+.span3.no-lmar.dropdown
+  %a.btn.btn-success.btn2.chang.dropdown-toggle{:href => "javascript:;", :"data-toggle" => 'dropdown'}
+    %i
+      = image_tag "dropdown-arrow.png"
+  %ul.dropdown-menu{style: "margin: -10px 0 0 22px"}
+    %li
+      %a= "All Fields"
+    - ProfessionalField.order(:name).each do |field|
+      %li
+        %a= field.name
+
+  = text_field_tag :professional_field, "", class: "field dropdown-toggle", :"data-toggle" => 'dropdown', placeholder: "Field"
+.span11
+  .fright
+    = link_to "Search", "javascript:;", class: "btn btn-success", id: "user-filter"
