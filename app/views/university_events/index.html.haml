@@ -40,9 +40,9 @@
     .modal-body
       = f.input :title
       = f.input :on_date, as: :string, label: "Date", input_html: {class: "datepicker"}
-      = f.input :at_time, label: "Time", as: :time, ampm: true, minute_step: 5,default: {hour: 0, minute: 0},input_html: {style: "width: 80px"}
+      = f.input :at_time, label: "Time", as: :time, ampm: true, minute_step: 5, default: {hour: 0, minute: 0},input_html: {style: "width: 80px"}
       = f.input :location
-      = f.input :description, as: :text, input_html: {rows: 5}
+      = f.input :description, as: :text, input_html: {rows: 2}
       = f.input :category, as: :category
       = f.input :image, as: :file
       = f.input :free_food, inline_label: 'Free Food Event?', label: false, as: :boolean
@@ -54,6 +54,12 @@
 
 :javascript
   $(document).ready(function(){
+    $("#event_club_id").hide();
+
+    $("#event_eventable_type").change(function() {
+      $("#event_club_id").slideToggle();
+    });
+
     $(".day-list").on("click", ".btn", function(){
       $(".day-list span").removeClass("active");
       $(".day-list a").removeClass("btn-success");
