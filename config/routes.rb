@@ -74,6 +74,7 @@ CahootsConnect::Application.routes.draw   do
     match '/skip', to: 'profiles#skip', as: 'skip_profile'
     collection do
       get :search
+      get :filter
     end
 
   end

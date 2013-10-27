@@ -110,11 +110,18 @@ class User < ActiveRecord::Base
     def search_all(params)
       return where("1=1") if params.blank?
       search_name(params[:name]).search_location(params[:loc]).search_type(params[:type])
-      .search_major(params[:major]).search_graduation_year(params[:year]).search_professional_field(params[:field])
+      .search_major(params[:major]).search_graduation_year(params[:year]).search_professional_field(params[:field]).search_city(params[:city])
     end
     def search_name(name)
       return where("1=1") if name.blank?
       where("lower(first_name) like ? or lower(last_name) like ?", "%#{name.downcase}%", "%#{name.downcase}%")
+    end
+
+    def search_city(city_name)
+      return where("1=1") if city_name.blank? || city_name == "All cities"
+      city = City.find_by_name(city_name)
+      return where("1=2") unless city
+      where(city_id: city.id)
     end
 
     def search_location(location)
@@ -135,7 +142,7 @@ class User < ActiveRecord::Base
     end
 
     def search_graduation_year(year)
-      return where("1=1") if year.blank?
+      return where("1=1") if year.blank? || year=="Any Year"
       where(graduation_year: year)
     end
 
@@ -145,5 +152,6 @@ class User < ActiveRecord::Base
       return where("1=2") unless field
       where(professional_field_id: field.id)
     end
+
   end
 end

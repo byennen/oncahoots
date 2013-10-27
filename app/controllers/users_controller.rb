@@ -11,6 +11,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def filter
+    @users = User.search_all(params[:user])
+    respond_to :js
+  end
+  
   def show
     @user = User.find params[:id]
     @profile = @user.profile

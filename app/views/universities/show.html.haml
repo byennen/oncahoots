@@ -116,11 +116,53 @@
                     %p= event.time
 
         #tab4.tab_content
+          .span11
+            .span3.no-lmar.dropdown
+              %a.btn.btn-success.btn2.chang.dropdown-toggle{:href => "javascript:;", :"data-toggle" => 'dropdown'}
+                %i
+                  = image_tag "dropdown-arrow.png"
+              %ul.dropdown-menu{style: "margin: -10px 0 0 22px"}
+                - City.order(:name).each do |city|
+                  %li.city-users
+                    %a= city.name
+              = text_field_tag "city", "", class: "field dropdown-toggle", :"data-toggle" => 'dropdown', placeholder: "Cities"
+            .span8.left2.top2
+              %h4.left2 Where are the #{@university.mascot}?
+          .clearfix
+          .list_carousel
+            %ul.city-slide
+              - City.order(:name).each do |city|
+                %li
+                  .users
+                    = link_to "javascript:;" do
+                      = display_image city.image, 'xlarge'
+                      %span.fleft= city.name
+                    .hovers{style: "text-align: center;"}
+                      = link_to filter_users_path(user: {city: city.name}), remote: true do
+                        %p
+                          %h3.left2= "#{city.users.count} #{city.users.count == 1 ? 'people' : 'peoples'}" 
 
+            %a.city-prev.prev{href: "#"} &lt;
+            %a.city-next.next{href: "#"} &gt;
+          .clearfix
+          
+          .span12.bottom2
+            = render partial: "users/filter_options"
+          
         #tab5.tab_content
           .span11.left2 
             %h4 Create Club
           .span11= render partial: "club_form"
+
+.hide= link_to "", "#users-popup", :"data-toggle" => "modal", id: "open-result"
+#users-popup.modal.wide-modal.hide.fade{tabindex: "-1", role: "dialog", :"aria-labelledby" => "myModalLabel", :"aria-hidden" => "true"}
+  .modal-header
+    %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+    %h3 Search Users Result
+  #search-results.modal-body
+  .clearfix
+  .modal-footer
+    %button.btn.btn-warning{type: "button", data: {dismiss: "modal"}} Close
 .clearfix
 .row-fluid
   .container

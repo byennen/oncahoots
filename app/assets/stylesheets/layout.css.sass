@@ -1099,7 +1099,7 @@ html ul
   select
     height: 35px
     width: 180px
-#tab1 .users,
+.tab_content .users,
 #search-results .users,
 #club-list .users
   margin-left: 4%
@@ -1399,27 +1399,28 @@ html ul
     width: auto
     margin-left: 0
 
-#foo2
-  position: relative !important
-  display: block
-  margin-left: 10px !important
 
-.list_carousel .prev
-  float: left
-  margin-top: -170px
-  background: url('right-arrow.png') no-repeat
-  text-indent: -999999px
-  width: 29px
-  height: 125px
+.list_carousel
+  ul
+    position: relative !important
+    display: block
+    margin-left: 10px !important
+  .prev
+    float: left
+    margin-top: -170px
+    background: url('right-arrow.png') no-repeat
+    text-indent: -999999px
+    width: 29px
+    height: 125px
 
-.list_carousel .next
-  margin-top: -170px
-  background: url('left-arrow.png') no-repeat
-  text-indent: -999999px
-  width: 29px
-  height: 125px
-  float: right
-  margin-right: 65px
+  .next
+    margin-top: -170px
+    background: url('left-arrow.png') no-repeat
+    text-indent: -999999px
+    width: 29px
+    height: 125px
+    float: right
+    margin-right: 65px
 
 .pager
   float: left
@@ -1584,6 +1585,10 @@ a.ui-state-active
   margin-left: 20px !important
 .left3
   margin-left: 30px !important
+.right
+  margin-right: 10px !important
+.right2
+  margin-right: 20px !important
 .top
   margin-top: 10px
 .top2
