@@ -5,7 +5,7 @@ class UniversityEventsController < ApplicationController
   def create
     if params[:event][:eventable_type] == "1"
       @club = @university.clubs.find(params[:event][:club_id])
-      @event = @club.events.new(params[:event])
+      @event = @club.events.build(params[:event])
     else
       @event = @university.events.build(params[:event])
     end
@@ -87,6 +87,7 @@ class UniversityEventsController < ApplicationController
       @bg_image=""
       @week_start = DateTime.now.beginning_of_week - 1.days
       @university_events = @university.events.all
+      @university_clubs  = @university.clubs.find(:all)
       @events = events_of_day(Date.today)
     end
 end
