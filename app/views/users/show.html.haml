@@ -81,36 +81,25 @@
               #tab44.tab_content2
                 .faq
                   %h2 FAQ
-                  .half
-                    %p
-                      %b= "- What do you look for in a new hire?"
-                      %br
-                      People with passion and experience.
-                      %br
-                      %br
-                      %b= "- What do you do on a daily basis?"
-                      %br
-                      Meet withy clients.
-                      %br
-                      %br
-                      %b= "- How many hours a week do you work?"
-                      %br
-                      Between 45 and 60.
-                  .half
-                    %p
-                      %b= "- What do you look for in a new hire?"
-                      %br
-                      People with passion and experience.
-                      %br
-                      %br
-                      %b= "- What do you do on a daily basis?"
-                      %br
-                      Meet withy clients.
-                      %br
-                      %br
-                      %b= "- How many hours a week do you work?"
-                      %br
-                      Between 45 and 60.
+                  - if @profile.faqs
+                    - split_number = (@profile.faqs.size / 2.0).floor
+                    - faqs = @profile.faqs.all.each_slice(split_number).to_a
+                    .half
+                      %p
+                        - faqs.first.each do |f|
+                          %strong= f.question
+                          %br
+                          = f.answer
+                          %br
+                          %br
+                    .half
+                      %p
+                        - faqs.last.each do |f|
+                          %strong= f.question
+                          %br
+                          = f.answer
+                          %br
+                          %br
               #tab55.tab_content2
                 .contact_requirements
                   - if @profile.contact_requirement
