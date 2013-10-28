@@ -47,7 +47,8 @@
       = f.input :image, as: :file
       = f.input :free_food, inline_label: 'Free Food Event?', label: false, as: :boolean
       = f.input :eventable_type, inline_label: 'Club Event?', label: false, as: :boolean
-      = f.select :club_id, options_for_select(@university.clubs.order(:name).collect{ |c| [c.name, c.id] }), prompt: "Select Club", style: "float:left; margin-right:5px;"
+      %div.form-inline{ :style => "position: relative; left: 5px; float:right; margin-top:-50px"}
+        = f.select :club_id, options_for_select(@university.clubs.order(:name).collect{ |c| [c.name, c.id] })
     .clearfix
     .modal-footer
       = f.submit "Add Event", class: "btn btn-success"
