@@ -1,9 +1,10 @@
 = content_for :header do
   .span8
     = link_to "javascript:;", class: "mono" do
-      = image_tag "brand.png"
+      = display_image @city.image, "xxlarge"
     .mono2
-      = image_tag "chicago.png"
+      %center
+        .page-title.top4= @city.name
 
   .span3
     .rig
