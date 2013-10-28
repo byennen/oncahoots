@@ -38,7 +38,17 @@
             #tab11.tab_content2
               .two-col
                 %h3 Education
-                %p= @profile.education
+                %p
+                  I
+                  = @profile.education.completed
+                %p
+                  I studied #{@profile.education.major} at #{@profile.education.university}.
+                  I graduated with a
+                  = "#{@profile.education.degree_type}."
+                  in
+                  = "#{@profile.education.graduation_year}."
+                  - unless @profile.education.high_school.blank?
+                    I attended #{@profile.education.high_school} high school.
               .two-col
                 %h3 Skills &amp; Interests
                 %p= @profile.skills
