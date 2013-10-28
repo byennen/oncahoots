@@ -1,4 +1,16 @@
-= simple_form_for [@updateable, @update] do |f|
-  = f.input :body
-  = f.input :image
-  = f.submit "Submit", :class => "btn btn-primary"
+/ = simple_form_for [@updateable, @update] do |f|
+/   = f.input :body
+/   = f.input :image
+/   = f.submit "Submit", :class => "btn btn-primary"
+#update-form.modal.wide-modal.hide.fade{tabindex: "-1", role: "dialog", :"aria-labelledby" => "myModalLabel", :"aria-hidden" => "true"}
+  .modal-header
+    %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+    %h3 Post Bulletin
+  = simple_form_for [@updateable, Update.new] do |f|
+    .modal-body
+      = f.input :headline
+      = f.input :image
+      = f.text_area :body, rows: 10, style: "width: 100%"
+    .modal-footer
+      = f.button :submit, 'Post', class: "btn btn-primary"
+      %button.btn.btn-warning{type: "button", data: {dismiss: "modal"}} Cancel

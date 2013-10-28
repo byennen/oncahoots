@@ -35,7 +35,10 @@ CahootsConnect::Application.routes.draw   do
 
   end
 
-  resources :metropolitan_clubs, only: [:show]
+  resources :metropolitan_clubs, only: [:show] do
+    resources :updates
+  end
+
   match "/metropolitan_club", to: "metropolitan_clubs#show"
 
   match "/next_week/:week_start", to: "university_events#next_week"

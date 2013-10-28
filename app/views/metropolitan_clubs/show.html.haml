@@ -54,7 +54,7 @@
       .boll-box
         %h1 City Bulletin Board
         .span12.top2
-          %a.btn.btn-success.fright Post Bulletin
+          %a{href: "#update-form", data: {toggle: "modal"}, class: "btn btn-success fright"} Post Bulletin
         .clearfix
 .clearfix
 
@@ -62,13 +62,7 @@
   .container
     .offset2.span10
       %ul.posts
-        - 3.times do
-          %li
-            %a.avatr{href: "javascript:;"}
-            %h4 Post title
-            %p The Davidons Alumni Association will be hosting a meetup this Thursday in Chicago at the Rockit Bar &amp; Grill dropdown.
-            %a.com{href: "javascript:;"} Comment
-            .clearfix
+        = render partial: 'updates/update', collection: @updates
 
 .row-fluid
   .container
@@ -126,6 +120,7 @@
     .span12
       .seperator
 .clearfix
+= render partial: 'updates/form'
 
 :javascript
   jQuery(document).ready(function() {//Default Action

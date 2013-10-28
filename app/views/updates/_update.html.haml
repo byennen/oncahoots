@@ -1,0 +1,7 @@
+%li
+  %a.avatr= image_tag(update.image.url(:small))
+  %span.pull-right= update.created_at.try(:strftime, "%A, %b %d, %Y at %I:%M-%p")
+  %h4= update.headline.capitalize
+  %p= truncate(update.body, length: 140)
+  %a.com{href: "javascript:;"} Comment
+  .clearfix
