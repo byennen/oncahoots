@@ -79,7 +79,7 @@ class User < ActiveRecord::Base
 
   def metropolitan_club
     return if city_id.blank? || university_id.blank?
-    MetropolitanClub.where(city_id: city_id, university_id: university_id)
+    MetropolitanClub.where(city_id: city_id, university_id: university_id).first
   end
 
   def username_for_friendlyid

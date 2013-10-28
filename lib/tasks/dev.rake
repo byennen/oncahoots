@@ -25,7 +25,10 @@ namespace :dev do
       puts "create metropolitan clubs for #{university.name}"
       City.all.each do |city|
         puts "............at #{city.name}"
-        university.metropolitan_clubs.create(city_id: city.id)
+        club=university.metropolitan_clubs.build(city_id: city.id)
+        club.name = "#{university.name} of #{city.name}"
+        club.save
+        puts club.errors.full_messages.join(",")
       end
     end
 
@@ -44,7 +47,7 @@ namespace :dev do
         puts "Something went wrong!"
       end
     end
-    Club.where(type: "MetropolitantClub").delete_all
+    #Club.where(type: "MetropolitantClub").delete_all
   end
 
   task :add_image_for_all_universities => :environment do
