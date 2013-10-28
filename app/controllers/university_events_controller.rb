@@ -87,7 +87,7 @@ class UniversityEventsController < ApplicationController
       @bg_image=""
       @week_start = DateTime.now.beginning_of_week - 1.days
       @university_events = @university.events.all
-      @university_clubs  = @university.clubs.find(:all)
+      @university_clubs  = @university.clubs.order(:name)
       @events = events_of_day(Date.today)
     end
 end
