@@ -35,6 +35,10 @@ class ClubEventsController < ApplicationController
     end
   end
 
+  def show
+
+  end
+
   private
 
     def ensure_user_university
