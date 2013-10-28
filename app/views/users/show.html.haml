@@ -7,7 +7,7 @@
     .pro-user{style: "min-height: 120px;"}
       %p Hi! My name is #{@user.full_name} and I'm a #{@user.major} from #{@user.display_city}. Let's connect!
     .offset9
-      - if current_user.relatable?(@user) 
+      - if current_user.relatable?(@user)
         %a{href: "#add-contact", class: "btn btn-primary", data: {toggle: "modal"}, style: "margin-right: 10px;"} Add Contact
       - elsif Relationship.reciprocal?(current_user, @user)
         %a{href: "javascript:;", class: "btn btn-danger", style: "margin-right: 10px;"} UnContact
@@ -31,12 +31,24 @@
             - if @user.alumni
               %li
                 %a{href: "#tab44"} FAQs
+              %li
+                %a{href: "#tab55"} Contact
           .clearfix
           .tab_container
             #tab11.tab_content2
               .two-col
                 %h3 Education
-                %p= @profile.education
+                %p
+                  I
+                  = @profile.education.completed
+                %p
+                  I studied #{@profile.education.major} at #{@profile.education.university}.
+                  I graduated with a
+                  = "#{@profile.education.degree_type}."
+                  in
+                  = "#{@profile.education.graduation_year}."
+                  - unless @profile.education.high_school.blank?
+                    I attended #{@profile.education.high_school} high school.
               .two-col
                 %h3 Skills &amp; Interests
                 %p= @profile.skills
@@ -45,12 +57,12 @@
                 - @experiences.each do |experience|
                   %li
                     %a.avatr{href: "javascript:;"}
-                    %h4 
+                    %h4
                       = experience.company_name
                       %br
                       %span= experience.position_name
                     %p= experience_string(experience)
-                    .clearfix           
+                    .clearfix
             #tab33.tab_content2
               .profile
                 - @portfolio_items.each do |portfolio|
@@ -99,6 +111,20 @@
                       %b= "- How many hours a week do you work?"
                       %br
                       Between 45 and 60.
+              #tab55.tab_content2
+                .contact_requirements
+                  %p
+                    My contact requirements for students include:
+                    %strong= @user.profile.contact_requirement.gpa_requirement
+                    GPA,
+                    %strong= @user.profile.contact_requirement.major_requirement
+                    Major,
+                    %strong= @user.profile.contact_requirement.years_working_experience
+                    Years of Experience,
+                    %br
+                    and a Field of Experience
+                    %strong= @user.profile.contact_requirement.fields_of_interest
+
     - unless @user == current_user
       .clearfix
       %br
@@ -108,7 +134,7 @@
           .span10
             %ul.tabs5
               %li{style: "width: 49.2%"}
-                %a{href: "#tab-cor"} Our Correspondence  
+                %a{href: "#tab-cor"} Our Correspondence
               %li{style: "width: 49.2%"}
                 %a{href: "#tab-clubs"} Our Clubs
 
@@ -125,7 +151,7 @@
                       =# link_to time_ago_in_words(update.created_at) + " ago", "javascript:void(0);", class: "com ncom"
                       .clearfix
               #tab-clubs.tab_content
-                     
+
 
 
 #add-contact.modal.hide
@@ -141,12 +167,12 @@
 = render partial: "shared/new_message"
 
 :javascript
-  
+
   $(function () {
     $(".tab_content").hide(); //Hide all content
     $("ul.tabs5 li:first").addClass("active").show(); //Activate first tab
     $(".tab_content:first").show(); //Show first tab content
-      
+
     //On Click Event
     $("ul.tabs5 li").click(function() {
       $("ul.tabs5 li").removeClass("active"); //Remove any "active" class
@@ -162,7 +188,7 @@
     $(".tab_content2").hide(); //Hide all content
     $("ul.tabs6 li:first").addClass("active").show(); //Activate first tab
     $(".tab_content2:first").show(); //Show first tab content
-      
+
       //On Click Event
     $("ul.tabs6 li").click(function() {
       $("ul.tabs6 li").removeClass("active"); //Remove any "active" class
@@ -175,7 +201,7 @@
       $(activeTab).fadeIn(); //Fade in the active content
       return false;
     });
-  
+
   });
   // Iterate over each select element
   $('select.select').each(function() {
@@ -240,5 +266,5 @@
       $list.hide();
     });
 
-    
+
   });

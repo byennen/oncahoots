@@ -46,22 +46,23 @@
         Education
         %i.icon-white.icon-minus{style: "float:right; margin-top: 10px; margin-right: 10px"}
       #education.slide-content.hide
-        ~ form_tag do
-          .span11= select_tag :completed, options_for_select(["Completed Additional School", "Still in Additional School"]), style: "width: 220px;"
-          %p.span11
-            I studied
-            = text_field_tag :major, "", placeholder: "Study"
-            at
-            = text_field_tag :university, "", placeholder: "University"
-            = ". I graduated with a"
-            = text_field_tag :degree_type, "", placeholder: "Degree Type"
-            in
-            = select_tag :graduation_year, options_for_select((Date.today.year + 7).downto(1940).to_a, @user.graduation_year)
-            =". "
-            I attended
-            = text_field_tag :high_school, "", placeholder: "High School Name"
-          .span11.fright
-            %a.btn.btn-small.btn-success.fright{href: "javascript:;"} Add
+        = simple_form_for [@user, @profile] do |f|
+          = f.simple_fields_for :education do |e|
+            .span11= e.select :completed, options_for_select(["Completed Additional School", "Still in Additional School"]), style: "width: 220px;"
+            %p.span11
+              I studied
+              = e.text_field :major, placeholder: "Study"
+              at
+              = e.text_field :university, placeholder: "University"
+              = ". I graduated with a"
+              = e.text_field :degree_type, placeholder: "Degree Type"
+              in
+              = e.select :graduation_year, options_for_select((Date.today.year + 7).downto(1940).to_a, @user.graduation_year)
+              =". "
+              I attended
+              = e.text_field :high_school, placeholder: "High School Name"
+            .span11.fright
+              = f.submit "Save", class: "btn btn-small btn-success fright"
       %a.span11.slide-tab.toggle{href: "javascript:;", :"data-toggle" => ".slide-content", :"data-target" => "#skill"}
         = image_tag 'edit.png', style: "width: 40px;"
         Skills
@@ -128,6 +129,19 @@
         %a.span11.slide-tab.toggle{href: "javascript:;", data: {toggle: ".slide-content", target: "#faqs"}}
           = image_tag 'edit.png', style: "width: 40px;"
           FAQ's
+        #faqs.slide-content.hide
+          .clearfix
+          ~ nested_form_for [@user, @profile] do |f|
+            - @profile.faqs.build if @profile.faqs.blank?
+            = f.fields_for :faqs do |faq|
+              .span9
+                = faq.text_field :question, style: "width: 700px;", placeholder: "Question"
+                = faq.text_area :answer, style: "width: 700px; height: 50px;", placeholder: "Answer"
+              .span1= faq.link_to_remove "<i class='icon-remove'></i>".html_safe
+
+            = f.link_to_add "Add", :faqs, class: "btn btn-primary btn-mini fleft", style: "margin-right: 100px"
+            .span11.fright
+              = submit_tag "Save", class: "btn btn-small btn-success fright"
         %a.span11.slide-tab.toggle{href: "javascript:;", :"data-toggle" => ".slide-content", :"data-target" => "#contact_requirements"}
           = image_tag 'edit.png', style: "width: 40px;"
           Contact Requirements
