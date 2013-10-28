@@ -1,10 +1,9 @@
 = content_for :header do
-  .span8
+  .span3
     = link_to "javascript:;", class: "mono" do
       = display_image @metropolitan_club.image, "xxlarge"
-    .mono2
-      %center
-        .page-title.top4= @metropolitan_club.name
+
+  .span5
 
   .span3
     .rig
@@ -19,7 +18,8 @@
       .top4.fright{style: "margin-right: 0"}
         %a.btn.btn-success Transactions
         %a.btn.btn-success Edit
-
+  .span8
+    .page-title.top4= @metropolitan_club.name
 .clearfix
 .row-fluid
   .container
