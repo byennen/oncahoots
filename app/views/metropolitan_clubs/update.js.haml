@@ -1,0 +1,5 @@
+- if params[:partial]
+  $("##{params[:partial]}").html("#{escape_javascript(render partial: "#{params[:partial]}")}");
+  $('.modal').modal('hide');
+- else
+  window.location.reload();

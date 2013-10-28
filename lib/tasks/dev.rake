@@ -21,33 +21,43 @@ namespace :dev do
   end
 
   task :create_metropolitan_clubs => :environment do
+    Club.where(type: "MetropolitantClub").delete_all
     University.all.each do |university|
       puts "create metropolitan clubs for #{university.name}"
       City.all.each do |city|
-        puts "............at #{city.name}"
-        club=university.metropolitan_clubs.build(city_id: city.id)
-        club.name = "#{university.name} of #{city.name}"
-        club.save
-        puts club.errors.full_messages.join(",")
+        count = MetropolitanClub.where(university_id: university.id, city_id: city.id).size
+        if count == 0
+          puts "............at #{city.name}"
+          club=university.metropolitan_clubs.build(city_id: city.id)
+          club.name = "#{university.name} of #{city.name}"
+          club.save
+          puts club.errors.full_messages.join(",")
+        else
+          puts "++++++++#{university.name} of #{city.name} already exits"
+        end
       end
     end
 
     file_path = "#{Rails.root}/public/raw-images/metropolitan-clubs/banner/"
     MetropolitanClub.all.each do |club|
-      if File.exist?("#{file_path}#{club.city.slug}.jpeg")
-        @image_file = "#{file_path}#{club.city.slug}.jpeg"
-      elsif File.exist?("#{file_path}#{club.city.slug}.jpg")
-        @image_file = "#{file_path}#{club.city.slug}.jpg"
-      end
-      next if @image_file.nil?
-      club.image.store!(File.open(@image_file))
-      if club.save
-        puts "Created image for #{club.name}"
+      if club.image.blank?
+        if File.exist?("#{file_path}#{club.city.slug}.jpeg")
+          @image_file = "#{file_path}#{club.city.slug}.jpeg"
+        elsif File.exist?("#{file_path}#{club.city.slug}.jpg")
+          @image_file = "#{file_path}#{club.city.slug}.jpg"
+        end
+        next if @image_file.nil?
+        club.image.store!(File.open(@image_file))
+        if club.save
+          puts "Created image for #{club.name}"
+        else
+          puts "Something went wrong!"
+        end
       else
-        puts "Something went wrong!"
+        puts "+++++ image already added +++++"
       end
     end
-    #Club.where(type: "MetropolitantClub").delete_all
+    
   end
 
   task :add_image_for_all_universities => :environment do

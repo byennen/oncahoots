@@ -21,4 +21,9 @@ class MetropolitanClubsController < ApplicationController
     @university = @metropolitan_club.university
   end
 
+  def update
+    @metropolitan_club = MetropolitanClub.find params[:id]
+    @metropolitan_club.update_attributes(params[:metropolitan_club])
+    respond_to :js
+  end
 end
