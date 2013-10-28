@@ -1,7 +1,6 @@
 class SearchController < ApplicationController
   before_filter :load_university
   def index
-    @bg_image=""
     if params[:term]
       @clubs = Club.search_name(params[:term])
       @users = User.search_name(params[:term])

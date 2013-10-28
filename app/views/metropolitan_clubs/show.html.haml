@@ -5,19 +5,14 @@
 
   .span5
 
-  .span3
+  .span3{style: "min-height: 210px;"}
     .rig
-      %a.btn.btn2.btn-success.chang
-        %i
-          = image_tag "dropdown-arrow.png"
-      = text_field_tag :join_city, "", class: "field", placeholder: "Join City"
-      
-      .top4.fright{style: "margin-right: 0"}
+      .top4.bottom2.fright{style: "margin-right: 0"}
         %a.btn.btn-success Upcoming Events
-
+      %br
       .top4.fright{style: "margin-right: 0"}
-        %a.btn.btn-success Transactions
-        %a.btn.btn-success Edit
+        - if current_user.super_admin? || current_user.university_admin?
+          %a.btn.btn-success.top4 Edit
   .span8
     .page-title.top4= @metropolitan_club.name
 .clearfix
@@ -83,7 +78,7 @@
       .clearfix
       .tab_container
         #tab1.tab_content.list_carousel
-          .span3
+          .span3.offset8
             %a.btn.btn2.btn-success
               %i
                 = image_tag "search-icon.png"
@@ -100,6 +95,7 @@
 
           %a.prev#prev2{href: "#"} &lt;
           %a.next#next2{href: "#"} &gt;
+          #search-results
         #tab2.tab_content
         #tab3.tab_content
           %button.btn.btn2.mod1

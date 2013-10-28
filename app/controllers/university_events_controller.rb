@@ -84,7 +84,6 @@ class UniversityEventsController < ApplicationController
     end
 
     def init
-      @bg_image=""
       @week_start = DateTime.now.beginning_of_week - 1.days
       @university_events = @university.events.all
       @university_clubs  = @university.clubs.order(:name)

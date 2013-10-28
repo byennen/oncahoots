@@ -9,7 +9,6 @@ class ClubsController < ApplicationController
   end
 
   def index
-    @bg_image=""
     @clubs = @university.clubs 
   end
 

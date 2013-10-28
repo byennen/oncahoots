@@ -29,7 +29,6 @@ class UsersController < ApplicationController
       @requests = current_user.relationships.where("status IN (?)", ['pending', 'recommended'])
       @contacts = current_user.relationships.where(status: 'accepted')
     end
-    @bg_image = ""
   end
 
   def update
@@ -39,7 +38,6 @@ class UsersController < ApplicationController
     else
       @profile = current_user.profile
       @contact_requirements = @profile.contact_requirement.present? ? @profile.contact_requirement : @profile.build_contact_requirement
-      @bg_image = ""
       render controller: :profile, action: :edit
     end
   end
