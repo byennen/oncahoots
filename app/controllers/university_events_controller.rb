@@ -2,7 +2,7 @@ class UniversityEventsController < ApplicationController
 
   before_filter :ensure_user_university, except: [:load_events, :next_week, :prev_week]
 
-  def create    
+  def create
     @event = @university.events.build(params[:event])
     if @event.save
       redirect_to university_university_event_path(@university, @event)
@@ -15,7 +15,7 @@ class UniversityEventsController < ApplicationController
   def destroy
     @university_event = @university.events.find(params[:id])
     if @university_event.destroy
-      respond_to do |format|        
+      respond_to do |format|
         format.html { redirect_to university_university_events_path(@university) }
       end
     end
