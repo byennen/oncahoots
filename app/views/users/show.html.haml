@@ -38,20 +38,20 @@
             #tab11.tab_content2
               .two-col
                 %h3 Education
-                %p
-                  I
-                  = @profile.education.completed
-                %p
-                  I studied #{@profile.education.major} at #{@profile.education.university}.
-                  I graduated with a
-                  = "#{@profile.education.degree_type}."
-                  in
-                  = "#{@profile.education.graduation_year}."
-                  - unless @profile.education.high_school.blank?
-                    I attended #{@profile.education.high_school} high school.
+                - if @profile.education
+                  %p
+                    I studied #{@profile.education.major} at #{@profile.education.university}.
+                    I graduated with a
+                    = "#{@profile.education.degree_type}."
+                    in
+                    = "#{@profile.education.graduation_year}."
+                    - unless @profile.education.high_school.blank?
+                      I attended #{@profile.education.high_school} high school.
               .two-col
                 %h3 Skills &amp; Interests
-                %p= @profile.skills
+                %p
+                  - if @profile.skill1 || @profile.skill2 || @profile.skill3
+                    I am skillled at #{[@profile.skill1, @profile.skill2, @profile.skill3].join(", ")}.
             #tab22.tab_content2
               %ul.posts.po2
                 - @experiences.each do |experience|
@@ -113,17 +113,18 @@
                       Between 45 and 60.
               #tab55.tab_content2
                 .contact_requirements
-                  %p
-                    My contact requirements for students include:
-                    %strong= @user.profile.contact_requirement.gpa_requirement
-                    GPA,
-                    %strong= @user.profile.contact_requirement.major_requirement
-                    Major,
-                    %strong= @user.profile.contact_requirement.years_working_experience
-                    Years of Experience,
-                    %br
-                    and a Field of Experience
-                    %strong= @user.profile.contact_requirement.fields_of_interest
+                  - if @profile.contact_requirement
+                    %p
+                      My contact requirements for students include:
+                      %strong= @profile.contact_requirement.gpa_requirement
+                      GPA,
+                      %strong= @profile.contact_requirement.major_requirement
+                      Major,
+                      %strong= @profile.contact_requirement.years_working_experience
+                      Years of Experience,
+                      %br
+                      and a Field of Experience
+                      %strong= @profile.contact_requirement.fields_of_interest
 
     - unless @user == current_user
       .clearfix
