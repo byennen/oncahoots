@@ -2,9 +2,7 @@ class ContactsController < ApplicationController
 
   def index
     @user = current_user
-    @contacts = @user.contacts
-    @bg_image=""
-    
+    @contacts = @user.contacts   
   end
 
   def search
