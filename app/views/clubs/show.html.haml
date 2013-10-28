@@ -15,8 +15,6 @@
       .clearfix
       - if @club.admins.include?(current_user)
         = link_to "Edit", edit_university_club_path(@university, @club), class: "btn btn-success chang3"
-      - if @club.user_id == current_user.id
-        %a{href: "#transfer-ownership", class: "btn danger3 btn-danger", data: {toggle: "modal"}} Transfer
       /%button.btn.btn-success.chang3 Transactions
   .clearfix
 
@@ -152,7 +150,11 @@
         #eboard.tab_content
           - if @club.admins.include?(current_user)
             .pull-right
-              %a{href: "#add-admin", class: "btn btn-success chang3", data: {toggle: "modal"}, style: "margin-right: 62px; margin-top: 10px;"} Add E-Board Member
+              %a{href: "#add-admin", class: "btn btn-success ", data: {toggle: "modal"}, style: "margin-right: 62px; margin-top: 10px;"} Add E-Board Member
+              - if @club.user_id == current_user.id
+                %br
+                %br
+                %a{href: "#transfer-ownership", class: "btn btn-danger", data: {toggle: "modal"}} Transfer
               #add-admin.modal.hide
                 = simple_form_for Membership.new, url: make_admin_university_club_memberships_path(@university, @club) do |f|
                   .modal-header
