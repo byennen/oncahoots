@@ -4,4 +4,13 @@
       .span12.left2.ev-title= link_to event.title, university_university_event_path(current_user.university, event)
       .span12.ev-description.top= event.description
 - if @events.blank?
-  .page-title No event this day.
+  .page-title No university events this day.
+
+- @university_clubs.each do |club|
+  - club.events.each do |club_event|
+    .span12.top2{style: "margin-left: -30px; width: 103%;"}
+      .span12.event-item
+        .span12.left2.ev-title= link_to club_event.title, university_club_club_event_path(@university, club, club_event)
+        .span12.ev-description.top= club_event.description
+
+
