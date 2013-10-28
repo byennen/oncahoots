@@ -28,7 +28,6 @@
                 = club_event.date
                 %br
                 = club_event.time
-
   .clearfix
 
 .row-fluid
@@ -104,6 +103,15 @@
                     %h4= event.title
                     %p= event.date
                     %p= event.time
+              - @clubs.each do |club|
+                - club.events.each do |club_event|
+                  %li
+                    = link_to university_club_club_event_path(@university, club, club_event) do
+                      = display_image_square club_event.image, "large"
+                    .span10.left3
+                      %h4= club_event.title
+                      %p= club_event.date
+                      %p= club_event.time
 
         #tab4.tab_content
 .clearfix
