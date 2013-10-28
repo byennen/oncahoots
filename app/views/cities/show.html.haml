@@ -1,113 +1,39 @@
 = content_for :header do
-  .row-fluid.mod3.span12.no-lmar
-    .container
-      .span2
-        .left-menu
-          %ul
-            %li
-              %i
-              = link_to "#myModal2", :"data-toggle" => "modal" do
-                = image_tag('message.png')
-                %br
-                Messages
-            #myModal2.modal.mod4.hide.fade{tabindex: "-1", role: "dialog", :"aria-labelledby" => "myModalLabel", :"aria-hidden" => "true", style: "top: 180px"}
-              .modal-body
-                %span.arr
-                  =image_tag "popup-arrow.png"
-                ~ form_tag url_for, class: "contact-form" do
-                  = text_field_tag :to, "", class: "field2", placeholder: "to"
-                  .clearfix
-                  = text_field_tag :subject, "", class: "field3", placeholder: "Subject"
-                  = text_area_tag :content, "", class: "tarea", placeholder: "Great to hear from you Matt! Glad you accepted my connection request!!"
-                  %button.btn.btn7{type: "button", data: {dismiss: "modal"}} Send
-                  %button.btn6.mod5{type: "button", data: {dismiss: "modal"}} Cancel
-            %li
-              %i
-              = link_to "#myModal", :"data-toggle" => "modal" do
-                %p 2
-                = image_tag "request.png"
-                %br
-                Request
-            #myModal.modal.hide.fade{tabindex: "-1", role: "dialog", :"aria-labelledby" => "myModalLabel", :"aria-hidden" => "true", style: "top: 360px"}
-              .modal-body
-                %span.arr
-                  =image_tag "popup-arrow.png"
-                .left-side
-                  %button.btn.btn5 New Message
-                  %ul.msg
-                    %li
-                      = link_to "javascript:;" do
-                        = image_tag 'small-avatar.png'
-                      %h4 Josh Compton
-                      %br
-                      %p Great hear from you...
-                    %li
-                      = link_to "javascript:;" do
-                        = image_tag 'small-avatar2.png'
-                      %h4 Josh Compton
-                      %br
-                      %p Great hear from you...
-                .right-side
-                  .comment-box
-                    = text_area_tag :comment, "", class: "tex-area", placeholder: "Create to hear from you Matt!! Glad you accepted my connection request!"
-                    = link_to "javascript:;" do
-                      = image_tag "small-avatar.png"
-                    %button.btn6 Delete
-                    %strong 1 day ago
-                  .comment-box
-                    = text_area_tag :comment, "", class: "tex-area", placeholder: "Create to hear from you Matt!! Glad you accepted my connection request!"
-                    = link_to "javascript:;" do
-                      = image_tag "small-avatar.png"
-                    %button.btn6 Delete
-                    %strong 1 day ago
-                .clearfix
-              .modal-footer
-                %button.btn{type: "button", data: {dismiss: "modal"}} Close
-            %li
-              %i
-              = link_to "javascript:;" do
-                %p 1
-                = image_tag "request.png"
-                %br
-                Notifications
-      .span6
-        = link_to "javascript:;", class: "mono" do
-          = image_tag "brand.png"
-        .mono2
-          = image_tag "chicago.png"
-        .clearfix
+  .span8
+    = link_to "javascript:;", class: "mono" do
+      = image_tag "brand.png"
+    .mono2
+      = image_tag "chicago.png"
+
+  .span3
+    .rig
+      %a.btn.btn2.btn-success.chang
+        %i
+          = image_tag "dropdown-arrow.png"
+      = text_field_tag :join_city, "", class: "field", placeholder: "Join City"
+      
+      .top4.fright{style: "margin-right: 0"}
+        %a.btn.btn-success Upcoming Events
+
+      .top4.fright{style: "margin-right: 0"}
+        %a.btn.btn-success Transactions
+        %a.btn.btn-success Edit
+
+.clearfix
+.row-fluid
+  .container
+    .offset2.span10
+      .span8
         .img-box
       .span3
-        .rig
-          %button.btn.btn2.chang
-            %i
-              = image_tag "dropdown-arrow.png"
-          = text_field_tag :join_city, "", class: "field", placeholder: "Join City"
-          %button.btn.chang2 Upcoming Events
-          .clearfix
-          %button.btn.chang3 Edit
-          %button.btn.chang3 Transactions
-        .offset1
-        .clearfix
         %ul.listing
-          %li
-            = link_to "", "javascript;;"
-            %h4 Headline
-            %p Text of the announcement or circle
-          %li
-            = link_to "", "javascript;;"
-            %h4 Headline
-            %p Text of the announcement or circle
-          %li
-            = link_to "", "javascript;;"
-            %h4 Headline
-            %p Text of the announcement or circle
-          %li
-            = link_to "", "javascript;;"
-            %h4 Headline
-            %p Text of the announcement or circle
-      .span1{style: "margin: 0;"}
-  .clearfix
+          - 4.times do 
+            %li
+              = link_to "", "javascript;;"
+              %h4 Headline
+              %p Text of the announcement or circle
+
+.clearfix
 .seps
 .row-fluid
   .container
@@ -117,7 +43,8 @@
           %li.slide
             %a{href: "javascript:;"}
       .clearfix
-      %button.btn.btn2.chang4 View My Photos
+      .span11.top2.bottom2
+        %a.btn.btn-success.fright View My Photos
 .clearfix
 
 .row-fluid
@@ -125,7 +52,8 @@
     .offset2.span10
       .boll-box
         %h1 City Bulletin Board
-        %button.btn.btn2.chang5 Post Bulletin
+        .span12.top2
+          %a.btn.btn-success.fright Post Bulletin
         .clearfix
 .clearfix
 
@@ -153,24 +81,24 @@
           %a{href: "#tab3"}Leadership
       .clearfix
       .tab_container
-        #tab1.tab_content
-          %button.btn.btn2.mod1
-            %i
-              = image_tag "search-icon.png"
-          = text_field_tag :term, "", placeholder: "Search Members", class: "field mod2"
+        #tab1.tab_content.list_carousel
+          .span3
+            %a.btn.btn2.btn-success
+              %i
+                = image_tag "search-icon.png"
+            = text_field_tag :term, "", placeholder: "Search Members", class: "field"
           .clearfix
-          .users
-            %a{href: "javascript:;"}
-              = image_tag "members.png"
-              %span Josh Compton
-          .users
-            %a{href: "javascript:;"}
-              = image_tag "members2.png"
-              %span Gabe Copper
-          .users
-            %a{href: "javascript:;"}
-              = image_tag "members3.png"
-              %span Mathew Bush
+         
+          %ul.carou-fred-sel
+            - @city.users.each do |user|
+              %li
+                .users
+                  %a{href: user_path(user)}
+                    = display_image user.profile.image, 'xlarge'
+                    %span.fleft Josh Compton
+
+          %a.prev#prev2{href: "#"} &lt;
+          %a.next#next2{href: "#"} &gt;
         #tab2.tab_content
         #tab3.tab_content
           %button.btn.btn2.mod1
