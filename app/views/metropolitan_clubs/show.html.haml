@@ -98,6 +98,10 @@
           %a.next#next2{href: "#"} &gt;
           #search-results.top2
         #tab2.tab_content
+          .span11.top
+            = link_to 'edit', "#about-us", class: "btn btn-success btn-mini fright", :"data-toggle" => "modal" if current_user.super_admin? || current_user.university_admin?
+          .span11#about= simple_format @metropolitan_club.description
+
         #tab3.tab_content
           %button.btn.btn2.mod1
             %i
@@ -124,6 +128,17 @@
       .seperator
 .clearfix
 
+#about-us.modal.hide.fade
+  = simple_form_for @metropolitan_club, remote: true do |f|
+    = hidden_field_tag :partial, "about"
+    .modal-header
+      %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+      %h3 Edit About Us
+    .modal-body
+      = f.text_area :description, label: false, rows: 5, style: "width: 100%"
+    .clearfix
+    .modal-footer
+      = f.submit "save", class: "btn btn-success"
 :javascript
   jQuery(document).ready(function() {//Default Action
     $(".tab_content").hide(); //Hide all content
