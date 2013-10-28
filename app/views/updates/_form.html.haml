@@ -12,5 +12,6 @@
       = f.input :image
       = f.text_area :body, rows: 10, style: "width: 100%"
     .modal-footer
+      = f.hidden_field :user_id, value: current_user.id, class: 'hide'
       = f.button :submit, 'Post', class: "btn btn-primary"
       %button.btn.btn-warning{type: "button", data: {dismiss: "modal"}} Cancel
