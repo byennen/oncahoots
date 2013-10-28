@@ -2,8 +2,11 @@
   %h4 No users found
 - else
   - users.each do |user|
-    .span2.top.no-lmar.right
-      = link_to user_path(user) do
-        = display_image user.profile.image, "thumb"
-        .span2= user.full_name
-  = hidden_field :user, :city, value: params[:user][:city]
+    .span2.no-lmar.right{style: "width: 120px;"}
+      .top{style: "width: 100%"}
+        = link_to user_path(user) do
+          = display_image user.profile.image, "thumb"
+      .top{style: "width: 100%"}
+        = link_to user_path(user) do
+          = user.full_name
+  = hidden_field :user, :city, value: params[:user][:city] if params[:user]
