@@ -1,0 +1,155 @@
+= content_for :header do
+  .span8
+    = link_to "javascript:;", class: "mono" do
+      = display_image @metropolitan_club.image, "xxlarge"
+    .mono2
+      %center
+        .page-title.top4= @metropolitan_club.name
+
+  .span3
+    .rig
+      %a.btn.btn2.btn-success.chang
+        %i
+          = image_tag "dropdown-arrow.png"
+      = text_field_tag :join_city, "", class: "field", placeholder: "Join City"
+      
+      .top4.fright{style: "margin-right: 0"}
+        %a.btn.btn-success Upcoming Events
+
+      .top4.fright{style: "margin-right: 0"}
+        %a.btn.btn-success Transactions
+        %a.btn.btn-success Edit
+
+.clearfix
+.row-fluid
+  .container
+    .offset2.span10
+      .span8
+        .img-box
+      .span3
+        %ul.listing
+          - 4.times do 
+            %li
+              = link_to "", "javascript;;"
+              %h4 Headline
+              %p Text of the announcement or circle
+
+.clearfix
+.seps
+.row-fluid
+  .container
+    .offset2.span10
+      %ul.slider4.jcarousel-skin-tango
+        - 20.times do
+          %li.slide
+            %a{href: "javascript:;"}
+      .clearfix
+      .span11.top2.bottom2
+        %a.btn.btn-success.fright View My Photos
+.clearfix
+
+.row-fluid
+  .container
+    .offset2.span10
+      .boll-box
+        %h1 City Bulletin Board
+        .span12.top2
+          %a.btn.btn-success.fright Post Bulletin
+        .clearfix
+.clearfix
+
+.row-fluid
+  .container
+    .offset2.span10
+      %ul.posts
+        - 3.times do
+          %li
+            %a.avatr{href: "javascript:;"}
+            %h4 Post title
+            %p The Davidons Alumni Association will be hosting a meetup this Thursday in Chicago at the Rockit Bar &amp; Grill dropdown.
+            %a.com{href: "javascript:;"} Comment
+            .clearfix
+
+.row-fluid
+  .container
+    .offset2.span10
+      %ul.tabs
+        %li
+          %a{href: "#tab1"}Members
+        %li
+          %a{href: "#tab2"}About Us
+        %li
+          %a{href: "#tab3"}Leadership
+      .clearfix
+      .tab_container
+        #tab1.tab_content.list_carousel
+          .span3
+            %a.btn.btn2.btn-success
+              %i
+                = image_tag "search-icon.png"
+            = text_field_tag :term, "", placeholder: "Search Members", class: "field"
+          .clearfix
+         
+          %ul.carou-fred-sel
+            - @metropolitan_club.members.each do |user|
+              %li
+                .users
+                  %a{href: user_path(user)}
+                    = display_image user.profile.image, 'xlarge'
+                    %span.fleft Josh Compton
+
+          %a.prev#prev2{href: "#"} &lt;
+          %a.next#next2{href: "#"} &gt;
+        #tab2.tab_content
+        #tab3.tab_content
+          %button.btn.btn2.mod1
+            %i
+              = image_tag "search-icon.png"
+          = text_field_tag :term, "", placeholder: "Search Members", class: "field mod2"
+          .clearfix
+          .users
+            %a{href: "javascript:;"}
+              = image_tag "members.png"
+              %span Josh Compton
+          .users
+            %a{href: "javascript:;"}
+              = image_tag "members2.png"
+              %span Gabe Copper
+          .users
+            %a{href: "javascript:;"}
+              = image_tag "members3.png"
+              %span Mathew Bush
+
+.clearfix
+.row-fluid
+  .container
+    .span12
+      .seperator
+.clearfix
+
+:javascript
+  jQuery(document).ready(function() {//Default Action
+    $(".tab_content").hide(); //Hide all content
+    $("ul.tabs li:first").addClass("active").show(); //Activate first tab
+    $(".tab_content:first").show(); //Show first tab content
+    
+    //On Click Event
+    $("ul.tabs li").click(function() {
+      $("ul.tabs li").removeClass("active"); //Remove any "active" class
+      $("ul.tabs a").removeClass("selected");
+      $(this).addClass("active"); //Add "active" class to selected tab
+      jQuery(this).children("a").addClass('selected');
+      //console.log($(this).toSource());
+      $(".tab_content").hide(); //Hide all tab content
+      var activeTab = $(this).find("a").attr("href"); //Find the rel attribute value to identify the active tab + content
+      $(activeTab).fadeIn(); //Fade in the active content
+      return false;
+    });
+    $('.slider4').bxSlider({
+      slideWidth: 300,
+      minSlides: 2,
+      maxSlides: 3,
+      moveSlides: 1,
+      slideMargin: 10
+    });
+  });
