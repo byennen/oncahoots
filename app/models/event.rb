@@ -1,6 +1,6 @@
 class Event < ActiveRecord::Base
   attr_accessible :title, :location, :description, :category,
-                  :image, :free_food, :on_date, :at_time
+                  :image, :free_food, :on_date, :at_time, :eventable_type, :club_id
 
   belongs_to :eventable, polymorphic: true
 
@@ -10,6 +10,7 @@ class Event < ActiveRecord::Base
   scope :non_free_food, where(free_food: !true)
 
   validates :title, presence: true
+
   def date
     on_date.strftime("%Y-%m-%d") if on_date
   end
