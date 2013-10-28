@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
   before_filter :load_data
+  helper_method :load_university_data
+  
   protect_from_forgery
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -14,6 +16,21 @@ class ApplicationController < ActionController::Base
   #    redirect_to edit_user_profile_url(current_user, current_user.profile), notice: 'Please finish filling out your profile.'
   #  end
   #end
+
+  def load_university_data
+    if @university
+      @bg_style = "background-image: url('#{@university.banner.url}')" unless @university.banner.blank?
+      @users = @university.users
+      @updateable = @university
+      @updates = @updateable.updates
+      @free_food_events = @university.events.free_food
+      @university_events = @university.events.all
+      @update = Update.new
+      @clubs = @university.clubs.order(:name)
+      @club ||= @university.clubs.build
+      @club_updates = Update.where(updateable_type: "Club").where(updateable_id: @clubs.map(&:id)).order("created_at DESC").all
+    end
+  end
 
   def load_data
     if current_user
