@@ -78,7 +78,7 @@
       .clearfix
       .tab_container
         #tab1.tab_content.list_carousel
-          .span3.offset8
+          #club-member.span3.offset8
             %a.btn.btn2.btn-success
               %i
                 = image_tag "search-icon.png"
@@ -91,11 +91,11 @@
                 .users
                   %a{href: user_path(user)}
                     = display_image user.profile.image, 'xlarge'
-                    %span.fleft Josh Compton
+                    %span.fleft= user.full_name
 
           %a.prev#prev2{href: "#"} &lt;
           %a.next#next2{href: "#"} &gt;
-          #search-results
+          #search-results.top2
         #tab2.tab_content
         #tab3.tab_content
           %button.btn.btn2.mod1
@@ -147,5 +147,14 @@
       maxSlides: 3,
       moveSlides: 1,
       slideMargin: 10
+    });
+
+    $("#club-member input").keydown(function(e){
+      if(e.keyCode == 13){
+        $.get("#{search_member_metropolitan_club_path(@metropolitan_club)}", {user: {name: $(this).val()}});
+      }
+    });
+    $("#club-member a").click(function(){
+      $.get("#{search_member_metropolitan_club_path(@metropolitan_club)}", {user: {name: $("#club-member input").val()}});
     });
   });
