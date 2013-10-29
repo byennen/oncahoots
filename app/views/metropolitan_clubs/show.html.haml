@@ -9,7 +9,7 @@
         %a.btn.btn-success Upcoming Events
       %br
       .top4.fright{style: "margin-right: 0"}
-        - if current_user.super_admin? || current_user.university_admin?
+        - if current_user.super_admin? || current_user.university_admin? || @metropolitan_club.leaders.include?(current_user)
           %a#upload-banner.btn.btn-success.top4{href: "javascript:;"} Change
   .span8
     .page-title.top4= @metropolitan_club.name
@@ -53,13 +53,14 @@
         .clearfix
 .clearfix
 
-.row-fluid
-  .container
-    .offset2.span10
-      %ul.posts.comment
-      .new_comment_box.hide
-        = render partial: 'new_comment_box'
-      %a.new-comment{href: "javascript:;", class: "btn btn-success" } New Comment
+- unless Update.count==0
+  .row-fluid
+    .container
+      .offset2.span10
+        %ul.posts.comment
+        .new_comment_box.hide
+          = render partial: 'new_comment_box'
+        %a.new-comment{href: "javascript:;", class: "btn btn-success" } New commentment
 
 .row-fluid
   .container
@@ -94,11 +95,11 @@
           #search-results.top2
         #tab2.tab_content
           .span11.top
-            = link_to 'edit', "#about-us", class: "btn btn-success btn-mini fright", :"data-toggle" => "modal" if current_user.super_admin? || current_user.university_admin?
+            = link_to 'edit', "#about-us", class: "btn btn-success btn-mini fright", :"data-toggle" => "modal" if current_user.super_admin? || current_user.university_admin? || @metropolitan_club.leaders.include?(current_user)
           .span11#about= simple_format @metropolitan_club.description
 
         #tab3.tab_content
-          - if current_user.super_admin? || admin.user.university_admin? || @metropolitan_club.admins.include?(current_user)
+          - if current_user.super_admin? || current_user.university_admin? || @metropolitan_club.leaders.include?(current_user)
             .span11.top
               %a{href: "#add-leader", class: "btn btn-success fright", data: {toggle: "modal"}} Add Leader
             #add-leader.modal.hide
