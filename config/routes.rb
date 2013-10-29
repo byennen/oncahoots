@@ -48,6 +48,7 @@ CahootsConnect::Application.routes.draw   do
   resources :updates do
     resources :comments
   end
+  
   resources :relationships do
     get :read, on: :member
     post :accept, on: :member
