@@ -48,6 +48,7 @@
       = f.input :eventable_type, inline_label: 'Club Event?', label: false, as: :boolean
       %div.form-inline{ :style => "position: relative; left: 5px; float:right; margin-top:-50px"}
         = f.select :club_id, options_for_select(@university.clubs.order(:name).collect{ |c| [c.name, c.id] }), prompt: "Select Club"
+      = f.input :display_on_uc, inline_label: 'Add to University Calendar?', label: false, as: :boolean
       = f.input :free_food, inline_label: 'Free Food Event?', label: false, as: :boolean
     .clearfix
     .modal-footer
@@ -56,9 +57,11 @@
 :javascript
   $(document).ready(function(){
     $("#event_club_id").hide();
+    $(".event_display_on_uc").hide();
 
     $("#event_eventable_type").change(function() {
       $("#event_club_id").slideToggle();
+      $(".event_display_on_uc").slideToggle();
     });
 
     $(".day-list").on("click", ".btn", function(){
