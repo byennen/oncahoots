@@ -33,7 +33,9 @@ CahootsConnect::Application.routes.draw   do
 
   end
 
+
   resources :metropolitan_clubs, only: [:show, :update] do
+    resources :updates
     collection do
       get :home
     end

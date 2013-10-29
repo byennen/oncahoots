@@ -282,6 +282,7 @@ ActiveRecord::Schema.define(:version => 20131029075215) do
     t.datetime "updated_at",      :null => false
     t.string   "image"
     t.string   "headline"
+    t.integer  "user_id"
   end
 
   add_index "updates", ["updateable_id", "updateable_type"], :name => "index_updates_on_updateable_id_and_updateable_type"

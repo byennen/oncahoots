@@ -1,4 +1,6 @@
 class MetropolitanClub < Club
+	attr_accessible :city_id, :university_id
+	
   belongs_to :city
 
   has_many :leaders, through: :memberships, source: :user, conditions: {"memberships.admin" => true}
