@@ -20,14 +20,11 @@
     .offset2.span10
       .span8
         .img-box
-
+          %a.thumbnail
+            %img
       .span3
         %ul.listing
-          - 4.times do 
-            %li
-              = link_to "", "javascript;;"
-              %h4 Headline
-              %p Text of the announcement or circle
+          = render partial: 'update', collection: @updates
 
 .clearfix
 .seps
@@ -59,8 +56,10 @@
 .row-fluid
   .container
     .offset2.span10
-      %ul.posts
-        = render partial: 'updates/update', collection: @updates
+      %ul.posts.comment
+      .new_comment_box.hide
+        = render partial: 'new_comment_box'
+      %a.new-comment{href: "javascript:;", class: "btn btn-success" } New Comment
 
 .row-fluid
   .container
