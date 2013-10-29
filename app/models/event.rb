@@ -1,6 +1,7 @@
 class Event < ActiveRecord::Base
   attr_accessible :title, :location, :description, :category,
-                  :image, :free_food, :on_date, :at_time, :eventable_type, :club_id
+                  :image, :free_food, :on_date, :at_time, :eventable_type,
+                  :club_id, :display_on_wc
 
   belongs_to :eventable, polymorphic: true
 
@@ -8,6 +9,7 @@ class Event < ActiveRecord::Base
 
   scope :free_food, where(free_food: true)
   scope :non_free_food, where(free_food: !true)
+  scope :display_on_university_calendar, where(display_on_wc: true)
 
   validates :title, presence: true
 
