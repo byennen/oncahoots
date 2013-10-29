@@ -43,9 +43,21 @@ class MetropolitanClubsController < ApplicationController
     redirect_to metropolitan_club_path(@metropolitan_club)
   end
 
+  def upload_photo
+    @metropolitan_club = MetropolitanClub.find params[:id]
+    photo = @metropolitan_club.club_photos.build(params[:club_photo])
+    photo.user = current_user
+    if photo.save
+      redirect_to metropolitan_club_path(@metropolitan_club), notice: "Upload photo successfully"
+    else
+      redirect_to metropolitan_club_path(@metropolitan_club), error: photo.errors.full_messages.join(", ")
+    end
+  end
+
   private
     def init_data
       @university = @metropolitan_club.university
       @leaderships = @metropolitan_club.memberships.where(admin: true)
+      @my_photos = @metropolitan_club.club_photos.by_user(current_user)
     end 
 end

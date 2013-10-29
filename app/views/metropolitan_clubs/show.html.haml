@@ -20,6 +20,7 @@
     .offset2.span10
       .span8
         .img-box
+
       .span3
         %ul.listing
           - 4.times do 
@@ -33,13 +34,16 @@
 .row-fluid
   .container
     .offset2.span10
-      %ul.slider4.jcarousel-skin-tango
-        - 20.times do
-          %li.slide
-            %a{href: "javascript:;"}
-      .clearfix
+      - unless @metropolitan_club.club_photos.blank?
+        %ul.slider4.jcarousel-skin-tango
+          - @metropolitan_club.club_photos.each do |photo|
+            %li.slide
+              %a{href: "javascript:;", style: "margin-left: 0"}
+                = image_tag photo.image.thumb
+        .clearfix
       .span11.top2.bottom2
-        %a.btn.btn-success.fright View My Photos
+        %a#upload-photo.btn.btn-success.fright{href: "javascript:;"} Upload Photo
+        %a.btn.btn-success.fright{href: "#my_photos", :"data-toggle" => "modal"} My Photos
 .clearfix
 
 .row-fluid
@@ -127,23 +131,40 @@
     .clearfix
     .modal-footer
       = f.submit "save", class: "btn btn-success"
-#banner-form{style: "opacity: 0"}
+#banner-form.upload-form{style: "opacity: 0"}
   = form_for @metropolitan_club, url: upload_image_metropolitan_club_path(@metropolitan_club), method: :post do |f|
     = f.file_field :image
+#club_photo-form.upload-form{style: "opacity: 0"}
+  = form_for ClubPhoto.new, url: upload_photo_metropolitan_club_path(@metropolitan_club), method: :post do |f|
+    = f.file_field :image
+
 .hide
   = link_to "show", "#waiting", :"data-toggle" => "modal", id: "show_waiting"
+
 #waiting.modal.hide.fade
   .modal-header
     %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
     %h3 Uploading..
   .modal-body
     %h3 Upload in process.. Please wait!
+
+#my_photos.modal.hide.fade
+  .modal-header
+    %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+    %h3 My photos
+  .modal-body
+    - @my_photos.each do |photo|
+      %span2.no-lmar= image_tag photo.image.thumb
+
 :javascript
   jQuery(document).ready(function() {//Default Action
     $("#upload-banner").click(function(){
       $("#banner-form input").trigger("click");
     });
-    $("#banner-form").on("change", "input[type=file]",function(){
+    $("#upload-photo").click(function(){
+      $("#club_photo-form input").trigger("click");
+    });
+    $(".upload-form").on("change", "input[type=file]",function(){
       $("a#show_waiting").click();
       $(this).closest("form").submit();
     });
@@ -165,7 +186,6 @@
       return false;
     });
     $('.slider4').bxSlider({
-      slideWidth: 300,
       minSlides: 2,
       maxSlides: 3,
       moveSlides: 1,
