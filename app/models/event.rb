@@ -1,7 +1,6 @@
 class Event < ActiveRecord::Base
   attr_accessible :title, :location, :description, :category,
-                  :image, :free_food, :on_date, :at_time, :eventable_type,
-                  :club_id, :display_on_wc
+                  :image, :free_food, :on_date, :at_time, :eventable_type, :club_id, :display_on_uc
 
   belongs_to :eventable, polymorphic: true
 
