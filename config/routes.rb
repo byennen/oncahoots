@@ -1,6 +1,7 @@
 CahootsConnect::Application.routes.draw   do
   resources :cities
   resources :universities, only: [:show] do
+
     resources :events
     resources :university_events, :path => 'calendar', :controller => :university_events do
 
@@ -29,7 +30,20 @@ CahootsConnect::Application.routes.draw   do
         resources :comments
       end
     end
+
   end
+
+  resources :metropolitan_clubs, only: [:show, :update] do
+    collection do
+      get :home
+    end
+
+    member do
+      get :search_member
+    end
+  end
+
+  match "/metropolitan_club", to: "metropolitan_clubs#home"
 
   match "/next_week/:week_start", to: "university_events#next_week"
   match "/prev_week/:week_start", to: "university_events#prev_week"
@@ -65,11 +79,13 @@ CahootsConnect::Application.routes.draw   do
     resources :contacts do
       collection do
         get :search
+        get :multi_search
       end
     end
     match '/skip', to: 'profiles#skip', as: 'skip_profile'
     collection do
       get :search
+      get :filter
     end
 
   end

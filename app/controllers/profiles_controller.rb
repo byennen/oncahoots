@@ -11,7 +11,6 @@ class ProfilesController < ApplicationController
     @profile = current_user.profile
     @contact_requirements = @profile.contact_requirement.present? ? @profile.contact_requirement : @profile.build_contact_requirement
     @education = @profile.education.present? ? @profile.education : @profile.build_education
-    @bg_image = ""
   end
 
   def show

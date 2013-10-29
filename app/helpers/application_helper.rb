@@ -61,4 +61,17 @@ module ApplicationHelper
     end
   end
 
+  def bg_class
+    "bg-image bg-image2" if controller_name == "universities" || controller_name == "metropolitan_clubs"
+  end
+
+  def hero_banner(options={})
+    if controller_name == "universities" || controller_name == "metropolitan_clubs"
+      if club = options[:club]
+        "background-image: url('#{club.image.url}')" unless club.image.blank?
+      elsif university = options[:university]
+        "background-image: url('#{university.banner.url}')" unless university.banner.blank?
+      end
+    end
+  end
 end

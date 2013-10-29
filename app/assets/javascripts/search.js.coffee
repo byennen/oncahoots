@@ -29,10 +29,36 @@ $ ->
       data['type']= $("input#ptype").val()
       data['major']= $("input#major").val()
       data['year']= $("input#graduation_year").val()
+      data['field']= $("input#professional_field").val()
       $.get("/search/person", user: data)
     else if obj=="Club"
       data['category']=$("#category").val()
       $.get("/search/club", club: data)
+  $("#search-contact").click ->
+    data = {}
+    data['name'] = $("input#name").val()
+    data['loc'] = $("input#location").val()
+    data['type']= $("input#ptype").val()
+    data['major']= $("input#major").val()
+    data['year']= $("input#graduation_year").val()
+    data['field']= $("input#professional_field").val()
+    $.get("/users/1/contacts/multi_search", user: data)
+
+  $(document).on "click", "#user-filter", ->
+    data = {}
+    data['name'] = $("input#name").val()
+    data['city'] = $("input#user_city").val()
+    data['major']= $("input#major").val()
+    data['year']= $("input#graduation_year").val()
+    data['field']= $("input#professional_field").val()
+    $.get("/users/filter", user: data)
+
+  $(".city-users a").click ->
+    $.get("/users/filter", user: {city: $(this).html()})
+
+  $(document).on "click", ".message_link", ->
+    $('.tagauto').importTags('')
+    $('.tagauto').addTag($(this).attr("rel"))
 
   $(".search_all #search_field").keydown (e) ->
     if e.keyCode == 13

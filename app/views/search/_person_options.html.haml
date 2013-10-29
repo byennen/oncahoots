@@ -23,7 +23,7 @@
       %a Alumni
     %li 
       %a Both
-  = text_field_tag :ptype, "Student", class: "field dropdown-toggle", :"data-toggle" => 'dropdown'
+  = text_field_tag :ptype, "Both", class: "field dropdown-toggle", :"data-toggle" => 'dropdown'
 .span3.no-lmar
   = text_field_tag :major, "", class: "field", style: "width: 80%", placeholder: "Major"
 .span3.no-lmar.dropdown
@@ -36,3 +36,16 @@
         %a= year
 
   = text_field_tag :graduation_year, "", class: "field dropdown-toggle", :"data-toggle" => 'dropdown', placeholder: "Grad year"
+
+.span3.no-lmar.dropdown
+  %a.btn.btn-success.btn2.chang.dropdown-toggle{:href => "javascript:;", :"data-toggle" => 'dropdown'}
+    %i
+      = image_tag "dropdown-arrow.png"
+  %ul.dropdown-menu{style: "margin: -10px 0 0 22px"}
+    %li
+      %a= "All Fields"
+    - ProfessionalField.order(:name).each do |field|
+      %li
+        %a= field.name
+
+  = text_field_tag :professional_field, "", class: "field dropdown-toggle", :"data-toggle" => 'dropdown', placeholder: "Field"

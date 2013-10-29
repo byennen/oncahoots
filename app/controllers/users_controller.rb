@@ -4,13 +4,18 @@ class UsersController < ApplicationController
     users = User.where("lower(first_name) like ? or lower(last_name) like ?", "%#{params[:term].downcase}%", "%#{params[:term].downcase}%")
     results = []
     users.each do |user|
-      results << {id: user.id, label: user.full_name, value: user.full_name}
+      results << {id: user.id, label: user.full_name, value: user.slug}
     end
     respond_to do |format|
       format.json {render json: results}
     end
   end
 
+  def filter
+    @users = User.search_all(params[:user])
+    respond_to :js
+  end
+  
   def show
     @user = User.find params[:id]
     @profile = @user.profile
@@ -24,7 +29,6 @@ class UsersController < ApplicationController
       @requests = current_user.relationships.where("status IN (?)", ['pending', 'recommended'])
       @contacts = current_user.relationships.where(status: 'accepted')
     end
-    @bg_image = ""
   end
 
   def update
@@ -34,7 +38,6 @@ class UsersController < ApplicationController
     else
       @profile = current_user.profile
       @contact_requirements = @profile.contact_requirement.present? ? @profile.contact_requirement : @profile.build_contact_requirement
-      @bg_image = ""
       render controller: :profile, action: :edit
     end
   end

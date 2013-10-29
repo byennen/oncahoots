@@ -23,6 +23,7 @@
   .container
     .span10.offset2
       .span7
+        = image_tag @club.updates.first.image_url if @club.updates.first
       %ul.listing.span5
         - if @club.admins.include?(current_user)
           %li.text-right{style: "border: 0px;"}

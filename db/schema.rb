@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(:version => 20131029004131) do
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "image"
   end
 
   create_table "club_photos", :force => true do |t|
@@ -91,8 +92,8 @@ ActiveRecord::Schema.define(:version => 20131029004131) do
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
     t.boolean  "free_food"
-    t.integer  "eventable_id",   :null => false
-    t.string   "eventable_type", :null => false
+    t.integer  "eventable_id"
+    t.string   "eventable_type"
     t.date     "on_date"
     t.time     "at_time"
     t.boolean  "display_on_uc"
@@ -256,19 +257,7 @@ ActiveRecord::Schema.define(:version => 20131029004131) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "image"
-  end
-
-  create_table "university_events", :force => true do |t|
-    t.integer  "club_id"
-    t.string   "title"
-    t.string   "time"
-    t.string   "date"
-    t.string   "location"
-    t.string   "description"
-    t.string   "category"
-    t.string   "image"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.string   "banner"
   end
 
   create_table "updates", :force => true do |t|

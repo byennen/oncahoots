@@ -28,7 +28,7 @@
               %a{href: "#tab22"} Experience
             %li
               %a{href: "#tab33"} Portfolio
-            - if @user.alumni
+            - if @user.alumni?
               %li
                 %a{href: "#tab44"} FAQs
               %li
@@ -115,8 +115,9 @@
                       and a Field of Experience
                       %strong= @profile.contact_requirement.fields_of_interest
 
+                      Between 45 and 60.
+    .clearfix
     - unless @user == current_user
-      .clearfix
       %br
       %br
       .row-fluid
@@ -141,8 +142,6 @@
                       =# link_to time_ago_in_words(update.created_at) + " ago", "javascript:void(0);", class: "com ncom"
                       .clearfix
               #tab-clubs.tab_content
-
-
 
 #add-contact.modal.hide
   = simple_form_for Relationship.new(user_id: current_user.id) do |f|

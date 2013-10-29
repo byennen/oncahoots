@@ -12,7 +12,60 @@
           }, 
           height: 252
         });
-  $("#events").flexisel();
+    $('.community-slide').carouFredSel({
+      items: 3,
+      auto: false,
+      prev: '.cprev',
+      next: '.cnext',
+      pagination: "#pager2",
+      mousewheel: true,
+      swipe: {
+        onMouse: true,
+        onTouch: true
+      }, 
+        height: 400
+    });
+    $('.community-slide1').carouFredSel({
+      items: 3,
+      auto: false,
+      prev: '.cprev1',
+      next: '.cnext1',
+      pagination: "#pager2",
+      mousewheel: true,
+      swipe: {
+        onMouse: true,
+        onTouch: true
+      }, 
+        height: 400
+    });
+    $('.community-slide2').carouFredSel({
+      items: 3,
+      auto: false,
+      prev: '.cprev2',
+      next: '.cnext2',
+      pagination: "#pager2",
+      mousewheel: true,
+      swipe: {
+        onMouse: true,
+        onTouch: true
+      }, 
+        height: 400
+    });
+    $('.city-slide').carouFredSel({
+      items: 3,
+      auto: false,
+      prev: '.city-prev',
+      next: '.city-next',
+      pagination: "#pager2",
+      mousewheel: true,
+      swipe: {
+        onMouse: true,
+        onTouch: true
+      }, 
+        height: 252
+    });
+
+  $("#events").flexisel({visibleItems: 3});
   $("#free-food").flexisel({visibleItems: 3});
 
   $(".tab_content").hide(); //Hide all content

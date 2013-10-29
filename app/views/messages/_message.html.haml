@@ -1,6 +1,8 @@
-.comment-box
+.comment-box.bottom{id: "message-#{message.id}"}
   %a{href: user_path(message.sender), style: "margin-top: 0"}
     = display_image message.sender.profile.image, "small"
-  .span8= message.body
-  %strong= time_ago_in_words(message.created_at) + " ago"
-  %button.btn.btn-danger.btn-mini.fright Delete
+  .span8
+    %h5= message.sender.full_name
+    = message.body
+  %small= time_ago_in_words(message.created_at) + " ago"
+  = link_to "Delete", "javascript:;", method: :delete, class: "btn btn-danger btn-mini"

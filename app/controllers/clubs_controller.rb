@@ -9,7 +9,6 @@ class ClubsController < ApplicationController
   end
 
   def index
-    @bg_image=""
     @clubs = @university.clubs 
   end
 
@@ -35,17 +34,14 @@ class ClubsController < ApplicationController
   def create
     @club = @university.clubs.new(params[:club])
     @club.user_id = current_user.id
-    @just_created = true
-    #@club.memberships.create(user_id: current_user.id, admin: true)
     if @club.save
       @club.memberships.create(user_id: current_user.id, admin: true)
       respond_to do |format|
         format.html { redirect_to university_club_path(@university, @club) }
       end
     else
-      respond_to do |format|
-        format.html { render action: :new }
-      end
+      load_university_data
+      render :template => "/universities/show"
     end
   end
 

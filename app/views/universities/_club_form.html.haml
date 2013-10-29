@@ -1,0 +1,11 @@
+= simple_form_for [@university, @club] do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :image, label: false, input_html: {placeholder: "Logo", class: "span5"}
+    = f.input :name, label: false, input_html: {placeholder: "Name", class: "span5"}
+    = f.input :private
+    = f.input :category, as: :category, label: false
+    = f.input :description, label: false, input_html: {rows: 5, placeholder: "Description", class: "span7"}
+
+    = f.button :submit, class: 'btn btn-success'

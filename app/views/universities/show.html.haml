@@ -8,7 +8,7 @@
         - @university_events.each do |event|
           %li
             = link_to university_university_event_path(@university, event) do
-              = image_tag(event.image)
+              = display_image_square event.image, "medium"
             %br
             %h4
               = event.title
@@ -39,42 +39,62 @@
         %li= link_to "Clubs", "#tab2"
         %li= link_to "Free Food", "#tab3"
         %li= link_to "Alumni Map", "#tab4"
-        %li= link_to "Register New", "#tab5"
+        %li= link_to "Register New", "#tab5", id: "new-club"
       .clearfix
       .tab_container
         #tab1.tab_content
           .filters
             %p Filter by:
-            = link_to "All", "javascript:;", :"data-toggle" => ".users-list", :"data-target" => "#all-users", class: 'toggle'
-            = link_to "Students", "javascript:;", :"data-toggle" => ".users-list", :"data-target" => "#students", class: 'toggle'
-            = link_to "Alumni", "javascript:;", :"data-toggle" => ".users-list", :"data-target" => "#alumnis", class: 'toggle'
-          %ul#all-users.two-users.users-list
-            - @users.each do |user|
-              %li{style: "margin-left: 0"}
-                = link_to user_path(user) do
-                  = display_image user.profile.image, 'thumb'
-                .span4
-                  %h4= user.full_name
-                  %br
-                  = user.graduation_year
-          %ul#students.two-users.users-list.hide
-            - @users.student.each do |user|
-              %li{style: "margin-left: 0"}
-                = link_to user_path(user) do
-                  = display_image user.profile.image, 'thumb'
-                .span4
-                  %h4= user.full_name
-                  %br
-                  = user.graduation_year
-          %ul#alumnis.two-users.users-list.hide
-            - @users.alumni.each do |user|
-              %li{style: "margin-left: 0"}
-                = link_to user_path(user) do
-                  = display_image user.profile.image, 'thumb'
-                .span4
-                  %h4= user.full_name
-                  %br
-                  = user.graduation_year
+            = link_to "All", "javascript:;", :"data-toggle" => ".users-list", :"data-target" => "#all-users", class: 'toggle1 active'
+            = link_to "Students", "javascript:;", :"data-toggle" => ".users-list", :"data-target" => "#students", class: 'toggle1'
+            = link_to "Alumni", "javascript:;", :"data-toggle" => ".users-list", :"data-target" => "#alumnis", class: 'toggle1'
+          .clearfix
+          #all-users.users-list.offset1
+            .span9.list_carousel
+              %ul.community-slide
+                - @users.each_slice(3) do |slide|
+                  %li{style: "width: 190px;line-height: 20px;"}
+                    - slide.each do |user|
+                      .span10.image
+                        = link_to user_path(user) do
+                          = display_image user.profile.image, 'thumb'
+                      .info
+                        .span10
+                          = user.full_name
+
+              %a.cprev.prev{href: "#", style: "margin-right: 20px; margin-top: -250px"} &lt;
+              %a.cnext.next{href: "#", style: "margin-right: 0; margin-top: -250px"} &gt;
+          #students.users-list.offset1.transparent
+            .span9.list_carousel
+              %ul.community-slide1
+                - @users.student.each_slice(3) do |slide|
+                  %li{style: "width: 190px;line-height: 20px;"}
+                    - slide.each do |user|
+                      .span10.image
+                        = link_to user_path(user) do
+                          = display_image user.profile.image, 'thumb'
+                      .info
+                        .span10
+                          = user.full_name
+
+              %a.cprev1.prev{href: "#", style: "margin-right: 20px; margin-top: -250px"} &lt;
+              %a.cnext1.next{href: "#", style: "margin-right: 0; margin-top: -250px"} &gt;
+          #alumnis.users-list.offset1.transparent
+            .span9.list_carousel
+              %ul.community-slide2
+                - @users.alumni.each_slice(3) do |slide|
+                  %li{style: "width: 190px;line-height: 20px;"}
+                    - slide.each do |user|
+                      .span10.image
+                        = link_to user_path(user) do
+                          = display_image user.profile.image, 'thumb'
+                      .info
+                        .span10
+                          = user.full_name
+
+              %a.cprev2.prev{href: "#", style: "margin-right: 20px; margin-top: -250px"} &lt;
+              %a.cnext2.next{href: "#", style: "margin-right: 0; margin-top: -250px"} &gt;          
+
 
         #tab2.tab_content.list_carousel
           %ul#foo2.carou-fred-sel
@@ -93,17 +113,11 @@
           %center
             %buttuon.btn.btn-success.btn3{name: 'btn'} See all
         #tab3.tab_content.span10{style: "margin-left: 60px;"}
-          %h3 Free Food Events:
-          %ul#free-food.flexisel
-            - unless @free_food_events.nil?
-              - @free_food_events.each do |event|
-                %li
-                  = link_to university_university_event_path(@university, event) do
-                    = display_image_square event.image, "large"
-                  .span10.left3
-                    %h4= event.title
-                    %p= event.date
-                    %p= event.time
+          - if @free_food_events.blank?
+            %center
+              %h4 No event
+          - else
+            %ul#free-food.flexisel
               - @clubs.each do |club|
                 - club.events.each do |club_event|
                   %li
@@ -114,7 +128,56 @@
                       %p= club_event.date
                       %p= club_event.time
 
+
         #tab4.tab_content
+          .span11
+            .span3.no-lmar.dropdown
+              %a.btn.btn-success.btn2.chang.dropdown-toggle{:href => "javascript:;", :"data-toggle" => 'dropdown'}
+                %i
+                  = image_tag "dropdown-arrow.png"
+              %ul.dropdown-menu{style: "margin: -10px 0 0 22px"}
+                - City.order(:name).each do |city|
+                  %li.city-users
+                    %a= city.name
+              = text_field_tag "city", "", class: "field dropdown-toggle", :"data-toggle" => 'dropdown', placeholder: "Cities"
+            .span8.left2.top2
+              %h4.left2 Where are the #{@university.mascot}?
+          .clearfix
+          .list_carousel
+            %ul.city-slide
+              - City.order(:name).each do |city|
+                %li
+                  .users
+                    = link_to "javascript:;" do
+                      = display_image city.image, 'xlarge'
+                      %span.fleft= city.name
+                    .hovers{style: "text-align: center;"}
+                      = link_to filter_users_path(user: {city: city.name}), remote: true do
+                        %p
+                          %h3.left2= "#{city.users.count} #{city.users.count == 1 ? 'people' : 'peoples'}" 
+
+            %a.city-prev.prev{href: "#"} &lt;
+            %a.city-next.next{href: "#"} &gt;
+          .clearfix
+          
+          .span12.bottom2
+            = render partial: "users/filter_options"
+          
+        #tab5.tab_content
+          .span11.left2 
+            %h4 Create Club
+          .span11= render partial: "universities/club_form"
+
+.hide= link_to "", "#users-popup", :"data-toggle" => "modal", id: "open-result"
+#users-popup.modal.wide-modal.hide.fade{tabindex: "-1", role: "dialog", :"aria-labelledby" => "myModalLabel", :"aria-hidden" => "true"}
+  .modal-header
+    %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+    %h3 Search Users Result
+  #search-results.modal-body
+  .clearfix
+  .modal-footer
+    %button.btn.btn-warning{type: "button", data: {dismiss: "modal"}} Close
+
 .clearfix
 .row-fluid
   .container
@@ -150,3 +213,11 @@
                 %p= update.body
                 = link_to time_ago_in_words(update.created_at) + " ago", "javascript:void(0);", class: "com ncom"
                 .clearfix
+
+:javascript
+  $(document).ready(function(){
+    if("#{@club.errors.any?}" == "true"){
+      $("#new-club").click();
+      $(document).scrollTop( $("#new-club").offset().top );
+    }
+  });

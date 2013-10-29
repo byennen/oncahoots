@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :clubs, :through => :memberships
   has_many :relationships
   has_many :relations, through: :relationships
+  has_many :contacts, :through => :relationships, :source => :relation, :conditions => {"relationships.status" => "accepted"}
 
   rolify
   # Include default devise modules. Others available are:
@@ -78,7 +79,7 @@ class User < ActiveRecord::Base
 
   def metropolitan_club
     return if city_id.blank? || university_id.blank?
-    MetropolitanClub.where(city_id: city_id, university_id: university_id)
+    MetropolitanClub.where(city_id: city_id, university_id: university_id).first
   end
 
   def username_for_friendlyid
@@ -107,12 +108,20 @@ class User < ActiveRecord::Base
 
   class << self 
     def search_all(params)
+      return where("1=1") if params.blank?
       search_name(params[:name]).search_location(params[:loc]).search_type(params[:type])
-      .search_major(params[:major]).search_graduation_year(params[:year])
+      .search_major(params[:major]).search_graduation_year(params[:year]).search_professional_field(params[:field]).search_city(params[:city])
     end
     def search_name(name)
       return where("1=1") if name.blank?
       where("lower(first_name) like ? or lower(last_name) like ?", "%#{name.downcase}%", "%#{name.downcase}%")
+    end
+
+    def search_city(city_name)
+      return where("1=1") if city_name.blank? || city_name == "All cities"
+      city = City.find_by_name(city_name)
+      return where("1=2") unless city
+      where(city_id: city.id)
     end
 
     def search_location(location)
@@ -133,8 +142,16 @@ class User < ActiveRecord::Base
     end
 
     def search_graduation_year(year)
-      return where("1=1") if year.blank?
+      return where("1=1") if year.blank? || year=="Any Year"
       where(graduation_year: year)
     end
+
+    def search_professional_field(field_name)
+      return where("1=1") if field_name.blank? || field_name=="All Fields"
+      field = ProfessionalField.find_by_name(field_name)
+      return where("1=2") unless field
+      where(professional_field_id: field.id)
+    end
+
   end
 end

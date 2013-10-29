@@ -22,9 +22,8 @@
             .span2
               = render partial: "layouts/left_menu"
             .span10{style: "min-height: 435px;"}
-              - @bg_image ||= "bg-image bg-image2"
-              %div{class: @bg_image}
-                - unless controller_name=="search"
+              %div{class: bg_class, style: hero_banner(university: @university, club: @metropolitan_club)}
+                - unless controller_name=="search" || controller_name=='contacts'
                   .offset9.search_all
                     %a#search-btn.btn.btn2.btn-success{style: "margin-right: 10px;", href: "javascript:;"}
                       %i
