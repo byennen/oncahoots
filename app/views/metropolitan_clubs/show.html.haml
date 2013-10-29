@@ -101,24 +101,14 @@
           .span11#about= simple_format @metropolitan_club.description
 
         #tab3.tab_content
-          %button.btn.btn2.mod1
-            %i
-              = image_tag "search-icon.png"
-          = text_field_tag :term, "", placeholder: "Search Members", class: "field mod2"
-          .clearfix
-          .users
-            %a{href: "javascript:;"}
-              = image_tag "members.png"
-              %span Josh Compton
-          .users
-            %a{href: "javascript:;"}
-              = image_tag "members2.png"
-              %span Gabe Copper
-          .users
-            %a{href: "javascript:;"}
-              = image_tag "members3.png"
-              %span Mathew Bush
-
+          - if current_user.super_admin? || admin.user.university_admin? || @metropolitan_club.admins.include?(current_user)
+            .span11.top
+              %a{href: "#add-leader", class: "btn btn-success fright", data: {toggle: "modal"}} Add Leader
+            #add-leader.modal.hide
+              = render "leader_form"
+          #leaders-list.span11
+            = render partial: "leaders"
+           
 .clearfix
 .row-fluid
   .container

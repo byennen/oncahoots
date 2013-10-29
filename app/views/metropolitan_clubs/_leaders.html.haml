@@ -1,0 +1,11 @@
+- @leaderships.each do |leadership|
+  .span2.no-lmar.right{style: "width: 120px;"}
+    .top{style: "width: 100%"}
+      = link_to user_path(leadership.user) do
+        = display_image leadership.user.profile.image, "thumb"
+    .top{style: "width: 100%"}
+      = link_to leadership.user.full_name, user_path(leadership.user)
+      %br
+      = leadership.title
+- if @leaderships.blank?
+  %h4 No leaders

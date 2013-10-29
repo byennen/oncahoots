@@ -39,6 +39,7 @@ CahootsConnect::Application.routes.draw   do
     end
 
     member do
+      post :assign_leader
       get :search_member
       post :upload_image
     end

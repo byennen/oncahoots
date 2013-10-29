@@ -2,7 +2,7 @@ class Membership < ActiveRecord::Base
   belongs_to :user
   belongs_to :club
 
-  attr_accessible :admin, :manager, :club_id, :user_id, :invitation_token
+  attr_accessible :admin, :manager, :club_id, :user_id, :title, :invitation_token
 
   #validates_presence_of :invitation_id, :message => 'is required'
   #validates_uniqueness_of :invitation_id
