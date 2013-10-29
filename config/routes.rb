@@ -40,6 +40,7 @@ CahootsConnect::Application.routes.draw   do
 
     member do
       get :search_member
+      post :upload_image
     end
   end
 

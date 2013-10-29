@@ -10,7 +10,7 @@
       %br
       .top4.fright{style: "margin-right: 0"}
         - if current_user.super_admin? || current_user.university_admin?
-          %a.btn.btn-success.top4 Edit
+          %a#upload-banner.btn.btn-success.top4{href: "javascript:;"} Change
   .span8
     .page-title.top4= @metropolitan_club.name
 
@@ -137,8 +137,27 @@
     .clearfix
     .modal-footer
       = f.submit "save", class: "btn btn-success"
+#banner-form{style: "opacity: 0"}
+  = form_for @metropolitan_club, url: upload_image_metropolitan_club_path(@metropolitan_club), method: :post do |f|
+    = f.file_field :image
+.hide
+  = link_to "show", "#waiting", :"data-toggle" => "modal", id: "show_waiting"
+#waiting.modal.hide.fade
+  .modal-header
+    %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+    %h3 Uploading..
+  .modal-body
+    %h3 Upload in process.. Please wait!
 :javascript
   jQuery(document).ready(function() {//Default Action
+    $("#upload-banner").click(function(){
+      $("#banner-form input").trigger("click");
+    });
+    $("#banner-form").on("change", "input[type=file]",function(){
+      $("a#show_waiting").click();
+      $(this).closest("form").submit();
+    });
+
     $(".tab_content").hide(); //Hide all content
     $("ul.tabs li:first").addClass("active").show(); //Activate first tab
     $(".tab_content:first").show(); //Show first tab content

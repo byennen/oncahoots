@@ -26,4 +26,10 @@ class MetropolitanClubsController < ApplicationController
     @metropolitan_club.update_attributes(params[:metropolitan_club])
     respond_to :js
   end
+
+  def upload_image
+    @metropolitan_club = MetropolitanClub.find params[:id]
+    @metropolitan_club.update_attributes(params[:metropolitan_club])
+    redirect_to metropolitan_club_path(@metropolitan_club)
+  end
 end
