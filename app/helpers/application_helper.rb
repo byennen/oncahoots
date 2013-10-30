@@ -62,7 +62,7 @@ module ApplicationHelper
   end
 
   def bg_class
-    "bg-image bg-image2" if controller_name == "universities" || controller_name == "metropolitan_clubs"
+    "bg-image bg-image2" if controller_name == "universities" || controller_name == "metropolitan_clubs" || controller_name == "clubs"
   end
 
   def hero_banner(options={})

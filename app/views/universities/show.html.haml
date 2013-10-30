@@ -3,7 +3,7 @@
     = link_to "javascript:void(0);", class: 'mono mn' do
       = display_image(@university.image, "xxlarge")
   .span7
-    .span12{style: "margin-top: 270px;"}
+    .span12{style: "margin-top: 260px;"}
       .page-title.bottom2= @university.name
       %ul#events.flexisel
         - @university_events.each do |event|
@@ -30,9 +30,10 @@
                   %br
                   = club_event.time
   .clearfix
-
-.row-fluid.top2
-  .container.top2
+.top2
+  &nbsp
+.row-fluid
+  .container
     .span10.offset2.top2
       %ul.tabs3
         %li= link_to "Community", "#tab1"

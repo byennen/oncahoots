@@ -1,18 +1,19 @@
 %li{style: "padding: 10px; clear: both;"}
-  .span2
-    = image_tag update.image_url
-  .span10
+  .span4
+    = link_to "javascript:;" do
+      = display_image_square update.image, "small"
+  .span8
     %h4= update.headline
     %p= update.body.truncate(500)
-    .pull-right
-      %a{href: "#comments-#{update.id}", data: {toggle: "modal"}} #{update.comments.size} Comments
+  .span12
+    %a{href: "#comments-#{update.id}", data: {toggle: "modal"}} #{update.comments.size} Comments
+    |
+    %a{href: "#add-comment-#{update.id}", data: {toggle: "modal"}} Add Comment
+    - if @club.admins.include?(current_user) || current_user.super_admin? || current_user.university_admin?
       |
-      %a{href: "#add-comment-#{update.id}", data: {toggle: "modal"}} Add Comment
-      - if @club.admins.include?(current_user) || current_user.super_admin? || current_user.university_admin?
-        |
-        %a{href: "#edit-update-#{update.id}", data: {toggle: "modal"}} Edit
-        |
-        =link_to "Delete", university_club_club_newsletter_path(@university,@club, update), method: :delete, confirm: "Are You Sure?"
+      %a{href: "#edit-update-#{update.id}", data: {toggle: "modal"}} Edit
+      |
+      =link_to "Delete", university_club_club_newsletter_path(@university,@club, update), method: :delete, confirm: "Are You Sure?"
     - if @club.admins.include?(current_user)
       .modal.hide{id: "edit-update-#{update.id}"}
         = simple_form_for update, url: university_club_club_newsletter_path(@university, @club, update.id), method: :put do |f|

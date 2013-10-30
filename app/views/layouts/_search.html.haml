@@ -1,6 +1,6 @@
 - unless controller_name=="search" || controller_name=='contacts' || (controller_name= "profile" && params[:action]=='edit')
   .offset9.search_all
-    %a#search-btn.btn.btn2.btn-success{style: "margin-right: 10px;", href: "javascript:;"}
+    %a#search-btn.btn.btn2.btn-success{style: "margin-right: 20px;", href: "javascript:;"}
       %i
         = image_tag('search-icon.png')
     %input#search_field.field{name: 'search_field', type: 'text'}
