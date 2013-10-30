@@ -74,7 +74,8 @@
           %ul.posts.newp
             - @club.statuses.reverse.each do |status|
               %li
-                = link_to image_tag(status.user.profile.image_url), user_path(status.user), class: "avatr"
+                = link_to user_path(status.user) do
+                  = display_image status.user.profile.image, "thumb"
                 %p= status.status
                 .com.ncom
                   = time_ago_in_words(status.created_at)
@@ -86,13 +87,14 @@
         #members.tab_content
           %ul{style: "margin-top: 20px; margin-left: 5px;"}
             - @memberships.each do |membership|
-              %li{class: "pull-left"}
-                = link_to image_tag(membership.user.profile.image_url), user_path(membership.user), class: "avatr"
+              %li.pull-left.right
+                = link_to user_path(membership.user) do
+                  = display_image membership.user.profile.image, "thumb"
                 %br
-                = link_to membership.user.full_name, user_path(membership.user)
+                .left2= link_to membership.user.full_name, user_path(membership.user)
                 - if @club.user_id == current_user.id
                   - if membership.user.id != current_user.id
-                    = link_to "Delete", university_club_membership_path(@university, @club, membership.id), method: :delete, class: 'btn btn-mini btn-danger', confirm: "Are you sure?"
+                    .left2= link_to "Delete", university_club_membership_path(@university, @club, membership.id), method: :delete, class: 'btn btn-mini btn-danger', confirm: "Are you sure?"
         #mission_statement.tab_content
           - if @club.admins.include?(current_user)
             .pull-right
@@ -172,14 +174,15 @@
                     = f.input :title
                   .modal-footer
                     = f.submit "Add E-Board Member", class: "btn btn-success"
-          - @admins.each do |admin|
-            - unless admin.user.super_admin? || admin.user.university_admin?
-              .pull-left
-                = image_tag admin.user.profile.image.thumb.url
-                %br
-                = admin.user.full_name
-                %br
-                = admin.title
+          .span12.top2
+            - @admins.each do |admin|
+              - unless admin.user.super_admin? || admin.user.university_admin?
+                .pull-left.right
+                  = display_image admin.user.profile.image, "thumb"
+                  %br
+                  .left2= admin.user.full_name
+                  %br
+                  .left2= admin.title
         #records.tab_content
           .pull-right
             - if @club.admins.include?(current_user)
