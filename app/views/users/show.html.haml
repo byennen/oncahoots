@@ -81,7 +81,7 @@
               #tab44.tab_content2
                 .faq
                   %h2 FAQ
-                  - if @profile.faqs
+                  - if @profile.faqs.size > 0
                     - split_number = (@profile.faqs.size / 2.0).floor
                     - faqs = @profile.faqs.all.each_slice(split_number).to_a
                     .half
