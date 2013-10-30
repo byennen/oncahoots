@@ -1,4 +1,4 @@
 %br
 = simple_form_for Message.new, url: reply_message_path(@conversation.id), remote: true do |f|
-  = f.input :body, as: :text, label: false, input_html: {class: "span12", rows: 4}
+  = f.input :body, as: :text, label: false, input_html: {class: "span12 reply-body", rows: 4}
   = f.submit "Reply", class: "btn btn-success"
