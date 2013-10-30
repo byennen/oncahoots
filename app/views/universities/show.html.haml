@@ -3,7 +3,7 @@
     = link_to "javascript:void(0);", class: 'mono mn' do
       = display_image(@university.image, "xxlarge")#image_tag @university.image.xxlarge, class: "circular"
   .span7
-    .carus
+    .span12{style: "margin-top: 270px;"}
       %ul#events.flexisel
         - @university_events.each do |event|
           %li
@@ -104,7 +104,9 @@
             - @clubs.each do |club|
               %li{style: item_mar}
                 .users
-                  = link_to university_club_path(@university, club) do
+                  - path = club.instance_of?(MetropolitanClub) ? metropolitan_club_path(club) : university_club_path(@university, club)
+
+                  = link_to path do
                     = display_image club.image, 'xlarge'
                     %span.fleft= club.name
 
