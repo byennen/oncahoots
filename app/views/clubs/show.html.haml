@@ -25,8 +25,10 @@
     .span10.offset2
       .span8
         .image-box
-          - src = ""
-          - src = @club.updates.first.image_url if @club.updates.first
+          - if @club.updates.first.image_url
+            - src = @club.updates.first.image_url if @club.updates.first
+          - else
+            - src = @club.image_url
           %a.thumbnail{style: "min-height: 400px;"}
             = image_tag src, id: "feature-image"
       .span3
