@@ -1,12 +1,7 @@
 .left-menu.mns
   %ul
     - if controller_name == "users" or controller_name == 'profiles'
-      %li
-        %i
-        = link_to "javascript:void(0);" do
-          = image_tag('jobs.png')
-          %br
-          Jobs
+      
     - else
       %li
         %i
