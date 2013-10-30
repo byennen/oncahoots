@@ -25,14 +25,16 @@
     .span10.offset2
       .span8
         .image-box
+          - src = ""
+          - src = @club.updates.first.image_url if @club.updates.first
           %a.thumbnail{style: "min-height: 400px;"}
-            = image_tag @club.updates.first.image_url if @club.updates.first
+            = image_tag src, id: "feature-image"
       .span3
         %ul.listing
           = render partial: "update", collection: @club.updates
           - if @club.admins.include?(current_user)
             %li.text-right{style: "border: 0px;"}
-              a{href: "#add-update", class: "btn btn-success", data: {toggle: "modal"}, style: "height: 20px; width: 100px;"} Add Newsletter
+              %a{href: "#add-update", class: "btn btn-success", data: {toggle: "modal"}, style: "height: 20px; width: 100px;"} Add Newsletter
         .clearfix
 .clearfix
 
@@ -249,5 +251,9 @@
       maxSlides: 3,
       moveSlides: 1,
       slideMargin: 10
+    });
+
+    $(".update-image").click(function(){
+      $("#feature-image").attr("src", $(this).data("src"));
     });
   });

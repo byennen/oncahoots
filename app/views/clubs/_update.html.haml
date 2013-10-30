@@ -1,6 +1,6 @@
 %li{style: "padding: 10px; clear: both;"}
   .span4
-    = link_to "javascript:;" do
+    = link_to "javascript:;", "data-src" =>  update.image, class: "update-image" do
       = display_image_square update.image, "small"
   .span8
     %h4= update.headline
