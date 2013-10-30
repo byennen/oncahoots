@@ -9,4 +9,5 @@
       .top{style: "width: 100%"}
         = link_to user_path(user) do
           = user.full_name
-  = hidden_field :user, :city, value: params[:user][:city] if params[:user]
+  
+= hidden_field :user, :city, value: params[:user][:city] if params[:user]

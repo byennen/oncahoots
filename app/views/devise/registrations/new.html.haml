@@ -12,7 +12,7 @@
       = f.select :university_id, options_from_collection_for_select(University.all.sort_by(&:name), :id, :name), prompt: "University"
       .clearfix
       %label.left
-        Choose the city network you would like to join
+      %span.left Choose your network
       = f.select :city_id, options_for_select(City.order(:name).collect{ |c| [c.name, c.id] } + ["Other"]), prompt: "Current City"
       = f.select :graduation_year, options_for_select(2020.downto(1940).to_a), { prompt: "Graduation year", class: "fioled0" } 
       .clearfix
@@ -23,23 +23,27 @@
       %span Sign up As Alumni
       .clearfix
       #professional_fields.hide
-        = f.input :professional_field_id, collection: ProfessionalField.all.sort_by(&:name), include_blank: false
+        %span.left Professional Field
+        = f.select :professional_field_id, options_from_collection_for_select(ProfessionalField.all.sort_by(&:name), :id, :name)
 
       %button.btn.btn-success.btn4.chang6 Register
       
       %strong
-        = link_to "Forgot your password?", new_password_path(resource_name)
-        &nbsp;
-        = link_to "Sign in", new_session_path(resource_name)
-        .clearfix
+        .left
+          = link_to "Forgot your password?", new_password_path(resource_name)
+          &nbsp;
+          = link_to "Sign in", new_session_path(resource_name)
+          .clearfix
 
 :javascript
   $(document).ready(function(){
     $("#user_graduation_year").change(function(){
       if($(this).val() < "#{Date.today.year}"){
         $("#user_alumni").prop('checked', true);
+        $("#professional_fields").show();
       }else{
         $("#user_alumni").prop('checked', false);
+        $("#professional_fields").hide();
       }
     });
   });

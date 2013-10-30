@@ -2,7 +2,7 @@
   .span10.page-title.top2.bottom2
     %span#person-title who are you looking for?
     %span#club-title.hide what kind of club are you looking for?
-  .span10.no-lmar
+  .span11.no-lmar
     .span3.no-lmar.dropdown
       %a.btn.btn-success.btn2.chang.dropdown-toggle{:href => "javascript:;", :"data-toggle" => 'dropdown'}
         %i
@@ -13,11 +13,11 @@
         %li.search_type 
           %a Club
       = text_field_tag :search_object, "Person", class: "field dropdown-toggle", :"data-toggle" => 'dropdown'
-      
+  .span11.left
     #person-option
       = render partial: "person_options"
-      .span10.bottom2
-        .offset8.top2
+      .span11.no-lmar.bottom2
+        .offset7.top2
           = link_to "Search", "javascript:;", class: "btn btn-success", id: "search-button"
     #club-option.hide= render partial: "club_options"
  

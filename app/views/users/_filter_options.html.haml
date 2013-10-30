@@ -1,9 +1,9 @@
-.span3.no-lmar
+.span2.no-lmar
   = text_field_tag :name, "",class: "field", placeholder: "Name", style: "width: 80%"
 
-.span3.no-lmar
+.span2.no-lmar
   = text_field_tag :major, "", class: "field", style: "width: 80%", placeholder: "Major"
-.span3.no-lmar.dropdown
+.span2.no-lmar.dropdown
   %a.btn.btn-success.btn2.chang.dropdown-toggle{:href => "javascript:;", :"data-toggle" => 'dropdown'}
     %i
       = image_tag "dropdown-arrow.png"
@@ -16,7 +16,7 @@
 
   = text_field_tag :graduation_year, "", class: "field dropdown-toggle", :"data-toggle" => 'dropdown', placeholder: "Grad year"
 
-.span3.no-lmar.dropdown
+.span2.no-lmar.dropdown
   %a.btn.btn-success.btn2.chang.dropdown-toggle{:href => "javascript:;", :"data-toggle" => 'dropdown'}
     %i
       = image_tag "dropdown-arrow.png"
@@ -28,6 +28,4 @@
         %a= field.name
 
   = text_field_tag :professional_field, "", class: "field dropdown-toggle", :"data-toggle" => 'dropdown', placeholder: "Field"
-.span11
-  .fright
-    = link_to "Search", "javascript:;", class: "btn btn-success", id: "user-filter"
+.span1.top2= link_to "Search", "javascript:;", class: "btn btn-success", id: "user-filter"

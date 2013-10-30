@@ -23,13 +23,8 @@
               = render partial: "layouts/left_menu"
             .span10{style: "min-height: 435px;"}
               %div{class: bg_class, style: hero_banner(university: @university, club: @metropolitan_club)}
-                - unless controller_name=="search" || controller_name=='contacts'
-                  .offset9.search_all
-                    %a#search-btn.btn.btn2.btn-success{style: "margin-right: 10px;", href: "javascript:;"}
-                      %i
-                        = image_tag('search-icon.png')
-                    %input#search_field.field{name: 'search_field', type: 'text'}
-                    = link_to "Advanced", search_path, class: 'advance'
+                = render "layouts/search"
+                
                 = yield(:header)
       .seps
       = yield
