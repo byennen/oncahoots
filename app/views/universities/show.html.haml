@@ -1,7 +1,7 @@
 = content_for :header do
   .span3
     = link_to "javascript:void(0);", class: 'mono mn' do
-      = display_image(@university.image, "xxlarge")#image_tag @university.image.xxlarge, class: "circular"
+      = display_image(@university.image, "xxlarge")
   .span7
     .span12{style: "margin-top: 270px;"}
       .page-title.bottom2= @university.name
@@ -11,8 +11,7 @@
             = link_to university_university_event_path(@university, event) do
               = display_image_square event.image, "medium"
             %br
-            %h4
-              = event.title
+            %h4= event.title
             %p
               = event.date
               %br
@@ -22,7 +21,7 @@
             - if club_event.display_on_uc
               %li
                 = link_to university_club_club_event_path(@university, club, club_event) do
-                  = image_tag(club_event.image)
+                  = display_image_square club_event.image, "medium"
                 %br
                 %h4
                   = club_event.title
@@ -32,8 +31,8 @@
                   = club_event.time
   .clearfix
 
-.row-fluid
-  .container
+.row-fluid.top2
+  .container.top2
     .span10.offset2.top2
       %ul.tabs3
         %li= link_to "Community", "#tab1"
