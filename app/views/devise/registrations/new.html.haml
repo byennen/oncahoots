@@ -12,7 +12,7 @@
       = f.select :university_id, options_from_collection_for_select(University.all.sort_by(&:name), :id, :name), prompt: "University"
       .clearfix
       %label.left
-      %span.left Choose your network
+      %span.left Current City
       = f.select :city_id, options_for_select(City.order(:name).collect{ |c| [c.name, c.id] } + ["Other"]), prompt: "Current City"
       = f.select :graduation_year, options_for_select(2020.downto(1940).to_a), { prompt: "Graduation year", class: "fioled0" } 
       .clearfix

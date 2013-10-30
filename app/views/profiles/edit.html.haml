@@ -33,7 +33,7 @@
             =". I will graduate in" unless @user.alumni?
             = f.select :graduation_year, options_for_select((Date.today.year + 7).downto(1940).to_a, @user.graduation_year), placeholder: "Grad Year"
             =". My current city"
-            = f.select :city_id, options_for_select(City.order(:name).collect{ |c| [c.name, c.id] } + ["Other"])
+            = f.select :city_id, options_for_select(City.order(:name).collect{ |c| [c.name, c.id] } + ["Other"], selected: @user.city_id)
             - if @user.alumni?
               =". I work in"
               = f.select :professional_field_id, options_from_collection_for_select(ProfessionalField.all, :id, :name, @user.professional_field_id)
