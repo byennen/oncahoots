@@ -23,6 +23,7 @@ class ClubsController < ApplicationController
     @non_admins = @club.memberships.where("admin is NULL").all.map(&:user)
     @messages = current_user.mailbox.conversations
     @requests = current_user.relationships.where(status: 'pending')
+    @invitation = Invitation.new
     
     Rails.logger.debug("non admins are #{@non_admins.inspect}")
   end

@@ -11,7 +11,7 @@
       %br
       .span12
         .top4.bottom2.fright{style: "margin-right: 0"}
-          %a.btn.btn-success Invite Contacts
+          %a.btn.btn-success{href: "#invite-contact", data: {toggle: "modal"}}  Invite Contacts
       .span12
         .top4.fright{style: "margin-right: 0"}
           - if current_user.super_admin? || current_user.university_admin? || @club.admins.include?(current_user)
@@ -24,7 +24,7 @@
     .span10.offset2
       .span8
         .image-box
-          - if @club.updates.first.image_url
+          - if @club.updates.size > 0 && @club.updates.first.image_url
             - src = @club.updates.first.image_url if @club.updates.first
           - else
             - src = @club.image_url
@@ -206,6 +206,16 @@
                 = f.submit "Add Record", class: "btn btn-success"
         #messages.tab_content
 .clearfix
+
+#invite-contact.modal.hide
+  = simple_form_for Invitation.new, url: university_club_invitations_path(@university, @club) do |f|
+    .modal-header
+      %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+      %h3 Invite Contact 
+    .modal-body
+      = f.input :recipient_id, collection: current_user.contacts, label: "Contact", label_method: :full_name, value_method: :id
+    .modal-footer
+      = f.submit "Invite Contact", class: "btn btn-success"
 
 - if @club.admins.include?(current_user)
   #add-update.modal.hide
