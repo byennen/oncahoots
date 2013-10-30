@@ -4,6 +4,7 @@
       = display_image(@university.image, "xxlarge")#image_tag @university.image.xxlarge, class: "circular"
   .span7
     .span12{style: "margin-top: 270px;"}
+      .page-title.bottom2= @university.name
       %ul#events.flexisel
         - @university_events.each do |event|
           %li
@@ -55,30 +56,28 @@
                 - @users.each_slice(3) do |slide|
                   %li{style: "width: 190px;line-height: 20px;"}
                     - slide.each do |user|
-                      .span10.image
+                      .span12.image
                         = link_to user_path(user) do
                           = display_image user.profile.image, 'thumb'
-                      .info
-                        .span10
-                          = user.full_name
+                      .info.span12
+                        = user.full_name
 
-              %a.cprev.prev{href: "#", style: "margin-right: 20px; margin-top: -250px"} &lt;
-              %a.cnext.next{href: "#", style: "margin-right: 0; margin-top: -250px"} &gt;
+              %a.cprev.prev &lt;
+              %a.cnext.next &gt;
           #students.users-list.offset1.transparent
             .span9.list_carousel
               %ul.community-slide1
                 - @users.student.each_slice(3) do |slide|
                   %li{style: "width: 190px;line-height: 20px;"}
                     - slide.each do |user|
-                      .span10.image
+                      .span12.image
                         = link_to user_path(user) do
                           = display_image user.profile.image, 'thumb'
-                      .info
-                        .span10
-                          = user.full_name
+                      .span12.info
+                        = user.full_name
 
-              %a.cprev1.prev{href: "#", style: "margin-right: 20px; margin-top: -250px"} &lt;
-              %a.cnext1.next{href: "#", style: "margin-right: 0; margin-top: -250px"} &gt;
+              %a.cprev1.prev &lt;
+              %a.cnext1.next &gt;
           #alumnis.users-list.offset1.transparent
             .span9.list_carousel
               %ul.community-slide2
@@ -88,12 +87,11 @@
                       .span10.image
                         = link_to user_path(user) do
                           = display_image user.profile.image, 'thumb'
-                      .info
-                        .span10
-                          = user.full_name
+                      .span12.info
+                        = user.full_name
 
-              %a.cprev2.prev{href: "#", style: "margin-right: 20px; margin-top: -250px"} &lt;
-              %a.cnext2.next{href: "#", style: "margin-right: 0; margin-top: -250px"} &gt;
+              %a.cprev2.prev &lt;
+              %a.cnext2.next &gt;
 
 
         #tab2.tab_content.list_carousel
@@ -142,8 +140,7 @@
                   %li.city-users
                     %a= city.name
               = text_field_tag "city", "", class: "field dropdown-toggle", :"data-toggle" => 'dropdown', placeholder: "Cities"
-            .span8.left2.top2
-              %h4.left2 Where are the #{@university.mascot}?
+
           .clearfix
           .list_carousel
             %ul.city-slide
@@ -151,7 +148,7 @@
                 %li
                   .users
                     = link_to "javascript:;" do
-                      = display_image city.image, 'xlarge'
+                      = display_image @university.metropolitan_club(city.id).image, 'xlarge'
                       %span.fleft= city.name
                     .hovers{style: "text-align: center;"}
                       = link_to filter_users_path(user: {city: city.name}), remote: true do
@@ -163,7 +160,7 @@
           .clearfix
 
           .span12.bottom2
-            = render partial: "users/filter_options"
+            
 
         #tab5.tab_content
           .span11.left2
@@ -175,7 +172,9 @@
   .modal-header
     %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
     %h3 Search Users Result
-  #search-results.modal-body
+  .modal-body
+    .span9= render partial: "users/filter_options"
+    .span9#search-results
   .clearfix
   .modal-footer
     %button.btn.btn-warning{type: "button", data: {dismiss: "modal"}} Close
