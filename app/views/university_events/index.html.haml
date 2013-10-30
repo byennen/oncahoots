@@ -1,9 +1,8 @@
 = content_for :header do
-  .span12.header-box{style: "margin-left: -30px; width: 103%;"}
-    %center.bottom2
-      %strong Calendar
-    .fright.top2.bottom2
-      = link_to "Add Event", "#add_event", class: "btn btn-success", data: {toggle: "modal"}, id: "add-event"
+  .span12.header-box
+    = image_tag "calendar.jpg"
+  .fright{style: "margin-top: -40px; margin-right: 20px"}= link_to "Add Event", "#add_event", class: "btn btn-success", data: {toggle: "modal"}, id: "add-event"
+
 
   .clearfix
   .span10.top2
@@ -15,7 +14,7 @@
   .span10.top2
     %center
       %span.switch-view.top20
-        %strong= link_to "MONTHLY VIEW", "javascript:;"
+
   .span12.top2{style: "margin-left: -30px; width: 103%;"}
     .week-bar
       %span SUN
