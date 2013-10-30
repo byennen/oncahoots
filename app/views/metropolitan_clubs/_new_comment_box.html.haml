@@ -1,0 +1,3 @@
+= simple_form_for Comment.new, url: new_update_comment_path(Update.first) do |f|
+  = f.input :comment, as: :text, label: false, input_html: {class: "span11", rows: 4}
+  %button.btn.submit-comment Submmit

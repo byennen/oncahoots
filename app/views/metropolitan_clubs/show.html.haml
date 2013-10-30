@@ -9,8 +9,8 @@
         %a.btn.btn-success Upcoming Events
       %br
       .top4.fright{style: "margin-right: 0"}
-        - if current_user.super_admin? || current_user.university_admin?
-          %a.btn.btn-success.top4 Edit
+        - if current_user.super_admin? || current_user.university_admin? || @metropolitan_club.leaders.include?(current_user)
+          %a#upload-banner.btn.btn-success.top4{href: "javascript:;"} Change
   .span8
     .page-title.top4= @metropolitan_club.name
 
@@ -20,26 +20,27 @@
     .offset2.span10
       .span8
         .img-box
+          %a.thumbnail
+            %img
       .span3
         %ul.listing
-          - 4.times do 
-            %li
-              = link_to "", "javascript;;"
-              %h4 Headline
-              %p Text of the announcement or circle
+          = render partial: 'update', collection: @updates
 
 .clearfix
 .seps
 .row-fluid
   .container
     .offset2.span10
-      %ul.slider4.jcarousel-skin-tango
-        - 20.times do
-          %li.slide
-            %a{href: "javascript:;"}
-      .clearfix
+      - unless @metropolitan_club.club_photos.blank?
+        %ul.slider4.jcarousel-skin-tango
+          - @metropolitan_club.club_photos.each do |photo|
+            %li.slide
+              %a{href: "javascript:;", style: "margin-left: 0"}
+                = image_tag photo.image.thumb
+        .clearfix
       .span11.top2.bottom2
-        %a.btn.btn-success.fright View My Photos
+        %a#upload-photo.btn.btn-success.fright{href: "javascript:;"} Upload Photo
+        %a.btn.btn-success.fright{href: "#my_photos", :"data-toggle" => "modal"} My Photos
 .clearfix
 
 .row-fluid
@@ -48,21 +49,18 @@
       .boll-box
         %h1 City Bulletin Board
         .span12.top2
-          %a.btn.btn-success.fright Post Bulletin
+          %a{href: "#update-form", data: {toggle: "modal"}, class: "btn btn-success fright"} Post Bulletin
         .clearfix
 .clearfix
 
-.row-fluid
-  .container
-    .offset2.span10
-      %ul.posts
-        - 3.times do
-          %li
-            %a.avatr{href: "javascript:;"}
-            %h4 Post title
-            %p The Davidons Alumni Association will be hosting a meetup this Thursday in Chicago at the Rockit Bar &amp; Grill dropdown.
-            %a.com{href: "javascript:;"} Comment
-            .clearfix
+- unless Update.count==0
+  .row-fluid
+    .container
+      .offset2.span10
+        %ul.posts.comment
+        .new_comment_box.hide
+          = render partial: 'new_comment_box'
+        %a.new-comment{href: "javascript:;", class: "btn btn-success" } New commentment
 
 .row-fluid
   .container
@@ -97,34 +95,25 @@
           #search-results.top2
         #tab2.tab_content
           .span11.top
-            = link_to 'edit', "#about-us", class: "btn btn-success btn-mini fright", :"data-toggle" => "modal" if current_user.super_admin? || current_user.university_admin?
+            = link_to 'edit', "#about-us", class: "btn btn-success btn-mini fright", :"data-toggle" => "modal" if current_user.super_admin? || current_user.university_admin? || @metropolitan_club.leaders.include?(current_user)
           .span11#about= simple_format @metropolitan_club.description
 
         #tab3.tab_content
-          %button.btn.btn2.mod1
-            %i
-              = image_tag "search-icon.png"
-          = text_field_tag :term, "", placeholder: "Search Members", class: "field mod2"
-          .clearfix
-          .users
-            %a{href: "javascript:;"}
-              = image_tag "members.png"
-              %span Josh Compton
-          .users
-            %a{href: "javascript:;"}
-              = image_tag "members2.png"
-              %span Gabe Copper
-          .users
-            %a{href: "javascript:;"}
-              = image_tag "members3.png"
-              %span Mathew Bush
-
+          - if current_user.super_admin? || current_user.university_admin? || @metropolitan_club.leaders.include?(current_user)
+            .span11.top
+              %a{href: "#add-leader", class: "btn btn-success fright", data: {toggle: "modal"}} Add Leader
+            #add-leader.modal.hide
+              = render "leader_form"
+          #leaders-list.span11
+            = render partial: "leaders"
+           
 .clearfix
 .row-fluid
   .container
     .span12
       .seperator
 .clearfix
+= render partial: 'updates/form'
 
 #about-us.modal.hide.fade
   = simple_form_for @metropolitan_club, remote: true do |f|
@@ -137,8 +126,44 @@
     .clearfix
     .modal-footer
       = f.submit "save", class: "btn btn-success"
+#banner-form.upload-form{style: "opacity: 0"}
+  = form_for @metropolitan_club, url: upload_image_metropolitan_club_path(@metropolitan_club), method: :post do |f|
+    = f.file_field :image
+#club_photo-form.upload-form{style: "opacity: 0"}
+  = form_for ClubPhoto.new, url: upload_photo_metropolitan_club_path(@metropolitan_club), method: :post do |f|
+    = f.file_field :image
+
+.hide
+  = link_to "show", "#waiting", :"data-toggle" => "modal", id: "show_waiting"
+
+#waiting.modal.hide.fade
+  .modal-header
+    %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+    %h3 Uploading..
+  .modal-body
+    %h3 Upload in process.. Please wait!
+
+#my_photos.modal.hide.fade
+  .modal-header
+    %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+    %h3 My photos
+  .modal-body
+    - @my_photos.each do |photo|
+      %span2.no-lmar= image_tag photo.image.thumb
+
 :javascript
   jQuery(document).ready(function() {//Default Action
+    $("#upload-banner").click(function(){
+      $("#banner-form input").trigger("click");
+    });
+    $("#upload-photo").click(function(){
+      $("#club_photo-form input").trigger("click");
+    });
+    $(".upload-form").on("change", "input[type=file]",function(){
+      $("a#show_waiting").click();
+      $(this).closest("form").submit();
+    });
+
     $(".tab_content").hide(); //Hide all content
     $("ul.tabs li:first").addClass("active").show(); //Activate first tab
     $(".tab_content:first").show(); //Show first tab content
@@ -156,7 +181,6 @@
       return false;
     });
     $('.slider4').bxSlider({
-      slideWidth: 300,
       minSlides: 2,
       maxSlides: 3,
       moveSlides: 1,
