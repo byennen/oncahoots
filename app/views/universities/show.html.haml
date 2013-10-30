@@ -93,7 +93,7 @@
                           = user.full_name
 
               %a.cprev2.prev{href: "#", style: "margin-right: 20px; margin-top: -250px"} &lt;
-              %a.cnext2.next{href: "#", style: "margin-right: 0; margin-top: -250px"} &gt;          
+              %a.cnext2.next{href: "#", style: "margin-right: 0; margin-top: -250px"} &gt;
 
 
         #tab2.tab_content.list_carousel
@@ -154,17 +154,17 @@
                     .hovers{style: "text-align: center;"}
                       = link_to filter_users_path(user: {city: city.name}), remote: true do
                         %p
-                          %h3.left2= "#{city.users.count} #{city.users.count == 1 ? 'people' : 'peoples'}" 
+                          %h3.left2= "#{city.users.count} #{city.users.count == 1 ? 'people' : 'peoples'}"
 
             %a.city-prev.prev{href: "#"} &lt;
             %a.city-next.next{href: "#"} &gt;
           .clearfix
-          
+
           .span12.bottom2
             = render partial: "users/filter_options"
-          
+
         #tab5.tab_content
-          .span11.left2 
+          .span11.left2
             %h4 Create Club
           .span11= render partial: "universities/club_form"
 
@@ -206,7 +206,7 @@
               %li
                 = link_to "javascript:void(0);", class: 'avatr' do
                   %span{style: "padding-top: 0"}
-                    - if !update.image.blank?
+                    - if update.image.blank?
                       No Image
                     - else
                       = image_tag update.image.thumb
