@@ -7,6 +7,7 @@
           %span{style: "margin-left: 21px;"}= club.name
         .hovers
           %p= club.description
-          = link_to "view", university_club_path(@university, club), style: "margin-left: 45%"
+          - path = club.instance_of?(MetropolitanClub) ? metropolitan_club_path(club) : university_club_path(@university, club)
+          = link_to "view", path, style: "margin-left: 45%"
 %h4.left
   = "No results found" if @clubs.blank?

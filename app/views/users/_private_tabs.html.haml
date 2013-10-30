@@ -25,11 +25,8 @@
             %br
             .span11.top2
               %center
-                %h4 No contact
+                = link_to "Find contact", user_contacts_path(@user), class: "btn btn-success"
           - else
-            %button.btn.btn-success.btn2.mod1
-              %i= image_tag "search-icon.png"
-            = text_field_tag :term, "", class: "field mod2"
             .clearfix
             .list_carousel
               %ul#foo2.carou-fred-sel
@@ -37,7 +34,7 @@
               %a#prev2.prev{href: "#"}
               %a#next2.next{href: "#"}
             %center
-              = link_to "See All &nbsp;&nbsp;&nbsp;&nbsp; >".html_safe, user_contacts_path(@user), class: "btn btn-success btn3"
+              = link_to "See All", user_contacts_path(@user), class: "btn btn-success"
         #tab2.tab_content
           %br
           - if @requests.blank?

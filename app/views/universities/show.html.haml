@@ -1,17 +1,17 @@
 = content_for :header do
   .span3
     = link_to "javascript:void(0);", class: 'mono mn' do
-      = display_image(@university.image, "xxlarge")#image_tag @university.image.xxlarge, class: "circular"
+      = display_image(@university.image, "xxlarge")
   .span7
-    .carus
+    .span12{style: "margin-top: 260px;"}
+      .page-title.bottom2= @university.name
       %ul#events.flexisel
         - @university_events.each do |event|
           %li
             = link_to university_university_event_path(@university, event) do
               = display_image_square event.image, "medium"
             %br
-            %h4
-              = event.title
+            %h4= event.title
             %p
               = event.date
               %br
@@ -21,7 +21,7 @@
             - if club_event.display_on_uc
               %li
                 = link_to university_club_club_event_path(@university, club, club_event) do
-                  = image_tag(club_event.image)
+                  = display_image_square club_event.image, "medium"
                 %br
                 %h4
                   = club_event.title
@@ -30,7 +30,8 @@
                   %br
                   = club_event.time
   .clearfix
-
+.top2
+  &nbsp
 .row-fluid
   .container
     .span10.offset2.top2
@@ -55,30 +56,28 @@
                 - @users.each_slice(3) do |slide|
                   %li{style: "width: 190px;line-height: 20px;"}
                     - slide.each do |user|
-                      .span10.image
+                      .span12.image
                         = link_to user_path(user) do
                           = display_image user.profile.image, 'thumb'
-                      .info
-                        .span10
-                          = user.full_name
+                      .info.span12
+                        = user.full_name
 
-              %a.cprev.prev{href: "#", style: "margin-right: 20px; margin-top: -250px"} &lt;
-              %a.cnext.next{href: "#", style: "margin-right: 0; margin-top: -250px"} &gt;
+              %a.cprev.prev &lt;
+              %a.cnext.next &gt;
           #students.users-list.offset1.transparent
             .span9.list_carousel
               %ul.community-slide1
                 - @users.student.each_slice(3) do |slide|
                   %li{style: "width: 190px;line-height: 20px;"}
                     - slide.each do |user|
-                      .span10.image
+                      .span12.image
                         = link_to user_path(user) do
                           = display_image user.profile.image, 'thumb'
-                      .info
-                        .span10
-                          = user.full_name
+                      .span12.info
+                        = user.full_name
 
-              %a.cprev1.prev{href: "#", style: "margin-right: 20px; margin-top: -250px"} &lt;
-              %a.cnext1.next{href: "#", style: "margin-right: 0; margin-top: -250px"} &gt;
+              %a.cprev1.prev &lt;
+              %a.cnext1.next &gt;
           #alumnis.users-list.offset1.transparent
             .span9.list_carousel
               %ul.community-slide2
@@ -88,12 +87,11 @@
                       .span10.image
                         = link_to user_path(user) do
                           = display_image user.profile.image, 'thumb'
-                      .info
-                        .span10
-                          = user.full_name
+                      .span12.info
+                        = user.full_name
 
-              %a.cprev2.prev{href: "#", style: "margin-right: 20px; margin-top: -250px"} &lt;
-              %a.cnext2.next{href: "#", style: "margin-right: 0; margin-top: -250px"} &gt;
+              %a.cprev2.prev &lt;
+              %a.cnext2.next &gt;
 
 
         #tab2.tab_content.list_carousel
@@ -104,7 +102,9 @@
             - @clubs.each do |club|
               %li{style: item_mar}
                 .users
-                  = link_to university_club_path(@university, club) do
+                  - path = club.instance_of?(MetropolitanClub) ? metropolitan_club_path(club) : university_club_path(@university, club)
+
+                  = link_to path do
                     = display_image club.image, 'xlarge'
                     %span.fleft= club.name
 
@@ -148,7 +148,7 @@
                 %li
                   .users
                     = link_to "javascript:;" do
-                      = display_image city.image, 'xlarge'
+                      = display_image @university.metropolitan_club(city.id).image, 'xlarge'
                       %span.fleft= city.name
                     .hovers{style: "text-align: center;"}
                       = link_to filter_users_path(user: {city: city.name}), remote: true do
@@ -160,7 +160,7 @@
           .clearfix
 
           .span12.bottom2
-            = render partial: "users/filter_options"
+            
 
         #tab5.tab_content
           .span11.left2
@@ -172,7 +172,9 @@
   .modal-header
     %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
     %h3 Search Users Result
-  #search-results.modal-body
+  .modal-body
+    .span9= render partial: "users/filter_options"
+    .span9#search-results
   .clearfix
   .modal-footer
     %button.btn.btn-warning{type: "button", data: {dismiss: "modal"}} Close

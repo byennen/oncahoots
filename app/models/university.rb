@@ -14,6 +14,10 @@ class University < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: :slugged
 
+  def metropolitan_club(city_id)
+    metropolitan_clubs.find_by_city_id city_id
+  end
+
   after_create :create_metropolitan_clubs
 
   private
