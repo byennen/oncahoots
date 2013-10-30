@@ -1,7 +1,10 @@
 = content_for :header do
   .span3
     = link_to "javascript:void(0);", class: 'mono mn' do
-      = image_tag @club.image.xxlarge, class: "img-circle"
+      - if @club.image.blank?
+        No Image
+      - else
+        = image_tag @club.image.xxlarge, class: "img-circle"
   .span5
     .carus{style: "margin-top: 200px"}
       .page-title= @club.name
