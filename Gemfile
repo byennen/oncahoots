@@ -28,6 +28,8 @@ gem "rmagick", '>= 2.13.2'
 gem "carrierwave"
 gem 'fog'
 
+# Honeybadger
+gem 'honeybadger'
 
 # messages
 gem 'mailboxer'
