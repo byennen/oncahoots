@@ -8,12 +8,11 @@ class InvitationsController < ApplicationController
   end
 
   def create
-    @recipients = User.where(slug: params[:recipient_ids])
-    @recipients.each do |recipient|
-      Invitation.create(sender_id: current_user.id, recipient_id: recipient.id, club_id: params[:club_id])
-    end
-    flash[:notice] = "Thank you, invitation sent."
-    redirect_to root_path
+    @university = University.find(params[:university_id])
+    @club = @university.clubs.find(params[:club_id])
+    @recipient = User.find(params[:invitation][:recipient_id])
+    Invitation.create(sender_id: current_user.id, recipient_id: @recipient.id, club_id: @club.id)
+    redirect_to university_club_path(@university, @club)
   end
 
   def search

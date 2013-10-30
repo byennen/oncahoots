@@ -208,7 +208,7 @@
 .clearfix
 
 #invite-contact.modal.hide
-  = simple_form_for Invitation.new, url: university_club_invitations_path(@university, @club) do |f|
+  = simple_form_for Invitation.new, url: university_club_invitations_path(@university.id, @club.id) do |f|
     .modal-header
       %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
       %h3 Invite Contact 
