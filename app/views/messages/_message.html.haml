@@ -1,5 +1,5 @@
 .comment-box.bottom{id: "message-#{message.id}"}
-  %a{href: user_path(message.sender), style: "margin-top: 0"}
+  %a{href: "javascript:;", style: "margin-top: 0"}
     = display_image message.sender.profile.image, "small"
   .span8
     %h5= message.sender.full_name
