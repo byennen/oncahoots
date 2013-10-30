@@ -3,8 +3,8 @@
     = link_to "javascript:void(0);", class: 'mono mn' do
       = display_image(@university.image, "xxlarge")
   .span7
-    .span12{style: "margin-top: 260px;"}
-      .page-title.bottom2= @university.name
+    .span12{style: "margin-top: 200px;"}
+      .page-title.bottom2{style: "color: #fff;"}= @university.name
       %ul#events.flexisel
         - @university_events.each do |event|
           %li
