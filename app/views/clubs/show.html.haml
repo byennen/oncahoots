@@ -3,21 +3,20 @@
     = link_to "javascript:void(0);", class: 'mono' do
       = display_image @club.image, "xxlarge"
   .span5
+    .page-title.top200= @club.name
   .span3{style: "min-height: 210px;"}
     .rig
-      .top4.bottom2.fright{style: "margin-right: 0"}
-        %a.btn.btn-success Invite Contacts
+      .top4.fright{style: "margin-right: 0"}
+        = link_to "Join Club", "javascript:;", class: "btn btn-success"
       %br
       .span12
-        .top4.fright{style: "margin-right: 0"}
-          = link_to "Join Club", "javascript:;", class: "btn btn-success"
+        .top4.bottom2.fright{style: "margin-right: 0"}
+          %a.btn.btn-success Invite Contacts
       .span12
         .top4.fright{style: "margin-right: 0"}
           - if current_user.super_admin? || current_user.university_admin? || @club.admins.include?(current_user)
             = link_to "Edit", edit_university_club_path(@university, @club), class: "btn btn-success"
-
-  .span8
-    .page-title.top4= @club.name
+   
 
 .clearfix
 .row-fluid

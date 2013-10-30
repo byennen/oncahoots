@@ -12,11 +12,19 @@
         %input#user_password.password.fioled0{:name => 'user[password]', :autofocus => 'autofocus', :type => 'password', :placeholder => 'Password'}
         = link_to "Forgot password?", "#"
         .clearfix
-        = f.submit "Login", class: "btn btn-success btn4", style: "width: 35%; padding: 5px;"
-        %a.btn.btn-success.btn4{href: new_user_registration_path, style: "width: 35%"} Register
+        .top
+          %a.btn.btn-success.submit{style: "width: 35%;"} Login
+          %a.btn.btn-success{href: new_user_registration_path, style: "width: 35%"} Register
+        .transparent=f.submit
+
 
   .span12
     .welcome.offset2
       %p Your network is waiting for you. On Cahoots.
       %br
       %br
+
+:javascript
+  $("a.submit").click(function(){
+    $(this).closest("form").submit();
+  });

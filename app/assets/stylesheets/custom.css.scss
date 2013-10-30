@@ -39,7 +39,6 @@ body { padding-top: 60px; }
 
 .navbar .nav li:first-child i{
   height:3px;
-  background:url('bar-sticks.png') repeat-x;
   width:35%;
   margin-top:35px;
   float:left;
@@ -47,7 +46,6 @@ body { padding-top: 60px; }
 }
 .navbar .nav li i{
   height:3px;
-  background:url('bar-sticks.png') repeat-x;
   width:64%;
   margin-top:35px;
   float:left;
@@ -81,7 +79,6 @@ body { padding-top: 60px; }
     max-height: 400px;
     padding: 20px;
     position: relative;
-    overflow: visible;
   }
 }
 

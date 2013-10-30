@@ -6,10 +6,10 @@
 - if @events.blank?
   .page-title No university events this day.
 
-- @university_clubs.each do |club|
-  - club.events.each do |club_event|
-    - if club_event.display_on_uc
-      .span12.top2{style: "margin-left: -30px; width: 103%;"}
-        .span12.event-item
-          .span12.left2.ev-title= link_to club_event.title, university_club_club_event_path(@university, club, club_event)
-          .span12.ev-description.top= club_event.description
+/ - @university_clubs.each do |club|
+/   - club.events.each do |club_event|
+/     - if club_event.display_on_uc
+/       .span12.top2{style: "margin-left: -30px; width: 103%;"}
+/         .span12.event-item
+/           .span12.left2.ev-title= link_to club_event.title, university_club_club_event_path(@university, club, club_event)
+/           .span12.ev-description.top= club_event.description
