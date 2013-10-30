@@ -94,11 +94,9 @@ puts 'Add Super Admin'
   graduation_year: '2005',
   major: 'Computer Science',
   location_id: @location.id,
-  city: "New York",
-  state: "US"
 )
 @super_admin.add_role :super_admin
-Profile.create(user_id: @super_admin.id, skills: 'Super Admin', education: 'Super Admin', experience: 'Super Admin')
+Profile.create(user_id: @super_admin.id, skills: 'Super Admin')
 
 #university admin user
 @university_admin = User.find_or_create_by_email!(
@@ -111,8 +109,6 @@ Profile.create(user_id: @super_admin.id, skills: 'Super Admin', education: 'Supe
   graduation_year: '2005',
   major: 'Computer Science',
   location_id: @location.id,
-  city: 'New York',
-  state: 'US'
 )
 @university_admin.add_role :university_admin
-Profile.create(user_id: @university_admin.id, skills: 'University Admin', education: 'University Admin', experience: 'University Admin')
+Profile.create(user_id: @university_admin.id, skills: 'University Admin')
