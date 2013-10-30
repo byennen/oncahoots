@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
 
   has_many :memberships
   has_many :clubs, :through => :memberships
+  has_many :club_photos
   has_many :relationships
   has_many :relations, through: :relationships
   has_many :contacts, :through => :relationships, :source => :relation, :conditions => {"relationships.status" => "accepted"}

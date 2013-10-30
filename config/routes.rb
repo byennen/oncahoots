@@ -33,13 +33,18 @@ CahootsConnect::Application.routes.draw   do
 
   end
 
+
   resources :metropolitan_clubs, only: [:show, :update] do
+    resources :updates
     collection do
       get :home
     end
 
     member do
+      post :assign_leader
       get :search_member
+      post :upload_image
+      post :upload_photo
     end
   end
 
@@ -52,6 +57,7 @@ CahootsConnect::Application.routes.draw   do
   resources :updates do
     resources :comments
   end
+  
   resources :relationships do
     get :read, on: :member
     post :accept, on: :member

@@ -7,6 +7,10 @@ class UpdatesController < ApplicationController
     @updates = @updateable.updates
   end
 
+  def show
+    render json: @updateable.updates.find(params[:id])
+  end
+
   def new
     @update = @updateable.updates.new
   end
@@ -20,8 +24,22 @@ class UpdatesController < ApplicationController
     end
   end
 
-  private
+  def update
+    @update = @updateable.updates.find(params[:id])
+    if @update.update_attributes(params[:update])
+      redirect_to @updateable, notice: 'Updated.'
+    else
+      redirect_to @updateable, notice: 'Failed. Please try again.'
+    end
+  end
+  
+  def destroy
+    @update = @updateable.updates.find params[:id]
+    @update.destroy
+    redirect_to @updateable
+  end
 
+  private
   def load_updateable
     resource, id = request.path.split('/')[1, 2]
     @updateable = resource.singularize.classify.constantize.find(id)

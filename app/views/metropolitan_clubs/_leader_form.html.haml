@@ -1,0 +1,10 @@
+= simple_form_for Membership.new, url: assign_leader_metropolitan_club_path(@metropolitan_club), remote: true do |f|
+  .modal-header
+    %button{type: "button", class: "close", data: {dismiss: 'modal'}} &times;
+    %h3 Add Leadership
+  .modal-body
+    = f.input :user_id, collection: @metropolitan_club.non_leaders, label_method: :full_name, value_method: :id
+    = f.input :title
+    = f.hidden_field :admin, value: true
+  .modal-footer
+    = f.submit "Add Leader", class: "btn btn-success"
