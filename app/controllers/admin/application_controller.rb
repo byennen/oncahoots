@@ -1,6 +1,6 @@
 class Admin::ApplicationController < ApplicationController
 
-  #layout 'admin'
+  layout 'admin'
 
   def authorize_admin
     authorize! :manage, :admin_pages
