@@ -95,7 +95,7 @@ class UniversityEventsController < ApplicationController
       id = params[:event][:club_id]
       resource = "Club"
       @updateable = resource.singularize.classify.constantize.find(id)
-      @update = @updateable.updates.build(headline: params[:event][:title], body: params[:event][:description], image: params[:event][:image].original_filename)
+      @update = @updateable.updates.build(headline: params[:event][:title], body: params[:event][:description])
       @update.save
     end
 end
