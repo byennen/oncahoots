@@ -1,10 +1,10 @@
 = content_for :header do
-  #avatar.span3
+  #avatar.span3.top2
     = link_to "<i class='icon-plus icon-white'></i>".html_safe, "javascript:;", class: "btn btn-success btn-mini", style: "margin-top: 40px; margin-left: -70px;"
     = link_to "javascript:void(0);" do
       = display_image @profile.image, "xxlarge", id: "profile-avatar"
-  .span8
-    .pro-user
+  .span8.top4
+    .pro-user.top4
       %p Hi! My name is #{@user.full_name} and I'm a #{@user.display_major} from #{@user.display_city}. Let's connect!
 
 .row-fluid
