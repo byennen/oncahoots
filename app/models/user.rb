@@ -107,6 +107,14 @@ class User < ActiveRecord::Base
     clubs.include?(club)
   end
 
+  def conversations_for(recipient)
+    cons=[]
+    mailbox.conversations.each do |conversation|
+      cons << conversation if conversation.recipients.include?(recipient)
+    end
+    cons
+  end
+
   class << self 
     def search_all(params)
       return where("1=1") if params.blank?
