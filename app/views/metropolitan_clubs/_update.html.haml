@@ -1,7 +1,7 @@
 %li{class: "announcement-#{update.id}"}
   %h4
     = update.headline.capitalize
-    - if current_user.id == update.user.id
+    - if current_user.id == update.user_id
       %a{href: "javascript:;", class: 'btn btn-success btn-mini', id: 'edit-update', "data-update-id" => "#{update.id}", "data-club-id" => "#{@metropolitan_club.id}"} Edit
   %p= update.body
   %small.pull-right= update.created_at.try(:strftime, "%b %d, %Y at %I:%M-%P")
