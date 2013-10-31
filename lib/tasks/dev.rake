@@ -60,7 +60,7 @@ namespace :dev do
 
   end
 
-  task :add_image_for_all_universities => :environment do
+  task :update_college_images => :environment do
     file_path = "#{Rails.root}/public/raw-images/universities/banner/"
     University.all.each do |university|
       image_banner = "#{file_path}#{university.slug.split('-')[0].capitalize}Header.jpg"
