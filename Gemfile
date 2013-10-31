@@ -27,6 +27,7 @@ gem 'bootstrap-generators', '~> 3.0'
 gem "rmagick", '>= 2.13.2'
 gem "carrierwave"
 gem 'fog'
+gem 'unf'
 
 # Honeybadger
 gem 'honeybadger'
