@@ -148,8 +148,9 @@
                 %li
                   .users
                     = link_to "javascript:;" do
-                      = display_image @university.metropolitan_club(city.id).image, 'xlarge'
-                      %span.fleft= city.name
+                      - if @university.metropolitan_club(city.id).image
+                        = display_image @university.metropolitan_club(city.id).image, 'xlarge'
+                        %span.fleft= city.name
                     .hovers{style: "text-align: center;"}
                       = link_to filter_users_path(user: {city: city.name}), remote: true do
                         %p

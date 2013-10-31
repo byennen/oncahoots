@@ -53,7 +53,7 @@ class ClubEventsController < ApplicationController
     def ensure_user_club
       @club = @university.clubs.find(params[:club_id])
       unless current_user.id == @club.user_id
-        redirect_to club_path(params[:club_id])
+        redirect_to university_club_path(@university, @club)
       else
         return true
       end

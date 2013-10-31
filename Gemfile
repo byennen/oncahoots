@@ -21,13 +21,16 @@ gem 'nested_form'
 gem 'tagsinput-rails'
 gem 'thin'
 gem 'friendly_id'
-gem 'bootstrap-generators', '~> 3.0'
+gem 'bootstrap-generators', '=3.0.0'
 
 #image uploads
 gem "rmagick", '>= 2.13.2'
 gem "carrierwave"
 gem 'fog'
+gem 'unf'
 
+# Honeybadger
+gem 'honeybadger'
 
 # messages
 gem 'mailboxer'

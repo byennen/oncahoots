@@ -1,0 +1,46 @@
+!!!
+/[if lt IE 7 ] <html class="ie ie6" lang="en">
+/[if IE 7 ] <html class="ie ie7" lang="en">
+/[if IE 8 ] <html class="ie ie8" lang="en">
+/ [if (gte IE 9)|!(IE)]><!
+%html{:lang => "en"}
+  / <![endif]
+  %head
+    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}
+    %title= content_for?(:title) ? "OnCahoots - " + yield(:title) : "Admin"
+    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"}
+    = favicon_link_tag 'favicon.ico'
+    = stylesheet_link_tag "admin/application", :media => "all"
+    = javascript_include_tag "admin/application"
+    = csrf_meta_tags
+    = yield(:head)
+    /[if IE 7]
+      <link rel="stylesheet" type="text/css" href="css/font-awesome-ie7.css"/>
+    /[if lt IE 9]
+      <script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    / Google Fonts
+    %link{:href => "http://fonts.googleapis.com/css?family=Ubuntu:300,400,700&subset=latin,cyrillic-ext,greek-ext,greek,latin-ext,cyrillic", :rel => "stylesheet", :type => "text/css"}
+
+  %body{:class => "#{controller_name} #{action_name}"}
+    .navbar.navbar-inverse.navbar-fixed-top
+      .navbar-inner
+        .container
+          %button.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse", :type => "button"}
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          %a.brand{:href => admin_root_path} OnCahoots
+          .nav-collapse.collapse
+            - if current_user.present?
+              %ul.nav
+                -#%li= link_to 'Orders', admin_orders_path
+                -#%li= link_to 'Belts', admin_belts_path
+                -#%li= link_to 'Buckles', admin_buckles_path
+                -#%li= link_to 'Users', admin_users_path
+
+
+              %ul.nav.pull-right
+                %li= link_to 'Homepage', root_path
+    .container
+      = render 'layouts/messages'
+      = yield
