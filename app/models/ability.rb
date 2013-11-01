@@ -13,6 +13,8 @@ class Ability
       can :manage, Update do |update|
         update.updateable == user.metropolitan_club
       end
+    else
+      can :show, Update
     end
   end
 end
