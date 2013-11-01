@@ -91,6 +91,10 @@ class User < ActiveRecord::Base
     [first_name, last_name].join(' ')
   end
 
+  def metropolitan_club_admin?
+    metropolitan_club.leaders.include?(self)
+  end
+
   def super_admin?
     has_role?(:super_admin)
   end

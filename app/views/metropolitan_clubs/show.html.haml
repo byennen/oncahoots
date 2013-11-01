@@ -46,14 +46,15 @@
         %a#upload-photo.btn.btn-success.fright{href: "javascript:;"} Upload Photo
         %a.btn.btn-success.fright{href: "#my_photos", :"data-toggle" => "modal"} My Photos
 .clearfix
-
+- new_update = @metropolitan_club.updates.build
 .row-fluid
   .container
     .offset2.span10
       .boll-box
         %h1 City Bulletin Board
         .span12.top2
-          %a{href: "#update-form", data: {toggle: "modal"}, class: "btn btn-success fright"} Post Bulletin
+          - if can? :create, new_update
+            %a{href: "#update-form", data: {toggle: "modal"}, class: "btn btn-success fright"} Post Bulletin
         .clearfix
 .clearfix
 
@@ -118,7 +119,7 @@
     .span12
       .seperator
 .clearfix
-= render partial: 'updates/form', locals: {update: Update.new}
+= render partial: 'updates/form', locals: {update: new_update}
 
 #about-us.modal.hide.fade
   = simple_form_for @metropolitan_club, remote: true do |f|
