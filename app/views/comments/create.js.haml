@@ -1,0 +1,2 @@
+$(".posts.comment").append("#{escape_javascript(render partial: "comment", locals: {comment: @comment})}");
+$(".new_comment_box").html("#{escape_javascript(render partial: 'metropolitan_clubs/new_comment_box', locals: {update: @comment.commentable})}");

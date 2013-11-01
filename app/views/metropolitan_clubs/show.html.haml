@@ -18,12 +18,16 @@
 .row-fluid
   .container
     .offset2.span10
-      .span8
+      .span7
         .img-box
-          %a.thumbnail
-            %img
-      .span3
-        %ul.listing
+          - if @metropolitan_club.updates.size > 0 && @metropolitan_club.updates.first.image_url
+            - src = @metropolitan_club.updates.first.image_url if @metropolitan_club.updates.first
+          - else
+            - src = @metropolitan_club.image_url
+          %a{style: "min-height: 400px;"}
+            %img#feature-image.feature-image.square.cir-img{src: src}
+      .span5.vscroll400
+        %ul.listing.span11
           = render partial: 'update', collection: @updates
 
 .clearfix
@@ -53,14 +57,15 @@
         .clearfix
 .clearfix
 
-- unless Update.count==0
+- unless @metropolitan_club.updates.count==0
+  - comments = @metropolitan_club.updates.first.comments
   .row-fluid
     .container
       .offset2.span10
-        %ul.posts.comment
-        .new_comment_box.hide
-          = render partial: 'new_comment_box'
-        %a.new-comment{href: "javascript:;", class: "btn btn-success" } New commentment
+        .span11.posts.comment
+          = render partial: "comments", locals: { comments: comments}
+        .span12.new_comment_box.top2.left
+          = render partial: 'new_comment_box', locals: {update: @metropolitan_club.updates.first}
 
 .row-fluid
   .container
@@ -113,7 +118,7 @@
     .span12
       .seperator
 .clearfix
-= render partial: 'updates/form'
+= render partial: 'updates/form', locals: {update: Update.new}
 
 #about-us.modal.hide.fade
   = simple_form_for @metropolitan_club, remote: true do |f|
@@ -195,4 +200,5 @@
     $("#club-member a").click(function(){
       $.get("#{search_member_metropolitan_club_path(@metropolitan_club)}", {user: {name: $("#club-member input").val()}});
     });
+
   });

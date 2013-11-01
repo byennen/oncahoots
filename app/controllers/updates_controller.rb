@@ -8,7 +8,8 @@ class UpdatesController < ApplicationController
   end
 
   def show
-    render json: @updateable.updates.find(params[:id])
+    @updates = @updateable.updates.find(params[:id])
+    respond_to :js 
   end
 
   def new

@@ -1,8 +1,14 @@
-%li{class: "announcement-#{update.id}"}
+%li.span11.left.top05{class: "announcement-#{update.id}"}
+  = link_to metropolitan_club_update_path(@metropolitan_club, update), remote: true do
+    = display_image_square update.image, "small"
   %h4
     = update.headline.capitalize
-    - if current_user.id == update.user_id
-      %a{href: "javascript:;", class: 'btn btn-success btn-mini', id: 'edit-update', "data-update-id" => "#{update.id}", "data-club-id" => "#{@metropolitan_club.id}"} Edit
-  %p= update.body
+    - if can? :edit, update
+      %a{href: "#update-form#{update.id}", data: {toggle: "modal"}}
+        %i.icon-pencil
+    - if can? :destroy, update
+      = link_to "<i class='icon-remove'></i>".html_safe, metropolitan_club_update_path(@metropolitan_club, update), method: :delete, confirm: "are you sure?"
+  %p.bottom{style: "margin-bottom: 10px"}= update.body
   %small.pull-right= update.created_at.try(:strftime, "%b %d, %Y at %I:%M-%P")
   .clearfix
+= render partial: 'updates/form', locals: {update: update}

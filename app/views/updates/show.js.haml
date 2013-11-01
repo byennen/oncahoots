@@ -1,0 +1,3 @@
+$("#feature-image").attr("src", "#{@update.image.url}");
+$(".posts.comment").html("#{escape_javascript(render partial: "metropolitan_clubs/comments", locals: {comments: @update.comments})}");
+$(".new_comment_box").html("#{escape_javascript(render partial: 'metropolitan_clubs/new_comment_box', locals: {update: @update})}");
