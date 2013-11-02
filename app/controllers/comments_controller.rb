@@ -9,12 +9,8 @@ class CommentsController < ApplicationController
   def create
     @comment = @update.comments.new(params[:comment])
     @comment.user_id = current_user.id
-    if @comment.save 
-      respond_to do |format|
-        format.html { redirect_to university_club_path(@update.updateable.university, @update.updateable) }
-        format.json { render json: @comment}
-      end
-    end
+    @comment.save
+    respond_to :js
   end
 
   private

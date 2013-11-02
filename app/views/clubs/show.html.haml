@@ -29,7 +29,7 @@
           - else
             - src = @club.image_url
           %a.thumbnail{style: "min-height: 400px;"}
-            = image_tag src, id: "feature-image"
+            = image_tag src, id: "feature-image", class: "feature-image"
       .span3
         %ul.listing
           = render partial: "update", collection: @club.updates

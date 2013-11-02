@@ -111,7 +111,7 @@
           %a.prev#prev2{href: "#"} &lt;
           %a.next#next2{href: "#"} &gt;
           %center
-            %buttuon.btn.btn-success.btn3{name: 'btn'} See all
+            %a.btn.btn-success.btn3{href: university_clubs_path(@university)} See all
         #tab3.tab_content.span10{style: "margin-left: 60px;"}
           - if @free_food_events.blank?
             %center

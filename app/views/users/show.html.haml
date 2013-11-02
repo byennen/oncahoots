@@ -115,32 +115,34 @@
                       %strong= @profile.contact_requirement.fields_of_interest
 
                       Between 45 and 60.
-    .clearfix
-    - unless @user == current_user
-      %br
-      %br
-      .row-fluid
-        .container
-          .span10
-            %ul.tabs5
-              %li{style: "width: 49.2%"}
-                %a{href: "#tab-cor"} Our Correspondence
-              %li{style: "width: 49.2%"}
-                %a{href: "#tab-clubs"} Our Clubs
+  .clearfix
+  - unless @user == current_user
+    %br
+    %br
+    .row-fluid
+      .container
+        .span10
+          %ul.tabs5
+            %li{style: "width: 49.2%"}
+              %a{href: "#tab-cor"} Our Correspondence
+            %li{style: "width: 49.2%"}
+              %a{href: "#tab-clubs"} Our Clubs
 
-            .clearfix
-            .tab_container
-              #tab-cor.tab_content
-                %ul.posts.newp
-                  - 2.times do
-                    %li.left
-                      = link_to "javascript:void(0);", class: 'avatr' do
-                        No Image
-                      %p A paragraph of text
-                      = link_to "1 day ago", "javascript:void(0);", class: "com ncom"
-                      =# link_to time_ago_in_words(update.created_at) + " ago", "javascript:void(0);", class: "com ncom"
-                      .clearfix
-              #tab-clubs.tab_content
+          .clearfix
+          .tab_container
+            #tab-cor.tab_content
+              - current_user.conversations_for(@user).each do |conversation|
+                .span11.border-bottom.left2.top2
+                  .span12.left
+                    %h3= conversation.subject
+                  - conversation.messages.order("created_at asc").each do |message|
+                    .span2
+                      %strong= message.sender.full_name
+                    .span7
+                      = simple_format message.body
+                    .span3.no-lmar
+                      .fright.green= time_ago_in_words(message.updated_at) + " ago"
+            #tab-clubs.tab_content
 
 #add-contact.modal.hide
   = simple_form_for Relationship.new(user_id: current_user.id) do |f|

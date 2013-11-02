@@ -91,6 +91,10 @@ class User < ActiveRecord::Base
     [first_name, last_name].join(' ')
   end
 
+  def metropolitan_club_admin?
+    metropolitan_club.leaders.include?(self)
+  end
+
   def super_admin?
     has_role?(:super_admin)
   end
@@ -105,6 +109,14 @@ class User < ActiveRecord::Base
 
   def join_club?(club)
     clubs.include?(club)
+  end
+
+  def conversations_for(recipient)
+    cons=[]
+    mailbox.conversations.each do |conversation|
+      cons << conversation if conversation.recipients.include?(recipient)
+    end
+    cons
   end
 
   class << self 

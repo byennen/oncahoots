@@ -1,3 +1,3 @@
-= simple_form_for Comment.new, url: new_update_comment_path(Update.first) do |f|
+= simple_form_for [update, Comment.new], remote: true do |f|
   = f.input :comment, as: :text, label: false, input_html: {class: "span11", rows: 4}
-  %button.btn.submit-comment Submmit
+  = f.submit "Post comment", class: "btn btn-success"
