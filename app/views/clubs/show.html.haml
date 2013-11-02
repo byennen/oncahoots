@@ -16,8 +16,6 @@
         .top4.fright{style: "margin-right: 0"}
           - if current_user.super_admin? || current_user.university_admin? || @club.admins.include?(current_user)
             = link_to "Edit", edit_university_club_path(@university, @club), class: "btn btn-success"
-   
-
 .clearfix
 .row-fluid
   .container
