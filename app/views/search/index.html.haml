@@ -2,6 +2,7 @@
   .span10.page-title.top2.bottom2
     %span#person-title who are you looking for?
     %span#club-title.hide what kind of club are you looking for?
+    %span#event-title.hide what event are you looking for?
   .span11.no-lmar
     .span3.no-lmar.dropdown
       %a.btn.btn-success.btn2.chang.dropdown-toggle{:href => "javascript:;", :"data-toggle" => 'dropdown'}
@@ -22,6 +23,7 @@
         .offset7.top2
           = link_to "Search", "javascript:;", class: "btn btn-success", id: "search-button"
     #club-option.hide= render partial: "club_options"
+    #event-option.hide= render partial: "event_options"
  
   
 

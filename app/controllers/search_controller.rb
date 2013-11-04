@@ -17,6 +17,10 @@ class SearchController < ApplicationController
     respond_to :js
   end
 
+  def event
+    @events = Event.search_all(params[:event])
+  end
+
   private
     def load_university
       @university=params[:university_id] ? University.find(params[:university_id]) : current_user.university
