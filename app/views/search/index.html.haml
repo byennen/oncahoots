@@ -38,6 +38,9 @@
             .span12.no-lmar.top2
               %h3 Search for clubs
               =  render partial: "clubs"
+            .span12.no-lmar.top2
+              %h3 Search for events
+              =  render partial: "events"
 
 #add-contact.modal.hide
   = simple_form_for Relationship.new(user_id: current_user.id) do |f|

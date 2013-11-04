@@ -4,6 +4,7 @@ class SearchController < ApplicationController
     if params[:term]
       @clubs = Club.search_name(params[:term])
       @users = User.search_name(params[:term])
+      @events = Event.search_title(params[:term])
     end
   end
 

@@ -23,12 +23,12 @@ class Event < ActiveRecord::Base
   class << self
     def search_all(params)
       return where("1=1") if params.blank?
-      search_title(params[:title]).search_date(params[:on_date]).search_time(params["at_time(4i)"], params["at_time(5i)"])
-      .search_location(params[:location]).search_category(params[:category])
+      search_title(params[:title]).search_date(params[:on_date]).search_time(params[:time])
+      .search_location(params[:location]).search_category(params[:category]).search_free_food(params[:free_food])
     end
 
     def search_title(title)
-      return where("1=1") if name.blank?
+      return where("1=1") if title.blank?
       where("lower(title) like ?", "%#{title.downcase}%")
     end
 
@@ -38,7 +38,7 @@ class Event < ActiveRecord::Base
     end
 
     def search_category(category)
-      return where("1=1") if category.blank?
+      return where("1=1") if category.blank? || category == "All category"
       where("lower(category) like ?", "%#{category.downcase}%")
     end
 
@@ -47,12 +47,23 @@ class Event < ActiveRecord::Base
       where(on_date: date)
     end
 
-    def search_time(h,m)
-      if h.blank? || m.
-      time=Time.strptime("#{h}#{m}","%H:%M")
-      return where("1=1") if time.blank?
-      where(at_time: time)
+    def search_free_food(free)
+      return where("1=1") if free.blank? || free=="All"
+      free=='free' ? free_food : non_free_food
+    end
+
+    def search_time(range)
+      return where("1=1") if range.blank? || range =="All"
+      hmin = TIME_RANGE[range].first
+      hmax = TIME_RANGE[range].last
+      min=Time.strptime("2000/01/01 #{hmin}:00 UTC","%Y/%m/%d %H:%M %Z")
+      max=Time.strptime("2000/01/01 #{hmax}:59 UTC","%Y/%m/%d %H:%M %Z")
+      where("at_time >= ? and at_time <= ?", min, max)
     end
 
   end
+
+  TIME_RANGE = {"0 - 2 AM" => [0,2], "2 - 4 AM" => [2,4], "4 - 6 AM" => [4,6], "6 - 8 AM" => [6,8], "8 - 10 AM" => [8,10], "10AM - 12 PM" => [10,12],
+     "12 - 2 PM" => [12,14], "2 - 4 PM" => [14,16], "4 - 6 PM" => [16,18], "6 - 8 PM" => [18,20], "8 - 10 PM" => [20, 22], "10 - 0 AM" => [22,24]}
+
 end
