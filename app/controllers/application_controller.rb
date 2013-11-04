@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
   before_filter :load_data
   helper_method :load_university_data
-  
+
   protect_from_forgery
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   def load_university_data
     if @university
       @bg_style = "background-image: url('#{@university.banner.url}')" unless @university.banner.blank?
-      @users = @university.users
+      @users = @university.users.where("id != 1 AND id != 2")
       @updateable = @university
       @updates = @updateable.updates
       @free_food_events = @university.events.free_food
