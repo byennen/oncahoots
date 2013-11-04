@@ -91,6 +91,10 @@ class User < ActiveRecord::Base
     [first_name, last_name].join(' ')
   end
 
+  def metropolitan_club_admin?
+    metropolitan_club.leaders.include?(self)
+  end
+
   def super_admin?
     has_role?(:super_admin)
   end
@@ -108,6 +112,15 @@ class User < ActiveRecord::Base
   end
 
   class << self
+
+  def conversations_for(recipient)
+    cons=[]
+    mailbox.conversations.each do |conversation|
+      cons << conversation if conversation.recipients.include?(recipient)
+    end
+    cons
+  end
+
     def search_all(params)
       return where("1=1") if params.blank?
       search_name(params[:name]).search_location(params[:loc]).search_type(params[:type])

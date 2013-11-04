@@ -62,11 +62,11 @@ module ApplicationHelper
   end
 
   def bg_class
-    "bg-image bg-image2" if controller_name == "universities" || controller_name == "metropolitan_clubs" || controller_name == "clubs"
+    "bg-image bg-image2" if controller_name == "universities" || controller_name == "metropolitan_clubs" || (controller_name == "clubs" && params[:action] != 'index')
   end
 
   def hero_banner(options={})
-    if controller_name == "universities" || controller_name == "metropolitan_clubs" || controller_name == "clubs"
+    if controller_name == "universities" || controller_name == "metropolitan_clubs" || (controller_name == "clubs" && params[:action] != 'index')
       if club = options[:club]
         "background-image: url('#{club.image.url}')" unless club.image.blank?
       elsif university = options[:university]

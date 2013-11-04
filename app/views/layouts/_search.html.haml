@@ -1,4 +1,4 @@
-- unless controller_name=="search" || controller_name=='contacts' || (controller_name= "profile" && params[:action]=='edit')
+- unless controller_name=="search" || controller_name=='contacts' || (controller_name== "profiles" && params[:action]=='edit') || (controller_name== "clubs" && params[:action]=='index')
   .offset9.search_all
     %a#search-btn.btn.btn2.btn-success{style: "margin-right: 20px;", href: "javascript:;"}
       %i

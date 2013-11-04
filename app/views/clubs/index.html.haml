@@ -2,9 +2,18 @@
   .span10
     .page-title.bottom2
       What kind of club are you looking for?
+  .span3.no-lmar
+    %a#search-uni-club.btn.btn2.btn-success{style: "margin-right: 10px;", href: "javascript:;"}
+      %i
+        = image_tag('search-icon.png')
+    %input#uni-club_field.field{name: 'search_field', type: 'text'}
+  .span11
     - Club::CATEGORIES.each do |category|
-      = link_to category, search_university_clubs_path(@university, club: {category: category}), class: "btn btn-inverse toggle-btn span2 top", remote: true
-  #club-list.span10
+      = link_to category, search_university_clubs_path(@university, club: {category: category}), class: "btn btn-inverse toggle-btn span2 top no-lmar right", remote: true
+  .row-fluid
+    .container
+      .span10.top2
+        #club-list.top2
 
 
 :javascript
@@ -16,7 +25,7 @@
   });
 
   $(document).ready(function(){
-    $(".search_club #search_field").keydown(function (e){
+    $("#uni-club_field").keydown(function (e){
       if(e.keyCode == 13){
         $(".toggle-btn").removeClass("btn-success");
         $(".toggle-btn").addClass("btn-inverse");
@@ -24,9 +33,9 @@
       }
     });
 
-    $(".search_club #search-btn").click(function(){
+    $("#search-uni-club").click(function(){
       $(".toggle-btn").removeClass("btn-success");
       $(".toggle-btn").addClass("btn-inverse");
-      $.get("#{search_university_clubs_path(@university)}", {club: {name: $("#search_field").val()}});
+      $.get("#{search_university_clubs_path(@university)}", {club: {name: $("#uni-club_field").val()}});
     });
   });

@@ -11,10 +11,10 @@ class MetropolitanClubsController < ApplicationController
   def home
     @metropolitan_club = current_user.metropolitan_club
     @membership = Membership.new
-    init_data
     unless @metropolitan_club
       redirect_to edit_user_profile_path(current_user, current_user.profile), notice: "please update your current city"
     else
+      init_data
       render :show
     end
   end
