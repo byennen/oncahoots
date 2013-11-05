@@ -117,7 +117,7 @@
             %center
               %h4 No event
           - @free_food_events.each do |event|
-            .span12.top2.no-lmar
+            .span12.top2.no-lmar{id: "event-#{event.id}"}
               .span2.no-lmar
                 - if event.eventable.instance_of?(Club)
                   = link_to university_club_path(@university, event.eventable) do
@@ -128,7 +128,9 @@
                 - else
                   = display_image event.eventable.image, "thumb"
               .span10.event-item
-                .span12.left2.ev-title= link_to event.title, university_university_event_path(current_user.university, event)
+                .span10.left2.ev-title= link_to event.title, university_university_event_path(current_user.university, event)
+                .span1
+                  .fright= link_to "delete", university_university_event_path(@university, event), method: :delete, remote: true, class: "btn btn-danger btn-mini", confirm: "are you sure?" if current_user.manage_event?(event)
                 .span12.left2.bottom
                   %strong Location
                   = event.location

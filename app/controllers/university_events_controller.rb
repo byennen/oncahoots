@@ -9,7 +9,7 @@ class UniversityEventsController < ApplicationController
     else
       @event = @university.events.build(params[:event])
     end
-
+    @event.user_id = current_user.id
     if @event.save
       redirect_to university_university_events_path(@university), notice: "event is created successfully"
     else
@@ -19,12 +19,9 @@ class UniversityEventsController < ApplicationController
   end
 
   def destroy
-    @university_event = @university.events.find(params[:id])
-    if @university_event.destroy
-      respond_to do |format|
-        format.html { redirect_to university_university_events_path(@university) }
-      end
-    end
+    @event = Event.find(params[:id])
+    @event.destroy
+    respond_to :js
   end
 
   def index
