@@ -10,15 +10,27 @@ $ ->
     if $(this).text() == 'Person'
       $("#club-option").hide()
       $("#club-title").hide()
+      $("#event-option").hide()
+      $("#event-title").hide()
+
       $("#person-option").show()
       $("#person-title").show()
-      $(".search_club").hide()
+    else if $(this).text() == 'Club'
+      $("#person-option").hide()
+      $("#person-title").hide()
+      $("#event-option").hide()
+      $("#event-title").hide()
+
+      $("#club-option").show()
+      $("#club-title").show()
     else
       $("#person-option").hide()
       $("#person-title").hide()
-      $("#club-option").show()
-      $("#club-title").show()
-      $(".search_club").show()
+      $("#club-option").hide()
+      $("#club-title").hide()
+
+      $("#event-option").show()
+      $("#event-title").show()
 
   $("#search-button").click ->
     data = {}
