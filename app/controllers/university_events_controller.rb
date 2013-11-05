@@ -3,15 +3,11 @@ class UniversityEventsController < ApplicationController
   before_filter :ensure_user_university, except: [:load_events, :next_week, :prev_week]
 
   def create
-    if params[:event][:eventable_type] == "1"
-      @club = @university.clubs.find(params[:event][:club_id])
-      @event = @club.events.build(params[:event])
-    else
-      @event = @university.events.build(params[:event])
-    end
+    @university = University.find(params[:university_id])
+    @event = @university.events.new(params[:event])
     @event.user_id = current_user.id
     if @event.save
-      redirect_to university_university_events_path(@university), notice: "event is created successfully"
+      redirect_to university_university_events_path(@university), notice: "Event was created successfully"
     else
       init
       render :index
@@ -77,6 +73,7 @@ class UniversityEventsController < ApplicationController
     end
 
     def init
+      @event ||=Event.new
       @week_start = DateTime.now.beginning_of_week - 1.days
       @university_events = @university.events.all
       @university_clubs  = @university.clubs.order(:name)

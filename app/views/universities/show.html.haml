@@ -220,7 +220,7 @@
       = f.input :description, as: :text, input_html: {rows: 2}
       = f.input :category, as: :category
       = f.input :image, as: :file
-      = select_tag :club_id, options_from_collection_for_select(@university.clubs.order(:name), :id, :name), prompt: "Select Club"
+      = f.input :club_id, collection: @university.clubs.order(:name), prompt: "Select Club"
       = f.hidden_field :display_on_uc, value: true
       = f.hidden_field :free_food, value: true
     .clearfix

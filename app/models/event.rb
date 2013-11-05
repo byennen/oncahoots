@@ -1,10 +1,11 @@
 class Event < ActiveRecord::Base
   attr_accessible :title, :location, :description, :category,
-                  :image, :free_food, :on_date, :at_time, :eventable_type, :club_id, :display_on_uc
+                  :image, :free_food, :on_date, :at_time, :university_id, :club_id, :display_on_uc
 
-  belongs_to :eventable, polymorphic: true
   belongs_to :user
-  
+  belongs_to :university
+  belongs_to :club
+
   mount_uploader :image, ImageUploader
 
   scope :free_food, where(free_food: true)
@@ -71,8 +72,8 @@ class Event < ActiveRecord::Base
 
   private
     def add_club_update
-      if eventable && eventable.is_a?(Club) 
-        update=eventable.updates.new(headline: title, body: description)
+      if club
+        update=club.updates.new(headline: title, body: description)
         update.image = image.file unless image.blank?
         update.save
       end

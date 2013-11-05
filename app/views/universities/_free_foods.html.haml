@@ -1,14 +1,14 @@
 - @free_food_events.each do |event|
   .span12.top2.no-lmar{id: "event-#{event.id}"}
     .span2.no-lmar
-      - if event.eventable.instance_of?(Club)
-        = link_to university_club_path(@university, event.eventable) do
-          = display_image event.eventable.image, "thumb"
-      - elsif event.eventable.instance_of?(MetropolitanClub)
-        = link_to metropolitan_club_path(event.eventable) do
-          = display_image event.eventable.image, "thumb"
+      - if event.club && event.club.instance_of?(Club)
+        = link_to university_club_path(@university, event.club) do
+          = display_image event.club.image, "thumb"
+      - elsif event.club && event.club.instance_of?(MetropolitanClub)
+        = link_to metropolitan_club_path(event.club) do
+          = display_image event.club.image, "thumb"
       - else
-        = display_image event.eventable.image, "thumb"
+        = display_image event.university.image, "thumb"
     .span10.event-item
       .span10.ev-title= link_to event.title, university_university_event_path(current_user.university, event)
       .span2.no-lmar
@@ -16,7 +16,7 @@
           - if current_user.manage_event?(event)
             = link_to "delete", university_university_event_path(@university, event), method: :delete, remote: true, class: "btn btn-danger btn-mini", confirm: "are you sure?"
             = link_to "edit", "#edit-event-#{event.id}", class: "btn btn-success btn-mini", :"data-toggle" => "modal", id: "event_link#{event.id}"
-      .span12.left2.bottom
+      .span12.no-lmar.bottom
         %strong Location
         = event.location
         %br
@@ -24,7 +24,7 @@
         = event.date
         = " "
         = event.time
-        .span12.ev-description.top= event.description
+        .span12.no-lmar.ev-description.top= event.description
   - event = @event if @event && event.id == @event.id
   .modal.hide.fade{tabindex: "-1", role: "dialog", :"aria-labelledby" => "myModalLabel", :"aria-hidden" => "true", id: "edit-event-#{event.id}"}
     ~ simple_form_for event, url: update_free_food_event_university_path(@university) do |f|
@@ -39,8 +39,7 @@
         = f.input :description, as: :text, input_html: {rows: 2}
         = f.input :category, as: :category
         = f.input :image, as: :file
-        - selected = event.eventable_id if event.eventable.is_a?(Club)
-        = select_tag :club_id, options_from_collection_for_select(@university.clubs.order(:name), :id, :name, selected), prompt: "Select Club"
+        = f.input :club_id, collection: @university.clubs.order(:name), prompt: "Select Club"
         = f.hidden_field :display_on_uc, value: true
         = f.hidden_field :free_food, value: true
         = hidden_field_tag :event_id, event.id

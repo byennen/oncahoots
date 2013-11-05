@@ -117,9 +117,7 @@ class User < ActiveRecord::Base
 
   def manage_event?(event)
     return true if super_admin? || university_admin?
-    if event.eventable.is_a?(Club)
-      return true if club_admin?(event.eventable)
-    end
+    return true if event.club && club_admin?(event.club)
     return true if event.user == self
     return false
   end
