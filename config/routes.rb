@@ -7,6 +7,7 @@ CahootsConnect::Application.routes.draw   do
 
     member do
       post :create_free_food_event
+      get :search_events
     end
 
     resources :updates, only: [:new, :create, :update, :destroy] do

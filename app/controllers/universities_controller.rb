@@ -17,7 +17,7 @@ class UniversitiesController < ApplicationController
 
   def create_free_food_event
     @university = University.find(params[:id])
-    club = Club.find params[:club_id] if params[:club_id]
+    club = Club.find params[:club_id] unless params[:club_id].blank?
     @event = club ? club.events.new(params[:event]) : @university.events.new(params[:event])
     @event.user_id = current_user.id
     if @event.save
@@ -27,4 +27,11 @@ class UniversitiesController < ApplicationController
       render :show
     end
   end
+
+  def search_events
+    @university = University.find(params[:id])
+    @free_food_events = @university.events.search_date(params[:on_date]).free_food.order(:at_time).reverse_order + 
+           @university.club_events.search_date(params[:on_date]).free_food.order(:at_time).reverse_order
+  end
+
 end
