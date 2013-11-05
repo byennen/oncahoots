@@ -1,0 +1,47 @@
+= simple_form_for :event, url: search_event_path, remote: true, method: :get do |f|
+  .span11.no-lmar
+    .span3.no-lmar
+      = f.text_field :title, class: "field", placeholder: "Title", style: "width: 80%"
+    .span3.no-lmar
+      = f.text_field :on_date, class: "field datepicker", placeholder: "Date", style: "width: 80%"
+    .span3.no-lmar.dropdown
+      %a.btn.btn-success.btn2.chang.dropdown-toggle{:href => "javascript:;", :"data-toggle" => 'dropdown'}
+        %i
+          = image_tag "dropdown-arrow.png"
+      %ul.dropdown-menu{style: "margin: -10px 0 0 22px"}
+        %li
+          %a= "All"
+        - hour_range.each do |range|
+          %li
+            %a= range
+      = f.text_field :time, class: "field dropdown-toggle", :"data-toggle" => 'dropdown', placeholder: "Hour"
+  .span11.no-lmar
+    .span3.no-lmar
+      = f.text_field :location, class: "field", placeholder: "Location", style: "width: 80%"
+
+    .span3.no-lmar.dropdown
+      %a.btn.btn-success.btn2.chang.dropdown-toggle{:href => "javascript:;", :"data-toggle" => 'dropdown'}
+        %i
+          = image_tag "dropdown-arrow.png"
+      %ul.dropdown-menu{style: "margin: -10px 0 0 22px"}
+        %li
+          %a= "All category"
+        - Club::CATEGORIES.each do |category|
+          %li
+            %a= category
+      = f.text_field :category, class: "field dropdown-toggle", :"data-toggle" => 'dropdown', placeholder: "Category"
+    .span3.no-lmar.dropdown
+      %a.btn.btn-success.btn2.chang.dropdown-toggle{:href => "javascript:;", :"data-toggle" => 'dropdown'}
+        %i
+          = image_tag "dropdown-arrow.png"
+      %ul.dropdown-menu{style: "margin: -10px 0 0 22px"}
+        %li
+          %a= "All"
+        %li
+          %a= "free"
+        %li
+          %a= "non free"
+      = f.text_field :free_food, class: "field dropdown-toggle", :"data-toggle" => 'dropdown', placeholder: "Free Food"
+    .span11.no-lmar
+      .offset8
+        = f.submit "Search", class: "btn btn-success"
