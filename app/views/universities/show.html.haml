@@ -115,11 +115,11 @@
         #tab3.tab_content.span10{style: "margin-left: 60px;"}
           .span12.top2.no-lmar
             .fright
-              = text_field_tag :on_date, params[:on_date] || Date.today,class: "field datepicker", placeholder: "Date", style: "width: 80%"
+              = text_field_tag :on_date, session[:on_date] || Date.today,class: "field datepicker", placeholder: "Date", style: "width: 80%"
           #free-foods-list
             = render partial: "free_foods" 
           .span12.no-lmar.top2
-            %center= link_to "Add New", "#free-food-popup", :"data-toggle" => "modal", class: "btn btn-success", id: "new-event_link"
+            %center= link_to "Add New", "#free-food-popup", :"data-toggle" => "modal", class: "btn btn-success", id: "event_link"
         #tab4.tab_content
           .span11
             .span3.no-lmar.dropdown
@@ -237,7 +237,7 @@
     if("#{@event.errors.any?}" == "true"){
       $(document).scrollTop( $("#free_food_tab").offset().top );
       $("#free_food_tab").click();
-      $("#new-event_link").click();
+      $("#event_link#{@event.id}").click();
     }
 
     $("#on_date").change(function(){
