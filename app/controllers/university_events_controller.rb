@@ -12,11 +12,7 @@ class UniversityEventsController < ApplicationController
     end
 
     if @event.save
-      if @club
-        redirect_to university_club_path(@university, @club)
-      else
-        redirect_to university_university_event_path(@university, @event)
-      end
+      redirect_to university_university_events_path(@university), notice: "event is created successfully"
     else
       init
       render :index

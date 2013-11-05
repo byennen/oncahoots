@@ -116,17 +116,28 @@
           - if @free_food_events.blank?
             %center
               %h4 No event
-          - else
-            %ul#free-food.flexisel
-              - @clubs.each do |club|
-                - club.events.each do |club_event|
-                  %li
-                    = link_to university_club_club_event_path(@university, club, club_event) do
-                      = display_image_square club_event.image, "large"
-                    .span10.left3
-                      %h4= club_event.title
-                      %p= club_event.date
-                      %p= club_event.time
+          - @free_food_events.each do |event|
+            .span12.top2.no-lmar
+              .span2.no-lmar
+                - if event.eventable.instance_of?(Club)
+                  = link_to university_club_path(@university, event.eventable) do
+                    = display_image event.eventable.image, "thumb"
+                - elsif event.eventable.instance_of?(MetropolitanClub)
+                  = link_to metropolitan_club_path(event.eventable) do
+                    = display_image event.eventable.image, "thumb"
+                - else
+                  = display_image event.eventable.image, "thumb"
+              .span10.event-item
+                .span12.left2.ev-title= link_to event.title, university_university_event_path(current_user.university, event)
+                .span12.left2.bottom
+                  %strong Location
+                  = event.location
+                  %br
+                  %strong DateTime
+                  = event.date
+                  = " "
+                  = event.time
+                .span12.ev-description.top= event.description
 
 
         #tab4.tab_content
