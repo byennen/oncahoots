@@ -38,7 +38,7 @@
       %ul.tabs3
         %li= link_to "Community", "#tab1"
         %li= link_to "Clubs", "#tab2"
-        %li= link_to "Free Food", "#tab3"
+        %li= link_to "Free Food", "#tab3", id: "free_food_tab"
         %li= link_to "Alumni Map", "#tab4"
         %li= link_to "Register New", "#tab5", id: "new-club"
       .clearfix
@@ -139,7 +139,8 @@
                   = event.time
                 .span12.ev-description.top= event.description
 
-
+          .span12.no-lmar.top2
+            %center= link_to "Add New", "#free-food-popup", :"data-toggle" => "modal", class: "btn btn-success", id: "new-event_link"
         #tab4.tab_content
           .span11
             .span3.no-lmar.dropdown
@@ -227,10 +228,36 @@
                 = link_to time_ago_in_words(update.created_at) + " ago", "javascript:void(0);", class: "com ncom"
                 .clearfix
 
+#free-food-popup.modal.hide.fade{tabindex: "-1", role: "dialog", :"aria-labelledby" => "myModalLabel", :"aria-hidden" => "true"}
+  ~ simple_form_for @event, url: create_free_food_event_university_path(@university) do |f|
+    .modal-header
+      %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+      %h3 New free food event
+    .modal-body
+      = f.input :title
+      = f.input :on_date, as: :string, label: "Date", input_html: {class: "datepicker"}
+      = f.input :at_time, label: "Time", as: :time, ampm: true, minute_step: 5, default: {hour: 0, minute: 0},input_html: {style: "width: 80px"}
+      = f.input :location
+      = f.input :description, as: :text, input_html: {rows: 2}
+      = f.input :category, as: :category
+      = f.input :image, as: :file
+      = select_tag :club_id, options_from_collection_for_select(@university.clubs.order(:name), :id, :name), prompt: "Select Club"
+      = f.hidden_field :display_on_uc, value: true
+      = f.hidden_field :free_food, value: true
+    .clearfix
+    .modal-footer
+      = f.submit "Add Event", class: "btn btn-success"
+
 :javascript
   $(document).ready(function(){
     if("#{@club.errors.any?}" == "true"){
       $("#new-club").click();
       $(document).scrollTop( $("#new-club").offset().top );
+    }
+
+    if("#{@event.errors.any?}" == "true"){
+      $(document).scrollTop( $("#free_food_tab").offset().top );
+      $("#free_food_tab").click();
+      $("#new-event_link").click();
     }
   });

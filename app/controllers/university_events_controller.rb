@@ -6,7 +6,6 @@ class UniversityEventsController < ApplicationController
     if params[:event][:eventable_type] == "1"
       @club = @university.clubs.find(params[:event][:club_id])
       @event = @club.events.build(params[:event])
-      add_club_update
     else
       @event = @university.events.build(params[:event])
     end
@@ -87,11 +86,4 @@ class UniversityEventsController < ApplicationController
       @events = events_of_day(Date.today)
     end
 
-    def add_club_update
-      id = params[:event][:club_id]
-      resource = "Club"
-      @updateable = resource.singularize.classify.constantize.find(id)
-      @update = @updateable.updates.build(headline: params[:event][:title], body: params[:event][:description])
-      @update.save
-    end
 end

@@ -28,6 +28,7 @@ class ApplicationController < ActionController::Base
       @update = Update.new
       @clubs = @university.clubs.order(:name)
       @club ||= @university.clubs.build
+      @event ||= Event.new
       @club_updates = Update.where(updateable_type: "Club").where(updateable_id: @clubs.map(&:id)).order("created_at DESC").all
     end
   end

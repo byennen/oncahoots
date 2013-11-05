@@ -15,4 +15,16 @@ class UniversitiesController < ApplicationController
     load_university_data
   end
 
+  def create_free_food_event
+    @university = University.find(params[:id])
+    club = Club.find params[:club_id] if params[:club_id]
+    @event = club ? club.events.new(params[:event]) : @university.events.new(params[:event])
+    
+    if @event.save
+      redirect_to university_path(@university), notice: "Event was created successfully"
+    else
+      load_university_data
+      render :show
+    end
+  end
 end

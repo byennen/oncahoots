@@ -3,8 +3,10 @@ CahootsConnect::Application.routes.draw   do
   resources :universities, only: [:show] do
 
     resources :events
-    resources :university_events, :path => 'calendar', :controller => :university_events do
+    resources :university_events, :path => 'calendar', :controller => :university_events 
 
+    member do
+      post :create_free_food_event
     end
 
     resources :updates, only: [:new, :create, :update, :destroy] do
