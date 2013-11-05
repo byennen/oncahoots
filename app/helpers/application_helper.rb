@@ -74,4 +74,9 @@ module ApplicationHelper
       end
     end
   end
+
+  def hour_range(step=2)
+    ["0 - 2 AM", "2 - 4 AM", "4 - 6 AM", "6 - 8 AM", "8 - 10 AM", "10AM - 12 PM",
+     "12 - 2 PM", "2 - 4 PM", "4 - 6 PM", "6 - 8 PM", "8 - 10 PM", "10 - 0 AM"]
+  end
 end

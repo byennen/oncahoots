@@ -111,6 +111,8 @@ class User < ActiveRecord::Base
     clubs.include?(club)
   end
 
+  class << self
+
   def conversations_for(recipient)
     cons=[]
     mailbox.conversations.each do |conversation|
@@ -119,15 +121,15 @@ class User < ActiveRecord::Base
     cons
   end
 
-  class << self 
     def search_all(params)
       return where("1=1") if params.blank?
-      search_name(params[:name]).search_location(params[:loc]).search_type(params[:type])
-      .search_major(params[:major]).search_graduation_year(params[:year]).search_professional_field(params[:field]).search_city(params[:city])
+      search_name(params[:name]).search_type(params[:type])
+      .search_major(params[:major]).search_graduation_year(params[:year]).search_professional_field(params[:field]).search_city(params[:loc]).where("id != 1 AND id != 2")
     end
+
     def search_name(name)
       return where("1=1") if name.blank?
-      where("lower(first_name) like ? or lower(last_name) like ?", "%#{name.downcase}%", "%#{name.downcase}%")
+      where("lower(first_name) like ? or lower(last_name) like ?", "%#{name.downcase}%", "%#{name.downcase}%").where("id != 1 AND id != 2")
     end
 
     def search_city(city_name)
