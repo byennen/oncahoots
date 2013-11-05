@@ -35,6 +35,8 @@ class ProfilesController < ApplicationController
     @user = current_user
     @profile = current_user.profile
     if @profile.update_attributes(params[:profile])
+      # Update the notifications
+      create_notifications(params[:profile])
       redirect_to edit_user_profile_path(current_user, current_user.profile), notice: 'Profile was successfully updated.'
     else
       format.html { render action: "edit" }
@@ -65,6 +67,12 @@ class ProfilesController < ApplicationController
         format.html { redirect_to edit_user_profile_path(current_user, current_user.profile), notice: "Profile was successfully updated" }
       end
     end
+  end
+
+  private
+
+  def create_notifications(profile_params)
+    Alert.create_profile_update(current_user, profile_params)
   end
 
 end

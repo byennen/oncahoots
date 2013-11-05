@@ -1,7 +1,7 @@
 .left-menu.mns
   %ul
     - if controller_name == "users" or controller_name == 'profiles'
-      
+
     - else
       %li
         %i
@@ -19,7 +19,7 @@
       %li
         %i
         = link_to "#notifications-popup", :"data-toggle" => "modal" do
-          %p 1
+          %p= current_user.alerts.size
           = image_tag "request.png"
           %br
           Notifications
@@ -67,18 +67,13 @@
         .modal-body{style: "min-height: 200px;"}
           .left-side
             %ul.msg.msh
-              %li
-                %a{href: "javascript:;"}
-                  = image_tag "avatar-medium.png"
-                %h4 Josh Compton
-                %br
-                %p 2013
-              %li
-                %a{href: "javascript:;"}
-                  = image_tag "avatar-medium.png"
-                %h4 Josh Compton
-                %br
-                %p 2014
+              - current_user.alerts.each do |alert|
+                %li
+                  %a{href: "javascript:;"}
+                    = image_tag "avatar-medium.png"
+                  %h4= alert.alertable.full_name
+                  %br
+                  %p= alert.message
           .right-side
             .comment-box.ne
               %a{href: "javascript:;", style: "margin-right: 25px;"}

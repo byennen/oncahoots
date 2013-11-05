@@ -13,6 +13,7 @@ class UniversityEventsController < ApplicationController
 
     if @event.save
       if @club
+        Alert.create_club_event_notification(club_event)
         redirect_to university_club_path(@university, @club)
       else
         redirect_to university_university_event_path(@university, @event)

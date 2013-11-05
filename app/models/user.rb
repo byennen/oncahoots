@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+
   belongs_to :university
   belongs_to :location
   belongs_to :professional_field
@@ -12,6 +13,13 @@ class User < ActiveRecord::Base
   has_many :relationships
   has_many :relations, through: :relationships
   has_many :contacts, :through => :relationships, :source => :relation, :conditions => {"relationships.status" => "accepted"}
+
+  # Creating alerts
+  #has_many :alerts, as: :alertable
+
+  # Notifications for a user
+  has_many :alert_user_notifications
+  has_many :alerts, through: :alert_user_notifications
 
   rolify
   # Include default devise modules. Others available are:
@@ -111,8 +119,6 @@ class User < ActiveRecord::Base
     clubs.include?(club)
   end
 
-  class << self
-
   def conversations_for(recipient)
     cons=[]
     mailbox.conversations.each do |conversation|
@@ -120,6 +126,8 @@ class User < ActiveRecord::Base
     end
     cons
   end
+
+  class << self
 
     def search_all(params)
       return where("1=1") if params.blank?
