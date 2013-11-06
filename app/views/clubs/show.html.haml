@@ -111,7 +111,7 @@
                   %a{href: "#", class: "btn", data: {dismiss: "modal"}} Close
                   =f.submit "Save Mission Statement", class: "btn btn-success"
         #calendar.tab_content
-          - if @club.admins.include?(current_user)
+          - if @club.admins.include?(current_user)     
             .pull-right
               %a{href: "#add_event", class: "btn btn-success chang3", data: {toggle: "modal"}, style: "margin-right: 62px; margin-top: 10px;"} Add Event
             - @club.events.each do |ce|
@@ -133,6 +133,11 @@
                       = f.input :description
                       = f.input :category, as: :category
                       = f.input :image, as: :file
+                      = f.input :university_id, collection: (University.order(:name).collect{ |c| [c.name, c.id] }), prompt: "Select University"
+                      = f.input :club_id, collection: (@university.clubs.order(:name).collect{ |c| [c.name, c.id] }), prompt: "Select Club"
+                      #display_uc
+                        = f.input :display_on_uc, inline_label: 'Add to University Calendar?', label: false, as: :boolean
+                      .clearfix
                     .modal-footer
                       = f.submit "Save Event", class: "btn btn-success"
           - if @club.admins.include?(current_user)
@@ -149,6 +154,8 @@
                   = f.input :description, as: :text, input_html: {rows: 2}
                   = f.input :category, as: :category
                   = f.input :image, as: :file
+                  = f.input :university_id, collection: (University.order(:name).collect{ |c| [c.name, c.id] }), prompt: "Select University"
+                  = f.input :club_id, collection: (@university.clubs.order(:name).collect{ |c| [c.name, c.id] }), prompt: "Select Club"
                   #display_uc
                     = f.input :display_on_uc, inline_label: 'Add to University Calendar?', label: false, as: :boolean
                   .clearfix
