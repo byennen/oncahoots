@@ -60,5 +60,6 @@ class MetropolitanClubsController < ApplicationController
       @leaderships = @metropolitan_club.memberships.where(admin: true)
       @my_photos = @metropolitan_club.club_photos.by_user(current_user)
       @updates = @metropolitan_club.updates
+      @posts = @metropolitan_club.posts
     end 
 end

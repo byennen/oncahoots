@@ -1,12 +1,8 @@
-/ = simple_form_for [@updateable, @update] do |f|
-/   = f.input :body
-/   = f.input :image
-/   = f.submit "Submit", :class => "btn btn-primary"
 .modal.wide-modal.hide.fade{tabindex: "-1", role: "dialog", :"aria-labelledby" => "myModalLabel", :"aria-hidden" => "true", id: "update-form#{update.id}"}
   .modal-header
     %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
-    %h3 Post Bulletin
-  = simple_form_for [@updateable, update] do |f|
+    %h3 Post Announcement
+  = simple_form_for [@metropolitan_club, update] do |f|
     .modal-body
       = f.input :headline
       = f.input :image

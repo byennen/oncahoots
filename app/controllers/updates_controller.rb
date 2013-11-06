@@ -26,7 +26,7 @@ class UpdatesController < ApplicationController
   end
 
   def update
-    @update = @updateable.updates.find(params[:id])
+    @update = Update.find(params[:id])
     if @update.update_attributes(params[:update])
       redirect_to @updateable, notice: 'Updated.'
     else
