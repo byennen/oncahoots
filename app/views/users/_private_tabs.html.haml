@@ -12,6 +12,8 @@
         %li
           %a{href: "#tab3"}
             Notifications
+            - if current_user.alerts.size > 0
+              %i= current_user.alerts.size
         %li
           %a{href: "#tab4"}
             Messages
@@ -59,18 +61,13 @@
           %br
           .left-side
             %ul.msg.msh
-              %li
-                %a{href: "javascript:;"}
-                  = image_tag "avatar-medium.png"
-                %h4 Josh Compton
-                %br
-                %p 2013
-              %li
-                %a{href: "javascript:;"}
-                  = image_tag "avatar-medium.png"
-                %h4 Josh Compton
-                %br
-                %p 2014
+              - @user.alerts.each do |alert|
+                %li
+                  %a{href: "javascript:;"}
+                    = image_tag "avatar-medium.png"
+                  %h4= alert_name(alert.alertable)
+                  %br
+                  %p= alert.message
           .right-side
             .comment-box.ne
               %a{href: "javascript:;", style: "margin-right: 25px;"}

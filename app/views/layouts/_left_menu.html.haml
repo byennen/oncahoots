@@ -71,7 +71,7 @@
                 %li
                   %a{href: "javascript:;"}
                     = image_tag "avatar-medium.png"
-                  %h4= alert.alertable.full_name
+                  %h4= alert_name(alert.alertable)
                   %br
                   %p= alert.message
           .right-side

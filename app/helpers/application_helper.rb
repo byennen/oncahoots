@@ -79,4 +79,13 @@ module ApplicationHelper
     ["0 - 2 AM", "2 - 4 AM", "4 - 6 AM", "6 - 8 AM", "8 - 10 AM", "10AM - 12 PM",
      "12 - 2 PM", "2 - 4 PM", "4 - 6 PM", "6 - 8 PM", "8 - 10 PM", "10 - 0 AM"]
   end
+
+  def alert_name(alertable)
+    if alertable.class == User
+      return alertable.full_name
+    else
+      return alertable.name
+    end
+  end
+
 end
