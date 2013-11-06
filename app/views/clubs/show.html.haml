@@ -145,8 +145,7 @@
                 %h3 Add Event
               .modal-body
                 = f.input :title
-                -# Probably need a calendar picker
-                = f.input :date
+                = f.input :date, as: :string, label: "Date", input_html: {class: "datepicker"}
                 -# Probably need a time picker
                 = f.input :time
                 = f.input :location
