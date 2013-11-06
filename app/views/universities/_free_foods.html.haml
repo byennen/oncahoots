@@ -1,0 +1,51 @@
+- @free_food_events.each do |event|
+  .span12.top2.no-lmar{id: "event-#{event.id}"}
+    .span2.no-lmar
+      - if event.club && event.club.instance_of?(Club)
+        = link_to university_club_path(@university, event.club) do
+          = display_image event.club.image, "thumb"
+      - elsif event.club && event.club.instance_of?(MetropolitanClub)
+        = link_to metropolitan_club_path(event.club) do
+          = display_image event.club.image, "thumb"
+      - else
+        = display_image event.university.image, "thumb"
+    .span10.event-item
+      .span10.ev-title= link_to event.title, university_university_event_path(current_user.university, event)
+      .span2.no-lmar
+        .fright
+          - if current_user.manage_event?(event)
+            = link_to "delete", university_university_event_path(@university, event), method: :delete, remote: true, class: "btn btn-danger btn-mini", confirm: "are you sure?"
+            = link_to "edit", "#edit-event-#{event.id}", class: "btn btn-success btn-mini", :"data-toggle" => "modal", id: "event_link#{event.id}"
+      .span12.no-lmar.bottom
+        %strong Location
+        = event.location
+        %br
+        %strong DateTime
+        = event.date
+        = " "
+        = event.time
+        .span12.no-lmar.ev-description.top= event.description
+  - event = @event if @event && event.id == @event.id
+  .modal.hide.fade{tabindex: "-1", role: "dialog", :"aria-labelledby" => "myModalLabel", :"aria-hidden" => "true", id: "edit-event-#{event.id}"}
+    ~ simple_form_for event, url: update_free_food_event_university_path(@university) do |f|
+      .modal-header
+        %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+        %h3 Edit free food event
+      .modal-body
+        = f.input :title
+        = f.input :on_date, as: :string, label: "Date", input_html: {class: "datepicker"}
+        = f.input :at_time, label: "Time", as: :time, ampm: true, minute_step: 5, default: {hour: 0, minute: 0},input_html: {style: "width: 80px"}
+        = f.input :location
+        = f.input :description, as: :text, input_html: {rows: 2}
+        = f.input :category, as: :category
+        = f.input :image, as: :file
+        = f.input :club_id, collection: @university.clubs.order(:name), prompt: "Select Club"
+        = f.hidden_field :display_on_uc, value: true
+        = f.hidden_field :free_food, value: true
+        = hidden_field_tag :event_id, event.id
+      .clearfix
+      .modal-footer
+        = f.submit "Update", class: "btn btn-success"
+- if @free_food_events.blank?
+  %center
+    %h4 No event

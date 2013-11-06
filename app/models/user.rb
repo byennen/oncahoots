@@ -95,6 +95,10 @@ class User < ActiveRecord::Base
     metropolitan_club.leaders.include?(self)
   end
 
+  def club_admin?(club)
+    club.leaders.include?(self)
+  end
+
   def super_admin?
     has_role?(:super_admin)
   end
@@ -109,6 +113,13 @@ class User < ActiveRecord::Base
 
   def join_club?(club)
     clubs.include?(club)
+  end
+
+  def manage_event?(event)
+    return true if super_admin? || university_admin?
+    return true if event.club && club_admin?(event.club)
+    return true if event.user == self
+    return false
   end
 
   class << self

@@ -40,7 +40,7 @@
           - @metropolitan_club.club_photos.each do |photo|
             %li.slide
               %a{href: "javascript:;", style: "margin-left: 0"}
-                = image_tag photo.image.thumb
+                = image_tag photo.image.thumb, alt: ""
         .clearfix
       .span11.top2.bottom2
         %a#upload-photo.btn.btn-success.fright{href: "javascript:;"} Upload Photo

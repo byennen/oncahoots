@@ -4,7 +4,7 @@ class University < ActiveRecord::Base
 
   has_many :clubs, dependent: :destroy
   has_many :metropolitan_clubs, dependent: :destroy
-  has_many :events, as: :eventable
+  has_many :events
 
   attr_accessible :location, :mascot, :name, :image, :banner, :slug
 
