@@ -80,9 +80,10 @@ module ApplicationHelper
      "12 - 2 PM", "2 - 4 PM", "4 - 6 PM", "6 - 8 PM", "8 - 10 PM", "10 - 0 AM"]
   end
 
-  def alert_name(alertable)
+  def alert_name_link(alertable)
     if alertable.class == User
-      return alertable.full_name
+      link = link_to(alertable.full_name, user_path(alertable))
+      return link
     else
       return alertable.name
     end

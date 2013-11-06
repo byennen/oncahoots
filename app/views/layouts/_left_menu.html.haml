@@ -69,9 +69,8 @@
             %ul.msg.msh
               - current_user.alerts.each do |alert|
                 %li
-                  %a{href: "javascript:;"}
-                    = image_tag "avatar-medium.png"
-                  %h4= alert_name(alert.alertable)
+                  = link_to display_image(alert.alertable.profile.image,"thumb"), user_path(alert.alertable)
+                  %h4= alert_name_link(alert.alertable)
                   %br
                   %p= alert.message
           .right-side
