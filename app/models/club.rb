@@ -5,11 +5,12 @@ class Club < ActiveRecord::Base
 
   has_many :users, :through => :memberships, :uniq => true
   has_many :club_photos
-  has_many :events, as: :eventable
+  has_many :events
   has_many :statuses # this is lowdowns here
   has_many :records
   has_many :updates, as: :updateable
-
+  has_many :leaders, through: :memberships, source: :user, conditions: {"memberships.admin" => true}
+  
   attr_accessible :category, :description, :name, :university_id, :image,
                   :remote_image_url, :user_id, :slug, :private, :mission_statement
 

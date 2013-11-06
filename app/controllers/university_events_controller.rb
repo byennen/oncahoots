@@ -3,20 +3,11 @@ class UniversityEventsController < ApplicationController
   before_filter :ensure_user_university, except: [:load_events, :next_week, :prev_week]
 
   def create
-    if params[:event][:eventable_type] == "1"
-      @club = @university.clubs.find(params[:event][:club_id])
-      @event = @club.events.build(params[:event])
-      add_club_update
-    else
-      @event = @university.events.build(params[:event])
-    end
-
+    @university = University.find(params[:university_id])
+    @event = @university.events.new(params[:event])
+    @event.user_id = current_user.id
     if @event.save
-      if @club
-        redirect_to university_club_path(@university, @club)
-      else
-        redirect_to university_university_event_path(@university, @event)
-      end
+      redirect_to university_university_events_path(@university), notice: "Event was created successfully"
     else
       init
       render :index
@@ -24,12 +15,9 @@ class UniversityEventsController < ApplicationController
   end
 
   def destroy
-    @university_event = @university.events.find(params[:id])
-    if @university_event.destroy
-      respond_to do |format|
-        format.html { redirect_to university_university_events_path(@university) }
-      end
-    end
+    @event = Event.find(params[:id])
+    @event.destroy
+    respond_to :js
   end
 
   def index
@@ -85,17 +73,11 @@ class UniversityEventsController < ApplicationController
     end
 
     def init
+      @event ||=Event.new
       @week_start = DateTime.now.beginning_of_week - 1.days
       @university_events = @university.events.all
       @university_clubs  = @university.clubs.order(:name)
       @events = events_of_day(Date.today)
     end
 
-    def add_club_update
-      id = params[:event][:club_id]
-      resource = "Club"
-      @updateable = resource.singularize.classify.constantize.find(id)
-      @update = @updateable.updates.build(headline: params[:event][:title], body: params[:event][:description])
-      @update.save
-    end
 end

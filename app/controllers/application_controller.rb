@@ -23,11 +23,12 @@ class ApplicationController < ActionController::Base
       @users = @university.users.where("id != 1 AND id != 2")
       @updateable = @university
       @updates = @updateable.updates
-      @free_food_events = @university.events.free_food
+      @free_food_events = @university.events.search_date(session[:on_date] || Date.today).free_food.order(:at_time)
       @university_events = @university.events.all
       @update = Update.new
       @clubs = @university.clubs.order(:name)
       @club ||= @university.clubs.build
+      @event ||= Event.new
       @club_updates = Update.where(updateable_type: "Club").where(updateable_id: @clubs.map(&:id)).order("created_at DESC").all
     end
   end

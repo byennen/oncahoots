@@ -26,4 +26,5 @@ class Update < ActiveRecord::Base
 			}
 		)
 	end
+
 end

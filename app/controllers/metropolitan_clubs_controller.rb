@@ -59,7 +59,6 @@ class MetropolitanClubsController < ApplicationController
       @university = @metropolitan_club.university
       @leaderships = @metropolitan_club.memberships.where(admin: true)
       @my_photos = @metropolitan_club.club_photos.by_user(current_user)
-      @updateable = @metropolitan_club
-      @updates = @updateable.updates
+      @updates = @metropolitan_club.updates
     end 
 end
