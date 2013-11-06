@@ -11,13 +11,11 @@
       %br
       .span12
         .top4.bottom2.fright{style: "margin-right: 0"}
-          %a.btn.btn-success{href: "#invite-contact", data: {toggle: "modal"}}  Invite Contacts
+          %a.btn.btn-success{href: "#invite-contact", data: {toggle: "modal"}} Invite Contacts
       .span12
         .top4.fright{style: "margin-right: 0"}
           - if current_user.super_admin? || current_user.university_admin? || @club.admins.include?(current_user)
             = link_to "Edit", edit_university_club_path(@university, @club), class: "btn btn-success"
-   
-
 .clearfix
 .row-fluid
   .container
@@ -113,32 +111,35 @@
                   %a{href: "#", class: "btn", data: {dismiss: "modal"}} Close
                   =f.submit "Save Mission Statement", class: "btn btn-success"
         #calendar.tab_content
-          - if @club.admins.include?(current_user)
+          - if @club.admins.include?(current_user)     
             .pull-right
               %a{href: "#add_event", class: "btn btn-success chang3", data: {toggle: "modal"}, style: "margin-right: 62px; margin-top: 10px;"} Add Event
-          - @club.events.each do |ce|
-            %strong= "#{ce.date} #{ce.time}"
-            = ce.title
-            - if @club.admins.include?(current_user)
-              %a{href:"#edit-event-#{ce.id}", data: {toggle: "modal"}, class: "btn btn-success"} Edit
-              = link_to("Delete", university_club_club_event_path(@university, @club, ce), method: :delete, confirm: "Are you sure?")
-              .modal.hide{id: "edit-event-#{ce.id}"}
-                = simple_form_for([@university, @club, ce], html: {class: 'form-horizontal'}) do |f|
-                  .modal-header
-                    %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
-                    %h3 Edit Event - #{ce.title}
-                  .modal-body
-                    = f.input :title
-                    -# Probably need a calendar picker
-                    = f.input :date
-                    -# Probably need a time picker
-                    = f.input :time
-                    = f.input :location
-                    = f.input :description
-                    = f.input :category, as: :category
-                    = f.input :image, as: :file
-                  .modal-footer
-                    = f.submit "Save Event", class: "btn btn-success"
+            - @club.events.each do |ce|
+              %strong= "#{ce.date} #{ce.time}"
+              = ce.title
+              - if @club.admins.include?(current_user)
+                %a{href:"#edit-event-#{ce.id}", data: {toggle: "modal"}, class: "btn btn-success"} Edit
+                = link_to("Delete", university_club_club_event_path(@university, @club, ce), method: :delete, confirm: "Are you sure?")
+                .modal.hide{id: "edit-event-#{ce.id}"}
+                  = simple_form_for([@university, @club, ce], html: {class: 'form-horizontal'}) do |f|
+                    .modal-header
+                      %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+                      %h3 Edit Event - #{ce.title}
+                    .modal-body
+                      = f.input :title
+                      = f.input :date, as: :string, label: "Date", input_html: {class: "datepicker"}
+                      = f.input :time, label: "Time", as: :time, ampm: true, minute_step: 5, default: {hour: 0, minute: 0},input_html: {style: "width: 80px"}
+                      = f.input :location
+                      = f.input :description
+                      = f.input :category, as: :category
+                      = f.input :image, as: :file
+                      = f.input :university_id, collection: (University.order(:name).collect{ |c| [c.name, c.id] }), prompt: "Select University"
+                      = f.input :club_id, collection: (@university.clubs.order(:name).collect{ |c| [c.name, c.id] }), prompt: "Select Club"
+                      #display_uc
+                        = f.input :display_on_uc, inline_label: 'Add to University Calendar?', label: false, as: :boolean
+                      .clearfix
+                    .modal-footer
+                      = f.submit "Save Event", class: "btn btn-success"
           - if @club.admins.include?(current_user)
             #add_event.modal.hide
               = simple_form_for([@university, @club, Event.new], html: {class: 'form-horizontal'}) do |f|
@@ -147,14 +148,17 @@
                   %h3 Add Event
                 .modal-body
                   = f.input :title
-                  -# Probably need a calendar picker
-                  = f.input :date
-                  -# Probably need a time picker
-                  = f.input :time
+                  = f.input :date, as: :string, label: "Date", input_html: {class: "datepicker"}
+                  = f.input :time, label: "Time", as: :time, ampm: true, minute_step: 5, default: {hour: 0, minute: 0},input_html: {style: "width: 80px"}
                   = f.input :location
-                  = f.input :description
+                  = f.input :description, as: :text, input_html: {rows: 2}
                   = f.input :category, as: :category
                   = f.input :image, as: :file
+                  = f.input :university_id, collection: (University.order(:name).collect{ |c| [c.name, c.id] }), prompt: "Select University"
+                  = f.input :club_id, collection: (@university.clubs.order(:name).collect{ |c| [c.name, c.id] }), prompt: "Select Club"
+                  #display_uc
+                    = f.input :display_on_uc, inline_label: 'Add to University Calendar?', label: false, as: :boolean
+                  .clearfix
                 .modal-footer
                   = f.submit "Add Event", class: "btn btn-success"
         #eboard.tab_content
