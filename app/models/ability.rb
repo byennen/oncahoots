@@ -13,6 +13,7 @@ class Ability
       can :manage, Update do |update|
         update.updateable == user.metropolitan_club
       end
+      can :create, Update, updateable_id: user.metropolitan_club.id
     else
       can :show, Update
     end

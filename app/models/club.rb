@@ -10,6 +10,7 @@ class Club < ActiveRecord::Base
   has_many :records
   has_many :updates, as: :updateable
   has_many :leaders, through: :memberships, source: :user, conditions: {"memberships.admin" => true}
+  has_many :posts
   
   attr_accessible :category, :description, :name, :university_id, :image,
                   :remote_image_url, :user_id, :slug, :private, :mission_statement
