@@ -1,0 +1,12 @@
+.modal.wide-modal.hide.fade{tabindex: "-1", role: "dialog", :"aria-labelledby" => "myModalLabel", :"aria-hidden" => "true", id: "post-form#{post.id}"}
+  .modal-header
+    %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+    %h3 Post Announcement
+  = simple_form_for post, remote: true do |f|
+    .modal-body
+      = f.input :title
+      = f.input :content, label: false, input_html: {rows: 10, style: "width: 100%"}
+    .modal-footer
+      = f.hidden_field :club_id, value: @metropolitan_club.id
+      = f.button :submit, post.new_record? ? "Post" : "Update", class: "btn btn-success"
+      %button.btn.btn-warning{type: "button", data: {dismiss: "modal"}} Cancel

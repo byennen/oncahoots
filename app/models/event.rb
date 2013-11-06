@@ -15,11 +15,11 @@ class Event < ActiveRecord::Base
   validates :title, presence: true
 
   def date
-    on_date.strftime("%Y-%m-%d") if on_date
+    on_date.strftime("%m/%d/%Y") if on_date
   end
 
   def time
-    at_time.strftime("%H:%M") if at_time
+    at_time.strftime("%I:%M %p") if at_time
   end
 
   class << self

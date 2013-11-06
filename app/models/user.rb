@@ -12,7 +12,8 @@ class User < ActiveRecord::Base
   has_many :relationships
   has_many :relations, through: :relationships
   has_many :contacts, :through => :relationships, :source => :relation, :conditions => {"relationships.status" => "accepted"}
-
+  has_many :posts
+  
   rolify
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -122,7 +123,12 @@ class User < ActiveRecord::Base
     return false
   end
 
-  class << self
+  def manage_post?(post)
+    return true if super_admin? || university_admin?
+    return true if club_admin?(post.club)
+    return true if post.user == self
+    return false
+  end
 
   def conversations_for(recipient)
     cons=[]
@@ -131,6 +137,8 @@ class User < ActiveRecord::Base
     end
     cons
   end
+
+  class << self
 
     def search_all(params)
       return where("1=1") if params.blank?

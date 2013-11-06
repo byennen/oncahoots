@@ -1,2 +1,2 @@
-$(".posts.comment").append("#{escape_javascript(render partial: "comment", locals: {comment: @comment})}");
-$(".new_comment_box").html("#{escape_javascript(render partial: 'metropolitan_clubs/new_comment_box', locals: {update: @comment.commentable})}");
+$("##{@resource.class.name.downcase}#{@resource.id}-comments .comments").append("#{escape_javascript(render partial: "comment", locals: {comment: @comment})}");
+$("##{@resource.class.name.downcase}#{@resource.id}-comments #comment_comment").val("");

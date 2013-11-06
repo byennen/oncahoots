@@ -1,0 +1,36 @@
+- user = post.user
+.span12.left.border-bottom.top2.bottomp
+  .span2
+    = link_to user_path(user) do
+      = display_image user.profile.image, "small"
+  .span10.no-lmar 
+    %h4
+      = post.title
+    = simple_format post.content
+  .span12
+    .fright
+      = time_ago_in_words(post.created_at) + " ago"
+      = " | by "
+      = link_to user.full_name, user_path(user), class: "green"
+      = " | "
+      = link_to "comments( #{post.comments.count} )", "#post#{post.id}-comments", :"data-toggle" => "modal", class: "green"
+      - if current_user.manage_post?(post)
+        = " | "
+        = link_to "edit", "#post-form#{post.id}", :"data-toggle" => "modal", class: "green"
+        = " | "
+        = link_to "delete", post_path(post), method: :delete, remote: true, confirm: "are you sure?", class: "red"
+= render partial: "posts/form", locals: {post: post}
+.modal.wide-modal.hide.fade{id: "post#{post.id}-comments"}
+  .modal-header
+    %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+    %h3= post.title
+  .modal-body
+    .comments
+      - post.comments.each do |comment|
+        = render partial: "comments/comment", locals: {comment: comment}
+    = simple_form_for [post, Comment.new], remote: true do |f|
+      = f.input :comment, as: :text, label: false, input_html: {class: "span11", rows: 4}
+      = f.submit "Post", class: "btn btn-success"
+  .clearfix
+  .modal-footer
+    %button.btn.btn-warning{type: "button", data: {dismiss: "modal"}} Close
