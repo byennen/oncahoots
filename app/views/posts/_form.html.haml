@@ -1,7 +1,7 @@
 .modal.wide-modal.hide.fade{tabindex: "-1", role: "dialog", :"aria-labelledby" => "myModalLabel", :"aria-hidden" => "true", id: "post-form#{post.id}"}
   .modal-header
     %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
-    %h3 Post Announcement
+    %h3 Post Bulletin
   = simple_form_for post, remote: true do |f|
     .modal-body
       = f.input :title
