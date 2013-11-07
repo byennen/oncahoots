@@ -65,7 +65,7 @@ CahootsConnect::Application.routes.draw   do
   resources :updates do
     resources :comments
   end
-  
+
   resources :relationships do
     get :read, on: :member
     post :accept, on: :member
@@ -110,6 +110,10 @@ CahootsConnect::Application.routes.draw   do
   resources :messages, only: [:create] do
     get :read, on: :member
     post :reply, on: :member
+  end
+
+  resources :alerts do
+    get :read, on: :member
   end
 
   namespace :admin do

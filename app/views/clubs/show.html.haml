@@ -137,6 +137,7 @@
                       = f.input :club_id, collection: (@university.clubs.order(:name).collect{ |c| [c.name, c.id] }), prompt: "Select Club"
                       #display_uc
                         = f.input :display_on_uc, inline_label: 'Add to University Calendar?', label: false, as: :boolean
+                        = f.input :free_food, inline_label: 'Free Food Event?', label: false, as: :boolean
                       .clearfix
                     .modal-footer
                       = f.submit "Save Event", class: "btn btn-success"
@@ -158,6 +159,7 @@
                   = f.input :club_id, collection: (@university.clubs.order(:name).collect{ |c| [c.name, c.id] }), prompt: "Select Club"
                   #display_uc
                     = f.input :display_on_uc, inline_label: 'Add to University Calendar?', label: false, as: :boolean
+                    = f.input :free_food, inline_label: 'Free Food Event?', label: false, as: :boolean
                   .clearfix
                 .modal-footer
                   = f.submit "Add Event", class: "btn btn-success"

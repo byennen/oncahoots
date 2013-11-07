@@ -18,6 +18,7 @@ class RelationshipsController < ApplicationController
 
   def accept
     @relationship.accept!
+    Alert.create_relationship_notification(@relationship)
     respond_to do |format|
       format.html { redirect_to user_path(current_user), notice: "You are now contacts with - #{@relationship.relation.full_name}" }
     end
