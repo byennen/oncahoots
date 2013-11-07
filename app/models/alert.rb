@@ -26,7 +26,7 @@ class Alert < ActiveRecord::Base
   end
 
   def self.create_club_event_notification(club_event)
-    alert = self.create({alertable_id: club_event.eventable_id, alertable_type: 'ClubEvent', message: "has added an event"})
+    alert = self.create({alertable_id: club_event.eventable_id, alertable_type: 'Club', message: "has added an event"})
     club_event.eventable.users.each do |user|
       AlertUserNotification.create({user_id: user.id, alert_id: alert.id})
     end
