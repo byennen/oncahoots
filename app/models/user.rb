@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+
   belongs_to :university
   belongs_to :location
   belongs_to :professional_field
@@ -14,6 +15,13 @@ class User < ActiveRecord::Base
   has_many :contacts, :through => :relationships, :source => :relation, :conditions => {"relationships.status" => "accepted"}
   has_many :posts
   
+  # Creating alerts
+  #has_many :alerts, as: :alertable
+
+  # Notifications for a user
+  has_many :alert_user_notifications
+  has_many :alerts, through: :alert_user_notifications
+
   rolify
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,

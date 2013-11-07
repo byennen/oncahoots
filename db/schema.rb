@@ -13,6 +13,22 @@
 
 ActiveRecord::Schema.define(:version => 20131106035400) do
 
+  create_table "alert_user_notifications", :force => true do |t|
+    t.integer  "alert_id"
+    t.integer  "user_id"
+    t.boolean  "unread",     :default => true
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+  end
+
+  create_table "alerts", :force => true do |t|
+    t.integer  "alertable_id"
+    t.string   "alertable_type"
+    t.string   "message"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
   create_table "cities", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
