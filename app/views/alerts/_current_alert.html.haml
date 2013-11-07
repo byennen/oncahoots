@@ -1,0 +1,4 @@
+%a{href: "javascript:;", style: "margin-right: 25px;"}
+  = link_to display_image(current_alert.alertable.profile.image,"thumb"), user_path(current_alert.alertable)
+  %p.comp
+    #{current_alert.alertable.full_name} #{current_alert.message}

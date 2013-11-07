@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
- 
+
   def search
     users = User.where("lower(first_name) like ? or lower(last_name) like ?", "%#{params[:term].downcase}%", "%#{params[:term].downcase}%")
     results = []
@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     @users = User.search_all(params[:user])
     respond_to :js
   end
-  
+
   def show
     @user = User.find params[:id]
     @profile = @user.profile
@@ -26,6 +26,7 @@ class UsersController < ApplicationController
       @invitations = Invitation.where(recipient_id: current_user.id)
       @messages = current_user.mailbox.conversations
       @unread_messages = current_user.mailbox.inbox(unread: true)
+      @unread_alerts = current_user.alert_user_notifications.where(unread: true)
       @requests = current_user.relationships.where("status IN (?)", ['pending', 'recommended'])
       @contacts = current_user.relationships.where(status: 'accepted')
     end

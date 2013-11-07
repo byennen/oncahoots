@@ -20,11 +20,11 @@
         .row-fluid.span12.no-lmar
           .container
             .span2
-              = render partial: "layouts/left_menu"
+            /  = render partial: "layouts/left_menu"
             .span10{style: "min-height: 435px;"}
               %div{class: bg_class, style: hero_banner(university: @university, club: @metropolitan_club)}
                 = render "layouts/search"
-                
+
                 = yield(:header)
       .seps
       = yield

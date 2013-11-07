@@ -70,7 +70,7 @@
               - current_user.alerts.each do |alert|
                 %li
                   = link_to display_image(alert.alertable.profile.image,"thumb"), user_path(alert.alertable)
-                  %h4= alert_name_link(alert.alertable)
+                  %h4= alert_name(alert.alertable)
                   %br
                   %p= alert.message
           .right-side

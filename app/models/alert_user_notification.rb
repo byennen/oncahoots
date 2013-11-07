@@ -4,4 +4,9 @@ class AlertUserNotification < ActiveRecord::Base
   belongs_to :alert
   belongs_to :user
 
+
+  def mark_as_read!
+    update_attribute(:unread, false)
+  end
+
 end

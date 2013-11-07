@@ -12,8 +12,8 @@
         %li
           %a{href: "#tab3"}
             Notifications
-            - if current_user.alerts.size > 0
-              %i= current_user.alerts.size
+            - if @unread_alerts.size > 0
+              %i#unread_alerts= @unread_alerts.size
         %li
           %a{href: "#tab4"}
             Messages
@@ -61,22 +61,13 @@
           %br
           .left-side
             %ul.msg.msh
-              - @user.alerts.each do |alert|
-                %li
-                  = link_to display_image(alert.alertable.profile.image,"thumb"), user_path(alert.alertable)
-                  %h4= alert_name_link(alert.alertable)
+              - @unread_alerts.each do |alert_notification|
+                %li{id: "alert-#{alert_notification.alert.id}"}
+                  = link_to display_image(alert_notification.alert.alertable.profile.image,"thumb"), read_alert_path(alert_notification.alert), remote: true
+                  %h4= alert_name(alert_notification.alert.alertable)
                   %br
-                  %p= alert.message
-          .right-side
-            .comment-box.ne
-              %a{href: "javascript:;", style: "margin-right: 25px;"}
-                = image_tag "avatar-big.png"
-              %p.comp
-                Josh Compton update his experience.
-              %br
-              %button.btn.btn-success.btn7{style: "float: left;"} View Profile
-              .clearfix
-              %button.btn.btn-danger.fright{style: "margin-right: 50px"} Delete
+                  %p= alert_notification.alert.message
+          #current_alert.right-side
         .clearfix
         #tab4.tab_content
           %br

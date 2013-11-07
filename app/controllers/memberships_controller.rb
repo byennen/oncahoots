@@ -11,6 +11,7 @@ class MembershipsController < ApplicationController
   def create
     @membership = Membership.new(user_id: current_user.id, club_id: @club.id)
     if @membership.save
+      Alert.create_club_membership_notifictions(@club, @membership)
       redirect_to university_club_path(@university, @club), notice: 'Membership was successfully created.'
     else
       redirect_to university_club_path(@university, @club), notice: 'Membership failed.'
