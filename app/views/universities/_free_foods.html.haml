@@ -33,7 +33,7 @@
         %h3 Edit free food event
       .modal-body
         = f.input :title
-        = f.input :on_date, as: :string, label: "Date", input_html: {class: "datepicker"}
+        = f.input :on_date, as: :string, label: "Date", input_html: {class: "datepicker", value: event.date}
         = f.input :at_time, label: "Time", as: :time, ampm: true, minute_step: 5, default: {hour: 0, minute: 0},input_html: {style: "width: 80px"}
         = f.input :location
         = f.input :description, as: :text, input_html: {rows: 2}

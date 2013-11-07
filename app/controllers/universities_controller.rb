@@ -1,5 +1,5 @@
 class UniversitiesController < ApplicationController
-
+  
   def index
     @universities = University.all
   end
@@ -42,6 +42,7 @@ class UniversitiesController < ApplicationController
     @university = University.find(params[:id])
     @free_food_events = @university.events.search_date(params[:on_date]).free_food.order(:at_time)
     session[:on_date] = params[:on_date]
+    respond_to :js
   end
-
+    
 end

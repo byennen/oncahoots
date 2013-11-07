@@ -2,17 +2,16 @@
   .span3
     = link_to "javascript:;", class: "mono" do
       = display_image @university.image, "xxlarge"
-  .span5
-  .span3{style: "min-height: 210px;"}
-    .rig
-      .top4.bottom2.fright{style: "margin-right: 0"}
-        %a.btn.btn-success Upcoming Events
-      %br
-      .top4.fright{style: "margin-right: 0"}
-        - if current_user.super_admin? || current_user.university_admin? || @metropolitan_club.leaders.include?(current_user)
-          %a#upload-banner.btn.btn-success.top4{href: "javascript:;"} Change
   .span8
-    .page-title.top4= @metropolitan_club.name
+    .page-title.top200{style: "color: #fff; position: absolute;"}= @metropolitan_club.name
+    .fright{style: "dmin-height: 210px;"}
+      .rig
+        .top4.bottom2.fright{style: "margin-right: 0"}
+          %a.btn.btn-success Upcoming Events
+        %br
+        .top4.fright{style: "margin-right: 0"}
+          - if current_user.super_admin? || current_user.university_admin? || @metropolitan_club.leaders.include?(current_user)
+            %a#upload-banner.btn.btn-success.top4{href: "javascript:;"} Change
 
 .clearfix
 .row-fluid
@@ -43,12 +42,13 @@
         %ul.club-photos
           - @metropolitan_club.club_photos.each do |photo|
             %li
-              %a{href: "javascript:;", style: "margin-left: 0"}
+              %a{:"data-toggle" => "modal", href: "#image-#{photo.id}", style: "margin-left: 0"}
                 = image_tag photo.image.small, alt: ""
         .clearfix
       .span11.top2.bottom2
         %a#upload-photo.btn.btn-success.fright{href: "javascript:;"} Upload Photo
         %a.btn.btn-success.fright{href: "#my_photos", :"data-toggle" => "modal"} My Photos
+
 .clearfix
 - new_update = @metropolitan_club.updates.build
 .row-fluid
@@ -156,8 +156,18 @@
     %h3 My photos
   .modal-body
     - @my_photos.each do |photo|
-      %span2.no-lmar= image_tag photo.image.thumb
+      %span2.no-lmar
+        = link_to "#image-#{photo.id}", :"data-toggle" => "modal" do
+          = image_tag photo.image.thumb
 
+- @metropolitan_club.club_photos.each do |photo|
+  .modal.hide.wide-modal{id: "image-#{photo.id}"}
+    .modal-header
+      %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+      %h4= photo.image.file.filename
+    .modal-body
+      = image_tag photo.image, alt: "", style: "max-height: 400px;"
+      
 :javascript
   jQuery(document).ready(function() {//Default Action
     $("#upload-banner").click(function(){

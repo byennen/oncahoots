@@ -78,5 +78,4 @@ class Event < ActiveRecord::Base
         update.save
       end
     end
-
 end

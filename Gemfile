@@ -28,7 +28,7 @@ gem "rmagick", '>= 2.13.2'
 gem "carrierwave"
 gem 'fog'
 gem 'unf'
-
+gem 'american_date'
 # Honeybadger
 gem 'honeybadger'
 

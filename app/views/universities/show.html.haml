@@ -16,19 +16,6 @@
               = event.date
               %br
               = event.time
-        - @clubs.each do |club|
-          - club.events.each do |club_event|
-            - if club_event.display_on_uc
-              %li
-                = link_to university_club_club_event_path(@university, club, club_event) do
-                  = display_image_square club_event.image, "medium"
-                %br
-                %h4
-                  = club_event.title
-                %p
-                  = club_event.date
-                  %br
-                  = club_event.time
   .clearfix
 .top2
   &nbsp
@@ -115,7 +102,7 @@
         #tab3.tab_content.span10{style: "margin-left: 60px;"}
           .span12.top2.no-lmar
             .fright
-              = text_field_tag :on_date, session[:on_date] || Date.today,class: "field datepicker", placeholder: "Date", style: "width: 80%"
+              = text_field_tag :on_date, @search_date,class: "field datepicker", placeholder: "Date", style: "width: 80%"
           #free-foods-list
             = render partial: "free_foods" 
           .span12.no-lmar.top2

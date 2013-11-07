@@ -20,7 +20,6 @@
 //= require_tree .
 //
 $(function() {
-  $('.datepicker').datepicker({ format: 'yyyy-mm-dd' });
 
   $('#user_alumni').click(function () {
     alert("alumni clicked");
@@ -42,4 +41,8 @@ $(function() {
     $(this).addClass('active');
   });
 
+});
+
+$(document).on('ready page:load', function(){ 
+  $('.datepicker').datepicker({ format: 'mm/dd/yyyy' })
 });
