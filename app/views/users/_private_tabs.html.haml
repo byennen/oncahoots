@@ -63,7 +63,10 @@
             %ul.msg.msh
               - @unread_alerts.each do |alert_notification|
                 %li{id: "alert-#{alert_notification.alert.id}"}
-                  = link_to display_image(alert_notification.alert.alertable.profile.image,"thumb"), read_alert_path(alert_notification.alert), remote: true
+                  - if alert_notification.alert.alertable.class == User
+                    = link_to display_image(alert_notification.alert.alertable.profile.image,"thumb"), read_alert_path(alert_notification.alert), remote: true
+                  - elsif alert_notification.alert.alertable.class == Club
+                    = link_to display_image(alert_notification.alert.alertable.image,"thumb"), read_alert_path(alert_notification.alert), remote: true
                   %h4= alert_name(alert_notification.alert.alertable)
                   %br
                   %p= alert_notification.alert.message
