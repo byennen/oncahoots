@@ -16,19 +16,6 @@
               = event.date
               %br
               = event.time
-        - @clubs.each do |club|
-          - club.events.each do |club_event|
-            - if club_event.display_on_uc
-              %li
-                = link_to university_club_club_event_path(@university, club, club_event) do
-                  = display_image_square club_event.image, "medium"
-                %br
-                %h4
-                  = club_event.title
-                %p
-                  = club_event.date
-                  %br
-                  = club_event.time
   .clearfix
 .top2
   &nbsp
