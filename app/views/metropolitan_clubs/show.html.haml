@@ -2,17 +2,16 @@
   .span3
     = link_to "javascript:;", class: "mono" do
       = display_image @university.image, "xxlarge"
-  .span5
-  .span3{style: "min-height: 210px;"}
-    .rig
-      .top4.bottom2.fright{style: "margin-right: 0"}
-        %a.btn.btn-success Upcoming Events
-      %br
-      .top4.fright{style: "margin-right: 0"}
-        - if current_user.super_admin? || current_user.university_admin? || @metropolitan_club.leaders.include?(current_user)
-          %a#upload-banner.btn.btn-success.top4{href: "javascript:;"} Change
   .span8
-    .page-title.top4= @metropolitan_club.name
+    .page-title.top200{style: "color: #fff; position: absolute;"}= @metropolitan_club.name
+    .fright{style: "dmin-height: 210px;"}
+      .rig
+        .top4.bottom2.fright{style: "margin-right: 0"}
+          %a.btn.btn-success Upcoming Events
+        %br
+        .top4.fright{style: "margin-right: 0"}
+          - if current_user.super_admin? || current_user.university_admin? || @metropolitan_club.leaders.include?(current_user)
+            %a#upload-banner.btn.btn-success.top4{href: "javascript:;"} Change
 
 .clearfix
 .row-fluid
