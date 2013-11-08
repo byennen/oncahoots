@@ -107,7 +107,7 @@ CahootsConnect::Application.routes.draw   do
 
   match "upload_avatar", to: "profiles#upload_avatar", via: :post
 
-  resources :messages, only: [:create] do
+  resources :messages, only: [:create, :destroy] do
     get :read, on: :member
     post :reply, on: :member
   end

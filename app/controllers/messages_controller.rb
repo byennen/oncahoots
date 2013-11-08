@@ -42,6 +42,13 @@ class MessagesController < ApplicationController
     end
   end
   
+  def destroy
+    @conversation = current_user.mailbox.inbox.find(params[:conversation_id])
+    @message = @conversation.messages.find(params[:id])
+    @message.destroy
+    respond_to :js
+  end
+
   private 
 
   def recipients
