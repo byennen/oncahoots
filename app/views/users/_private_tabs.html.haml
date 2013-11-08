@@ -77,10 +77,10 @@
           .left-side.msh
             %a{href: "#message-form", data: {toggle: "modal"}, class: "btn btn-success"} New Message
             %ul.msg
-              - @messages.each do |message|
-                %li{id: "message-#{message.id}"}
-                  = link_to display_image(message.messages.first.sender.profile.image, "small"), read_message_path(message), remote: true
-                  %h4= message.messages.first.sender.full_name
+              - @conversations.each do |con|
+                %li{id: "conversation-#{con.id}"}
+                  = link_to display_image(con.messages.first.sender.profile.image, "small"), read_message_path(con), remote: true
+                  %h4= con.messages.first.sender.full_name
                   %br
-                  %p= truncate(message.messages.first.body)
+                  %p= truncate(con.messages.first.body)
           .right-side#current_conversation

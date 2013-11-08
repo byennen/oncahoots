@@ -11,5 +11,3 @@
       - unless message.attachment.blank?
         = " | attachment: "
         = link_to message.attachment.file.filename, message.attachment.url, target: "_blank"
-      = " | "
-      = link_to "Delete", message_path(message, conversation_id: @conversation.id), method: :delete, remote: true,class: "red"

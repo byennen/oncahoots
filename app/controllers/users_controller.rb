@@ -24,7 +24,7 @@ class UsersController < ApplicationController
     @contacts = @user.relationships.where(status: 'accepted')
     if @user == current_user
       @invitations = Invitation.where(recipient_id: current_user.id)
-      @messages = current_user.mailbox.conversations
+      @conversations = current_user.mailbox.inbox
       @unread_messages = current_user.mailbox.inbox(unread: true)
       @unread_alerts = current_user.alert_user_notifications.where(unread: true)
       @requests = current_user.relationships.where("status IN (?)", ['pending', 'recommended'])

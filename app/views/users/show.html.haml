@@ -132,16 +132,24 @@
           .tab_container
             #tab-cor.tab_content
               - current_user.conversations_for(@user).each do |conversation|
-                .span11.border-bottom.left2.top2
+                .span11.border-bottom.left2.top2{id: "conversation-#{conversation.id}"}
                   .span12.left
                     %h3= conversation.subject
                   - conversation.messages.order("created_at asc").each do |message|
-                    .span2
-                      %strong= message.sender.full_name
-                    .span7
-                      = simple_format message.body
-                    .span3.no-lmar
-                      .fright.green= time_ago_in_words(message.updated_at) + " ago"
+                    .span12.no-lmar
+                      .span2
+                        %strong= message.sender.full_name
+                      .span7
+                        = simple_format message.body
+                        - unless message.attachment.blank?
+                          %small.fright
+                            Attachment: 
+                            = link_to message.attachment.file.filename, message.attachment.url, target: "_blank"
+                      .span3.no-lmar
+                        .fright.green= time_ago_in_words(message.updated_at) + " ago"
+                  .span12.no-lmar
+                    .fright
+                      = link_to "Delete", message_path(conversation), method: :delete, remote: true, class: "red", confirm: "are you sure?"
             #tab-clubs.tab_content
 
 #add-contact.modal.hide
