@@ -9,6 +9,24 @@
     - if can? :destroy, update
       = link_to "<i class='icon-remove'></i>".html_safe, metropolitan_club_update_path(@metropolitan_club, update), method: :delete, confirm: "are you sure?"
   %p.bottom{style: "margin-bottom: 10px"}= update.body
-  %small.pull-right= update.created_at.try(:strftime, "%b %d, %Y at %I:%M-%P")
+  .span12
+    %small.pull-right
+      = update.created_at.try(:strftime, "%m/%d/%Y at %I:%M %P")
+      = " | "
+      = link_to "comments( <span id='update#{update.id}-cm'>#{update.comments.count}</span> )".html_safe, "#update#{update.id}-comments", :"data-toggle" => "modal", class: "green"
   .clearfix
 = render partial: 'updates/form', locals: {update: update}
+.modal.wide-modal.hide.fade{id: "update#{update.id}-comments"}
+  .modal-header
+    %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+    %h3= update.headline
+  .modal-body
+    .comments
+      - update.comments.each do |comment|
+        = render partial: "comments/comment", locals: {comment: comment}
+    = simple_form_for [update, Comment.new], remote: true do |f|
+      = f.input :comment, as: :text, label: false, input_html: {class: "span11", rows: 4}
+      = f.submit "Post", class: "btn btn-success"
+  .clearfix
+  .modal-footer
+    %button.btn.btn-warning{type: "button", data: {dismiss: "modal"}} Close

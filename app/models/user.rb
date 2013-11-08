@@ -140,7 +140,7 @@ class User < ActiveRecord::Base
 
   def conversations_for(recipient)
     cons=[]
-    mailbox.conversations.each do |conversation|
+    mailbox.inbox.each do |conversation|
       cons << conversation if conversation.recipients.include?(recipient)
     end
     cons

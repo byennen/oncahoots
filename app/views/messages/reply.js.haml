@@ -1,3 +1,3 @@
 :plain
   $("#conversation-#{@conversation.id}").append("#{escape_javascript(render partial: 'message', locals: {message: @conversation.messages.last})}");
-  $(".reply-body").val("");
+  $('#conversation_reply form')[0].reset();

@@ -4,5 +4,10 @@
   .span8
     %h5= message.sender.full_name
     = message.body
-  %small= time_ago_in_words(message.created_at) + " ago"
-  = link_to "Delete", "javascript:;", method: :delete, class: "btn btn-danger btn-mini"
+    %br
+  .span10
+    %small.fright
+      = time_ago_in_words(message.created_at) + " ago"
+      - unless message.attachment.blank?
+        = " | attachment: "
+        = link_to message.attachment.file.filename, message.attachment.url, target: "_blank"

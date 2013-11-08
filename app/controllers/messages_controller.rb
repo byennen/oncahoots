@@ -36,12 +36,18 @@ class MessagesController < ApplicationController
 
   def reply
     @conversation = Conversation.find(params[:id])
-    current_user.reply_to_conversation(@conversation, params[:message][:body])
+    current_user.reply_to_conversation(@conversation, params[:message][:body],nil,nil,nil,params[:message][:attachment])
     respond_to do |format|
       format.js { }
     end
   end
   
+  def destroy
+    @conversation = current_user.mailbox.inbox.find(params[:id])
+    current_user.mark_as_deleted @conversation
+    respond_to :js
+  end
+
   private 
 
   def recipients

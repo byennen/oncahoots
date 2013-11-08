@@ -37,6 +37,8 @@ class Club < ActiveRecord::Base
   ]
   mount_uploader :image, ImageUploader
 
+  acts_as_messageable
+  
   extend FriendlyId
   friendly_id :name, use: :slugged
 
