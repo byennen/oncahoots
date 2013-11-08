@@ -10,7 +10,7 @@
       - else
         = display_image event.university.image, "thumb"
     .span10.event-item
-      .span10.ev-title= link_to event.title, university_university_event_path(current_user.university, event)
+      .span10.ev-title= link_to event.title, "#event#{event.id}_detail", :"data-toggle" => "modal"
       .span2.no-lmar
         .fright
           - if current_user.manage_event?(event)

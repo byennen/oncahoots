@@ -1,0 +1,28 @@
+.modal.wide-modal.hide.fade{id: "event#{event.id}_detail"}
+  .modal-header
+    %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+    %h3= event.title
+  .modal-body
+    .fleft= display_image_square event.image, "xxlarge" unless event.image.blank?
+    .fleft.left2
+      - if event.club
+        %strong Club
+        = event.club.name
+        %br
+      - if event.free_food
+        %strong Free food 
+        Yes
+        %br
+      %strong Location
+      = event.location
+      %br
+      %strong Date
+      = event.date
+      %br
+      %strong Time
+      = event.time
+      %br
+      %p= event.description
+      .clearfix
+  .modal-footer
+    %button.btn.btn-warning{type: "button", data: {dismiss: "modal"}} Close

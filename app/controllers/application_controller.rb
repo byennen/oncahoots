@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
       @event ||= Event.new
       session[:on_date]=nil if @event.errors.blank?
       if session[:on_date].blank?
-        e = Event.where("on_date >= ?", Date.today).order(:on_date).first
+        e = @university.events.free_food.where("on_date >= ?", Date.today).order(:on_date).first
         @search_date = e ? e.on_date : Date.today
       else
         @search_date = session[:on_date]
