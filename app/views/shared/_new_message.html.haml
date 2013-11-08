@@ -7,6 +7,7 @@
       = f.input :recipients, input_html: {class: "tagauto tags", value: ""}
       = f.input :subject
       = f.text_area :body, rows: 10, style: "width: 100%"
+      = f.input :attachment
     .modal-footer
       = f.button :submit, 'Send message', class: "btn btn-success"
       %button.btn.btn-warning{type: "button", data: {dismiss: "modal"}} Cancel

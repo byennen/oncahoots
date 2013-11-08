@@ -17,6 +17,7 @@
 //= require bootstrap-datepicker
 //= require jquery.tagsinput
 //= require jquery_nested_form
+//= require jquery.remotipart
 //= require_tree .
 //
 $(function() {

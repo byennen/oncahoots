@@ -29,6 +29,7 @@ gem "carrierwave"
 gem 'fog'
 gem 'unf'
 gem 'american_date'
+gem 'remotipart', '~> 1.2'
 # Honeybadger
 gem 'honeybadger'
 
