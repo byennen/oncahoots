@@ -7,11 +7,13 @@
   .span3{style: "min-height: 210px;"}
     .rig
       .top4.fright{style: "margin-right: 0"}
-        = link_to "Join Club", "javascript:;", class: "btn btn-success"
+        - unless @club.private? || !current_user.joinable?(@club)
+          = link_to "Join Club", join_club_path(@club), class: "btn btn-success"
       %br
       .span12
         .top4.bottom2.fright{style: "margin-right: 0"}
-          %a.btn.btn-success{href: "#invite-contact", data: {toggle: "modal"}} Invite Contacts
+          - if current_user.manage_club?(@club)
+            %a.btn.btn-success{href: "#invite-contact", data: {toggle: "modal"}} Invite Contacts
       .span12
         .top4.fright{style: "margin-right: 0"}
           - if current_user.super_admin? || current_user.university_admin? || @club.admins.include?(current_user)
@@ -220,7 +222,7 @@
       %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
       %h3 Invite Contact 
     .modal-body
-      = f.input :recipient_id, collection: current_user.contacts, label: "Contact", label_method: :full_name, value_method: :id
+      = f.input :recipients, input_html: {class: "invitation-auto", value: ""}
     .modal-footer
       = f.submit "Invite Contact", class: "btn btn-success"
 
@@ -276,5 +278,12 @@
 
     $(".update-image").click(function(){
       $("#feature-image").attr("src", $(this).data("src"));
+    });
+
+    $(".invitation-auto").tagsInput({
+      width:'90%', 
+      height: "35px",
+      defaultText: 'receipients',
+      autocomplete_url: "/universities/#{@university.id}/clubs/#{@club.id}/invitations/search",
     });
   });

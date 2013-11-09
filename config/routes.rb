@@ -56,6 +56,12 @@ CahootsConnect::Application.routes.draw   do
     resources :comments
   end
 
+  resources :clubs, only: [] do
+    member do
+      get :join
+    end
+  end
+
   match "/metropolitan_club", to: "metropolitan_clubs#home"
 
   match "/next_week/:week_start", to: "university_events#next_week"

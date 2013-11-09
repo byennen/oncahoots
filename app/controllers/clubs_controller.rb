@@ -1,7 +1,7 @@
 class ClubsController < ApplicationController
 
   before_filter :authenticate_user!, except: [:show]
-  before_filter :ensure_user_university, except: [:show]
+  before_filter :ensure_user_university, except: [:show, :join]
 
   def search
     @clubs = @university.clubs.search_all(params[:club])
@@ -48,6 +48,22 @@ class ClubsController < ApplicationController
 
   def edit
     @club = @university.clubs.find(params[:id])
+  end
+
+  def join
+    club = Club.find params[:id]
+    if club.private?
+      invitation = Invitation.find_by_token params[:token]
+      if invitation
+        current_user.clubs << club
+        redirect_to university_club_path(club.university, club), notice: "welcome to #{club.name} club"
+      else
+        redirect_to root_path, notice: "invalid token"
+      end
+    else
+      current_user.clubs << club
+      redirect_to university_club_path(club.university, club), notice: "welcome to #{club.name} club"
+    end
   end
 
   def update

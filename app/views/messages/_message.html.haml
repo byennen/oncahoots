@@ -3,7 +3,7 @@
     = display_image message.sender.profile.image, "small"
   .span8
     %h5= message.sender.full_name
-    = message.body
+    =simple_format message.body
     %br
   .span10
     %small.fright
