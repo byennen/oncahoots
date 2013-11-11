@@ -279,7 +279,7 @@
       .modal-footer
         = f.submit "Transfer Ownership", class: "btn btn-success"
 
-= render partial: "shared/club_message"
+= render partial: "shared/club_message", locals: {club: @club}
 :javascript
   jQuery(document).ready(function() {//Default Action
     $(".tab_content").hide(); //Hide all content

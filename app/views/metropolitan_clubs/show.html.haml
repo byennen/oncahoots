@@ -71,13 +71,15 @@
 .row-fluid
   .container
     .offset2.span10
-      %ul.tabs
+      %ul.tabs.four-tabs
         %li
           %a{href: "#tab1"}Members
         %li
           %a{href: "#tab2"}About Us
         %li
           %a{href: "#tab3"}Leadership
+        %li
+          %a{href: "#tab4"}Message
       .clearfix
       .tab_container
         #tab1.tab_content.list_carousel
@@ -112,7 +114,37 @@
               = render "leader_form"
           #leaders-list.span11
             = render partial: "leaders"
-           
+        #tab4.tab_content
+          .fright.top
+            - if current_user.manage_club?(@metropolitan_club)
+              = link_to "Message to Member", "#club-message-form", "data-toggle" => "modal", class: "btn btn-success btn-mini"
+            - else
+              = link_to "Message to Club", "#message-to-club", "data-toggle" => "modal", class: "btn btn-success btn-mini"
+          .span12
+            - @conversations.each do |conversation|
+              .span11.border-bottom.left2.top2{id: "conversation-#{conversation.id}"}
+                .span12
+                  %h3
+                    = conversation.subject
+                    %small
+                      Members: 
+                      = conversation.recipients.map{|c| c.name}.join(", ")
+                - conversation.messages.order("created_at asc").each do |message|
+                  .span12.no-lmar
+                    .span2
+                      %strong= message.sender.name
+                    .span7
+                      = simple_format message.body
+                      - unless message.attachment.blank?
+                        %small.fright
+                          Attachment: 
+                          = link_to message.attachment.file.filename, message.attachment.url, target: "_blank"
+                    .span3.no-lmar
+                      .fright.green= time_ago_in_words(message.updated_at) + " ago"
+                .span12.no-lmar
+                  .fright
+                    = link_to "Delete", message_path(conversation, club_id: @metropolitan_club.id), method: :delete, remote: true, class: "red", confirm: "are you sure?"
+          
 .clearfix
 .row-fluid
   .container
@@ -167,7 +199,9 @@
       %h4= photo.image.file.filename
     .modal-body
       = image_tag photo.image, alt: "", style: "max-height: 400px;"
-      
+
+= render partial: "shared/club_message", locals: {club: @metropolitan_club}
+
 :javascript
   jQuery(document).ready(function() {//Default Action
     $("#upload-banner").click(function(){

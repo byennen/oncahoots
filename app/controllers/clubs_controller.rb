@@ -10,20 +10,20 @@ class ClubsController < ApplicationController
 
   def search_members
     @club = Club.find params[:id]
-    @users = @club.users.search_name(params[:term])
+    @users = @club.members.search_name(params[:term])
     return_users_json
   end
 
   def send_message
     @club = Club.find params[:id]
     @club.send_message(recipients, params[:message][:body], params[:message][:subject], true, params[:message][:attachment])
-    redirect_to university_club_path @club.university, @club
+    redirect_to redirect_path, notice: "Message sent!"
   end
 
   def message_to_club
     @club = Club.find params[:id]
     current_user.send_message(@club, params[:message][:body], params[:message][:subject], true, params[:message][:attachment])
-    redirect_to university_club_path @club.university, @club
+    redirect_to redirect_path, notice: "Message sent!"
   end
 
   def index
@@ -120,7 +120,7 @@ class ClubsController < ApplicationController
     end
 
     def recipients
-      mems = @club.users
+      mems = @club.members
       results = []
       results |= mems.student if params[:student]
       results |= mems.alumni if params[:member]
@@ -128,5 +128,9 @@ class ClubsController < ApplicationController
       slugs = params[:message][:recipients].split(',')
       results |= User.where(slug: slugs).all unless slugs.blank?
       results
+    end
+
+    def redirect_path
+      @club.instance_of?(Club) ? university_club_path(@club.university, @club) : metropolitan_club_path(@club)
     end
 end

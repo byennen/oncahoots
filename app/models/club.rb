@@ -47,6 +47,10 @@ class Club < ActiveRecord::Base
     @admins ||= memberships.where(admin: true).all.map(&:user)
   end
 
+  def members
+    users
+  end
+
   class << self
     def search_all(params)
       search_name(params[:name]).search_category(params[:category])
