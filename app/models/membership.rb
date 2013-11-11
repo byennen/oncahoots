@@ -14,4 +14,9 @@ class Membership < ActiveRecord::Base
   def invitation_token=(token)
     self.invitation = Invitation.find_by_token(token)
   end
+
+  def message_leader(club_path)
+    content = "You have been assigned to be a leader of <a href='#{club_path}'>#{club.name}</a> club.".html_safe
+    club.send_message(user, content, "admin assignment notice", true)
+  end
 end

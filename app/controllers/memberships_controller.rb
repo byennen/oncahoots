@@ -23,6 +23,7 @@ class MembershipsController < ApplicationController
     @membership.title = params[:membership][:title]
     @membership.admin = true
     if @membership.save
+      @membership.message_leader(university_club_path(@university, @club))
       respond_to do |format|
         format.html { redirect_to university_club_path(@university, @club), notice: "Member - #{@membership.user.name} is now an admin" }
       end

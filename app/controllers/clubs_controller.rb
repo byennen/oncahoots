@@ -32,13 +32,12 @@ class ClubsController < ApplicationController
 
   def show
     @university = University.find(params[:university_id])
-    @club = @university.clubs.find(params[:id])
+    @club = Club.find(params[:id])
     @membership = Membership.new
     @members = @club.users
     @memberships = @club.memberships
     @current_membership = @club.memberships.find_by_user_id(current_user.id)
     @admins = @club.memberships.where(admin: true)
-    @non_admins = @club.memberships.where("admin is NULL").all.map(&:user)
     @conversations = current_user.manage_club?(@club) ? @club.mailbox.inbox : current_user.conversations_for(@club)
     @requests = current_user.relationships.where(status: 'pending')
     @invitation = Invitation.new

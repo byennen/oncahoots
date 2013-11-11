@@ -3,7 +3,9 @@ class MetropolitanClubsController < ApplicationController
   def assign_leader
     @metropolitan_club = MetropolitanClub.find params[:id]
     @membership = @metropolitan_club.memberships.build(params[:membership])
-    @membership.save
+    if @membership.save
+      @membership.message_leader(metropolitan_club_path(@metropolitan_club))
+    end
     @leaderships = @metropolitan_club.memberships.where(admin: true)
     respond_to :js
   end
