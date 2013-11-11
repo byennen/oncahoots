@@ -3,7 +3,7 @@
     %button{type: "button", class: "close", data: {dismiss: 'modal'}} &times;
     %h3 Add Leadership
   .modal-body
-    = f.input :user_id, collection: @metropolitan_club.non_leaders, label_method: :full_name, value_method: :id
+    = f.input :user_id, collection: @metropolitan_club.non_leaders, label_method: :name, value_method: :id
     = f.input :title
     = f.hidden_field :admin, value: true
   .modal-footer

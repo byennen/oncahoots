@@ -1,7 +1,7 @@
 %a{href: "javascript:;", style: "margin-right: 25px;"}
   = display_image(request.relation.profile.image, "thumb")
 %a.btn.btn-success.btn-small.mar2{href: user_path(request.relation)} View Profile
-%p.comp= request.relation.full_name
+%p.comp= request.relation.name
 = request.message
 .clearfix
 

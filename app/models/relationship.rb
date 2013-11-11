@@ -87,7 +87,7 @@ class Relationship < ActiveRecord::Base
 
   def recommend!(refer_user)
     inverse = find_inverse
-    message = "#{user.full_name} has recommended you to #{refer_user.full_name}.  Do you wish to proceed?"
+    message = "#{user.name} has recommended you to #{refer_user.name}.  Do you wish to proceed?"
     unless user == refer_user || Relationship.exists?(relation, refer_user) 
       relationship = Relationship.create!(user_id: relation_id, relation_id: refer_user.id, status: 'recommended', recommended_by_id: user.id, message: message)
     end
@@ -96,7 +96,7 @@ class Relationship < ActiveRecord::Base
 
   def accept_recommendation!
     self.remove!
-    Relationship.request(user, relation, "#{recommended_by.full_name} has recommended you to #{user.full_name}")
+    Relationship.request(user, relation, "#{recommended_by.name} has recommended you to #{user.name}")
   end
 
   def decline_recommendation!

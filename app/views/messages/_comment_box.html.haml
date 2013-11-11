@@ -1,4 +1,4 @@
-.conversation
+.conversation{id: "conv-#{@conversation.id}"}
   = render partial: 'message', collection: @conversation.messages.reverse
 .span10
   %small.fright= link_to "Delete", message_path(@conversation), method: :delete, remote: true, class: "btn btn-danger btn-mini", confirm: "are you sure?"

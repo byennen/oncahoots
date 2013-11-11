@@ -59,6 +59,9 @@ CahootsConnect::Application.routes.draw   do
   resources :clubs, only: [] do
     member do
       get :join
+      get :search_members
+      post :send_message
+      post :message_to_club
     end
   end
 

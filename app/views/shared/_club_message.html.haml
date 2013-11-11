@@ -1,0 +1,47 @@
+#club-message-form.modal.wide-modal.hide.fade{tabindex: "-1", role: "dialog", :"aria-labelledby" => "myModalLabel", :"aria-hidden" => "true"}
+  .modal-header
+    %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+    %h3 Message to members
+  = simple_form_for Message.new, url: send_message_club_path(@club)  do |f|
+    .modal-body
+      .span9.no-lmar
+        Recipients
+      .span9
+        = check_box_tag :student
+        All Students
+        = check_box_tag :alumni
+        All Alumnis
+        = check_box_tag :leaders
+        All Leaders
+      .span9.no-lmar.top
+        = f.input :recipients, label: false, input_html: {class: "club-auto tags", value: ""}
+      .span9.no-lmar= f.input :subject
+      = f.text_area :body, rows: 7, style: "width: 100%"
+      = f.input :attachment
+    .modal-footer
+      = f.button :submit, 'Send message', class: "btn btn-success"
+      %button.btn.btn-warning{type: "button", data: {dismiss: "modal"}} Cancel
+
+#message-to-club.modal.wide-modal.hide.fade{tabindex: "-1", role: "dialog", :"aria-labelledby" => "myModalLabel", :"aria-hidden" => "true"}
+  .modal-header
+    %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+    %h3 Send Message to #{@club.name} club
+  = simple_form_for Message.new, url: message_to_club_club_path(@club)  do |f|
+    .modal-body
+      = f.input :subject
+      = f.text_area :body, rows: 7, style: "width: 100%"
+      = f.input :attachment
+      = hidden_field_tag :to_club, true
+    .modal-footer
+      = f.button :submit, 'Send message', class: "btn btn-success"
+      %button.btn.btn-warning{type: "button", data: {dismiss: "modal"}} Cancel
+
+:javascript
+  $(document).ready(function(){
+    $(".club-auto").tagsInput({
+      width:'90%', 
+      height: "35px",
+      defaultText: 'receipients',
+      autocomplete_url: "#{search_members_club_path(@club)}",
+    });
+  });

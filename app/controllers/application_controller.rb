@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
   before_filter :load_data
-  helper_method :load_university_data
+  helper_method :load_university_data, :return_users_json
 
   protect_from_forgery
 
@@ -47,4 +47,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def return_users_json
+    results = []
+    @users.each do |user|
+      results << {id: user.id, label: user.name, value: user.slug}
+    end
+    respond_to do |format|
+      format.json {render json: results}
+    end
+  end
 end

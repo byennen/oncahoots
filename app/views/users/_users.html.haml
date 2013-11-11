@@ -8,6 +8,6 @@
           = display_image user.profile.image, "thumb"
       .top{style: "width: 100%"}
         = link_to user_path(user) do
-          = user.full_name
+          = user.name
   
 = hidden_field :user, :city, value: params[:user][:city] if params[:user]

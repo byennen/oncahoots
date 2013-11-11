@@ -101,7 +101,11 @@ class User < ActiveRecord::Base
     "#{first_name}-#{last_name}"
   end
 
-  def full_name
+  def image
+    profile.image unless profile.blank?
+  end
+
+  def name
     [first_name, last_name].join(' ')
   end
 
@@ -163,7 +167,7 @@ class User < ActiveRecord::Base
 
     def search_name(name)
       return where("1=1") if name.blank?
-      where("lower(first_name) like ? or lower(last_name) like ?", "%#{name.downcase}%", "%#{name.downcase}%").where("id != 1 AND id != 2")
+      where("lower(first_name) like ? or lower(last_name) like ?", "%#{name.downcase}%", "%#{name.downcase}%")#.where("id != 1 AND id != 2")
     end
 
     def search_city(city_name)

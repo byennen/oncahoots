@@ -1,11 +1,29 @@
 class ClubsController < ApplicationController
 
   before_filter :authenticate_user!, except: [:show]
-  before_filter :ensure_user_university, except: [:show, :join]
+  before_filter :ensure_user_university, except: [:show, :join, :search_members, :send_message, :message_to_club]
 
   def search
     @clubs = @university.clubs.search_all(params[:club])
     respond_to :js
+  end
+
+  def search_members
+    @club = Club.find params[:id]
+    @users = @club.users.search_name(params[:term])
+    return_users_json
+  end
+
+  def send_message
+    @club = Club.find params[:id]
+    @club.send_message(recipients, params[:message][:body], params[:message][:subject], true, params[:message][:attachment])
+    redirect_to university_club_path @club.university, @club
+  end
+
+  def message_to_club
+    @club = Club.find params[:id]
+    current_user.send_message(@club, params[:message][:body], params[:message][:subject], true, params[:message][:attachment])
+    redirect_to university_club_path @club.university, @club
   end
 
   def index
@@ -21,7 +39,7 @@ class ClubsController < ApplicationController
     @current_membership = @club.memberships.find_by_user_id(current_user.id)
     @admins = @club.memberships.where(admin: true)
     @non_admins = @club.memberships.where("admin is NULL").all.map(&:user)
-    @messages = current_user.mailbox.conversations
+    @conversations = current_user.manage_club?(@club) ? @club.mailbox.inbox : current_user.conversations_for(@club)
     @requests = current_user.relationships.where(status: 'pending')
     @invitation = Invitation.new
     
@@ -85,7 +103,7 @@ class ClubsController < ApplicationController
     @club.user_id = params[:club][:user_id]
     if @membership.save && @club.save
       respond_to do |format|
-        format.html { redirect_to university_club_path(@university, @club), notice: "Ownership transferred to #{@new_owner.full_name}" }
+        format.html { redirect_to university_club_path(@university, @club), notice: "Ownership transferred to #{@new_owner.name}" }
       end
     end
   end
@@ -99,5 +117,16 @@ class ClubsController < ApplicationController
       else
         return true
       end
+    end
+
+    def recipients
+      mems = @club.users
+      results = []
+      results |= mems.student if params[:student]
+      results |= mems.alumni if params[:member]
+      results |= @club.leaders if params[:leader]
+      slugs = params[:message][:recipients].split(',')
+      results |= User.where(slug: slugs).all unless slugs.blank?
+      results
     end
 end

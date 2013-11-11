@@ -23,7 +23,7 @@ class InvitationsController < ApplicationController
     club = Club.find params[:club_id]
     results = []
     users.each do |user|
-      results << {id: user.id, label: user.full_name, value: user.slug} unless (user.member_of?(club) || current_user == user)
+      results << {id: user.id, label: user.name, value: user.slug} unless (user.member_of?(club) || current_user == user)
     end
     respond_to do |format|
       format.json {render json: results}
