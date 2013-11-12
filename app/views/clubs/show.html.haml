@@ -112,40 +112,27 @@
                 .modal-footer
                   %a{href: "#", class: "btn", data: {dismiss: "modal"}} Close
                   =f.submit "Save Mission Statement", class: "btn btn-success"
-        #calendar.tab_content
-          - if @club.admins.include?(current_user)     
-            .pull-right
-              %a{href: "#add_event", class: "btn btn-success chang3", data: {toggle: "modal"}, style: "margin-right: 62px; margin-top: 10px;"} Add Event
-            - @club.events.each do |ce|
-              %strong= "#{ce.date} #{ce.time}"
-              = ce.title
-              - if @club.admins.include?(current_user)
-                %a{href:"#edit-event-#{ce.id}", data: {toggle: "modal"}, class: "btn btn-success"} Edit
-                = link_to("Delete", university_club_club_event_path(@university, @club, ce), method: :delete, confirm: "Are you sure?")
-                .modal.hide{id: "edit-event-#{ce.id}"}
-                  = simple_form_for([@university, @club, ce], html: {class: 'form-horizontal'}) do |f|
-                    .modal-header
-                      %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
-                      %h3 Edit Event - #{ce.title}
-                    .modal-body
-                      = f.input :title
-                      = f.input :on_date, as: :string, label: "Date", input_html: {class: "datepicker", value: f.object.date}
-                      = f.input :at_time, label: "Time", as: :time, ampm: true, minute_step: 5, default: {hour: 0, minute: 0},input_html: {style: "width: 80px"}
-                      = f.input :location
-                      = f.input :description
-                      = f.input :category, as: :category
-                      = f.input :image, as: :file
-                      = f.input :university_id, collection: (University.order(:name).collect{ |c| [c.name, c.id] }), prompt: "Select University"
-                      = f.input :club_id, collection: (@university.clubs.order(:name).collect{ |c| [c.name, c.id] }), prompt: "Select Club"
-                      #display_uc
-                        = f.input :display_on_uc, inline_label: 'Add to University Calendar?', label: false, as: :boolean
-                        = f.input :free_food, inline_label: 'Free Food Event?', label: false, as: :boolean
-                      .clearfix
-                    .modal-footer
-                      = f.submit "Save Event", class: "btn btn-success"
-          - if @club.admins.include?(current_user)
+        #calendar.tab_content.span12
+          - if current_user.manage_club?(@lub)
+            .span11  
+              .fright
+                %a{href: "#add_event", class: "btn btn-success chang3", data: {toggle: "modal"}, style: "margin-right: 62px; margin-top: 10px;"} Add Event
+          .span7.offset1.top2
+            %ul#events.flexisels
+              - @club.events.each do |event|
+                %li
+                  = link_to "#event#{event.id}_detail", :"data-toggle" => "modal", class: 'event-slide-item'  do
+                    = display_image_square event.image, "medium"
+                  %br
+                  %h4= event.title
+                  %p
+                    = event.date
+                    %br
+                    = event.time
+            .clearfix
+          - if current_user.manage_club?(@club)
             #add_event.modal.hide
-              = simple_form_for([@university, @club, Event.new], html: {class: 'form-horizontal'}) do |f|
+              = simple_form_for @event, url: club_club_events_path(@club) ,html: {class: 'form-horizontal'} do |f|
                 .modal-header
                   %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
                   %h3 Add Event
@@ -157,11 +144,8 @@
                   = f.input :description, as: :text, input_html: {rows: 2}
                   = f.input :category, as: :category
                   = f.input :image, as: :file
-                  = f.input :university_id, collection: (University.order(:name).collect{ |c| [c.name, c.id] }), prompt: "Select University"
-                  = f.input :club_id, collection: (@university.clubs.order(:name).collect{ |c| [c.name, c.id] }), prompt: "Select Club"
-                  #display_uc
-                    = f.input :display_on_uc, inline_label: 'Add to University Calendar?', label: false, as: :boolean
-                    = f.input :free_food, inline_label: 'Free Food Event?', label: false, as: :boolean
+                  = f.input :display_on_uc, inline_label: 'Add to University Calendar?', label: false, as: :boolean
+                  = f.input :free_food, inline_label: 'Free Food Event?', label: false, as: :boolean
                   .clearfix
                 .modal-footer
                   = f.submit "Add Event", class: "btn btn-success"
@@ -255,7 +239,7 @@
     .modal-footer
       = f.submit "Invite Contact", class: "btn btn-success"
 
-- if @club.admins.include?(current_user)
+- if current_user.manage_club?(@club)
   #add-update.modal.hide
     = simple_form_for Update.new, url: university_club_club_newsletters_path(@university, @club), method: :post do |f|
       .modal-header
@@ -279,6 +263,9 @@
       .modal-footer
         = f.submit "Transfer Ownership", class: "btn btn-success"
 
+- @club.events.each do |event|
+  = render partial: "university_events/event", locals: {event: event}
+
 = render partial: "shared/club_message", locals: {club: @club}
 :javascript
   jQuery(document).ready(function() {//Default Action
@@ -298,13 +285,7 @@
       $(activeTab).fadeIn(); //Fade in the active content
       return false;
     });
-    $('.slider4').bxSlider({
-      slideWidth: 300,
-      minSlides: 2,
-      maxSlides: 3,
-      moveSlides: 1,
-      slideMargin: 10
-    });
+
 
     $(".update-image").click(function(){
       $("#feature-image").attr("src", $(this).data("src"));
