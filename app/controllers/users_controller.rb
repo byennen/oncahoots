@@ -1,14 +1,12 @@
 class UsersController < ApplicationController
 
   def search
-    users = current_user.university.users.where("lower(first_name) like ? or lower(last_name) like ?", "%#{params[:term].downcase}%", "%#{params[:term].downcase}%")
-    results = []
-    users.each do |user|
-      results << {id: user.id, label: user.name, value: user.slug}
+    if current_user.super_admin?
+      users = User.where("lower(first_name) like ? or lower(last_name) like ?", "%#{params[:term].downcase}%", "%#{params[:term].downcase}%")
+    else
+      users = current_user.university.users.where("lower(first_name) like ? or lower(last_name) like ?", "%#{params[:term].downcase}%", "%#{params[:term].downcase}%")
     end
-    respond_to do |format|
-      format.json {render json: results}
-    end
+    return_auto_json(users)
   end
 
   def filter

@@ -4,10 +4,38 @@
     %h3 New Message
   = simple_form_for Message.new do |f|
     .modal-body
-      = f.input :recipients, input_html: {class: "tagauto tags", value: ""}
-      = f.input :subject
-      = f.text_area :body, rows: 10, style: "width: 100%"
+      .span9.no-lmar
+        Recipients
+      - if current_user.super_admin?
+        .span9
+          = check_box_tag :student
+          All Students
+          = check_box_tag :alumni
+          All Alumnis
+        .span9.no-lmar.top
+          = text_field_tag :universities, "", class: "university-auto tags"
+      - if current_user.super_admin? || current_user.university_admin?
+        .span9.no-lmar.top
+          = text_field_tag :clubs, "", class: "club-auto tags"
+      .span9.no-lmar.top= f.input :recipients, label: false, input_html: {class: "tagauto tags", value: ""}
+      .span9.no-lmar= f.input :subject, label: false, input_html: {placeholder: "subject"}
+      = f.text_area :body, rows: 5, style: "width: 100%", placeholder: "message"
       = f.input :attachment
     .modal-footer
       = f.button :submit, 'Send message', class: "btn btn-success"
       %button.btn.btn-warning{type: "button", data: {dismiss: "modal"}} Cancel
+:javascript
+  $(document).ready(function(){
+    $(".university-auto").tagsInput({
+      width:'90%', 
+      height: "35px",
+      defaultText: 'universities',
+      autocomplete_url: "#{auto_search_universities_path}",
+    });
+    $(".club-auto").tagsInput({
+      width:'90%', 
+      height: "35px",
+      defaultText: 'clubs',
+      autocomplete_url: "#{auto_search_clubs_path}",
+    });
+  });

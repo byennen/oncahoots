@@ -81,7 +81,11 @@
                 - message = con.messages.first
                 %li{id: "conversation-#{con.id}"}
                   = link_to display_image(message.sender.image, "small"), read_message_path(con), remote: true
-                  %h4= message.sender.name
+                  %h4
+                    = message.sender.name
+                    %small
+                      To: 
+                      = message.recipients.reject{|c| c.id==message.sender.id}.map{|c| c.name}.join(", ")
                   %br
                   %p= truncate(con.messages.first.body)
           .right-side#current_conversation

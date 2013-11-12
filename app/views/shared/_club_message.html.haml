@@ -14,7 +14,7 @@
         = check_box_tag :leaders
         All Leaders
       .span9.no-lmar.top
-        = f.input :recipients, label: false, input_html: {class: "club-auto tags", value: ""}
+        = f.input :recipients, label: false, input_html: {class: "club-user-auto tags", value: ""}
       .span9.no-lmar= f.input :subject
       = f.text_area :body, rows: 7, style: "width: 100%"
       = f.input :attachment
@@ -38,7 +38,7 @@
 
 :javascript
   $(document).ready(function(){
-    $(".club-auto").tagsInput({
+    $(".club-users-auto").tagsInput({
       width:'90%', 
       height: "35px",
       defaultText: 'receipients',

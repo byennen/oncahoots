@@ -2,7 +2,8 @@
   %a{href: "javascript:;", style: "margin-top: 0"}
     = display_image message.sender.image, "small"
   .span8
-    %h5= message.sender.name
+    %h5
+      = message.sender.name
     = simple_format message.body
     %br
   .span10

@@ -45,4 +45,8 @@ class UniversitiesController < ApplicationController
     respond_to :js
   end
     
+  def auto_search
+    universities = University.where("lower(name) like ?", "%#{params[:term].downcase}%")
+    return_auto_json(universities)
+  end
 end
