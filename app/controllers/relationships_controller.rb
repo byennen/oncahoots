@@ -6,7 +6,7 @@ class RelationshipsController < ApplicationController
     @relation = User.find(params[:relationship][:relation_id])
     Relationship.request(current_user, @relation, params[:relationship][:message])
     respond_to do |format|
-      format.html { redirect_to user_path(@relation), notice: "A request has been sent to #{@relation.full_name}" }
+      format.html { redirect_to user_path(@relation), notice: "A request has been sent to #{@relation.name}" }
     end
   end
 
@@ -20,14 +20,14 @@ class RelationshipsController < ApplicationController
     @relationship.accept!
     Alert.create_relationship_notification(@relationship)
     respond_to do |format|
-      format.html { redirect_to user_path(current_user), notice: "You are now contacts with - #{@relationship.relation.full_name}" }
+      format.html { redirect_to user_path(current_user), notice: "You are now contacts with - #{@relationship.relation.name}" }
     end
   end
 
   def decline
     @relationship.decline!
     respond_to do |format|
-      format.html { redirect_to user_path(current_user), notice: "You have declined the contact - #{@relationship.relation.full_name}" }
+      format.html { redirect_to user_path(current_user), notice: "You have declined the contact - #{@relationship.relation.name}" }
     end
   end
 
@@ -47,21 +47,21 @@ class RelationshipsController < ApplicationController
   def destroy
     @relationship.remove!
     respond_to do |format|
-      format.html { redirect_to user_contacts_path(current_user), notice: "You have removed the contact - #{@relationship.relation.full_name}" }
+      format.html { redirect_to user_contacts_path(current_user), notice: "You have removed the contact - #{@relationship.relation.name}" }
     end
   end
 
   def accept_recommendation
     @relationship.accept_recommendation!
     respond_to do |format|
-      format.html { redirect_to user_path(current_user), notice: "You have accepted the recommendation to #{@relationship.relation.full_name}" }
+      format.html { redirect_to user_path(current_user), notice: "You have accepted the recommendation to #{@relationship.relation.name}" }
     end
   end
 
   def decline_recommendation
     @relationship.decline_recommendation!
     respond_to do |format|
-      format.html { redirect_to user_path(current_user), notice: "You have declined the recommendation to #{@relationship.relation.full_name}" }
+      format.html { redirect_to user_path(current_user), notice: "You have declined the recommendation to #{@relationship.relation.name}" }
     end
   end
 

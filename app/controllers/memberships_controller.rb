@@ -23,8 +23,9 @@ class MembershipsController < ApplicationController
     @membership.title = params[:membership][:title]
     @membership.admin = true
     if @membership.save
+      @membership.message_leader(university_club_path(@university, @club))
       respond_to do |format|
-        format.html { redirect_to university_club_path(@university, @club), notice: "Member - #{@membership.user.full_name} is now an admin" }
+        format.html { redirect_to university_club_path(@university, @club), notice: "Member - #{@membership.user.name} is now an admin" }
       end
     end
   end
@@ -32,7 +33,7 @@ class MembershipsController < ApplicationController
   def remove_admin
     if @membership.update_attribute(:admin, false)
       respond_to do |format|
-        format.html { redirect_to university_club_path(@university, @club), notice: "Member - #{@membership.user.full_name} admin privileges have been removed" }
+        format.html { redirect_to university_club_path(@university, @club), notice: "Member - #{@membership.user.name} admin privileges have been removed" }
       end
     end
   end
@@ -40,7 +41,7 @@ class MembershipsController < ApplicationController
   def destroy
     if @membership.destroy
       respond_to do |format|
-        format.html { redirect_to university_club_path(@university, @club), notice: "Member - #{@membership.user.full_name} has been deleted" }
+        format.html { redirect_to university_club_path(@university, @club), notice: "Member - #{@membership.user.name} has been deleted" }
       end
     end
   end

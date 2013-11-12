@@ -1,11 +1,29 @@
 class ClubsController < ApplicationController
 
   before_filter :authenticate_user!, except: [:show]
-  before_filter :ensure_user_university, except: [:show]
+  before_filter :ensure_user_university, except: [:show, :join, :search_members, :send_message, :message_to_club]
 
   def search
     @clubs = @university.clubs.search_all(params[:club])
     respond_to :js
+  end
+
+  def search_members
+    @club = Club.find params[:id]
+    @users = @club.members.search_name(params[:term])
+    return_users_json
+  end
+
+  def send_message
+    @club = Club.find params[:id]
+    @club.send_message(recipients, params[:message][:body], params[:message][:subject], true, params[:message][:attachment])
+    redirect_to redirect_path, notice: "Message sent!"
+  end
+
+  def message_to_club
+    @club = Club.find params[:id]
+    current_user.send_message(@club, params[:message][:body], params[:message][:subject], true, params[:message][:attachment])
+    redirect_to redirect_path, notice: "Message sent!"
   end
 
   def index
@@ -14,14 +32,13 @@ class ClubsController < ApplicationController
 
   def show
     @university = University.find(params[:university_id])
-    @club = @university.clubs.find(params[:id])
+    @club = Club.find(params[:id])
     @membership = Membership.new
     @members = @club.users
     @memberships = @club.memberships
     @current_membership = @club.memberships.find_by_user_id(current_user.id)
     @admins = @club.memberships.where(admin: true)
-    @non_admins = @club.memberships.where("admin is NULL").all.map(&:user)
-    @messages = current_user.mailbox.conversations
+    @conversations = current_user.manage_club?(@club) ? @club.mailbox.inbox : current_user.conversations_for(@club)
     @requests = current_user.relationships.where(status: 'pending')
     @invitation = Invitation.new
     
@@ -50,6 +67,22 @@ class ClubsController < ApplicationController
     @club = @university.clubs.find(params[:id])
   end
 
+  def join
+    club = Club.find params[:id]
+    if club.private?
+      invitation = Invitation.find_by_token params[:token]
+      if invitation
+        current_user.clubs << club
+        redirect_to university_club_path(club.university, club), notice: "welcome to #{club.name} club"
+      else
+        redirect_to root_path, notice: "invalid token"
+      end
+    else
+      current_user.clubs << club
+      redirect_to university_club_path(club.university, club), notice: "welcome to #{club.name} club"
+    end
+  end
+
   def update
     @club = @university.clubs.find(params[:id])
     @club.attributes = params[:club]
@@ -69,7 +102,7 @@ class ClubsController < ApplicationController
     @club.user_id = params[:club][:user_id]
     if @membership.save && @club.save
       respond_to do |format|
-        format.html { redirect_to university_club_path(@university, @club), notice: "Ownership transferred to #{@new_owner.full_name}" }
+        format.html { redirect_to university_club_path(@university, @club), notice: "Ownership transferred to #{@new_owner.name}" }
       end
     end
   end
@@ -83,5 +116,20 @@ class ClubsController < ApplicationController
       else
         return true
       end
+    end
+
+    def recipients
+      mems = @club.members
+      results = []
+      results |= mems.student if params[:student]
+      results |= mems.alumni if params[:member]
+      results |= @club.leaders if params[:leader]
+      slugs = params[:message][:recipients].split(',')
+      results |= User.where(slug: slugs).all unless slugs.blank?
+      results
+    end
+
+    def redirect_path
+      @club.instance_of?(Club) ? university_club_path(@club.university, @club) : metropolitan_club_path(@club)
     end
 end

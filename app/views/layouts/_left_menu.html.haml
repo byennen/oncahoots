@@ -32,7 +32,7 @@
               - @messages.each do |message|
                 %li{id: "message-#{message.id}"}
                   = link_to display_image(message.messages.first.sender.profile.image, "small"), read_message_path(message), remote: true
-                  %h4= message.messages.first.sender.full_name
+                  %h4= message.messages.first.sender.name
                   %br
                   %p= truncate(message.messages.first.body)
           #current_conversation.right-side
@@ -53,7 +53,7 @@
                 - @requests.each do |relationship|
                   %li{id: "request-#{relationship.id}"}
                     = link_to display_image(relationship.relation.profile.image, "thumb"), read_relationship_path(relationship), remote: true
-                    %h4= relationship.relation.full_name
+                    %h4= relationship.relation.name
                     %br
                     %p= relationship.relation.graduation_year
             .right-side
@@ -94,7 +94,7 @@
         %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
         %h3 Recommend Another Contact
       .modal-body
-        =# f.input :relation_id, collection: current_user.relationships.where(status: 'accepted').map(&:user), label_method: :full_name, value_method: :id
+        =# f.input :relation_id, collection: current_user.relationships.where(status: 'accepted').map(&:user), label_method: :name, value_method: :id
         =text_field_tag :relation_ids, "", class: 'contact-auto'
       .modal-footer
         = f.submit "Recommend Contact", class: "btn btn-success"

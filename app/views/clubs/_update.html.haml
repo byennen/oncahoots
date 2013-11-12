@@ -36,7 +36,7 @@
           .pull-left{style: 'margin-right: 10px;'}
             = image_tag comment.user.profile.image.thumb.url
           %div{style: "border-bottom: 1px solid #ccc; width: 400px; padding: 20px;"}
-            %strong= comment.user.full_name
+            %strong= comment.user.name
             %br
             %em= comment.created_at.strftime('%m/%d/%Y %H:%M')
             %br

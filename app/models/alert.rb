@@ -33,7 +33,7 @@ class Alert < ActiveRecord::Base
   end
 
   def self.create_club_membership_notification(club, membership)
-    alert = self.create({alertable_id: club.id, alertable_type: 'Club', message: "#{membership.user.full_name} has joined the club"})
+    alert = self.create({alertable_id: club.id, alertable_type: 'Club', message: "#{membership.user.name} has joined the club"})
     club.memberships.each do |membership|
       AlertUserNotification.create({user_id: membership.user.id, alert_id: alert.id})
     end

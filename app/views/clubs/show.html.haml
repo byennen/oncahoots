@@ -7,11 +7,13 @@
   .span3{style: "min-height: 210px;"}
     .rig
       .top4.fright{style: "margin-right: 0"}
-        = link_to "Join Club", "javascript:;", class: "btn btn-success"
+        - unless @club.private? || !current_user.joinable?(@club)
+          = link_to "Join Club", join_club_path(@club), class: "btn btn-success"
       %br
       .span12
         .top4.bottom2.fright{style: "margin-right: 0"}
-          %a.btn.btn-success{href: "#invite-contact", data: {toggle: "modal"}} Invite Contacts
+          - if current_user.manage_club?(@club)
+            %a.btn.btn-success{href: "#invite-contact", data: {toggle: "modal"}} Invite Contacts
       .span12
         .top4.fright{style: "margin-right: 0"}
           - if current_user.super_admin? || current_user.university_admin? || @club.admins.include?(current_user)
@@ -90,7 +92,7 @@
                 = link_to user_path(membership.user) do
                   = display_image membership.user.profile.image, "thumb"
                 %br
-                .left2= link_to membership.user.full_name, user_path(membership.user)
+                .left2= link_to membership.user.name, user_path(membership.user)
                 - if @club.user_id == current_user.id
                   - if membership.user.id != current_user.id
                     .left2= link_to "Delete", university_club_membership_path(@university, @club, membership.id), method: :delete, class: 'btn btn-mini btn-danger', confirm: "Are you sure?"
@@ -164,7 +166,7 @@
                 .modal-footer
                   = f.submit "Add Event", class: "btn btn-success"
         #eboard.tab_content
-          - if @club.admins.include?(current_user)
+          - if current_user.manage_club?(@club)
             .pull-right
               %a{href: "#add-admin", class: "btn btn-success ", data: {toggle: "modal"}, style: "margin-right: 62px; margin-top: 10px;"} Add E-Board Member
               - if @club.user_id == current_user.id
@@ -177,7 +179,7 @@
                     %button{type: "button", class: "close", data: {dismiss: 'modal'}} &times;
                     %h3 Add E-Board member
                   .modal-body
-                    = f.input :user_id, collection: @non_admins, label_method: :full_name, value_method: :id
+                    = f.input :user_id, collection: @club.non_leaders, label_method: :name, value_method: :id
                     = f.input :title
                   .modal-footer
                     = f.submit "Add E-Board Member", class: "btn btn-success"
@@ -187,7 +189,7 @@
                 .pull-left.right
                   = display_image admin.user.profile.image, "thumb"
                   %br
-                  .left2= admin.user.full_name
+                  .left2= admin.user.name
                   %br
                   .left2= admin.title
         #records.tab_content
@@ -211,6 +213,35 @@
               .modal-footer
                 = f.submit "Add Record", class: "btn btn-success"
         #messages.tab_content
+          .fright.top
+            - if current_user.manage_club?(@club)
+              = link_to "Message to Member", "#club-message-form", "data-toggle" => "modal", class: "btn btn-success btn-mini"
+            - else
+              = link_to "Message to Club", "#message-to-club", "data-toggle" => "modal", class: "btn btn-success btn-mini"
+          .span12
+            - @conversations.each do |conversation|
+              .span11.border-bottom.left2.top2{id: "conversation-#{conversation.id}"}
+                .span12
+                  %h3
+                    = conversation.subject
+                    %small
+                      Members: 
+                      = conversation.recipients.map{|c| c.name}.join(", ")
+                - conversation.messages.order("created_at asc").each do |message|
+                  .span12.no-lmar
+                    .span2
+                      %strong= message.sender.name
+                    .span7
+                      = simple_format message.body
+                      - unless message.attachment.blank?
+                        %small.fright
+                          Attachment: 
+                          = link_to message.attachment.file.filename, message.attachment.url, target: "_blank"
+                    .span3.no-lmar
+                      .fright.green= time_ago_in_words(message.updated_at) + " ago"
+                .span12.no-lmar
+                  .fright
+                    = link_to "Delete", message_path(conversation, club_id: @club.id), method: :delete, remote: true, class: "red", confirm: "are you sure?"
           
 .clearfix
 
@@ -220,7 +251,7 @@
       %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
       %h3 Invite Contact 
     .modal-body
-      = f.input :recipient_id, collection: current_user.contacts, label: "Contact", label_method: :full_name, value_method: :id
+      = f.input :recipients, input_html: {class: "invitation-auto", value: ""}
     .modal-footer
       = f.submit "Invite Contact", class: "btn btn-success"
 
@@ -244,10 +275,11 @@
         %button{type: "button", class: "close", data: {dismiss: :modal}} &times;
         %h3 Transfer Ownership
       .modal-body
-        = f.input :user_id, collection: @club.admins, label_method: :full_name, value_method: :id
+        = f.input :user_id, collection: @club.admins, label_method: :name, value_method: :id
       .modal-footer
         = f.submit "Transfer Ownership", class: "btn btn-success"
 
+= render partial: "shared/club_message", locals: {club: @club}
 :javascript
   jQuery(document).ready(function() {//Default Action
     $(".tab_content").hide(); //Hide all content
@@ -276,5 +308,12 @@
 
     $(".update-image").click(function(){
       $("#feature-image").attr("src", $(this).data("src"));
+    });
+
+    $(".invitation-auto").tagsInput({
+      width:'90%', 
+      height: "35px",
+      defaultText: 'receipients',
+      autocomplete_url: "/universities/#{@university.id}/clubs/#{@club.id}/invitations/search",
     });
   });

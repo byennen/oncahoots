@@ -75,6 +75,11 @@ class User < ActiveRecord::Base
     end
   end
 
+  def joinable?(club)
+    return false if super_admin? || university_admin? || member_of?(club)
+    true
+  end
+
   def display_city
     city ? city.name : "Other"
   end
@@ -96,7 +101,11 @@ class User < ActiveRecord::Base
     "#{first_name}-#{last_name}"
   end
 
-  def full_name
+  def image
+    profile.image unless profile.blank?
+  end
+
+  def name
     [first_name, last_name].join(' ')
   end
 
@@ -120,22 +129,24 @@ class User < ActiveRecord::Base
     Profile.create(user_id: self.id)
   end
 
-  def join_club?(club)
+  def member_of?(club)
     clubs.include?(club)
   end
 
+  def manage_club?(club)
+    return true if super_admin? || university_admin? || club_admin?(club)
+    false
+  end
+
   def manage_event?(event)
-    return true if super_admin? || university_admin?
+    return true if super_admin? || university_admin?  || event.user == self
     return true if event.club && club_admin?(event.club)
-    return true if event.user == self
-    return false
+    false
   end
 
   def manage_post?(post)
-    return true if super_admin? || university_admin?
-    return true if club_admin?(post.club)
-    return true if post.user == self
-    return false
+    return true if super_admin? || university_admin? || club_admin?(post.club) || post.user == self
+    false
   end
 
   def conversations_for(recipient)
@@ -156,7 +167,7 @@ class User < ActiveRecord::Base
 
     def search_name(name)
       return where("1=1") if name.blank?
-      where("lower(first_name) like ? or lower(last_name) like ?", "%#{name.downcase}%", "%#{name.downcase}%").where("id != 1 AND id != 2")
+      where("lower(first_name) like ? or lower(last_name) like ?", "%#{name.downcase}%", "%#{name.downcase}%")#.where("id != 1 AND id != 2")
     end
 
     def search_city(city_name)

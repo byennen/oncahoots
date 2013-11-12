@@ -4,7 +4,7 @@
     = link_to user_path(user) do
       = display_image user.profile.image, "small"
   .span7.no-lmar 
-    %h4= user.full_name
+    %h4= user.name
     = simple_format comment.comment
   .span3.no-lmar
     .fright.green{style: "margin-right: 0"}

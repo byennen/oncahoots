@@ -47,6 +47,18 @@ class Club < ActiveRecord::Base
     @admins ||= memberships.where(admin: true).all.map(&:user)
   end
 
+  def members
+    users
+  end
+
+  def non_leaders
+    ids = users.with_role(:super_admin).map(&:id).to_a + users.with_role(:university_admin).map(&:id).to_a
+    mems = users
+    mems = users.where("users.id not in (?)", ids) unless ids.blank?
+    return mems if leaders.blank?
+    mems.where("users.id not in (?)", leaders.map(&:id))
+  end
+
   class << self
     def search_all(params)
       search_name(params[:name]).search_category(params[:category])

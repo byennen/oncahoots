@@ -2,7 +2,7 @@
   .users
     %a{href: user_path(contact.relation)}= display_image contact.relation.profile.image, "xlarge"
     .hovers
-      %p Hi! I am #{contact.relation.full_name} from #{contact.relation.display_city} and I am excited about business
+      %p Hi! I am #{contact.relation.name} from #{contact.relation.display_city} and I am excited about business
       = link_to "view", user_path(contact.relation)
       - if @user == current_user
         = link_to "Message", "#message-form", style: "float: right;", data: {toggle: "modal"}, class: "message_link", rel: contact.relation.slug

@@ -50,7 +50,7 @@
                 - @requests.each do |relationship|
                   %li{id: "request-#{relationship.id}"}
                     = link_to display_image(relationship.relation.profile.image,"thumb"), read_relationship_path(relationship), remote: true
-                    %h4= relationship.relation.full_name
+                    %h4= relationship.relation.name
                     %br
                     %p= relationship.relation.graduation_year
             .right-side
@@ -78,9 +78,10 @@
             %a{href: "#message-form", data: {toggle: "modal"}, class: "btn btn-success"} New Message
             %ul.msg
               - @conversations.each do |con|
+                - message = con.messages.first
                 %li{id: "conversation-#{con.id}"}
-                  = link_to display_image(con.messages.first.sender.profile.image, "small"), read_message_path(con), remote: true
-                  %h4= con.messages.first.sender.full_name
+                  = link_to display_image(message.sender.image, "small"), read_message_path(con), remote: true
+                  %h4= message.sender.name
                   %br
                   %p= truncate(con.messages.first.body)
           .right-side#current_conversation

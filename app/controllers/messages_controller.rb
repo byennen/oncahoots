@@ -43,8 +43,14 @@ class MessagesController < ApplicationController
   end
   
   def destroy
-    @conversation = current_user.mailbox.inbox.find(params[:id])
-    current_user.mark_as_deleted @conversation
+    if params[:club_id]
+      @club = Club.find params[:club_id]
+      @conversation = @club.mailbox.inbox.find(params[:id])
+      @club.mark_as_deleted @conversation
+    else
+      @conversation = current_user.mailbox.inbox.find(params[:id])
+      current_user.mark_as_deleted @conversation
+    end
     respond_to :js
   end
 
