@@ -80,9 +80,9 @@
               - @conversations.each do |con|
                 - message = con.messages.first
                 %li{id: "conversation-#{con.id}"}
-                  = link_to display_image(message.sender.image, "small"), read_message_path(con), remote: true
+                  = link_to sender_image(message), read_message_path(con), remote: true
                   %h4
-                    = message.sender.name
+                    = sender_name(message)
                     %small
                       To: 
                       = message.recipients.reject{|c| c.id==message.sender.id}.map{|c| c.name}.join(", ")
