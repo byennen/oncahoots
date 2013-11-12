@@ -61,8 +61,28 @@ class MessagesController < ApplicationController
   end
 
   def find_recipients
+    @recipient_list = []
+    mems = current_user.super_admin? ? User : current_user.university.users
+    @recipient_list |= mems.student if params[:student]
+    @recipient_list |= mems.alumni if params[:member]
+
     slugs = params[:message][:recipients].split(',')
-    @recipient_list = User.where(slug: slugs).all
+    @recipient_list |= User.where(slug: slugs).all unless slugs.blank?
+
+    uni_slugs = params[:universities].split(',')
+    unless uni_slugs.blank?
+      University.where(slug: slugs).each do |university|
+        @recipient_list |= iniversity.users.all
+      end
+    end
+
+    club_slugs = params[:clubs].split(',')
+    unless club_slugs.blank?
+      Club.where(slug: slugs).each do |club|
+        @recipient_list |= club.members.all
+      end
+    end
+
     Rails.logger.debug("recipients are #{@recipient_list.inspect}")
   end
 

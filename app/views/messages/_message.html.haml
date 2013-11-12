@@ -1,8 +1,9 @@
 .comment-box.bottom{id: "message-#{message.id}"}
   %a{href: "javascript:;", style: "margin-top: 0"}
-    = display_image message.sender.image, "small"
+    = sender_image(message)
   .span8
-    %h5= message.sender.name
+    %h5
+      = sender_name(message)
     = simple_format message.body
     %br
   .span10

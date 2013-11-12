@@ -1,7 +1,7 @@
 class ClubsController < ApplicationController
 
   before_filter :authenticate_user!, except: [:show]
-  before_filter :ensure_user_university, except: [:show, :join, :search_members, :send_message, :message_to_club]
+  before_filter :ensure_user_university, except: [:show, :join, :search_members, :send_message, :message_to_club, :auto_search]
 
   def search
     @clubs = @university.clubs.search_all(params[:club])
@@ -10,8 +10,8 @@ class ClubsController < ApplicationController
 
   def search_members
     @club = Club.find params[:id]
-    @users = @club.members.search_name(params[:term])
-    return_users_json
+    users = @club.members.search_name(params[:term])
+    return_auto_json(users)
   end
 
   def send_message
@@ -105,6 +105,15 @@ class ClubsController < ApplicationController
         format.html { redirect_to university_club_path(@university, @club), notice: "Ownership transferred to #{@new_owner.name}" }
       end
     end
+  end
+  
+  def auto_search
+    if current_user.super_admin?
+      clubs = Club.where("lower(name) like ?", "%#{params[:term].downcase}%")
+    else
+      clubs = current_user.university.clubs.where("lower(name) like ?", "%#{params[:term].downcase}%")
+    end
+    return_auto_json(clubs)
   end
 
   private

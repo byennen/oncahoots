@@ -35,6 +35,9 @@ CahootsConnect::Application.routes.draw   do
       end
     end
 
+    collection do
+      get :auto_search
+    end
   end
 
 
@@ -62,6 +65,9 @@ CahootsConnect::Application.routes.draw   do
       get :search_members
       post :send_message
       post :message_to_club
+    end
+    collection do
+      get :auto_search
     end
   end
 

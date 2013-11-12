@@ -80,8 +80,12 @@
               - @conversations.each do |con|
                 - message = con.messages.first
                 %li{id: "conversation-#{con.id}"}
-                  = link_to display_image(message.sender.image, "small"), read_message_path(con), remote: true
-                  %h4= message.sender.name
+                  = link_to sender_image(message), read_message_path(con), remote: true
+                  %h4
+                    = sender_name(message)
+                    %small
+                      To: 
+                      = message.recipients.reject{|c| c.id==message.sender.id}.map{|c| c.name}.join(", ")
                   %br
                   %p= truncate(con.messages.first.body)
           .right-side#current_conversation
