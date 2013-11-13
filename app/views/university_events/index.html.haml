@@ -1,7 +1,7 @@
 = content_for :header do
   .span12.header-box
     = image_tag "calendar.jpg"
-  .fright{style: "margin-top: -40px; margin-right: 20px"}= link_to "Add Event", "#add_event", class: "btn btn-success", data: {toggle: "modal"}, id: "add-event"
+  .fright{style: "margin-top: -40px; margin-right: 20px"}= link_to "Add Event", "#event-form", class: "btn btn-success", data: {toggle: "modal"}, id: "add-event"
 
 
   .clearfix
@@ -30,26 +30,7 @@
   .clearfix
   #event-list
     = render partial: "events"
-
-#add_event.modal.hide
-  = simple_form_for @event, url: university_university_events_path(@university), html: {class: 'form-horizontal'} do |f|
-    .modal-header
-      %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
-      %h3 Add University Event
-    .modal-body
-      = f.input :title
-      = f.input :on_date, as: :string, label: "Date", input_html: {class: "datepicker"}
-      = f.input :at_time, label: "Time", as: :time, ampm: true, minute_step: 5, default: {hour: 0, minute: 0},input_html: {style: "width: 80px"}
-      = f.input :location
-      = f.input :description, as: :text, input_html: {rows: 2}
-      = f.input :category, as: :category
-      = f.input :image, as: :file
-      = f.input :club_id, collection: (@university.clubs.order(:name).collect{ |c| [c.name, c.id] }), prompt: "Select Club"
-      #display_uc{class: "#{'hide' if @event.club_id.blank?}"}= f.input :display_on_uc, inline_label: 'Add to University Calendar?', label: false, as: :boolean
-      = f.input :free_food, inline_label: 'Free Food Event?', label: false, as: :boolean
-    .clearfix
-    .modal-footer
-      = f.submit "Add Event", class: "btn btn-success"
+#event-popup= render partial: "form", locals: {event: @event}
 
 :javascript
   $(document).ready(function(){
@@ -69,8 +50,4 @@
       $(this).closest('span').addClass("active");
     });
 
-    error = "#{@event.errors.any?}";
-    if(error=="true"){
-      $("#add-event").click();
-    }
   });

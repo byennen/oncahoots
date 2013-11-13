@@ -6,17 +6,8 @@ class UniversityEventsController < ApplicationController
     @university = University.find(params[:university_id])
     @event = @university.events.new(params[:event])
     @event.user_id = current_user.id
-    if @event.save
-      if @club
-        Alert.create_club_event_notification(@event)
-        redirect_to university_club_path(@university, @club)
-      else
-        redirect_to university_university_event_path(@university, @event)
-      end
-    else
-      init
-      render :index
-    end
+    @event.save
+    respond_to :js
   end
 
   def destroy
