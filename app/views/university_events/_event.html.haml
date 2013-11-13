@@ -1,4 +1,4 @@
-.modal.wide-modal.hide.fade{id: "event#{event.id}_detail"}
+.modal.hide.fade{id: "event#{event.id}_detail"}
   .modal-header
     %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
     %h3= event.title
@@ -26,3 +26,5 @@
       .clearfix
   .modal-footer
     %button.btn.btn-warning{type: "button", data: {dismiss: "modal"}} Close
+    - if current_user.manage_event?(event) && controller_name=="clubs"
+      %a.btn.btn-success.edit-event{href: "#event-form#{event.id}", "data-toggle"=> "modal", id: "event#{event.id}-link"} Edit

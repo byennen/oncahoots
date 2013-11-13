@@ -33,7 +33,7 @@
       .span3
         %ul.listing
           = render partial: "update", collection: @club.updates
-          - if @club.admins.include?(current_user)
+          - if current_user.manage_club?(@sclub)
             %li.text-right{style: "border: 0px;"}
               %a{href: "#add-update", class: "btn btn-success", data: {toggle: "modal"}, style: "height: 20px; width: 100px;"} Add Newsletter
         .clearfix
@@ -97,11 +97,11 @@
                   - if membership.user.id != current_user.id
                     .left2= link_to "Delete", university_club_membership_path(@university, @club, membership.id), method: :delete, class: 'btn btn-mini btn-danger', confirm: "Are you sure?"
         #mission_statement.tab_content
-          - if @club.admins.include?(current_user)
+          - if current_user.manage_club?(@club)
             .pull-right
               %a{href: "#edit_mission_statement", class: "btn btn-success chang3", data: {toggle: "modal"}, style: "margin-right: 62px; margin-top: 10px;" } Edit
           %p{style: "margin-left: 5px; margin-top: 20px;"}= @club.mission_statement
-          - if @club.admins.include?(current_user)
+          - if current_user.manage_club?(@club)
             #edit_mission_statement.modal.hide
               = simple_form_for([@university, @club]) do |f|
                 .modal-header
@@ -112,59 +112,25 @@
                 .modal-footer
                   %a{href: "#", class: "btn", data: {dismiss: "modal"}} Close
                   =f.submit "Save Mission Statement", class: "btn btn-success"
-        #calendar.tab_content
-          - if @club.admins.include?(current_user)     
-            .pull-right
-              %a{href: "#add_event", class: "btn btn-success chang3", data: {toggle: "modal"}, style: "margin-right: 62px; margin-top: 10px;"} Add Event
-            - @club.events.each do |ce|
-              %strong= "#{ce.date} #{ce.time}"
-              = ce.title
-              - if @club.admins.include?(current_user)
-                %a{href:"#edit-event-#{ce.id}", data: {toggle: "modal"}, class: "btn btn-success"} Edit
-                = link_to("Delete", university_club_club_event_path(@university, @club, ce), method: :delete, confirm: "Are you sure?")
-                .modal.hide{id: "edit-event-#{ce.id}"}
-                  = simple_form_for([@university, @club, ce], html: {class: 'form-horizontal'}) do |f|
-                    .modal-header
-                      %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
-                      %h3 Edit Event - #{ce.title}
-                    .modal-body
-                      = f.input :title
-                      = f.input :on_date, as: :string, label: "Date", input_html: {class: "datepicker", value: f.object.date}
-                      = f.input :at_time, label: "Time", as: :time, ampm: true, minute_step: 5, default: {hour: 0, minute: 0},input_html: {style: "width: 80px"}
-                      = f.input :location
-                      = f.input :description
-                      = f.input :category, as: :category
-                      = f.input :image, as: :file
-                      = f.input :university_id, collection: (University.order(:name).collect{ |c| [c.name, c.id] }), prompt: "Select University"
-                      = f.input :club_id, collection: (@university.clubs.order(:name).collect{ |c| [c.name, c.id] }), prompt: "Select Club"
-                      #display_uc
-                        = f.input :display_on_uc, inline_label: 'Add to University Calendar?', label: false, as: :boolean
-                        = f.input :free_food, inline_label: 'Free Food Event?', label: false, as: :boolean
-                      .clearfix
-                    .modal-footer
-                      = f.submit "Save Event", class: "btn btn-success"
-          - if @club.admins.include?(current_user)
-            #add_event.modal.hide
-              = simple_form_for([@university, @club, Event.new], html: {class: 'form-horizontal'}) do |f|
-                .modal-header
-                  %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
-                  %h3 Add Event
-                .modal-body
-                  = f.input :title
-                  = f.input :date, as: :string, label: "Date", input_html: {class: "datepicker"}
-                  = f.input :time, label: "Time", as: :time, ampm: true, minute_step: 5, default: {hour: 0, minute: 0},input_html: {style: "width: 80px"}
-                  = f.input :location
-                  = f.input :description, as: :text, input_html: {rows: 2}
-                  = f.input :category, as: :category
-                  = f.input :image, as: :file
-                  = f.input :university_id, collection: (University.order(:name).collect{ |c| [c.name, c.id] }), prompt: "Select University"
-                  = f.input :club_id, collection: (@university.clubs.order(:name).collect{ |c| [c.name, c.id] }), prompt: "Select Club"
-                  #display_uc
-                    = f.input :display_on_uc, inline_label: 'Add to University Calendar?', label: false, as: :boolean
-                    = f.input :free_food, inline_label: 'Free Food Event?', label: false, as: :boolean
-                  .clearfix
-                .modal-footer
-                  = f.submit "Add Event", class: "btn btn-success"
+        #calendar.tab_content.span12
+          - if current_user.member_of?(@club) || current_user.manage_club?(@lub)
+            .span11.top2  
+              .fright
+                %a#event-new-link.btn.btn-success{href: "#event-form", data: {toggle: "modal"}} Add Event
+          .span7.offset1.top2
+            %ul#events.flexisels
+              - @club.events.each do |event|
+                %li
+                  = link_to "#event#{event.id}_detail", :"data-toggle" => "modal", class: 'event-slide-item'  do
+                    = display_image_square event.image, "medium"
+                  %br
+                  %h4= event.title
+                  %p
+                    = event.date
+                    %br
+                    = event.time
+            .clearfix
+            
         #eboard.tab_content
           - if current_user.manage_club?(@club)
             .pull-right
@@ -194,7 +160,7 @@
                   .left2= admin.title
         #records.tab_content
           .pull-right
-            - if @club.admins.include?(current_user)
+            - if current_user.manage_club?(@club)
               %a{href: "#add-record", class: 'btn btn-success chang3', data: {toggle: "modal"}, style: "margin-right: 62px; margin-top: 10px;"} Add Record
           - @club.records.each do |record|
             - unless record.file.url.nil?
@@ -255,7 +221,7 @@
     .modal-footer
       = f.submit "Invite Contact", class: "btn btn-success"
 
-- if @club.admins.include?(current_user)
+- if current_user.manage_club?(@club)
   #add-update.modal.hide
     = simple_form_for Update.new, url: university_club_club_newsletters_path(@university, @club), method: :post do |f|
       .modal-header
@@ -267,7 +233,12 @@
         = f.input :body, as: :text, input_html: {cols: 800, rows: 10, class: 'span-8'}
       .modal-footer
         = f.submit "Add Newsletter", class: "btn btn-success"
-
+- if current_user.member_of?(@club) || current_user.manage_club?(@club)
+  #event-popup= render partial: "club_events/form", locals: {event: @event}
+  - @club.events.each do |event|
+    - if current_user.manage_event?(event)
+      %div{id: "event-popup#{event.id}"}= render partial: "club_events/form", locals: {event: event}
+    = render partial: "university_events/event", locals: {event: event}
 - if @club.user_id == current_user.id
   #transfer-ownership.modal.hide
     = simple_form_for @club, url: transfer_ownership_university_club_path(@university, @club), method: :post do |f|
@@ -278,6 +249,8 @@
         = f.input :user_id, collection: @club.admins, label_method: :name, value_method: :id
       .modal-footer
         = f.submit "Transfer Ownership", class: "btn btn-success"
+
+
 
 = render partial: "shared/club_message", locals: {club: @club}
 :javascript
@@ -298,13 +271,7 @@
       $(activeTab).fadeIn(); //Fade in the active content
       return false;
     });
-    $('.slider4').bxSlider({
-      slideWidth: 300,
-      minSlides: 2,
-      maxSlides: 3,
-      moveSlides: 1,
-      slideMargin: 10
-    });
+
 
     $(".update-image").click(function(){
       $("#feature-image").attr("src", $(this).data("src"));

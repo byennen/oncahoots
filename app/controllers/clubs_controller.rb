@@ -41,7 +41,7 @@ class ClubsController < ApplicationController
     @conversations = current_user.manage_club?(@club) ? @club.mailbox.inbox : current_user.conversations_for(@club)
     @requests = current_user.relationships.where(status: 'pending')
     @invitation = Invitation.new
-    
+    @event = Event.new
     Rails.logger.debug("non admins are #{@non_admins.inspect}")
   end
 
