@@ -1,0 +1,19 @@
+.modal.hide.fade{id: "event-form#{event.id}"}
+  - path = event.new_record? ? club_club_events_path(@club) : club_club_event_path(@club, event)
+  = simple_form_for event, url: path, remote: true , html: {class: 'form-horizontal'} do |f|
+    .modal-header
+      %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+      %h3= event.new_record? ? "Add Event" : "Edit Event"
+    .modal-body
+      = f.input :title
+      = f.input :on_date, as: :string, label: "Date", input_html: {class: "datepicker"}
+      = f.input :at_time, label: "Time", as: :time, ampm: true, minute_step: 5, default: {hour: 0, minute: 0},input_html: {style: "width: 80px"}
+      = f.input :location
+      = f.input :description, as: :text, input_html: {rows: 2}
+      = f.input :category, as: :category
+      = f.input :image, as: :file
+      = f.input :display_on_uc, inline_label: 'Add to University Calendar?', label: false, as: :boolean
+      = f.input :free_food, inline_label: 'Free Food Event?', label: false, as: :boolean
+    .clearfix
+    .modal-footer
+      = f.submit "Save", class: "btn btn-success"
