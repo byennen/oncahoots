@@ -11,6 +11,7 @@ class Event < ActiveRecord::Base
   scope :free_food, where(free_food: true)
   scope :non_free_food, where(free_food: !true)
   scope :display_on_university_calendar, where(display_on_wc: true)
+  scope :active, where("on_date >= ?", Date.today)
 
   validates :title, presence: true
 
