@@ -21,6 +21,12 @@ class UniversityEventsController < ApplicationController
     init
   end
 
+  def interested
+    @event = Event.find(params[:id])
+    current_user.interested_events << @event unless current_user.interested_event?(@event)
+    respond_to :js
+  end
+
   def load_events
     day=Date.strptime(params[:day],"%y%m%d")
     @events = events_of_day(day)
@@ -57,7 +63,7 @@ class UniversityEventsController < ApplicationController
 
     def ensure_user_university
       @university = University.find(params[:university_id])
-      unless current_user.university == @university
+      unless (current_user.university == @university || current_user.super_admin?)
         redirect_to university_path(params[:university_id])
       else
         return true

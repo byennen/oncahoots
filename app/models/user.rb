@@ -14,7 +14,8 @@ class User < ActiveRecord::Base
   has_many :relations, through: :relationships
   has_many :contacts, :through => :relationships, :source => :relation, :conditions => {"relationships.status" => "accepted"}
   has_many :posts
-  
+  has_many :interesteds, dependent: :destroy
+  has_many :interested_events, through: :interesteds, source: :interested_obj, source_type: "Event"
   # Creating alerts
   #has_many :alerts, as: :alertable
 
@@ -78,6 +79,10 @@ class User < ActiveRecord::Base
   def joinable?(club)
     return false if super_admin? || university_admin? || member_of?(club)
     true
+  end
+
+  def interested_event?(event)
+    interested_events.include?(event)
   end
 
   def display_city

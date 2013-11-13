@@ -6,6 +6,8 @@ class Event < ActiveRecord::Base
   belongs_to :university
   belongs_to :club
 
+  has_many :interesteds, as: :interested_obj, dependent: :destroy
+
   mount_uploader :image, ImageUploader
 
   scope :free_food, where(free_food: true)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131106035400) do
+ActiveRecord::Schema.define(:version => 20131113075151) do
 
   create_table "alert_user_notifications", :force => true do |t|
     t.integer  "alert_id"
@@ -136,6 +136,16 @@ ActiveRecord::Schema.define(:version => 20131106035400) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "interesteds", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "interested_obj_id"
+    t.string   "interested_obj_type"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
+
+  add_index "interesteds", ["user_id"], :name => "index_interesteds_on_user_id"
 
   create_table "invitations", :force => true do |t|
     t.integer  "sender_id"
