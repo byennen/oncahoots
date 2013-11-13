@@ -16,10 +16,10 @@
       = link_to "comments( <span id='post#{post.id}-cm'>#{post.comments.count}</span> )".html_safe, "#post#{post.id}-comments", :"data-toggle" => "modal", class: "green"
       - if current_user.manage_post?(post)
         = " | "
-        = link_to "edit", "#post-form#{post.id}", :"data-toggle" => "modal", class: "green"
+        = link_to "edit", "#post-form#{post.id}", :"data-toggle" => "modal", class: "green", id: "edit-post#{post.id}"
         = " | "
         = link_to "delete", post_path(post), method: :delete, remote: true, confirm: "are you sure?", class: "red"
-= render partial: "posts/form", locals: {post: post}
+%div{id: "post-popup#{post.id}"}= render partial: "posts/form", locals: {post: post}
 .modal.wide-modal.hide.fade{id: "post#{post.id}-comments"}
   .modal-header
     %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
