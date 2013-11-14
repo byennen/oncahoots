@@ -1,7 +1,7 @@
 - @events.each do |event|
   .span12.top2{style: "margin-left: -30px; width: 103%;"}
     .span12.event-item
-      .span12.left2.ev-title= link_to event.title, university_university_event_path(current_user.university, event)
+      .span12.left2.ev-title= link_to event.title, "#event#{event.id}_detail", :"data-toggle" => "modal"
       .span12.left2.bottom
         %strong Location
         = event.location
@@ -11,6 +11,7 @@
         = " "
         = event.time
       .span12.ev-description.top= event.description
+  = render partial: "university_events/event", locals: {event: event}
 - if @events.blank?
   .page-title No events found.
 

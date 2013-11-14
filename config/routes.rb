@@ -3,7 +3,11 @@ CahootsConnect::Application.routes.draw   do
   resources :universities, only: [:show] do
 
     resources :events
-    resources :university_events, :path => 'calendar', :controller => :university_events 
+    resources :university_events, :path => 'calendar', :controller => :university_events do
+      member do
+        get :interested
+      end
+    end
 
     member do
       post :create_free_food_event
@@ -27,7 +31,6 @@ CahootsConnect::Application.routes.draw   do
         get :search, on: :collection
       end
       resources :club_photos
-      resources :club_events
       resources :statuses
       resources :records
       resources :club_newsletters do
@@ -69,6 +72,7 @@ CahootsConnect::Application.routes.draw   do
     collection do
       get :auto_search
     end
+    resources :club_events, only: [:create, :update, :destroy]
   end
 
   match "/metropolitan_club", to: "metropolitan_clubs#home"

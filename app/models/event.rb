@@ -6,11 +6,14 @@ class Event < ActiveRecord::Base
   belongs_to :university
   belongs_to :club
 
+  has_many :interesteds, as: :interested_obj, dependent: :destroy
+
   mount_uploader :image, ImageUploader
 
   scope :free_food, where(free_food: true)
   scope :non_free_food, where(free_food: !true)
   scope :display_on_university_calendar, where(display_on_wc: true)
+  scope :active, where("on_date >= ?", Date.today)
 
   validates :title, presence: true
 

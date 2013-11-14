@@ -1,62 +1,35 @@
 class ClubEventsController < ApplicationController
 
-  before_filter :ensure_user_university
-  before_filter :ensure_user_club
-
-  def index
-    @club_events = @club.events.all
-  end
+  before_filter :ensure_club
 
   def create
-    @club_event = @club.events.new(params[:club_event])
-    if @club_event.save
-      respond_to do |format|
-        format.html { redirect_to university_club_path(@university, @club) }
-      end
-    end
+    @event = @club.events.new(params[:event])
+    @event.university_id = @club.university_id
+    @event.save
   end
 
   def update
-    @club_event = @club.events.find(params[:id])
-    @club_event.attributes = params[:club_event]
-    if @club_event.save
-      respond_to do |format|
-        format.html { redirect_to university_club_path(@university, @club) }
-      end
-    end
+    @event = @club.events.find(params[:id])
+    @event.update_attributes(params[:event])
   end
 
   def destroy
-    @club_event = @club.events.find(params[:id])
-    if @club_event.destroy
-      respond_to do |format|
-        format.html { redirect_to university_club_path(@university, @club) }
-      end
+    @event = @club.events.find(params[:id])
+    if @event.destroy
+      redirect_to university_club_path(@university, @club)
+    else
+      club_init
+      render :template => university_club_path(@university, @club)
     end
-  end
-
-  def show
-
   end
 
   private
-
-    def ensure_user_university
-      @university = University.find(params[:university_id])
-      unless current_user.university == @university
-        redirect_to university_path(params[:university_id])
+    def ensure_club
+      @club = Club.find params[:club_id]
+      if current_user.member_of?(@club) || current_user.manage_club?(@club)
+        true
       else
-        return true
+        redirect_to university_club_path(@university, @club), alert: "access denied."
       end
     end
-
-    def ensure_user_club
-      @club = @university.clubs.find(params[:club_id])
-      unless current_user.id == @club.user_id
-        redirect_to university_club_path(@university, @club)
-      else
-        return true
-      end
-    end
-
 end

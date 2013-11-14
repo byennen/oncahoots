@@ -1,0 +1,6 @@
+- if @event.errors.blank?
+  window.location.reload();
+- else
+  $("#event-popup").html("#{escape_javascript(render partial: 'club_events/form', locals: {event: @event})}");
+  $("#event-new-link").click();
+  $('#event-popup .datepicker').datepicker({ dateFormat: "mm/dd/yyyy" });

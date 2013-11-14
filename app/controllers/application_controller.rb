@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
         @search_date = session[:on_date]
       end
       @free_food_events = @university.events.search_date(@search_date).free_food.order(:at_time)
-      @university_events = @university.events
+      @university_events = @university.events.active
       @update = Update.new
       @clubs = @university.clubs.order(:name)
       @club ||= @university.clubs.build

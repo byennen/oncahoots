@@ -1,4 +1,5 @@
 - if @post.errors.blank?
   window.location.reload();
 - else
-  $("");
+  $("#post-popup#{@post.id}").html("#{escape_javascript(render partial: 'posts/form', locals: {post: @post})}");
+  $("#edit-post#{@post.id}").click();

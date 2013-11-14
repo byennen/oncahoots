@@ -1,4 +1,4 @@
-.modal.wide-modal.hide.fade{id: "event#{event.id}_detail"}
+.modal.hide.fade{id: "event#{event.id}_detail"}
   .modal-header
     %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
     %h3= event.title
@@ -23,6 +23,14 @@
       = event.time
       %br
       %p= event.description
-      .clearfix
+    .span5
+      .fright.interested
+        - if current_user.interested_event?(event)
+          %h5.green Interested
+        - else
+          = link_to "Interested", interested_university_university_event_path(event.university, event), remote: true, class: "btn btn-success btn-mini"
+  .clearfix
   .modal-footer
     %button.btn.btn-warning{type: "button", data: {dismiss: "modal"}} Close
+    - if current_user.manage_event?(event) && controller_name=="clubs"
+      %a.btn.btn-success.edit-event{href: "#event-form#{event.id}", "data-toggle"=> "modal", id: "event#{event.id}-link"} Edit
