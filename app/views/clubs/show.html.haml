@@ -113,7 +113,7 @@
                   %a{href: "#", class: "btn", data: {dismiss: "modal"}} Close
                   =f.submit "Save Mission Statement", class: "btn btn-success"
         #calendar.tab_content.span12
-          - if current_user.member_of?(@club) || current_user.manage_club?(@lub)
+          - if current_user.member_of?(@club) || current_user.manage_club?(@club)
             .span11.top2  
               .fright
                 %a#event-new-link.btn.btn-success{href: "#event-form", data: {toggle: "modal"}} Add Event
