@@ -1,4 +1,4 @@
 $(".left-side ul.msg li").css("background", "none");
-$("#alert-#{@alert.id}").css("background", "#ddd");
+$("#alert-#{@alert.id}").hide();
 $("#current_alert").html("#{escape_javascript(render partial: 'current_alert', object: @alert)}");
 $("#unread_alerts").html("#{@unread_alerts.size}")
