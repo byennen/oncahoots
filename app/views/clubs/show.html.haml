@@ -33,7 +33,7 @@
       .span3
         %ul.listing
           = render partial: "update", collection: @club.updates
-          - if current_user.manage_club?(@sclub)
+          - if current_user.manage_club?(@club)
             %li.text-right{style: "border: 0px;"}
               %a{href: "#add-update", class: "btn btn-success", data: {toggle: "modal"}, style: "height: 20px; width: 100px;"} Add Newsletter
         .clearfix
@@ -113,7 +113,7 @@
                   %a{href: "#", class: "btn", data: {dismiss: "modal"}} Close
                   =f.submit "Save Mission Statement", class: "btn btn-success"
         #calendar.tab_content.span12
-          - if current_user.member_of?(@club) || current_user.manage_club?(@lub)
+          - if current_user.member_of?(@club) || current_user.manage_club?(@club)
             .span11.top2  
               .fright
                 %a#event-new-link.btn.btn-success{href: "#event-form", data: {toggle: "modal"}} Add Event
