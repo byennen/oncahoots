@@ -5,6 +5,10 @@ class RegistrationsController < Devise::RegistrationsController
     super
   end
 
+  def finish
+    @user = current_user
+  end
+
   protected
 
   def after_sign_up_path_for(resource)

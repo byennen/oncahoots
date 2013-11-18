@@ -1,0 +1,49 @@
+.offset4.span4
+  .register
+    = simple_form_for(@user, :url => registration_path(:user), :html => {:class => 'login-form' }) do |f|
+      = f.error_notification
+      = display_base_errors @user
+      = f.input :first_name, :autofocus => true, :required => true, label: false, input_html: {placeholder: "first name", class: "fioled0"}
+      = f.input :last_name, :required => true, label: false, input_html: {placeholder: "last name", class: "fioled0"}
+      = f.input :email, :required => true, label: false, input_html: {placeholder: "email", class: "fioled0"}
+      = f.input :password, :required => true, label: false, input_html: {placeholder: "password", class: "fioled0"}
+      = f.input :password_confirmation, :required => true, label: false, input_html: {placeholder: "password confirmation", class: "fioled0"}
+      .clearfix
+      = f.select :university_id, options_from_collection_for_select(University.all.sort_by(&:name), :id, :name), prompt: "University"
+      .clearfix
+      %label.left
+      %span.left Current City
+      = f.select :city_id, options_for_select(City.order(:name).collect{ |c| [c.name, c.id] } + ["Other"]), prompt: "Current City"
+      = f.select :graduation_year, options_for_select(2020.downto(1940).to_a), { prompt: "Graduation year", class: "fioled0" } 
+      .clearfix
+      = f.input :major, label: false, input_html: {placeholder: "major", class: "fioled0"}
+      = f.input :double_major, label: false, input_html: {placeholder: "double major", class: "fioled0"}
+      .clearfix
+      = f.check_box :alumni, class: "checkb"
+      %span Sign up As Alumni
+      .clearfix
+      #professional_fields.hide
+        %span.left Professional Field
+        = f.select :professional_field_id, options_from_collection_for_select(ProfessionalField.all.sort_by(&:name), :id, :name)
+
+      %button.btn.btn-success.btn4.chang6 Register
+      
+      %strong
+        .left
+          = link_to "Forgot your password?", new_password_path(resource_name)
+          &nbsp;
+          = link_to "Sign in", new_session_path(resource_name)
+          .clearfix
+
+:javascript
+  $(document).ready(function(){
+    $("#user_graduation_year").change(function(){
+      if($(this).val() < "#{Date.today.year}"){
+        $("#user_alumni").prop('checked', true);
+        $("#professional_fields").show();
+      }else{
+        $("#user_alumni").prop('checked', false);
+        $("#professional_fields").hide();
+      }
+    });
+  });

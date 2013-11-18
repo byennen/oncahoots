@@ -1,4 +1,6 @@
 CahootsConnect::Application.routes.draw   do
+
+  match '/auth/:provider/callback' => 'authentications#create'
   resources :cities
   resources :universities, only: [:show, :update] do
 
@@ -101,10 +103,12 @@ CahootsConnect::Application.routes.draw   do
   get '/search/event', to: "search#event", as: "search_event"
 
   devise_for :users, :controllers => { :registrations => "registrations", 
-    :sessions => "sessions", omniauth_callbacks: 'omniauth_callbacks' }
+    :sessions => "sessions"}
   
+  get 'registrations/finish', to: "registrations#finish"
   devise_scope :user do
     get "sign_out", :to => "sessions#destroy"
+    get "finish_signup", to: "registrations#finish"
   end
 
   resources :users do

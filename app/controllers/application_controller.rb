@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
+  before_filter :check_completed_info
   before_filter :load_data
   helper_method :load_university_data, :return_auto_json
 
@@ -55,5 +56,9 @@ class ApplicationController < ActionController::Base
     respond_to do |format|
       format.json {render json: results}
     end
+  end
+
+  def check_completed_info
+    redirect_to registrations_finish_path unless current_user.valid?
   end
 end
