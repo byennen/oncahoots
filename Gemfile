@@ -22,6 +22,7 @@ gem 'tagsinput-rails'
 gem 'thin'
 gem 'friendly_id'
 gem 'bootstrap-generators', '=3.0.0'
+gem 'omniauth-linkedin-oauth2'
 
 #image uploads
 gem "rmagick", '>= 2.13.2'
