@@ -30,7 +30,6 @@
           %ul.listing.span11
             = render partial: 'update', collection: @updates
         .span12.no-lmar
-          - new_update = @metropolitan_club.updates.build
           - if current_user.manage_club?(@metropolitan_club)
             %a{href: "#update-form", data: {toggle: "modal"}, class: "btn btn-success fright"} Post Announcement
 .clearfix
@@ -50,7 +49,7 @@
         %a.btn.btn-success.fright{href: "#my_photos", :"data-toggle" => "modal"} My Photos
 
 .clearfix
-- new_update = @metropolitan_club.updates.build
+
 .row-fluid
   .container
     .offset2.span10
@@ -151,6 +150,7 @@
     .span12
       .seperator
 .clearfix
+- new_update = @metropolitan_club.updates.build
 = render partial: 'updates/form', locals: {update: new_update}
 #post-popup= render partial: 'posts/form', locals: {post: Post.new}
 

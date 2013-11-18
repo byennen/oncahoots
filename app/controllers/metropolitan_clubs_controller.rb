@@ -62,6 +62,7 @@ class MetropolitanClubsController < ApplicationController
       @leaderships = @metropolitan_club.memberships.where(admin: true)
       @my_photos = @metropolitan_club.club_photos.by_user(current_user)
       @updates = @metropolitan_club.updates
+      @updateable = @metropolitan_club
       @posts = @metropolitan_club.posts
       @conversations = current_user.manage_club?(@metropolitan_club) ? @metropolitan_club.mailbox.inbox : current_user.conversations_for(@metropolitan_club)
     end 
