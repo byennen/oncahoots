@@ -11,7 +11,7 @@ describe ClubsController do
 
     before do
       sign_in user
-      get :show, id: club.id, university_id: university.id
+      get :show, id: club.slug, university_id: university.id
     end
 
     it "should assign university" do
