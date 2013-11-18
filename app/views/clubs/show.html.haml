@@ -16,7 +16,7 @@
             %a.btn.btn-success{href: "#invite-contact", data: {toggle: "modal"}} Invite Contacts
       .span12
         .top4.fright{style: "margin-right: 0"}
-          - if current_user.super_admin? || current_user.university_admin? || @club.admins.include?(current_user)
+          - if current_user.manage_club?(@club)
             = link_to "Edit", edit_university_club_path(@university, @club), class: "btn btn-success"
 .clearfix
 .row-fluid
@@ -235,10 +235,11 @@
         = f.submit "Add Newsletter", class: "btn btn-success"
 - if current_user.member_of?(@club) || current_user.manage_club?(@club)
   #event-popup= render partial: "club_events/form", locals: {event: @event}
-  - @club.events.each do |event|
-    - if current_user.manage_event?(event)
-      %div{id: "event-popup#{event.id}"}= render partial: "club_events/form", locals: {event: event}
-    = render partial: "university_events/event", locals: {event: event}
+- @club.events.each do |event|
+  - if current_user.manage_event?(event)
+    %div{id: "event-popup#{event.id}"}= render partial: "club_events/form", locals: {event: event}
+  = render partial: "university_events/event", locals: {event: event}
+
 - if @club.user_id == current_user.id
   #transfer-ownership.modal.hide
     = simple_form_for @club, url: transfer_ownership_university_club_path(@university, @club), method: :post do |f|

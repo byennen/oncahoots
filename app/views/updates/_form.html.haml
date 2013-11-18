@@ -2,7 +2,7 @@
   .modal-header
     %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
     %h3 Post Announcement
-  = simple_form_for [@metropolitan_club, update] do |f|
+  = simple_form_for [@updateable, update] do |f|
     .modal-body
       = f.input :headline
       = f.input :image

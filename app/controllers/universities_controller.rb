@@ -49,4 +49,10 @@ class UniversitiesController < ApplicationController
     universities = University.where("lower(name) like ?", "%#{params[:term].downcase}%")
     return_auto_json(universities)
   end
+
+  def update
+    @university = University.find params[:id]
+    @university.update_attributes(params[:university])
+    redirect_to university_path(@university)
+  end
 end

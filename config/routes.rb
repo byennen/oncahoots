@@ -1,6 +1,6 @@
 CahootsConnect::Application.routes.draw   do
   resources :cities
-  resources :universities, only: [:show] do
+  resources :universities, only: [:show, :update] do
 
     resources :events
     resources :university_events, :path => 'calendar', :controller => :university_events do

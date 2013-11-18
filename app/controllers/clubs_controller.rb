@@ -32,17 +32,21 @@ class ClubsController < ApplicationController
 
   def show
     @university = University.find(params[:university_id])
-    @club = Club.find(params[:id])
-    @membership = Membership.new
-    @members = @club.users
-    @memberships = @club.memberships
-    @current_membership = @club.memberships.find_by_user_id(current_user.id)
-    @admins = @club.memberships.where(admin: true)
-    @conversations = current_user.manage_club?(@club) ? @club.mailbox.inbox : current_user.conversations_for(@club)
-    @requests = current_user.relationships.where(status: 'pending')
-    @invitation = Invitation.new
-    @event = Event.new
-    Rails.logger.debug("non admins are #{@non_admins.inspect}")
+    @club = @university.clubs.find_by_slug(params[:id])
+    if @club
+      @membership = Membership.new
+      @members = @club.users
+      @memberships = @club.memberships
+      @current_membership = @club.memberships.find_by_user_id(current_user.id)
+      @admins = @club.memberships.where(admin: true)
+      @conversations = current_user.manage_club?(@club) ? @club.mailbox.inbox : current_user.conversations_for(@club)
+      @requests = current_user.relationships.where(status: 'pending')
+      @invitation = Invitation.new
+      @event = Event.new
+      Rails.logger.debug("non admins are #{@non_admins.inspect}")
+    else
+      redirect_to root_path, alert: "Club not found"
+    end
   end
 
   def new
