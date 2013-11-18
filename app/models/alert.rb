@@ -8,14 +8,23 @@ class Alert < ActiveRecord::Base
 
   # TODO: Need to find a better way long term. - jkr
   def self.create_profile_update(user, params)
-    Rails.logger.debug("params are #{params.inspect}")
+    skills = []
     params.each do |key, value|
-      k = key.gsub("_attributes", "")
-      updated_attribute = k.split("_").join(" ").capitalize
-      if @alert = self.create({alertable_id: user.id, alertable_type: 'User', message: "has updated their #{updated_attribute} profile"})
-        user.contacts.each do |contact|
-          AlertUserNotification.create({user_id: contact.id, alert_id: @alert.id})
-        end
+      if %w(skill1 skill2 skill3).include?(key)
+        skills << value
+      else
+        k = key.gsub("_attributes", "")
+        updated_attribute = k.split("_").join(" ").capitalize
+        @message_value = "#{updated_attribute} profile"
+      end
+    end
+    puts "Skills are #{skills}"
+    if skills.size > 0
+      @message_value = "skills to include #{skills.join(", ")}"
+    end
+    if @alert = self.create({alertable_id: user.id, alertable_type: 'User', message: "has updated their #{@message_value}"})
+      user.contacts.each do |contact|
+        AlertUserNotification.create({user_id: contact.id, alert_id: @alert.id})
       end
     end
   end
