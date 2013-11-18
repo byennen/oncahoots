@@ -130,6 +130,10 @@ class User < ActiveRecord::Base
     has_role?(:university_admin)
   end
 
+  def admin_of?(uni)
+    university_admin? && uni.id == self.university_id
+  end
+
   def create_user_profile
     Profile.create(user_id: self.id)
   end
@@ -139,19 +143,33 @@ class User < ActiveRecord::Base
   end
 
   def manage_club?(club)
-    return true if university_admin? || club_admin?(club) || club.user_id == self.id
+    return true if admin_of?(club.university) || club_admin?(club) || club.user_id == self.id
     false
   end
 
   def manage_event?(event)
-    return true if university_admin?  || event.user == self
+    return true if admin_of?(event.university)  || event.user == self
     return true if event.club && club_admin?(event.club)
     false
   end
 
   def manage_post?(post)
-    club = post.instance_of?(Post) ? post.club : post.updateable 
-    return true if university_admin? || club_admin?(club) || post.user == self
+    return true if university_admin? || club_admin?(post.club) || post.user == self
+    false
+  end
+
+  def manage_update?(update)
+    return true if update.user == self
+    if update.updateable.is_a?(Club)
+      return true if club_admin?(update.updateable)
+    else
+      return true if manage_university?(update.updateable)
+    end
+    false
+  end
+
+  def manage_university?(uni)
+    return true if super_admin? || admin_of?(uni)
     false
   end
 

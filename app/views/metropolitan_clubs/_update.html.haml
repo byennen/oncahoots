@@ -3,7 +3,7 @@
     = display_image_square update.image, "small"
   %h4
     = update.headline.capitalize
-    - if current_user.manage_post? update
+    - if current_user.manage_update? update
       %a{href: "#update-form#{update.id}", data: {toggle: "modal"}}
         %i.icon-pencil
       = link_to "<i class='icon-remove'></i>".html_safe, metropolitan_club_update_path(@metropolitan_club, update), method: :delete, confirm: "are you sure?"

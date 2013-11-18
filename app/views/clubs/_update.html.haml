@@ -9,12 +9,12 @@
     %a{href: "#comments-#{update.id}", data: {toggle: "modal"}} #{update.comments.size} Comments
     |
     %a{href: "#add-comment-#{update.id}", data: {toggle: "modal"}} Add Comment
-    - if @club.admins.include?(current_user) || current_user.super_admin? || current_user.university_admin?
+    - if current_user.manage_update?(update)
       |
       %a{href: "#edit-update-#{update.id}", data: {toggle: "modal"}} Edit
       |
       =link_to "Delete", university_club_club_newsletter_path(@university,@club, update), method: :delete, confirm: "Are You Sure?"
-    - if @club.admins.include?(current_user)
+    - if current_user.manage_club?(@club)
       .modal.hide{id: "edit-update-#{update.id}"}
         = simple_form_for update, url: university_club_club_newsletter_path(@university, @club, update.id), method: :put do |f|
           .modal-header

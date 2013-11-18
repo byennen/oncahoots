@@ -31,7 +31,7 @@
             = render partial: 'update', collection: @updates
         .span12.no-lmar
           - new_update = @metropolitan_club.updates.build
-          - if can? :create, new_update
+          - if current_user.manage_club?(@metropolitan_club)
             %a{href: "#update-form", data: {toggle: "modal"}, class: "btn btn-success fright"} Post Announcement
 .clearfix
 .seps
