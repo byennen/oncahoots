@@ -77,7 +77,7 @@ class User < ActiveRecord::Base
   end
 
   def joinable?(club)
-    return false if super_admin? || university_admin? || member_of?(club)
+    return false if university_admin? || member_of?(club)
     true
   end
 
@@ -139,18 +139,19 @@ class User < ActiveRecord::Base
   end
 
   def manage_club?(club)
-    return true if super_admin? || university_admin? || club_admin?(club) || club.user_id = self.id
+    return true if university_admin? || club_admin?(club) || club.user_id == self.id
     false
   end
 
   def manage_event?(event)
-    return true if super_admin? || university_admin?  || event.user == self
+    return true if university_admin?  || event.user == self
     return true if event.club && club_admin?(event.club)
     false
   end
 
   def manage_post?(post)
-    return true if super_admin? || university_admin? || club_admin?(post.club) || post.user == self
+    club = post.instance_of?(Post) ? post.club : post.updateable 
+    return true if university_admin? || club_admin?(club) || post.user == self
     false
   end
 

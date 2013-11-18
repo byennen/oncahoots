@@ -10,7 +10,7 @@
           %a.btn.btn-success Upcoming Events
         %br
         .top4.fright{style: "margin-right: 0"}
-          - if current_user.super_admin? || current_user.university_admin? || @metropolitan_club.leaders.include?(current_user)
+          - if current_user.manage_club?(@metropolitan_club)
             %a#upload-banner.btn.btn-success.top4{href: "javascript:;"} Change
 
 .clearfix
@@ -107,9 +107,9 @@
           .span11#about= simple_format @metropolitan_club.description
 
         #tab3.tab_content
-          - if current_user.super_admin? || current_user.university_admin? || @metropolitan_club.leaders.include?(current_user)
+          - if current_user.manage_club?(@metropolitan_club)
             .span11.top
-              %a{href: "#add-leader", class: "btn btn-success fright", data: {toggle: "modal"}} Add Leader
+              %a{href: "#add-leader", class: "btn btn-success btn-mini fright", data: {toggle: "modal"}} Add Leader
             #add-leader.modal.hide
               = render "leader_form"
           #leaders-list.span11
