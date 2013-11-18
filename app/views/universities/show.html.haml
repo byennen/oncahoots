@@ -16,7 +16,10 @@
               = event.date
               %br
               = event.time
-         
+  .span2.no-lmar.top200
+    .fright
+      - if current_user.manage_university?(@university)
+        %a#upload-banner.btn.btn-success.btn-mini{href: "javascript:;"} Change 
   .clearfix
 - @university_events.each do |event|
   = render partial: "university_events/event", locals: {event: event}
@@ -216,6 +219,16 @@
     .clearfix
     .modal-footer
       = f.submit "Add Event", class: "btn btn-success"
+- if current_user.manage_university?(@university)
+  #banner-form.upload-form{style: "opacity: 0"}
+    = form_for @university do |f|
+      = f.file_field :banner
+#waiting.modal.hide.fade
+  .modal-header
+    %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+    %h3 Uploading..
+  .modal-body
+    %h3 Upload in process.. Please wait!
 
 :javascript
   $(document).ready(function(){
@@ -233,4 +246,14 @@
     $("#on_date").change(function(){
       $.get("#{search_events_university_path(@university)}", {on_date: $(this).val()});
     });
+
+    $("#upload-banner").click(function(){
+      $("#banner-form input").trigger("click");
+    });
+
+    $(".upload-form").on("change", "input[type=file]",function(){
+      $("a#show_waiting").click();
+      $(this).closest("form").submit();
+    });
+
   });
