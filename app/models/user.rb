@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
 
   has_one :profile
 
+  has_many :authentications, dependent: :destroy
   has_many :memberships
   has_many :clubs, :through => :memberships
   has_many :club_photos

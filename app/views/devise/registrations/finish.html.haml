@@ -1,6 +1,7 @@
 .offset4.span4
   .register
-    = simple_form_for(@user, :url => registration_path(:user), :html => {:class => 'login-form' }) do |f|
+    = simple_form_for @user, :url => registration_path(@user), :html => {:class => 'login-form' } do |f|
+      = hidden_field_tag :user_id, @user.id
       = f.error_notification
       = display_base_errors @user
       = f.input :first_name, :autofocus => true, :required => true, label: false, input_html: {placeholder: "first name", class: "fioled0"}
@@ -10,11 +11,13 @@
       = f.input :password_confirmation, :required => true, label: false, input_html: {placeholder: "password confirmation", class: "fioled0"}
       .clearfix
       = f.select :university_id, options_from_collection_for_select(University.all.sort_by(&:name), :id, :name), prompt: "University"
+      %span.help-inline.help-error= @user.errors[:university_id].first
       .clearfix
       %label.left
       %span.left Current City
-      = f.select :city_id, options_for_select(City.order(:name).collect{ |c| [c.name, c.id] } + ["Other"]), prompt: "Current City"
+      = f.select :city_id, options_for_select(City.order(:name).collect{ |c| [c.name, c.id] } + ["Other"])
       = f.select :graduation_year, options_for_select(2020.downto(1940).to_a), { prompt: "Graduation year", class: "fioled0" } 
+      %span.help-inline.help-error= @user.errors[:graduation_year].first
       .clearfix
       = f.input :major, label: false, input_html: {placeholder: "major", class: "fioled0"}
       = f.input :double_major, label: false, input_html: {placeholder: "double major", class: "fioled0"}
@@ -32,7 +35,7 @@
         .left
           = link_to "Forgot your password?", new_password_path(resource_name)
           &nbsp;
-          = link_to "Sign in", new_session_path(resource_name)
+          = link_to "Sign out", "/sign_out"
           .clearfix
 
 :javascript

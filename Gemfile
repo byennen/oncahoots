@@ -23,8 +23,7 @@ gem 'thin'
 gem 'friendly_id'
 gem 'bootstrap-generators', '=3.0.0'
 
-gem 'omniauth'
-gem 'omniauth-linkedin'
+gem 'omniauth-linkedin-oauth2'
 
 #image uploads
 gem "rmagick", '>= 2.13.2'

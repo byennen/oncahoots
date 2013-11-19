@@ -59,6 +59,6 @@ class ApplicationController < ActionController::Base
   end
 
   def check_completed_info
-    redirect_to registrations_finish_path unless current_user.valid?
+    redirect_to finish_signup_path if current_user && !current_user.valid?
   end
 end
