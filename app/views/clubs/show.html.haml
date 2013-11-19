@@ -7,7 +7,7 @@
   .span3{style: "min-height: 210px;"}
     .rig
       .top4.fright{style: "margin-right: 0"}
-        - unless @club.private? || !current_user.joinable?(@club)
+        - if !@club.private? && current_user.joinable?(@club)
           = link_to "Join Club", join_club_path(@club), class: "btn btn-success"
       %br
       .span12
@@ -15,9 +15,12 @@
           - if current_user.manage_club?(@club)
             %a.btn.btn-success{href: "#invite-contact", data: {toggle: "modal"}} Invite Contacts
       .span12
-        .top4.fright{style: "margin-right: 0"}
+        .top4.fright{style: "margin-right: 0; min-height: 50px;"}
           - if current_user.manage_club?(@club)
             = link_to "Edit", edit_university_club_path(@university, @club), class: "btn btn-success"
+      .span12
+        .top4.fright{style: "margin-right: 0"}
+          = link_to "Transactions", club_transactions_path(@club), class: "btn btn-success"
 .clearfix
 .row-fluid
   .container

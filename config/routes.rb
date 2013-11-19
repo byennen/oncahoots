@@ -75,6 +75,8 @@ CahootsConnect::Application.routes.draw   do
       get :auto_search
     end
     resources :club_events, only: [:create, :update, :destroy]
+    resources :transactions, only: [:index]
+    resources :items
   end
 
   match "/metropolitan_club", to: "metropolitan_clubs#home"
