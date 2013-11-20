@@ -5,22 +5,25 @@
       Transactions
     .span3.no-lmar
       .fright
-        = link_to "New Category", "#item-popup", "data-toggle" => "modal",class: "btn btn-success"
+        = link_to "New Item", "#item-form", "data-toggle" => "modal", class: "btn btn-success", id: "new-item-link"
+  .span12.bottom2.top2.no-lmar
+    - @items.each do |item|
+      .span12.no-lmar
+        .span12.event-item
+          .span12.left
+            %h3= item.name
+          .span12
+            = item.description
+          .span12
+            - item.options.each do |opt|
+              %strong= opt.name
+              = opt.value
+          .span6
+            .top3.green transactions
+          .span6.no-lmar
+            .fright
+              %strong= item.display_price
+              %br
+              = link_to "Purchase", "#", class: "btn btn-success"
 
-#item-popup.modal.hide.fade
-  .modal-header
-    %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
-    %h3 Add Contact
-  = simple_nested_form_for [@club, @item] do |f|
-    .modal-body
-      = f.input :name
-      = f.input :description, input_html: {class: 'span5', rows: 5}
-      = f.input :price
-      %h4 Additional Options
-      = f.simple_fields_for :options do |fo|
-        .span3= fo.input :name, input_html: {class: 'span2'}
-        .span2.no-lmar= fo.input :value, input_html: {class: 'span2'}
-      = f.link_to_add "Add options", :options, class: "fleft"
-    .clearfix
-    .modal-footer
-      = f.submit "Save", class: "btn btn-primary"
+#item-popup=render partial: "items/form", locals: {item: @item}

@@ -1,0 +1,17 @@
+.modal.hide.fade{id: "item-form#{item.id}"}
+  .modal-header
+    %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+    %h3 Add Contact
+  = simple_nested_form_for [@club, item], remote: true do |f|
+    .modal-body
+      = f.input :name
+      = f.input :description, input_html: {class: 'span5', rows: 5}
+      = f.input :price
+      %h4 Additional Options
+      = f.simple_fields_for :options do |fo|
+        .span3= fo.input :name, input_html: {class: 'span2'}
+        .span2.no-lmar= fo.input :value, input_html: {class: 'span2'}
+      = f.link_to_add "Add options", :options, class: "fleft"
+    .clearfix
+    .modal-footer
+      = f.submit "Save", class: "btn btn-success"
