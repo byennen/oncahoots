@@ -184,6 +184,10 @@ class User < ActiveRecord::Base
     cons
   end
 
+  def customer_of(club)
+    customers.where(club_id: club.id).first
+  end
+
   class << self
 
     def search_all(params)

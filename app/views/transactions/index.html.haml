@@ -24,6 +24,6 @@
             .fright
               %strong= item.display_price
               %br
-              = link_to "Purchase", "#", class: "btn btn-success"
-
+              = link_to "Purchase", "#card-form#{item.id}", "data-toggle" => "modal", class: "btn btn-success"
+      = render partial: "checkout", locals: {item: item}
 #item-popup=render partial: "items/form", locals: {item: @item}

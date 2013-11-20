@@ -1,0 +1,18 @@
+.modal.hide.fade{id: "card-form#{item.id}"}
+  .modal-header
+    %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+    %h3 Add Contact
+  = form_for :transactions, html: {class: "card-form", id: "transaction-#{item.id}"} do |f|
+    .modal-body
+      .stripe_error
+      - if customer = current_user.customer_of(item.club)
+        - customer.stripe_customer.cards.all.each do |card|
+          = "#{card.type} ... #{card.last4}"
+      = hidden_field_tag :stripe_card_token
+      = text_field_tag :card_number, nil, name: nil, placeholder: "Card Number"
+      = text_field_tag :card_code, nil, name: nil, placeholder: "CVC"
+      = select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"}
+      = select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"}
+    .clearfix
+    .modal-footer
+      = f.submit "Save", class: "btn btn-success"
