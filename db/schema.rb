@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131119091150) do
+ActiveRecord::Schema.define(:version => 20131120063610) do
 
   create_table "alert_user_notifications", :force => true do |t|
     t.integer  "alert_id"
@@ -92,6 +92,17 @@ ActiveRecord::Schema.define(:version => 20131119091150) do
     t.datetime "created_at",                 :null => false
     t.datetime "updated_at",                 :null => false
   end
+
+  create_table "customers", :force => true do |t|
+    t.integer  "club_id"
+    t.integer  "user_id"
+    t.string   "stripe_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "customers", ["club_id"], :name => "index_customers_on_club_id"
+  add_index "customers", ["user_id"], :name => "index_customers_on_user_id"
 
   create_table "educations", :force => true do |t|
     t.integer  "profile_id"

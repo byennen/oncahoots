@@ -249,6 +249,8 @@ GEM
     rdoc (3.12.2)
       json (~> 1.4)
     remotipart (1.2.1)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     rmagick (2.13.2)
     rolify (3.2.0)
     rspec (2.14.1)
@@ -286,6 +288,9 @@ GEM
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
+    stripe (1.8.8)
+      multi_json (>= 1.0.4, < 2)
+      rest-client (~> 1.4)
     tagsinput-rails (1.3.3.1)
       railties (~> 3.1)
     thin (1.5.1)
@@ -360,6 +365,7 @@ DEPENDENCIES
   sass-rails (~> 3.2.3)
   shoulda-matchers
   simple_form
+  stripe
   tagsinput-rails
   thin
   uglifier (>= 1.0.3)
