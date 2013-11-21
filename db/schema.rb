@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131121033354) do
+ActiveRecord::Schema.define(:version => 20131121070937) do
 
   create_table "alert_user_notifications", :force => true do |t|
     t.integer  "alert_id"
@@ -339,6 +339,15 @@ ActiveRecord::Schema.define(:version => 20131121033354) do
     t.string   "uid"
     t.datetime "created_at",             :null => false
     t.datetime "updated_at",             :null => false
+  end
+
+  create_table "transactions", :force => true do |t|
+    t.integer  "item_id"
+    t.integer  "quantity"
+    t.integer  "customer_id"
+    t.string   "stripe_transaction_id"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
   end
 
   create_table "universities", :force => true do |t|

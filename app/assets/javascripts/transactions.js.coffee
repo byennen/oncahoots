@@ -6,13 +6,16 @@ jQuery ->
 transaction =
   setupForm: ->
     $('.card-form').submit ->
-      $('input[type=submit]').attr('disabled', true)
-      if $('#card_number').length
-        $(this).addClass("current_form")
-        transaction.processCard()
-        false
-      else
+      if $(".update_card").length and not $(".update_card").is(":checked")
         true
+      else
+        $('input[type=submit]').attr('disabled', true)
+        if $('#card_number').length
+          $(this).addClass("current_form")
+          transaction.processCard()
+          false
+        else
+          true
   
   processCard: ->
     card =
