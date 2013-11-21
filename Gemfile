@@ -25,6 +25,7 @@ gem 'bootstrap-generators', '=3.0.0'
 
 gem 'omniauth-linkedin-oauth2'
 gem 'stripe'
+gem 'omniauth-stripe-connect'
 
 #image uploads
 gem "rmagick", '>= 2.13.2'

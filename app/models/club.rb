@@ -2,7 +2,6 @@ class Club < ActiveRecord::Base
   belongs_to :university
 
   has_many :memberships
-
   has_many :users, :through => :memberships, :uniq => true
   has_many :club_photos
   has_many :events
@@ -14,6 +13,8 @@ class Club < ActiveRecord::Base
   has_many :items
   has_many :customers
   
+  has_one :stripe_credential, as: :owner
+
   attr_accessible :category, :description, :name, :university_id, :image,
                   :remote_image_url, :user_id, :slug, :private, :mission_statement
 

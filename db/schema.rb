@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131120063610) do
+ActiveRecord::Schema.define(:version => 20131121033354) do
 
   create_table "alert_user_notifications", :force => true do |t|
     t.integer  "alert_id"
@@ -329,6 +329,16 @@ ActiveRecord::Schema.define(:version => 20131120063610) do
     t.string   "status"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "stripe_credentials", :force => true do |t|
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.string   "stripe_publishable_key"
+    t.string   "token"
+    t.string   "uid"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
   end
 
   create_table "universities", :force => true do |t|

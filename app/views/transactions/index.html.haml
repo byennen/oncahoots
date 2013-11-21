@@ -1,12 +1,17 @@
 = content_for :header do
   .span12.bottom2.top2
-    .span9.page-title.no-lmar
+    .span12.page-title.no-lmar
       = @club.name
       Transactions
-    .span3.no-lmar
+    .span12.no-lmar
       .fright
-        = link_to "New Item", "#item-form", "data-toggle" => "modal", class: "btn btn-success", id: "new-item-link"
-  .span12.bottom2.top2.no-lmar
+        - if current_user.manage_club?(@club)
+          = link_to "New Item", "#item-form", "data-toggle" => "modal", class: "btn btn-success", id: "new-item-link"
+          - if @club.stripe_credential
+            .green connected with stripe
+          - else
+            = link_to "Connect Stripe", "/auth/stripe_connect?club_id=#{@club.id}", class: "btn btn-success"
+    .span12.bottom2.top2.no-lmar
     - @items.each do |item|
       .span12.no-lmar
         .span12.event-item

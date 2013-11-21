@@ -1,7 +1,7 @@
 .modal.hide.fade{id: "card-form#{item.id}"}
   .modal-header
     %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
-    %h3 Add Contact
+    %h3 Checkout
   = form_for :transactions, html: {class: "card-form", id: "transaction-#{item.id}"} do |f|
     .modal-body
       .stripe_error
