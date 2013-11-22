@@ -12,7 +12,8 @@ class Club < ActiveRecord::Base
   has_many :posts
   has_many :items
   has_many :customers
-  
+  has_many :transactions, through: :items
+
   has_one :stripe_credential, as: :owner
 
   attr_accessible :category, :description, :name, :university_id, :image,

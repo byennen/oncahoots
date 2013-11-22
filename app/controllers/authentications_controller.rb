@@ -47,13 +47,14 @@ class AuthenticationsController < ApplicationController
       club_id = request.env['omniauth.params']['club_id']
       club = Club.find_by_id club_id
       if current_user && club && current_user.manage_club?(club)
-        credential = club.build_stripe_credential(uid: omniauth[:uid], 
-          token: omniauth["credentials"]["token"], 
-          stripe_publishable_key: omniauth["info"]["stripe_publishable_key"]
-        )
+        credential = club.stripe_credential || club.build_stripe_credential
+        credential.uid = omniauth[:uid]
+        credential.token = omniauth["credentials"]["token"]
+        credential.stripe_publishable_key = omniauth["info"]["stripe_publishable_key"]
         credential.save
         redirect_to club_transactions_path(club)
+      else
+        redirect_to root_path
       end
-      redirect_to root_path
     end
 end

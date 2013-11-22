@@ -1,15 +1,20 @@
-.modal.hide.fade{id: "card-form#{item.id}"}
+.modal.wide-modal.hide.fade{id: "card-form#{item.id}"}
   .modal-header
     %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
     %h3 Checkout
-  = form_for Transaction.new, html: {class: "card-form", id: "transaction-#{item.id}"} do |f|
+  = form_for Transaction.new(quantity: 1), html: {class: "card-form", id: "transaction-#{item.id}"} do |f|
     .modal-body
-      %h4= item.name
+      .bottom
+        Item:
+        %strong= item.name
       Quantity
-      = f.text_field :quantity, class: "span2", placeholder: "1"
-      - if current_user.customer_of(item.club)
-        = check_box_tag :update_card
-        Update Card?
+      = f.text_field :quantity, class: "span1", placeholder: "1"
+      - if customer = current_user.customer_of(item.club)
+        %br
+        = "Existing Card: **** **** **** #{customer.last4}"
+        .bottom2
+          = check_box_tag :update_card
+          Update Card?
       .new-card{class: "#{'hide' if current_user.customer_of(item.club)}"}
         .stripe_error
         = text_field_tag :card_number, nil, name: nil, placeholder: "Card Number"
@@ -17,7 +22,7 @@
         = select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"}
         = select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year", class: "span2"}
       = hidden_field_tag :stripe_card_token
-      = hidden_field_tag :item_id, item.id
+      = f.hidden_field :item_id, value: item.id
     .clearfix
     .modal-footer
-      = f.submit "Save", class: "btn btn-success"
+      = f.submit "Checkout", class: "btn btn-success"
