@@ -9,8 +9,10 @@
       = f.input :price
       %h4 Additional Options
       = f.simple_fields_for :options do |fo|
-        .span3= fo.input :name, input_html: {class: 'span2'}
-        .span2.no-lmar= fo.input :value, input_html: {class: 'span2'}
+        .span5.no-lmar
+          .span2.no-lmar= fo.input :name, input_html: {class: 'span2'}
+          .span2= fo.input :value, input_html: {class: 'span2'}
+          .span1= fo.link_to_remove "<i class='icon-remove'></i>".html_safe
       = f.link_to_add "Add options", :options, class: "fleft"
     .clearfix
     .modal-footer

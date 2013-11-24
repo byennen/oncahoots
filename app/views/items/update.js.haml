@@ -1,0 +1,5 @@
+- if @item.errors.blank?
+  window.location.reload();
+- else
+  $("#item-popup#{@item.id}").html("#{escape_javascript(render partial: 'items/form', locals: {item: @item})}");
+  $("#edit-item-link#{@item.id}").click();

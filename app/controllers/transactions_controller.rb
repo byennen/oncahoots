@@ -41,7 +41,7 @@ class TransactionsController < ApplicationController
       if current_user.manage_club?(@club)
         return @club.transactions
       else
-        return current_user.customer_of(@club).transactions
+        return current_user.customer_of(@club) ? current_user.customer_of(@club).transactions : []
       end
     end
 end

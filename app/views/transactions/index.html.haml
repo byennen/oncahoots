@@ -4,7 +4,7 @@
       .page-title.no-lmar
         = @club.name
         Transactions
-      .left.top= link_to "transactions list", "#transactions-list", "data-toggle" => "modal", class: "green"
+      .left.top= link_to "transactions history", "#transactions-list", "data-toggle" => "modal", class: "green"
     .span12.no-lmar
       .fright
         - if current_user.manage_club?(@club)
@@ -12,26 +12,33 @@
           - caption = @club.stripe_credential ? "Refesh Connect Stripe" : "Connect With Stripe"
           = link_to caption, "/auth/stripe_connect?club_id=#{@club.id}", class: "btn btn-success"
     .span12.bottom2.top2.no-lmar
-      - if @club.stripe_credential
-        - @items.each do |item|
-          .span12.no-lmar
-            .span12.event-item
-              .span12.left
-                %h3= item.name
-              .span12
-                = item.description
-              .span12
-                - item.options.each do |opt|
-                  %strong= opt.name
-                  = opt.value
-              .span6
-                .top3.green=  "#{item.transactions.count} transactions"
-              .span6.no-lmar
-                .fright
-                  %strong= item.display_price
-                  %br
+      - @items.each do |item|
+        .span12.no-lmar
+          .span12.event-item
+            .span12.left
+              %h3= item.name
+            .span12
+              = item.description
+            .span12
+              - item.options.each do |opt|
+                %strong= opt.name
+                = opt.value
+            .span6
+              .top3.green
+                =  "#{item.transactions.count} transactions"
+                - if current_user.manage_club?(@club)
+                  = " | "
+                  = link_to "edit", "#item-form#{item.id}", "data-toggle" => "modal", id: "edit-item-link#{item.id}"
+            .span6.no-lmar
+              .fright
+                %strong= item.display_price
+                %br
+                - if @club.stripe_credential
                   = link_to "Purchase", "#card-form#{item.id}", "data-toggle" => "modal", class: "btn btn-success"
-          = render partial: "checkout", locals: {item: item}
+        = render partial: "checkout", locals: {item: item}
+- if current_user.manage_club?(@club)
+  - @items.each do |item|
+    %div{id: "item-popup#{item.id}"}= render partial: "items/form", locals: {item: item}
 #item-popup=render partial: "items/form", locals: {item: @item}
 = hidden_field_tag :public_key, @club.stripe_credential.stripe_publishable_key if @club.stripe_credential
 
@@ -40,7 +47,7 @@
     %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
     %h3 Transaction History
     .modal-body
-      .span9.event-item.no-lmar
+      .span8.event-item.no-lmar
         .span3
           %strong Item
         .span2.no-lmar
