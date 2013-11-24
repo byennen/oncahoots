@@ -1,4 +1,4 @@
 .span8.event-item.no-lmar
-  .span3= transaction.item.name
+  .span3= transaction.item ? transaction.item.name : "Donate"
   .span2.no-lmar= transaction.quantity
-  .span3.no-lmar= transaction.customer.user.name
+  .span3.no-lmar= transaction.description

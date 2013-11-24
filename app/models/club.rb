@@ -12,7 +12,7 @@ class Club < ActiveRecord::Base
   has_many :posts
   has_many :items
   has_many :customers
-  has_many :transactions, through: :items
+  has_many :transactions
 
   has_one :stripe_credential, as: :owner
 

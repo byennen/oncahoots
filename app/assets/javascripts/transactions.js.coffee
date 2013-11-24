@@ -1,29 +1,29 @@
 jQuery ->
   Stripe.setPublishableKey($('#public_key').val())
   $('input[type=submit]').attr('disabled', false)
-  $(".new-card").removeClass("hide") if $("#update_card").is(":checked")
+  $(".new-card").removeClass("hide") if $(".update_card").is(":checked")
   transaction.setupForm()
 
 transaction =
   setupForm: ->
     $('.card-form').submit ->
-      if $("#update_card").length and not $("#update_card").is(":checked")
+      if $(this).find(".update_card").length and not $(this).find(".update_card").is(":checked")
         true
       else
         $('input[type=submit]').attr('disabled', true)
-        if $('#card_number').length
+        if $(this).find('#card_number').length
           $(this).addClass("current_form")
           transaction.processCard()
           false
         else
           true
-    $("#update_card").click ->
+    $(".update_card").click ->
       if $(this).is(":checked")
-        $(".new-card").removeClass("hide")
+        $(this).closest("form").find(".new-card").removeClass("hide")
       else
-        $(".new-card").addClass("hide")
+        $(this).closest("form").find(".new-card").addClass("hide")
 
-    $("#transaction_quantity").keyup (e)->
+    $("#transaction_quantity, #donate-form #amount").keyup (e)->
       value = $(this).val();
       $(this).val(value.slice(0,-1)) if isNaN(value)
       qty = parseInt($(this).val())
