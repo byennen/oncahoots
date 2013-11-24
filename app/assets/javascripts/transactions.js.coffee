@@ -26,7 +26,13 @@ transaction =
     $("#transaction_quantity").keyup (e)->
       value = $(this).val();
       $(this).val(value.slice(0,-1)) if isNaN(value)
-      $(this).val("1") if parseInt($(this).val()) < 1 
+      qty = parseInt($(this).val())
+      qty = 1 if qty < 1
+      price = $(this).closest("form").find("#item_price").val()
+      unless isNaN(qty)
+        $(this).val(qty.toString())
+        price = qty*parseFloat(price)
+      $(this).closest("form").find(".total-price").html("$#{price}")
 
   processCard: ->
     card =

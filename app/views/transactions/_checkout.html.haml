@@ -7,8 +7,15 @@
       .bottom
         Item:
         %strong= item.name
-      Quantity
-      = f.text_field :quantity, class: "span1", placeholder: "1"
+      .bottom
+        Price: 
+        %strong= "$#{item.price}"
+      .bottom
+        Quantity
+        = f.text_field :quantity, class: "span1", placeholder: "1"
+        %span.left
+          Total:
+          %span.total-price= "$#{item.price}" 
       - if customer = current_user.customer_of(item.club)
         %br
         = "Existing Card: **** **** **** #{customer.last4}"
@@ -28,3 +35,4 @@
     .clearfix
     .modal-footer
       = f.submit "Checkout", class: "btn btn-success"
+      = hidden_field_tag :item_price, item.price 
