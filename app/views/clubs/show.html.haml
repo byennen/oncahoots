@@ -276,7 +276,11 @@
 
 
     $(".update-image").click(function(){
-      $("#feature-image").attr("src", $(this).find("img").attr("src"));
+      src = $(this).data("src");
+      if(src==""){
+        src = "/assets/bg.png";
+      }
+      $("#feature-image").attr("src", src);
     });
 
     $(".invitation-auto").tagsInput({
