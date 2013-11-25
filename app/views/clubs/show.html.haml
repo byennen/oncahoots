@@ -28,8 +28,9 @@
             - src = @club.updates.first.image_url if @club.updates.first
           - else
             - src = @club.image_url
+          - src = "bg.png" if src.blank?
           %a.thumbnail{style: "min-height: 400px;"}
-            = image_tag src, id: "feature-image", class: "feature-image"
+            = image_tag src, id: "feature-image", class: "feature-image square cir-img", alt: ""
       .span3
         %ul.listing
           = render partial: "update", collection: @club.updates
@@ -275,7 +276,7 @@
 
 
     $(".update-image").click(function(){
-      $("#feature-image").attr("src", $(this).data("src"));
+      $("#feature-image").attr("src", $(this).find("img").attr("src"));
     });
 
     $(".invitation-auto").tagsInput({

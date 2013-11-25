@@ -23,6 +23,7 @@
             - src = @metropolitan_club.updates.first.image_url if @metropolitan_club.updates.first
           - else
             - src = @metropolitan_club.image_url
+          - src = "bg.png" if src.blank?
           %a{style: "min-height: 400px;"}
             %img#feature-image.feature-image.square.cir-img{src: src}
       .span5
