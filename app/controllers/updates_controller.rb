@@ -9,6 +9,8 @@ class UpdatesController < ApplicationController
 
   def show
     @updates = @updateable.updates.find(params[:id])
+    @src = @update.image.url
+    @src = "/essets/bg.png" if @src.blank?
     respond_to :js 
   end
 

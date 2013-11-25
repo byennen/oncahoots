@@ -17,5 +17,6 @@ class Ability
     else
       can :show, Update
     end
+    can :show, Update
   end
 end
