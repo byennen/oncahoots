@@ -1,0 +1,69 @@
+= content_for :header do
+  .span12.bottom2.top2
+    .span12
+      .page-title.no-lmar
+        = @club.name
+        Transactions
+      .left.top= link_to "transactions history", "#transactions-list", "data-toggle" => "modal", class: "green"
+    .span12.no-lmar
+      .fright
+        - if current_user.manage_club?(@club)
+          = link_to "New Item", "#item-form", "data-toggle" => "modal", class: "btn btn-success", id: "new-item-link"
+          - caption = @club.stripe_credential ? "Refesh Connect Stripe" : "Connect With Stripe"
+          = link_to caption, "/auth/stripe_connect?club_id=#{@club.id}", class: "btn btn-success"
+        - if @club.stripe_credential
+          = link_to "Donate", "#donate-form", "data-toggle" => "modal", class: "btn btn-primary"
+    .span12.bottom2.top2.no-lmar
+      - @items.each do |item|
+        .span12.no-lmar
+          .span12.event-item
+            .span12.left
+              %h3= item.name
+            .span12
+              = item.description
+            .span12
+              - item.options.each do |opt|
+                %strong= opt.name
+                = opt.value
+            .span6
+              .top3.green
+                =  "#{item.transactions.count} transactions"
+                - if current_user.manage_club?(@club)
+                  = " | "
+                  = link_to "edit", "#item-form#{item.id}", "data-toggle" => "modal", id: "edit-item-link#{item.id}"
+            .span6.no-lmar
+              .fright
+                %strong= item.display_price
+                %br
+                - if @club.stripe_credential
+                  = link_to "Purchase", "#card-form#{item.id}", "data-toggle" => "modal", class: "btn btn-success"
+        = render partial: "checkout", locals: {item: item}
+- if current_user.manage_club?(@club)
+  - @items.each do |item|
+    %div{id: "item-popup#{item.id}"}= render partial: "items/form", locals: {item: item}
+#item-popup=render partial: "items/form", locals: {item: @item}
+= hidden_field_tag :public_key, @club.stripe_credential.stripe_publishable_key if @club.stripe_credential
+
+#transactions-list.modal.wide-modal.hide.fade
+  .modal-header
+    %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+    %h3 Transaction History
+    .modal-body
+      .span8.event-item.no-lmar
+        .span2
+          %strong Item
+        .span1.no-lmar
+          %strong quantity
+        .span3.no-lmar
+          %strong Description
+        .span2.no-lame
+          %strong Status
+      - @transactions.each do |transaction|
+        %span{id: "transaction-#{transaction.id}"}= render partial: "transactions/transaction", locals: {transaction: transaction}
+      - if @transactions.blank?
+        %center No transaction
+    .clearfix
+    .modal-footer
+      %button{type: "button", class: "btn btn-warning", data: {dismiss: "modal"}} Close
+
+=render partial: "donate"

@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :interesteds, dependent: :destroy
   has_many :interested_events, through: :interesteds, source: :interested_obj, source_type: "Event"
+  has_many :customers
+  
   # Creating alerts
   #has_many :alerts, as: :alertable
 
@@ -180,6 +182,10 @@ class User < ActiveRecord::Base
       cons << conversation if conversation.recipients.include?(recipient)
     end
     cons
+  end
+
+  def customer_of(club)
+    customers.where(club_id: club.id).first
   end
 
   class << self

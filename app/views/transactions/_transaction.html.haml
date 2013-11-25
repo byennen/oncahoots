@@ -1,0 +1,10 @@
+.span8.event-item.no-lmar
+  .span2= transaction.item ? transaction.item.name : "Donate"
+  .span1.no-lmar= transaction.quantity
+  .span3.no-lmar= transaction.description
+  .span2
+    = transaction.status
+    - if current_user.manage_club?(@club) && transaction.refundable?
+      = " | "
+      = link_to "Refund", refund_club_transaction_path(@club, transaction), remote: true
+     
