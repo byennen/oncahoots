@@ -1,0 +1,1 @@
+$("#transaction-#{@transaction.id}").html("#{escape_javascript(render partial: 'transaction', locals: {transaction: @transaction})}");

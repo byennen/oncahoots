@@ -50,14 +50,16 @@
     %h3 Transaction History
     .modal-body
       .span8.event-item.no-lmar
-        .span3
+        .span2
           %strong Item
-        .span2.no-lmar
+        .span1.no-lmar
           %strong quantity
         .span3.no-lmar
           %strong Description
+        .span2.no-lame
+          %strong Status
       - @transactions.each do |transaction|
-        = render partial: "transactions/transaction", locals: {transaction: transaction}
+        %span{id: "transaction-#{transaction.id}"}= render partial: "transactions/transaction", locals: {transaction: transaction}
       - if @transactions.blank?
         %center No transaction
     .clearfix

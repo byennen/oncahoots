@@ -22,7 +22,7 @@ class Customer < ActiveRecord::Base
     description = "#{self.user.email} charge for #{quantity}x#{item.name}"
     charge = charge(amount.to_i, item.club.stripe_credential.token, description)
     if charge
-      trans = transactions.build(club_id: item.club_id, description: description, quantity: quantity, item_id: item.id, stripe_transaction_id: charge.balance_transaction)
+      trans = transactions.build(club_id: item.club_id, description: description, quantity: quantity, item_id: item.id, stripe_transaction_id: charge.id)
       trans.save
     end
   end
@@ -31,7 +31,7 @@ class Customer < ActiveRecord::Base
     description = "#{self.user.email} donate $#{amount} to #{club.name} club"
     charge = charge((amount.to_f*100).to_i, club.stripe_credential.token, description)
     if charge
-      trans = transactions.build(club_id: club.id, description: description,stripe_transaction_id: charge.balance_transaction)
+      trans = transactions.build(club_id: club.id, description: description,stripe_transaction_id: charge.id)
       trans.save
     end
   end

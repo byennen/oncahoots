@@ -79,6 +79,10 @@ CahootsConnect::Application.routes.draw   do
       collection do
         put :donate
       end
+
+      member do
+        get :refund
+      end
     end
     resources :items
   end

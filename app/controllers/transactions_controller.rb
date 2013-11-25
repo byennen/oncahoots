@@ -32,6 +32,13 @@ class TransactionsController < ApplicationController
     end
   end
 
+  def refund
+    @club = Club.find params[:club_id]
+    @transaction = @club.transactions.find(params[:id])
+    @transaction.refund!
+    respond_to :js
+  end
+
   private
 
     def customer_process
