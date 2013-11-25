@@ -1,0 +1,25 @@
+#donate-form.modal.wide-modal.hide.fade
+  .modal-header
+    %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+    %h3 Donate
+  = form_for @club, url: donate_club_transactions_path, html: {class: "card-form"} do |f|
+    .modal-body
+      Amount $
+      = text_field_tag :amount, "", class: "span2"
+      - if customer = current_user.customer_of(@club)
+        %br
+        = "Existing Card: **** **** **** #{customer.last4}"
+        .bottom2
+          = check_box_tag :update_card, "", false, class: 'update_card'
+          Update Card?
+      .new-card{class: "#{'hide' if current_user.customer_of(@club)}"}
+        .stripe_error.red
+        .span8.no-lmar
+          = text_field_tag :card_number, nil, name: nil, placeholder: "Card Number"
+          = text_field_tag :card_code, nil, name: nil, placeholder: "CVC", class: "span2"
+        .span8.no-lmar
+          = select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"}
+          = select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year", class: "span2"}
+      = hidden_field_tag :stripe_card_token
+    .modal-footer
+      = f.submit "Donate", class: "btn btn-success"

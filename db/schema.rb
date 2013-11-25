@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131118142337) do
+ActiveRecord::Schema.define(:version => 20131125050936) do
 
   create_table "alert_user_notifications", :force => true do |t|
     t.integer  "alert_id"
@@ -93,6 +93,17 @@ ActiveRecord::Schema.define(:version => 20131118142337) do
     t.datetime "updated_at",                 :null => false
   end
 
+  create_table "customers", :force => true do |t|
+    t.integer  "club_id"
+    t.integer  "user_id"
+    t.string   "stripe_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "customers", ["club_id"], :name => "index_customers_on_club_id"
+  add_index "customers", ["user_id"], :name => "index_customers_on_user_id"
+
   create_table "educations", :force => true do |t|
     t.integer  "profile_id"
     t.string   "completed"
@@ -166,6 +177,18 @@ ActiveRecord::Schema.define(:version => 20131118142337) do
     t.datetime "updated_at",   :null => false
   end
 
+  create_table "items", :force => true do |t|
+    t.integer  "club_id"
+    t.string   "name"
+    t.text     "description"
+    t.string   "status"
+    t.decimal  "price",       :precision => 8, :scale => 2
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+  end
+
+  add_index "items", ["club_id"], :name => "index_items_on_club_id"
+
   create_table "locations", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
@@ -202,6 +225,16 @@ ActiveRecord::Schema.define(:version => 20131118142337) do
   end
 
   add_index "notifications", ["conversation_id"], :name => "index_notifications_on_conversation_id"
+
+  create_table "options", :force => true do |t|
+    t.integer  "item_id"
+    t.string   "name"
+    t.string   "value"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "options", ["item_id"], :name => "index_options_on_item_id"
 
   create_table "portfolio_items", :force => true do |t|
     t.string   "file"
@@ -296,6 +329,28 @@ ActiveRecord::Schema.define(:version => 20131118142337) do
     t.string   "status"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "stripe_credentials", :force => true do |t|
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.string   "stripe_publishable_key"
+    t.string   "token"
+    t.string   "uid"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
+  end
+
+  create_table "transactions", :force => true do |t|
+    t.integer  "item_id"
+    t.integer  "quantity"
+    t.integer  "customer_id"
+    t.string   "stripe_transaction_id"
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+    t.integer  "club_id"
+    t.string   "description"
+    t.string   "status",                :default => "paid"
   end
 
   create_table "universities", :force => true do |t|

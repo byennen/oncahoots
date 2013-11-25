@@ -75,8 +75,20 @@ CahootsConnect::Application.routes.draw   do
       get :auto_search
     end
     resources :club_events, only: [:create, :update, :destroy]
+    resources :transactions, only: [:index] do
+      collection do
+        put :donate
+      end
+
+      member do
+        get :refund
+      end
+    end
+    resources :items
   end
 
+  resources :transactions, only: [:create]
+  
   match "/metropolitan_club", to: "metropolitan_clubs#home"
 
   match "/next_week/:week_start", to: "university_events#next_week"
