@@ -3,7 +3,7 @@ class AuthenticationsController < ApplicationController
   
   def create
     omniauth = request.env["omniauth.auth"]
-    access_token = omniauth['credentials']['token']
+    #puts omniauth.flatten
     if omniauth['provider']  == 'stripe_connect'
       stripe_process omniauth
     else
@@ -20,9 +20,8 @@ class AuthenticationsController < ApplicationController
 
   private
     def athenticate_process(omniauth)
-      session[:token] = access_token if omniauth['provider']=='facebook'
+
       authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
-      puts omniauth.flatten
       if authentication
         flash[:notice] = "Signed in successfully."
         sign_in_and_redirect(:user, authentication.user)      
@@ -31,13 +30,14 @@ class AuthenticationsController < ApplicationController
         flash[:notice] = "Authentication successful."
         redirect_to root_path
       else
-        puts omniauth["extra"]["raw_info"]
         user = User.find_or_create_by_email(omniauth["extra"]["raw_info"]["email"] || omniauth["extra"]["raw_info"]["emailAddress"] || "#{omniauth["extra"]["raw_info"]["name"].gsub(" ", "_").downcase}@#{omniauth['uid']}.#{omniauth['provider']}")
-
         user.first_name = omniauth["extra"]["raw_info"]["firstName"] unless user.first_name
         user.last_name = omniauth["extra"]["raw_info"]["lastName"] unless user.last_name
         user.authentications.build(:provider => omniauth ['provider'], :uid => omniauth['uid'])
         user.save(validate: false)
+    
+        user.profile.build_from_linkedin(omniauth) if omniauth["provider"]=='linkedin'
+
         flash[:notice] = "Signed in successfully."
         sign_in_and_redirect(:user, user)
       end
@@ -57,4 +57,5 @@ class AuthenticationsController < ApplicationController
         redirect_to root_path
       end
     end
+
 end

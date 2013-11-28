@@ -23,7 +23,9 @@ gem 'thin'
 gem 'friendly_id'
 gem 'bootstrap-generators', '=3.0.0'
 
-gem 'omniauth-linkedin-oauth2'
+gem 'omniauth'
+gem 'omniauth-linkedin'
+gem 'linkedin'
 gem 'stripe'
 gem 'omniauth-stripe-connect'
 
