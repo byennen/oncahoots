@@ -6,18 +6,18 @@ class Profile < ActiveRecord::Base
   has_many :experiences, dependent: :destroy
   has_many :portfolio_items, dependent: :destroy
   has_many :faqs
-  has_one :education, dependent: :destroy
+  has_many :educations, dependent: :destroy
 
   attr_accessible :user_id, :education, :experience, :skills, :skill1, :skill2, :skill3, :view_profile,
                   :experiences_attributes, :image, :portfolio_items_attributes,
                   :faqs_attributes, :hometown, :contact_requirement_attributes,
-                  :education_attributes
+                  :educations_attributes
 
   accepts_nested_attributes_for :experiences, allow_destroy: true
   accepts_nested_attributes_for :portfolio_items, allow_destroy: true
   accepts_nested_attributes_for :faqs, allow_destroy: true
   accepts_nested_attributes_for :contact_requirement
-  accepts_nested_attributes_for :education
+  accepts_nested_attributes_for :educations
 
   mount_uploader :image, ImageUploader
 
