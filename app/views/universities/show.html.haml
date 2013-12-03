@@ -7,7 +7,7 @@
       .page-title.bottom2{style: "color: #fff;"}= @university.name
       %ul#events.flexisel
         - @university_events.each do |event|
-          %li
+          %li{class: "event-#{event.id}"}
             = link_to "#event#{event.id}_detail", :"data-toggle" => "modal", class: 'event-slide-item'  do
               = display_image_square event.image, "medium"
             %br

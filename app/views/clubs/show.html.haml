@@ -124,7 +124,7 @@
           .span7.offset1.top2
             %ul#events.flexisels
               - @club.events.each do |event|
-                %li
+                %li{id: "event-#{event.id}"}
                   = link_to "#event#{event.id}_detail", :"data-toggle" => "modal", class: 'event-slide-item'  do
                     = display_image_square event.image, "medium"
                   %br
