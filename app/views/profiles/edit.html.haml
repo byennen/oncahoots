@@ -9,8 +9,8 @@
 
 .row-fluid
   .container
-    .span10.offset2.top2
-      %a.span11.top2.slide-tab.toggle{href: "javascript:;", :"data-toggle" => ".slide-content", :"data-target" => "#title"}
+    .span10.offset2
+      %a.span11.slide-tab.toggle{href: "javascript:;", :"data-toggle" => ".slide-content", :"data-target" => "#title"}
         = image_tag 'edit.png', style: "width: 40px;"
         Key Info
         %i.icon-white.icon-minus{style: "float:right; margin-top: 10px; margin-right: 10px"}
@@ -46,9 +46,10 @@
         Education
         %i.icon-white.icon-minus{style: "float:right; margin-top: 10px; margin-right: 10px"}
       #education.slide-content.hide
-        = simple_form_for [@user, @profile] do |f|
-          = f.simple_fields_for :education do |e|
-            .span11= e.select :completed, options_for_select(["Completed Additional School", "Still in Additional School"]), style: "width: 220px;"
+        ~ nested_form_for [@user, @profile] do |f|
+          - @profile.educationss.build if @profile.educations.blank?
+          = f.fields_for :educations do |e|
+            .span11= e.select :completed, options_for_select(["Completed Additional School", "Still in Additional School"], e.object.completed), style: "width: 220px;"
             %p.span11
               I studied
               = e.text_field :major, placeholder: "Study"
@@ -57,12 +58,11 @@
               = ". I graduated with a"
               = e.text_field :degree_type, placeholder: "Degree Type"
               in
-              = e.select :graduation_year, options_for_select((Date.today.year + 7).downto(1940).to_a, @user.graduation_year)
-              =". "
-              I attended
-              = e.text_field :high_school, placeholder: "High School Name"
-            .span11.fright
-              = f.submit "Save", class: "btn btn-small btn-success fright"
+              = e.select :graduation_year, options_for_select((Date.today.year + 7).downto(1940).to_a, e.object.graduation_year)
+              = e.link_to_remove "<i class='icon-remove'></i>".html_safe
+          = f.link_to_add "Add", :educations, class: "btn btn-primary btn-mini fleft", style: "margin-right: 100px"
+          .span11.fright
+            = f.submit "Save", class: "btn btn-small btn-success fright"
       %a.span11.slide-tab.toggle{href: "javascript:;", :"data-toggle" => ".slide-content", :"data-target" => "#skill"}
         = image_tag 'edit.png', style: "width: 40px;"
         Skills

@@ -24,12 +24,12 @@
       %span THU
       %span FRI
       %span SAT
-  .span12.top2.bottm2{style: "margin-left: -30px; width: 103%;"}
+  .span12.top2.bottom2{style: "margin-left: -30px; width: 103%;"}
     .day-list
       = render partial: "one_week"
   .clearfix
-  #event-list
-    = render partial: "events"
+#event-list.offset2
+  = render partial: "events"
 #event-popup= render partial: "form", locals: {event: @event}
 
 :javascript

@@ -4,6 +4,7 @@ class ClubEventsController < ApplicationController
 
   def create
     @event = @club.events.new(params[:event])
+    @event.user_id = current_user.id
     @event.university_id = @club.university_id
     @event.save
   end
