@@ -240,7 +240,7 @@
 - if current_user.member_of?(@club) || current_user.manage_club?(@club)
   #event-popup= render partial: "club_events/form", locals: {event: @event}
 - @club.events.each do |event|
-  - if current_user.manage_event?(event)
+  - if current_user.manage_event?(event) && !event.free_food?
     %div{id: "event-popup#{event.id}"}= render partial: "club_events/form", locals: {event: event}
   = render partial: "university_events/event", locals: {event: event}
 

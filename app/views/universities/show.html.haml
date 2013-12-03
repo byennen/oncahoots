@@ -23,6 +23,8 @@
   .clearfix
 - @university_events.each do |event|
   = render partial: "university_events/event", locals: {event: event}
+  - if current_user.manage_event?(event)
+    %div{id: "event-popup#{event.id}"}= render partial: "/university_events/form", locals: {event: event}
 .top2
   &nbsp
 .row-fluid
