@@ -52,11 +52,8 @@ class UniversityEventsController < ApplicationController
   def update
     @event = @university.events.find(params[:id])
     @event.attributes = params[:event]
-    if @event.save
-      respond_to do |format|
-        format.html { redirect_to university_university_events_path(@university)}
-      end
-    end
+    @event.save
+    respond_to :js
   end
 
   private

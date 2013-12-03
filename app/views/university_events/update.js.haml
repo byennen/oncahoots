@@ -1,0 +1,6 @@
+- if @event.errors.blank?
+  window.location.reload();
+- else
+  $("#event-popup#{@event.id}").html("#{escape_javascript(render partial: '/university_events/form', locals: {event: @event})}");
+  $("#event#{@event.id}-link").click();
+  $('#event-form#{@event.id} .datepicker').datepicker({ dateFormat: "mm/dd/yyyy" });
