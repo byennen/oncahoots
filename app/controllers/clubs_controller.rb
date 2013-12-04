@@ -22,7 +22,8 @@ class ClubsController < ApplicationController
 
   def message_to_club
     @club = Club.find params[:id]
-    current_user.send_message(@club, params[:message][:body], params[:message][:subject], true, params[:message][:attachment])
+    @subject = params[:message][:subject].blank? ? "[no subject]" : params[:message][:subject]
+    current_user.send_message(@club, params[:message][:body], @subject, true, params[:message][:attachment])
     redirect_to redirect_path, notice: "Message sent!"
   end
 

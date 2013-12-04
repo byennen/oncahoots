@@ -14,7 +14,7 @@ class MessagesController < ApplicationController
       end
       receipt = current_user.reply_to_conversation(@conversation, params[:message][:body])
     else
-      receipt = current_user.send_message(@recipient_list, params[:message][:body], params[:message][:subject], true, params[:message][:attachment])
+      receipt = current_user.send_message(@recipient_list, params[:message][:body], @subject, true, params[:message][:attachment])
       Rails.logger.debug("reciept is #{receipt.inspect}")
     end
     flash[:notice] = "Message sent."
@@ -80,7 +80,7 @@ class MessagesController < ApplicationController
         @recipient_list |= club.members.all
       end
     end
-
+    @subject = params[:message][:subject].blank? ? "[no subject]" : params[:message][:subject]
     Rails.logger.debug("recipients are #{@recipient_list.inspect}")
   end
 
