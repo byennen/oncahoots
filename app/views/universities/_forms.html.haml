@@ -1,0 +1,19 @@
+- if current_user.manage_university?(university)
+  #banner-form.upload-form{style: "opacity: 0"}
+    = form_for university do |f|
+      = f.file_field :banner
+  - new_update = university.updates.build
+  = render partial: 'updates/form', locals: {update: new_update}
+  #avatar-form.upload-form{style: "opacity: 0"}
+    = form_for university do |f|
+      = f.file_field :image
+  #edit-name.modal.hide.fade{tabindex: "-1", role: "dialog", :"aria-labelledby" => "myModalLabel", :"aria-hidden" => "true"}
+    ~ simple_form_for university, remote: true do |f|
+      .modal-header
+        %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+        %h3 Edit University Name
+      .modal-body
+        = f.input :name
+      .clearfix
+      .modal-footer
+        = f.submit "Save", class: "btn btn-success"

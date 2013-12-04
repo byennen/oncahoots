@@ -1,0 +1,8 @@
+.hide
+  = link_to "show", "#waiting", :"data-toggle" => "modal", id: "show_waiting"
+#waiting.modal.hide.fade
+  .modal-header
+    %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+    %h3 Uploading..
+  .modal-body
+    %h3 Upload in process.. Please wait!

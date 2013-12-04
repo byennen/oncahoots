@@ -47,7 +47,7 @@
         %i.icon-white.icon-minus{style: "float:right; margin-top: 10px; margin-right: 10px"}
       #education.slide-content.hide
         ~ nested_form_for [@user, @profile] do |f|
-          - @profile.educationss.build if @profile.educations.blank?
+          - @profile.educations.build if @profile.educations.blank?
           = f.fields_for :educations do |e|
             .span11= e.select :completed, options_for_select(["Completed Additional School", "Still in Additional School"], e.object.completed), style: "width: 220px;"
             %p.span11
@@ -162,6 +162,9 @@
 #avatar_form{style: "opacity: 0"}
   = form_for @profile, url: upload_avatar_path, method: :post do |f|
     = f.file_field :image, id: "avatar_field"
+
+= render partial: "shared/waiting_widget"
+
 :javascript
   $(document).ready(function(){
     $("#avatar").on("click", "a", function(){

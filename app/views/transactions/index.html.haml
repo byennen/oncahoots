@@ -10,7 +10,7 @@
         - if current_user.manage_club?(@club)
           = link_to "New Item", "#item-form", "data-toggle" => "modal", class: "btn btn-success", id: "new-item-link"
           - caption = @club.stripe_credential ? "Refesh Connect Stripe" : "Connect With Stripe"
-          = link_to caption, "/auth/stripe_connect?club_id=#{@club.id}", class: "btn btn-success"
+          = link_to caption, "/auth/stripe_connect?club_id=#{@club.id}", class: "btn btn-success", target: "_blank"
         - if @club.stripe_credential
           = link_to "Donate", "#donate-form", "data-toggle" => "modal", class: "btn btn-primary"
     .span12.bottom2.top2.no-lmar

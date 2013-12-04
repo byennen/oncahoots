@@ -2,6 +2,11 @@ class RegistrationsController < Devise::RegistrationsController
   layout 'sessions', except: [:edit]
   skip_before_filter :check_completed_info
 
+  def destroy
+    current_user.destroy
+    redirect_to root_path
+  end
+
   def edit
     super
   end
@@ -12,12 +17,21 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def update
-    @user = User.find params[:user_id]
-    if @user.update_attributes(params[:user])
-      sign_in(@user, bypass: true)
-      redirect_to edit_user_profile_path(current_user, current_user.profile)
+    @user = current_user
+    if @user.valid?
+      if @user.update_with_password(params[:user])
+        sign_in(@user, bypass: true)
+        redirect_to edit_user_registration_path, notice: "Update Successfully"
+      else
+        redirect_to edit_user_registration_path, alert: @user.errors.full_messages.join("<br>")
+      end
     else
-      render :finish
+      if @user.update_attributes(params[:user])
+        sign_in(@user, bypass: true)
+        redirect_to edit_user_profile_path(current_user, current_user.profile)
+      else
+        render :finish
+      end
     end
   end
 

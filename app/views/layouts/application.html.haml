@@ -19,6 +19,7 @@
       %header
         = render 'layouts/navigation'
         .row-fluid.span12.no-lmar
+          .container= render 'layouts/messages'
           .container
             .span2
             /  = render partial: "layouts/left_menu"
@@ -27,6 +28,7 @@
                 = render "layouts/search"
 
                 = yield(:header)
+
       .seps
       = yield
       .clearfix
