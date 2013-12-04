@@ -22,7 +22,8 @@ class ClubsController < ApplicationController
 
   def message_to_club
     @club = Club.find params[:id]
-    current_user.send_message(@club, params[:message][:body], params[:message][:subject], true, params[:message][:attachment])
+    @subject = params[:message][:subject].blank? ? "[no subject]" : params[:message][:subject]
+    current_user.send_message(@club, params[:message][:body], @subject, true, params[:message][:attachment])
     redirect_to redirect_path, notice: "Message sent!"
   end
 
@@ -135,9 +136,9 @@ class ClubsController < ApplicationController
       mems = @club.members
       results = []
       results |= mems.student if params[:student]
-      results |= mems.alumni if params[:member]
+      results |= mems.alumni if params[:alumni]
       results |= @club.leaders if params[:leader]
-      slugs = params[:message][:recipients].split(',')
+      slugs = params[:message][:recipients].split(',') if params[:message][:recipients]
       results |= User.where(slug: slugs).all unless slugs.blank?
       results
     end

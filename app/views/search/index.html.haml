@@ -53,6 +53,7 @@
     .modal-footer
       = f.submit "Add Contact", class: "btn btn-primary"
 
+= render partial: "shared/new_message"
 :javascript
   $(function(){
     $("#search-results").on("click", ".add_contact", function(){
