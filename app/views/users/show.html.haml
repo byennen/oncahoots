@@ -37,15 +37,15 @@
             #tab11.tab_content2
               .two-col
                 %h3 Education
-                - if @profile.education
+                - education = @profile.educations.each do |education|
                   %p
-                    I studied #{@profile.education.major} at #{@profile.education.university}.
+                    I studied #{education.major} at #{education.university}.
                     I graduated with a
-                    = "#{@profile.education.degree_type}."
+                    = "#{education.degree_type}."
                     in
-                    = "#{@profile.education.graduation_year}."
-                    - unless @profile.education.high_school.blank?
-                      I attended #{@profile.education.high_school} high school.
+                    = "#{education.graduation_year}."
+                    - unless education.high_school.blank?
+                      I attended #{education.high_school} high school.
               .two-col
                 %h3 Skills &amp; Interests
                 %p
