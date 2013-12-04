@@ -173,16 +173,6 @@
   = form_for ClubPhoto.new, url: upload_photo_metropolitan_club_path(@metropolitan_club), method: :post do |f|
     = f.file_field :image
 
-.hide
-  = link_to "show", "#waiting", :"data-toggle" => "modal", id: "show_waiting"
-
-#waiting.modal.hide.fade
-  .modal-header
-    %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
-    %h3 Uploading..
-  .modal-body
-    %h3 Upload in process.. Please wait!
-
 #my_photos.modal.hide.fade
   .modal-header
     %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
@@ -202,6 +192,7 @@
       = image_tag photo.image, alt: "", style: "max-height: 400px;"
 
 = render partial: "shared/club_message", locals: {club: @metropolitan_club}
+= render partial: "shared/waiting_widget"
 
 :javascript
   jQuery(document).ready(function() {//Default Action
