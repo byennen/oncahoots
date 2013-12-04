@@ -135,9 +135,9 @@ class ClubsController < ApplicationController
       mems = @club.members
       results = []
       results |= mems.student if params[:student]
-      results |= mems.alumni if params[:member]
+      results |= mems.alumni if params[:alumni]
       results |= @club.leaders if params[:leader]
-      slugs = params[:message][:recipients].split(',')
+      slugs = params[:message][:recipients].split(',') if params[:message][:recipients]
       results |= User.where(slug: slugs).all unless slugs.blank?
       results
     end
