@@ -2,6 +2,11 @@ class RegistrationsController < Devise::RegistrationsController
   layout 'sessions', except: [:edit]
   skip_before_filter :check_completed_info
 
+  def destroy
+    current_user.destroy
+    redirect_to root_path
+  end
+
   def edit
     super
   end
