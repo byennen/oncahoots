@@ -53,6 +53,9 @@ class UniversitiesController < ApplicationController
   def update
     @university = University.find params[:id]
     @university.update_attributes(params[:university])
-    redirect_to university_path(@university)
+    respond_to do |format|
+      format.html {redirect_to university_path(@university)}
+      format.js
+    end
   end
 end
