@@ -53,6 +53,7 @@
                     %h4= relationship.relation.name
                     %br
                     %p= relationship.relation.graduation_year
+                  = render partial: 'relationships/recommend', locals: {request: relationship}
             .right-side
               #current_request.comment-box.ne
                 = render partial: "relationships/request", locals: {request: @requests.first} unless @requests.blank?

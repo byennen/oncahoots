@@ -30,8 +30,8 @@ class Alert < ActiveRecord::Base
   end
 
   def self.create_relationship_notification(relationship)
-    alert = self.create({alertable_id: relationship.relation_id, alertable_type: 'User', message: "has accepted your contact request"})
-    AlertUserNotification.create({user_id: relationship.user_id, alert_id: alert.id})
+    alert = self.create({alertable_id: relationship.user_id, alertable_type: 'User', message: "has accepted your contact request"})
+    AlertUserNotification.create({user_id: relationship.relation_id, alert_id: alert.id})
   end
 
   def self.create_club_event_notification(club_event)

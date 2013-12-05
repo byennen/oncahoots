@@ -1,8 +1,9 @@
-%a{href: "javascript:;", style: "margin-right: 25px;"}
-  = display_image(request.relation.profile.image, "thumb")
-%a.btn.btn-success.btn-small.mar2{href: user_path(request.relation)} View Profile
-%p.comp= request.relation.name
-= request.message
+.span3
+  %a{href: "javascript:;"}
+    = display_image(request.relation.profile.image, "thumb")
+  %a.btn.btn-success.btn-mini.mar2{href: user_path(request.relation)} View Profile
+%p.left= request.relation.name
+.left= request.message
 .clearfix
 
 - if request.pending?

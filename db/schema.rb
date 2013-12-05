@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131125050936) do
+ActiveRecord::Schema.define(:version => 20131205071441) do
 
   create_table "alert_user_notifications", :force => true do |t|
     t.integer  "alert_id"
@@ -398,7 +398,7 @@ ActiveRecord::Schema.define(:version => 20131125050936) do
     t.string   "major"
     t.string   "double_major"
     t.string   "slug"
-    t.string   "city"
+    t.string   "other_city"
     t.string   "state"
     t.boolean  "alumni"
     t.integer  "professional_field_id"

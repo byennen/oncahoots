@@ -15,7 +15,8 @@
       .clearfix
       %label.left
       %span.left Current City
-      = f.select :city_id, options_for_select(City.order(:name).collect{ |c| [c.name, c.id] } + ["Other"])
+      = f.select :city_id, options_for_select(City.order(:name).collect{ |c| [c.name, c.id] } + [["Other", 0]])
+      %span#other-city= f.input :other_city, label: false, input_html: {placeholder: "other city", class: "fioled0"}
       = f.select :graduation_year, options_for_select(2020.downto(1940).to_a), { prompt: "Graduation year", class: "fioled0" } 
       %span.help-inline.help-error= @user.errors[:graduation_year].first
       .clearfix
@@ -49,4 +50,17 @@
         $("#professional_fields").hide();
       }
     });
+
+    $("#user_city_id").change(function(){
+      set_other_city();
+    });
+
+    set_other_city();
+    function set_other_city(){
+      if($("#user_city_id").val()=="0"){
+        $("#other-city").removeClass("hide");
+      }else{
+        $("#other-city").addClass("hide");
+      }
+    }
   });

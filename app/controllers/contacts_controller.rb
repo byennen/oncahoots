@@ -6,7 +6,7 @@ class ContactsController < ApplicationController
   end
 
   def search
-    contacts = current_user.relations.where("lower(first_name) like ? or lower(last_name) like ?", "%#{params[:term].downcase}%", "%#{params[:term].downcase}%")
+    contacts = current_user.contacts.where("lower(first_name) like ? or lower(last_name) like ?", "%#{params[:term].downcase}%", "%#{params[:term].downcase}%")
     return_auto_json(contacts)
   end
 

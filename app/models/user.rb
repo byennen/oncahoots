@@ -11,13 +11,13 @@ class User < ActiveRecord::Base
   has_many :memberships
   has_many :clubs, :through => :memberships
   has_many :club_photos
-  has_many :relationships
+  has_many :relationships, dependent: :destroy
   has_many :relations, through: :relationships
   has_many :contacts, :through => :relationships, :source => :relation, :conditions => {"relationships.status" => "accepted"}
   has_many :posts
   has_many :interesteds, dependent: :destroy
   has_many :interested_events, through: :interesteds, source: :interested_obj, source_type: "Event"
-  has_many :customers
+  has_many :customers, dependent: :destroy
   
   # Creating alerts
   #has_many :alerts, as: :alertable
@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
 
   attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me,
                   :university_id, :location_id, :graduation_year, :major, :double_major, :slug,
-                  :city_id, :state, :alumni, :professional_field_id, :role_ids, :university_id, :graduation_year
+                  :city_id, :other_city, :state, :alumni, :professional_field_id, :role_ids, :university_id, :graduation_year
 
   validates_presence_of :university_id, :graduation_year, :major
 
@@ -89,7 +89,7 @@ class User < ActiveRecord::Base
   end
 
   def display_city
-    city ? city.name : "Other"
+    city ? city.name : other_city
   end
 
   def display_location
