@@ -9,7 +9,9 @@
       = f.input :first_name, :autofocus => true, :required => true
       = f.input :last_name, :required => true
       = f.input :email, :required => true
-      - if current_user.alumni?
+      = f.check_box :alumni, class: "checkb"
+      %span.top2 Alumni
+      #professional_fields{class: "#{'hide' unless f.object.alumni?}"}
         = f.input :professional_field_id, collection: ProfessionalField.all.sort_by(&:name), include_blank: false, input_html: {class: 'span6'}
       = f.input :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false
       = f.input :password_confirmation, :required => false

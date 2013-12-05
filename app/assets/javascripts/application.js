@@ -23,7 +23,6 @@
 $(function() {
 
   $('#user_alumni').click(function () {
-    alert("alumni clicked");
     $("#professional_fields").toggle(this.checked);
   });
 
