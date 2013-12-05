@@ -45,5 +45,6 @@ $(function() {
 });
 
 $(document).on('ready page:load', function(){ 
-  $('.datepicker').datepicker({ format: 'mm/dd/yyyy' })
+  $('.datepicker').datepicker({ format: 'mm/dd/yyyy' });
+  $(".date-inputmask").inputmask("mm/dd/yyyy"); 
 });

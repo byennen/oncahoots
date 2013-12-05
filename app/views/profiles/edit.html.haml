@@ -93,9 +93,9 @@
               at
               = ef.text_field :company_name, placeholder: "Company Name"
               from
-              = ef.text_field :date_started, class: "datepicker", placeholder: "Date Started", value: ef.object.started
+              = ef.text_field :date_started, class: "date-inputmask", placeholder: "Date Started", value: ef.object.started
               to
-              = ef.text_field :date_ended, class: "datepicker", placeholder: "Date Ended", value: ef.object.ended
+              = ef.text_field :date_ended, class: "date-inputmask", placeholder: "Date Ended", value: ef.object.ended
               = ef.link_to_remove "<i class='icon-remove'></i>".html_safe
           = f.link_to_add "Add", :experiences, class: "btn btn-primary btn-mini fleft", style: "margin-right: 100px"
           .span11.fright
