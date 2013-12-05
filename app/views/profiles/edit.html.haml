@@ -33,7 +33,8 @@
             =". I will graduate in" unless @user.alumni?
             = f.select :graduation_year, options_for_select((Date.today.year + 7).downto(1940).to_a, @user.graduation_year), placeholder: "Grad Year"
             =". My current city"
-            = f.select :city_id, options_for_select(City.order(:name).collect{ |c| [c.name, c.id] } + ["Other"], selected: @user.city_id)
+            = f.select :city_id, options_for_select(City.order(:name).collect{ |c| [c.name, c.id] } + [["Other", 0]], selected: @user.city_id)
+            %span#other-city= f.text_field :other_city, placeholder: "Other City"
             - if @user.alumni?
               =". I work in"
               = f.select :professional_field_id, options_from_collection_for_select(ProfessionalField.all, :id, :name, @user.professional_field_id)
@@ -191,4 +192,17 @@
       $(".slide-tab").find("i").addClass("icon-minus");
       $(".slide-tab").find("i").removeClass("icon-plus");
     });
+
+    $("#user_city_id").change(function(){
+      set_other_city();
+    });
+
+    set_other_city();
+    function set_other_city(){
+      if($("#user_city_id").val()=="0"){
+        $("#other-city").removeClass("hide");
+      }else{
+        $("#other-city").addClass("hide");
+      }
+    }
   });
