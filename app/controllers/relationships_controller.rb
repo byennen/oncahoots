@@ -33,7 +33,8 @@ class RelationshipsController < ApplicationController
 
   def refer
     Rails.logger.debug("@relationship is #{@relationship.inspect}")
-    refer_users = User.where(id: params[:relation_ids])
+    slugs = params[:relation_ids].split(",")
+    refer_users = User.where(slug: slugs)
     refer_users.each do |user|
       @relationship.recommend!(user)
       Rails.logger.debug("refer relationship is #{user.inspect}")
