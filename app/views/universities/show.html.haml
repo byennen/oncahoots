@@ -115,7 +115,7 @@
             .fright
               = text_field_tag :on_date, @search_date,class: "field datepicker", placeholder: "Date", style: "width: 80%"
           #free-foods-list
-            = render partial: "free_foods" 
+            = render partial: "universities/free_foods" 
           .span12.no-lmar.top2
             %center= link_to "Add New", "#free-food-popup", :"data-toggle" => "modal", class: "btn btn-success", id: "event_link"
         #tab4.tab_content

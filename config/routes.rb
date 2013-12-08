@@ -70,6 +70,7 @@ CahootsConnect::Application.routes.draw   do
       get :search_members
       post :send_message
       post :message_to_club
+      post :upload_photo
     end
     collection do
       get :auto_search
