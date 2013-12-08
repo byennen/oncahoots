@@ -60,7 +60,13 @@ class User < ActiveRecord::Base
 
 
   acts_as_messageable
-
+  
+  def intro_para
+    text = "Hi! My name is #{name} #{alumni? ? 'I was a' : 'I am a'} #{major}#{' and ' + double_major if double_major} "
+    text += "at #{university.name}. #{alumni? ? 'I graduated in' : 'I will graduate in'} #{graduation_year}. My current city is "
+    text += "#{city ? city.name : other_city}#{'. I work in ' + professional_field.name if alumni?}"
+  end  
+  
   def self.search(query, filters={})
     cscope = scoped({})
     # Add filte scopes.
