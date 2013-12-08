@@ -45,6 +45,20 @@
 
 .row-fluid
   .container
+    .offset2.span10
+      - unless @club.club_photos.blank?
+        %ul.club-photos
+          - @club.club_photos.each do |photo|
+            %li
+              %a{:"data-toggle" => "modal", href: "#image-#{photo.id}", style: "margin-left: 0"}
+                = image_tag photo.image.small, alt: ""
+        .clearfix
+      .span11.top2.bottom2
+        %a#upload-photo.btn.btn-success.fright{href: "javascript:;"} Upload Photo
+        %a.btn.btn-success.fright{href: "#my_photos", :"data-toggle" => "modal"} My Photos
+
+.row-fluid
+  .container
     .span10.offset2
       %ul.tabs2
         %li
@@ -255,7 +269,26 @@
       .modal-footer
         = f.submit "Transfer Ownership", class: "btn btn-success"
 
+#club_photo-form.upload-form{style: "opacity: 0"}
+  = form_for ClubPhoto.new, url: upload_photo_club_path(@club), method: :post do |f|
+    = f.file_field :image
+#my_photos.modal.hide.fade
+  .modal-header
+    %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+    %h3 My photos
+  .modal-body
+    - @my_photos.each do |photo|
+      %span2.no-lmar
+        = link_to "#image-#{photo.id}", :"data-toggle" => "modal" do
+          = image_tag photo.image.thumb
 
+- @club.club_photos.each do |photo|
+  .modal.hide.wide-modal{id: "image-#{photo.id}"}
+    .modal-header
+      %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+      %h4= photo.image.file.filename
+    .modal-body
+      = image_tag photo.image, alt: "", style: "max-height: 400px;"
 
 = render partial: "shared/club_message", locals: {club: @club}
 :javascript
@@ -292,4 +325,19 @@
       defaultText: 'receipients',
       autocomplete_url: "/universities/#{@university.id}/clubs/#{@club.id}/invitations/search",
     });
+
+    $("#upload-photo").click(function(){
+      $("#club_photo-form input").trigger("click");
+    });
+    $(".upload-form").on("change", "input[type=file]",function(){
+      $("a#show_waiting").click();
+      $(this).closest("form").submit();
+    });
+    $('.club-photos').bxSlider({
+      minSlides: 3,
+      maxSlides: 9,
+      slideWidth: 100,
+      slideMargin: 10
+    });
+
   });

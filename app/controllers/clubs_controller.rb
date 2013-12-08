@@ -1,7 +1,7 @@
 class ClubsController < ApplicationController
 
   before_filter :authenticate_user!, except: [:show]
-  before_filter :ensure_user_university, except: [:show, :join, :search_members, :send_message, :message_to_club, :auto_search]
+  before_filter :ensure_user_university, except: [:show, :join, :search_members, :send_message, :message_to_club, :auto_search, :upload_photo]
 
   def search
     @clubs = @university.clubs.search_all(params[:club])
@@ -35,6 +35,7 @@ class ClubsController < ApplicationController
     @university = University.find(params[:university_id])
     @club = @university.clubs.find_by_slug(params[:id])
     if @club
+      @my_photos = @club.club_photos.by_user(current_user)
       @membership = Membership.new
       @members = @club.users
       @memberships = @club.memberships
@@ -119,6 +120,17 @@ class ClubsController < ApplicationController
       clubs = current_user.university.clubs.where("lower(name) like ?", "%#{params[:term].downcase}%")
     end
     return_auto_json(clubs)
+  end
+
+  def upload_photo
+    @club = Club.find params[:id]
+    photo = @club.club_photos.build(params[:club_photo])
+    photo.user = current_user
+    if photo.save
+      redirect_to university_club_path(@club.university, @club), notice: "Upload photo successfully"
+    else
+      redirect_to university_club_path(@club.university, @club), error: photo.errors.full_messages.join(", ")
+    end
   end
 
   private
