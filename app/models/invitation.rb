@@ -19,6 +19,6 @@ class Invitation < ActiveRecord::Base
       path = "/clubs/#{club.slug || club.id}/join?token=#{token}"
       content = "#{sender.name} invites you to join the club #{club.name}."
       content += " <a href='#{path}' class='btn btn-success btn-mini'>join</a>"
-      sender.send_message(recipient, content.html_safe, "Invitation to Club", true)
+      sender.send_message(recipient, content.html_safe, "Invitation to Club #{club.id}", true)
     end
 end

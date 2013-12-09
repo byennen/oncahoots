@@ -15,7 +15,6 @@
         All Leaders
       .span9.no-lmar.top
         = f.input :recipients, label: false, input_html: {class: "club-user-auto tags", value: ""}
-      .span9.no-lmar= f.input :subject
       = f.text_area :body, rows: 7, style: "width: 100%"
       = f.input :attachment
     .modal-footer
@@ -28,7 +27,6 @@
     %h3 Send Message to #{club.name} club
   = simple_form_for Message.new, url: message_to_club_club_path(club)  do |f|
     .modal-body
-      = f.input :subject
       = f.text_area :body, rows: 7, style: "width: 100%"
       = f.input :attachment
       = hidden_field_tag :to_club, true

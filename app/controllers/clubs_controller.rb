@@ -79,12 +79,18 @@ class ClubsController < ApplicationController
       invitation = Invitation.find_by_token params[:token]
       if invitation
         current_user.clubs << club
+        current_user.mailbox.inbox.where(subject: "Invitation to Club #{club.id}").each do |conv|
+          current_user.mark_as_deleted conv
+        end
         redirect_to university_club_path(club.university, club), notice: "welcome to #{club.name} club"
       else
         redirect_to root_path, notice: "invalid token"
       end
     else
       current_user.clubs << club
+      current_user.mailbox.inbox.where(subject: "Invitation to Club #{club.id}").each do |conv|
+        current_user.mark_as_deleted conv
+      end
       redirect_to university_club_path(club.university, club), notice: "welcome to #{club.name} club"
     end
   end

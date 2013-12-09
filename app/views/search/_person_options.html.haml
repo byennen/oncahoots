@@ -8,10 +8,10 @@
     %ul.dropdown-menu{style: "margin: -10px 0 0 22px"}
       %li
         %a= "All locations"
-      - City.order(:name).each do |loc|
+      - City.order(:name).each do |city|
         %li
-          %a= loc.name
-    = text_field_tag :location, "", class: "field dropdown-toggle", :"data-toggle" => 'dropdown', placeholder: "location"
+          %a= city.name
+    = text_field_tag :city, "", class: "field dropdown-toggle", :"data-toggle" => 'dropdown', placeholder: "location"
 
   .span3.no-lmar.dropdown
     %a.btn.btn-success.btn2.chang.dropdown-toggle{:href => "javascript:;", :"data-toggle" => 'dropdown'}
