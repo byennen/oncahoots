@@ -74,7 +74,7 @@ describe RelationshipsController do
 
       before do
         sign_in user2
-        post :refer, id: relationship.id, relationship: {relation_id: user3.id, message: 'hi jim, referrred to mary' }
+        post :refer, id: relationship.id, relation_ids: user3.id, message: 'hi jim, referrred to mary'
       end
 
       it { should respond_with(:redirect) }
