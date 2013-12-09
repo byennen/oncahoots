@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   has_one :profile
 
   has_many :authentications, dependent: :destroy
-  has_many :memberships
+  has_many :memberships, dependent: :destroy
   has_many :clubs, :through => :memberships
   has_many :club_photos
   has_many :relationships, dependent: :destroy
@@ -199,7 +199,7 @@ class User < ActiveRecord::Base
     def search_all(params)
       return where("1=1") if params.blank?
       search_name(params[:name]).search_type(params[:type])
-      .search_major(params[:major]).search_graduation_year(params[:year]).search_professional_field(params[:field]).search_city(params[:loc]).where("id != 1 AND id != 2")
+      .search_major(params[:major]).search_graduation_year(params[:year]).search_professional_field(params[:field]).search_city(params[:city]).where("id != 1 AND id != 2")
     end
 
     def search_name(name)
