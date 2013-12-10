@@ -41,9 +41,12 @@ $(function() {
     $(this).addClass('active');
   });
 
+  $(document).on("mouseover", ".date-inputmask", function(){
+    $(this).inputmask("mm/dd/yyyy");
+  });
+
 });
 
 $(document).on('ready page:load', function(){ 
   $('.datepicker').datepicker({ format: 'mm/dd/yyyy' });
-  $(".date-inputmask").inputmask("mm/dd/yyyy"); 
 });

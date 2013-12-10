@@ -4,4 +4,4 @@
   - else
     = link_to display_image(current_alert.alertable.image,"thumb"), university_club_path(current_alert.alertable.university, current_alert.alertable)
   %p.comp
-    #{alert_name(current_alert.alertable)} #{current_alert.message}
+    #{alert_name(current_alert.alertable)} #{current_alert.message.html_safe}
