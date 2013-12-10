@@ -88,5 +88,5 @@
                       To: 
                       = message.recipients.reject{|c| c.id==message.sender.id}.map{|c| c.name}.join(", ")
                   %br
-                  %p= truncate(con.messages.first.body)
+                  %p= truncate(con.messages.first.body).html_safe
           .right-side#current_conversation
