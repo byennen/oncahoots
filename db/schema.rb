@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131205071441) do
+ActiveRecord::Schema.define(:version => 20131210063611) do
 
   create_table "alert_user_notifications", :force => true do |t|
     t.integer  "alert_id"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(:version => 20131205071441) do
   create_table "alerts", :force => true do |t|
     t.integer  "alertable_id"
     t.string   "alertable_type"
-    t.string   "message"
+    t.text     "message"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
   end
