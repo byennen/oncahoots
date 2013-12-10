@@ -70,7 +70,7 @@
                     = link_to display_image(alert_notification.alert.alertable.image,"thumb"), read_alert_path(alert_notification.alert), remote: true
                   %h4= alert_name(alert_notification.alert.alertable)
                   %br
-                  %p= alert_notification.alert.message
+                  %p= alert_notification.alert.message.html_safe
           #current_alert.right-side
         .clearfix
         #tab4.tab_content
@@ -88,5 +88,5 @@
                       To: 
                       = message.recipients.reject{|c| c.id==message.sender.id}.map{|c| c.name}.join(", ")
                   %br
-                  %p= truncate(con.messages.first.body)
+                  %p= truncate(con.messages.first.body).html_safe
           .right-side#current_conversation
