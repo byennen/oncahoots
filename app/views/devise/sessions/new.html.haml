@@ -7,17 +7,21 @@
           %p Vibrant college campus =
           %p The best four years of your life brought to the real world 
     .span4
-      = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-vertical login-form'}) do |f|
-        %input#user_email.string.email.fioled0{:name => 'user[email]', :autofocus => 'autofocus', :type => 'email', :placeholder => 'Email'}
-        %input#user_password.password.fioled0{:name => 'user[password]', :autofocus => 'autofocus', :type => 'password', :placeholder => 'Password'}
-        = link_to "Forgot password?", "#"
-        .clearfix
-        .top
-          %a.btn.btn-success.submit{style: "width: 35%;"} Login
-          %a.btn.btn-success{href: new_user_registration_path, style: "width: 35%"} Register
-          %a.top{href: "/auth/linkedin"}
-            %i.linkedin
-        .transparent=f.submit
+      .span11
+        = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-vertical login-form'}) do |f|
+          %input#user_email.string.email.fioled0{:name => 'user[email]', :autofocus => 'autofocus', :type => 'email', :placeholder => 'Email'}
+          %input#user_password.password.fioled0{:name => 'user[password]', :autofocus => 'autofocus', :type => 'password', :placeholder => 'Password'}
+          = link_to "Forgot password?", "#"
+          .clearfix
+          .top
+            %a.btn.btn-success.submit{style: "width: 35%;"} Login
+            %a.btn.btn-success{href: new_user_registration_path, style: "width: 35%"} Register
+            %a.top{href: "/auth/linkedin"}
+              %i.linkedin
+          .transparent=f.submit
+      .span10.top2
+        .span8= text_field_tag :request_school, "", placeholder: "Request your school", class: "fioled0"
+        .span3.top= link_to "request", "javascript:;", class: "btn btn-success"
 
 
   .span12
