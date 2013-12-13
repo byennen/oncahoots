@@ -4,7 +4,7 @@
       = display_image(@university.image, "xxlarge")
       = link_to "<i class='icon-plus icon-white'></i>".html_safe, "javascript:;", class: "btn btn-success btn-mini upload-link", style: "margin-top: 40px; margin-left: -70px;", "data-form" => "#avatar-form" if current_user.manage_university?(@university)
   .span7
-    .span12{style: "margin-top: 170px;"}
+    .span12{style: "margin-top: 180px;"}
       .page-title.bottom2{style: "color: #fff;"}
         %span#uni-name
           = @university.name
