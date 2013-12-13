@@ -11,9 +11,10 @@
     ~ simple_form_for university, remote: true do |f|
       .modal-header
         %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
-        %h3 Edit University Name
+        %h3 Edit University
       .modal-body
         = f.input :name
+        = f.input :mascot
       .clearfix
       .modal-footer
         = f.submit "Save", class: "btn btn-success"

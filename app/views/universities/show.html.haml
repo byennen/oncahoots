@@ -4,10 +4,14 @@
       = display_image(@university.image, "xxlarge")
       = link_to "<i class='icon-plus icon-white'></i>".html_safe, "javascript:;", class: "btn btn-success btn-mini upload-link", style: "margin-top: 40px; margin-left: -70px;", "data-form" => "#avatar-form" if current_user.manage_university?(@university)
   .span7
-    .span12{style: "margin-top: 200px;"}
+    .span12{style: "margin-top: 180px;"}
       .page-title.bottom2{style: "color: #fff;"}
-        %span#uni-name= @university.name
+        %span#uni-name
+          = @university.name
         = link_to "<i class='icon-pencil icon-white'></i>".html_safe, "#edit-name", "data-toggle" => "modal", class: "btn btn-success btn-mini" if current_user.manage_university?(@university)
+        %br
+        %small#uni-mascot{style: "font-size: 65%"}= @university.mascot
+        
       %ul#events.flexisel
         - @university_events.each do |event|
           %li{class: "event-#{event.id}"}
