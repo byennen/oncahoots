@@ -1,0 +1,22 @@
+.span11.border-bottom.left2{id: "conversation-#{conversation.id}"}
+  .span12
+    %h3
+      = conversation.subject
+      %small
+        Members: 
+        = conversation.recipients.map{|c| c.name}.join(", ")
+    - conversation.messages.order("created_at asc").each do |message|
+      .span12.no-lmar
+        .span2
+          %strong= message.sender.name
+        .span7
+          = simple_format message.body
+          - unless message.attachment.blank?
+            %small.fright
+              Attachment: 
+              = link_to message.attachment.file.filename, message.attachment.url, target: "_blank"
+        .span3.no-lmar
+          .fright.green= time_ago_in_words(message.updated_at) + " ago"
+          .span12.no-lmar
+            .fright
+              = link_to "Delete", message_path(conversation, club_id: club.id), method: :delete, remote: true, class: "red", confirm: "are you sure?"

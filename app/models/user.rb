@@ -191,6 +191,14 @@ class User < ActiveRecord::Base
     cons
   end
 
+  def sent_to(recipient)
+    cons=[]
+    mailbox.sentbox.each do |conversation|
+      cons << conversation if conversation.recipients.include?(recipient)
+    end
+    cons
+  end
+
   def customer_of(club)
     customers.where(club_id: club.id).first
   end
