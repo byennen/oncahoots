@@ -49,8 +49,7 @@
               .two-col
                 %h3 Skills &amp; Interests
                 %p
-                  - if @profile.skill1 || @profile.skill2 || @profile.skill3
-                    I am skillled at #{[@profile.skill1, @profile.skill2, @profile.skill3].join(", ")}.
+                  = @profile.display_skill
             #tab22.tab_content2
               %ul.posts.po2
                 - @experiences.each do |experience|

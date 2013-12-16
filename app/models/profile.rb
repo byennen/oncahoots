@@ -21,6 +21,18 @@ class Profile < ActiveRecord::Base
 
   mount_uploader :image, ImageUploader
 
+  def display_skill
+    arr = []
+    arr << skill1 unless skill1.blank?
+    arr << skill2 unless skill2.blank?
+    arr << skill3 unless skill3.blank?
+    return "" if arr.blank?
+    str = "I am skilled at #{arr[0]}"
+    str += " and #{arr[1]}" if arr.size==2
+    str += ", #{arr[1]} and #{arr[2]}" if arr.size==3
+    str
+  end
+
   def build_from_linkedin(omniauth)
     token = omniauth['credentials']['token']
     secret = omniauth['credentials']['secret']
