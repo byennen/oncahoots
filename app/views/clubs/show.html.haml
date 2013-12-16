@@ -39,7 +39,7 @@
           = render partial: "update", collection: @club.updates
           - if current_user.manage_club?(@club)
             %li.text-right{style: "border: 0px;"}
-              %a{href: "#add-update", class: "btn btn-success", data: {toggle: "modal"}, style: "height: 20px; width: 100px;"} Add Newsletter
+              %a{href: "#update-form", class: "btn btn-success", data: {toggle: "modal"}, style: "height: 20px; width: 100px;"} Add Newsletter
         .clearfix
 .clearfix
 
@@ -227,17 +227,9 @@
       = f.submit "Invite Contact", class: "btn btn-success"
 
 - if current_user.manage_club?(@club)
-  #add-update.modal.hide
-    = simple_form_for Update.new, url: university_club_club_newsletters_path(@university, @club), method: :post do |f|
-      .modal-header
-        %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
-        %h3 Add Newsletter
-      .modal-body
-        = f.input :headline
-        = f.input :image, as: :file, input_html: {class: 'span-8'}
-        = f.input :body, as: :text, input_html: {cols: 800, rows: 10, class: 'span-8'}
-      .modal-footer
-        = f.submit "Add Newsletter", class: "btn btn-success"
+  - new_update = @club.updates.build
+  = render partial: 'updates/form', locals: {update: new_update}
+
 - if current_user.member_of?(@club) || current_user.manage_club?(@club)
   #event-popup= render partial: "club_events/form", locals: {event: @event}
 - @club.events.each do |event|

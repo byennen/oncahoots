@@ -34,6 +34,7 @@ class ClubsController < ApplicationController
   def show
     @university = University.find(params[:university_id])
     @club = @university.clubs.find_by_slug(params[:id])
+    @updateable = @club
     if @club
       @my_photos = @club.club_photos.by_user(current_user)
       @membership = Membership.new
