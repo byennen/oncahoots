@@ -4,7 +4,7 @@
       = display_image @user.profile.image, "xxlarge"
   .span8
     .pro-user{style: "min-height: 120px;"}
-      %p Hi! My name is #{@user.name} and I'm a #{@user.major} from #{@user.display_city}. Let's connect!
+      %p Hi! My name is #{@user.name} and I'm #{@user.display_major} from #{@user.display_city}. Let's connect!
     .offset9
       - if current_user.relatable?(@user)
         %a{href: "#add-contact", class: "btn btn-primary", data: {toggle: "modal"}, style: "margin-right: 10px;"} Add Contact

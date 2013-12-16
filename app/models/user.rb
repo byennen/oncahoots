@@ -103,7 +103,8 @@ class User < ActiveRecord::Base
   end
 
   def display_major
-    "#{major}#{' and ' unless double_major.blank?}#{double_major}"
+    pre = ['a','e','i','o','u'].include?(major.first.downcase) ? "an" : "a"
+    "#{pre} #{major}#{' and ' unless double_major.blank?}#{double_major} major"
   end
 
   def metropolitan_club
