@@ -8,7 +8,7 @@
         = link_to metropolitan_club_path(event.club) do
           = display_image event.club.image, "thumb"
       - else
-        = display_image event.university.image, "thumb"
+        = display_image event.image, "thumb"
     .span10.event-item
       .span10.ev-title= link_to event.title, "#event#{event.id}_detail", :"data-toggle" => "modal"
       .span2.no-lmar
