@@ -1,12 +1,3 @@
-# Add account credentials and API keys here.
-# See http://railsapps.github.io/rails-environment-variables.html
-# This file should be listed in .gitignore to keep your settings secret!
-# Each entry sets a local environment variable and overrides ENV variables in the Unix shell.
-# For example, setting:
-# GMAIL_USERNAME: Your_Gmail_Username
-# makes 'Your_Gmail_Username' available as ENV["GMAIL_USERNAME"]
-# Add application configuration variables here, as shown below.
-#
 GMAIL_USERNAME: Your_Username
 GMAIL_PASSWORD: Your_Password
 SUPER_ADMIN_FIRST_NAME: First
@@ -22,7 +13,7 @@ UNIVERSITY_ADMIN_PASSWORD: changeme
 LINKEDIN_API_KEY: 75wjwu8u1wnhrx
 LINKEDIN_SECRET_KEY: l2uRE4vx70k6ItRp
 
-ROLES: [admin, user, VIP]
+ROLES: [super_admin, university_admin, member, club_owner, club_admin, event_admin]
 
 STRIPE_CONNECT_CLIENT_ID: ca_2ylCry8pgU1rO3UYmlmK5JaO7XbfjZaR
 STRIPE_SECRET_KEY: sk_test_9i5iZnZWUXtw41plXFDW1KuZ

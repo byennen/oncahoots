@@ -141,7 +141,7 @@
                 %li
                   .users
                     = link_to "javascript:;" do
-                      - if @university.metropolitan_club(city.id).image
+                      - if @university.metropolitan_club(city.id)
                         = display_image @university.metropolitan_club(city.id).image, 'xlarge'
                         %span.fleft= city.name
                     .hovers{style: "text-align: center;"}
