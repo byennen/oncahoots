@@ -103,7 +103,8 @@ class User < ActiveRecord::Base
   end
 
   def display_major
-    "#{major}#{' and ' unless double_major.blank?}#{double_major}"
+    pre = ['a','e','i','o','u'].include?(major.first.downcase) ? "an" : "a"
+    "#{pre} #{major}#{' and ' unless double_major.blank?}#{double_major} major"
   end
 
   def metropolitan_club
@@ -185,6 +186,14 @@ class User < ActiveRecord::Base
   def conversations_for(recipient)
     cons=[]
     mailbox.inbox.each do |conversation|
+      cons << conversation if conversation.recipients.include?(recipient)
+    end
+    cons
+  end
+
+  def sent_to(recipient)
+    cons=[]
+    mailbox.sentbox.each do |conversation|
       cons << conversation if conversation.recipients.include?(recipient)
     end
     cons
