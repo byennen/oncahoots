@@ -1,0 +1,38 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: oncahoots_development
+  pool: 5
+  username:
+  password:
+  template: template0
+
+test: &test
+  adapter: postgresql
+  encoding: unicode
+  database: oncahoots_test
+  pool: 5
+  username:
+  password:
+  template: template0
+
+staging:
+  adapter: postgresql
+  encoding: unicode
+  database: oncahoots_production
+  pool: 5
+  username:
+  password:
+  template: template0
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: oncahoots_production
+  pool: 5
+  username:
+  password:
+  template: template0
+
+cucumber:
+  <<: *test
