@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131210063611) do
+ActiveRecord::Schema.define(:version => 20131216065834) do
 
   create_table "alert_user_notifications", :force => true do |t|
     t.integer  "alert_id"
@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(:version => 20131210063611) do
   end
 
   create_table "comments", :force => true do |t|
-    t.string   "comment"
+    t.text     "comment"
     t.integer  "user_id"
     t.integer  "commentable_id"
     t.string   "commentable_type"

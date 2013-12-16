@@ -64,6 +64,12 @@ class MetropolitanClubsController < ApplicationController
       @updates = @metropolitan_club.updates
       @updateable = @metropolitan_club
       @posts = @metropolitan_club.posts
-      @conversations = current_user.manage_club?(@metropolitan_club) ? @metropolitan_club.mailbox.inbox : current_user.conversations_for(@metropolitan_club)
+      if current_user.manage_club?(@metropolitan_club)
+        @conversations = @metropolitan_club.mailbox.inbox
+        @sentbox = @metropolitan_club.mailbox.sentbox
+      else
+        @conversations = current_user.conversations_for(@metropolitan_club)
+        @sentbox = current_user.sent_to(@metropolitan_club)
+      end
     end 
 end

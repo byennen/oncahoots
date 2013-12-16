@@ -8,12 +8,11 @@ class Alert < ActiveRecord::Base
 
   # TODO: Need to find a better way long term. - jkr
   def self.create_profile_update(user, params)
-    skills = []
+    skill_arr = []
     message = "has updated "
     params.each do |key, value|
       if %w(skill1 skill2 skill3).include?(key)
-        skills << value unless value.blank?
-        message += "skills to include #{skills.join(", ")}"
+        skill_arr << value unless value.blank?
       else
         k = key.gsub("_attributes", "")
         updated_attribute = k.split("_").join(" ").capitalize
@@ -32,6 +31,7 @@ class Alert < ActiveRecord::Base
         end
       end
     end
+    message += "skills to include #{skill_arr.join(", ")}" unless skill_arr.blank?
 
     if alert = self.create({alertable_id: user.id, alertable_type: 'User', message: message.html_safe})
       user.contacts.each do |contact|

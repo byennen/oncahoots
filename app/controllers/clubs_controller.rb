@@ -16,13 +16,13 @@ class ClubsController < ApplicationController
 
   def send_message
     @club = Club.find params[:id]
-    @club.send_message(recipients, params[:message][:body], params[:message][:subject], true, params[:message][:attachment])
+    @club.send_message(recipients, params[:message][:body], "message from #{@club.name} club", true, params[:message][:attachment])
     redirect_to redirect_path, notice: "Message sent!"
   end
 
   def message_to_club
     @club = Club.find params[:id]
-    @subject = params[:message][:subject].blank? ? "[no subject]" : params[:message][:subject]
+    @subject = params[:message][:subject].blank? ? "message to #{@club.name} club" : params[:message][:subject]
     current_user.send_message(@club, params[:message][:body], @subject, true, params[:message][:attachment])
     redirect_to redirect_path, notice: "Message sent!"
   end
@@ -34,6 +34,7 @@ class ClubsController < ApplicationController
   def show
     @university = University.find(params[:university_id])
     @club = @university.clubs.find_by_slug(params[:id])
+    @updateable = @club
     if @club
       @my_photos = @club.club_photos.by_user(current_user)
       @membership = Membership.new
@@ -41,7 +42,13 @@ class ClubsController < ApplicationController
       @memberships = @club.memberships
       @current_membership = @club.memberships.find_by_user_id(current_user.id)
       @admins = @club.memberships.where(admin: true)
-      @conversations = current_user.manage_club?(@club) ? @club.mailbox.inbox : current_user.conversations_for(@club)
+      if current_user.manage_club?(@club)
+        @conversations = @club.mailbox.inbox
+        @sentbox = @club.mailbox.sentbox
+      else
+        @conversations = current_user.conversations_for(@club)
+        @sentbox = current_user.sent_to(@club)
+      end
       @requests = current_user.relationships.where(status: 'pending')
       @invitation = Invitation.new
       @event = Event.new

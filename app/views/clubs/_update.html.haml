@@ -6,50 +6,27 @@
     %h4= update.headline
     %p= update.body.truncate(500)
   .span12
-    %a{href: "#comments-#{update.id}", data: {toggle: "modal"}} #{update.comments.size} Comments
-    |
-    %a{href: "#add-comment-#{update.id}", data: {toggle: "modal"}} Add Comment
+    = link_to "comments( <span id='update#{update.id}-cm'>#{update.comments.count}</span> )".html_safe, "#update#{update.id}-comments", :"data-toggle" => "modal", class: "green"
     - if current_user.manage_update?(update)
       |
-      %a{href: "#edit-update-#{update.id}", data: {toggle: "modal"}} Edit
+      %a{href: "#update-form#{update.id}", data: {toggle: "modal"}} Edit
       |
       =link_to "Delete", university_club_club_newsletter_path(@university,@club, update), method: :delete, confirm: "Are You Sure?"
-    - if current_user.manage_club?(@club)
-      .modal.hide{id: "edit-update-#{update.id}"}
-        = simple_form_for update, url: university_club_club_newsletter_path(@university, @club, update.id), method: :put do |f|
-          .modal-header
-            %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
-            %h3 Edit Newsletter
-          .modal-body
-            = f.input :headline
-            = f.input :image, as: :file, input_html: {class: 'span-8'}
-            = f.input :body, as: :text, input_html: {cols: 800, rows: 10, class: 'span-8'}
-          .modal-footer
-            = f.submit "Add Newsletter", class: "btn btn-success"
-
-    .modal.hide{id: "comments-#{update.id}"}
-      .modal-header
-        %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
-        %h3 Comments
-      .modal-body
-        - update.comments.each do |comment|
-          .pull-left{style: 'margin-right: 10px;'}
-            = image_tag comment.user.profile.image.thumb.url
-          %div{style: "border-bottom: 1px solid #ccc; width: 400px; padding: 20px;"}
-            %strong= comment.user.name
-            %br
-            %em= comment.created_at.strftime('%m/%d/%Y %H:%M')
-            %br
-            = comment.comment
-    .modal.hide{id: "add-comment-#{update.id}"}
-      = simple_form_for Comment.new, url: update_comments_path(update.id) do |f|
-        .modal-header
-          =raw close_modal_button
-          %h3 Add Comment
-        .modal-body
-          = f.input :comment
-        .modal-footer
-          = f.submit "Add Comment", class: "btn btn-success"
-
-
   .clearfix
+
+- if current_user.manage_club?(@club)
+  = render partial: 'updates/form', locals: {update: update}
+.modal.wide-modal.hide.fade{id: "update#{update.id}-comments"}
+  .modal-header
+    %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+    %h3= update.headline
+  .modal-body
+    .comments
+      - update.comments.each do |comment|
+        = render partial: "comments/comment", locals: {comment: comment}
+    = simple_form_for [update, Comment.new], remote: true do |f|
+      = f.input :comment, as: :text, label: false, input_html: {class: "span11", rows: 4}
+      = f.submit "Post", class: "btn btn-success"
+  .clearfix
+  .modal-footer
+    %button.btn.btn-warning{type: "button", data: {dismiss: "modal"}} Close

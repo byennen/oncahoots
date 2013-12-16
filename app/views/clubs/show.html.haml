@@ -39,7 +39,7 @@
           = render partial: "update", collection: @club.updates
           - if current_user.manage_club?(@club)
             %li.text-right{style: "border: 0px;"}
-              %a{href: "#add-update", class: "btn btn-success", data: {toggle: "modal"}, style: "height: 20px; width: 100px;"} Add Newsletter
+              %a{href: "#update-form", class: "btn btn-success", data: {toggle: "modal"}, style: "height: 20px; width: 100px;"} Add Newsletter
         .clearfix
 .clearfix
 
@@ -203,30 +203,17 @@
             - else
               = link_to "Message to Club", "#message-to-club", "data-toggle" => "modal", class: "btn btn-success btn-mini"
           .span12
+            %h3 Inbox
             - @conversations.each do |conversation|
-              .span11.border-bottom.left2.top2{id: "conversation-#{conversation.id}"}
-                .span12
-                  %h3
-                    = conversation.subject
-                    %small
-                      Members: 
-                      = conversation.recipients.map{|c| c.name}.join(", ")
-                - conversation.messages.order("created_at asc").each do |message|
-                  .span12.no-lmar
-                    .span2
-                      %strong= message.sender.name
-                    .span7
-                      = simple_format message.body
-                      - unless message.attachment.blank?
-                        %small.fright
-                          Attachment: 
-                          = link_to message.attachment.file.filename, message.attachment.url, target: "_blank"
-                    .span3.no-lmar
-                      .fright.green= time_ago_in_words(message.updated_at) + " ago"
-                .span12.no-lmar
-                  .fright
-                    = link_to "Delete", message_path(conversation, club_id: @club.id), method: :delete, remote: true, class: "red", confirm: "are you sure?"
-          
+              = render partial: "conversation", locals: {conversation: conversation, club: @club}
+            - if @conversations.blank?
+              No message
+          .span12.top2
+            %h3 Sentbox
+            - @sentbox.each do |conversation|
+              = render partial: "conversation", locals: {conversation: conversation, club: @club}
+            - if @sentbox.blank?
+              No Message
 .clearfix
 
 #invite-contact.modal.hide
@@ -240,17 +227,9 @@
       = f.submit "Invite Contact", class: "btn btn-success"
 
 - if current_user.manage_club?(@club)
-  #add-update.modal.hide
-    = simple_form_for Update.new, url: university_club_club_newsletters_path(@university, @club), method: :post do |f|
-      .modal-header
-        %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
-        %h3 Add Newsletter
-      .modal-body
-        = f.input :headline
-        = f.input :image, as: :file, input_html: {class: 'span-8'}
-        = f.input :body, as: :text, input_html: {cols: 800, rows: 10, class: 'span-8'}
-      .modal-footer
-        = f.submit "Add Newsletter", class: "btn btn-success"
+  - new_update = @club.updates.build
+  = render partial: 'updates/form', locals: {update: new_update}
+
 - if current_user.member_of?(@club) || current_user.manage_club?(@club)
   #event-popup= render partial: "club_events/form", locals: {event: @event}
 - @club.events.each do |event|

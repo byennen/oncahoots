@@ -14,7 +14,35 @@
           - unless user == current_user
             = link_to "Message", "#message-form", style: "float: right;", data: {toggle: "modal"}, class: "message_link", rel: user.slug
           - if user.alumni
-            = link_to "contact requirement", "javascript:;", style: "margin-left: 30%"
+            = link_to "contact requirement", "#requirement-#{user.id}", data: {toggle: "modal"}, style: "margin-left: 30%"
 
 %h4.left
   = "No results found" if persons.blank?
+- persons.alumni.each do |user|
+  .modal.hide{id: "requirement-#{user.id}"}
+    .modal-header
+      %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+      %h3 Contact Requirement
+    .modal-body
+      - req = user.profile.contact_requirement
+      - if req
+        .span12
+          .span3.no-lmar
+            %strong GPA
+          .span7= req.gpa_requirement.blank? ? 'None' : req.gpa_requirement
+        .span12.no-lmar
+          .span3.no-lmar
+            %strong Major
+          .span7= req.major_requirement.blank? ? 'None' : req.major_requirement
+        .span12.no-lmar
+          .span3.no-lmar
+            %strong Years of Experience
+          .span7= req.years_working_experience.blank? ? 'None' : req.years_working_experience
+        .span12.no-lmar
+          .span3.no-lmar
+            %strong Fields of Experience
+          .span7= req.fields_of_interest.blank? ? 'None' : req.fields_of_interest
+      - else
+        No requirement
+    .modal-footer
+      %button{type: "button", class: "btn btn-warning", data: {dismiss: "modal"}} Close
