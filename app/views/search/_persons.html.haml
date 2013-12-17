@@ -1,20 +1,21 @@
 .clearfix
 %ul.users-list
   - persons.each do |user|
-    %li
-      .users
-        %a{href: user_path(user)}= display_image user.profile.image, "xlarge"
-        .hovers{style: "margin-left: 0;"}
-          %p  Hi! I am #{user.name} from #{user.display_city} and I am excited about business
-          - if current_user.relatable?(user) 
-            %a.add_contact{href: "#add-contact", data: {toggle: "modal"}, :"data-user_id" => user.id, style: "margin-right: 10px;"} Add Contact
-          - else
-            = link_to "view", user_path(user)
+    - unless user.super_admin?
+      %li
+        .users
+          %a{href: user_path(user)}= display_image user.profile.image, "xlarge"
+          .hovers{style: "margin-left: 0;"}
+            %p  Hi! I am #{user.name} from #{user.display_city} and I am excited about business
+            - if current_user.relatable?(user) 
+              %a.add_contact{href: "#add-contact", data: {toggle: "modal"}, :"data-user_id" => user.id, style: "margin-right: 10px;"} Add Contact
+            - else
+              = link_to "view", user_path(user)
 
-          - unless user == current_user
-            = link_to "Message", "#message-form", style: "float: right;", data: {toggle: "modal"}, class: "message_link", rel: user.slug
-          - if user.alumni
-            = link_to "contact requirement", "#requirement-#{user.id}", data: {toggle: "modal"}, style: "margin-left: 30%"
+            - unless user == current_user
+              = link_to "Message", "#message-form", style: "float: right;", data: {toggle: "modal"}, class: "message_link", rel: user.slug
+            - if user.alumni
+              = link_to "contact requirement", "#requirement-#{user.id}", data: {toggle: "modal"}, style: "margin-left: 30%"
 
 %h4.left
   = "No results found" if persons.blank?
