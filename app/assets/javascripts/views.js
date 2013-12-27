@@ -65,7 +65,7 @@
         height: 252
     });
 
-  $("#events").flexisel({visibleItems: 3});
+  $("#events").flexisel({visibleItems: 3, clone: false});
 
   $(".tab_content").hide(); //Hide all content
   $("ul.tabs3 li:first").addClass("active").show(); //Activate first tab

@@ -1,6 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
   layout 'sessions', except: [:edit]
-  skip_before_filter :check_completed_info
+  skip_before_filter :check_completed_info, except: [:edit]
 
   def destroy
     current_user.destroy
