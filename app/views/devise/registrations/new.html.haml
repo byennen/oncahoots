@@ -9,13 +9,13 @@
       = f.input :password, :required => true, label: false, input_html: {placeholder: "password", class: "fioled0"}
       = f.input :password_confirmation, :required => true, label: false, input_html: {placeholder: "password confirmation", class: "fioled0"}
       .clearfix
-      = f.select :university_id, options_from_collection_for_select(University.all.sort_by(&:name), :id, :name), prompt: "University"
+      = f.select :university_id, options_from_collection_for_select(University.all.sort_by(&:name), :id, :name, resource.university_id), prompt: "University"
       .clearfix
       %label.left
       %span.left Current City
-      = f.select :city_id, options_for_select(City.order(:name).collect{ |c| [c.name, c.id] } + [["Other", 0]]), prompt: "Current City"
+      = f.select :city_id, options_for_select(City.order(:name).collect{ |c| [c.name, c.id] } + [["Other", 0]], resource.city_id), prompt: "Current City"
       %span#other-city= f.input :other_city, label: false, input_html: {placeholder: "other city", class: "fioled0"}
-      = f.select :graduation_year, options_for_select(2020.downto(1940).to_a), { prompt: "Graduation year", class: "fioled0" } 
+      = f.select :graduation_year, options_for_select(2020.downto(1940).to_a, resource.graduation_year), { prompt: "Graduation year", class: "fioled0" } 
       .clearfix
       = f.input :major, label: false, input_html: {placeholder: "major", class: "fioled0"}
       = f.input :double_major, label: false, input_html: {placeholder: "double major", class: "fioled0"}
@@ -25,7 +25,7 @@
       .clearfix
       #professional_fields.hide
         %span.left Professional Field
-        = f.select :professional_field_id, options_from_collection_for_select(ProfessionalField.all.sort_by(&:name), :id, :name)
+        = f.select :professional_field_id, options_from_collection_for_select(ProfessionalField.all.sort_by(&:name), :id, :name, resource.professional_field_id)
 
       %button.btn.btn-success.btn4.chang6 Register
       
@@ -58,6 +58,16 @@
         $("#other-city").removeClass("hide");
       }else{
         $("#other-city").addClass("hide");
+      }
+    }
+
+    dislayProcessional();
+
+    function dislayProcessional(){
+      if($("#user_alumni").is(":checked")){
+        $("#professional_fields").show();
+      }else{
+        $("#professional_fields").hide();
       }
     }
   });
