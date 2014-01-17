@@ -1,0 +1,26 @@
+#create_album.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"}
+        %h4#myModalLabel.modal-title Create Album
+      / modal-header
+      .modal-body
+        %form.forms
+          .half
+            %label Alb.Name
+            %input{:name => "text", :type => "text"}/
+            .clearfix
+            %label Location
+            %input{:name => "text", :type => "text"}/
+            .clearfix
+          / half
+          .half
+            %label &nbsp;
+            .clearfix
+            %label Images
+            %button.btnx.pull-left{:name => "btn"} Choose File
+          / half
+          %label.ne.wig Description
+          %textarea.texta
+          %button.btng{:name => "btn"} Create Album

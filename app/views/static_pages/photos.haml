@@ -1,55 +1,11 @@
-
 #ssp3.col-lg-6
   .title
     %h1 Clubs
     %p
-      %a{"data-target" => "#myModal3", "data-toggle" => "modal", :href => "javascript:void(0);"} Create Your Own Club
+      %a{"data-target" => "#create_club", "data-toggle" => "modal", :href => "#"} Create Your Own Club
       %span >>
-    #myModal3.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
-      .modal-dialog
-        .modal-content
-          .modal-header
-            %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"}
-            %h4#myModalLabel.modal-title Create Club
-          / modal-header
-          .modal-body
-            %form.forms
-              .half
-                %label Club Name
-                %input{:name => "text", :type => "text"}/
-                .clearfix
-                %label Private
-                %select#selector{:name => "style2"}
-                  %option Yes, this club is private
-                  %option No, this club is not private
-                  %option Yes, this club is private
-                  %option No, this club is not private
-                  %option Yes, this club is private
-                  %option No, this club is not private
-              / half
-              .half
-                %label Category
-                %select#selector2{:name => "style2"}
-                  %option Academic
-                  %option Non Academic
-                  %option Academic
-                  %option Non Academic
-                  %option Academic
-                  %option Non Academic
-                %label &nbsp;
-                %button.btnx{:name => "btn"} Choose File
-              / half
-              .clearfix
-              %label.ne Description
-              %textarea.texta
-              %button.btng{:name => "btn"} Create Club
-            .clearfix
-          / modal-body
-        / modal-content
-      / modal-dialog
-    / modal
-  / title
-  .run-club{:style => "background:url(img/running-club-img.png) no-repeat; height:320px;"}
+
+  .run-club{:style => "background:url(../../assets/running-club-img.png) no-repeat; height:320px;"}
     %button.btn9{:name => "btn"} Running Club
     %button.btn10{:name => "btn"} Join Club
   / run-club
@@ -67,99 +23,20 @@
   .members{:style => "padding:0; float:left; width:100%;"}
     .music{:style => "margin-bottom:30px;"}
       %p Album Title Here.
-      %a.npost{"data-target" => "#myModal30", "data-toggle" => "modal", :href => "javascript:void(0);"} New Album >>
-      #myModal30.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
-        .modal-dialog
-          .modal-content
-            .modal-header
-              %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"}
-              %h4#myModalLabel.modal-title Create Album
-            / modal-header
-            .modal-body
-              %form.forms
-                .half
-                  %label Alb.Name
-                  %input{:name => "text", :type => "text"}/
-                  .clearfix
-                  %label Location
-                  %input{:name => "text", :type => "text"}/
-                  .clearfix
-                / half
-                .half
-                  %label &nbsp;
-                  .clearfix
-                  %label Images
-                  %button.btnx.pull-left{:name => "btn"} Choose File
-                / half
-                %label.ne.wig Description
-                %textarea.texta
-                %button.btng{:name => "btn"} Create Album
-              .clearfix
-            / modal-body
-          / modal-content
-        / modal-dialog
-      / modal
+      %a.npost{"data-target" => "#create_album", "data-toggle" => "modal", :href => "#"} New Album >>
+
       .music-img
-        %a{"data-target" => "#myModal", "data-toggle" => "modal", :href => "javascript:void(0);"}
+        %a{"data-target" => "#album_title", "data-toggle" => "modal", :href => "#"}
           %img{:alt => "Image", :src => "img/club-img.png"}/
-      / music-img
-      #myModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
-        .modal-dialog
-          .modal-content
-            .modal-header
-              %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"}
-              %h4#myModalLabel.modal-title Album Title Here
-            / modal-header
-            .modal-body
-              #carousel-example-generic.carousel.slide.mod5{"data-ride" => "carousel"}
-                .carousel-inner
-                  .item.active
-                    %img{:alt => "Image", :src => "img/running-club-img.png"}/
-                  / item
-                  .item
-                    %img{:alt => "Image", :src => "img/running-club-img.png"}/
-                  / item
-                  .item
-                    %img{:alt => "Image", :src => "img/running-club-img.png"}/
-                  / item
-                  .item
-                    %img{:alt => "Image", :src => "img/running-club-img.png"}/
-                  / item
-                / carousel-inner
-                %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-example-generic"}
-                  %img{:alt => "Image", :src => "img/slider-left.png"}/
-                %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-example-generic"}
-                  %img{:alt => "Image", :src => "img/slider-right.png"}/
-                %p Photo caption here
-                %br/
-                %br/
-              / carousel
-              .cap
-                %p
-                  %span
-                    Post comments
-                    %br/
-                    %br/
-                    UserName
-                  comment lorem Ipsum dolor sit amet, ectetuer adipiscing elit, sed diam nonummy. Lorem dolor sit amet, consect!
-                  %br/
-                  %br/
-                  %span UserName
-                  comment lorem Ipsum dolor sit amet, ectetuer adipiscing elit, sed diam nonummy. Lorem dolor sit amet, consect!
-              / cap
-              .clearfix
-            / modal-body
-          / modal-content
-        / modal-dialog
-      / modal
-    / music
+
     .clearfix
     .music
       %p Album Title Here.
       .music-img
-        %a{"data-target" => "#myModal2", "data-toggle" => "modal", :href => "javascript:void(0);"}
+        %a{"data-target" => "#myModal2", "data-toggle" => "modal", :href => "#"}
           %img{:alt => "Image", :src => "img/club-img.png"}/
       / music-img
+      Lance
       #myModal2.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
         .modal-dialog
           .modal-content
@@ -234,7 +111,7 @@
               %span >>
               %br/
               %br/
-              %a{:href => "javascript:void(0);"} Post Comment
+              %a{:href => "#"} Post Comment
           %li
             %small
               %span 12.8.13 Newsletter Headline/Title Here
@@ -243,7 +120,7 @@
               %span >>
               %br/
               %br/
-              %a{:href => "javascript:void(0);"} Post Comment
+              %a{:href => "#"} Post Comment
           %li
             %small
               %span 12.8.13 Newsletter Headline/Title Here
@@ -252,7 +129,7 @@
               %span >>
               %br/
               %br/
-              %a{:href => "javascript:void(0);"} Post Comment
+              %a{:href => "#"} Post Comment
         .showa
           %h2 Crazy With the Color Run
           %span 12.8.13
@@ -293,9 +170,9 @@
       .calendar
         .caltitle
           %p{:style => "padding-bottom:0; float:none; font-size:22px;"}
-            %a{:href => "javascript:void(0);"} <<
+            %a{:href => "#"} <<
             Week of November 15, 2013
-            %a{:href => "javascript:void(0);"} >>
+            %a{:href => "#"} >>
         / caltitle
         %ul.events-list.mod3
           %li.light
@@ -330,12 +207,10 @@
             Brief description / subhead here.
             %br/
             Click for more info.
-      / calendar
-    / info
-  / ssp4
-/ col-lg-4
-/ row
-.clearfix
+
+= render 'shared/create_club'
+= render 'shared/create_album'
+= render 'shared/album_title'
 
 :javascript
   $(document).ready(function(){

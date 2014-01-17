@@ -53,12 +53,7 @@
 
 #mar.col-lg-4
   #ssp4
-    .search
-      %input{:name => "text", :placeholder => "Search", :type => "text"}/
-      %a{:href => "search.html"}
-        %button{:name => "btn"}
-          = image_tag('search-icon.png')
-    / search
+    = render 'shared/search'
     .info{:style => "background:url(../../assets/bg.png) repeat center top; position:relative; z-index:10; width:100%; float:left"}
       %span.btn4 My Clubs
       .con{:style => "height:790px;"}

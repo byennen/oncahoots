@@ -2,53 +2,10 @@
   .title
     %h1 Clubs
     %p
-      %a{"data-target" => "#myModal3", "data-toggle" => "modal", :href => "javascript:void(0);"} Create Your Own Club
+      %a{"data-target" => "#club_name", "data-toggle" => "modal", :href => "#"} Create Your Own Club
       %span >>
-    #myModal3.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
-      .modal-dialog
-        .modal-content
-          .modal-header
-            %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"}
-            %h4#myModalLabel.modal-title Create Club
-          / modal-header
-          .modal-body
-            %form.forms
-              .half
-                %label Club Name
-                %input{:name => "text", :type => "text"}/
-                .clearfix
-                %label Private
-                %select#selector{:name => "style2"}
-                  %option Yes, this club is private
-                  %option No, this club is not private
-                  %option Yes, this club is private
-                  %option No, this club is not private
-                  %option Yes, this club is private
-                  %option No, this club is not private
-              / half
-              .half
-                %label Category
-                %select#selector2{:name => "style2"}
-                  %option Academic
-                  %option Non Academic
-                  %option Academic
-                  %option Non Academic
-                  %option Academic
-                  %option Non Academic
-                %label &nbsp;
-                %button.btnx{:name => "btn"} Choose File
-              / half
-              .clearfix
-              %label.ne Description
-              %textarea.texta
-              %button.btng{:name => "btn"} Create Club
-            .clearfix
-          / modal-body
-        / modal-content
-      / modal-dialog
-    / modal
-  / title
-  .run-club{:style => "background:url(img/running-club-img.png) no-repeat; height:320px;"}
+
+  .run-club{:style => "background:url(../../assets/running-club-img.png) no-repeat; height:320px;"}
     %button.btn9{:name => "btn"} Running Club
     %button.btn10{:name => "btn"} Join Club
   / run-club
@@ -65,126 +22,22 @@
       %a{:href => "photos.html"} Photos
   .cent{:style => "margin:0; background-color:#f7f7f7;"}
     .post
-      %a.npost{:href => "javascript:void(0);"}
+      %a.npost{:href => "#"}
         New Post
         %span >>
       %ul.lat-posts
         %li.light
-          %a.img2{:href => "javascript:void(0);"}
-            %img{:alt => "Image", :src => "img/post-img.png"}/
+          = link_to image_tag('post-img.png'), '#', class: 'img2'
           %h3
             %a{:href => "network.html"} Andy Howard
           %br/
           %span Lorem ipsum dolor sit amet consecteture.
           %br/
-          %a.po-cm{:href => "javascript:void(0);"} Post comment
-        %li.dark
-          %a.img2{:href => "javascript:void(0);"}
-            %img{:alt => "Image", :src => "img/post-img.png"}/
-          %h3
-            %a{:href => "network.html"} Andy Howard
-          %br/
-          %span Lorem ipsum dolor sit amet consecteture.
-          %br/
-          %a#hidShow.po-cm{:href => "javascript:void(0);"} Post comment
-          .sub-com
-            %a.img2{:href => "javascript:void(0);"}
-              %img{:alt => "Image", :height => "60", :src => "img/post-img.png", :width => "60"}/
-            %span
-              %strong USERNAME
-              Lorem ipsum dolor sit amet consecteture. Lorem ipsum dolor sit amet consecteture. Lorem ipsum dolor sit amet consecteture. Lorem ipsum dolor sit amet consecteture.
-          / sub-com
-          .clearfix
-          .sub-com
-            %a.img2{:href => "javascript:void(0);"}
-              %img{:alt => "Image", :height => "60", :src => "img/post-img.png", :width => "60"}/
-            %span
-              %strong USERNAME
-              Lorem ipsum dolor sit amet consecteture. Lorem ipsum dolor sit amet consecteture. Lorem ipsum dolor sit amet consecteture. Lorem ipsum dolor sit amet consecteture.
-          / sub-com
-          .clearfix
-          .sub-com
-            %a.img2{:href => "javascript:void(0);"}
-              %img{:alt => "Image", :height => "60", :src => "img/post-img.png", :width => "60"}/
-            %span
-              %strong USERNAME
-              Lorem ipsum dolor sit amet consecteture. Lorem ipsum dolor sit amet consecteture. Lorem ipsum dolor sit amet consecteture. Lorem ipsum dolor sit amet consecteture.
-          / sub-com
-          .clearfix
-        %li.light
-          %a.img2{:href => "javascript:void(0);"}
-            %img{:alt => "Image", :src => "img/post-img.png"}/
-          %h3
-            %a{:href => "network.html"} Andy Howard
-          %br/
-          %span Lorem ipsum dolor sit amet consecteture.
-          %br/
-          %a.po-cm{:href => "javascript:void(0);"} Post comment
-        %li.dark
-          %a.img2{:href => "javascript:void(0);"}
-            %img{:alt => "Image", :src => "img/post-img.png"}/
-          %h3
-            %a{:href => "network.html"} Andy Howard
-          %br/
-          %span Lorem ipsum dolor sit amet consecteture.
-          %br/
-          %a.po-cm{:href => "javascript:void(0);"} Post comment
-        %li.light
-          %a.img2{:href => "javascript:void(0);"}
-            %img{:alt => "Image", :src => "img/post-img.png"}/
-          %h3
-            %a{:href => "network.html"} Andy Howard
-          %br/
-          %span Lorem ipsum dolor sit amet consecteture.
-          %br/
-          %a.po-cm{:href => "javascript:void(0);"} Post comment
-        %li.dark
-          %a.img2{:href => "javascript:void(0);"}
-            %img{:alt => "Image", :src => "img/post-img.png"}/
-          %h3
-            %a{:href => "network.html"} Andy Howard
-          %br/
-          %span Lorem ipsum dolor sit amet consecteture.
-          %br/
-          %a.po-cm{:href => "javascript:void(0);"} Post comment
-        %li.light
-          %a.img2{:href => "javascript:void(0);"}
-            %img{:alt => "Image", :src => "img/post-img.png"}/
-          %h3
-            %a{:href => "network.html"} Andy Howard
-          %br/
-          %span Lorem ipsum dolor sit amet consecteture.
-          %br/
-          %a.po-cm{:href => "javascript:void(0);"} Post comment
-        %li.dark
-          %a.img2{:href => "javascript:void(0);"}
-            %img{:alt => "Image", :src => "img/post-img.png"}/
-          %h3
-            %a{:href => "network.html"} Andy Howard
-          %br/
-          %span Lorem ipsum dolor sit amet consecteture.
-          %br/
-          %a.po-cm{:href => "javascript:void(0);"} Post comment
-        %li.light
-          %a.img2{:href => "javascript:void(0);"}
-            %img{:alt => "Image", :src => "img/wp.png"}/
-          %br/
-          %h3
-            %a#edt{:href => "javascript:void(0);"}
-              %input.edtitor9b.djs{:type => "text"}/
-              %small.text9b.chnd Create a post
-    / post
-  / cent
-  .clearfix
-/ col-lg-6
+          %a.po-cm{:href => "#"} Post comment
+
 #mar.col-lg-4
   #ssp4
-    .search
-      %input{:name => "text", :placeholder => "Search", :type => "text"}/
-      %a{:href => "search.html"}
-        %button{:name => "btn"}
-          %img{:alt => "Image", :src => "img/search-icon.png"}/
-    / search
+    = render 'shared/search'
     .info{:style => "background:none; background-color:#FFF; padding:20px 0;"}
       .news-letter
         %h4 Newsletters
@@ -197,7 +50,7 @@
               %span >>
               %br/
               %br/
-              %a{:href => "javascript:void(0);"} Post Comment
+              %a{:href => "#"} Post Comment
           %li
             %small
               %span 12.8.13 Newsletter Headline/Title Here
@@ -206,7 +59,7 @@
               %span >>
               %br/
               %br/
-              %a{:href => "javascript:void(0);"} Post Comment
+              %a{:href => "#"} Post Comment
           %li
             %small
               %span 12.8.13 Newsletter Headline/Title Here
@@ -215,7 +68,7 @@
               %span >>
               %br/
               %br/
-              %a{:href => "javascript:void(0);"} Post Comment
+              %a{:href => "#"} Post Comment
         .showa
           %h2 Crazy With the Color Run
           %span 12.8.13
@@ -249,16 +102,16 @@
             nonummy.
             %br/
             %br/
-          %img{:alt => "Image", :height => "200", :src => "img/running-club-img.png"}/
+          = image_tag('running-club-img.png', height: '200')
           %button#nsw.btn8.pull-right{:name => "btn"} Go Back
         / showa
       / news-letter
       .calendar
         .caltitle
           %p{:style => "padding-bottom:0; float:none; font-size:22px;"}
-            %a{:href => "javascript:void(0);"} <<
+            %a{:href => "#"} <<
             Week of November 15, 2013
-            %a{:href => "javascript:void(0);"} >>
+            %a{:href => "#"} >>
         / caltitle
         %ul.events-list.mod3
           %li.light
@@ -293,12 +146,8 @@
             Brief description / subhead here.
             %br/
             Click for more info.
-      / calendar
-    / info
-  / ssp4
-/ col-lg-4
-/ row
-.clearfix
+
+= render 'shared/club_name'
 
 :javascript
   $(document).ready(function(){
