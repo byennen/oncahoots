@@ -93,12 +93,7 @@
 / col-lg-6
 #mar.col-lg-4
   #ssp4
-    .search
-      %input{:name => "text", :placeholder => "Search", :type => "text"}/
-      %a{:href => "search.html"}
-        %button{:name => "btn"}
-          %img{:alt => "Image", :src => "img/search-icon.png"}/
-    / search
+    = render 'shared/search'
     .info{:style => "background:none; background-color:#FFF; padding:20px 0;"}
       .news-letter
         %h4 Newsletters
