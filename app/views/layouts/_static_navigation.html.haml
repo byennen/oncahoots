@@ -1,0 +1,44 @@
+.col-lg-2{:style => "padding:0;"}
+  .navbar{:role => "navigation"}
+    .container
+      .navbar-header
+        %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        = link_to image_tag('logo.png'), root_path, class: 'logo'
+      / navbar-header
+      .navbar-collapse.collapse
+        %ul.nav.navbar-nav
+          %li
+            %a{:href => "college.html"}
+              %i.icon-same
+                %img{:alt => "Image", :src => "img/college-icon.png"}/
+              College
+          %li
+            %a.activea{:href => "clubs"}
+              %i.icon-same.margin10
+                %img{:alt => "Image", :src => "img/clubs-icon.png"}/
+              Clubs
+          %li
+            %a{:href => "network.html"}
+              %i.icon-same.margin5
+                %img{:alt => "Image", :src => "img/network-icon.png"}/
+              Network
+          %li
+            %a{:href => "communication.html"}
+              %i.icon-same.margin5
+                %img{:alt => "Image", :src => "img/communication-icon.png"}/
+              Communication
+          %li
+            %a{:href => "events.html"}
+              %i.icon-same.margin5
+                %img{:alt => "Image", :src => "img/events-icon.png"}/
+              Events
+          %li
+            %a{:href => "settings.html"}
+              %i.icon-same.margin5
+                %img{:alt => "Image", :src => "img/settings-icon.png"}/
+              Settings
+          %li
+            %a{:href => "javascript:void(0);"} Logout

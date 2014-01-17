@@ -1,0 +1,96 @@
+#ssp3.col-lg-6
+  .title
+    %h1 Search
+  / title
+  .clearfix
+/ col-lg-6
+#mar.col-lg-4
+  #ssp4
+    .search
+      %input{:name => "text", :placeholder => "Search", :type => "text"}/
+      %a{:href => "search.html"}
+        %button{:name => "btn"}
+          %img{:alt => "Image", :src => "img/search-icon.png"}/
+    / search
+  / ssp4
+/ col-lg-4
+.col-lg-offset-3.col-lg-4
+  .form3
+    %h3 What are you looking for?
+    %input.bigf{:name => "text", :placeholder => "SEARCH TERMS", :type => "text"}/
+    %ul.tabsx
+      %li.activex
+        %a{:href => "#tab1x"} students
+      %li
+        %a{:href => "#tab2x"} alumni
+      %li
+        %a{:href => "#tab3x"} club
+      %li
+        %a{:href => "#tab4x"} event
+    .tab_container
+      #tab1x.tab_content
+        %input{:name => "text", :placeholder => "MAJOR", :type => "text"}/
+        %input{:name => "text", :placeholder => "GRAD YEAR", :type => "text"}/
+      / tab_content
+      #tab2x.tab_content
+        %input{:name => "text", :placeholder => "MAJOR", :type => "text"}/
+        %input{:name => "text", :placeholder => "GRAD YEAR", :type => "text"}/
+        .clearfix
+        %input{:name => "text", :placeholder => "LOCATION", :type => "text"}/
+        %input{:name => "text", :placeholder => "FIELD", :type => "text"}/
+      / tab_content
+      #tab3x.tab_content
+        %br/
+        #sops
+          %label Category
+          %select#selector{:name => "style2"}
+            %option Yes, this club is private
+            %option No, this club is not private
+            %option Yes, this club is private
+            %option No, this club is not private
+            %option Yes, this club is private
+            %option No, this club is not private
+          .clearfix
+      / tab_content
+      #tab4x.tab_content
+        %input#datepicker{:name => "text", :placeholder => "START DATE", :type => "text"}/
+        %input#datepicker2{:name => "text", :placeholder => "END DATE", :type => "text"}/
+      / tab_content
+    / tab_container
+    %a{:href => "search-detail.html"}
+      %button.btn.btn6{:name => "btn"} Search
+  / form3
+/ col-lg-3
+.col-lg-offset-4
+/ col-lg-offset-4
+/ row
+.clearfix
+
+:javascript
+  $(document).ready(function(){
+  $('#selector').gentleSelect(); // apply gentleSelect with default options
+    $('#datepicker').datepicker({
+        inline: true
+    });
+    $('#datepicker2').datepicker({
+        inline: true
+    });
+    $('.selectyze2').Selectyze({
+        theme : 'mac'
+    });
+    $('.basic').fancySelect();
+    //Default Action
+    $(".tab_content").hide(); //Hide all content
+    $("ul.tabsx li:first").addClass("activex").show(); //Activate first tab
+    $(".tab_content:first").show(); //Show first tab content
+
+    //On Click Event
+    $("ul.tabsx li").click(function() {
+        $("ul.tabsx li").removeClass("activex"); //Remove any "active" class
+        $(this).addClass("activex"); //Add "active" class to selected tab
+        $(".tab_content").hide(); //Hide all tab content
+        var activeTab = $(this).find("a").attr("href"); //Find the rel attribute value to identify the active tab + content
+        $(activeTab).fadeIn(); //Fade in the active content
+        return false;
+    });
+  });

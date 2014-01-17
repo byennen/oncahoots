@@ -1,30 +1,35 @@
+/* ==========================================================================
+ * custom styles here
+ * ==========================================================================
 @font-face
-  font-family: 'LatoBold'
-  src: url('Lato-Bol.eot')
-  src: url('Lato-Bol.eot?#iefix') format("embedded-opentype"), url('Lato-Bol.ttf') format("truetype"), url('Lato-Bol.svg#OpenSansRegular') format("svg")
+  font-family: 'varela_roundregular'
+  src: url('../assets/VarelaRound-Regular-webfont.eot')
+  src: url('../assets/VarelaRound-Regular-webfont.eot?#iefix') format("embedded-opentype"), url('../assets/VarelaRound-Regular-webfont.woff') format("woff"), url('../assets/VarelaRound-Regular-webfont.ttf') format("truetype"), url('../assets/VarelaRound-Regular-webfont.svg#varela_roundregular') format("svg")
+  font-weight: normal
+  font-style: normal
 
 
-@font-face
-  font-family: 'LatoLight'
-  src: url('Lato-Lig.eot')
-  src: url('Lato-Lig.eot?#iefix') format("embedded-opentype"), url('Lato-Lig.woff') format("woff"), url('Lato-Lig.ttf') format("truetype"), url('Lato-Lig.svg#OpenSansRegular') format("svg")
+  *
+  margin: 0
+    padding: 0
 
-
-@font-face
-  font-family: 'LatoRegular'
-  src: url('Lato-Reg.eot')
-  src: url('Lato-Reg.eot?#iefix') format("embedded-opentype"), url('Lato-Reg.ttf') format("truetype"), url('Lato-Reg.svg#OpenSansRegular') format("svg")
-
-
-@font-face
-  font-family: 'VarelaRoundRegular'
-  src: url('VarelaRound-Regular.eot')
-  src: url('VarelaRound-Regular.eot?#iefix') format("embedded-opentype"), url('VarelaRound-Regular.ttf') format("truetype"), url('VarelaRound-Regular.svg#OpenSansRegular') format("svg")
-
+html, body
+  font-family: 'varela_roundregular'
+  font-size: 13px
+  color: #3a4348
+  height: 100%
+  margin: 0
+  padding: 0
 
 body
-  background: url('bg.png') repeat
-  padding: 0
+  background: url(../../assets/body-bg.png) repeat #f7f7f7
+
+.container
+  padding-right: 0
+
+a, img
+  border: none
+  outline: none !important
 
 ul
   margin: 0
@@ -33,1419 +38,2846 @@ ul
 li
   list-style-type: none
 
-header
-  position: relative
+.navbar-header
+  float: left
   width: 100%
-
-.bg
-  background: url('home_bg.jpg') no-repeat center center fixed
-  width: 100%
+  text-align: center
+  margin: 0
   padding: 0
-  -webkit-background-size: cover
-  -moz-background-size: cover
-  -o-background-size: cover
-  background-size: cover
-
-.img-container
-  position: relative
-  background-image: url('bg-img.png')
-  width: 85%
-  float: right
-  display: block
-  height: 216px
-  margin-top: 140px
-  padding-top: 100px
-
-.img-container2
-  position: relative
-  background-image: url('bg-img2.png')
-  width: 85%
-  float: right
-  display: block
-  height: 216px
-  margin-top: 140px
-  padding-top: 100px
-
-.img-container3
-  position: relative
-  background-image: url('bg-img3.png')
-  width: 85%
-  float: right
-  display: block
-  min-height: 216px
-  margin-top: 140px
-  padding-top: 100px
-
-.img-container4
-  position: relative
-  width: 85%
-  float: right
-  display: block
-  min-height: 216px
-  margin-top: 140px
-  padding-top: 100px
-
-.nav
-  margin-top: -240px
 
 .logo
-  margin-left: -220px
-
-.mod3
-  margin-top: -325px
-  i
-    z-index: 100
-    position: relative
-
-.same a
-  margin-left: -10px
-
-.btn2
-  padding: 3px 7px
-  float: right
-  margin-top: 20px
-  position: relative
-  z-index: 1000
-  margin-right: 0px
-
-.navbar .nav > li:first-child a img
-  margin-top: -20px
-
-.field
-  position: relative
-  z-index: 1000
-  width: 55%
-  margin-top: 20px
-  height: 27px !important
-  border: 1px solid #CCC
-  border-right: none
-  float: right
-  margin-right: 0
-
-.advance
-  position: relative
-  z-index: 100
-  float: right
-  clear: right
-  font-size: 14px
-  color: #fff
-  margin-right: 20px
-  margin-top: -5px
-  text-decoration: none
-  font-weight: bold
-
-.left-menu
-  float: left
+  float: none
+  margin: 0 auto
+  padding: 0
+  padding: 25px 0
   width: 100%
-  ul
-    width: 100%
-    float: left
-    li
-      float: left
-      clear: left
-      &:first-child
-        margin-top: 0
-      margin-top: 30px
-      i
-        width: 3px
-        height: 100px
-        float: left
-        margin-left: 45px
-        margin-top: -27px
-      a
-        font-family: 'LatoRegular'
-        display: block
-        clear: left
-        float: left
-        margin-top: 0px
-        margin-left: 15px
-        font-size: 12px
-        color: #999
-        position: relative
-        text-align: center
-      &:first-child a
-        color: #999
-      a p
-        font-size: 30px
-        color: #207c43
-        position: absolute
-        left: 23px
-        top: 21px
+  display: inline-block
+  text-align: center
 
-.mono
-  display: block
-  margin-top: 140px
+.navbar-collapse
+  height: 100%
   float: left
-  position: relative
-  z-index: 10
 
-.mono2
-  position: relative
-  z-index: 1000
-  display: block
-  margin-top: 110px
+.navbar-nav
+  width: 100%
   float: left
-  padding-left: 10%
-  color: #eee
-  h1
-    font-size: 52px
+  height: 100%
+  padding-bottom: 30px
 
-.chang
-  padding-bottom: 7px
-  padding-top: 8px
+.navbar .container
+  padding: 0
 
-.chang2
-  float: right
-  clear: right
-  color: #FFF
-  font-size: 12px
-  border: none
-  padding: 5px 20px
-  margin-top: 70px
-  background: url('btn-bg.png') repeat
-  &:hover, &:active, &:focus
-    color: #FFF
-
-.danger3
-  float: right
-  color: #FFF
-  font-size: 12px
-  border: none
-  padding: 5px 20px
-  margin-top: 65px
-  margin-left: 10px
-  &:hover, &:active, &:focus
-    color: #FFF
-
-
-.chang3
-  float: right
-  color: #FFF
-  font-size: 12px
-  border: none
-  padding: 5px 20px
-  margin-top: 65px
-  margin-left: 10px
-  background: url('btn-bg.png') repeat
-  &:hover, &:active, &:focus
-    color: #FFF
-
-.img-box
-  display: block
-  position: relative
-  background-color: #acacac
-  min-height: 400px
-
-.listing
-  display: block
-  width: 110%
-  li
-    border-bottom: 1px solid #999
-    margin-bottom: 15px
-    line-height: 15px
-    img
-      background-color: #acacac
-      float: left
-      margin-right: 10px
-      &:hover, &:active, &:focus
-        opacity: 0.7
-        filter: alpha(opacity = 70)
-    h4
-      font-family: 'LatoBold'
-      font-size: 20px
-      padding: 0
-      margin: 0
-      color: #27ae60
-    p
-      font-family: 'LatoRegular'
-      font-size: 11px
-      margin-bottom: 37px
-    .title-in
-      display: none
-.slider4
-  display: block
-  position: relative
-  width: 90%
+.navbar-nav li
   float: left
   clear: left
-  li
-    a
-      height: 75px
-      width: 75px
-      float: left
-      background-color: #ACACAC
-      margin-left: 35px
-    height: 75px !important
-    width: 75px !important
-    float: left
+  width: 100%
+  margin-top: 15px
+  text-align: center
+  height: 16.66%
 
-.event-slide-item
-  width: 198px
+.collapse
+  background-color: #e7e7e8
   float: left
-  
-.bx-pager
-  display: none
+  width: 100%
 
-.bx-wrapper
-  display: block
-  width: 87%
+.navbar-toggle
+  background: #59da88
+  /* Old browsers
+  /* IE9 SVG, needs conditional override of 'filter' to 'none'
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPHJhZGlhbEdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgY3g9IjUwJSIgY3k9IjUwJSIgcj0iNzUlIj4KICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM1OWRhODgiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMDBjMDg5IiBzdG9wLW9wYWNpdHk9IjEiLz4KICA8L3JhZGlhbEdyYWRpZW50PgogIDxyZWN0IHg9Ii01MCIgeT0iLTUwIiB3aWR0aD0iMTAxIiBoZWlnaHQ9IjEwMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+  background: -moz-radial-gradient(center, ellipse cover, #59da88 0%, #00c089 100%)
+  /* FF3.6+
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #59da88), color-stop(100%, #00c089))
+  /* Chrome,Safari4+
+  background: -webkit-radial-gradient(center, ellipse cover, #59da88 0%, #00c089 100%)
+  /* Chrome10+,Safari5.1+
+  background: -o-radial-gradient(center, ellipse cover, #59da88 0%, #00c089 100%)
+  /* Opera 12+
+  background: -ms-radial-gradient(center, ellipse cover, #59da88 0%, #00c089 100%)
+  /* IE10+
+  background: radial-gradient(ellipse at center, #59da88 0%, #00c089 100%)
+  /* W3C
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#59da88', endColorstr='#00c089', GradientType=1 )
+/* IE6-8 fallback on horizontal gradient
+
+.icon-bar
+  background-color: #FFF
+
+.navbar-nav li a
+  width: 118px
+  height: 118px
+  margin: 0 auto
+  text-align: center
+  background: #59da88
+  /* Old browsers
+  /* IE9 SVG, needs conditional override of 'filter' to 'none'
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPHJhZGlhbEdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgY3g9IjUwJSIgY3k9IjUwJSIgcj0iNzUlIj4KICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM1OWRhODgiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMDBjMDg5IiBzdG9wLW9wYWNpdHk9IjEiLz4KICA8L3JhZGlhbEdyYWRpZW50PgogIDxyZWN0IHg9Ii01MCIgeT0iLTUwIiB3aWR0aD0iMTAxIiBoZWlnaHQ9IjEwMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+  background: -moz-radial-gradient(center, ellipse cover, #59da88 0%, #00c089 100%)
+  /* FF3.6+
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #59da88), color-stop(100%, #00c089))
+  /* Chrome,Safari4+
+  background: -webkit-radial-gradient(center, ellipse cover, #59da88 0%, #00c089 100%)
+  /* Chrome10+,Safari5.1+
+  background: -o-radial-gradient(center, ellipse cover, #59da88 0%, #00c089 100%)
+  /* Opera 12+
+  background: -ms-radial-gradient(center, ellipse cover, #59da88 0%, #00c089 100%)
+  /* IE10+
+  background: radial-gradient(ellipse at center, #59da88 0%, #00c089 100%)
+  /* W3C
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#59da88', endColorstr='#00c089', GradientType=1 )
+  /* IE6-8 fallback on horizontal gradient
+  border-radius: 60px
+  -moz-border-radius: 60px
+  -o-border-radius: 60px
+  -webkit-border-radius: 60px
+  -khtml-border-radius: 60px
+  color: #3a4348
+  font-size: 11px
+  text-shadow: none
+
+.activea
+  border: 8px solid #FFF
+
+.navbar-nav li
+  a
+    &:hover, &:active, &:focus
+      background: #2dd869
+      /* Old browsers
+      /* IE9 SVG, needs conditional override of 'filter' to 'none'
+      background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPHJhZGlhbEdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgY3g9IjUwJSIgY3k9IjUwJSIgcj0iNzUlIj4KICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMyZGQ4NjkiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMDBiMjgyIiBzdG9wLW9wYWNpdHk9IjEiLz4KICA8L3JhZGlhbEdyYWRpZW50PgogIDxyZWN0IHg9Ii01MCIgeT0iLTUwIiB3aWR0aD0iMTAxIiBoZWlnaHQ9IjEwMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+      background: -moz-radial-gradient(center, ellipse cover, #2dd869 0%, #00b282 100%)
+      /* FF3.6+
+      background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #2dd869), color-stop(100%, #00b282))
+      /* Chrome,Safari4+
+      background: -webkit-radial-gradient(center, ellipse cover, #2dd869 0%, #00b282 100%)
+      /* Chrome10+,Safari5.1+
+      background: -o-radial-gradient(center, ellipse cover, #2dd869 0%, #00b282 100%)
+      /* Opera 12+
+      background: -ms-radial-gradient(center, ellipse cover, #2dd869 0%, #00b282 100%)
+      /* IE10+
+      background: radial-gradient(ellipse at center, #2dd869 0%, #00b282 100%)
+      /* W3C
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2dd869', endColorstr='#00b282', GradientType=1 )
+  /* IE6-8 fallback on horizontal gradient
+  &:last-child a
+    background-image: none
+    font-size: 14px
+    padding-top: 0
+  a i
+    display: block
+    padding-top: 6px
+    padding-bottom: 3px
+
+.margin10
   margin-top: 10px
-  padding: 0 30px 0 25px
 
-.bx-controls
-  width: 97%
-  position: relative
+.margin5
+  margin-top: 5px
+
+.banner
+  float: left
   display: block
+  width: 100%
+  height: 566px
+  position: relative
+
+.dropfil
+  display: inline
+  width: 50%
+  float: left
+  span img
+    height: 55px
+    width: 20%
+
+.mod
+  display: inline
+  width: 50%
   float: left
 
-.bx-prev
-  background: url('prev-arrow.png') no-repeat
-  height: 53px
-  width: 16px
-  position: absolute
-  top: -65px
-  left: -30px
-  text-indent: -999999px
-  z-index: 10
+#ssp
+  margin-left: -15px
 
-.bx-next
-  background: url('next-arrow.png') no-repeat
-  height: 53px
-  width: 16px
-  position: absolute
-  top: -65px
-  right: -50px
-  text-indent: -999999px
-  z-index: 10
+#ssp2
+  width: 43%
+  margin-left: -15px
+  padding-right: 0
+  padding-left: 0
 
-.chang4
+.dra
+  float: left
+  width: 80%
+  padding: 16px 0
   color: #FFF
-  padding: 4px 28px
-  margin-bottom: 40px
-  margin-right: 70px
-  margin-top: 30px
+  font-size: 18px
+  text-align: center
+  position: relative
+  background: #56d988
+  /* Old browsers
+  /* IE9 SVG, needs conditional override of 'filter' to 'none'
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzU2ZDk4OCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMmMxODkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+  background: -moz-linear-gradient(top, #56d988 0%, #02c189 100%)
+  /* FF3.6+
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #56d988), color-stop(100%, #02c189))
+  /* Chrome,Safari4+
+  background: -webkit-linear-gradient(top, #56d988 0%, #02c189 100%)
+  /* Chrome10+,Safari5.1+
+  background: -o-linear-gradient(top, #56d988 0%, #02c189 100%)
+  /* Opera 11.10+
+  background: -ms-linear-gradient(top, #56d988 0%, #02c189 100%)
+  /* IE10+
+  background: linear-gradient(to bottom, #56d988 0%, #02c189 100%)
+  /* W3C
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#56d988', endColorstr='#02c189', GradientType=0 )
+  /* IE6-8
   &:hover, &:active, &:focus
+    background: #02c189
+    /* Old browsers
+    /* IE9 SVG, needs conditional override of 'filter' to 'none'
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAyYzE4OSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM0YmM2OWYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+    background: -moz-linear-gradient(top, #02c189 0%, #4bc69f 100%)
+    /* FF3.6+
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #02c189), color-stop(100%, #4bc69f))
+    /* Chrome,Safari4+
+    background: -webkit-linear-gradient(top, #02c189 0%, #4bc69f 100%)
+    /* Chrome10+,Safari5.1+
+    background: -o-linear-gradient(top, #02c189 0%, #4bc69f 100%)
+    /* Opera 11.10+
+    background: -ms-linear-gradient(top, #02c189 0%, #4bc69f 100%)
+    /* IE10+
+    background: linear-gradient(to bottom, #02c189 0%, #4bc69f 100%)
+    /* W3C
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#02c189', endColorstr='#4bc69f', GradientType=0 )
+    /* IE6-8
+    text-decoration: none
     color: #FFF
 
-.boll-box
-  background-color: #dadada
-  border: 3px solid #333
+.dropfil a i
+  margin-left: 10px
+
+.field1
+  float: right
+  background-color: #f7f7f7
+  padding: 15px
+  color: #333
+  font-size: 18px
+  text-align: center
+  border: none
+  margin: 0
+  width: 80%
+
+.mod a
+  float: right
+  width: 20%
+  text-align: center
+
+.btn1
+  float: right
+  border-radius: 0
+  width: 100%
+  height: 55px
+  text-align: center
+  margin: 0
+  background: #5c6067
+  /* Old browsers
+  /* IE9 SVG, needs conditional override of 'filter' to 'none'
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIxJSIgc3RvcC1jb2xvcj0iIzVjNjA2NyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMzYzQ0NDkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+  background: -moz-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+  /* FF3.6+
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #5c6067), color-stop(100%, #3c4449))
+  /* Chrome,Safari4+
+  background: -webkit-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+  /* Chrome10+,Safari5.1+
+  background: -o-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+  /* Opera 11.10+
+  background: -ms-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+  /* IE10+
+  background: linear-gradient(to bottom, #5c6067 1%, #3c4449 100%)
+  /* W3C
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5c6067', endColorstr='#3c4449', GradientType=0 )
+  /* IE6-8
+  padding: 10px
+  i img
+    text-align: center
+    margin: 0 auto
+    margin-left: -25%
+  &:hover, &:active, &:focus
+    background: #3c4449
+    /* Old browsers
+    /* IE9 SVG, needs conditional override of 'filter' to 'none'
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIxJSIgc3RvcC1jb2xvcj0iIzNjNDQ0OSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM1YzYwNjciIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+    background: -moz-linear-gradient(top, #3c4449 1%, #5c6067 100%)
+    /* FF3.6+
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #3c4449), color-stop(100%, #5c6067))
+    /* Chrome,Safari4+
+    background: -webkit-linear-gradient(top, #3c4449 1%, #5c6067 100%)
+    /* Chrome10+,Safari5.1+
+    background: -o-linear-gradient(top, #3c4449 1%, #5c6067 100%)
+    /* Opera 11.10+
+    background: -ms-linear-gradient(top, #3c4449 1%, #5c6067 100%)
+    /* IE10+
+    background: linear-gradient(to bottom, #3c4449 1%, #5c6067 100%)
+    /* W3C
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3c4449', endColorstr='#5c6067', GradientType=0 )
+/* IE6-8
+
+.btns
+  display: block
+  position: absolute
+  margin-left: 12px
+  bottom: 5px
+  li
+    float: left
+    margin-right: 8px
+    margin-bottom: 8px
+    &:last-child
+      margin-right: 0
+    button
+      border-radius: 0
+      background: #fafafb
+      /* Old browsers
+      /* IE9 SVG, needs conditional override of 'filter' to 'none'
+      background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZhZmFmYiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNjOWNiY2QiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+      background: -moz-linear-gradient(top, #fafafb 0%, #c9cbcd 100%)
+      /* FF3.6+
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fafafb), color-stop(100%, #c9cbcd))
+      /* Chrome,Safari4+
+      background: -webkit-linear-gradient(top, #fafafb 0%, #c9cbcd 100%)
+      /* Chrome10+,Safari5.1+
+      background: -o-linear-gradient(top, #fafafb 0%, #c9cbcd 100%)
+      /* Opera 11.10+
+      background: -ms-linear-gradient(top, #fafafb 0%, #c9cbcd 100%)
+      /* IE10+
+      background: linear-gradient(to bottom, #fafafb 0%, #c9cbcd 100%)
+      /* W3C
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fafafb', endColorstr='#c9cbcd', GradientType=0 )
+      /* IE6-8
+      border: none
+      padding: 7px 17px
+      font-size: 12px
+
+.sep
+  font-size: 14px !important
+  padding: 5px 10px !important
+
+.btns li button
+  &:hover, &:active, &:focus
+    background: #56d988
+    /* Old browsers
+    /* IE9 SVG, needs conditional override of 'filter' to 'none'
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzU2ZDk4OCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMmMxODkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+    background: -moz-linear-gradient(top, #56d988 0%, #02c189 100%)
+    /* FF3.6+
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #56d988), color-stop(100%, #02c189))
+    /* Chrome,Safari4+
+    background: -webkit-linear-gradient(top, #56d988 0%, #02c189 100%)
+    /* Chrome10+,Safari5.1+
+    background: -o-linear-gradient(top, #56d988 0%, #02c189 100%)
+    /* Opera 11.10+
+    background: -ms-linear-gradient(top, #56d988 0%, #02c189 100%)
+    /* IE10+
+    background: linear-gradient(to bottom, #56d988 0%, #02c189 100%)
+    /* W3C
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#56d988', endColorstr='#02c189', GradientType=0 )
+    /* IE6-8
+    color: #FFF
+
+.slider
   display: block
   position: relative
-  padding: 25px 20px 20px 25px
-  width: 88%
-  margin-bottom: 20px
-  h1
-    font-family: 'LatoBold'
+  text-align: center
+  padding-top: 35px
+  h2
+    color: #666
+    display: inline
+    position: relative
+    span
+      display: inline-block
+      padding: 5px 10px
+      background-color: #e7e7e8
+
+.anc
+  position: absolute
+  background-color: #3a4348
+  font-size: 25px
+  color: #FFF
+  padding: 10px
+  width: 201px
+  text-align: left
+  left: 71px
+  top: 40px
+  z-index: 100
+
+.ds .item img
+  display: inline
+  padding: 0 10px
+  .anc:hover
+    text-decoration: none
     color: #FFF
-    padding: 0
-    margin: 0
+
+.anc
+  &:active, &:focus
+    text-decoration: none
+    color: #FFF
+
+.slider h2 span
+  a
+    display: none
+  &:hover a
+    display: block
+    color: #FFF
+    text-decoration: none
+
+.strip
+  width: 100%
+  height: 10px
+  background-color: #e7e7e8
+  position: absolute
+  top: 27%
+  z-index: -1
+
+.carousel
+  margin-top: 40px
+  background: none
+
+.carousel-control
+  top: 24%
+  background-image: none !important
+
+.item img
+  margin: 0 auto
+
+.btn3
+  background: #5c6067
+  /* Old browsers
+  /* IE9 SVG, needs conditional override of 'filter' to 'none'
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIxJSIgc3RvcC1jb2xvcj0iIzVjNjA2NyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMzYzQ0NDkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+  background: -moz-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+  /* FF3.6+
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #5c6067), color-stop(100%, #3c4449))
+  /* Chrome,Safari4+
+  background: -webkit-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+  /* Chrome10+,Safari5.1+
+  background: -o-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+  /* Opera 11.10+
+  background: -ms-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+  /* IE10+
+  background: linear-gradient(to bottom, #5c6067 1%, #3c4449 100%)
+  /* W3C
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5c6067', endColorstr='#3c4449', GradientType=0 )
+  /* IE6-8
+  border-radius: 0
+  color: #FFF
+  font-size: 14px
+  padding: 10px 50px
+  margin-top: 137px
+  &:hover, &:active, &:focus
+    background: #3c4449
+    /* Old browsers
+    /* IE9 SVG, needs conditional override of 'filter' to 'none'
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIxJSIgc3RvcC1jb2xvcj0iIzNjNDQ0OSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM1YzYwNjciIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+    background: -moz-linear-gradient(top, #3c4449 1%, #5c6067 100%)
+    /* FF3.6+
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #3c4449), color-stop(100%, #5c6067))
+    /* Chrome,Safari4+
+    background: -webkit-linear-gradient(top, #3c4449 1%, #5c6067 100%)
+    /* Chrome10+,Safari5.1+
+    background: -o-linear-gradient(top, #3c4449 1%, #5c6067 100%)
+    /* Opera 11.10+
+    background: -ms-linear-gradient(top, #3c4449 1%, #5c6067 100%)
+    /* IE10+
+    background: linear-gradient(to bottom, #3c4449 1%, #5c6067 100%)
+    /* W3C
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3c4449', endColorstr='#5c6067', GradientType=0 )
+    /* IE6-8
+    color: #FFF
+
+.club
+  width: 47%
+  float: left
+  text-align: center
+  height: 493px
+  position: relative
+  button
+    font-size: 19px
+    padding: 13px 50px
+    margin-top: 380px
+
+.updates
+  background-color: #e7e7e8
+  width: 50%
+  float: left
+  min-height: 450px
+
+.pos
+  position: relative
+  width: 110%
+  background-color: #E7E7E8
+  overflow: hidden
+  float: left
+
+.updates
+  h2
+    padding-left: 20px
+    padding-top: 5px
+  p
+    font-size: 21px
+    color: #444
+    padding: 17px 22px 5px 22px
+    span a
+      color: #00c088
+    &:hover, &:active, &:focus
+      background: #56d988
+      /* Old browsers
+      /* IE9 SVG, needs conditional override of 'filter' to 'none'
+      background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzU2ZDk4OCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMmMxODkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+      background: -moz-linear-gradient(top, #56d988 0%, #02c189 100%)
+      /* FF3.6+
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #56d988), color-stop(100%, #02c189))
+      /* Chrome,Safari4+
+      background: -webkit-linear-gradient(top, #56d988 0%, #02c189 100%)
+      /* Chrome10+,Safari5.1+
+      background: -o-linear-gradient(top, #56d988 0%, #02c189 100%)
+      /* Opera 11.10+
+      background: -ms-linear-gradient(top, #56d988 0%, #02c189 100%)
+      /* IE10+
+      background: linear-gradient(to bottom, #56d988 0%, #02c189 100%)
+      /* W3C
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#56d988', endColorstr='#02c189', GradientType=0 )
+      /* IE6-8
+      color: #FFF
+    &:hover a, &:active a, &:focus a
+      color: #FFF
+
+.two-clumns
+  float: left
+  width: 100%
+  margin-left: 35px
+  margin-top: 10px
+
+.half
+  float: left
+  width: 50%
+  min-height: 493px
+  h1
+    padding-left: 30px
+
+.foy
+  float: left
+  width: 78%
+  margin: 15px 40px
+  li
+    width: 100%
+    float: left
+    margin-top: 8px
+    input
+      width: 100%
+      color: #FFF
+      font-size: 20px
+      padding: 9px 10px
+      background-color: #00c088
+      float: left
+      border: none
+
+.mac
+  .selectyzeValue
+    font-size: 20px
+    color: #FFF
+    width: 227px
+    height: 49px
+    background: url(../assets/select.png) no-repeat
+    padding-left: 15px
+  .UlSelectize
+    top: 48px
+    left: 2px
+    width: 223px
+    background-color: #00b07d
+  li a
+    height: 30px
+    font: 13px / 20px Arial
+    background-color: transparent
+    color: #FFF
+    padding-top: 5px
+    padding-left: 10px
+    &:hover
+      color: #fff
+      background-color: #07d599
+  /** gradient bgcolors
+  .optgroupTitle
+    margin-top: 15px
+    font-size: 13px
+    padding-left: 10px
+    background-color: #fff
+    color: #969696
+
+.DivSelectyze
+  position: relative
+  width: 253px
+  float: left
+  .selectyzeValue
+    position: relative
+    z-index: 1
+    display: block
+    text-decoration: none
+    padding-top: 10px
+  ul
+    list-style: none
+  .UlSelectize
+    position: absolute
+    z-index: 9999
+    display: none
+  li a
+    display: block
+    text-decoration: none
+
+.optgroupTitle
+  display: block
+
+.ch
+  margin: 0
+  padding: 18px 8px
+  font-size: 20px
+  margin-left: 2px
+
+.green
+  float: left
+  width: 45%
+  min-height: 493px
+  background-color: #00c088
+  p
+    font-size: 19px
+    color: #444
+    padding: 10px 20px
+  h2
+    font-size: 27px
+    padding: 0 20px
+  p
+    span
+      color: #FFF
+    &:hover, &:active, &:focus
+      background: #56d988
+      /* Old browsers
+      /* IE9 SVG, needs conditional override of 'filter' to 'none'
+      background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzU2ZDk4OCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMmMxODkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+      background: -moz-linear-gradient(top, #56d988 0%, #02c189 100%)
+      /* FF3.6+
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #56d988), color-stop(100%, #02c189))
+      /* Chrome,Safari4+
+      background: -webkit-linear-gradient(top, #56d988 0%, #02c189 100%)
+      /* Chrome10+,Safari5.1+
+      background: -o-linear-gradient(top, #56d988 0%, #02c189 100%)
+      /* Opera 11.10+
+      background: -ms-linear-gradient(top, #56d988 0%, #02c189 100%)
+      /* IE10+
+      background: linear-gradient(to bottom, #56d988 0%, #02c189 100%)
+      /* W3C
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#56d988', endColorstr='#02c189', GradientType=0 )
+      /* IE6-8
+      color: #FFF
+
+.clubs-inner
+  display: block
+  position: relative
+  padding: 10px 35px
+  float: left
+
+.title
+  background: #ffffff
+  /* Old browsers
+  /* IE9 SVG, needs conditional override of 'filter' to 'none'
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlZGVkZWQiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+  background: -moz-linear-gradient(top, white 0%, #ededed 100%)
+  /* FF3.6+
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #ededed))
+  /* Chrome,Safari4+
+  background: -webkit-linear-gradient(top, white 0%, #ededed 100%)
+  /* Chrome10+,Safari5.1+
+  background: -o-linear-gradient(top, white 0%, #ededed 100%)
+  /* Opera 11.10+
+  background: -ms-linear-gradient(top, white 0%, #ededed 100%)
+  /* IE10+
+  background: linear-gradient(to bottom, white 0%, #ededed 100%)
+  /* W3C
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed', GradientType=0 )
+  /* IE6-8
+  float: left
+  width: 100%
+
+#ssp3
+  margin-left: -15px
+
+.title
+  h1
     font-size: 43px
     font-weight: normal
-
-.chang5
-  color: #FFF
-  padding: 4px 35px
-  margin-top: 60px
-  float: right
-  &:hover, &:active, &:focus
-    color: #FFF
-
-.posts
-  width: 93%
-  float: left
-  clear: left
-  li
-    width: 100%
-    border-bottom: 1px solid #ACACAC
-    padding-bottom: 5px
-    margin-top: 15px
-    h4
-      font-family: 'LatoBold'
-    p
-      font-family: 'LatoRegular'
-      font-size: 14px
-
-.avatr
-  display: block
-  /*background-color: #ACACAC*/
-  height: 75px
-  width: 75px
-  margin-bottom: 10px
-  margin-right: 20px
-  float: left
-
-.close-button
-  display: block
-  margin-bottom: 70px
-  margin-left: 10px
-  float: right
-
-.com
-  float: right
-  color: #39a667
-  font-weight: bold
-
-.tabs
-  margin-top: 90px
-  float: left
-  width: 95%
-  li
+    padding-left: 35px
+    padding-top: 10px
     float: left
-    width: 32%
-    margin-left: 5px
-    a
-      font-family: 'VarelaRoundRegular'
-      font-size: 20px
-      color: #FFF
-      vertical-align: middle
-      float: left
-      text-align: center
-      width: 100%
-      height: 40px
-      line-height: 36px
-      background-color: #50bc7e
-      &.selected
-        height: 80px
-
-.tabs2
-  margin-top: 90px
-  float: left
-  width: 95%
-  li
-    float: left
-    width: 13.5%
-    margin-left: 5px
-    a
-      font-size: 13px
-      color: #FFF
-      vertical-align: middle
-      float: left
-      text-align: center
-      width: 100%
-      height: 40px
-      line-height: 36px
-      background-color: #50bc7e
-      &.selected
-        height: 80px
-
-.tabs3
-  margin-top: 90px
-  float: left
-  width: 95%
-  li
-    float: left
-    width: 19%
-    margin-left: 5px
-    a
-      font-family: 'VarelaRoundRegular'
-      font-size: 18px
-      color: #FFF
-      vertical-align: middle
-      float: left
-      text-align: center
-      width: 100%
-      height: 40px
-      line-height: 36px
-      background-color: #50bc7e
-      &.selected
-        height: 80px
-
-.tabs4
-  margin-top: 90px
-  float: left
-  width: 95%
-  li
-    float: left
-    width: 49.2%
-    margin-left: 5px
-    a
-      font-family: 'VarelaRoundRegular'
-      font-size: 19px
-      color: #FFF
-      vertical-align: middle
-      float: left
-      text-align: center
-      width: 100%
-      height: 40px
-      line-height: 36px
-      background-color: #50bc7e
-
-.tabs li a.selected
-  height: 80px
-
-.tabs5, .tabs6
-  margin-top: 90px
-  float: left
-  width: 95%
-
-.tabs5 li, .tabs6 li
-  float: left
-  width: 19%
-  margin-left: 5px
-
-.tabs5 li a
-  i
-    background: url('notif.png') no-repeat
-    width: 38px
-    height: 40px
-    position: absolute
-    text-align: center
-    top: -28px
-    right: 0
-    color: #222
-    font-size: 25px
-    line-height: 28px
-  position: relative
-  font-size: 20px
-  color: #FFF
-  vertical-align: middle
-  float: left
-  text-align: center
-  width: 100%
-  height: 40px
-  line-height: 36px
-  background-color: #50bc7e
-
-.tabs6 li a
-  position: relative
-  font-size: 20px
-  color: #FFF
-  vertical-align: middle
-  float: left
-  text-align: center
-  width: 100%
-  height: 40px
-  line-height: 36px
-  background-color: #50bc7e
-
-.tabs5 li a.selected, .tabs6 li a.selected
-  height: 80px
-
-.mod1
-  margin-right: 70px
-
-.mod2
-  width: 20%
-  border: 2px solid #999 !important
-  border-right: none !important
-  height: 25px !important
-
-.users
-  a
-    text-align: center
-    position: relative
+  p
+    font-size: 19px
+    margin-top: 45px
+    margin-bottom: 15px
+    margin-left: 25px
     float: left
     span
-      font-family: 'LatoBold'
-      width: 173px
-      height: 29px
-      display: block
-      font-size: 16px
-      color: #FFF
-      padding-top: 3px
-      position: absolute
-      margin: 170px 0 0 25px
-      z-index: 1000
+      color: #00c088
 
-html ul
-  &.tabs li.active, &.tabs2 li.active, &.tabs3 li.active, &.tabs4 li.active, &.tabs5 li.active, &.tabs6 li.active
-    background: #50bc7e
-    text-decoration: none
-    color: #0b5e2e
-    height: 80px
-    margin-top: -39px
-    text-decoration: none
-  &.tabs li a
-    &:hover, &:active, &:focus
-      text-decoration: none
-  &.tabs2 li a
-    &:hover, &:active, &:focus
-      text-decoration: none
-  &.tabs3 li a
-    &:hover, &:active, &:focus
-      text-decoration: none
-  &.tabs4 li a
-    &:hover, &:active, &:focus
-      text-decoration: none
-  &.tabs5 li a
-    &:hover, &:active, &:focus
-      text-decoration: none
-  &.tabs6 li a
-    &:hover, &:active, &:focus
-      text-decoration: none
-
-.seperator
-  background-color: #CCC
-  height: 1px
+.btns2
+  width: 100%
   float: left
-  width: 100%
-  margin-top: 120px
-
-.footer-column
-  width: 100%
-  display: block
   position: relative
-  margin-top: 20px
+  margin-left: -7px
   li
     float: left
-    margin-bottom: 15px
-    clear: left
-    h3
-      font-family: 'LatoBold'
-      font-weight: normal
-      font-size: 22px
-      padding: 0
-      margin: 0
-    a
-      font-family: 'LatoRegular'
-      color: #333
-      font-size: 17px
+    margin-left: 7px
+    margin-bottom: 7px
+    button
+      background: #5c6067
+      /* Old browsers
+      /* IE9 SVG, needs conditional override of 'filter' to 'none'
+      background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIxJSIgc3RvcC1jb2xvcj0iIzVjNjA2NyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMzYzQ0NDkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+      background: -moz-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+      /* FF3.6+
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #5c6067), color-stop(100%, #3c4449))
+      /* Chrome,Safari4+
+      background: -webkit-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+      /* Chrome10+,Safari5.1+
+      background: -o-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+      /* Opera 11.10+
+      background: -ms-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+      /* IE10+
+      background: linear-gradient(to bottom, #5c6067 1%, #3c4449 100%)
+      /* W3C
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5c6067', endColorstr='#3c4449', GradientType=0 )
+      /* IE6-8
+      border-radius: 0
+      color: #FFF
+      padding: 8px 20px
+      font-size: 12px
+      &:hover, &:active, &:focus
+        background: #56d988
+        /* Old browsers
+        /* IE9 SVG, needs conditional override of 'filter' to 'none'
+        background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzU2ZDk4OCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMmMxODkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+        background: -moz-linear-gradient(top, #56d988 0%, #02c189 100%)
+        /* FF3.6+
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #56d988), color-stop(100%, #02c189))
+        /* Chrome,Safari4+
+        background: -webkit-linear-gradient(top, #56d988 0%, #02c189 100%)
+        /* Chrome10+,Safari5.1+
+        background: -o-linear-gradient(top, #56d988 0%, #02c189 100%)
+        /* Opera 11.10+
+        background: -ms-linear-gradient(top, #56d988 0%, #02c189 100%)
+        /* IE10+
+        background: linear-gradient(to bottom, #56d988 0%, #02c189 100%)
+        /* W3C
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#56d988', endColorstr='#02c189', GradientType=0 )
+        /* IE6-8
+        color: #FFF
 
-.rig
-  float: right
-  margin-right: -25px
+.music
+  display: inline-block
+  padding: 0 30px
+  width: 100%
+  float: left
+  margin-bottom: 70px
+  position: relative
+
+.music-img
+  border: 9px solid #EBEBEB
+  width: 100%
+  height: 250px
+  float: left
+  position: relative
+  overflow: hidden
+  &:hover, &:active, &:focus
+    border: 9px solid #00c089
+
+.music
+  a span
+    background: url(../assets/title-img.png) no-repeat
+    width: 264px
+    height: 70px
+    position: absolute
+    left: 17px
+    color: #444
+    bottom: 80px
+  &:hover a span, &:active a span, &:focus a span
+    background: url(../assets/title-img-hover.png) no-repeat !important
+    color: #FFF
+  p
+    font-size: 20px
+    margin: 10px 15px
+    float: left
+  span strong
+    font-size: 31px
+    float: left
+    margin: 20px 0 20px 14px
+    font-weight: normal
+    font-family: 'varela_roundregular'
+
+.search
+  width: 100%
+  float: left
+  input
+    width: 80%
+    border: none
+    font-size: 30px
+    float: left
+    height: 87px
+    text-align: center
+    background-color: #F7F7F7
+  button
+    width: 20%
+    border: none
+    background: #5c6067
+    /* Old browsers
+    /* IE9 SVG, needs conditional override of 'filter' to 'none'
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIxJSIgc3RvcC1jb2xvcj0iIzVjNjA2NyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMzYzQ0NDkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+    background: -moz-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+    /* FF3.6+
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #5c6067), color-stop(100%, #3c4449))
+    /* Chrome,Safari4+
+    background: -webkit-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+    /* Chrome10+,Safari5.1+
+    background: -o-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+    /* Opera 11.10+
+    background: -ms-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+    /* IE10+
+    background: linear-gradient(to bottom, #5c6067 1%, #3c4449 100%)
+    /* W3C
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5c6067', endColorstr='#3c4449', GradientType=0 )
+    /* IE6-8
+    border-radius: 0
+    height: 87px
+
+#ssp4
+  margin-left: -15px
+
+#mar
+  padding-right: 0
+  padding-left: 0
+
+.search button
+  &:hover, &:active, &:focus
+    background: #3c4449
+    /* Old browsers
+    /* IE9 SVG, needs conditional override of 'filter' to 'none'
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIxJSIgc3RvcC1jb2xvcj0iIzNjNDQ0OSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM1YzYwNjciIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+    background: -moz-linear-gradient(top, #3c4449 1%, #5c6067 100%)
+    /* FF3.6+
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #3c4449), color-stop(100%, #5c6067))
+    /* Chrome,Safari4+
+    background: -webkit-linear-gradient(top, #3c4449 1%, #5c6067 100%)
+    /* Chrome10+,Safari5.1+
+    background: -o-linear-gradient(top, #3c4449 1%, #5c6067 100%)
+    /* Opera 11.10+
+    background: -ms-linear-gradient(top, #3c4449 1%, #5c6067 100%)
+    /* IE10+
+    background: linear-gradient(to bottom, #3c4449 1%, #5c6067 100%)
+    /* W3C
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3c4449', endColorstr='#5c6067', GradientType=0 )
+/* IE6-8
+
+.info
+  width: 100%
+  float: left
+  text-align: center
+
+.btn4
+  color: #FFF
+  font-size: 26px
+  width: 100%
+  border: none
+  background: #5c6067
+  /* Old browsers
+  /* IE9 SVG, needs conditional override of 'filter' to 'none'
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIxJSIgc3RvcC1jb2xvcj0iIzVjNjA2NyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMzYzQ0NDkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+  background: -moz-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+  /* FF3.6+
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #5c6067), color-stop(100%, #3c4449))
+  /* Chrome,Safari4+
+  background: -webkit-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+  /* Chrome10+,Safari5.1+
+  background: -o-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+  /* Opera 11.10+
+  background: -ms-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+  /* IE10+
+  background: linear-gradient(to bottom, #5c6067 1%, #3c4449 100%)
+  /* W3C
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5c6067', endColorstr='#3c4449', GradientType=0 )
+  /* IE6-8
+  border-radius: 0
+  height: 77px
+  float: left
+  line-height: 80px
+
+.info
+  a.bka
+    width: 100%
+    text-align: left
+    padding: 0
+    float: left
+    margin-top: 0
+    height: 80px
+    color: #3a4348
+    line-height: 73px
+    background-color: #00BF89
+    text-indent: 30px
+    font-size: 28px
+    &:hover, &:active, &:focus
+      text-decoration: none
+      color: #FFF
+  img
+    float: left
+    width: 100%
+    margin-top: -10px
+  p
+    font-size: 19px
+    display: block
+    padding: 150px 45px
+    float: left
+
+.form2
+  width: 100%
+  position: relative
+  display: block
+  margin-top: 90px
+  h3
+    font-size: 30px
+  input
+    width: 100%
+    border: none
+    height: 35px
+    font-size: 15px
+    margin-bottom: 10px
+    float: left
+    text-indent: 15px
+
+.gentleselect-data
+  display: none
+
+.gentleselect-label
+  background: url(../assets/select2.png) white
+  width: 291px
+  height: 36px
+  cursor: pointer
+  color: #555
+  float: left
+  padding-top: 7px
+  text-indent: 15px
+  font-size: 15px
+  margin-bottom: 10px
+
+#sops .gentleselect-label
+  background: url(../assets/select2.png) #ebebeb !important
+
+.gentleselect-dialog
+  width: 291px
+  position: absolute
+  z-index: 500
+  display: none
+  background-color: #fff
+  border: 1px solid #EBEBEB
+  margin: 0
+  padding: 0
+  margin-top: 7px
+  >
+  ul
+    padding: 0
+    margin: 0
+    list-style: none
+    > li
+      margin: 0
+      padding: 3px 20px 3px 15px
+      cursor: pointer
+      &.selected
+        font-weight: bold
+        color: #FFF
+        background-color: #1BC973
+      &.gentleselect-dummy:hover
+        background-color: #fff
+      &:hover
+        background-color: #1BC973
+        color: #fff
+    .gentleselect-title
+      display: block
+      text-align: center
+      margin: 0
+      padding: 2px
+      background-color: #1BC973
+      font-size: 0.8em
+      color: #666
+      overflow: hidden
+
+.form2 p
+  font-size: 11px
+  width: 100%
+  text-align: center
+  float: left
+  clear: left
+
+.sl
+  font-size: 10px !important
+  color: #999 !important
+
+.btn5
+  background: #56d988
+  /* Old browsers
+  /* IE9 SVG, needs conditional override of 'filter' to 'none'
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzU2ZDk4OCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMmMxODkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+  background: -moz-linear-gradient(top, #56d988 0%, #02c189 100%)
+  /* FF3.6+
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #56d988), color-stop(100%, #02c189))
+  /* Chrome,Safari4+
+  background: -webkit-linear-gradient(top, #56d988 0%, #02c189 100%)
+  /* Chrome10+,Safari5.1+
+  background: -o-linear-gradient(top, #56d988 0%, #02c189 100%)
+  /* Opera 11.10+
+  background: -ms-linear-gradient(top, #56d988 0%, #02c189 100%)
+  /* IE10+
+  background: linear-gradient(to bottom, #56d988 0%, #02c189 100%)
+  /* W3C
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#56d988', endColorstr='#02c189', GradientType=0 )
+  /* IE6-8
+  color: #FFF
+  font-size: 26px
+  padding: 20px 0
+  width: 100%
+  margin-top: 15px
+  border-radius: 0
+  margin-bottom: 15px
+  text-align: center
+  &:hover, &:active, &:focus
+    background: #02c189
+    /* Old browsers
+    /* IE9 SVG, needs conditional override of 'filter' to 'none'
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAyYzE4OSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM0YmM2OWYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+    background: -moz-linear-gradient(top, #02c189 0%, #4bc69f 100%)
+    /* FF3.6+
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #02c189), color-stop(100%, #4bc69f))
+    /* Chrome,Safari4+
+    background: -webkit-linear-gradient(top, #02c189 0%, #4bc69f 100%)
+    /* Chrome10+,Safari5.1+
+    background: -o-linear-gradient(top, #02c189 0%, #4bc69f 100%)
+    /* Opera 11.10+
+    background: -ms-linear-gradient(top, #02c189 0%, #4bc69f 100%)
+    /* IE10+
+    background: linear-gradient(to bottom, #02c189 0%, #4bc69f 100%)
+    /* W3C
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#02c189', endColorstr='#4bc69f', GradientType=0 )
+    /* IE6-8
+    color: #FFF
+
+.form2 p
+  span
+    font-size: 14px
+  a
+    color: #00c089
+    font-size: 15px
+
+.form3
+  margin-top: 25%
+  float: left
+  width: 100%
+  text-align: center
+
+.bigf
+  height: 60px
+  width: 80%
+  font-size: 25px
+  display: block
+  padding: 15px
+  border: none
+  margin: 0 auto
+  margin-bottom: 20px
+  margin-top: 20px
+
+div
+  &.fancy-select
+    position: relative
+    font-weight: bold
+    text-transform: uppercase
+    font-size: 13px
+    color: #46565D
+    &.disabled
+      opacity: 0.5
+    select:focus + div.trigger.open
+      box-shadow: none
+    div.trigger
+      transition: all 240ms ease-out
+      -webkit-transition: all 240ms ease-out
+      -moz-transition: all 240ms ease-out
+      -ms-transition: all 240ms ease-out
+      -o-transition: all 240ms ease-out
+      background: url(../assets/select3.png) no-repeat
+      cursor: pointer
+      margin-top: 20px
+      width: 410px
+      margin-bottom: 20px
+      height: 58px
+      font-size: 25px
+      text-align: left
+      text-indent: 15px
+      line-height: 60px
+    ul.options
+      list-style: none
+      margin: 0
+      position: absolute
+      top: 58px !important
+      left: 0
+      visibility: hidden
+      opacity: 0
+      z-index: 50
+      text-align: left
+      overflow: auto
+      background: #FFF
+      border: 1px solid #EBEBEB
+      min-width: 410px
+      transition: opacity 300ms ease-out, top 300ms ease-out, visibility 300ms ease-out
+      -webkit-transition: opacity 300ms ease-out, top 300ms ease-out, visibility 300ms ease-out
+      -moz-transition: opacity 300ms ease-out, top 300ms ease-out, visibility 300ms ease-out
+      -ms-transition: opacity 300ms ease-out, top 300ms ease-out, visibility 300ms ease-out
+      -o-transition: opacity 300ms ease-out, top 300ms ease-out, visibility 300ms ease-out
+      &.open
+        visibility: visible
+        top: 50px
+        opacity: 1
+        /* have to use a non-visibility transition to prevent this iOS issue (bug?):
+        /*http://stackoverflow.com/questions/10736478/css-animation-visibility-visible-works-on-chrome-and-safari-but-not-on-ios
+        transition: opacity 300ms ease-out, top 300ms ease-out
+        -webkit-transition: opacity 300ms ease-out, top 300ms ease-out
+        -moz-transition: opacity 300ms ease-out, top 300ms ease-out
+        -ms-transition: opacity 300ms ease-out, top 300ms ease-out
+        -o-transition: opacity 300ms ease-out, top 300ms ease-out
+      &.overflowing
+        top: auto
+        bottom: 40px
+        transition: opacity 300ms ease-out, bottom 300ms ease-out, visibility 300ms ease-out
+        -webkit-transition: opacity 300ms ease-out, bottom 300ms ease-out, visibility 300ms ease-out
+        -moz-transition: opacity 300ms ease-out, bottom 300ms ease-out, visibility 300ms ease-out
+        -ms-transition: opacity 300ms ease-out, bottom 300ms ease-out, visibility 300ms ease-out
+        -o-transition: opacity 300ms ease-out, bottom 300ms ease-out, visibility 300ms ease-out
+        &.open
+          top: auto
+          bottom: 50px
+          transition: opacity 300ms ease-out, bottom 300ms ease-out
+          -webkit-transition: opacity 300ms ease-out, bottom 300ms ease-out
+          -moz-transition: opacity 300ms ease-out, bottom 300ms ease-out
+          -ms-transition: opacity 300ms ease-out, bottom 300ms ease-out
+          -o-transition: opacity 300ms ease-out, bottom 300ms ease-out
+      li
+        padding: 8px 12px
+        color: #2B8686
+        cursor: pointer
+        white-space: nowrap
+        transition: all 150ms ease-out
+        -webkit-transition: all 150ms ease-out
+        -moz-transition: all 150ms ease-out
+        -ms-transition: all 150ms ease-out
+        -o-transition: all 150ms ease-out
+        &.selected
+          background: #16C476
+          color: #FFF
+        &.hover
+          color: #fff
+          background: #16C476
+  &.selectBox
+    float: left
+    position: relative
+    display: inline-block
+    cursor: default
+    text-align: left
+    line-height: 23px
+    margin-bottom: 10px
+    margin-right: 10px
+    color: #888
+
+span
+  &.selected
+    width: 129px
+    height: 24px
+    text-indent: 10px
+    background: url(../assets/select4.png) no-repeat
+    overflow: hidden
+  &.selectArrow, &.selected
+    position: relative
+    float: left
+    height: 30px
+    z-index: 1
+
+div.selectOptions
+  position: absolute
+  top: 30px
+  left: 0
+  width: 129px
+  border: 1px solid #EBEBEB
+  overflow: hidden
+  background: #FFF
+  padding-top: 2px
+  display: none
+  z-index: 1000
+
+span.selectOption
+  display: block
+  width: 100%
+  line-height: 20px
+  text-indent: 15px
+  padding: 5px 0
+  &:hover
+    color: #FFF
+    background: #0EBE7A
+
+.btn6
+  width: 50%
+  margin: 0 auto
+  color: #FFF
+  font-size: 25px
+  background: #56d988
+  /* Old browsers
+  /* IE9 SVG, needs conditional override of 'filter' to 'none'
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzU2ZDk4OCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMmMxODkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+  background: -moz-linear-gradient(top, #56d988 0%, #02c189 100%)
+  /* FF3.6+
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #56d988), color-stop(100%, #02c189))
+  /* Chrome,Safari4+
+  background: -webkit-linear-gradient(top, #56d988 0%, #02c189 100%)
+  /* Chrome10+,Safari5.1+
+  background: -o-linear-gradient(top, #56d988 0%, #02c189 100%)
+  /* Opera 11.10+
+  background: -ms-linear-gradient(top, #56d988 0%, #02c189 100%)
+  /* IE10+
+  background: linear-gradient(to bottom, #56d988 0%, #02c189 100%)
+  /* W3C
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#56d988', endColorstr='#02c189', GradientType=0 )
+  /* IE6-8
+  border-radius: 0
+  padding: 12px 0
+  margin-top: 25px
+  &:hover, &:active, &:focus
+    background: #02c189
+    /* Old browsers
+    /* IE9 SVG, needs conditional override of 'filter' to 'none'
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAyYzE4OSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM0YmM2OWYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+    background: -moz-linear-gradient(top, #02c189 0%, #4bc69f 100%)
+    /* FF3.6+
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #02c189), color-stop(100%, #4bc69f))
+    /* Chrome,Safari4+
+    background: -webkit-linear-gradient(top, #02c189 0%, #4bc69f 100%)
+    /* Chrome10+,Safari5.1+
+    background: -o-linear-gradient(top, #02c189 0%, #4bc69f 100%)
+    /* Opera 11.10+
+    background: -ms-linear-gradient(top, #02c189 0%, #4bc69f 100%)
+    /* IE10+
+    background: linear-gradient(to bottom, #02c189 0%, #4bc69f 100%)
+    /* W3C
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#02c189', endColorstr='#4bc69f', GradientType=0 )
+    /* IE6-8
+    color: #FFF
+
+.mar2
+  margin-right: 0
+
+.user-profile
+  display: block
+  position: relative
+  float: left
+  width: 100%
+  padding-top: 20px
+  background-color: #FFF
+
+.pro-pic
+  background: url(../assets/frame.png) no-repeat
+  width: 220px
+  height: 206px
+  text-align: center
+  color: #333
+  font-size: 25px
+  display: block
+  margin-left: 30px
+  line-height: 325px
+  margin-right: 20px
+  float: left
   position: relative
   z-index: 1000
-  margin-top: 0px
+  &:hover, &:active, &:focus
+    color: #000
+    text-decoration: none
+  span
+    color: #FFF
 
-.mar
-  margin-left: 20px
+.user-profile p
+  font-size: 13px
+  line-height: 22px
+  padding-right: 20px
+  i
+    color: #00c088
+    font-style: normal
 
-.mar1
-  margin-left: 100px
+.pos2
+  position: absolute
+  height: 48px
+  background: #fafafa
+  /* Old browsers
+  background: -moz-linear-gradient(top, white 0%, #f0f0f1 100%)
+  /* FF3.6+
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fafafa), color-stop(100%, #f0f0f1))
+  /* Chrome,Safari4+
+  background: -webkit-linear-gradient(top, white 0%, #f0f0f1 100%)
+  /* Chrome10+,Safari5.1+
+  background: -o-linear-gradient(top, white 0%, #f0f0f1 100%)
+  /* Opera 11.10+
+  background: -ms-linear-gradient(top, white 0%, #f0f0f1 100%)
+  /* IE10+
+  background: linear-gradient(to bottom, white 0%, #f0f0f1 100%)
+  /* W3C
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#f0f0f1', GradientType=0 )
+  /* IE6-9
+  bottom: 9%
+  width: 100%
   float: left
+  ul
+    display: block
+    float: left
+    margin-left: 40%
+    li
+      float: left
+      a
+        display: block
+        font-size: 11px
+        color: #555
+        margin: 17px 10px
+        display: block
+        float: left
+        &:hover, &:active, &:focus
+          color: #02cd92
+          text-decoration: none
+
+.edit
+  float: right
+  display: block
+  margin-top: 17px
+  float: left
+  margin-left: 5px
+  color: #555
+  font-size: 11px
+  i
+    display: block
+    padding: 5px
+    margin-left: 10px
+    background-color: #c7c8ca
+    border-radius: 15px
+    float: right
+    margin-top: -20px
+  &:hover, &:active, &:focus
+    color: #02cd92
+    text-decoration: none
+  &:hover i, &:active i, &:focus i
+    background-color: #00C089
+
+.paragraph
+  display: block
+  padding: 0 0 20px 0
+  margin-left: 30px
+  margin-right: 15px
+  background-color: #FFF
+  margin-top: 10px
+  text-align: center
+
+.title2
+  height: 30px
+  width: 100%
+  background-color: #e7e7e8
+  text-align: left
+  h4
+    float: left
+    margin-left: 10px
+    margin-top: 5px
+    font-size: 20px
+    span
+      color: #FFF
+  i
+    float: right
+
+.paragraph p
+  text-align: left
+  font-size: 20px
+  float: left
+  padding: 50px 30px
+  margin: 0
+  padding-right: 0
+  margin-bottom: 40px
+  i
+    color: #00c089
+    font-weight: normal
+    font-style: normal
+    font-size: 20px !important
+
+.paragraph2
+  display: block
+  margin-left: 30px
+  margin-right: 15px
+  background-color: #FFF
+  margin-top: 30px
+  height: 500px
+  text-align: center
+
+.title3
+  height: 62px
+  width: 100%
+  background-color: #e7e7e8
+  text-align: left
+  h4
+    float: left
+    margin-left: 10px
+    margin-top: 5px
+    font-size: 25px
+    line-height: 52px
+  i
+    float: right
+
+.paragraph2 p
+  display: block
+  position: relative
+  text-align: left
+  text-align: left
+  width: 85%
+  padding: 30px 0
+  span i
+    color: #00c088
+    font-style: normal
+  i
+    span
+      color: #00c088
+      font-style: normal
+    font-weight: normal
+    font-size: 16px
+  font-size: 11px
+  font-style: normal
+
+.lists
+  float: left
+  width: 100%
+  position: relative
+  li
+    float: left
+    clear: left
+    width: 100%
+    padding: 5px 0
+    display: block
+    a
+      i
+        float: left
+        margin-left: 10px
+      span
+        font-size: 20px
+        color: #333
+        float: left
+        margin-left: 20px
+        margin-top: 20px
+    button
+      z-index: 1000
+      position: relative
+      float: right
+      margin-right: 30px
+      margin-top: 30px
+      color: #FFF
+      border: none
+      background: #5c6067
+      /* Old browsers
+      /* IE9 SVG, needs conditional override of 'filter' to 'none'
+      background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIxJSIgc3RvcC1jb2xvcj0iIzVjNjA2NyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMzYzQ0NDkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+      background: -moz-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+      /* FF3.6+
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #5c6067), color-stop(100%, #3c4449))
+      /* Chrome,Safari4+
+      background: -webkit-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+      /* Chrome10+,Safari5.1+
+      background: -o-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+      /* Opera 11.10+
+      background: -ms-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+      /* IE10+
+      background: linear-gradient(to bottom, #5c6067 1%, #3c4449 100%)
+      /* W3C
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5c6067', endColorstr='#3c4449', GradientType=0 )
+      /* IE6-8
+      border-radius: 0
+      &:hover, &:active, &:focus
+        background: #3c4449
+        /* Old browsers
+        /* IE9 SVG, needs conditional override of 'filter' to 'none'
+        background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIxJSIgc3RvcC1jb2xvcj0iIzNjNDQ0OSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM1YzYwNjciIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+        background: -moz-linear-gradient(top, #3c4449 1%, #5c6067 100%)
+        /* FF3.6+
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #3c4449), color-stop(100%, #5c6067))
+        /* Chrome,Safari4+
+        background: -webkit-linear-gradient(top, #3c4449 1%, #5c6067 100%)
+        /* Chrome10+,Safari5.1+
+        background: -o-linear-gradient(top, #3c4449 1%, #5c6067 100%)
+        /* Opera 11.10+
+        background: -ms-linear-gradient(top, #3c4449 1%, #5c6067 100%)
+        /* IE10+
+        background: linear-gradient(to bottom, #3c4449 1%, #5c6067 100%)
+        /* W3C
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3c4449', endColorstr='#5c6067', GradientType=0 )
+        /* IE6-8
+        color: #FFF
+
+.light
+  background-color: #f7f7f7
+
+.dark
+  background-color: #e7e7e8
+
+.calendar
+  position: relative
+  float: left
+  width: 100%
+
+.caltitle
+  width: 100%
+  min-height: 81px
+  text-align: center
+  background: #5c6067
+  /* Old browsers
+  /* IE9 SVG, needs conditional override of 'filter' to 'none'
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIxJSIgc3RvcC1jb2xvcj0iIzVjNjA2NyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMzYzQ0NDkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+  background: -moz-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+  /* FF3.6+
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #5c6067), color-stop(100%, #3c4449))
+  /* Chrome,Safari4+
+  background: -webkit-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+  /* Chrome10+,Safari5.1+
+  background: -o-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+  /* Opera 11.10+
+  background: -ms-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+  /* IE10+
+  background: linear-gradient(to bottom, #5c6067 1%, #3c4449 100%)
+  /* W3C
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5c6067', endColorstr='#3c4449', GradientType=0 )
+  /* IE6-8
+  p
+    color: #FFF
+    font-size: 27px
+    display: block
+    padding-top: 20px
+    a
+      font-size: 18px
+      color: #04b885
+
+.session
+  background-color: #E7E7E8
+  width: 100%
+  margin-top: -9px
+  height: 40px
+  text-align: center
+  a
+    display: inline-block
+    padding: 12px 9px
+    font-size: 17px
+    color: #333
+    &:hover, &:active, &:focus
+      color: #04b885
+      text-decoration: none
+
+.events-list, .events-listss
+  float: left
+  width: 100%
+
+.events-list li, .events-listss li
+  width: 100%
+  float: left
+  clear: left
+  color: #444
+  position: relative
+
+.events-list li strong, .events-listss li strong
+  font-weight: normal
+  float: left
+  padding: 15px 25px
+  font-size: 17px
+
+.events-list li span, .events-listss li span
+  font-size: 14px
+  padding: 0 20px
+  display: block
+
+.events-list li span h3, .events-listss li span h3
+  margin-bottom: 3px
+
+.events-list li span a, .events-listss li span a
+  color: #444
+
+.events-list li
+  &:hover, &:active, &:focus
+    background: #56d988
+    /* Old browsers
+    /* IE9 SVG, needs conditional override of 'filter' to 'none'
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzU2ZDk4OCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMmMxODkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+    background: -moz-linear-gradient(top, #56d988 0%, #02c189 100%)
+    /* FF3.6+
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #56d988), color-stop(100%, #02c189))
+    /* Chrome,Safari4+
+    background: -webkit-linear-gradient(top, #56d988 0%, #02c189 100%)
+    /* Chrome10+,Safari5.1+
+    background: -o-linear-gradient(top, #56d988 0%, #02c189 100%)
+    /* Opera 11.10+
+    background: -ms-linear-gradient(top, #56d988 0%, #02c189 100%)
+    /* IE10+
+    background: linear-gradient(to bottom, #56d988 0%, #02c189 100%)
+    /* W3C
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#56d988', endColorstr='#02c189', GradientType=0 )
+    /* IE6-8
+    color: #FFF
+    cursor: default
+
+.events-listss li
+  &:hover, &:active, &:focus
+    background-color: #9ce8c6 !important
+    background: none
+
+.events-list li
+  &:hover span a, &:active span a, &:focus span a
+    color: #FFF
+    text-decoration: none
+
+.events-listss li
+  &:hover span a, &:active span a, &:focus span a
+    color: #333
+    text-decoration: none
+
+.btn77
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzU2ZDk4OCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMmMxODkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+  background: -moz-linear-gradient(top, #56d988 0%, #02c189 100%)
+  /* FF3.6+
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #56d988), color-stop(100%, #02c189))
+  /* Chrome,Safari4+
+  background: -webkit-linear-gradient(top, #56d988 0%, #02c189 100%)
+  /* Chrome10+,Safari5.1+
+  background: -o-linear-gradient(top, #56d988 0%, #02c189 100%)
+  /* Opera 11.10+
+  background: -ms-linear-gradient(top, #56d988 0%, #02c189 100%)
+  /* IE10+
+  background: linear-gradient(to bottom, #56d988 0%, #02c189 100%)
+  /* W3C
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#56d988', endColorstr='#02c189', GradientType=0 )
+  /* IE6-8
+  color: #FFF
+  width: 100%
+  text-align: center
+  font-size: 25px
+  height: 81px
+  border: none
+  margin-bottom: 30px
+
+.btn7
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzU2ZDk4OCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMmMxODkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+  background: -moz-linear-gradient(top, #56d988 0%, #02c189 100%)
+  /* FF3.6+
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #56d988), color-stop(100%, #02c189))
+  /* Chrome,Safari4+
+  background: -webkit-linear-gradient(top, #56d988 0%, #02c189 100%)
+  /* Chrome10+,Safari5.1+
+  background: -o-linear-gradient(top, #56d988 0%, #02c189 100%)
+  /* Opera 11.10+
+  background: -ms-linear-gradient(top, #56d988 0%, #02c189 100%)
+  /* IE10+
+  background: linear-gradient(to bottom, #56d988 0%, #02c189 100%)
+  /* W3C
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#56d988', endColorstr='#02c189', GradientType=0 )
+  /* IE6-8
+  color: #FFF
+  width: 100%
+  text-align: center
+  font-size: 25px
+  height: 81px
+  border: none
+  margin-bottom: 30px
+
+.btna7
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzU2ZDk4OCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMmMxODkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+  background: -moz-linear-gradient(top, #56d988 0%, #02c189 100%)
+  /* FF3.6+
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #56d988), color-stop(100%, #02c189))
+  /* Chrome,Safari4+
+  background: -webkit-linear-gradient(top, #56d988 0%, #02c189 100%)
+  /* Chrome10+,Safari5.1+
+  background: -o-linear-gradient(top, #56d988 0%, #02c189 100%)
+  /* Opera 11.10+
+  background: -ms-linear-gradient(top, #56d988 0%, #02c189 100%)
+  /* IE10+
+  background: linear-gradient(to bottom, #56d988 0%, #02c189 100%)
+  /* W3C
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#56d988', endColorstr='#02c189', GradientType=0 )
+  /* IE6-8
+  color: #FFF
+  text-align: center
+  padding: 5px 10px
+  border: none
+  margin-bottom: 30px
+
+.pro-data
+  text-align: center
+  width: 100%
+  p
+    font-size: 20px
+    margin-top: 20px
+    a
+      color: #0dc489
+  span
+    text-align: justify
+    font-size: 16px
+    display: block
+    padding: 0 25px
+
+.btn8
+  background: #5c6067
+  /* Old browsers
+  /* IE9 SVG, needs conditional override of 'filter' to 'none'
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIxJSIgc3RvcC1jb2xvcj0iIzVjNjA2NyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMzYzQ0NDkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+  background: -moz-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+  /* FF3.6+
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #5c6067), color-stop(100%, #3c4449))
+  /* Chrome,Safari4+
+  background: -webkit-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+  /* Chrome10+,Safari5.1+
+  background: -o-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+  /* Opera 11.10+
+  background: -ms-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+  /* IE10+
+  background: linear-gradient(to bottom, #5c6067 1%, #3c4449 100%)
+  /* W3C
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5c6067', endColorstr='#3c4449', GradientType=0 )
+  /* IE6-8
+  color: #FFF
+  border: none
+  padding: 7px 20px
+  font-size: 15px
+  margin-top: 20px
+  margin-bottom: 20px
+  &:hover, &:active, &:focus
+    background: #3e464b
+    /* Old browsers
+    /* IE9 SVG, needs conditional override of 'filter' to 'none'
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzNlNDY0YiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM1YTVlNjUiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+    background: -moz-linear-gradient(top, #3e464b 0%, #5a5e65 100%)
+    /* FF3.6+
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #3e464b), color-stop(100%, #5a5e65))
+    /* Chrome,Safari4+
+    background: -webkit-linear-gradient(top, #3e464b 0%, #5a5e65 100%)
+    /* Chrome10+,Safari5.1+
+    background: -o-linear-gradient(top, #3e464b 0%, #5a5e65 100%)
+    /* Opera 11.10+
+    background: -ms-linear-gradient(top, #3e464b 0%, #5a5e65 100%)
+    /* IE10+
+    background: linear-gradient(to bottom, #3e464b 0%, #5a5e65 100%)
+    /* W3C
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3e464b', endColorstr='#5a5e65', GradientType=0 )
+/* IE6-8
+
+.communication
+  width: 100%
+  float: left
+  clear: left
+  position: relative
+
+.com-title
+  width: 100%
+  position: relative
+  background: #5c6067
+  /* Old browsers
+  /* IE9 SVG, needs conditional override of 'filter' to 'none'
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIxJSIgc3RvcC1jb2xvcj0iIzVjNjA2NyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMzYzQ0NDkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+  background: -moz-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+  /* FF3.6+
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #5c6067), color-stop(100%, #3c4449))
+  /* Chrome,Safari4+
+  background: -webkit-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+  /* Chrome10+,Safari5.1+
+  background: -o-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+  /* Opera 11.10+
+  background: -ms-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+  /* IE10+
+  background: linear-gradient(to bottom, #5c6067 1%, #3c4449 100%)
+  /* W3C
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5c6067', endColorstr='#3c4449', GradientType=0 )
+  /* IE6-8
+  min-height: 81px
+  text-align: left
+  text-indent: 15px
+  a
+    font-size: 25px
+    color: #FFF
+    display: inline-block
+    padding: 22px 0
+    &:hover, &:active, &:focus
+      text-decoration: none
+      color: #EBEBEB
+
+.tiffny
+  width: 49%
+  float: left
+  margin-left: 1%
+  margin-top: 25px
+
+.tif-img
+  background: url(../assets/circle.png) no-repeat center left
+  height: 126px
+  width: 126px
+  float: left
+  overflow: hidden
+  position: relative
+  border: 8px solid #f7f7f7
+  border-radius: 70px
+  -moz-border-radius: 70px
+  -o-border-radius: 70px
+  -webkit-border-radius: 70px
+  -khtml-border-radius: 70px
+  -ms-border-radius: 70px
+  &:hover, &:active, &:focus
+    border: 8px solid #59da88
+
+.tif-name
+  text-transform: uppercase
+  color: #0cc389
+  font-size: 18px
+  display: inline-block
+
+.tiffny p
+  margin-left: 5px
+  margin-bottom: 0
+
+.small-text
+  font-size: 10px
+  color: #0cc389
+
+.tiffny a
+  &:hover, &:active, &:focus
+    text-decoration: none
+    color: #59da88
+
+.nots2
+  display: block
+  position: relative
+  padding: 25px 35px
+  color: #555
+  background-color: #e7e7e8
+  font-size: 15px
+  &:hover, &:active, &:focus
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzU2ZDk4OCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMmMxODkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+    background: -moz-linear-gradient(top, #56d988 0%, #02c189 100%)
+    /* FF3.6+
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #56d988), color-stop(100%, #02c189))
+    /* Chrome,Safari4+
+    background: -webkit-linear-gradient(top, #56d988 0%, #02c189 100%)
+    /* Chrome10+,Safari5.1+
+    background: -o-linear-gradient(top, #56d988 0%, #02c189 100%)
+    /* Opera 11.10+
+    background: -ms-linear-gradient(top, #56d988 0%, #02c189 100%)
+    /* IE10+
+    background: linear-gradient(to bottom, #56d988 0%, #02c189 100%)
+    /* W3C
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#56d988', endColorstr='#02c189', GradientType=0 )
+    /* IE6-8
+    color: #FFF
+    text-decoration: none
+
+.sa
+  background-color: #F7F7F7
+
+.nots2
+  strong
+    font-size: 35px
+    font-weight: normal
+  small
+    margin-top: 15px
+
+.comment-box
+  display: inline-block
+  position: relative
+  padding: 15px 20px
+
+.com-img
+  float: left
+
+.com-name
+  font-size: 15px
+  color: #04c189
+  float: left
+  margin-left: 10px
+  margin-top: 20px
+  margin-right: 15px
+  margin-bottom: 23%
+  span
+    color: #444
+
+.comment-box p
+  text-align: justify
+  font-size: 15px
+  display: block
+  padding-left: 15px
+
+.text2
+  border-radius: 0
+  border: none
+  background-color: #e7e7e8
+  width: 95%
+  padding: 5px 10px
+  float: left
+  resize: none
+  margin-bottom: 20px
+  clear: left
+  height: 100px
+  margin-left: 20px
+  margin-right: 20px
+
+.run-club
+  position: relative
+  display: block
+  float: left
+  width: 100%
+
+.btn9
+  width: 40%
+  text-align: center
+  color: #FFF
+  font-size: 25px
+  text-align: center
+  position: relative
+  background: #56d988
+  /* Old browsers
+  /* IE9 SVG, needs conditional override of 'filter' to 'none'
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzU2ZDk4OCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMmMxODkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+  background: -moz-linear-gradient(top, #56d988 0%, #02c189 100%)
+  /* FF3.6+
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #56d988), color-stop(100%, #02c189))
+  /* Chrome,Safari4+
+  background: -webkit-linear-gradient(top, #56d988 0%, #02c189 100%)
+  /* Chrome10+,Safari5.1+
+  background: -o-linear-gradient(top, #56d988 0%, #02c189 100%)
+  /* Opera 11.10+
+  background: -ms-linear-gradient(top, #56d988 0%, #02c189 100%)
+  /* IE10+
+  background: linear-gradient(to bottom, #56d988 0%, #02c189 100%)
+  /* W3C
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#56d988', endColorstr='#02c189', GradientType=0 )
+  /* IE6-8
+  border: none
+  padding: 10px 0
+  &:hover, &:active, &:focus
+    background: #02c189
+    /* Old browsers
+    /* IE9 SVG, needs conditional override of 'filter' to 'none'
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAyYzE4OSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM0YmM2OWYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+    background: -moz-linear-gradient(top, #02c189 0%, #4bc69f 100%)
+    /* FF3.6+
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #02c189), color-stop(100%, #4bc69f))
+    /* Chrome,Safari4+
+    background: -webkit-linear-gradient(top, #02c189 0%, #4bc69f 100%)
+    /* Chrome10+,Safari5.1+
+    background: -o-linear-gradient(top, #02c189 0%, #4bc69f 100%)
+    /* Opera 11.10+
+    background: -ms-linear-gradient(top, #02c189 0%, #4bc69f 100%)
+    /* IE10+
+    background: linear-gradient(to bottom, #02c189 0%, #4bc69f 100%)
+    /* W3C
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#02c189', endColorstr='#4bc69f', GradientType=0 )
+/* IE6-8
+
+.sub-nav
+  width: 100%
+  display: block
+  float: left
+  position: relative
+  padding-left: 20px
+  background: #5c6067
+  /* Old browsers
+  /* IE9 SVG, needs conditional override of 'filter' to 'none'
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIxJSIgc3RvcC1jb2xvcj0iIzVjNjA2NyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMzYzQ0NDkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+  background: -moz-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+  /* FF3.6+
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #5c6067), color-stop(100%, #3c4449))
+  /* Chrome,Safari4+
+  background: -webkit-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+  /* Chrome10+,Safari5.1+
+  background: -o-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+  /* Opera 11.10+
+  background: -ms-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+  /* IE10+
+  background: linear-gradient(to bottom, #5c6067 1%, #3c4449 100%)
+  /* W3C
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5c6067', endColorstr='#3c4449', GradientType=0 )
+  /* IE6-8
+  li
+    float: left
+    a
+      display: block
+      padding: 12px 15px
+      font-size: 15px
+      color: #FFF
+      &:hover, &:active, &:focus
+        color: #04c189
+        text-decoration: none
 
 .cent
-  font-family: 'LatoRegular'
-  font-size: 25px
-  margin-top: 50px
-  color: #999
+  width: 100%
+  text-align: center
+  float: left
+  margin: 100px 0
 
-.newp p
-  font-size: 17px
-  width: 70%
-  line-height: 25px
+.mod2
+  padding: 20px 0
+  font-size: 27px
+
+.cent p
+  font-size: 18px
+
+.news-letter
+  width: 100%
+  float: left
+  clear: left
+  position: relative
+  text-align: left
+  height: 500px
+  overflow: scroll
+  overflow-x: hidden
+  overflow-y: scroll
+  h4
+    color: #04c189
+    font-size: 33px
+    text-indent: 35px
+  ul
+    position: relative
+    display: block
+    li
+      display: inline-block
+      width: 100%
+      color: #444
+      padding: 10px 0
+      small
+        font-size: 15px
+        margin: 0 30px
+        display: inline-block
+        span, a
+          color: #04c189
+      &:hover, &:active, &:focus
+        background: #56d988
+        /* Old browsers
+        /* IE9 SVG, needs conditional override of 'filter' to 'none'
+        background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzU2ZDk4OCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMmMxODkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+        background: -moz-linear-gradient(top, #56d988 0%, #02c189 100%)
+        /* FF3.6+
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #56d988), color-stop(100%, #02c189))
+        /* Chrome,Safari4+
+        background: -webkit-linear-gradient(top, #56d988 0%, #02c189 100%)
+        /* Chrome10+,Safari5.1+
+        background: -o-linear-gradient(top, #56d988 0%, #02c189 100%)
+        /* Opera 11.10+
+        background: -ms-linear-gradient(top, #56d988 0%, #02c189 100%)
+        /* IE10+
+        background: linear-gradient(to bottom, #56d988 0%, #02c189 100%)
+        /* W3C
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#56d988', endColorstr='#02c189', GradientType=0 )
+        /* IE6-8
+        color: #FFF
+      &:hover span, &:active span, &:focus span, &:hover a, &:active a, &:focus a
+        color: #FFF
+
+.ciew
+  color: #444
+  font-size: 16px
+  float: right
+  margin-right: 30px
+  span
+    color: #04c189
+  &:hover, &:active, &:focus
+    text-decoration: none
+    color: #04c189
+
+.mod3 li
+  text-align: left
+  padding-bottom: 10px
+  h3
+    font-size: 15px
+    color: #04c189
+  strong
+    margin-top: 20px
+  &:hover h3, &:active h3, &:focus h3
+    color: #FFF
+
+.current
+  color: #04c189 !important
+
+.post
+  position: relative
+  overflow: scroll
+  overflow-x: hidden
+  overflow-y: scroll
+  height: 575px
+  text-align: left
+
+.npost
+  font-size: 18px
+  color: #444
+  float: right
+  margin: 15px
+  span
+    color: #04c189
+
+.lat-posts
+  position: relative
+  display: block
+  padding: 0 10px
+  margin-top: -20px
+  float: left
+  width: 100%
+  li
+    float: left
+    padding: 15px 0
+    width: 100%
+
+.img2
+  padding: 0 20px
   float: left
 
-.ncom
+.lat-posts li
+  h3
+    display: inline-block
+    margin-bottom: 0
+    margin-top: 10px
+    a
+      color: #444
+  span
+    font-size: 17px
+    display: inline
+
+.po-cm
+  color: #04c189
+  font-size: 14px
+  &:hover, &:active, &:focus
+    color: #04c189
+
+.btn10
+  background: #5c6067
+  /* Old browsers
+  /* IE9 SVG, needs conditional override of 'filter' to 'none'
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIxJSIgc3RvcC1jb2xvcj0iIzVjNjA2NyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMzYzQ0NDkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+  background: -moz-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+  /* FF3.6+
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #5c6067), color-stop(100%, #3c4449))
+  /* Chrome,Safari4+
+  background: -webkit-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+  /* Chrome10+,Safari5.1+
+  background: -o-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+  /* Opera 11.10+
+  background: -ms-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+  /* IE10+
+  background: linear-gradient(to bottom, #5c6067 1%, #3c4449 100%)
+  /* W3C
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5c6067', endColorstr='#3c4449', GradientType=0 )
+  /* IE6-8
+  color: #FFF
+  width: 40%
+  text-align: center
+  color: #FFF
+  font-size: 25px
+  text-align: center
+  position: relative
+  padding: 10px 0
+  border: none
+  margin-left: -5px
+  &:hover, &:active, &:focus
+    background: #3c4449
+    /* Old browsers
+    /* IE9 SVG, needs conditional override of 'filter' to 'none'
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIxJSIgc3RvcC1jb2xvcj0iIzNjNDQ0OSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM1YzYwNjciIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+    background: -moz-linear-gradient(top, #3c4449 1%, #5c6067 100%)
+    /* FF3.6+
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #3c4449), color-stop(100%, #5c6067))
+    /* Chrome,Safari4+
+    background: -webkit-linear-gradient(top, #3c4449 1%, #5c6067 100%)
+    /* Chrome10+,Safari5.1+
+    background: -o-linear-gradient(top, #3c4449 1%, #5c6067 100%)
+    /* Opera 11.10+
+    background: -ms-linear-gradient(top, #3c4449 1%, #5c6067 100%)
+    /* IE10+
+    background: linear-gradient(to bottom, #3c4449 1%, #5c6067 100%)
+    /* W3C
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3c4449', endColorstr='#5c6067', GradientType=0 )
+/* IE6-8
+
+.sub-com
+  margin-top: 20px
+  margin-left: 130px
+  display: none
+  a
+    padding-left: 0
+  span
+    padding-right: 10px
+    font-size: 12px !important
+    strong
+      font-weight: normal
+      color: #04c189
+
+.showa
+  padding: 0 35px
+  display: none
+  h2
+    font-size: 25px
+    color: #04c189
+    margin: 0
+  span
+    color: #04c189
+  p
+    margin-bottom: 0
+    font-size: 14px
+    padding: 0
+  img
+    margin-bottom: 20px
+
+.members
+  display: block
+  padding: 30px
+  position: relative
+  overflow: scroll
+  overflow-x: hidden
+  overflow-y: scroll
+  height: 593px
+  background-color: #f7f7f7
+
+.filter
+  width: 100%
+  float: left
+  ul
+    float: left
+    width: 100%
+    margin-bottom: 30px
+    li
+      float: left
+      margin-left: 15px
+      font-size: 18px
+      a
+        color: #CCC
+        &:hover, &:active, &:focus
+          text-decoration: none
+          color: #04c189
+
+.mem
+  float: left
+  width: 100%
+  li
+    float: left
+    width: 33%
+    margin-left: 1px
+    margin-bottom: 25px
+
+.onw
+  float: left
+  margin-right: 8px
+
+.mem li
+  strong a
+    display: block
+    margin-top: 15px
+    color: #04c189
+    font-size: 13px
+    font-weight: normal
+    text-transform: uppercase
+  small
+    display: block
+    font-size: 13px
+
+.eboard
+  display: block
+  position: relative
+  width: 100%
+  padding: 10px 0
+  h3
+    padding: 20px 0
+    margin: 0
+    float: left
+    margin-right: 25px
+  strong
+    margin-top: 5px !important
+
+.abo
+  display: block
+  padding-left: 15px
+  li
+    float: left
+    width: 27%
+    margin-left: 1px
+    margin-bottom: 25px
+    a
+      float: left
+      margin-right: 5px
+    strong a
+      display: block
+      margin-top: 10px
+      width: 54%
+      color: #04c189
+      font-size: 12px
+      font-weight: normal
+      text-transform: uppercase
+    small
+      display: block
+      font-size: 13px
+
+.mis
+  font-size: 15px
+  a
+    color: #04c189
+    &:hover, &:active, &:focus
+      caption-side: #04c189
+
+.we li
+  width: 26%
+  margin-bottom: 0
+
+.posd
+  position: relative
+  display: block
+  padding: 20px
+
+.sem
+  position: relative
+  display: block
+  background-color: #ebebeb
+  padding: 15px 20px
+  margin-bottom: 15px
+  span
+    font-size: 20px
+
+.mod4
   float: right
-  margin-top: 0
+  font-size: 13px
+  width: 15%
+  padding: 4px 0
+
+.sem
+  .selected, .selectOption
+    font-size: 13px
+    color: #444 !important
+    line-height: 25px
+    cursor: pointer
+  .selectBox
+    float: right
+    margin-top: 2px
+  .selectOptions
+    top: 24px
+
+.modal-content
+  border-radius: 0
+  border: 8px solid #EBEBEB
+  background-color: #f7f7f7
+
+.close
+  background: url(../assets/cross.png) no-repeat !important
+  height: 55px
+  opacity: 1
+  filter: alpha(opacity = 100)
+  width: 55px
+  display: block
+  float: right
+  margin-right: -43px
+  margin-top: -43px !important
+  z-index: 1000
+  &:hover, &:active, &:focus
+    opacity: 0.8
+    filter: alpha(opacity = 80)
+
+.modal-title, .modal-header
+  font-size: 35px
+  padding: 10px 15px
+  border-bottom: none
+
+.modal-dialog
+  width: 70%
+
+.mod5
+  width: 60%
+  margin-top: -10px
+  margin-left: 10px
+  float: left
+  .item
+    border: 8px solid #EBEBEB
+  .carousel-control
+    top: 40%
+    opacity: 1
+    filter: alpha(opacity = 100)
+  .left
+    left: -35px
+  .right
+    right: -35px
+
+.cap
+  float: right
+  width: 38%
+  margin-top: -20px
+  font-size: 12px
+  p
+    font-size: 12px
+    span
+      color: #04c189
+
+.title p a
+  color: #444
+  &:hover, &:active, &:focus
+    color: #777
+
+.forms
+  position: relative
+  display: block
+  padding: 0 20px
+  .half
+    min-height: 100px
+    label
+      text-align: right
+      font-weight: normal
+      color: #444
+      margin-right: 15px
+      font-size: 19px
+      margin-top: 5px
+      margin-bottom: 30px
+      width: 25%
+      float: left
+    input
+      background-color: #EBEBEB
+      border: none
+      border-radius: 0
+      height: 40px
+      float: left
+      width: 70%
+      padding-left: 15px
+      margin-bottom: 20px
+
+.btnx
+  border-radius: 0
+  border: none
+  color: #FFF
+  text-align: center
+  background: #5c6067
+  /* Old browsers
+  /* IE9 SVG, needs conditional override of 'filter' to 'none'
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIxJSIgc3RvcC1jb2xvcj0iIzVjNjA2NyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMzYzQ0NDkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+  background: -moz-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+  /* FF3.6+
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #5c6067), color-stop(100%, #3c4449))
+  /* Chrome,Safari4+
+  background: -webkit-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+  /* Chrome10+,Safari5.1+
+  background: -o-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+  /* Opera 11.10+
+  background: -ms-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+  /* IE10+
+  background: linear-gradient(to bottom, #5c6067 1%, #3c4449 100%)
+  /* W3C
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5c6067', endColorstr='#3c4449', GradientType=0 )
+  /* IE6-8
+  width: 70%
+  float: left
+  padding: 10px 0
+  font-size: 20px
+
+.ne
+  text-align: right
   font-weight: normal
+  color: #444
+  margin-right: 35px
+  font-size: 19px
+  margin-top: 5px
+  margin-bottom: 30px
+  width: 10.5%
+  float: left
+
+.texta
+  width: 85.5%
+  resize: none
+  float: left
+  margin-top: 10px
+  padding: 10px 15px
+  height: 220px
+  background-color: #EBEBEB
+  border-radius: 0
+  border: none
+
+.btng
+  clear: right
+  float: right
+  margin-top: 15px
+  margin-bottom: 20px
+  border: none
+  border-radius: 0
+  text-align: center
+  padding: 6px 15px
+  color: #FFF
+  font-size: 16px
+  background: #56d988
+  /* Old browsers
+  /* IE9 SVG, needs conditional override of 'filter' to 'none'
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzU2ZDk4OCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMmMxODkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+  background: -moz-linear-gradient(top, #56d988 0%, #02c189 100%)
+  /* FF3.6+
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #56d988), color-stop(100%, #02c189))
+  /* Chrome,Safari4+
+  background: -webkit-linear-gradient(top, #56d988 0%, #02c189 100%)
+  /* Chrome10+,Safari5.1+
+  background: -o-linear-gradient(top, #56d988 0%, #02c189 100%)
+  /* Opera 11.10+
+  background: -ms-linear-gradient(top, #56d988 0%, #02c189 100%)
+  /* IE10+
+  background: linear-gradient(to bottom, #56d988 0%, #02c189 100%)
+  /* W3C
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#56d988', endColorstr='#02c189', GradientType=0 )
+/* IE6-8
+
+.active2
+  color: #00C089 !important
+
+.car2 .item p
+  font-size: 15px
+  padding: 0 70px
+  color: #444
+  width: 100%
+  float: left
+  text-align: left
+  span
+    color: #00C089
+    text-transform: uppercase
+  small
+    font-size: 15px
+
+.ss2 p
+  font-size: 15px
+  padding: 20px 0 20px 45px
+  color: #444
+  text-align: left
+  float: left
+  span
+    color: #00C089
+    text-transform: uppercase
+
+.tabs2 li
+  float: left
+  margin-right: 10px
+  a
+    color: #FFF
+  &.active22 a
+    color: #444
+  a
+    &:hover, &:active, &:focus
+      text-decoration: none
+
+.edtitor, .edtitor2, .edtitor3, .edtitor4, .edtitor5, .edtitor6, .edtitor7, .edtitor8, .edtitor9, .edtitor1a, .edtitor2a, .edtitor3a, .edtitor4a, .edtitor5a, .edtitor6a, .edtitor7a, .edtitor8a, .edtitor9a, .edtitor1b, .edtitor2b, .edtitor3b, .edtitor4b, .edtitor5b, .edtitor6b, .edtitor7b, .edtitor8b, .edtitor9b
+  display: none
+  font-size: 12px
+  border: none
+  background-color: #EBEBEB
+  padding: 2px
+  width: 94px !important
+
+#tab11 a:hover
+  text-decoration: none !important
+
+.btnss
+  border: none
+  color: #FFF
+  margin: 5px 10px
+  padding: 2px 10px
+  font-size: 11px
+  background: #5c6067
+  /* Old browsers
+  /* IE9 SVG, needs conditional override of 'filter' to 'none'
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIxJSIgc3RvcC1jb2xvcj0iIzVjNjA2NyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMzYzQ0NDkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+  background: -moz-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+  /* FF3.6+
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #5c6067), color-stop(100%, #3c4449))
+  /* Chrome,Safari4+
+  background: -webkit-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+  /* Chrome10+,Safari5.1+
+  background: -o-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+  /* Opera 11.10+
+  background: -ms-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+  /* IE10+
+  background: linear-gradient(to bottom, #5c6067 1%, #3c4449 100%)
+  /* W3C
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5c6067', endColorstr='#3c4449', GradientType=0 )
+  /* IE6-8
+  &:hover, &:active, &:focus
+    background: #3c4449
+    /* Old browsers
+    /* IE9 SVG, needs conditional override of 'filter' to 'none'
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIxJSIgc3RvcC1jb2xvcj0iIzNjNDQ0OSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM1YzYwNjciIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+    background: -moz-linear-gradient(top, #3c4449 1%, #5c6067 100%)
+    /* FF3.6+
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #3c4449), color-stop(100%, #5c6067))
+    /* Chrome,Safari4+
+    background: -webkit-linear-gradient(top, #3c4449 1%, #5c6067 100%)
+    /* Chrome10+,Safari5.1+
+    background: -o-linear-gradient(top, #3c4449 1%, #5c6067 100%)
+    /* Opera 11.10+
+    background: -ms-linear-gradient(top, #3c4449 1%, #5c6067 100%)
+    /* IE10+
+    background: linear-gradient(to bottom, #3c4449 1%, #5c6067 100%)
+    /* W3C
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3c4449', endColorstr='#5c6067', GradientType=0 )
+/* IE6-8
+
+.same
+  display: none
+  float: left
+
+.area, .area2, .area3
+  display: block
+  padding: 0 20px
+
+.chn
+  float: left
+  margin-left: 50px
+  margin-bottom: 40px
+  background: none
+  border: none
+
+.circle
+  border: none
+  background-color: #EBEBEB
+  margin-left: 15px
+
+.ssy!
+
+.ssys
+  position: relative
+  float: left
+  width: 100%
+  left: 0
+  min-height: 104px
+  opacity: 0.9
+  background-color: #0eb886
+  position: absolute
+  top: 0
+  display: inline-block
+  color: #FFF
+  small
+    font-size: 14px
+    width: 66%
+    float: left
+    margin: 20px 0 0 20px
+
+.lists li
+  position: relative
+  .ssys
+    display: none
+  &:hover .ssys
+    display: block
+
+.tabsx
+  display: inline-block
+  position: relative
+  border-bottom: 1px solid #999
+  border-top: 1px solid #999
+  li
+    float: left
+    a
+      display: block
+      position: relative
+      padding: 9px 12px
+      color: #666
+      background-color: #FFF
+      border-left: 1px solid #999
+      float: left
+      font-size: 14px
+      text-transform: uppercase
+    &:last-child a
+      border-right: 1px solid #999
+    a
+      &:hover, &:active, &:focus
+        color: #FFF !important
+        text-decoration: none
+        background: #5c6067
+        /* Old browsers
+        /* IE9 SVG, needs conditional override of 'filter' to 'none'
+        background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIxJSIgc3RvcC1jb2xvcj0iIzVjNjA2NyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMzYzQ0NDkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+        background: -moz-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+        /* FF3.6+
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #5c6067), color-stop(100%, #3c4449))
+        /* Chrome,Safari4+
+        background: -webkit-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+        /* Chrome10+,Safari5.1+
+        background: -o-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+        /* Opera 11.10+
+        background: -ms-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+        /* IE10+
+        background: linear-gradient(to bottom, #5c6067 1%, #3c4449 100%)
+        /* W3C
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5c6067', endColorstr='#3c4449', GradientType=0 )
+        /* IE6-8
+        text-decoration: none
+
+.activex a
+  color: #FFF !important
+  text-decoration: none
+  background: #5c6067
+  /* Old browsers
+  /* IE9 SVG, needs conditional override of 'filter' to 'none'
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIxJSIgc3RvcC1jb2xvcj0iIzVjNjA2NyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMzYzQ0NDkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+  background: -moz-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+  /* FF3.6+
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #5c6067), color-stop(100%, #3c4449))
+  /* Chrome,Safari4+
+  background: -webkit-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+  /* Chrome10+,Safari5.1+
+  background: -o-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+  /* Opera 11.10+
+  background: -ms-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+  /* IE10+
+  background: linear-gradient(to bottom, #5c6067 1%, #3c4449 100%)
+  /* W3C
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5c6067', endColorstr='#3c4449', GradientType=0 )
+/* IE6-8
+
+#tab1x input, #tab2x input, #tab4x input
+  border: none
+  padding: 8px
+  color: #888
+  margin: 15px 5px
+  margin-bottom: 0
+
+.chn2 li button
+  padding: 7px 14px
+
+.search-detail
+  position: relative
+  display: block
+  width: 100%
+  float: left
+  h3
+    font-size: 32px
+    color: #444
+    float: left
+  span
+    font-size: 16px
+    float: left
+    margin: 30px 15px
+  input
+    padding: 12px 10px
+    border: none
+    font-size: 18px
+    color: #333
+    margin-top: 15px
+
+.empty
+  width: 100%
+  float: left
+  display: block
+  text-align: center
+  padding: 10px 0
+  ul
+    margin-top: -10px
+    margin-bottom: -15px
+  p
+    font-style: normal
+    background-color: #FFF
+    padding: 10px 7px
+    display: inline-block
+    margin: 0 10px
+
+.paddings
+  display: block
+  padding: 35px 10px 35px 0
+
+.csthumb
+  display: block
+  background-color: #c2c2c2
+  height: 142px
+  width: 142px
+  float: left
+  margin-right: 10px
+  border-radius: 70px
+  -moz-border-radius: 70px
+  -o-border-radius: 70px
+  -webkit-border-radius: 70px
+  -khtml-border-radius: 70px
+  -ms-border-radius: 70px
+
+.paddings
+  h4
+    color: #00c089
+    text-transform: uppercase
+    padding: 0
+    margin: 0
+  p
+    font-size: 15px
+    margin-top: -10px
+    a
+      color: #444
+      padding-top: 5px
+      display: block
+      span
+        color: #00c089
+
+#tab1x .half
+  min-height: 0
+
+.btnd
+  float: right
+  width: 20%
+  font-size: 25px
+  padding: 5px 0
+  margin-right: 15%
+  margin-bottom: 20px
+
+.con
+  position: relative
+  display: block
+  float: left
+  width: 100%
+  height: 700px
+  overflow: scroll
+  overflow-x: hidden
+  overflow-y: scroll
+
+.mod3 li
+  a.evs
+    color: #444 !important
+  &:hover a.evs, &:active a.evs, &:focus a.evs, &:hover a.evs span, &:active a.evs span, &:focus a.evs span, &:hover a.evs strong, &:active a.evs strong, &:focus a.evs strong
+    text-decoration: none
+    color: #FFF
+
+.drow
+  cursor: pointer
 
 .carus
   width: 100%
   float: left
+  margin-top: 40px
   position: relative
-  margin-top: 270px
+  position: relative
   li
     float: left
+    margin-right: 22px
     &:last-child
       margin-right: 0
-    h4
-      font-family: 'LatoBold'
-      font-size: 17px
-      color: #50bc7e
-      margin-top: 20px
-    p
-      font-family: 'LatoRegular'
-      color: #000
-      line-height: 18px
-      margin-top: -10px
 
-.filters
-  padding: 25px 0 5px 20px
-  width: 93%
-  float: left
+.nbs-flexisel-nav-left
+  background: url(../assets/prev-arrow.png) no-repeat
+  height: 51px
+  width: 51px
   display: block
-  border-bottom: 1px solid #999
-  p
-    font-family: 'LatoRegular'
-    font-size: 18px
-    float: left
-  a
-    font-family: 'LatoBold'
-    color: #50bc7e
-    font-size: 18px
-    padding-left: 15px
-    float: left
-    margin-top: 2px
-
-.two-users
-  width: 100%
-  float: left
-  clear: left
-  li
-    width: 100%
-    float: left
-    clear: left
-    margin-top: 20px
-    a
-      float: left
-    h2
-      font-family: 'LatoBold'
-      color: #333
-      font-size: 30px
-      padding-top: 40px
-      float: left
-      padding-left: 20px
-      width: 78%
-      margin-bottom: 0
-    span
-      font-family: 'LatoRegular'
-      font-size: 22px
-      color: #333
-      padding-left: 20px
-
-.avatr
-  text-align: center
-  span
-    display: block
-    padding-top: 25px
-    color: #FFF
-    text-align: center
-    font-size: 12px
-    &:hover, &:active, &:focus
-      text-decoration: none
-      outline: none
-
-.l-arrow
-  float: left
-  margin-top: 65px
-
-.r-arrow
-  float: right
-  margin-top: 65px
-  margin-right: 65px
-
-
-.btn3
-  padding: 8px 0
-  width: 17%
-  color: #FFF
-  font-size: 18px
-  margin-left: -50px
-  margin-top: 50px
-  &:hover, &:active, &:focus
-    color: #FFF
-
-.login
-  width: 100%
-  display: block
-  position: relative
-  color: #fff
-  margin-top: 50px
-  font-family: 'LatoRegular'
-
-.logout
-  position: left
-  float: left
-  margin-top: 1%
-
-.fioled0
-  width: 90%
-  height: 25px !important
-  display: block
-  margin-top: 8px
-  margin-left: 10px
-
-.login a
-  color: #FFF
-  float: left
-  margin-left: 10px
-
-.btn4
-  margin-left: 10px
-  float: left
-  width: 45%
-  color: #FFF
-  border: none
-  margin-top: 15px
-  &:hover, &:active, &:focus
-    color: #FFF
-
-.arr
   position: absolute
-  z-index: 1000
-  left: -62px
-  top: 80px
-
-.left-side
-  width: 47%
-  display: block
-  position: relative
-  padding: 10px
-  margin-top: 0
-  border-right: 1px solid #CCC
-  float: left
-
-.right-side
-  width: 47%
-  display: block
-  position: relative
-  padding: 10px
-  margin-top: 0
-  float: right
-
-.btn5
-  color: #FFF
-  padding: 5px 25px
-  &:hover, &:active, &:focus
-    color: #FFF
-
-.msg
-  float: left
-  width: 100%
-  margin-top: 30px
-  padding-bottom: 90px
-  li
-    width: 100%
-    float: left
-    clear: left
-    margin-top: 15px !important
-    border-bottom: 1px solid #CCC
-    a
-      margin-left: 0 !important
-      padding-bottom: 10px
-    h4
-      display: inline-block
-      font-size: 19px
-      margin-left: 10px
-      margin-top: 15px
-    p
-      font-size: 18px !important
-      float: left
-      margin-left: 10px
-      margin-top: -10px
-
-.comment-box
-  float: right
-  display: block
-  position: relative
-  width: 100%
-
-.tex-area
-  border: 2px solid #999
-  height: 70px
-  margin-top: 20px
-  width: 70%
-  float: right
-
-.comment-box a
-  margin-bottom: 10px
-.btn6
-  float: right
-  clear: right
-  background-color: #fe7a7a
-  color: #FFF
-  border: none
-  padding: 5px 25px
-  &:hover, &:active, &:focus
-    background-color: #db6060
-
-.comment-box 
-  small
-    color: #999
-
-.register
-  width: 100%
-  display: block
-  position: relative
-  margin-top: 15%
-
-.sbHolder
-  background: url('select-small.png') no-repeat
-  font-size: 14px
-  font-weight: normal
-  height: 38px
-  position: relative
-  width: 188px
-  float: left
-  margin: 8px 0
-  &:focus! .sbSelector
-
-.sbSelector
-  display: block
-  height: 30px
-  left: 0
-  line-height: 37px
-  outline: none
-  overflow: hidden
-  position: absolute
-  text-indent: 10px
-  top: 0
-  width: 188px
-  &:link, &:visited, &:hover
-    color: #999
-    outline: none
-    text-decoration: none
-
-.sbHolderDisabled
-  background-color: #FFF
-
-.sbOptions
-  background-color: #FFF
-  border: solid 1px #CCC
-  list-style: none
-  left: 2px
-  margin: 0
-  padding: 0
-  position: absolute
-  width: 183px
-  z-index: 1
-  margin-top: 6px
-  overflow-y: auto
-  li
-    padding: 0 7px
-  a
-    color: #222
-    display: block
-    outline: none
-    &:link, &:visited
-      color: #666
-      text-decoration: none
-    &:hover, &:focus, &.sbFocus
-      color: #111
-  li.last a
-    border-bottom: none
-  .sbDisabled
-    border-bottom: dotted 1px #515151
-    color: #999
-    display: block
-    padding: 7px 0 7px 3px
-  .sbGroup
-    border-bottom: dotted 1px #515151
-    color: #666
-    display: block
-    font-weight: bold
-    padding: 10px 0 7px 3px
-  .sbSub
-    padding-left: 17px
-
-.checkb
-  display: block
-  margin-left: 10px !important
-  margin-right: 10px !important
-  margin-top: 11px !important
-  float: left
-  margin-bottom: 15px !important
-
-#language, .styledSelect
-  margin-left: 10px
-
-.login-form span
-  font-weight: bold
-  color: #FFF
-  font-size: 20px
-  line-height: 35px
-
-.s-hidden
-  visibility: hidden
-  padding-right: 10px
-
-#language
-  width: 93%
-
-.select
+  left: 10px
   cursor: pointer
-  display: inline-block
-  position: relative
-  color: black
-  width: 93%
-  margin: 10px 0 15px 0px
-  margin-bottom: 5px
-
-.select2
-  cursor: pointer
-  display: inline-block
-  position: relative
-  color: black
-  width: 43%
-  margin: 10px 0 15px 0px
-  margin-bottom: 5px
-  border: 2px solid #999
-
-.chang6
-  width: 93%
-
-.register
-  strong a
-    color: #fff
-    font-size: 20px
-    margin-top: 15px
-    float: left
-    font-weight: normal
-    margin-right: 40px
-  center a
-    margin: 0
-    display: block
-    padding: 5px 0 0 0
-
-.mod4
-  top: 175px
-
-.contact-form
-  display: block
-  position: relative
-  padding: 50px 30px
-
-.field2
-  width: 40%
-  border: 2px solid #999 !important
-  padding-left: 10px !important
-
-.field3
-  width: 100%
-  margin-top: 10px
-  border: 2px solid #999 !important
-  padding-left: 10px !important
-
-.tarea
-  width: 100%
-  margin-top: 10px
-  border: 2px solid #999 !important
-  padding-left: 10px !important
-  height: 100px
-
-.btn7
-  float: right
-  padding: 4px 30px
-  color: #FFF
-  margin-right: -20px
-  margin-top: 5px
-  &:hover, &:active, &:focus
-    color: #FFF
-
-.mod5
-  margin-top: 5px
-  float: right
-  clear: none
-  margin-right: 10px
-
-.heading
-  display: block
-  position: relative
-  width: 100%
-  margin-top: 20px
-  border-bottom: 1px solid #ccc
-  h2
-    font-weight: normal
-    font-size: 35px
-
-.up-photo
-  display: block
-  position: relative
-  float: left
-  width: 100%
-  margin-top: 34px
-  p
-    color: #999
-    font-size: 20px
-
-.new1
-  padding: 1px 30px
-  color: #FFF
-  margin-top: 5px
-  font-size: 12px
-
-.infos
-  float: left
-  width: 65%
-  margin-top: 10px
-  label
-    margin-top: 30px
-    font-size: 20px
-    color: #bfbfbf
-
-.sepe
-  height: 1px
-  background-color: #CCC
-  margin-bottom: 10px
-  float: left
-  width: 100%
-
-.btn-link
-  float: left
-  width: 100%
-  display: block
-
-.btn8
-  color: #FFF
-  font-size: 20px
-  padding: 7px 25px
-
-.btn-link a
-  padding-left: 20px
-  color: #50bc7e
-  font-size: 22px
-  display: inline-block
-  padding-top: 15px
-
-.pro-user
-  position: relative
-  display: block
-  p
-    font-family: 'LatoBold'
-    font-size: 30px
-    color: #acacac
-    line-height: 30px
-    margin-left: 10px
-    float: left
-  input
-    height: 27px
-    width: 120px
-  select
-    height: 35px
-    width: 180px
-.tab_content .users,
-#search-results .users,
-#club-list .users
-  margin-left: 4%
-  position: relative
-  .hovers
-    display: none
-  &:hover .hovers
-    display: block
-
-.hovers
-  background: url('circle-hover.png') no-repeat
-  width: 226px
-  height: 226px
-  position: absolute
-  top: 0
   z-index: 1000
-  text-align: center
-  margin-left: 0px
-  p
-    display: block
-    color: #EBEBEB
-    padding: 65px 20px 20px 20px
-  a
-    font-size: 14px
-    color: #35a765
-    margin: 0 30px
 
-.two-col
-  width: 47%
-  float: left
-  margin-top: 20px
-  h3
-    font-family: 'LatoBold'
-    font-size: 28px
-    border-bottom: 1px solid #CCC
-    padding-bottom: 5px
-  p
-    font-family: 'LatoRegular'
-    font-size: 20px
-    padding-top: 5px
-    line-height: 25px
-
-.msh li
-  h4
-    display: block
-    padding-left: 10px
-    margin-top: 20px !important
-    margin-bottom: 0
-    padding: 0
-  a
-    float: left
-    margin-right: 10px
-  p
-    margin-top: -15px
-    margin-left: 0px
-
-.mar2
-  margin-top: 10px
-  float: left
-  clear: left
-  margin-left: 15px
-
-.comp
+.nbs-flexisel-nav-right
+  background: url(../assets/next-arrow.png) no-repeat
+  height: 51px
+  right: 0
+  cursor: pointer
+  position: absolute
+  width: 51px
   display: block
-  font-size: 17px
-  padding-right: 35px
-  margin-top: 50px
+  z-index: 1000
 
-.chang7
-  margin-left: 17px
-  margin-top: 20px
-  width: 81%
-
-.thre-tabs
-  float: left
-  width: 100%
-  li
-    float: left
-    margin-left: 50px
-    margin-top: 10px
-    .btngree
-      display: block
-      color: #FFF
-      padding: 5px 15px
-      background-color: #50bc7e
-      border: none
-      font-size: 13px
-      &:hover, &:active, &:focus
-        background-color: #37a465
-        color: #fff
-    .btnred
-      display: block
-      color: #FFF
-      padding: 5px 15px
-      background-color: #fe7a7a
-      border: none
-      font-size: 13px
-      &:hover, &:active
-        background-color: #ee6767
-        color: #fff
-    .btngred:focus
-      background-color: #ee6767
-      color: #fff
-    .btnyellow
-      display: block
-      color: #FFF
-      padding: 5px 15px
-      background-color: #fadb5c
-      border: none
-      font-size: 13px
-      &:hover, &:active, &:focus
-        background-color: #e9c840
-        color: #fff
-
-.po2 li
-  h4
-    font-size: 19px
-    font-family: 'LatoBold'
-    span
-      font-size: 17px
-      margin-top: 3px
-      display: block
-  p
-    font-size: 12px
-    font-family: 'LatoRegular'
-    margin-top: -10px
-
-.btnred
-  display: block
-  color: #FFF
-  float: right
-  padding: 5px 20px
-  margin-right: 50px
-  margin-top: 10px
-  background-color: #fe7a7a
-  border: none
-  font-size: 13px
-  &:hover, &:active
-    background-color: #ee6767
-    color: #fff
-
-.btngred:focus
-  background-color: #ee6767
-  color: #fff
-
-.profile
-  display: block
-  position: relative
-  margin-top: 30px
-
-.gb
-  float: left
-  margin-right: 15px
-  background-color: #ACACAC
-  min-height: 268px
-  width: 95px
-
-.ssap
-  float: left
-  li
-    float: left
-    clear: left
-    a
-      height: 79px
-      width: 95px
-      background-color: #ACACAC
-      margin-bottom: 15px
-      float: left
-      margin-right: 20px
-
-.profile
-  h3
-    font-family: 'LatoBold'
-    font-size: 20px
-    margin-top: -10px
-    float: left
-    width: 75%
-    span
-      font-size: 17px
-      margin-top: -15px
-      float: left
-  p
-    font-family: 'LatoRegular'
-    font-size: 16px
-    padding-right: 25px
-
-.faq
-  width: 100%
-  display: block
-  margin-top: 40px
-  h2
-    font-family: 'LatoBold'
-    font-size: 27px
-    width: 100%
-
-.half
-  float: left
-  width: 49%
-  p
-    font-family: 'LatoRegular'
-    font-size: 15px
-
-.contact_requirements
-  p
-    padding: 20px
-    font-family: 'LatoRegular'
-    font-size: 18px
-
-/* layout
-
-#container
-  position: relative
-  width: 80%
-
-/* rs carousel
-
-#rs-carousel
-  .rs-carousel-mask
-    border: 6px solid #444
-  ul li
-    color: #fff
-    font-size: 8em
-    text-align: center
-    width: 150px
-    height: 150px
-  .rs-carousel-action
-    color: gray
-    cursor: default
-  .rs-carousel-action-active
-    color: #1788D7
-    cursor: pointer
-  .rs-carousel-pagination-link
-    display: inline
-    a
-      padding: 2px 6px
-      &:hover
-        text-decoration: none
-  .rs-carousel-pagination-link-active a
-    background: #444
-    color: #fff
-  .rs-carousel-pagination-disabled .rs-carousel-pagination-link a, .rs-carousel-action-disabled.rs-carousel-action
-    color: gray
-    cursor: default
-  &.rs-carousel-horizontal
-    &.rs-carousel-items-1 .rs-carousel-mask
-      width: 150px
-    &.rs-carousel-items-2 .rs-carousel-mask
-      width: 300px
-    &.rs-carousel-items-3 .rs-carousel-mask
-      width: 450px
-    &.rs-carousel-items-4 .rs-carousel-mask
-      width: 600px
-  &.rs-carousel-vertical
-    .rs-carousel-mask
-      width: 150px
-      height: 500px
-    &.rs-carousel-items-1 .rs-carousel-mask
-      height: 150px
-    &.rs-carousel-items-2 .rs-carousel-mask
-      height: 300px
-    &.rs-carousel-items-3 .rs-carousel-mask
-      height: 450px
-    &.rs-carousel-items-4 .rs-carousel-mask
-      height: 600px
-
-/** horizontal *
-
-/** vertical *
-
-.logo2
-  width: 100%
-  text-align: center
-  display: inline-block
-  padding-bottom: 15px
-  img
-    margin: 0 auto
-
-.login
-  text-align: center
-
-.fioled0
-  float: left
-  clear: left
-
-.list_carousel
-  width: 100%
-  ul
-    margin: 0 !important
-    padding: 0 !important
-    list-style: none
-    display: block
-    height: 260px !important
-    width: 100%
-  li
-    text-align: center
-    padding: 0
-    margin: 6px
-    margin-top: 20px
-    display: block
-    width: 270px
-    float: left
-  &.responsive
-    width: auto
-    margin-left: 0
-
-
-.list_carousel
-  ul
-    position: relative !important
-    display: block
-    margin-left: 10px !important
-  .prev
-    float: left
-    margin-top: -170px
-    background: url('right-arrow.png') no-repeat
-    text-indent: -999999px
-    width: 29px
-    height: 125px
-
-  .next
-    margin-top: -170px
-    background: url('left-arrow.png') no-repeat
-    text-indent: -999999px
-    width: 29px
-    height: 125px
-    float: right
-    margin-right: 65px
-
-.pager
-  float: left
-  width: 300px
-  text-align: center
-  a
-    margin: 0 5px
-    text-decoration: none
-    &.selected
-      text-decoration: underline
-
-.timer
-  background-color: #999
-  height: 6px
-  width: 0px
-
-clearout
-  height: 20px
-  clear: both
-
-#flexiselDemo1, #flexiselDemo2, #flexiselDemo3
+#flexiselDemo1
   display: none
 
 .nbs-flexisel-container
@@ -1462,432 +2894,712 @@ clearout
 
 .nbs-flexisel-inner
   overflow: hidden
-  float: left
-  width: 100%
-  height: 240px
-.tab_content
-  .nbs-flexisel-inner
-    p
-      font-family: "LatoRegular"
-      color: black
-      line-height: 18px
-      margin-top: -10px
-    h4
-      font-family: "LatoBold"
-      font-size: 17px
-      color: #50bc7e
-      margin-top: 20px
-    .cir-img
-      margin-top: 12px
+
 .nbs-flexisel-item
   float: left
   margin: 0px
   padding: 0px
   cursor: pointer
   position: relative
+  line-height: 0px
+  overflow: hidden
+  text-align: center
   img
+    height: 100%
+    cursor: pointer
+    margin-top: 50px
+    position: relative
+  p
+    line-height: 20px
+    margin-top: 20px
+
+.spo
+  background-color: #333
+  text-align: center
+  color: #FFF
+  margin: 0 auto
+  margin-top: -140px
+  position: relative
+  z-index: 1
+  height: 140px
+  width: 140px
+  border-radius: 90px
+  -moz-border-radius: 90px
+  -o-border-radius: 90px
+  -webkit-border-radius: 90px
+  -ms-border-radius: 90px
+  padding: 50px 15px
+  line-height: 20px
+  text-decoration: none !important
+
+#flexiselDemo1 li a
+  .spo
+    display: none
+  &:hover .spo
+    display: block
+
+.sda
+  display: none
+  padding: 10px 20px
+  font-size: 22px
+  color: #FFF
+  background: #5c6067
+  /* Old browsers
+  /* IE9 SVG, needs conditional override of 'filter' to 'none'
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIxJSIgc3RvcC1jb2xvcj0iIzVjNjA2NyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMzYzQ0NDkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+  background: -moz-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+  /* FF3.6+
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #5c6067), color-stop(100%, #3c4449))
+  /* Chrome,Safari4+
+  background: -webkit-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+  /* Chrome10+,Safari5.1+
+  background: -o-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+  /* Opera 11.10+
+  background: -ms-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+  /* IE10+
+  background: linear-gradient(to bottom, #5c6067 1%, #3c4449 100%)
+  /* W3C
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5c6067', endColorstr='#3c4449', GradientType=0 )
+  /* IE6-8
+  position: absolute
+  left: 20px
+  bottom: 20px
+  border: none
+
+.blank
+  background-color: #000
+  opacity: 0.8
+  height: 100%
+  position: absolute
+  width: 100%
+  font-size: 25px
+  color: #FFF
+  text-align: center
+  padding: 75% 15px
+
+.pos a
+  .blank
+    display: none
+  &:hover .blank
+    display: block
+
+.textarea1
+  float: right
+  text-indent: 10px
+  line-height: 20px
+  width: 54.7%
+  resize: none
+  margin-top: -95px
+  margin-right: 20px
+  background: #EBEBEB
+  border: none
+  height: 50px
+
+.texta2
+  float: left
+  text-indent: 5px
+  line-height: 20px
+  width: 80%
+  font-size: 12px
+  margin-top: -20px
+  margin-bottom: 20px
+  margin-left: 30px
+  resize: none
+  margin-right: 20px
+  background: #EBEBEB
+  border: none
+  height: 80px
+
+.texta3
+  float: right
+  text-indent: 5px
+  line-height: 20px
+  width: 100%
+  font-size: 12px
+  margin-top: -50px
+  resize: none
+  margin-left: 20px !important
+  background: #EBEBEB
+  border: none
+  height: 50px
+  margin-bottom: 10px
+
+.texta4
+  float: left
+  text-indent: 5px
+  line-height: 20px
+  width: 100%
+  font-size: 12px
+  resize: none
+  background: #EBEBEB
+  border: none
+  height: 100px
+  margin-top: 20px
+  margin-bottom: 10px
+
+.car2 .item p input
+  width: 100% !important
+  margin: 5px 0
+  float: left
+  clear: left
+  height: 30px
+
+#ssp3
+  input[type="text"], textarea
+    color: #00c088
+
+.doe
+  float: left
+  clear: left
+  display: block
+  padding: 15px
+  text-align: left
+  display: none
+
+.accordion
+  .nots2
+    display: block
     cursor: pointer
     position: relative
-    margin: 10px 0 10px 0px
-  .no-img-title
-    margin: 10px 0 10px 50px
-
-.nbs-flexisel-item
-  img.cir-img
-    margin-left: 28px
-/*** Navigation **
-
-.nbs-flexisel-nav-left, .nbs-flexisel-nav-right
-  width: 22px
-  height: 22px
-  position: absolute
-  cursor: pointer
-  z-index: 100000
-  opacity: 0.8
-
-.nbs-flexisel-nav-left
-  left: -10px
-  background: url('right-arrow.png') no-repeat
-  width: 29px
-  margin-top: -20px
-  height: 125px
-  display: block
-  z-index: 1000
-  top: 46.5px !important
-
-.nbs-flexisel-nav-right
-  right: -45px
-  background: url('left-arrow.png') no-repeat
-  width: 29px
-  margin-top: -20px
-  height: 125px
-  display: block
-  z-index: 1000
-  position: absolute
-  top: 46.5px !important
-
-#top
-  margin-top: -320px
-
-ul.ui-autocomplete
-  position: absolute
-  list-style: none
-  margin: 0
-  padding: 0
-  border: solid 1px #999
-  cursor: default
   li
-    background-color: #FFF
-    border-top: solid 1px #DDD
-    margin: 0
-    padding: 0
-    a
-      color: #000
+    .nots2 i
       display: block
-      padding: 3px
-      font-size: 18px
-      &.ui-state-hover
-        background-color: #fffcb2
+      float: right
+      cursor: pointer
+      background: url(../assets/down-arr2.png) no-repeat center right
+      position: absolute
+      right: 35px
+      top: 35px
+      z-index: 1000
+      width: 31px
+      height: 29px
+    &.active .nots2
+      i
+        color: #FFF
+        text-decoration: none
+        width: 31px
+        height: 30px
+        background: url(../assets/side-arrow.png) no-repeat center right
+        position: absolute
+        right: 35px
+        top: 35px
+        z-index: 1000
+      color: #FFF
+      text-decoration: none
+      background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzU2ZDk4OCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMmMxODkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+      background: -moz-linear-gradient(top, #56d988 0%, #02c189 100%)
+      /* FF3.6+
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #56d988), color-stop(100%, #02c189))
+      /* Chrome,Safari4+
+      background: -webkit-linear-gradient(top, #56d988 0%, #02c189 100%)
+      /* Chrome10+,Safari5.1+
+      background: -o-linear-gradient(top, #56d988 0%, #02c189 100%)
+      /* Opera 11.10+
+      background: -ms-linear-gradient(top, #56d988 0%, #02c189 100%)
+      /* IE10+
+      background: linear-gradient(to bottom, #56d988 0%, #02c189 100%)
+      /* W3C
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#56d988', endColorstr='#02c189', GradientType=0 )
+/* IE6-8
 
-a.ui-state-active
-  background-color: #fffcb2
+.ddd
+  .com-name
+    color: #444
+    margin-bottom: 5px
+    margin-right: 30px
+  p
+    margin-top: 20px
+    text-align: left
+    display: block
 
-.top-background
-  position: absolute
-  background-image: url('bg-img.png')
-  width: 100%
-  float: right
-  display: block
-  height: 316px
-  margin-top: 0px
-  padding-top: 100px
+.showass
+  display: none
 
-.top-menu-container
+.ddd .comment-box
+  &:hover, &:active, &:focus
+    background-color: #9ce8c6
+
+.lal
+  .comment-box
+    .com-img, .com-name
+      margin-bottom: 10px
+      width: 100%
+      font-size: 25px
+      text-align: center
+  .btn8
+    margin: 40px 0
+    font-size: 17px
+    width: 28%
+    margin-left: 20px
+
+#uni
+  display: none
+
+.mon
+  display: none
   position: relative
-  width: 85%
+  width: 100%
+  float: left
+
+.imd
+  float: left
+  margin: 50px 0
+  margin-left: 25px
+
+.mon
+  .comment-box
+    width: 100%
+    .com-name
+      margin-bottom: 0
+    &:hover, &:active, &:focus
+      background-color: #9ce8c6
+  a:hover
+    text-decoration: none
+
+.den
+  .gentleselect-label
+    width: 93px !important
+    height: 39px
+    background: url(../assets/selu.png) #ebebeb !important
+    margin-right: 3px
+  .gentleselect-dialog
+    width: 93px !important
+    float: left
+    overflow: hidden
+    ul
+      width: 93px !important
+      float: left
+
+.den2, .den
+  display: inline
+
+.den2
+  .gentleselect-label
+    width: 187px !important
+    height: 39px
+    background: url(../assets/selu2.png) #ebebeb !important
+    margin-right: 3px
+  .gentleselect-dialog
+    width: 187px !important
+    float: left
+    overflow: hidden
+    ul
+      width: 187px !important
+      float: left
+
+.ch2s
+  width: 20%
+
+.empty ul
+  margin-left: 12%
+
+.paddings a
+  &:hover, &:active, &:focus
+    text-decoration: none
+
+#tab2x .selectBox
   float: right
+  margin-right: 12px
+  margin-top: 13px
+
+.part
+  width: 100%
+  background-size: cover
+  -moz-background-size: cover
+  background-image: url(../assets/login-img.png)
+  background-position: center
+  height: 100%
   display: block
+  z-index: 100
+  padding: 0
+  position: absolute
+  top: 0
+  left: 0
+  padding-bottom: 30px
+
+.logo2
+  display: block
+  padding: 15px
+
+.tabsq
+  float: right
+  width: 100%
+  margin-top: 20px
+  text-align: left
+  li
+    float: left
+    a
+      display: block
+      font-size: 13px
+      color: #000
+      text-transform: uppercase
+      padding: 15px 7px
+      &:hover, &:active, &:focus
+        color: #00D689
+        text-decoration: none
+
+.logs
+  width: 100%
+  position: relative
+  text-align: center
+  display: block
+  margin-top: -40px
+  p
+    font-size: 20px
+  h2
+    float: left
+    margin-top: 0
+    font-size: 27px
+    text-transform: uppercase
+
+.shef
+  width: 60%
+  margin: 0 auto
+
+.logs input
+  width: 100%
+  font-size: 16px
+  margin: 0 auto
+  border: none
+  background-color: #f7f7f7
+  height: 45px
+  text-align: left
+  margin-top: 15px
+  padding-left: 10px
+
+.fos
+  text-align: right
+  font-size: 15px
+  color: #333
+  margin-top: 5px
+  float: right
+  width: 100%
+
+.tt
+  width: 48%
+  margin-top: 16px
+  font-size: 20px
+  padding: 10px 0
+  &:hover, &:active, &:focus
+    text-decoration: none
+
+.ico
+  float: right
+  margin-top: 10px
+  margin-left: 10px
+
+.centerx
+  width: 80%
+  margin: 0 auto
+  display: block
+  position: relative
+  text-align: center
+  background: url(../assets/transprent.png) repeat
+  height: 120px
+  padding: 35px 0 0 0
+  text-align: center
   margin-top: 50px
 
-.bg-image
+.mod6
+  display: block
+  margin: 0 auto
+  width: 60%
+  padding: 10px 0
+  &:hover, &:active, &:focus
+    text-decoration: none
+
+.activeq a
+  color: #00D689 !important
+
+.sectio2
+  width: 103%
+  background-size: cover
+  -moz-background-size: cover
+  background-position: center
+  margin-top: 48.8%
+  display: block
+  z-index: 100
+  background-color: #f7f7f7
+  margin-left: -15px
+  padding-bottom: 100px
   position: relative
-  background-image: url('bg-img.png')
-  width: 107%
-  float: right
-  display: block
-  height: 316px
-  background-size: 100%
+  border-bottom: 8px solid #FFF
 
-.bg-image2
-  background-image: url('bg-img2.png')
-.bg-image3
-  background-image: url('bg-img3.png')
+.nom
+  margin-top: 0
 
-.left
-  margin-left: 10px !important
-.left2
-  margin-left: 20px !important
-.left3
-  margin-left: 30px !important
-.right
-  margin-right: 10px !important
-.right2
-  margin-right: 20px !important
-.top05
-  margin-top: 5px
-.top
-  margin-top: 10px
-.top2
-  margin-top: 20px
-.top3
-  margin-top: 30px
-.top4
-  margin-top: 40px
-.top200
-  margin-top: 200px
-.bottom
-  margin-bottom: 10px
-.bottom2
-  margin-bottom: 20px
-.bottomp
-  padding-bottom: 10px
-.page-title
-  font-family: 'LatoBold'
-  font-size: 36px
-  color: #acacac
-  line-height: 30px
-.slide-tab
-  background-color: #50BC7D
+.nom2
+  margin-top: 0
+  background: none
+
+.row
+  margin: 0
+  position: relative
+
+.heading
   width: 100%
-  color: #eee
-  text-decoration: none
-  cursor: pointer
-  font-size: 120%
-  margin-bottom: 10px
-  margin-left: 10px !important
-
-.fleft
   float: left
-
-.fright
-  float: right
-  margin-right: 15px
-
-.cus-btn
-  display: inline-block
-  *display: inline
-  padding: 4px 12px
-  margin-bottom: 0
-  *margin-left: .3em
-  font-size: 14px
-  line-height: 20px
-  color: #333333
-  text-align: center
-  background-color: #52be80
-  background-image: linear-gradient(to bottom, #52be80, #52be80)
-  border: 1px solid #CCC
-  vertical-align: middle
-  cursor: pointer
-  text-shadow: none
-
-
-.cus-btn:hover,
-.cus-btn:focus,
-.cus-btn:active,
-.cus-btn.active,
-.cus-btn.disabled,
-.cus-btn[disabled]
-  color: #333333
-  background-color: #3dad6d
-  *background-color: #3dad6d
-  background-image: linear-gradient(to bottom, #3dad6d, #3dad6d)
-
-.header-box
-  background-color: #dadada
-  height: 150px
-  margin-top: -70px
-  color: #fff
-  font-size: 48px
-  margin-left: -30px !important
-  width: 103% !important
-  z-index: -1
-  img
-    width: 100%
-    height: 150px
-
-.calendar-bar
-  a
-    margin-left: -5px
-  span
-    margin-left: -5px
-    width: 30%
-span.switch-view
-  a
-    color: #58B258
-
-.week-bar
-  background-color: #58B258
-  color: #fff
-  font-size: 24px
-  padding: 20px 0
-  text-align: center
-  span
-    padding: 0 4%
-    width: 14%
-
-.day-list
-  padding: 20px 0
-  text-align: center
-  span
-    width: 124px
-    margin: 5px
-    .btn
-      padding: 40px
-      font-size: 38px
-    i
-      margin-top: 102px
-      margin-left: 30px
-      display: none
-  span.active
-    i
-      display: inline
-.triangle-down
-  width: 0
-  height: 0
-  border-left: 30px solid transparent
-  border-right: 30px solid transparent
-  border-top: 30px solid #58B258
-  position: absolute
-
-.event-item
-  margin-top: 10px
-  margin-bottom: 10px
-  padding-bottom: 10px
-  border-bottom: 1px solid #ccc
-  .ev-title
-    a
-      color: #58B258
-      font-size: 32px
-  .ev-description
-    font-size: 24px
-
-.welcome
-  p
-    font-size: 38px
-    text-align: left
-    line-height: 1.2em
-.fixed-bottom
-  position: fixed
-  bottom: 0
-  marign-bottom: 50px
-
-.circular
-  border-radius: 50%
-  -webkit-border-radius: 50%
-  -moz-border-radius: 50%
-  -khtml-border-radius: 50%
-  box-shadow: 0 0 8px rgba(0, 0, 0, .8)
-  -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8)
-  -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8)
-.square
-  box-shadow: 0 0 8px rgba(0, 0, 0, .8)
-  -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8)
-  -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8)
-
-.slide-content
-  margin-left: 10px
-  p
-    font-family: 'LatoBold'
-    font-size: 30px
-    color: #acacac
-    line-height: 30px
-    float: left
-    padding-right: 20px
-  input
-    height: 27px
-    width: 120px
-  select
-    height: 35px
-    width: 180px
-
-.slide-content
-  input
-    height: 27px
-  select
-    height: 35px
-  
-.errors
-  color: red
-
-.cir-img
-  background-color: #ccc
+  clear: left
+  position: relative
+  font-size: 17px
+  color: #999
   float: left
+  margin-left: 30px
+  margin-top: 30px
+
+.cent-text
+  width: 100%
   text-align: center
-.no-img-title
-  color: #ccc
-  position: absolute
-  text-align: center
-  .title-in
-    margin-top: 40%
-.caroufredsel_wrapper
-  margin-left: 30px !important
-
-.xxlarge,
-.title-xxlarge
-  width: 240px
-.xlarge,
-.title-xlarge
-  width: 226px
-.large,
-.title-large
-  width: 185px
-.medium,
-.title-medium
-  width: 145px
-.thumb,
-.title-thumb
-  width: 100px
-.small,
-.title-small
-  width: 77px
-
-
-.image
-  padding-left: 45px !important
-.info
-  color: #aaa
-  text-align: center
-
-.transparent
-  opacity: 0
-  filter: alpha(opacity=0)
-  position: absolute
-  z-index: -1
-
-.filters
-  a.active
-    color: #999
-
-.users-list
-  li
+  float: left
+  margin-top: 15px
+  h3
     text-align: center
-    padding: 0
-    margin: 6px
-    margin-top: 20px
-    display: block
-    width: 270px
-    float: left
-    .hovers
-      a
-        font-size: 80%
+    color: #03c37e
+    margin-bottom: 0
+  p
+    font-size: 16px
 
-.cprev1,
-.cprev2,
-.cprev
-  margin-right: 20px
-  margin-top: -250px !important
-
-.cnext1,
-.cnext2,
-.cnext
-  margin-right: -30px !important
-  margin-top: -250px !important
-
-.border-bottom
-  border-bottom: 1px solid #ACACAC
-
-.green
-  color: #39A667
-.red
-  color: #fe7a7a
-  
-.feature-image
-  width: 638px
-  height: 400px
-
-.vscroll400
-  height: 400px
-  max-height: 400px
-  overflow-y: auto
-  overflow-x: visible
-
-#event-option
-  select
-    height: 37px !important
-    float: left
-    width: 80%
-
-.datepicker.dropdown-menu
-  z-index: 10000 !important
-
-.four-tabs
-  li
-    width: 24%
-
-.linkedin
-  background-image: url('linkedin.jpeg')
-  width: 32px
+.ss3
+  width: 100%
+  position: relative
   display: block
-  height: 32px
-.help-error
-  color: #B94A48 !important
+  margin-top: 20px
+  i
+    height: 15px
+    width: 100%
+    position: absolute
+    float: left
+    bottom: 30%
+    background: #d1d1d3
+    /* Old browsers
+    /* IE9 SVG, needs conditional override of 'filter' to 'none'
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPHJhZGlhbEdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgY3g9IjUwJSIgY3k9IjUwJSIgcj0iNzUlIj4KICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNkMWQxZDMiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjZjlmYWZhIiBzdG9wLW9wYWNpdHk9IjEiLz4KICA8L3JhZGlhbEdyYWRpZW50PgogIDxyZWN0IHg9Ii01MCIgeT0iLTUwIiB3aWR0aD0iMTAxIiBoZWlnaHQ9IjEwMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+    background: -moz-radial-gradient(center, ellipse cover, #d1d1d3 0%, #f9fafa 100%)
+    /* FF3.6+
+    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #d1d1d3), color-stop(100%, #f9fafa))
+    /* Chrome,Safari4+
+    background: -webkit-radial-gradient(center, ellipse cover, #d1d1d3 0%, #f9fafa 100%)
+    /* Chrome10+,Safari5.1+
+    background: -o-radial-gradient(center, ellipse cover, #d1d1d3 0%, #f9fafa 100%)
+    /* Opera 12+
+    background: -ms-radial-gradient(center, ellipse cover, #d1d1d3 0%, #f9fafa 100%)
+    /* IE10+
+    background: radial-gradient(ellipse at center, #d1d1d3 0%, #f9fafa 100%)
+    /* W3C
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#d1d1d3', endColorstr='#f9fafa', GradientType=1 )
+/* IE6-8 fallback on horizontal gradient
+
+.strit
+  width: 50%
+  margin: 0 auto
+  float: none
+  position: relative
+  z-index: 1000
+  .nbs-flexisel-nav-left, .nbs-flexisel-nav-right
+    top: 113px !important
+
+.newt, .newt2
+  margin-top: 80px
+  float: left
+
+.newt p, #newt2 p
+  padding: 0 30px
+  font-size: 17px
+
+.pads
+  width: 40%
+  height: 70px
+  font-size: 28px
+  line-height: 70px
+  display: inline-block
+  &:hover, &:active, &:focus
+    text-decoration: none
+    color: #FFF
+
+.lhs
+  margin-top: -40px
+  float: left
+  width: 100%
+  position: relative
+
+.cn
+  font-size: 17px
+  padding: 8px 0
+  width: 44%
+  float: left
+  &:hover, &:active, &:focus
+    color: #FFF
+    text-decoration: none
+
+.bns
+  padding: 10px 0
+  width: 44%
+  float: left
+  text-align: center
+  color: #CCC
+  font-size: 15px
+  background: #fdfdfd
+  /* Old browsers
+  /* IE9 SVG, needs conditional override of 'filter' to 'none'
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZkZmRmZCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlN2U4ZTkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+  background: -moz-linear-gradient(top, #fdfdfd 0%, #e7e8e9 100%)
+  /* FF3.6+
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fdfdfd), color-stop(100%, #e7e8e9))
+  /* Chrome,Safari4+
+  background: -webkit-linear-gradient(top, #fdfdfd 0%, #e7e8e9 100%)
+  /* Chrome10+,Safari5.1+
+  background: -o-linear-gradient(top, #fdfdfd 0%, #e7e8e9 100%)
+  /* Opera 11.10+
+  background: -ms-linear-gradient(top, #fdfdfd 0%, #e7e8e9 100%)
+  /* IE10+
+  background: linear-gradient(to bottom, #fdfdfd 0%, #e7e8e9 100%)
+  /* W3C
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fdfdfd', endColorstr='#e7e8e9', GradientType=0 )
+  /* IE6-8
+  &:hover, &:active, &:focus
+    text-decoration: none
+    color: #CCC
+    background: #e7e8e9
+    /* Old browsers
+    /* IE9 SVG, needs conditional override of 'filter' to 'none'
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2U3ZThlOSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZGZkZmQiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+    background: -moz-linear-gradient(top, #e7e8e9 0%, #fdfdfd 100%)
+    /* FF3.6+
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e7e8e9), color-stop(100%, #fdfdfd))
+    /* Chrome,Safari4+
+    background: -webkit-linear-gradient(top, #e7e8e9 0%, #fdfdfd 100%)
+    /* Chrome10+,Safari5.1+
+    background: -o-linear-gradient(top, #e7e8e9 0%, #fdfdfd 100%)
+    /* Opera 11.10+
+    background: -ms-linear-gradient(top, #e7e8e9 0%, #fdfdfd 100%)
+    /* IE10+
+    background: linear-gradient(to bottom, #e7e8e9 0%, #fdfdfd 100%)
+    /* W3C
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e7e8e9', endColorstr='#fdfdfd', GradientType=0 )
+/* IE6-8
+
+.lhs
+  i
+    margin: 10px 9px
+    float: left
+  input
+    height: 40px
+    font-size: 17px
+    color: #333
+    background-color: #f7f7f7
+    border: none
+    text-indent: 10px
+    width: 98%
+    margin: 10px 0
+    margin-bottom: 0
+
+.ins
+  width: 48%
+
+.lhs
+  .gentleselect-label
+    background: url(../assets/select33.png) no-repeat #f7f7f7
+    height: 40px
+    width: 300px
+    float: left !important
+    margin-top: 10px
+    margin-bottom: 0
+    line-height: 30px
+    color: #444
+  .gentleselect-dialog
+    width: 300px !important
+    margin-top: 17px
+
+.cols
+  font-size: 14px
+  float: right
+  width: 41%
+  height: 40px
+  margin-right: 7px
+  padding: 9px 0
+  margin-bottom: 0
+  margin-top: 10px
+  &:hover, &:active, &:focus
+    text-decoration: none
+    color: #FFF
+
+.lhs span
+  float: right
+  margin-top: 20px
+  margin-right: 10px
+
+.sign
+  float: right
+  width: 50%
+  padding: 0
+  height: 45px
+  margin-right: 7px
+  margin-top: 60px
+  font-size: 20px
+
+.none
+  display: none
+
+#datepicker9
+  position: relative
+  a
+    left: 0
+    width: 142px
+    font-size: 25px
+
+.tree
+  width: 65%
+  float: left
+  position: relative
+  overflow: hidden
+  height: 450px
+  border: 7px solid #EBEBEB
+
+.onef
+  float: left
+  width: 35%
+  h3
+    color: #00c088
+    padding: 0 20px
+    margin: 0
+  span
+    font-size: 18px
+    display: block
+    padding: 20px
+
+.DivSelectyze
+  z-index: 10 !important
+
+input.djs
+  color: #000 !important
+  width: 180px !important
+
+.chnd
+  color: #000 !important
+  font-size: 22px
+
+#edt
+  &:hover, &:active, &:focus
+    text-decoration: none
+
+.wig
+  width: 9%
+
+#echo p
+  padding-left: 30px
+  padding-right: 15px
+
+.mon22
+  display: none
+
+#tab3x
+  text-align: left
+  label
+    font-size: 18px
+    float: left
+    margin-right: 10px
+    margin-top: 5px
+    color: #666
+
+.noak
+  display: none

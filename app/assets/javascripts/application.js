@@ -11,6 +11,7 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+//= require old_javascripts/jquery.timeago.js
 //= require jquery.ui.all
 //= require jquery_ujs
 //= require bootstrap
@@ -18,8 +19,15 @@
 //= require jquery.tagsinput
 //= require jquery_nested_form
 //= require jquery.remotipart
-//= require_tree .
+//= require plugins/jquery-gentleSelect
+//= require plugins/jquery.flexisel
+//= require plugins/jquery.accordion.source
+
+// Keep main last
+//= require main
 //
+
+
 $(function() {
 
   $('#user_alumni').click(function () {

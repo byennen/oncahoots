@@ -1,0 +1,419 @@
+#ssp3.col-lg-6
+  .title
+    %h1 Events
+    %p
+      %a{"data-target" => "#myModal3", "data-toggle" => "modal", :href => "javascript:void(0);"} Add Event
+      %span >>
+      \&nbsp; &nbsp; My Events
+      %span >>
+    #myModal3.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+      .modal-dialog
+        .modal-content
+          .modal-header
+            %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"}
+            %h4#myModalLabel.modal-title Add Event
+          / modal-header
+          .modal-body
+            %form.forms
+              .half
+                %label *Title
+                %input{:name => "text", :type => "text"}/
+                .clearfix
+                %label Date
+                %input#datepicker{:name => "text", :type => "text"}/
+                .clearfix
+                .den
+                  %label *Time
+                  %select#selector2{:name => "style2"}
+                    %option am
+                    %option pm
+                  %select#selector3{:name => "style2"}
+                    %option min
+                    %option 01
+                    %option 02
+                    %option 03
+                    %option 04
+                    %option 05
+                    %option 06
+                    %option 07
+                    %option 08
+                    %option 09
+                    %option 10
+                    %option 11
+                    %option 12
+                    %option 13
+                    %option 14
+                    %option 15
+                    %option 16
+                    %option 17
+                    %option 18
+                    %option 19
+                    %option 20
+                    %option 21
+                    %option 22
+                    %option 23
+                    %option 24
+                    %option 25
+                    %option 26
+                    %option 27
+                    %option 28
+                    %option 29
+                    %option 30
+                    %option 31
+                    %option 32
+                    %option 33
+                    %option 34
+                    %option 35
+                    %option 36
+                    %option 37
+                    %option 38
+                    %option 39
+                    %option 40
+                    %option 41
+                    %option 42
+                    %option 43
+                    %option 44
+                    %option 45
+                    %option 46
+                    %option 47
+                    %option 48
+                    %option 49
+                    %option 50
+                    %option 51
+                    %option 52
+                    %option 53
+                    %option 54
+                    %option 55
+                    %option 56
+                    %option 57
+                    %option 58
+                    %option 59
+                    %option 00
+                  %select#selector4{:name => "style2"}
+                    %option hr
+                    %option 01
+                    %option 02
+                    %option 03
+                    %option 04
+                    %option 05
+                    %option 06
+                    %option 07
+                    %option 08
+                    %option 09
+                    %option 10
+                    %option 11
+                    %option 12
+                  .clearfix
+                .clearfix
+                %label Loaction
+                %input{:name => "text", :type => "text"}/
+                .clearfix
+              / half
+              .half
+                #sops
+                  %label Category
+                  %select#selector{:name => "style2"}
+                    %option Yes, this club is private
+                    %option No, this club is not private
+                    %option Yes, this club is private
+                    %option No, this club is not private
+                    %option Yes, this club is private
+                    %option No, this club is not private
+                  .clearfix
+                %label Image
+                %button.btnx{:name => "btn"} Choose File
+                .clearfix
+                %label Club Event
+                .den
+                  %select#selector6{:name => "style2"}
+                    %option No
+                    %option Yes
+                .den2
+                  %select#selector5{:name => "style2"}
+                    %option Select Club
+                    %option Club New York
+                    %option Club London
+                    %option Club New York
+                    %option Club London
+                = succeed "\\" do
+                  .clearfix
+                %label Free Food
+                .den
+                  %select#selector7{:name => "style2"}
+                    %option Yes
+                    %option No
+              / half
+              .clearfix
+              %label.ne Description
+              %textarea.texta{:style => "height:100px;"}
+              %button.btng.ch2s{:name => "btn"} Save
+            .clearfix
+          / modal-body
+        / modal-content
+      / modal-dialog
+    / modal
+  / title
+  .calendar
+    .caltitle
+      %p
+        %a{:href => "javascript:void(0);"} <<
+        December 15, 2013
+        %a{:href => "javascript:void(0);"} >>
+    / caltitle
+    .session
+      %a{:href => "javascript:void(0);"} Free Food
+      %a.nnaa{:href => "javascript:void(0);"} Daily
+      %a.nnaa5{:href => "javascript:void(0);"} Weekly
+      %a.nna{:href => "javascript:void(0);"} Monthly
+    / session
+    %ul.events-list.nnaa5
+      %li.light
+        %strong
+          SUN 12.15
+          %br/
+          10:00 am
+          %br/
+          Location Here
+        %span
+        %h3 Event Title / Headline Here
+        Brief description / subhead here.
+        %a{:href => "javascript:void(0);"} Click for more info.
+      %li.dark
+        %strong
+          SUN 12.15
+          %br/
+          10:00 am
+          %br/
+          Location Here
+        %span
+        %h3 Event Title / Headline Here
+        Brief description / subhead here.
+        %a{:href => "javascript:void(0);"} Click for more info.
+      %li.light
+        %strong
+          SUN 12.15
+          %br/
+          10:00 am
+          %br/
+          Location Here
+        %span
+        %h3 Event Title / Headline Here
+        Brief description / subhead here.
+        %a{:href => "javascript:void(0);"} Click for more info.
+      %li.dark
+        %strong
+          SUN 12.15
+          %br/
+          10:00 am
+          %br/
+          Location Here
+        %span
+        %h3 Event Title / Headline Here
+        Brief description / subhead here.
+        %a{:href => "javascript:void(0);"} Click for more info.
+      %li.light
+        %strong
+          SUN 12.15
+          %br/
+          10:00 am
+          %br/
+          Location Here
+        %span
+        %h3 Event Title / Headline Here
+        Brief description / subhead here.
+        %a{:href => "javascript:void(0);"} Click for more info.
+      %li.dark
+        %strong
+          SUN 12.15
+          %br/
+          10:00 am
+          %br/
+          Location Here
+        %span
+        %h3 Event Title / Headline Here
+        Brief description / subhead here.
+        %a{:href => "javascript:void(0);"} Click for more info.
+      %li.light
+        %strong
+          SUN 12.15
+          %br/
+          10:00 am
+          %br/
+          Location Here
+        %span
+        %h3 Event Title / Headline Here
+        Brief description / subhead here.
+        %a{:href => "javascript:void(0);"} Click for more info.
+      %li.dark
+        %strong
+          SUN 12.15
+          %br/
+          10:00 am
+          %br/
+          Location Here
+        %span
+        %h3 Event Title / Headline Here
+        Brief description / subhead here.
+        %a{:href => "javascript:void(0);"} Click for more info.
+    .mon
+      %img.imd{:alt => "Image", :height => "355", :src => "img/mon.png", :width => "590"}/
+    .mon22
+      %img.imd{:src => "img/wcal.png", :width => "590"}/
+      %ul.events-listss
+        %li.dark
+          %strong
+            SUN 12.15
+            %br/
+            10:00 am
+            %br/
+            Location Here
+          %span
+          %h3 Event Title / Headline Here
+          Brief description / subhead here.
+          %a{:href => "javascript:void(0);"} Click for more info.
+        %li.light
+          %strong
+            SUN 12.15
+            %br/
+            10:00 am
+            %br/
+            Location Here
+          %span
+          %h3 Event Title / Headline Here
+          Brief description / subhead here.
+          %a{:href => "javascript:void(0);"} Click for more info.
+        %li.dark
+          %strong
+            SUN 12.15
+            %br/
+            10:00 am
+            %br/
+            Location Here
+          %span
+          %h3 Event Title / Headline Here
+          Brief description / subhead here.
+          %a{:href => "javascript:void(0);"} Click for more info.
+    / mon
+  / calendar
+  .clearfix
+/ col-lg-6
+#mar.col-lg-4
+  #ssp4
+    .search
+      %input{:name => "text", :placeholder => "Search", :type => "text"}/
+      %a{:href => "search.html"}
+        %button{:name => "btn"}
+          %img{:alt => "Image", :src => "img/search-icon.png"}/
+    / search
+    .nna
+      .info{:style => "position:relative; z-index:1; width:100%; float:left"}
+        %button.btn77{:name => "btn"} Event Title
+      / info
+      .pro-data
+        %img{:alt => "Image", :src => "img/circle-img.png"}/
+        %p
+          SUN 12.15, 10:00 am
+          %br/
+          Location Here
+          %br/
+          %a{:href => "javascript:void(0);"} Running Club
+        %span Event Description here. Lorem ipsum dolor sit amet, ectetuer. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed  I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed  I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed  I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore doloetctuer adipaicse. Lore dolor consetctuer adipaicse.
+        %button.btn8{:name => "btn"} Interested
+        %button.btn8{:name => "btn"} Next Event
+      / pro-data
+    / nna
+    .mon
+      .info{:style => "position:relative; z-index:1; width:100%; float:left;"}
+        %button.btn77{:name => "btn", :style => "margin-bottom:0;"} My December Events
+      / info
+      .comment-box
+        %a.com-img{:href => "javascript:void(0);"}
+          %img{:alt => "Image", :height => "85", :src => "img/circle.png", :width => "85"}/
+        %a.com-name{:href => "javascript:void(0);"}
+          %span
+            Event Title
+            %br/
+            Date &amp; Time
+        %p{:style => "text-align:left; margin-top:25px;"} Short event description here.
+      / comment-box
+      .clearfix
+      .comment-box.dark
+        %a.com-img{:href => "javascript:void(0);"}
+          %img{:alt => "Image", :height => "85", :src => "img/circle.png", :width => "85"}/
+        %a.com-name{:href => "javascript:void(0);"}
+          %span
+            Event Title
+            %br/
+            Date &amp; Time
+        %p{:style => "text-align:left; margin-top:25px;"} Short event description here.
+      / comment-box
+      .clearfix
+      .comment-box
+        %a.com-img{:href => "javascript:void(0);"}
+          %img{:alt => "Image", :height => "85", :src => "img/circle.png", :width => "85"}/
+        %a.com-name{:href => "javascript:void(0);"}
+          %span
+            Event Title
+            %br/
+            Date &amp; Time
+        %p{:style => "text-align:left; margin-top:25px;"} Short event description here.
+      / comment-box
+      .clearfix
+      .comment-box.dark
+        %a.com-img{:href => "javascript:void(0);"}
+          %img{:alt => "Image", :height => "85", :src => "img/circle.png", :width => "85"}/
+        %a.com-name{:href => "javascript:void(0);"}
+          %span
+            Event Title
+            %br/
+            Date &amp; Time
+        %p{:style => "text-align:left; margin-top:25px;"} Short event description here.
+      / comment-box
+      .clearfix
+    / mon
+  / ssp4
+/ col-lg-4
+/ row
+.clearfix
+
+:javascript
+  $(document).ready(function(){
+    $('#datepicker').datepicker({
+        inline: true
+    });
+    $('.selectyze2').Selectyze({
+        theme : 'mac'
+    });
+  $(".nna").on('click', function() {
+     $(".events-list").hide();
+     $(".mon").show();
+     $(".di").css("color", "#00D689");
+  });
+  $(".nnaa").on('click', function() {
+     $(".mon").hide();
+     $(".events-list").show();
+     $(".di").css("color", "#00D689");
+  });
+  $(".nnaa5").on('click', function() {
+     $(".mon").hide();
+     $(".mon22").show();
+     $(".di").css("color", "#00D689");
+  });
+  $(".nnaa5").on('click', function() {
+     $(".events-list").hide();
+     $(".mon22").show();
+     $(".di").css("color", "#00D689");
+  });
+  $(".nna").on('click', function() {
+     $(".mon22").hide();
+     $(".mon").show();
+     $(".di").css("color", "#00D689");
+  });
+  $('#selector').gentleSelect(); // apply gentleSelect with default options
+  $('#selector2').gentleSelect(); // apply gentleSelect with default options
+  $('#selector3').gentleSelect(); // apply gentleSelect with default options
+  $('#selector4').gentleSelect(); // apply gentleSelect with default options
+  $('#selector5').gentleSelect(); // apply gentleSelect with default options
+  $('#selector6').gentleSelect(); // apply gentleSelect with default options
+  $('#selector7').gentleSelect(); // apply gentleSelect with default options
+  });

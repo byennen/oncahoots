@@ -1,5 +1,24 @@
 CahootsConnect::Application.routes.draw   do
 
+  ### STATIC PAGES TO BE REMOVED
+  match '/static/index', to: 'static_pages#index'
+  match '/static/about', to: 'static_pages#about'
+  match '/static/clubs', to: 'static_pages#clubs'
+  match '/static/college', to: 'static_pages#college'
+  match 'static/communication', to: 'static_pages#communication'
+  match '/static/events', to: 'static_pages#events'
+  match '/static/lowdown', to: 'static_pages#lowdown'
+  match '/static/members', to: 'static_pages#members'
+  match '/static/money', to: 'static_pages#money'
+  match '/static/network', to: 'static_pages#network'
+  match '/static/photos', to: 'static_pages#photos'
+  match '/static/running-club', to: 'static_pages#running_club'
+  match '/static/search', to: 'static_pages#search'
+  match '/static/search-detail', to: 'static_pages#search_detail'
+  match '/static/settings', to: 'static_pages#settings'
+
+
+
   match '/auth/:provider/callback' => 'authentications#create'
   resources :cities
   resources :universities, only: [:show, :update] do

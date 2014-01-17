@@ -1,0 +1,39 @@
+#create_club.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"}
+        %h4#myModalLabel.modal-title Create Club
+      / modal-header
+      .modal-body
+        %form#sops.forms
+          .half
+            %label Club Name
+            %input{:name => "text", :type => "text"}/
+            .clearfix
+            %label Private
+            %select#selector{:name => "style2"}
+              %option Yes, this club is private
+              %option No, this club is not private
+              %option Yes, this club is private
+              %option No, this club is not private
+              %option Yes, this club is private
+              %option No, this club is not private
+          / half
+          .half
+            %label Category
+            %select#selector2{:name => "style2"}
+              %option Academic
+              %option Non Academic
+              %option Academic
+              %option Non Academic
+              %option Academic
+              %option Non Academic
+            %label &nbsp;
+            %button.btnx{:name => "btn"} Choose File
+          / half
+          .clearfix
+          %label.ne Description
+          %textarea.texta
+          %button.btng{:name => "btn"} Create Club
+        .clearfix

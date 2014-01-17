@@ -1,0 +1,570 @@
+#ssp3.col-lg-6
+  .title
+    %h1 Network
+    %p
+      My Profile
+      %span >>
+  / title
+  .user-profile
+    %a.pro-pic{:href => "javascript:void(0);"}
+      My Name
+      %span '07
+    %p
+      Hi! My name is
+      %input.edtitor{:type => "text"}/
+      = succeed "." do
+        %i.text1 Jane Smith
+      I am a/an
+      %input.edtitor2{:type => "text"}/
+      %i.text22 Business Major
+      and
+      %input.edtitor3{:type => "text"}/
+      %i.text3 Double Major
+      at
+      %input.edtitor4{:type => "text"}/
+      = succeed "." do
+        %i.text4 Davidson College
+      I will graduate in
+      %input.edtitor5{:type => "text"}/
+      = succeed "." do
+        %i.text5 2015
+      My current city is
+      %input.edtitor6{:type => "text"}/
+      = succeed "." do
+        %i.text6 City Name
+    %textarea.same.textarea1{:name => "textarea", :placeholder => "Additional information.(Optional)"}
+    .pos2
+      %ul.tabs
+        %li
+          %a.active2{:href => "#tab1"} Resume
+        %li
+          %a{:href => "#tab2"} Portfolio
+        %li
+          %a{:href => "#tab3"} FAQs &amp; Contact Requirements
+      %a#edt.edit{:href => "javascript:void(0);"}
+        Edit
+        %i
+          %img{:alt => "Image", :src => "img/edit-icon.png"}/
+    / pos2
+  / user-profile
+  .clearfix
+  .tab_container
+    #tab1.tab_content
+      .paragraph
+        .title2
+          %ul.tabs2
+          %h4
+            %li.active22
+              %a{:href => "#tab11"} Education
+            %li
+              %span
+                %a{:href => "#tab22"} Skills &amp; Interests
+          %i
+            %img{:alt => "Image", :src => "img/small-curve.png"}/
+        / title2
+        .tab_container
+          #tab11.tab_content2
+            .circlee
+              %p{:style => "padding-bottom:0;"}
+                I graduated from
+                %input.edtitor7{:type => "text"}/
+                %i.text7
+                  %strong COLLAGE NAME
+                in
+                %input.edtitor8{:type => "text"}/
+                = succeed "." do
+                  %i.text8
+                    %strong YEAR
+                %br/
+                I received my
+                %input.edtitor9{:type => "text"}/
+                %i.text9
+                  %strong DEGRREE NAME
+                in
+                %input.edtitor1a{:type => "text"}/
+                = succeed "." do
+                  %i.text1a
+                    %strong MAJOR
+              %textarea.same.texta2{:name => "textarea", :placeholder => "Additional description"}
+              .clearfix
+            .circlee{:style => "display:none;"}
+              %p{:style => "padding-bottom:0;"}
+                I graduated from
+                %input.edtitor7{:type => "text"}/
+                %i.text7
+                  %strong COLLAGE NAME
+                in
+                %input.edtitor8{:type => "text"}/
+                = succeed "." do
+                  %i.text8
+                    %strong YEAR
+                %br/
+                I received my
+                %input.edtitor9{:type => "text"}/
+                %i.text9
+                  %strong DEGRREE NAME
+                in
+                %input.edtitor1a{:type => "text"}/
+                = succeed "." do
+                  %i.text1a
+                    %strong MAJOR
+              %textarea.same.texta2{:name => "textarea", :placeholder => "Additional description"}
+              .clearfix
+            %button#add.same.chn.button{:name => "btn"}
+              %img{:alt => "Image", :src => "img/ads.png"}/
+            .clearfix
+          / paragraph
+        / tab_content2
+        #tab22.tab_content2
+          .paragraph2
+            .circlee2
+              %p{:style => "font-size:17px;"}
+                I am skilled at
+                %input.edtitor6a{:type => "text"}/
+                %i.text6a
+                  %strong HTML5
+                ,
+                %input.edtitor7a{:type => "text"}/
+                %i.text7a
+                  %strong CSS3
+                and
+                %input.edtitor8a{:type => "text"}/
+                %i.text8a
+                  %strong Bootstrap
+                %br/
+                %br/
+                I am interested in
+                %input.edtitor9a{:type => "text"}/
+                %i.text9a
+                  %strong Cricket
+                ,
+                %input.edtitor1b{:type => "text"}/
+                %i.text1b
+                  %strong Web
+                and
+                %input.edtitor2b{:type => "text"}/
+                %i.text2b
+                  %strong Again Cricket
+              .clearfix
+            .circlee2{:style => "display:none;"}
+              %p{:style => "font-size:17px;"}
+                I am skilled at
+                %input.edtitor6a{:type => "text"}/
+                %i.text6a
+                  %strong HTML5
+                ,
+                %input.edtitor7a{:type => "text"}/
+                %i.text7a
+                  %strong CSS3
+                and
+                %input.edtitor8a{:type => "text"}/
+                %i.text8a
+                  %strong Bootstrap
+                %br/
+                %br/
+                I am interested in
+                %input.edtitor9a{:type => "text"}/
+                %i.text9a
+                  %strong Cricket
+                ,
+                %input.edtitor1b{:type => "text"}/
+                %i.text1b
+                  %strong Web
+                and
+                %input.edtitor2b{:type => "text"}/
+                %i.text2b
+                  %strong Again Cricket
+              .clearfix
+            %button#add2.same.chn.button{:name => "btn"}
+              %img{:alt => "Image", :src => "img/ads.png"}/
+            .clearfix
+          / paragraph
+        / tab_content2
+      / tab_container
+      #echo.paragraph2
+        .title3
+          %h4 Experience
+          %i
+            %img{:alt => "Image", :src => "img/large-curve.png"}/
+        / title3
+        .circlee3
+          %p
+            %input.edtitor2a{:type => "text"}/
+            %i.text2a
+              %span ABC Company
+            %br/
+            %br/
+            I worked as a
+            %input.edtitor3a{:type => "text"}/
+            %i.text3a
+              %span XYZ Manager
+            from
+            %input.edtitor4a{:type => "text"}/
+            %i.text4a
+              %span Novermber 2009
+            to
+            %input.edtitor5a{:type => "text"}/
+            = succeed "." do
+              %i.text5a
+                %span November 2013
+            %br/
+            Additional Description of your position at this company as you wrote it. Click edit to change.
+            %br/
+            %br/
+            %br/
+          %textarea.same.texta3{:name => "textarea", :placeholder => "Additional description"}
+        .circlee3{:style => "display:none;"}
+          %p
+            %input.edtitor2a{:type => "text"}/
+            %i.text2a
+              %span ABC Company
+            %br/
+            %br/
+            I worked as a
+            %input.edtitor3a{:type => "text"}/
+            %i.text3a
+              %span XYZ Manager
+            from
+            %input.edtitor4a{:type => "text"}/
+            %i.text4a
+              %span Novermber 2009
+            to
+            %input.edtitor5a{:type => "text"}/
+            = succeed "." do
+              %i.text5a
+                %span November 2013
+            %br/
+            Additional Description of your position at this company as you wrote it. Click edit to change.
+            %br/
+            %br/
+            %br/
+          %textarea.same.texta3{:name => "textarea", :placeholder => "Additional description"}
+        %button#add3.same.chn.button{:name => "btn", :style => "margin-left:0;"}
+          %img{:alt => "Image", :src => "img/ads.png"}/
+        .clearfix
+      / paragraph2
+    / tab_content
+    #tab2.tab_content Portfolio
+    / tab_content
+    #tab3.tab_content
+      .paragraph2
+        .title2
+          %h4 FAQs
+        / title2
+        #carousel-example-generic.carousel.slide.car2{"data-ride" => "carousel"}
+          .carousel-inner
+            .item.active
+              %p
+                %input.edtitor3b{:type => "text"}/
+                %small.text3b
+                  %span question here?
+                %br/
+                %input.edtitor4b{:type => "text"}/
+                %small.text4b Answer to first FAQ. Lorem ipsum cadillIpsum dolor sit amet, ectetuer adi aiscing elit, sed diam nonummy. Lorem ipsum cadillIpsum dolor sit amet, ectetuer adi aiscing elit, sed diam nonummy.
+            / item
+            .item
+              %p
+                %input.edtitor5b{:type => "text"}/
+                %small.text5b
+                  %span question here?
+                %br/
+                %input.edtitor6b{:type => "text"}/
+                %small.text6b Answer to first FAQ. Lorem ipsum cadillIpsum dolor sit amet, ectetuer adi aiscing elit, sed diam nonummy. Lorem ipsum cadillIpsum dolor sit amet, ectetuer adi aiscing elit, sed diam nonummy.
+            / item
+            .item
+              %p
+                %input.edtitor7b{:type => "text"}/
+                %small.text7b
+                  %span question here?
+                %br/
+                %input.edtitor8b{:type => "text"}/
+                %small.text8b Answer to first FAQ. Lorem ipsum cadillIpsum dolor sit amet, ectetuer adi aiscing elit, sed diam nonummy. Lorem ipsum cadillIpsum dolor sit amet, ectetuer adi aiscing elit, sed diam nonummy.
+              .clearfix
+            / item
+          / carousel-inner
+          %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-example-generic"}
+            %img{:alt => "Image", :src => "img/lefts.png"}/
+          %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-example-generic"}
+            %img{:alt => "Image", :src => "img/rights.png"}/
+        / carousel
+        .clearfix
+      / paragraph
+      .paragraph2.ss2
+        .title2
+          %h4 Contact Requirements
+        / title2
+        .low
+          %p
+            %span CadillIpsum
+            dolor sit amet, ectetuer adi aiscing elit, sed diam nonummy.
+            %br/
+            %br/
+            Lorem dolor ipsum
+            %span CadillIpsum CadillIpsum
+            antu sit amet, consectetuer adipiscing.
+            %br/
+            %br/
+            CadillIpsum dolor sit amet,
+            %span ectuer dipiscing
+            elit, sed diam nonummy.
+            %br/
+            Lorem dolor sit amet, consectetuer adipiscing.
+        .clearfix
+        .doe
+          %small
+            Do you want to limit the types of students who can contact you? If so, set contact requirements based on
+            experience, GPA, major etc.  We know your time is valuable.
+          %textarea.texta4.same{:placeholder => "Add contact requirements (Optional)"}
+        / doe
+        .clearfix
+      / paragraph2
+      .clearfix
+    / tab_content
+  / tab_container
+  .clearfix
+/ col-lg-6
+#mar.col-lg-4
+  #ssp4
+    .search
+      %input{:name => "text", :placeholder => "Search", :type => "text"}/
+      %a{:href => "search.html"}
+        %button{:name => "btn"}
+          %img{:alt => "Image", :src => "img/search-icon.png"}/
+    / search
+    .info{:style => "background:url(img/bg.png) repeat center top; position:relative; z-index:10000; width:100%; float:left"}
+      %span.btn4 My Contacts
+    / info
+    %ul.lists.ssy
+      %li.light
+        %a{:href => "javascript:void(0);"}
+          %i
+            %img{:alt => "Image", :src => "img/profile-img.png"}/
+          %span
+            Jane Doe
+            %br/
+            1998
+        %button.btna7{:name => "btm"} Message
+        .ssys
+          %small Hi! I'm Jane and I'm a marketing manager from Baltimore. Here is a little blurb about me to get you to click and view my profile.
+      %li.dark
+        %a{:href => "javascript:void(0);"}
+          %i
+            %img{:alt => "Image", :src => "img/profile-img.png"}/
+          %span
+            Jane Doe
+            %br/
+            1998
+        %button.btna7{:name => "btm"} Message
+        .ssys
+          %small Hi! I'm Jane and I'm a marketing manager from Baltimore. Here is a little blurb about me to get you to click and view my profile.
+      %li.light
+        %a{:href => "javascript:void(0);"}
+          %i
+            %img{:alt => "Image", :src => "img/profile-img.png"}/
+          %span
+            Jane Doe
+            %br/
+            1998
+        %button.btna7{:name => "btm"} Message
+        .ssys
+          %small Hi! I'm Jane and I'm a marketing manager from Baltimore. Here is a little blurb about me to get you to click and view my profile.
+      %li.dark
+        %a{:href => "javascript:void(0);"}
+          %i
+            %img{:alt => "Image", :src => "img/profile-img.png"}/
+          %span
+            Jane Doe
+            %br/
+            1998
+        %button.btna7{:name => "btm"} Message
+        .ssys
+          %small Hi! I'm Jane and I'm a marketing manager from Baltimore. Here is a little blurb about me to get you to click and view my profile.
+      %li.light
+        %a{:href => "javascript:void(0);"}
+          %i
+            %img{:alt => "Image", :src => "img/profile-img.png"}/
+          %span
+            Jane Doe
+            %br/
+            1998
+        %button.btna7{:name => "btm"} Message
+        .ssys
+          %small Hi! I'm Jane and I'm a marketing manager from Baltimore. Here is a little blurb about me to get you to click and view my profile.
+      %li.dark
+        %a{:href => "javascript:void(0);"}
+          %i
+            %img{:alt => "Image", :src => "img/profile-img.png"}/
+          %span
+            Jane Doe
+            %br/
+            1998
+        %button.btna7{:name => "btm"} Message
+        .ssys
+          %small Hi! I'm Jane and I'm a marketing manager from Baltimore. Here is a little blurb about me to get you to click and view my profile.
+      %li.light
+        %a{:href => "javascript:void(0);"}
+          %i
+            %img{:alt => "Image", :src => "img/profile-img.png"}/
+          %span
+            Jane Doe
+            %br/
+            1998
+        %button.btna7{:name => "btm"} Message
+        .ssys
+          %small Hi! I'm Jane and I'm a marketing manager from Baltimore. Here is a little blurb about me to get you to click and view my profile.
+      %li.dark
+        %a{:href => "javascript:void(0);"}
+          %i
+            %img{:alt => "Image", :src => "img/profile-img.png"}/
+          %span
+            Jane Doe
+            %br/
+            1998
+        %button.btna7{:name => "btm"} Message
+        .ssys
+          %small Hi! I'm Jane and I'm a marketing manager from Baltimore. Here is a little blurb about me to get you to click and view my profile.
+  / ssp4
+/ col-lg-4
+/ row
+.clearfix
+:javascript
+  $(document).ready(function(){
+  $("#add").click(function() {
+      $(".circlee").show()
+  });
+  $("#add2").click(function() {
+      $(".circlee2").show()
+  });
+  $("#add3").click(function() {
+      $(".circlee3").show()
+  });
+    $('.selectyze2').Selectyze({
+        theme : 'mac'
+    });
+  $("#edt").click(function(){
+    if($('.same').css('display')=='block')
+    {
+        $('.same').css('display', 'none');
+    }
+    else
+    {
+        $('.same').css('display', 'block');
+    }
+  });
+  $("#edt").on('click', function() {
+     $(".low").hide();
+     $(".doe").show();
+  });
+  $(".tab_content").hide(); //Hide all content
+    $("ul.tabs li:first a").addClass("active2").show(); //Activate first tab
+    $(".tab_content:first").show(); //Show first tab content
+
+    //On Click Event
+    $("ul.tabs li").click(function() {
+        $("ul.tabs li a").removeClass("active2"); //Remove any "active" class
+        $(this).addClass("active2"); //Add "active" class to selected tab
+        $(".tab_content").hide(); //Hide all tab content
+        var activeTab = $(this).find("a").attr("href"); //Find the rel attribute value to identify the active tab + content
+        $(activeTab).fadeIn(); //Fade in the active content
+        return false;
+    });
+    $(".tab_content2").hide(); //Hide all content
+    $("ul.tabs2 li:first a").addClass("active22").show(); //Activate first tab
+    $(".tab_content2:first").show(); //Show first tab content
+
+    //On Click Event
+    $("ul.tabs2 li").click(function() {
+        $("ul.tabs2 li").removeClass("active22"); //Remove any "active" class
+        $(this).addClass("active22"); //Add "active" class to selected tab
+        $(".tab_content2").hide(); //Hide all tab content
+        var activeTab = $(this).find("a").attr("href"); //Find the rel attribute value to identify the active tab + content
+        $(activeTab).fadeIn(); //Fade in the active content
+        return false;
+    });
+  $("#edt").click(function() {
+     $(".edtitor").val(
+         $(".text1").hide().text()
+     ).show();
+     $(".edtitor2").val(
+         $(".text22").hide().text()
+     ).show();
+     $(".edtitor3").val(
+         $(".text3").hide().text()
+     ).show();
+     $(".edtitor4").val(
+         $(".text4").hide().text()
+     ).show();
+     $(".edtitor5").val(
+         $(".text5").hide().text()
+     ).show();
+     $(".edtitor6").val(
+         $(".text6").hide().text()
+     ).show();
+     $(".edtitor7").val(
+         $(".text7").hide().text()
+     ).show();
+     $(".edtitor8").val(
+         $(".text8").hide().text()
+     ).show();
+     $(".edtitor9").val(
+         $(".text9").hide().text()
+     ).show();
+     $(".edtitor1a").val(
+         $(".text1a").hide().text()
+     ).show();
+     $(".edtitor2a").val(
+         $(".text2a").hide().text()
+     ).show();
+     $(".edtitor3a").val(
+         $(".text3a").hide().text()
+     ).show();
+     $(".edtitor4a").val(
+         $(".text4a").hide().text()
+     ).show();
+     $(".edtitor5a").val(
+         $(".text5a").hide().text()
+     ).show();
+     $(".edtitor6a").val(
+         $(".text6a").hide().text()
+     ).show();
+     $(".edtitor7a").val(
+         $(".text7a").hide().text()
+     ).show();
+     $(".edtitor8a").val(
+         $(".text8a").hide().text()
+     ).show();
+     $(".edtitor9a").val(
+         $(".text9a").hide().text()
+     ).show();
+     $(".edtitor1b").val(
+         $(".text1b").hide().text()
+     ).show();
+     $(".edtitor2b").val(
+         $(".text2b").hide().text()
+     ).show();
+     $(".edtitor3b").val(
+         $(".text3b").hide().text()
+     ).show();
+     $(".edtitor4b").val(
+         $(".text4b").hide().text()
+     ).show();
+     $(".edtitor4b").val(
+         $(".text4b").hide().text()
+     ).show();
+     $(".edtitor5b").val(
+         $(".text5b").hide().text()
+     ).show();
+     $(".edtitor6b").val(
+         $(".text6b").hide().text()
+     ).show();
+     $(".edtitor7b").val(
+         $(".text7b").hide().text()
+     ).show();
+     $(".edtitor8b").val(
+         $(".text8b").hide().text()
+     ).show();
+     $(".edtitor9b").val(
+         $(".text9b").hide().text()
+     ).show();
+  });
+  });

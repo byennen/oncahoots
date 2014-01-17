@@ -1,0 +1,208 @@
+#ssp3.col-lg-6
+  .title
+    %h1 Clubs
+    %p
+      %a{"data-target" => "#myModal3", "data-toggle" => "modal", :href => "javascript:void(0);"} Create Your Own Club
+      %span >>
+    #myModal3.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+      .modal-dialog
+        .modal-content
+          .modal-header
+            %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"}
+            %h4#myModalLabel.modal-title Create Club
+          / modal-header
+          .modal-body
+            %form.forms
+              .half
+                %label Club Name
+                %input{:name => "text", :type => "text"}/
+                %label Private
+                %select#selector{:name => "style2"}
+                  %option Yes, this club is private
+                  %option No, this club is not private
+                  %option Yes, this club is private
+                  %option No, this club is not private
+                  %option Yes, this club is private
+                  %option No, this club is not private
+              / half
+              .half
+                %label Category
+                %select#selector2{:name => "style2"}
+                  %option Academic
+                  %option Non Academic
+                  %option Academic
+                  %option Non Academic
+                  %option Academic
+                  %option Non Academic
+                %label &nbsp;
+                %button.btnx{:name => "btn"} Choose File
+              / half
+              .clearfix
+              %label.ne Description
+              %textarea.texta
+              %button.btng{:name => "btn"} Create Club
+            .clearfix
+          / modal-body
+        / modal-content
+      / modal-dialog
+    / modal
+  / title
+  .run-club{:style => "background:url(img/running-club-img.png) no-repeat; height:320px;"}
+    %button.btn9{:name => "btn"} Running Club
+  / run-club
+  %ul.sub-nav
+    %li
+      %a{:href => "lowdown.html"} Lowdown
+    %li
+      %a{:href => "members.html"} Members
+    %li
+      %a{:href => "about.html"} About
+    %li
+      %a{:href => "money.html"} Money
+    %li
+      %a{:href => "photos.html"} Photos
+  .cent
+    %p
+      This content is restricted.
+      %br/
+      Join club to view Lowdown.
+    %a{:href => "lowdown.html"}
+      %button.btn9.mod2{:name => "btn"} Join Club
+  / cent
+  .clearfix
+/ col-lg-6
+#mar.col-lg-4
+  #ssp4
+    .search
+      %input{:name => "text", :placeholder => "Search", :type => "text"}/
+      %a{:href => "search.html"}
+        %button{:name => "btn"}
+          %img{:alt => "Image", :src => "img/search-icon.png"}/
+    / search
+    .info{:style => "background:none; background-color:#FFF; padding:20px 0;"}
+      .news-letter
+        %h4 Newsletters
+        %ul.hid
+          %li
+            %small
+              %span 12.8.13 Newsletter Headline/Title Here
+              %br/
+              First few words of newsletter or summary. Lorem dolor sit amet, consecteturer adipiscing elit, send diam nonumy
+              %span >>
+              %br/
+              %br/
+              %a{:href => "javascript:void(0);"} Post Comment
+          %li
+            %small
+              %span 12.8.13 Newsletter Headline/Title Here
+              %br/
+              First few words of newsletter or summary. Lorem dolor sit amet.
+              %span >>
+              %br/
+              %br/
+              %a{:href => "javascript:void(0);"} Post Comment
+          %li
+            %small
+              %span 12.8.13 Newsletter Headline/Title Here
+              %br/
+              First few words of newsletter or summary. Lorem dolor sit amet.
+              %span >>
+              %br/
+              %br/
+              %a{:href => "javascript:void(0);"} Post Comment
+        .showa
+          %h2 Crazy With the Color Run
+          %span 12.8.13
+          %br/
+          %p
+            Here is the full newsletter story. The user will scroll down to read the
+            full story. When he reaches the end of the story, he will see an arrow
+            to take him back to "newsletter main." Lorem dolor sit amet, consec
+            tetuer adipiscing elit, sed diam nonummy.
+            %br/
+            %br/
+            Here is the full newsletter story. The user will scroll down to read the
+            full story. When he reaches the end of the story, he will see an arrow
+            to take him back to "newsletter main." Lorem dolor sit amet, consec
+            tetuer adipiscing elit, sed diam nonummy. Lorem dolor sit amet,
+            consec tetuer adipiscing elit, sed diam nonummy.
+            %br/
+            %br/
+            Dolor sit amet, consec tetuer adipiscing elit, sed diam nonummy.
+            Lorem dolor sit amet, consec tetuer adipiscing elit, sed diam non-Lorem dolor sit amet, consec tetuer adipiscing elit, sed diam nonummy.
+            Here is the full newsletter story. The user will scroll down to read the
+            full story. When he reaches the end of the story, he will see an arrow
+            to take him back to "newsletter main." Lorem dolor sit amet, consec
+            tetuer adipiscing elit, sed diam nonummy. Lorem dolor sit amet,
+            consec tetuer adipiscing elit, sed diam nonummy.
+            %br/
+            %br/
+            Dolor sit amet, consec tetuer adipiscing elit, sed diam nonummy.
+            Lorem dolor sit amet, consec tetuer adipiscing elit, sed diam nonummy.
+            Lorem dolor sit amet, consec tetuer adipiscing elit, sed diam
+            nonummy.
+            %br/
+            %br/
+          %img{:alt => "Image", :height => "200", :src => "img/running-club-img.png"}/
+          %button#nsw.btn8.pull-right{:name => "btn"} Go Back
+        / showa
+      / news-letter
+      .calendar
+        .caltitle
+          %p{:style => "padding-bottom:0; float:none; font-size:22px;"}
+            %a{:href => "javascript:void(0);"} <<
+            Week of November 15, 2013
+            %a{:href => "javascript:void(0);"} >>
+        / caltitle
+        %ul.events-list.mod3
+          %li.light
+            %a.evs{:href => "events.html"}
+              %strong SUN 12.15
+              %span
+            %h3 Event Title / Headline Here
+            Brief description / subhead here.
+            %br/
+            Click for more info.
+          %li.dark
+            %a.evs{:href => "events.html"}
+              %strong SUN 12.15
+              %span
+            %h3 Event Title / Headline Here
+            Brief description / subhead here.
+            %br/
+            Click for more info.
+          %li.light
+            %a.evs{:href => "events.html"}
+              %strong SUN 12.15
+              %span
+            %h3 Event Title / Headline Here
+            Brief description / subhead here.
+            %br/
+            Click for more info.
+          %li.dark
+            %a.evs{:href => "events.html"}
+              %strong SUN 12.15
+              %span
+            %h3 Event Title / Headline Here
+            Brief description / subhead here.
+            %br/
+            Click for more info.
+      / calendar
+    / info
+  / ssp4
+/ col-lg-4
+/ row
+.clearfix
+
+:javascript
+  $(document).ready(function(){
+    $('.selectyze2').Selectyze({
+        theme : 'mac'
+    });
+    $('#selector').gentleSelect(); // apply gentleSelect with default options
+    $('#selector2').gentleSelect(); // apply gentleSelect with default options
+    $("#nsw").on('click', function() {
+     $(".showa").hide();
+     $(".hid").show();
+  });
+  });

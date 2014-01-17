@@ -6,21 +6,21 @@
       %li
         %i
         = link_to "#messages-popup", :"data-toggle" => "modal" do
-          = image_tag('message.png')
+          = image_tag('old_images/message.png')
           %br
           Messages
       %li
         %i
         = link_to "#requests-popup", :"data-toggle" => "modal" do
           %p= @requests.size
-          = image_tag "request.png"
+          = image_tag "old_images/request.png"
           %br
           Requests
       %li
         %i
         = link_to "#notifications-popup", :"data-toggle" => "modal" do
           %p= current_user.alerts.size
-          = image_tag "request.png"
+          = image_tag "old_images/request.png"
           %br
           Notifications
 
@@ -76,7 +76,7 @@
           .right-side
             .comment-box.ne
               %a{href: "javascript:;", style: "margin-right: 25px;"}
-                = image_tag "avatar-big.png"
+                = image_tag "old_images/avatar-big.png"
               %p.comp
                 Josh Compton update his experience.
               %br
