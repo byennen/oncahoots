@@ -17,10 +17,4 @@
     .container{:style => "max-width:100%; overflow:hidden;"}
       .row
         = render 'layouts/static_navigation'
-        #ssp3.col-lg-6
-          = yield :page_title
-          = yield
-        #mar.col-lg-4
-          #ssp4
-            = render 'shared/search'
-            = yield :right_side
+        = yield
