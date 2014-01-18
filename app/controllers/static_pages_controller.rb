@@ -1,3 +1,3 @@
 class StaticPagesController < ActionController::Base
-  layout 'application'
+  layout 'static'
 end

@@ -22,6 +22,8 @@ class Club < ActiveRecord::Base
   validates :name, presence: true
   validates :university_id, presence: true
 
+  scope :sup_club, where(type: nil)
+
   CATEGORIES = [
     "Academic",
     "Alumni",
