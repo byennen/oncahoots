@@ -4,7 +4,7 @@ class ClubsController < ApplicationController
   before_filter :ensure_user_university, except: [:show, :join, :search_members, :send_message, :message_to_club, :auto_search, :upload_photo]
 
   def search
-    @clubs = @university.clubs.search_all(params[:club])
+    @clubs = @university.clubs.sup_club.search_all(params[:club])
     respond_to :js
   end
 
@@ -28,7 +28,7 @@ class ClubsController < ApplicationController
   end
 
   def index
-    @clubs = @university.clubs 
+    @clubs = @university.clubs.sup_club
   end
 
   def show
