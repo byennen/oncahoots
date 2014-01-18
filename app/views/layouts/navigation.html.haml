@@ -10,12 +10,12 @@
     .navbar-collapse.collapse
       %ul.nav.navbar-nav
         %li
-          %a{:href => "college.html"}
+          = link_to current_user.university do
             %i.icon-same
               = image_tag('college-icon.png')
             College
         %li
-          %a.activea{:href => "clubs"}
+          = link_to university_clubs_path(current_user.university) do
             %i.icon-same.margin10
               = image_tag('clubs-icon.png')
             Clubs
@@ -40,4 +40,4 @@
               = image_tag('settings-icon.png')
             Settings
         %li
-          %a{:href => "#"} Logout
+          %a{:href => "/sign_out"} Logout
