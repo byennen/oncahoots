@@ -37,6 +37,7 @@ class ClubsController < ApplicationController
     @club = @university.clubs.find_by_slug(params[:id])
     @updateable = @club
     if @club
+      @posts = @club.posts.order("created_at desc")
       @my_photos = @club.club_photos.by_user(current_user)
       @membership = Membership.new
       @members = @club.users

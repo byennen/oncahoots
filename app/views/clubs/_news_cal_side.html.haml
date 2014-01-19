@@ -1,0 +1,33 @@
+.info{:style => "background-color: #fff; padding: 20px 0;"}
+  .news-letter
+    %h4 Newsletters
+    %ul.hid
+      = render partial: "update", collection: @club.updates
+  .calendar
+    .caltitle
+      %p{:style => "padding-bottom:0; float:none; font-size:22px;"}
+        %a{:href => "#"} <<
+        Week of November 15, 2013
+        %a{:href => "#"} >>
+    %ul.events-list.mod3
+      - @club.events.each do |event|
+        %li.light
+          = link_to "javascript:;", class: "evs" do
+            %strong= event.on_date.strftime("%a %m.%d")
+            %span
+          %h3= event.title
+          = event.description.html_safe
+          %br
+          Click for more info.
+
+:javascript
+  $(document).ready(function(){
+    $(".hid li small").on('click', function() {
+       $(this).hide();
+       $(this).closest('li').find(".showa").show();
+    });
+    $(".showa button").on('click', function() {
+       $(this).closest(".showa").hide();
+       $(this).closest("li").find("small").show();
+    });
+  });

@@ -9,9 +9,9 @@
     %span.btn4 My Clubs
     .con{:style => "height:790px;"}
       - current_user.clubs.each do |club|
-        %a.bka{:href => "lowdown.html"}= club.name
-        %a{:href => "lowdown.html"}
-          = image_tag club.image.large
+        %a.bka{:href => university_club_path(@university, club)}= club.name
+        %a{:href => university_club_path(@university, club)}
+          = image_tag club.image
       - if current_user.clubs.blank?
         %p You do not belong to any clubs! Click around to join clubs that interest you.(or some directional statement here)
 .clubs-inner

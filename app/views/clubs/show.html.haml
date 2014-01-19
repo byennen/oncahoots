@@ -1,322 +1,58 @@
-= content_for :header do
-  .span3
-    = link_to "javascript:void(0);", class: 'mono' do
-      = display_image @club.image, "xxlarge"
-  .span5
-    .page-title.top200{style: "color: #fff;"}= @club.name
-  .span3{style: "min-height: 210px;"}
-    .rig
-      .top4.fright{style: "margin-right: 0"}
-        - if !@club.private? && current_user.joinable?(@club)
-          = link_to "Join Club", join_club_path(@club), class: "btn btn-success"
+= content_for :page_title do
+  .title
+    %h1 Club
+    %p
+      %a#create-club-link{"data-target" => "#create_club", "data-toggle" => "modal", :href => "javascript:void(0);"} Create Your Own Club
+      %span >>
+= content_for :right_side do
+  = render partial: "news_cal_side"
+  
+
+.rub-club{style: "background: url(#{@club.image}) no-repeat; height: 320px;"}
+  %button.btn9= @club.name
+  - if !@club.private? && current_user.joinable?(@club)
+    = link_to join_club_path(@club) do 
+      %button.btn10 Join Club
+%ul.sub-nav
+  %li= link_to "Lowdown", "javascript:;", class: "current"
+  %li= link_to "Members", "javascript:;"
+  %li= link_to "About", "javascript:;"
+  %li= link_to "Money", "javascript:;"
+  %li= link_to "Photos", "javascript:;"
+
+- unless current_user.member_of?(@club)
+  .cent
+    %p
+      This content is retricted.
       %br
-      .span12
-        .top4.bottom2.fright{style: "margin-right: 0"}
-          - if current_user.manage_club?(@club)
-            %a.btn.btn-success{href: "#invite-contact", data: {toggle: "modal"}} Invite Contacts
-      .span12
-        .top4.fright{style: "margin-right: 0; min-height: 50px;"}
-          - if current_user.manage_club?(@club)
-            = link_to "Edit", edit_university_club_path(@university, @club), class: "btn btn-success"
-      .span12
-        .top4.fright{style: "margin-right: 0"}
-          = link_to "Transactions", club_transactions_path(@club), class: "btn btn-success"
-.clearfix
-.row-fluid
-  .container
-    .span10.offset2
-      .span8
-        .image-box
-          - if @club.updates.size > 0 && @club.updates.first.image_url
-            - src = @club.updates.first.image_url if @club.updates.first
-          - else
-            - src = @club.image_url
-          - src = "bg.png" if src.blank?
-          %a.thumbnail{style: "min-height: 400px;"}
-            = image_tag src, id: "feature-image", class: "feature-image square cir-img", alt: ""
-      .span3
-        %ul.listing
-          = render partial: "update", collection: @club.updates
-          - if current_user.manage_club?(@club)
-            %li.text-right{style: "border: 0px;"}
-              %a{href: "#update-form", class: "btn btn-success", data: {toggle: "modal"}, style: "height: 20px; width: 100px;"} Add Newsletter
-        .clearfix
-.clearfix
-
-.row-fluid
-  .container
-    .offset2.span10
-      - unless @club.club_photos.blank?
-        %ul.club-photos
-          - @club.club_photos.each do |photo|
-            %li
-              %a{:"data-toggle" => "modal", href: "#image-#{photo.id}", style: "margin-left: 0"}
-                = image_tag photo.image.small, alt: ""
-        .clearfix
-      .span11.top2.bottom2
-        %a#upload-photo.btn.btn-success.fright{href: "javascript:;"} Upload Photo
-        %a.btn.btn-success.fright{href: "#my_photos", :"data-toggle" => "modal"} My Photos
-
-.row-fluid
-  .container
-    .span10.offset2
-      %ul.tabs2
-        %li
-          %a{href: "#lowdown"}Lowdown
-        %li
-          %a{href: "#members"}Members
-        %li
-          %a.mis{href: "#mission_statement"}Mission Statement
-        %li
-          %a{href: "#calendar"}Calendar
-        %li
-          %a{href: "#eboard"}E-Board
-        %li
-          %a{href: "#records"}Records
-        %li
-          %a{href: "#messages"}Messages
-      .clearfix
-      .tab_container
-        #lowdown.tab_content
-          .pull-right
-            %a{href: "#add-lowdown", class: 'btn btn-success chang3', data: {toggle: "modal"}, style: "margin-right: 62px; margin-top: 10px;"} Add Lowdown
-            #add-lowdown.modal.hide
-              = simple_form_for([@university, @club, Status.new]) do |f|
-                .modal-header
-                  %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
-                  %h3 Add Lowdown
-                .modal-body
-                  = f.input :status, label: false, as: :text, input_html: {cols: 800, rows: 2, class: 'span-8'}
-                .modal-footer
-                  %a{href: "#", class: "btn", data: {dismiss: "modal"}} Close
-                  = f.submit "Save Lowdown", class: "btn btn-success"
-          %ul.posts.newp
-            - @club.statuses.reverse.each do |status|
-              %li
-                = link_to user_path(status.user) do
-                  = display_image status.user.profile.image, "thumb"
-                %p= status.status
-                .com.ncom
-                  = time_ago_in_words(status.created_at)
-                  ago
-                  %br
-                  - if @club.admins.include?(current_user)
-                    = link_to "Delete", university_club_status_path(@university, @club, status), method: :delete, class: "btn btn-mini btn-danger"
-                .clearfix
-        #members.tab_content
-          %ul{style: "margin-top: 20px; margin-left: 5px;"}
-            - @memberships.each do |membership|
-              %li.pull-left.right
-                = link_to user_path(membership.user) do
-                  = display_image membership.user.profile.image, "thumb"
-                %br
-                .left2= link_to membership.user.name, user_path(membership.user)
-                - if @club.user_id == current_user.id
-                  - if membership.user.id != current_user.id
-                    .left2= link_to "Delete", university_club_membership_path(@university, @club, membership.id), method: :delete, class: 'btn btn-mini btn-danger', confirm: "Are you sure?"
-        #mission_statement.tab_content
-          - if current_user.manage_club?(@club)
-            .pull-right
-              %a{href: "#edit_mission_statement", class: "btn btn-success chang3", data: {toggle: "modal"}, style: "margin-right: 62px; margin-top: 10px;" } Edit
-          %p{style: "margin-left: 5px; margin-top: 20px;"}= @club.mission_statement
-          - if current_user.manage_club?(@club)
-            #edit_mission_statement.modal.hide
-              = simple_form_for([@university, @club]) do |f|
-                .modal-header
-                  %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
-                  %h3 Edit Mission Statement
-                .modal-body
-                  =f.input :mission_statement, input_html: {cols: 100, rows: 10, style: "width: 500px; height: 100px;"}
-                .modal-footer
-                  %a{href: "#", class: "btn", data: {dismiss: "modal"}} Close
-                  =f.submit "Save Mission Statement", class: "btn btn-success"
-        #calendar.tab_content.span12
-          - if current_user.member_of?(@club) || current_user.manage_club?(@club)
-            .span11.top2  
-              .fright
-                %a#event-new-link.btn.btn-success{href: "#event-form", data: {toggle: "modal"}} Add Event
-          .span7.offset1.top2
-            %ul#events.flexisels
-              - @club.events.each do |event|
-                %li{id: "event-#{event.id}"}
-                  = link_to "#event#{event.id}_detail", :"data-toggle" => "modal", class: 'event-slide-item'  do
-                    = display_image_square event.image, "medium"
-                  %br
-                  %h4= event.title
-                  %p
-                    = event.date
-                    %br
-                    = event.time
-            .clearfix
-            
-        #eboard.tab_content
-          - if current_user.manage_club?(@club)
-            .pull-right
-              %a{href: "#add-admin", class: "btn btn-success ", data: {toggle: "modal"}, style: "margin-right: 62px; margin-top: 10px;"} Add E-Board Member
-              - if @club.user_id == current_user.id
-                %br
-                %br
-                %a{href: "#transfer-ownership", class: "btn btn-danger", data: {toggle: "modal"}} Transfer
-              #add-admin.modal.hide
-                = simple_form_for Membership.new, url: make_admin_university_club_memberships_path(@university, @club) do |f|
-                  .modal-header
-                    %button{type: "button", class: "close", data: {dismiss: 'modal'}} &times;
-                    %h3 Add E-Board member
-                  .modal-body
-                    = f.input :user_id, collection: @club.non_leaders, label_method: :name, value_method: :id
-                    = f.input :title
-                  .modal-footer
-                    = f.submit "Add E-Board Member", class: "btn btn-success"
-          .span12.top2
-            - @admins.each do |admin|
-              - unless admin.user.super_admin? || admin.user.university_admin?
-                .pull-left.right
-                  = display_image admin.user.profile.image, "thumb"
-                  %br
-                  .left2= admin.user.name
-                  %br
-                  .left2= admin.title
-        #records.tab_content
-          .pull-right
-            - if current_user.manage_club?(@club)
-              %a{href: "#add-record", class: 'btn btn-success chang3', data: {toggle: "modal"}, style: "margin-right: 62px; margin-top: 10px;"} Add Record
-          - @club.records.each do |record|
-            - unless record.file.url.nil?
-              = record.file.url.split("/").last
-              = link_to "Download", record.file.url
-              - if @club.admins.include?(current_user)
-                = link_to "Delete", university_club_record_path(@university, @club, record), method: :delete, confirm: "Are you sure?", class: "btn btn-danger btn-mini"
+      Join club to view lowndown.
+    - unless @club.private?
+      = link_to "javascript:;" do
+        %button.btn9.mod2 Join Club
+    .clearfix
+- else
+  .cent{style: "margin: 0; background-color: #f7f7f7;"}
+    .post
+      - if current_user.manage_club?(@club)
+        = link_to "#post-form", class: "npost", data: {toggle: "modal"} do
+          New Post
+          %span >>
+      %ul.lat-posts
+        - @posts.each do |post|
+          %li.light
+            = link_to "javascript:;", class: "img2" do
+              = image_tag(post.user.profile.image.url || "post-img.png") 
+            %h3
+              = link_to post.user.name
             %br
-          #add-record.modal.hide
-            = simple_form_for([@university, @club, Record.new]) do |f|
-              .modal-header
-                %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
-                %h3 Add Record
-              .modal-body
-                = f.input :file, as: :file
-              .modal-footer
-                = f.submit "Add Record", class: "btn btn-success"
-        #messages.tab_content
-          .fright.top
-            - if current_user.manage_club?(@club)
-              = link_to "Message to Member", "#club-message-form", "data-toggle" => "modal", class: "btn btn-success btn-mini"
-            - else
-              = link_to "Message to Club", "#message-to-club", "data-toggle" => "modal", class: "btn btn-success btn-mini"
-          .span12
-            %h3 Inbox
-            - @conversations.each do |conversation|
-              = render partial: "conversation", locals: {conversation: conversation, club: @club}
-            - if @conversations.blank?
-              No message
-          .span12.top2
-            %h3 Sentbox
-            - @sentbox.each do |conversation|
-              = render partial: "conversation", locals: {conversation: conversation, club: @club}
-            - if @sentbox.blank?
-              No Message
-.clearfix
+            %span= post.content
+            %br
+            = link_to "Post comment", "javascript:;", class: "po-cm"
+#club-popup= render partial: 'form', locals: {club: @club}
 
-#invite-contact.modal.hide
-  = simple_form_for Invitation.new, url: university_club_invitations_path(@university.id, @club.id) do |f|
-    .modal-header
-      %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
-      %h3 Invite Contact 
-    .modal-body
-      = f.input :recipients, input_html: {class: "invitation-auto", value: ""}
-    .modal-footer
-      = f.submit "Invite Contact", class: "btn btn-success"
+- new_post = @club.posts.build
+= render partial: "posts/form", locals: {post: new_post}
 
 - if current_user.manage_club?(@club)
   - new_update = @club.updates.build
   = render partial: 'updates/form', locals: {update: new_update}
-
-- if current_user.member_of?(@club) || current_user.manage_club?(@club)
-  #event-popup= render partial: "club_events/form", locals: {event: @event}
-- @club.events.each do |event|
-  - if current_user.manage_event?(event) && !event.free_food?
-    %div{id: "event-popup#{event.id}"}= render partial: "club_events/form", locals: {event: event}
-  = render partial: "university_events/event", locals: {event: event}
-
-- if @club.user_id == current_user.id
-  #transfer-ownership.modal.hide
-    = simple_form_for @club, url: transfer_ownership_university_club_path(@university, @club), method: :post do |f|
-      .modal-header
-        %button{type: "button", class: "close", data: {dismiss: :modal}} &times;
-        %h3 Transfer Ownership
-      .modal-body
-        = f.input :user_id, collection: @club.admins, label_method: :name, value_method: :id
-      .modal-footer
-        = f.submit "Transfer Ownership", class: "btn btn-success"
-
-#club_photo-form.upload-form{style: "opacity: 0"}
-  = form_for ClubPhoto.new, url: upload_photo_club_path(@club), method: :post do |f|
-    = f.file_field :image
-#my_photos.modal.hide.fade
-  .modal-header
-    %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
-    %h3 My photos
-  .modal-body
-    - @my_photos.each do |photo|
-      %span2.no-lmar
-        = link_to "#image-#{photo.id}", :"data-toggle" => "modal" do
-          = image_tag photo.image.thumb
-
-- @club.club_photos.each do |photo|
-  .modal.hide.wide-modal{id: "image-#{photo.id}"}
-    .modal-header
-      %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
-      %h4= photo.image.file.filename
-    .modal-body
-      = image_tag photo.image, alt: "", style: "max-height: 400px;"
-
-= render partial: "shared/club_message", locals: {club: @club}
-:javascript
-  jQuery(document).ready(function() {//Default Action
-    $(".tab_content").hide(); //Hide all content
-    $("ul.tabs2 li:first").addClass("active").show(); //Activate first tab
-    $(".tab_content:first").show(); //Show first tab content
-
-    //On Click Event
-    $("ul.tabs2 li").click(function() {
-      $("ul.tabs2 li").removeClass("active"); //Remove any "active" class
-      $("ul.tabs2 a").removeClass("selected");
-      $(this).addClass("active"); //Add "active" class to selected tab
-      jQuery(this).children("a").addClass('selected');
-      //console.log($(this).toSource());
-      $(".tab_content").hide(); //Hide all tab content
-      var activeTab = $(this).find("a").attr("href"); //Find the rel attribute value to identify the active tab + content
-      $(activeTab).fadeIn(); //Fade in the active content
-      return false;
-    });
-
-
-    $(".update-image").click(function(){
-      src = $(this).data("src");
-      if(src==""){
-        src = "/assets/bg.png";
-      }
-      $("#feature-image").attr("src", src);
-    });
-
-    $(".invitation-auto").tagsInput({
-      width:'90%', 
-      height: "35px",
-      defaultText: 'receipients',
-      autocomplete_url: "/universities/#{@university.id}/clubs/#{@club.id}/invitations/search",
-    });
-
-    $("#upload-photo").click(function(){
-      $("#club_photo-form input").trigger("click");
-    });
-    $(".upload-form").on("change", "input[type=file]",function(){
-      $("a#show_waiting").click();
-      $(this).closest("form").submit();
-    });
-    $('.club-photos').bxSlider({
-      minSlides: 3,
-      maxSlides: 9,
-      slideWidth: 100,
-      slideMargin: 10
-    });
-
-  });
