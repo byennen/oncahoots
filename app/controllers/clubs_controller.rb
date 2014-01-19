@@ -29,6 +29,7 @@ class ClubsController < ApplicationController
 
   def index
     @clubs = @university.clubs.sup_club
+    @club = Club.new
   end
 
   def show
@@ -67,13 +68,14 @@ class ClubsController < ApplicationController
     @club.user_id = current_user.id
     if @club.save
       @club.memberships.create(user_id: current_user.id, admin: true)
-      respond_to do |format|
-        format.html { redirect_to university_club_path(@university, @club) }
-      end
-    else
-      load_university_data
-      render :template => "/universities/show"
+      # respond_to do |format|
+      #   format.html { redirect_to university_club_path(@university, @club) }
+      # end
+    # else
+    #   load_university_data
+    #   render :template => "/universities/show"
     end
+    respond_to :js
   end
 
   def edit

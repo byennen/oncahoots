@@ -1,12 +1,33 @@
-= simple_form_for([@university, @club]) do |f|
-  = f.error_notification
-
-  .form-inputs
-    = f.input :image, label: "Logo"
-    = f.input :name
-    = f.input :private
-    = f.input :category, as: :category 
-    = f.input :description
-
-  .form-actions
-    = f.button :submit, class: 'btn btn-success'
+#create_club.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"}
+        %h4#myModalLabel.modal-title Create Club
+      / modal-header
+      .modal-body
+        - club.errors.full_messages.each do |msg|
+          .red= msg
+        = form_for [@university, club], html: {class: "forms"}, remote: true do |f|
+          .half
+            %label Club Name
+            = f.text_field :name
+            .clearfix
+            %label Private
+            = f.check_box :private
+          / half
+          .half
+            %label Category
+            = f.select :category, options_for_select(Club::CATEGORIES), class: "gentle"
+            %label &nbsp;
+            = f.file_field :image
+          / half
+          .clearfix
+          %label.ne Description
+          = f.text_area :description, class: "texta"
+          %button.btng{:name => "btn", type: "submit"} Create Club
+        .clearfix
+:javascript
+  $(document).ready(function(){
+    $('select#club_category').gentleSelect();
+  });
