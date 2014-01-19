@@ -1,3 +1,2 @@
-$("##{@resource.class.name.downcase}#{@resource.id}-comments .comments").append("#{escape_javascript(render partial: "comment", locals: {comment: @comment})}");
+$("##{@resource.class.name.downcase}#{@resource.id}-comments span").append("#{escape_javascript(render partial: "comment", locals: {comment: @comment})}");
 $("##{@resource.class.name.downcase}#{@resource.id}-comments #comment_comment").val("");
-$("##{@resource.class.name.downcase}#{@resource.id}-cm").html("#{@resource.comments.count}");

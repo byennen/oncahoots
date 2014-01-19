@@ -40,14 +40,24 @@
       %ul.lat-posts
         - @posts.each do |post|
           %li.light
-            = link_to "javascript:;", class: "img2" do
-              = image_tag(post.user.profile.image.url || "post-img.png") 
-            %h3
-              = link_to post.user.name
-            %br
-            %span= post.content
-            %br
-            = link_to "Post comment", "javascript:;", class: "po-cm"
+            .col-lg-3
+              = link_to "javascript:;", class: "img2" do
+                = image_tag(post.user.profile.image.url || "post-img.png")
+            .col-lg-9
+              %h3
+                = link_to post.user.name
+              %br
+              %span= post.content
+              %br
+              = link_to "Post comment", "javascript:;", class: "po-cm"
+              .comments.top.hide{id: "post#{post.id}-comments"}
+                %span
+                  - post.comments.each do |comment|
+                    = render partial: "comments/comment", locals: {comment: comment}
+                .top2
+                  = simple_form_for [post, Comment.new], remote: true do |f|
+                    = f.input :comment, as: :text, label: false, input_html: {class: "col-lg-12", rows: 4}
+                    = f.submit "Post", class: "btn btn-sm btn-success top"
 #club-popup= render partial: 'form', locals: {club: @club}
 
 - new_post = @club.posts.build
@@ -56,3 +66,10 @@
 - if current_user.manage_club?(@club)
   - new_update = @club.updates.build
   = render partial: 'updates/form', locals: {update: new_update}
+
+:javascript
+  $("document").ready(function(){
+    $('.po-cm').click(function(){
+      $(this).closest("li").find(".comments").toggleClass("hide");
+    });
+  });
