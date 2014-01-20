@@ -3,14 +3,16 @@
   %ul.abo
     - @club.admins.each do |admin|
       %li
-        = link_to user_path(admin), width: '55' do
-          = display_image admin.profile.image, "thumb"
-        %strong
-          = link_to admin.name, user_path(admin)
-        %small
-          = @club.user_id == admin.id ? 'Founder' : 'Admin'
-          %br/
-          Law 2014
+        .pull-left
+          = link_to user_path(admin), width: '55' do
+            = display_image admin.profile.image, "small"
+        .pull-left
+          %strong
+            = link_to admin.name, user_path(admin)
+          %small
+            = @club.user_id == admin.id ? 'Founder' : 'Admin'
+            %br/
+            Law 2014
 %p.mis
   Mission Statement
   %br/
