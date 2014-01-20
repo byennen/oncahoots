@@ -6,14 +6,7 @@
 / col-lg-6
 #mar.col-lg-4
   #ssp4
-    .search
-      %input{:name => "text", :placeholder => "Search", :type => "text"}/
-      %a{:href => "search.html"}
-        %button{:name => "btn"}
-          %img{:alt => "Image", :src => "img/search-icon.png"}/
-    / search
-  / ssp4
-/ col-lg-4
+  = render 'shared/search'
 .col-lg-offset-3.col-lg-4
   .form2
     %h3 Edit User
