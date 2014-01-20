@@ -1,5 +1,6 @@
 .col-lg-12.top.pull-left
-  = display_image comment.user.profile.image, "small"
+  = link_to user_path(comment.user) do
+    = display_image comment.user.profile.image, "small"
   %span.green-text= comment.user.name
   = comment.comment.html_safe
 %br

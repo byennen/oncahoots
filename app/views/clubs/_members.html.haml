@@ -1,7 +1,7 @@
 - members.each do |member|
   %li
-    = link_to "javascript:;", class: "onw" do
+    = link_to user_path(member), class: "onw" do
       = display_image member.profile.image, "small"
     %strong
-      = link_to member.name, "#"
+      = link_to member.name, user_path(member)
     %small Law 2014

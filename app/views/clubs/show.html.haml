@@ -56,6 +56,10 @@
     #alumnis.hide.filter-content= render partial: "members", locals: {members: @club.members.alumni}
     #students.hide.filter-content= render partial: "members", locals: {members: @club.members.student}
    
+#about.members.tab-content.hide{:style => "padding-top:0;"}
+  = render partial: "about"
+
+
 #club-popup= render partial: 'form', locals: {club: Club.new}
 
 - new_post = @club.posts.build

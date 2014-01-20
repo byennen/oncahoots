@@ -1,10 +1,10 @@
 %li.light
   .col-lg-3
-    = link_to "javascript:;", class: "img2" do
+    = link_to user_path(post.user), class: "img2" do
       = display_image post.user.profile.image, "thumb"
   .col-lg-9
     %h3
-      = link_to post.user.name
+      = link_to post.user.name, user_path(post.user)
     %br
     %span= post.content
     %br
