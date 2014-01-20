@@ -1,11 +1,11 @@
-- user = comment.user
-.span12.left.border-bottom.top2.bottom2.bottomp
-  .span2
-    = link_to user_path(user) do
-      = display_image user.profile.image, "small"
-  .span7.no-lmar 
-    %h4= user.name
-    = simple_format comment.comment
-  .span3.no-lmar
-    .fright.green{style: "margin-right: 0"}
-      = time_ago_in_words(comment.created_at) + " ago"
+- if comment.commentable_type=="Album"
+  %span= comment.user.name
+  = comment.comment
+  %br
+- else
+  .col-lg-12.top.pull-left
+    = link_to user_path(comment.user) do
+      = display_image comment.user.profile.image, "small"
+    %span.green-text= comment.user.name
+    = comment.comment.html_safe
+  %br

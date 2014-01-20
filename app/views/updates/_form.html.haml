@@ -1,13 +1,15 @@
-.modal.wide-modal.hide.fade{tabindex: "-1", role: "dialog", :"aria-labelledby" => "myModalLabel", :"aria-hidden" => "true", id: "update-form#{update.id}"}
-  .modal-header
-    %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
-    %h3 Post Announcement
-  = simple_form_for [@updateable, update] do |f|
-    .modal-body
-      = f.input :headline
-      = f.input :image
-      = f.text_area :body, rows: 10, style: "width: 100%"
-    .modal-footer
-      = f.hidden_field :user_id, value: update.user_id || current_user.id
-      = f.button :submit, update.new_record? ? "Post" : "Update", class: "btn btn-success"
-      %button.btn.btn-warning{type: "button", data: {dismiss: "modal"}} Cancel
+.modal.fade{tabindex: "-1", role: "dialog", :"aria-labelledby" => "myModalLabel", :"aria-hidden" => "true", id: "update-form#{update.id}"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+        %h3 Post Announcement
+      = simple_form_for [@updateable, update] do |f|
+        .modal-body
+          = f.input :headline
+          = f.input :image
+          = f.text_area :body, rows: 10, style: "width: 100%"
+        .modal-footer
+          = f.hidden_field :user_id, value: update.user_id || current_user.id
+          = f.button :submit, update.new_record? ? "Post" : "Update", class: "btn btn-success"
+          %button.btn.btn-warning{type: "button", data: {dismiss: "modal"}} Cancel

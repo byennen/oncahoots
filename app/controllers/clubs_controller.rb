@@ -29,6 +29,7 @@ class ClubsController < ApplicationController
 
   def index
     @clubs = @university.clubs.sup_club
+    @club = Club.new
   end
 
   def show
@@ -36,6 +37,7 @@ class ClubsController < ApplicationController
     @club = @university.clubs.find_by_slug(params[:id])
     @updateable = @club
     if @club
+      @posts = @club.posts.order("created_at desc")
       @my_photos = @club.club_photos.by_user(current_user)
       @membership = Membership.new
       @members = @club.users
@@ -67,13 +69,14 @@ class ClubsController < ApplicationController
     @club.user_id = current_user.id
     if @club.save
       @club.memberships.create(user_id: current_user.id, admin: true)
-      respond_to do |format|
-        format.html { redirect_to university_club_path(@university, @club) }
-      end
-    else
-      load_university_data
-      render :template => "/universities/show"
+      # respond_to do |format|
+      #   format.html { redirect_to university_club_path(@university, @club) }
+      # end
+    # else
+    #   load_university_data
+    #   render :template => "/universities/show"
     end
+    respond_to :js
   end
 
   def edit
@@ -82,24 +85,8 @@ class ClubsController < ApplicationController
 
   def join
     club = Club.find params[:id]
-    if club.private?
-      invitation = Invitation.find_by_token params[:token]
-      if invitation
-        current_user.clubs << club
-        current_user.mailbox.inbox.where(subject: "Invitation to Club #{club.id}").each do |conv|
-          current_user.mark_as_deleted conv
-        end
-        redirect_to university_club_path(club.university, club), notice: "welcome to #{club.name} club"
-      else
-        redirect_to root_path, notice: "invalid token"
-      end
-    else
-      current_user.clubs << club
-      current_user.mailbox.inbox.where(subject: "Invitation to Club #{club.id}").each do |conv|
-        current_user.mark_as_deleted conv
-      end
-      redirect_to university_club_path(club.university, club), notice: "welcome to #{club.name} club"
-    end
+    current_user.clubs << club
+    redirect_to university_club_path(club.university, club), notice: "welcome to #{club.name} club"
   end
 
   def update

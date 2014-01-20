@@ -3,7 +3,8 @@ class Club < ActiveRecord::Base
 
   has_many :memberships
   has_many :users, :through => :memberships, :uniq => true
-  has_many :club_photos
+  has_many :albums
+  has_many :club_photos, through: :albums
   has_many :events
   has_many :statuses # this is lowdowns here
   has_many :records

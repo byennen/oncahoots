@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131216065834) do
+ActiveRecord::Schema.define(:version => 20140120061506) do
+
+  create_table "albums", :force => true do |t|
+    t.integer  "club_id"
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "location"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "alert_user_notifications", :force => true do |t|
     t.integer  "alert_id"
@@ -50,6 +60,9 @@ ActiveRecord::Schema.define(:version => 20131216065834) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "user_id"
+    t.integer  "album_id"
+    t.boolean  "featured"
+    t.string   "caption"
   end
 
   create_table "clubs", :force => true do |t|

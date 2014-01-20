@@ -16,7 +16,7 @@
   .music
     .music-img
       = link_to university_club_path(@university, club) do 
-        = image_tag club.image.xlarge
+        = image_tag club.image
     = link_to university_club_path(@university, club) do
       %span
         %strong= "#{truncate(club.name, length: 12)} >>"

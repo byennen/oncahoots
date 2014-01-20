@@ -29,6 +29,6 @@ class PostsController < ApplicationController
 
   private
     def load_data
-      @metropolitan_club = MetropolitanClub.find(params[:post][:club_id])
+      @club = Club.find(params[:post][:club_id])
     end
 end

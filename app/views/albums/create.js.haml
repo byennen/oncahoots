@@ -1,0 +1,6 @@
+- if @album.errors.blank?
+  location.reload();
+- else
+  $(".modal-backdrop").hide();
+  $("#create-album-popup").html("#{escape_javascript(render partial: 'shared/create_album', locals: {album: @album})}");
+  $("#create-album-link").click();

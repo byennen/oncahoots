@@ -1,6 +1,6 @@
 class ClubEventsController < ApplicationController
 
-  before_filter :ensure_club
+  before_filter :ensure_club, except: [:week_events]
 
   def create
     @event = @club.events.new(params[:event])
@@ -22,6 +22,13 @@ class ClubEventsController < ApplicationController
       club_init
       render :template => university_club_path(@university, @club)
     end
+  end
+
+  def week_events
+    @club=Club.find params[:club_id]
+    @w_begin = Date.strptime(params[:w_begin],"%y%m%d")
+    @events = @club.events.where(on_date: @w_begin..(@w_begin+6.days))
+    respond_to :js
   end
 
   private

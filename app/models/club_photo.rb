@@ -1,11 +1,10 @@
 class ClubPhoto < ActiveRecord::Base
-  belongs_to :club
   belongs_to :user
-
-  attr_accessible :image, :club_id, :user_id
+  belongs_to :album
+  
+  attr_accessible :image, :user_id, :caption, :featured
 
   validates :user_id, presence: true
-  validates :club_id, presence: true
   validates :image, presence: true
 
   mount_uploader :image, ImageUploader
