@@ -8,6 +8,7 @@
       .modal-body
         - club.errors.full_messages.each do |msg|
           .red= msg
+          %br
         = form_for [@university, club], html: {class: "forms"}, remote: true do |f|
           .half
             %label Club Name

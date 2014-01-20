@@ -106,6 +106,7 @@ CahootsConnect::Application.routes.draw   do
       end
     end
     resources :items
+    resources :albums
   end
 
   resources :transactions, only: [:create]
