@@ -83,7 +83,7 @@ CahootsConnect::Application.routes.draw   do
     resources :comments
   end
 
-  resources :club_photos, only: [] do
+  resources :albums, only: [] do
     resources :comments
   end
 

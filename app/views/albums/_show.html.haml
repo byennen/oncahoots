@@ -10,24 +10,23 @@
             - album.club_photos.each do |photo|
               .item{class: "#{'active' if photo==album.club_photos.first}", "data-caption" => photo.caption}
                 = image_tag photo.image
+                %p.caption= photo.caption
           %a.left.carousel-control{"data-slide" => "prev", :href => "#album#{album.id}-side"}
             = image_tag "slider-left.png"
           %a.right.carousel-control{"data-slide" => "next", :href => "#album#{album.id}-side"}
             = image_tag "slider-right.png"
-          %p.caption= album.club_photos.first.caption
           %br/
           %br/
         .cap
           %p
             %span
               Post comments
-            - album.club_photos.each do |photo|
-              .photo-commments{id: "clubphoto#{photo.id}-comments", class: "#{'hide' unless photo==album.club_photos.first}"}
-                %p.cm-list
-                  - photo.comments.each do |comment|
-                    = render partial: "comments/comment", locals: {comment: comment}
-                .top2.col-lg-12.pull-left
-                  = simple_form_for [photo, Comment.new], remote: true do |f|
-                    = f.input :comment, as: :text, label: false, input_html: {class: "col-lg-12", rows: 4}
-                    = f.submit "Post", class: "btn btn-sm btn-success top"
+            .album-commments{id: "album#{album.id}-comments"}
+              %p.cm-list
+                - album.comments.each do |comment|
+                  = render partial: "comments/comment", locals: {comment: comment}
+              .top2.col-lg-12.pull-left
+                = simple_form_for [album, Comment.new], remote: true do |f|
+                  = f.input :comment, as: :text, label: false, input_html: {class: "col-lg-12", rows: 4}
+                  = f.submit "Post", class: "btn btn-sm btn-success top"
         .clearfix

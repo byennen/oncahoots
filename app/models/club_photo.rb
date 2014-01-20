@@ -1,8 +1,6 @@
 class ClubPhoto < ActiveRecord::Base
   belongs_to :user
   belongs_to :album
-
-  has_many :comments, as: :commentable, dependent: :destroy
   
   attr_accessible :image, :user_id, :caption, :featured
 
