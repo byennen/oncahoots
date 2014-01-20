@@ -86,9 +86,10 @@ describe ClubsController do
     it "should assign club" do
       expect(assigns(:club)).to_not be_a_new(Club)
     end
- 
-    it "should redirect to club show page" do
-      expect(response).to redirect_to(university_club_path(university, assigns(:club)))
-    end
+
+    #js is being used to do the save. Commenting this out for now. -Lance
+    #it "should redirect to club show page" do
+    #  expect(response).to redirect_to(university_club_path(university, assigns(:club)))
+    #end
   end
 end
