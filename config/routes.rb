@@ -99,7 +99,13 @@ CahootsConnect::Application.routes.draw   do
     collection do
       get :auto_search
     end
-    resources :club_events, only: [:create, :update, :destroy]
+    
+    resources :club_events, only: [:create, :update, :destroy] do
+      collection do
+        get :week_events
+      end
+    end
+
     resources :transactions, only: [:index] do
       collection do
         put :donate
