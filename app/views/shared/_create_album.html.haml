@@ -1,4 +1,3 @@
-- album.club_photos.build if album.club_photos.blank? 
 #create_album.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
   .modal-dialog
     .modal-content
@@ -7,27 +6,21 @@
         %h4#myModalLabel.modal-title Create Album
       / modal-header
       .modal-body
-        - album.errors.full_messages.each do |msg|
-          .red= msg
-          %br
-        = form_for [@club, album], html: {class: "forms"}, remote: true do |f|
+        %form.forms
           .half
-            %label Name
-            = f.text_field :name
+            %label Alb.Name
+            %input{:name => "text", :type => "text"}/
             .clearfix
             %label Location
-            =f.text_field :location
+            %input{:name => "text", :type => "text"}/
             .clearfix
           / half
           .half
-            = f.fields_for :club_photos do |fp|
-              %label Images
-              = fp.file_field :image
-              = fp.text_field :caption, placeholder: "image caption"
-              = fp.hidden_field :user_id, value: current_user.id
-          .clearfix
+            %label &nbsp;
+            .clearfix
+            %label Images
+            %button.btnx.pull-left{:name => "btn"} Choose File
           / half
           %label.ne.wig Description
-          = f.text_area :description, class: "texta"
-          %button.btng{:name => "btn", type: "submit"} Create Album
-        .clearfix
+          %textarea.texta
+          %button.btng{:name => "btn"} Create Album

@@ -69,7 +69,10 @@
           = image_tag album.featured.image
 
 #club-popup= render partial: 'form', locals: {club: Club.new}
-#create-album-popup= render partial: 'shared/create_album', locals: {album: Album.new}
+#create-album-popup= render partial: 'albums/form', locals: {album: Album.new}
+
+- @club.albums.each do |album|
+  = render partial: "albums/show", locals: {album: album}
 
 - new_post = @club.posts.build
 = render partial: "posts/form", locals: {post: new_post}

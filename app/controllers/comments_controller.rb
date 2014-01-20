@@ -18,6 +18,7 @@ class CommentsController < ApplicationController
   def find_resource
     @resource = Update.find(params[:update_id]) if params[:update_id]
     @resource = Post.find params[:post_id] if params[:post_id]
+    @resource = ClubPhoto.find params[:club_photo_id] if params[:club_photo_id]
   end
 
 end
