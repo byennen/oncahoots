@@ -1,46 +1,34 @@
-#ssp3.col-lg-6
-  .title
-    %h1 Settings
-  / title
-  .clearfix
-/ col-lg-6
-#mar.col-lg-4
-  #ssp4
-  = render 'shared/search'
-.col-lg-offset-3.col-lg-4
-  .form2
-    %h3 Edit User
-    %input{:name => "text", :placeholder => "FIRST NAME", :type => "text"}/
-    %input{:name => "text", :placeholder => "LAST NAME", :type => "text"}/
-    %select#selector{:name => "style2"}
-      %option STUDENT
-      %option ALUMNI
-    %input{:name => "text", :placeholder => "EMAIL", :type => "text"}/
-    %p Leave blank if you don't want to change it.
-    %input{:name => "password", :placeholder => "PASSWORD", :type => "password"}/
-    %input{:name => "password", :placeholder => "CONFIRM", :type => "password"}/
-    %p We need your current password to confirm.
-    %input{:name => "password", :placeholder => "CURRENT PASSWORD", :type => "password"}/
-    %button.btn.btn5{:name => "btn"} Update
-    %p
-      %a.sl{:href => "javascript:void(0);"} Delete your account.
-      %br/
-      %br/
-      %br/
-      %span To edit your profile information,
-      %br/
-      %a{:href => "network.html"} CLICK HERE.
-  / form2
-/ col-lg-3
-.col-lg-offset-4
-/ col-lg-offset-4
-/ row
-.clearfix
+= javascript_include_tag "static/settings"
+= stylesheet_link_tag "static/settings"
 
-:javascript
-  $(document).ready(function(){
-    $('.selectyze2').Selectyze({
-        theme : 'mac'
-    });
-    $('#selector').gentleSelect(); // apply gentleSelect with default options
-  });
+.col-md-10
+  .row
+    .col-md-6.nopadding
+      .title
+        %h1 Settings
+
+    .col-md-6.nopadding
+      #ssp4
+      = render 'shared/search'
+
+  .row
+    .col-md-offset-3.col-md-6
+      .settings-form
+        %h3 Edit User
+        %input{:name => "text", :placeholder => "FIRST NAME", :type => "text"}/
+        %input{:name => "text", :placeholder => "LAST NAME", :type => "text"}/
+        %select#selector
+          %option STUDENT
+          %option ALUMNI
+        %input{:name => "text", :placeholder => "EMAIL", :type => "text"}/
+        %p Leave blank if you don't want to change it.
+        %input{:name => "password", :placeholder => "PASSWORD", :type => "password"}/
+        %input{:name => "password", :placeholder => "CONFIRM", :type => "password"}/
+        %p We need your current password to confirm.
+        %input{:name => "password", :placeholder => "CURRENT PASSWORD", :type => "password"}/
+        %button.btn.btn5{:name => "btn"} Update
+
+        .text-center
+          %a.delete-link{:href => "javascript:void(0);"} Delete your account.
+          %span To edit your profile information,
+          %a{:href => "network.html"} CLICK HERE.

@@ -9,9 +9,9 @@
   font-style: normal
 
 
-  *
+*
   margin: 0
-    padding: 0
+  padding: 0
 
 html, body
   font-family: 'varela_roundregular'
@@ -21,11 +21,14 @@ html, body
   margin: 0
   padding: 0
 
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6
+  font-family: 'varela_roundregular'
+
 body
   background: url(../../assets/body-bg.png) repeat #f7f7f7
 
 .container
-  padding-right: 0
+  padding: 0
 
 a, img
   border: none
@@ -53,6 +56,8 @@ li
   width: 100%
   display: inline-block
   text-align: center
+  img
+    width: 118px
 
 .navbar-collapse
   max-height: 100%
@@ -68,12 +73,9 @@ li
   padding: 0
 
 .navbar-nav li
-  float: left
-  clear: left
   width: 100%
   margin-top: 15px
   text-align: center
-  height: 16.66%
 
 .collapse
   background-color: #e7e7e8
@@ -173,6 +175,10 @@ li
 
 .margin5
   margin-top: 5px
+
+.nopadding
+  padding: 0px
+  margin: 0px
 
 .banner
   float: left
@@ -680,38 +686,20 @@ li
   padding: 10px 35px
   float: left
 
-.title
-  background: #ffffff
-  /* Old browsers
-  /* IE9 SVG, needs conditional override of 'filter' to 'none'
-  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlZGVkZWQiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
-  background: -moz-linear-gradient(top, white 0%, #ededed 100%)
-  /* FF3.6+
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #ededed))
-  /* Chrome,Safari4+
-  background: -webkit-linear-gradient(top, white 0%, #ededed 100%)
-  /* Chrome10+,Safari5.1+
-  background: -o-linear-gradient(top, white 0%, #ededed 100%)
-  /* Opera 11.10+
-  background: -ms-linear-gradient(top, white 0%, #ededed 100%)
-  /* IE10+
-  background: linear-gradient(to bottom, white 0%, #ededed 100%)
-  /* W3C
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed', GradientType=0 )
-  /* IE6-8
-  float: left
-  width: 100%
-
 #ssp3
   margin-left: -15px
 
+/* SETTINGS PAGE
+
 .title
+  float: left
+  width: 100%
+  height: 70px
   h1
-    font-size: 43px
-    font-weight: normal
+    font-size: 35px
+    font-weight: 900
     padding-left: 35px
-    padding-top: 10px
-    float: left
+    margin-top: 17px
   p
     font-size: 19px
     margin-top: 45px
@@ -720,6 +708,119 @@ li
     float: left
     span
       color: #00c088
+
+.search
+  width: 100%
+  float: left
+  input
+    width: 80%
+    border: none
+    font-size: 25px
+    font-weight: 400
+    float: left
+    height: 70px
+    background-color: #f0f0f0
+    padding-left: 20px
+    padding-top: 5px
+    border: 1px solid rgba(92,96,103,.1)
+    border-right: none
+  button
+    width: 20%
+    border: none
+    background: #5c6067
+    /* Old browsers
+    /* IE9 SVG, needs conditional override of 'filter' to 'none'
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIxJSIgc3RvcC1jb2xvcj0iIzVjNjA2NyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMzYzQ0NDkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+    background: -moz-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+    /* FF3.6+
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #5c6067), color-stop(100%, #3c4449))
+    /* Chrome,Safari4+
+    background: -webkit-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+    /* Chrome10+,Safari5.1+
+    background: -o-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+    /* Opera 11.10+
+    background: -ms-linear-gradient(top, #5c6067 1%, #3c4449 100%)
+    /* IE10+
+    background: linear-gradient(to bottom, #5c6067 1%, #3c4449 100%)
+    /* W3C
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5c6067', endColorstr='#3c4449', GradientType=0 )
+    /* IE6-8
+    border-radius: 0
+    height: 70px
+    &:hover, &:active, &:focus
+      background: #3c4449
+      /* Old browsers
+      /* IE9 SVG, needs conditional override of 'filter' to 'none'
+      background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIxJSIgc3RvcC1jb2xvcj0iIzNjNDQ0OSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM1YzYwNjciIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+      background: -moz-linear-gradient(top, #3c4449 1%, #5c6067 100%)
+      /* FF3.6+
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #3c4449), color-stop(100%, #5c6067))
+      /* Chrome,Safari4+
+      background: -webkit-linear-gradient(top, #3c4449 1%, #5c6067 100%)
+      /* Chrome10+,Safari5.1+
+      background: -o-linear-gradient(top, #3c4449 1%, #5c6067 100%)
+      /* Opera 11.10+
+      background: -ms-linear-gradient(top, #3c4449 1%, #5c6067 100%)
+      /* IE10+
+      background: linear-gradient(to bottom, #3c4449 1%, #5c6067 100%)
+      /* W3C
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3c4449', endColorstr='#5c6067', GradientType=0 )
+      /* IE6-8
+
+.gentleselect-data
+  display: none
+
+.gentleselect-label
+  background: url(../assets/select2.png) white right no-repeat
+  width: 100%
+  height: 36px
+  cursor: pointer
+  color: #777
+  float: left
+  padding-top: 7px
+  text-indent: 15px
+  font-size: 15px
+  margin-bottom: 10px
+
+#sops .gentleselect-label
+  background: url(../assets/select2.png) #ebebeb !important
+
+.gentleselect-dialog
+  width: 291px
+  position: absolute
+  z-index: 500
+  display: none
+  background-color: #fff
+  border: 1px solid #EBEBEB
+  margin: 0
+  padding: 0
+  margin-top: 7px
+  > ul
+    padding: 0
+    margin: 0
+    list-style: none
+    > li
+      margin: 0
+      padding: 3px 20px 3px 15px
+      cursor: pointer
+      &.selected
+        font-weight: bold
+        color: #FFF
+        background-color: #1BC973
+      &.gentleselect-dummy:hover
+        background-color: #fff
+      &:hover
+        background-color: #1BC973
+        color: #fff
+    .gentleselect-title
+      display: block
+      text-align: center
+      margin: 0
+      padding: 2px
+      background-color: #1BC973
+      font-size: 0.8em
+      color: #666
+      overflow: hidden
 
 .btns2
   width: 100%
@@ -815,68 +916,12 @@ li
     font-weight: normal
     font-family: 'varela_roundregular'
 
-.search
-  width: 100%
-  float: left
-  input
-    width: 80%
-    border: none
-    font-size: 30px
-    float: left
-    height: 87px
-    text-align: center
-    background-color: #F7F7F7
-  button
-    width: 20%
-    border: none
-    background: #5c6067
-    /* Old browsers
-    /* IE9 SVG, needs conditional override of 'filter' to 'none'
-    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIxJSIgc3RvcC1jb2xvcj0iIzVjNjA2NyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMzYzQ0NDkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
-    background: -moz-linear-gradient(top, #5c6067 1%, #3c4449 100%)
-    /* FF3.6+
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #5c6067), color-stop(100%, #3c4449))
-    /* Chrome,Safari4+
-    background: -webkit-linear-gradient(top, #5c6067 1%, #3c4449 100%)
-    /* Chrome10+,Safari5.1+
-    background: -o-linear-gradient(top, #5c6067 1%, #3c4449 100%)
-    /* Opera 11.10+
-    background: -ms-linear-gradient(top, #5c6067 1%, #3c4449 100%)
-    /* IE10+
-    background: linear-gradient(to bottom, #5c6067 1%, #3c4449 100%)
-    /* W3C
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5c6067', endColorstr='#3c4449', GradientType=0 )
-    /* IE6-8
-    border-radius: 0
-    height: 87px
-
 #ssp4
   margin-left: -15px
 
 #mar
   padding-right: 0
   padding-left: 0
-
-.search button
-  &:hover, &:active, &:focus
-    background: #3c4449
-    /* Old browsers
-    /* IE9 SVG, needs conditional override of 'filter' to 'none'
-    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIxJSIgc3RvcC1jb2xvcj0iIzNjNDQ0OSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM1YzYwNjciIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
-    background: -moz-linear-gradient(top, #3c4449 1%, #5c6067 100%)
-    /* FF3.6+
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #3c4449), color-stop(100%, #5c6067))
-    /* Chrome,Safari4+
-    background: -webkit-linear-gradient(top, #3c4449 1%, #5c6067 100%)
-    /* Chrome10+,Safari5.1+
-    background: -o-linear-gradient(top, #3c4449 1%, #5c6067 100%)
-    /* Opera 11.10+
-    background: -ms-linear-gradient(top, #3c4449 1%, #5c6067 100%)
-    /* IE10+
-    background: linear-gradient(to bottom, #3c4449 1%, #5c6067 100%)
-    /* W3C
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3c4449', endColorstr='#5c6067', GradientType=0 )
-/* IE6-8
 
 .info
   background: #FFF
@@ -936,88 +981,7 @@ li
     padding: 150px 45px
     float: left
 
-.form2
-  width: 100%
-  position: relative
-  display: block
-  margin-top: 90px
-  h3
-    font-size: 30px
-  input
-    width: 100%
-    border: none
-    height: 35px
-    font-size: 15px
-    margin-bottom: 10px
-    float: left
-    text-indent: 15px
 
-.gentleselect-data
-  display: none
-
-.gentleselect-label
-  background: url(../assets/select2.png) white
-  width: 291px
-  height: 36px
-  cursor: pointer
-  color: #555
-  float: left
-  padding-top: 7px
-  text-indent: 15px
-  font-size: 15px
-  margin-bottom: 10px
-
-#sops .gentleselect-label
-  background: url(../assets/select2.png) #ebebeb !important
-
-.gentleselect-dialog
-  width: 291px
-  position: absolute
-  z-index: 500
-  display: none
-  background-color: #fff
-  border: 1px solid #EBEBEB
-  margin: 0
-  padding: 0
-  margin-top: 7px
-  >
-  ul
-    padding: 0
-    margin: 0
-    list-style: none
-    > li
-      margin: 0
-      padding: 3px 20px 3px 15px
-      cursor: pointer
-      &.selected
-        font-weight: bold
-        color: #FFF
-        background-color: #1BC973
-      &.gentleselect-dummy:hover
-        background-color: #fff
-      &:hover
-        background-color: #1BC973
-        color: #fff
-    .gentleselect-title
-      display: block
-      text-align: center
-      margin: 0
-      padding: 2px
-      background-color: #1BC973
-      font-size: 0.8em
-      color: #666
-      overflow: hidden
-
-.form2 p
-  font-size: 11px
-  width: 100%
-  text-align: center
-  float: left
-  clear: left
-
-.sl
-  font-size: 10px !important
-  color: #999 !important
 
 .btn5
   background: #56d988
@@ -1067,12 +1031,7 @@ li
     /* IE6-8
     color: #FFF
 
-.form2 p
-  span
-    font-size: 14px
-  a
-    color: #00c089
-    font-size: 15px
+
 
 .form3
   margin-top: 25%
@@ -2613,8 +2572,6 @@ span.selectOption
   border: none
   background-color: #EBEBEB
   margin-left: 15px
-
-.ssy!
 
 .ssys
   position: relative
