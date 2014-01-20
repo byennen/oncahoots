@@ -1,0 +1,19 @@
+.modal.fade{id: "album-#{album.id}-upload","aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"}
+        %h4#myModalLabel.modal-title= "Upload Images to #{album.name}"
+      / modal-header
+      .modal-body
+        ~ nested_form_for [@club, album], html: {class: "forms"} do |f|
+          = f.fields_for :club_photos do |fp|
+            %label Images
+            = fp.file_field :image
+            = fp.text_field :caption, placeholder: "image caption"
+            = fp.hidden_field :user_id, value: current_user.id
+            = fp.link_to_remove  "delete"
+          = f.link_to_add "Add", :club_photos, class: "btn btn-primary btn-mini fleft"
+          .clearfix
+          %button.btng{:name => "btn", type: "submit"} Upload
+        .clearfix

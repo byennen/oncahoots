@@ -63,7 +63,9 @@
   %a#create-album-link.npost{"data-target" => "#create_album", "data-toggle" => "modal", :href => "#"} New Album >>
   - @club.albums.each do |album|
     .music
-      %p= album.name
+      %p
+        = album.name
+        %small= link_to "add images", "#album-#{album.id}-upload", "data-toggle" => "modal"
       .music-img
         = link_to "#album-#{album.id}", "data-toggle" => "modal" do
           = image_tag album.featured.image
@@ -73,7 +75,7 @@
 
 - @club.albums.each do |album|
   = render partial: "albums/show", locals: {album: album}
-
+  = render partial: "albums/upload_images", locals: {album: album}
 - new_post = @club.posts.build
 = render partial: "posts/form", locals: {post: new_post}
 
