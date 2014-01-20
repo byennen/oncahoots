@@ -1,8 +1,8 @@
-.col-lg-12
-  = image_tag(comment.user.profile.image.url || 'post-image.png')
-  = comment.user.name
+.col-lg-12.top.pull-left
+  = display_image comment.user.profile.image, "small"
+  %span.green-text= comment.user.name
   = comment.comment.html_safe
-
+%br
 / - user = comment.user
 / .span12.left.border-bottom.top2.bottom2.bottomp
 /   .span2
