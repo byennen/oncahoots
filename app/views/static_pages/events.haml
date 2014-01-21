@@ -1,236 +1,197 @@
-.no-margin.col-md-6
-  .title
-    %h1 Events
-    %p
-      %a{"data-target" => "#create_event", "data-toggle" => "modal", :href => "#"} Add Event
-      %span >>
-      \&nbsp; &nbsp; My Events
-      %span >>
+.col-md-10.no-padding#events-page
+  .row
+    .col-md-6.no-padding
+      .title
+        %h1
+          Events
+          %a{:href => "#"}
+            Add Event
+            %span.green-text >>
+          %a{:href => "#"}
+            My Events
+            %span.green-text >>
+    .col-md-6.no-padding
+      = render 'shared/search'
 
-  .calendar
-    .caltitle
-      %p
-        %a{:href => "#"} <<
-        December 15, 2013
-        %a{:href => "#"} >>
-    / caltitle
-    .session
-      %a{:href => "#"} Free Food
-      %a.nnaa{:href => "#"} Daily
-      %a.nnaa5{:href => "#"} Weekly
-      %a.nna{:href => "#"} Monthly
-    / session
-    %ul.events-list.nnaa5
-      %li.light
-        %strong
-          SUN 12.15
-          %br/
-          10:00 am
-          %br/
-          Location Here
-        %span
-        %h3 Event Title / Headline Here
-        Brief description / subhead here.
-        %a{:href => "#"} Click for more info.
-      %li.dark
-        %strong
-          SUN 12.15
-          %br/
-          10:00 am
-          %br/
-          Location Here
-        %span
-        %h3 Event Title / Headline Here
-        Brief description / subhead here.
-        %a{:href => "#"} Click for more info.
-      %li.light
-        %strong
-          SUN 12.15
-          %br/
-          10:00 am
-          %br/
-          Location Here
-        %span
-        %h3 Event Title / Headline Here
-        Brief description / subhead here.
-        %a{:href => "#"} Click for more info.
-      %li.dark
-        %strong
-          SUN 12.15
-          %br/
-          10:00 am
-          %br/
-          Location Here
-        %span
-        %h3 Event Title / Headline Here
-        Brief description / subhead here.
-        %a{:href => "#"} Click for more info.
-      %li.light
-        %strong
-          SUN 12.15
-          %br/
-          10:00 am
-          %br/
-          Location Here
-        %span
-        %h3 Event Title / Headline Here
-        Brief description / subhead here.
-        %a{:href => "#"} Click for more info.
-      %li.dark
-        %strong
-          SUN 12.15
-          %br/
-          10:00 am
-          %br/
-          Location Here
-        %span
-        %h3 Event Title / Headline Here
-        Brief description / subhead here.
-        %a{:href => "#"} Click for more info.
-      %li.light
-        %strong
-          SUN 12.15
-          %br/
-          10:00 am
-          %br/
-          Location Here
-        %span
-        %h3 Event Title / Headline Here
-        Brief description / subhead here.
-        %a{:href => "#"} Click for more info.
-      %li.dark
-        %strong
-          SUN 12.15
-          %br/
-          10:00 am
-          %br/
-          Location Here
-        %span
-        %h3 Event Title / Headline Here
-        Brief description / subhead here.
-        %a{:href => "#"} Click for more info.
+  .row
+    .col-md-6.no-padding
+      .calendar
+        .caltitle
+          %p
+            %a{:href => "#"} <<
+            December 15, 2013
+            %a{:href => "#"} >>
+        .session
+          %a{:href => "#"} Free Food
+          %a.nnaa{:href => "#"} Daily
+          %a.nnaa5{:href => "#"} Weekly
+          %a.nna{:href => "#"} Monthly
+        %ul.events-list.nnaa5
+          %li.light
+            %strong
+              SUN 12.15
+              %br/
+              10:00 am
+              %br/
+              Location Here
+            %span
+            %h3 Event Title / Headline Here
+            Brief description / subhead here.
+            %a{:href => "#"} Click for more info.
+          %li.dark
+            %strong
+              SUN 12.15
+              %br/
+              10:00 am
+              %br/
+              Location Here
+            %span
+            %h3 Event Title / Headline Here
+            Brief description / subhead here.
+            %a{:href => "#"} Click for more info.
+          %li.light
+            %strong
+              SUN 12.15
+              %br/
+              10:00 am
+              %br/
+              Location Here
+            %span
+            %h3 Event Title / Headline Here
+            Brief description / subhead here.
+            %a{:href => "#"} Click for more info.
+          %li.dark
+            %strong
+              SUN 12.15
+              %br/
+              10:00 am
+              %br/
+              Location Here
+            %span
+            %h3 Event Title / Headline Here
+            Brief description / subhead here.
+            %a{:href => "#"} Click for more info.
+          %li.light
+            %strong
+              SUN 12.15
+              %br/
+              10:00 am
+              %br/
+              Location Here
+            %span
+            %h3 Event Title / Headline Here
+            Brief description / subhead here.
+            %a{:href => "#"} Click for more info.
+          %li.dark
+            %strong
+              SUN 12.15
+              %br/
+              10:00 am
+              %br/
+              Location Here
+            %span
+            %h3 Event Title / Headline Here
+            Brief description / subhead here.
+            %a{:href => "#"} Click for more info.
+          %li.light
+            %strong
+              SUN 12.15
+              %br/
+              10:00 am
+              %br/
+              Location Here
+            %span
+            %h3 Event Title / Headline Here
+            Brief description / subhead here.
+            %a{:href => "#"} Click for more info.
+          %li.dark
+            %strong
+              SUN 12.15
+              %br/
+              10:00 am
+              %br/
+              Location Here
+            %span
+            %h3 Event Title / Headline Here
+            Brief description / subhead here.
+            %a{:href => "#"} Click for more info.
+        .mon
+          = image_tag('mon.png', class: 'imd', height: '355', width: '590')
+        .mon22
+          = image_tag('wcal.png', class: 'imd', width: '590')
+          %ul.events-listss
+            %li.dark
+              %strong
+                SUN 12.15
+                %br/
+                10:00 am
+                %br/
+                Location Here
+              %span
+              %h3 Event Title / Headline Here
+              Brief description / subhead here.
+              %a{:href => "#"} Click for more info.
+            %li.light
+              %strong
+                SUN 12.15
+                %br/
+                10:00 am
+                %br/
+                Location Here
+              %span
+              %h3 Event Title / Headline Here
+              Brief description / subhead here.
+              %a{:href => "#"} Click for more info.
+            %li.dark
+              %strong
+                SUN 12.15
+                %br/
+                10:00 am
+                %br/
+                Location Here
+              %span
+              %h3 Event Title / Headline Here
+              Brief description / subhead here.
+              %a{:href => "#"} Click for more info.
+
+    .col-md-6.no-padding
+      .nna
+        .info
+          %button.btn77{:name => "btn"} Event Title
+        .pro-data
+          = image_tag('circle-img.png')
+          %p
+            SUN 12.15, 10:00 am
+            %br/
+            Location Here
+            %br/
+            %a{:href => "#"} Running Club
+          %span Event Description here. Lorem ipsum dolor sit amet, ectetuer. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed  I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed  I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed  I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore doloetctuer adipaicse. Lore dolor consetctuer adipaicse.
+          %button.btn8{:name => "btn"} Interested
+          %button.btn8{:name => "btn"} Next Event
+
     .mon
-      = image_tag('mon.png', class: 'imd', height: '355', width: '590')
-    .mon22
-      = image_tag('wcal.png', class: 'imd', width: '590')
-      %ul.events-listss
-        %li.dark
-          %strong
-            SUN 12.15
-            %br/
-            10:00 am
-            %br/
-            Location Here
+      .info{:style => "position:relative; z-index:1; width:100%; float:left;"}
+        %button.btn77{:name => "btn", :style => "margin-bottom:0;"} My December Events
+      / info
+      .comment-box
+        = link_to image_tag('circle.png'), '#', class: 'com-img', width: '85', height: '85'
+        %a.com-name{:href => "#"}
           %span
-          %h3 Event Title / Headline Here
-          Brief description / subhead here.
-          %a{:href => "#"} Click for more info.
-        %li.light
-          %strong
-            SUN 12.15
+            Event Title
             %br/
-            10:00 am
-            %br/
-            Location Here
+            Date &amp; Time
+        %p{:style => "text-align:left; margin-top:25px;"} Short event description here.
+      / comment-box
+      .clearfix
+      .comment-box.dark
+        = link_to image_tag('circle.png'), '#', class: 'com-img', width: '85', height: '85'
+        %a.com-name{:href => "#"}
           %span
-          %h3 Event Title / Headline Here
-          Brief description / subhead here.
-          %a{:href => "#"} Click for more info.
-        %li.dark
-          %strong
-            SUN 12.15
+            Event Title
             %br/
-            10:00 am
-            %br/
-            Location Here
-          %span
-          %h3 Event Title / Headline Here
-          Brief description / subhead here.
-          %a{:href => "#"} Click for more info.
-
-.no-margin.col-md-4
-  = render 'shared/search'
-  .nna
-    .info{:style => "position:relative; z-index:1; width:100%; float:left"}
-      %button.btn77{:name => "btn"} Event Title
-    / info
-    .pro-data
-      = image_tag('circle-img.png')
-      %p
-        SUN 12.15, 10:00 am
-        %br/
-        Location Here
-        %br/
-        %a{:href => "#"} Running Club
-      %span Event Description here. Lorem ipsum dolor sit amet, ectetuer. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed  I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed  I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed  I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore doloetctuer adipaicse. Lore dolor consetctuer adipaicse.
-      %button.btn8{:name => "btn"} Interested
-      %button.btn8{:name => "btn"} Next Event
-    / pro-data
-  / nna
-  .mon
-    .info{:style => "position:relative; z-index:1; width:100%; float:left;"}
-      %button.btn77{:name => "btn", :style => "margin-bottom:0;"} My December Events
-    / info
-    .comment-box
-      = link_to image_tag('circle.png'), '#', class: 'com-img', width: '85', height: '85'
-      %a.com-name{:href => "#"}
-        %span
-          Event Title
-          %br/
-          Date &amp; Time
-      %p{:style => "text-align:left; margin-top:25px;"} Short event description here.
-    / comment-box
-    .clearfix
-    .comment-box.dark
-      = link_to image_tag('circle.png'), '#', class: 'com-img', width: '85', height: '85'
-      %a.com-name{:href => "#"}
-        %span
-          Event Title
-          %br/
-          Date &amp; Time
-      %p{:style => "text-align:left; margin-top:25px;"} Short event description here.
+            Date &amp; Time
+        %p{:style => "text-align:left; margin-top:25px;"} Short event description here.
 
 
-= render 'shared/create_event'
-
-:javascript
-  $(document).ready(function(){
-    $('#datepicker').datepicker({
-        inline: true
-    });
-    $('.selectyze2').Selectyze({
-        theme : 'mac'
-    });
-  $(".nna").on('click', function() {
-     $(".events-list").hide();
-     $(".mon").show();
-     $(".di").css("color", "#00D689");
-  });
-  $(".nnaa").on('click', function() {
-     $(".mon").hide();
-     $(".events-list").show();
-     $(".di").css("color", "#00D689");
-  });
-  $(".nnaa5").on('click', function() {
-     $(".mon").hide();
-     $(".mon22").show();
-     $(".di").css("color", "#00D689");
-  });
-  $(".nnaa5").on('click', function() {
-     $(".events-list").hide();
-     $(".mon22").show();
-     $(".di").css("color", "#00D689");
-  });
-  $(".nna").on('click', function() {
-     $(".mon22").hide();
-     $(".mon").show();
-     $(".di").css("color", "#00D689");
-  });
-  $('#selector').gentleSelect(); // apply gentleSelect with default options
-  $('#selector2').gentleSelect(); // apply gentleSelect with default options
-  $('#selector3').gentleSelect(); // apply gentleSelect with default options
-  $('#selector4').gentleSelect(); // apply gentleSelect with default options
-  $('#selector5').gentleSelect(); // apply gentleSelect with default options
-  $('#selector6').gentleSelect(); // apply gentleSelect with default options
-  $('#selector7').gentleSelect(); // apply gentleSelect with default options
-  });
+  = render 'shared/create_event'
