@@ -1,2 +1,2 @@
 $(document).ready ->
-  $("#selector").gentleSelect()
+  $("#alumni_selector").gentleSelect()
