@@ -58,6 +58,6 @@ $(function() {
 
 });
 
-$(document).on('ready page:load', function(){ 
+$(document).on('ready page:load', function(){
   $('.datepicker').datepicker({ format: 'mm/dd/yyyy' });
 });

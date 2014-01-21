@@ -1,7 +1,6 @@
-= javascript_include_tag "settings"
 = stylesheet_link_tag "static/settings"
 
-.col-md-10
+.col-md-10#settings-page
   .row
     .col-md-6.no-padding
       .title
@@ -16,7 +15,7 @@
         %h3 Edit User
         %input{:name => "text", :placeholder => "FIRST NAME", :type => "text"}/
         %input{:name => "text", :placeholder => "LAST NAME", :type => "text"}/
-        %select#selector
+        %select#alumni_selector
           %option STUDENT
           %option ALUMNI
         %input{:name => "text", :placeholder => "EMAIL", :type => "text"}/
@@ -25,7 +24,7 @@
         %input{:name => "password", :placeholder => "CONFIRM", :type => "password"}/
         %p We need your current password to confirm.
         %input{:name => "password", :placeholder => "CURRENT PASSWORD", :type => "password"}/
-        %button.btn.btn5{:name => "btn"} Update
+        %button.btn.update-settings-btn{:name => "btn"} Update
 
         .text-center
           %a.delete-link{:href => "#"} Delete your account.
