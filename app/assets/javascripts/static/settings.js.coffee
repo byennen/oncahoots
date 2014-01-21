@@ -1,2 +1,0 @@
-$(document).ready ->
-  $("#selector").gentleSelect()
