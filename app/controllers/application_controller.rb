@@ -20,21 +20,10 @@ class ApplicationController < ActionController::Base
 
   def load_university_data
     if @university
-      @bg_style = "background-image: url('#{@university.banner.url}')" unless @university.banner.blank?
       @users = @university.users.where("id != 1 AND id != 2")
       @updateable = @university
       @updates = @updateable.updates
-      @event ||= Event.new
-      session[:on_date]=nil if @event.errors.blank?
-      if session[:on_date].blank?
-        e = @university.events.free_food.where("on_date >= ?", Date.today).order(:on_date).first
-        @search_date = e ? e.on_date : Date.today
-      else
-        @search_date = session[:on_date]
-      end
-      @free_food_events = @university.events.search_date(@search_date).free_food.order(:at_time)
       @events = @university.events.active
-      @update = Update.new
       @clubs = @university.clubs.sup_club.order(:name)
       @club ||= @university.clubs.build
       @club_updates = Update.where(updateable_type: "Club").where(updateable_id: @clubs.map(&:id)).order("created_at DESC")

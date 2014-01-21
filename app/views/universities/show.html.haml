@@ -3,7 +3,7 @@
     .dropfil
       %a.dra{:href => "javascript:void(0);"}= @university.name
       %span
-        = image_tag(current_user.profile.image)
+        = display_image_square(current_user.profile.image, "small")
     .dropfil.mod
       %a{:href => "javascript:;", :style => "float:right;"}
         %button.btn.btn1{:name => "btn"}
@@ -49,17 +49,22 @@
       %span.all-ev-filter
         All Events
         = image_tag('arrow-down.png')
-        = link_to "Free Food", filter_university_events_path(@university, free_food: 'true', today: params[:today]), remote: true, class: 'anc'
+        = link_to "Free Food", filter_university_events_path(@university, free_food: 'true'), remote: true, class: 'anc'
       %span.free_food-ev-filter.hide
         Free Food
         = image_tag('arrow-down.png')
-        = link_to "All Events", filter_university_events_path(@university, free_food: 'false', today: params[:today]), remote: true, class: 'anc'
-      %span#datepicker9
+        = link_to "All Events", filter_university_events_path(@university, free_food: 'false'), remote: true, class: 'anc'
+      %span.day-filter.all_days-filter
         All Days
         = image_tag('arrow-down.png')
-        %a.anc{:href => "events.html"} Today
+        = link_to "Today", filter_university_events_path(@university, today: "true"), remote: true, class: 'anc'
+      %span.day-filter.today-filter.hide
+        Today
+        = image_tag('arrow-down.png')
+        = link_to "All Days", filter_university_events_path(@university, today: "false"), remote: true, class: 'anc'
+  
     .carus
-      %span.events-slide= render partial: "events/slide", locals: {events: @events} 
+      .events-slide= render partial: "events/slide", locals: {events: @events} 
       %a{:href => university_events_path(@university)}
         %button.btn.btn3{:name => "btn"} View All
       .strip

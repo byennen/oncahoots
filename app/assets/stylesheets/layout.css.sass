@@ -2824,7 +2824,7 @@ span.selectOption
   float: left
   margin-top: 40px
   position: relative
-  position: relative
+  min-height: 400px
   li
     float: left
     margin-right: 22px
@@ -2840,6 +2840,7 @@ span.selectOption
   left: 10px
   cursor: pointer
   z-index: 1000
+  top: 105px !important
 
 .nbs-flexisel-nav-right
   background: url(../assets/next-arrow.png) no-repeat
@@ -2850,6 +2851,7 @@ span.selectOption
   width: 51px
   display: block
   z-index: 1000
+  top: 105px !important
 
 #flexiselDemo1
   display: none
@@ -3370,7 +3372,7 @@ span.selectOption
   position: relative
   z-index: 1000
   .nbs-flexisel-nav-left, .nbs-flexisel-nav-right
-    top: 113px !important
+    top: 105px !important
 
 .newt, .newt2
   margin-top: 80px
@@ -3514,7 +3516,8 @@ span.selectOption
 .none
   display: none
 
-#datepicker9
+#datepicker9,
+.day-filter
   position: relative
   a
     left: 0
@@ -3593,6 +3596,11 @@ input.djs
   -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8)
   -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8)
 
+.square
+  box-shadow: 0 0 8px rgba(0, 0, 0, .8)
+  -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8)
+  -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8)
+
 .cir-img
   background-color: #ccc
   float: left
@@ -3601,14 +3609,11 @@ input.djs
 .green-text
   color: #04C189
 
-.thumb,
-.title-thumb
+.thumb
   width: 100px
-
-.small,
-.title-small
+.small
   width: 77px
-
-.large,
-.title-large
+.medium
+  width: 145px
+.large
   width: 185px
