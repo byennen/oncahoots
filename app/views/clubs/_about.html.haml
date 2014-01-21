@@ -17,4 +17,4 @@
   Mission Statement
   %br/
   %br/
-  = @club.description.html_safe
+  = @club.description.html_safe if @club.description.present?
