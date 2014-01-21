@@ -1,4 +1,4 @@
-#ssp3.col-lg-6
+#ssp3.col-md-6
   .title
     %h1 Clubs
     %p
@@ -32,7 +32,7 @@
       %li
         %button.btn{:name => "btn"} Social
   / clubs-inner
-  .con
+  .div
     .music
       .music-img
         = link_to image_tag('running-club-img.png'), 'running-club.html'
@@ -51,12 +51,12 @@
           %strong Running Club >>
       %p Summary about club here.
 
-#mar.col-lg-4
+#mar.col-md-4
   #ssp4
     = render 'shared/search'
     .info{:style => "background:url(../../assets/bg.png) repeat center top; position:relative; z-index:10; width:100%; float:left"}
       %span.btn4 My Clubs
-      .con{:style => "height:790px;"}
+      .div
         %a.bka{:href => "lowdown.html"} Davidson Chicago
         %a{:href => "lowdown.html"}
           = image_tag('side-club.png')
