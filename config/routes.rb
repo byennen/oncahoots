@@ -66,6 +66,7 @@ CahootsConnect::Application.routes.draw   do
 
 
   resources :metropolitan_clubs, only: [:show, :update] do
+    resources :albums
     resources :updates
     collection do
       get :home

@@ -1,0 +1,20 @@
+.info{:style => "background-color: #fff; padding: 20px 0;"}
+  .news-letter
+    %h4 Announcements
+    %ul.hid
+      = render partial: "clubs/update", collection: @club.updates
+  #weekly.calendar
+    - w_begin = DateTime.now.beginning_of_week
+    = render partial: "clubs/calendar", locals: {w_begin: w_begin, events: @club.events.where(on_date: w_begin..(w_begin+6.days))}
+
+:javascript
+  $(document).ready(function(){
+    $(".hid li small").on('click', function() {
+       $(this).hide();
+       $(this).closest('li').find(".showa").show();
+    });
+    $(".showa button").on('click', function() {
+       $(this).closest(".showa").hide();
+       $(this).closest("li").find("small").show();
+    });
+  });

@@ -59,7 +59,7 @@
 #about.members.tab-content.hide{:style => "padding-top:0;"}
   = render partial: "about"
 
-#photos.members.tab-contents.hide{:style => "padding:0; float:left; width:100%;"}
+#photos.members.tab-content.hide{:style => "padding:0; float:left; width:100%;"}
   %a#create-album-link.npost{"data-target" => "#create_album", "data-toggle" => "modal", :href => "#"} New Album >>
   - @club.albums.each do |album|
     .music

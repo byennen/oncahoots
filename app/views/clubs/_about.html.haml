@@ -1,7 +1,7 @@
 .eboard.col-lg-12.pull-left
   %h3 eBoard
   %ul.abo
-    - @club.admins.each do |admin|
+    - @club.leaders.each do |admin|
       %li
         .pull-left
           = link_to user_path(admin), width: '55' do
