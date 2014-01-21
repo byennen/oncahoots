@@ -1,19 +1,9 @@
-#ssp3.col-md-6
+.no-margin.col-md-6
   .title
     %h1 Search
-  / title
-  .clearfix
-/ col-md-6
-#mar.col-md-4
-  #ssp4
-    .search
-      %input{:name => "text", :placeholder => "Search", :type => "text"}/
-      %a{:href => "search.html"}
-        %button{:name => "btn"}
-          %img{:alt => "Image", :src => "img/search-icon.png"}/
-    / search
-  / ssp4
-/ col-md-4
+.no-margin.col-md-4
+  = render 'shared/search'
+
 .col-md-offset-3.col-md-4
   .form3
     %h3 What are you looking for?

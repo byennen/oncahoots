@@ -3,12 +3,11 @@
 
 .col-md-10
   .row
-    .col-md-6.nopadding
+    .col-md-6.no-padding
       .title
         %h1 Settings
 
-    .col-md-6.nopadding
-      #ssp4
+    .col-md-6.no-padding
       = render 'shared/search'
 
   .row
@@ -29,6 +28,6 @@
         %button.btn.btn5{:name => "btn"} Update
 
         .text-center
-          %a.delete-link{:href => "javascript:void(0);"} Delete your account.
+          %a.delete-link{:href => "#"} Delete your account.
           %span To edit your profile information,
           %a{:href => "network.html"} CLICK HERE.

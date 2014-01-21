@@ -17,10 +17,9 @@
     .container-full
       .row
         = render 'layouts/navigation'
-        #ssp3.col-md-6
+        .no-margin.col-md-6
           = yield :page_title
           = yield
-        #mar.col-md-4
-          #ssp4
-            = render 'shared/search'
-            = yield :right_side
+        .no-margin.col-md-4
+          = render 'shared/search'
+          = yield :right_side

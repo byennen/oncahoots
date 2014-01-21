@@ -1,4 +1,4 @@
-#ssp3.col-md-6
+.no-margin.col-md-6
   .title
     %h1 Network
     %p
@@ -314,35 +314,34 @@
             experience, GPA, major etc.  We know your time is valuable.
           %textarea.texta4.same{:placeholder => "Add contact requirements (Optional)"}
 
-#mar.col-md-4
-  #ssp4
-    = render 'shared/search'
-    .info
-      %span.btn4 My Contacts
-    / info
-    %ul.lists.ssy
-      %li.light
-        %a{:href => "#"}
-          %i
-            = image_tag('profile-img.png')
-          %span
-            Jane Doe
-            %br/
-            1998
-        %button.btna7{:name => "btm"} Message
-        .ssys
-          %small Hi! I'm Jane and I'm a marketing manager from Baltimore. Here is a little blurb about me to get you to click and view my profile.
-      %li.dark
-        %a{:href => "#"}
-          %i
-            = image_tag('profile-img.png')
-          %span
-            Jane Doe
-            %br/
-            1998
-        %button.btna7{:name => "btm"} Message
-        .ssys
-          %small Hi! I'm Jane and I'm a marketing manager from Baltimore. Here is a little blurb about me to get you to click and view my profile.
+.no-margin.col-md-4
+  = render 'shared/search'
+  .info
+    %span.btn4 My Contacts
+  / info
+  %ul.lists.ssy
+    %li.light
+      %a{:href => "#"}
+        %i
+          = image_tag('profile-img.png')
+        %span
+          Jane Doe
+          %br/
+          1998
+      %button.btna7{:name => "btm"} Message
+      .ssys
+        %small Hi! I'm Jane and I'm a marketing manager from Baltimore. Here is a little blurb about me to get you to click and view my profile.
+    %li.dark
+      %a{:href => "#"}
+        %i
+          = image_tag('profile-img.png')
+        %span
+          Jane Doe
+          %br/
+          1998
+      %button.btna7{:name => "btm"} Message
+      .ssys
+        %small Hi! I'm Jane and I'm a marketing manager from Baltimore. Here is a little blurb about me to get you to click and view my profile.
 
 
 :javascript

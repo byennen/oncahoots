@@ -185,7 +185,7 @@
           %ul.posts.newp
             - @club_updates.each do |update|
               %li
-                = link_to "javascript:void(0);", class: 'avatr' do
+                = link_to "#", class: 'avatr' do
                   %span{style: "padding-top: 0"}
                     - if update.image.blank?
                       No Image
@@ -193,7 +193,7 @@
                       = image_tag update.image.thumb
                 %h4= update.headline
                 %p= update.body
-                = link_to time_ago_in_words(update.created_at) + " ago", "javascript:void(0);", class: "com ncom"
+                = link_to time_ago_in_words(update.created_at) + " ago", "#", class: "com ncom"
                 .clearfix
         #tabss.tab_content2
           .span11.top2
@@ -202,10 +202,10 @@
           %ul.posts.newp
             - @updates.each do |update|
               %li
-                = link_to "javascript:void(0);", class: 'avatr' do
+                = link_to "#", class: 'avatr' do
                   = display_image_square update.image, "small"
                 %p= update.body
-                = link_to time_ago_in_words(update.created_at) + " ago", "javascript:void(0);", class: "com ncom"
+                = link_to time_ago_in_words(update.created_at) + " ago", "#", class: "com ncom"
                 .clearfix
 
 #free-food-popup.modal.hide.fade{tabindex: "-1", role: "dialog", :"aria-labelledby" => "myModalLabel", :"aria-hidden" => "true"}
