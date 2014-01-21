@@ -1,3 +1,7 @@
+= stylesheet_link_tag 'static/clubs'
+= stylesheet_link_tag 'static/buttons'
+= javascript_include_tag 'static/clubs'
+
 .no-margin.col-md-6
   .title
     %h1 Clubs
@@ -7,9 +11,8 @@
 
   .clubs-inner
     %h2 What kind of club are you looking for?
-    %ul.btns2
-      %li
-        %button.btn{:name => "btn"} Arts
+    %ul.inline
+      %li= link_to 'Arts', '', class: 'btn btn-lg'
       %li
         %button.btn{:name => "btn"} Academic
       %li
@@ -62,12 +65,3 @@
       %p You do not belong to any clubs! Click around to join clubs that interest you.(or some directional statement here)
 
 = render 'shared/create_club'
-
-:javascript
-  $(document).ready(function(){
-    $('.selectyze2').Selectyze({
-        theme : 'mac'
-    });
-    $('#selector').gentleSelect(); // apply gentleSelect with default options
-    $('#selector2').gentleSelect(); // apply gentleSelect with default options
-  });

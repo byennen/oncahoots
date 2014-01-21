@@ -24,7 +24,7 @@
 //= require plugins/jquery.accordion.source
 
 // Static pages
-//= require settings
+//= require static/settings.js.coffee
 
 // Keep main last
 //= require main
