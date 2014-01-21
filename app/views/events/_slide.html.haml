@@ -1,0 +1,31 @@
+%ul.flexisel
+  - events.each do |event|
+    %li
+      = link_to display_image(event.image, "large"), '#'
+      %br/
+      %p
+        = event.title
+        %br/
+        = "#{event.at_time.strftime("%I:%M %p")}," if event.at_time
+        = event.location
+
+:javascript
+  $(document).ready(function(){
+    $(".flexisel").flexisel({
+      enableResponsiveBreakpoints: true,
+      responsiveBreakpoints: {
+        portrait: {
+          changePoint:480,
+          visibleItems: 1
+        },
+        landscape: {
+          changePoint:640,
+          visibleItems: 2
+        },
+        tablet: {
+          changePoint:768,
+          visibleItems: 3
+        }
+      }
+    });
+  });

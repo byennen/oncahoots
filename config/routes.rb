@@ -23,16 +23,10 @@ CahootsConnect::Application.routes.draw   do
   resources :cities
   resources :universities, only: [:show, :update] do
 
-    resources :events
-    resources :university_events, :path => 'calendar', :controller => :university_events do
-      member do
-        get :interested
-      end
+    resources :events do
+      get :filter, on: :collection
     end
-
     member do
-      post :create_free_food_event
-      put :update_free_food_event
       get :search_events
     end
 

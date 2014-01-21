@@ -1,4 +1,4 @@
-class UniversityEventsController < ApplicationController
+class EventsController < ApplicationController
 
   before_filter :ensure_user_university, except: [:load_events, :next_week, :prev_week]
 
@@ -13,6 +13,14 @@ class UniversityEventsController < ApplicationController
   def destroy
     @event = Event.find(params[:id])
     @event.destroy
+    respond_to :js
+  end
+
+  def filter
+    @events = @university.events.active
+    @events = @events.free_food if params[:free_food]=='true'
+    @events = @events.search_date(Date.today) if params[:today]=='true'
+    @events.order(:at_time)
     respond_to :js
   end
 

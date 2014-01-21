@@ -33,11 +33,11 @@ class ApplicationController < ActionController::Base
         @search_date = session[:on_date]
       end
       @free_food_events = @university.events.search_date(@search_date).free_food.order(:at_time)
-      @university_events = @university.events.active
+      @events = @university.events.active
       @update = Update.new
-      @clubs = @university.clubs.order(:name)
+      @clubs = @university.clubs.sup_club.order(:name)
       @club ||= @university.clubs.build
-      @club_updates = Update.where(updateable_type: "Club").where(updateable_id: @clubs.map(&:id)).order("created_at DESC").all
+      @club_updates = Update.where(updateable_type: "Club").where(updateable_id: @clubs.map(&:id)).order("created_at DESC")
     end
   end
 

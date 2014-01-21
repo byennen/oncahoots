@@ -1,262 +1,110 @@
-= content_for :header do
-  .span3
-    .mono   
-      = display_image(@university.image, "xxlarge")
-      = link_to "<i class='icon-plus icon-white'></i>".html_safe, "javascript:;", class: "btn btn-success btn-mini upload-link", style: "margin-top: 40px; margin-left: -70px;", "data-form" => "#avatar-form" if current_user.manage_university?(@university)
-  .span7
-    .span12{style: "margin-top: 180px;"}
-      .page-title.bottom2{style: "color: #fff;"}
-        %span#uni-name
-          = @university.name
-        = link_to "<i class='icon-pencil icon-white'></i>".html_safe, "#edit-name", "data-toggle" => "modal", class: "btn btn-success btn-mini" if current_user.manage_university?(@university)
-        %br
-        %small#uni-mascot{style: "font-size: 65%"}= @university.mascot
-        
-      %ul#events.flexisel
-        - @university_events.each do |event|
-          %li{class: "event-#{event.id}"}
-            = link_to "#event#{event.id}_detail", :"data-toggle" => "modal", class: 'event-slide-item'  do
-              = display_image_square event.image, "medium"
-            %br
-            %h4= event.title
-            %p
-              = event.date
-              %br
-              = event.time
-  .span2.no-lmar.top200
-    .fright
-      - if current_user.manage_university?(@university)
-        %a.upload-link.btn.btn-success.btn-mini{href: "javascript:;", "data-form" => "#banner-form"} Change 
-  .clearfix
-- @university_events.each do |event|
-  = render partial: "university_events/event", locals: {event: event}
-  - if current_user.manage_event?(event)
-    %div{id: "event-popup#{event.id}"}= render partial: "/university_events/form", locals: {event: event}
-.top2
-  &nbsp
-.row-fluid
-  .container.top2
-    .span10.offset2.top2
-      %ul.tabs3
-        %li= link_to "Community", "#tab1"
-        %li= link_to "Clubs", "#tab2"
-        %li= link_to "Free Food", "#tab3", id: "free_food_tab"
-        %li= link_to "Alumni Map", "#tab4"
-        %li= link_to "Register New", "#tab5", id: "new-club"
-      .clearfix
-      .tab_container
-        #tab1.tab_content
-          .filters
-            %p Filter by:
-            = link_to "All", "javascript:;", :"data-toggle" => ".users-list", :"data-target" => "#all-users", class: 'toggle1 active'
-            = link_to "Students", "javascript:;", :"data-toggle" => ".users-list", :"data-target" => "#students", class: 'toggle1'
-            = link_to "Alumni", "javascript:;", :"data-toggle" => ".users-list", :"data-target" => "#alumnis", class: 'toggle1'
-          .clearfix
-          #all-users.users-list.offset1
-            .span9.list_carousel
-              %ul.community-slide
-                - @users.each_slice(3) do |slide|
-                  %li{style: "width: 190px;line-height: 20px;"}
-                    - slide.each do |user|
-                      .span12.image
-                        = link_to user_path(user) do
-                          = display_image user.profile.image, 'thumb'
-                      .info.span12
-                        = user.name
-
-              %a.cprev.prev &lt;
-              %a.cnext.next &gt;
-          #students.users-list.offset1.transparent
-            .span9.list_carousel
-              %ul.community-slide1
-                - @users.student.each_slice(3) do |slide|
-                  %li{style: "width: 190px;line-height: 20px;"}
-                    - slide.each do |user|
-                      .span12.image
-                        = link_to user_path(user) do
-                          = display_image user.profile.image, 'thumb'
-                      .span12.info
-                        = user.name
-
-              %a.cprev1.prev &lt;
-              %a.cnext1.next &gt;
-          #alumnis.users-list.offset1.transparent
-            .span9.list_carousel
-              %ul.community-slide2
-                - @users.alumni.each_slice(3) do |slide|
-                  %li{style: "width: 190px;line-height: 20px;"}
-                    - slide.each do |user|
-                      .span10.image
-                        = link_to user_path(user) do
-                          = display_image user.profile.image, 'thumb'
-                      .span12.info
-                        = user.name
-
-              %a.cprev2.prev &lt;
-              %a.cnext2.next &gt;
-
-
-        #tab2.tab_content.list_carousel
-          %ul#foo2.carou-fred-sel
-            - item_mar = ""
-            - item_mar = "margin-left: 100px;" if @clubs.size == 2
-            - item_mar = "margin-left: 300px;" if @clubs.size == 1
-            - @clubs.each do |club|
-              %li{style: item_mar}
-                .users
-                  - path = club.instance_of?(MetropolitanClub) ? metropolitan_club_path(club) : university_club_path(@university, club)
-
-                  = link_to path do
-                    = display_image club.image, 'xlarge'
-                    %span.fleft= club.name
-
-          %a.prev#prev2{href: "#"} &lt;
-          %a.next#next2{href: "#"} &gt;
-          %center
-            %a.btn.btn-success.btn3{href: university_clubs_path(@university)} See all
-        #tab3.tab_content.span10{style: "margin-left: 60px;"}
-          .span12.top2.no-lmar
-            .fright
-              = text_field_tag :on_date, @search_date,class: "field datepicker", placeholder: "Date", style: "width: 80%"
-          #free-foods-list
-            = render partial: "universities/free_foods" 
-          .span12.no-lmar.top2
-            %center= link_to "Add New", "#free-food-popup", :"data-toggle" => "modal", class: "btn btn-success", id: "event_link"
-        #tab4.tab_content
-          .span11
-            .span3.no-lmar.dropdown
-              %a.btn.btn-success.btn2.chang.dropdown-toggle{:href => "javascript:;", :"data-toggle" => 'dropdown'}
-                %i
-                  = image_tag "old_images/dropdown-arrow.png"
-              %ul.dropdown-menu{style: "margin: -10px 0 0 22px"}
-                - City.order(:name).each do |city|
-                  %li.city-users
-                    %a= city.name
-              = text_field_tag "city", "", class: "field dropdown-toggle", :"data-toggle" => 'dropdown', placeholder: "Cities"
-            .span8.left2.top2
-          .clearfix
-          .list_carousel
-            %ul.city-slide
-              - City.order(:name).each do |city|
-                %li
-                  .users
-                    = link_to "javascript:;" do
-                      - if @university.metropolitan_club(city.id)
-                        = display_image @university.metropolitan_club(city.id).image, 'xlarge'
-                        %span.fleft= city.name
-                    .hovers{style: "text-align: center;"}
-                      = link_to filter_users_path(user: {city: city.name}), remote: true do
-                        %p
-                          %h3.left2= "#{city.users.count} #{city.users.count == 1 ? 'people' : 'peoples'}"
-
-            %a.city-prev.prev{href: "#"} &lt;
-            %a.city-next.next{href: "#"} &gt;
-          .clearfix
-
-          .span12.bottom2
-            
-
-        #tab5.tab_content
-          .span11.left2
-            %h4 Create Club
-          .span11= render partial: "universities/club_form"
-
-.hide= link_to "", "#users-popup", :"data-toggle" => "modal", id: "open-result"
-#users-popup.modal.wide-modal.hide.fade{tabindex: "-1", role: "dialog", :"aria-labelledby" => "myModalLabel", :"aria-hidden" => "true"}
-  .modal-header
-    %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
-    %h3 Search Users Result
-  .modal-body
-    .span9= render partial: "users/filter_options"
-    .span9#search-results
-  .clearfix
-  .modal-footer
-    %button.btn.btn-warning{type: "button", data: {dismiss: "modal"}} Close
-
-.clearfix
-.row-fluid
-  .container
-    .span10.offset2
-      %ul.tabs4
-        %li= link_to "Club Updates", "#tabss1"
-        %li= link_to "College Updates", "#tabss"
-      .tab_container
-        #tabss1.tab_content2
-          %ul.posts.newp
-            - @club_updates.each do |update|
-              %li
-                = link_to "javascript:void(0);", class: 'avatr' do
-                  %span{style: "padding-top: 0"}
-                    - if update.image.blank?
-                      No Image
-                    - else
-                      = image_tag update.image.thumb
-                %h4= update.headline
-                %p= update.body
-                = link_to time_ago_in_words(update.created_at) + " ago", "javascript:void(0);", class: "com ncom"
-                .clearfix
-        #tabss.tab_content2
-          .span11.top2
-            - if current_user.manage_university?(@university)
-              %a{href: "#update-form", data: {toggle: "modal"}, class: "btn btn-success fright"} Post Update
-          %ul.posts.newp
-            - @updates.each do |update|
-              %li
-                = link_to "javascript:void(0);", class: 'avatr' do
-                  = display_image_square update.image, "small"
-                %p= update.body
-                = link_to time_ago_in_words(update.created_at) + " ago", "javascript:void(0);", class: "com ncom"
-                .clearfix
-
-#free-food-popup.modal.hide.fade{tabindex: "-1", role: "dialog", :"aria-labelledby" => "myModalLabel", :"aria-hidden" => "true"}
-  ~ simple_form_for @event, url: create_free_food_event_university_path(@university) do |f|
-    .modal-header
-      %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
-      %h3 New free food event
-    .modal-body
-      = f.input :title
-      = f.input :on_date, as: :string, label: "Date", input_html: {class: "datepicker"}
-      = f.input :at_time, label: "Time", as: :time, ampm: true, minute_step: 5, default: {hour: 0, minute: 0},input_html: {style: "width: 80px"}
-      = f.input :location
-      = f.input :description, as: :text, input_html: {rows: 2}
-      = f.input :category, as: :category
-      = f.input :image, as: :file
-      = f.input :club_id, collection: @university.clubs.order(:name), prompt: "Select Club"
-      = f.hidden_field :display_on_uc, value: true
-      = f.hidden_field :free_food, value: true
+#ssp.col-lg-5
+  .banner{:style => "background:url(#{@university.banner}) no-repeat;"}
+    .dropfil
+      %a.dra{:href => "javascript:void(0);"}= @university.name
+      %span
+        = image_tag(current_user.profile.image)
+    .dropfil.mod
+      %a{:href => "javascript:;", :style => "float:right;"}
+        %button.btn.btn1{:name => "btn"}
+          %i.icon2
+            = image_tag('search-icon.png')
+      %input.field1{:name => "text", :placeholder => "Search", :type => "text"}/
+    / dropfil
     .clearfix
-    .modal-footer
-      = f.submit "Add Event", class: "btn btn-success"
-#forms= render partial: "forms", locals: {university: @university}
-= render partial: "shared/waiting_widget"
+    %ul.btns.showaa
+      %li
+        %a{:href => "javascript::"}
+          %button.btn.btn2.sep{:name => "btn"} Find your club. Find your passion. >>
+      - @clubs.each do |club|
+        %li
+          %a{:href => university_club_path(@university, club)}
+            %button.btn.btn2{:name => "btn"}= club.name
+  / banner
+  .clearfix
+  .pos
+    %a{:href => "clubs.html"}
+    .club{:style => "background:url(../../assets/football-img.png);"}
+      .blank Soccer Club (55)
+      = link_to university_clubs_path(@university) do
+        %button.btn.btn3{:name => "btn", :style => "z-index:100; position:relative;"} All Clubs
+    / club
+    .updates
+      %h2 Club Updates
+      - @club_updates.each do |update|
+        - club = update.updateable
+        %p.nsw
+          %span
+            %a{:href => university_club_path(@university, club)}= club.name
+          = update.body.html_safe
+          %span
+            %a{:href => university_club_path(@university, club)} >>
+      
+    / updates
+/ col-lg-5
+#ssp2.col-lg-5
+  .slider
+    %h2
+      Find
+      %span.all-ev-filter
+        All Events
+        = image_tag('arrow-down.png')
+        = link_to "Free Food", filter_university_events_path(@university, free_food: 'true', today: params[:today]), remote: true, class: 'anc'
+      %span.free_food-ev-filter.hide
+        Free Food
+        = image_tag('arrow-down.png')
+        = link_to "All Events", filter_university_events_path(@university, free_food: 'false', today: params[:today]), remote: true, class: 'anc'
+      %span#datepicker9
+        All Days
+        = image_tag('arrow-down.png')
+        %a.anc{:href => "events.html"} Today
+    .carus
+      %span.events-slide= render partial: "events/slide", locals: {events: @events} 
+      %a{:href => university_events_path(@university)}
+        %button.btn.btn3{:name => "btn"} View All
+      .strip
+
+  .two-clumns
+    .half{:style => "background:url(../../assets/building-img.png);"}
+      %h1 Alumni Search
+      %ul.foy
+        %li
+          %input{:name => "text", :type => "text", :value => "Name"}/
+        %li
+          %input{:name => "text", :type => "text", :value => "City"}/
+        %li
+          %select.selectyze2{:name => "style2"}
+            %option Field
+            %option Software
+            %option Software
+            %option Software
+            %option Software
+            %option Software
+        %li
+          %input{:name => "text", :type => "text", :value => "Major"}/
+        %li
+          %input{:name => "text", :type => "text", :value => "Grade Year"}/
+        %li
+          %a{:href => "search.html"}
+            %button.btn.btn3.ch{:name => "btn"} Access Your Network
+    / half
+    .green
+      %h2 College Updates
+      %a{"data-target" => "#college_update", "data-toggle" => "modal"}
+        %p
+          Club Name Lorem dollar sit amet, consectetur adipiscing elit, sed diam non
+          %span >>
+
+
+= render 'shared/college_update'
 
 :javascript
   $(document).ready(function(){
-    if("#{@club.errors.any?}" == "true"){
-      $("#new-club").click();
-      $(document).scrollTop( $("#new-club").offset().top );
-    }
-
-    if("#{@event.errors.any?}" == "true"){
-      $(document).scrollTop( $("#free_food_tab").offset().top );
-      $("#free_food_tab").click();
-      $("#event_link#{@event.id}").click();
-    }
-
-    $("#on_date").change(function(){
-      $.get("#{search_events_university_path(@university)}", {on_date: $(this).val()});
-    });
-
-    $(document).on("click", ".upload-link", function(){
-      $($(this).data('form')).find("input").trigger("click");
-    });
-
-    $("#forms").on("change", "input[type=file]",function(){
-      $(this).closest("form").submit();
-      $("a#show_waiting").click();
-    });
-
-    $(".modal").on("submit", "form", function(){
-      $("button.close").click();
-    });
+  $('.selectyze2').Selectyze({
+      theme : 'mac'
+  });
+  $(".nsw").on('click', function() {
+     $(".showaa").hide();
+     $(".hid").show();
+  });
   });

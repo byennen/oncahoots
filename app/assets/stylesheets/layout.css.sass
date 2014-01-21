@@ -507,6 +507,8 @@ li
   width: 50%
   float: left
   min-height: 450px
+  max-height: 450px
+  overflow: hidden
 
 .pos
   position: relative
@@ -2886,7 +2888,6 @@ span.selectOption
     margin-top: 20px
 
 .spo
-  background-color: #333
   text-align: center
   color: #FFF
   margin: 0 auto
@@ -2903,7 +2904,8 @@ span.selectOption
   padding: 50px 15px
   line-height: 20px
   text-decoration: none !important
-
+  &:hover
+    background-color: #333
 #flexiselDemo1 li a
   .spo
     display: none
@@ -3598,3 +3600,15 @@ input.djs
 
 .green-text
   color: #04C189
+
+.thumb,
+.title-thumb
+  width: 100px
+
+.small,
+.title-small
+  width: 77px
+
+.large,
+.title-large
+  width: 185px
