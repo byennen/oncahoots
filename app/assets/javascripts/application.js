@@ -23,6 +23,9 @@
 //= require plugins/jquery.flexisel
 //= require plugins/jquery.accordion.source
 
+// Static pages
+//= require settings
+
 // Keep main last
 //= require main
 //
