@@ -8,3 +8,7 @@ body {
 .navbar {
   border: none;
 }
+
+body.modal-open {
+  margin: 0;
+}
