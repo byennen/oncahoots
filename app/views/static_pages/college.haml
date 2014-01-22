@@ -1,35 +1,30 @@
-= stylesheet_link_tag 'static/college', 'static/buttons'
-= javascript_include_tag 'static/college'
+= content_for :head do
+  = stylesheet_link_tag 'static/college', 'static/buttons'
+  = javascript_include_tag 'static/college'
 
-.col-md-5.no-margin
-  .banner{:style => "background:url(../../assets/banner-img.png) no-repeat;"}
-    .dropfil
+= content_for :page_title do
+  .row
+    .col-md-11.no-padding
       %a.dra{:href => "#"} DAVIDSON COLLEGE
-      %span
-        = image_tag('user-img.png')
-    .dropfil.mod
-      %a{:href => "search.html", :style => "float:right;"}
-        %button.btn.btn1{:name => "btn"}
-          %i.icon2
-            = image_tag('search-icon.png')
-      %input.field1{:name => "text", :placeholder => "Search", :type => "text"}/
-    / dropfil
-    .clearfix
+    .col-md-1.no-padding
+      = image_tag('user-img.png', class: "user-gravatar")
+
+= content_for :left_side do
+  .find-your-passion
     %ul.btns.showaa
       %li
         %a{:href => "search.html"}
-          %button.btn.btn2.sep{:name => "btn"} Find your club. Find your passion. >>
+          %button.btn.btn2{:name => "btn"} Find your club. Find your passion. >>
       %li
-        %a{:href => "search.html"}
+        %a
           %button.btn.btn2{:name => "btn"} Arts
-  / banner
-  .clearfix
+
   .pos
     %a{:href => "clubs.html"}
     .club{:style => "background:url(../../assets/football-img.png);"}
       .blank Soccer Club (55)
       %button.btn.btn3{:name => "btn", :style => "z-index:100; position:relative;"} All Clubs
-    / club
+
     .updates
       %h2 Club Updates
       %p.nsw
@@ -48,94 +43,67 @@
         Lorem sit amet consecer adiiscing elit, sed diam
         %span
           %a{:href => "clubs.html"} >>
-    / updates
-/ col-lg-5
-.col-md-5.no-margin
-  .slider
-    %h2
-      Find
-      %span
-        Free Food
-        = image_tag('arrow-down.png')
-        %a.anc{:href => "events.html"} All Events
-      %span#datepicker9
-        Today
-        = image_tag('arrow-down.png')
-        %a.anc{:href => "events.html"} All Days
-    .carus
-      %ul#flexiselDemo1
-        %li
-          = link_to image_tag('slider-img.png'), '#'
-          .spo Brief event description here.
-          %br/
-          %p
-            Event Name 9.27
+
+= content_for :right_side do
+  .col-md-5.no-margin
+    .slider
+      %h2
+        Find
+        %span
+          Free Food
+          = image_tag('arrow-down.png')
+          %a.anc{:href => "events.html"} All Events
+        %span#datepicker9
+          Today
+          = image_tag('arrow-down.png')
+          %a.anc{:href => "events.html"} All Days
+      .carus
+        %ul#flexiselDemo1
+          %li
+            = link_to image_tag('slider-img.png'), '#'
+            .spo Brief event description here.
             %br/
-            9:30 am, Angel Hall
+            %p
+              Event Name 9.27
+              %br/
+              9:30 am, Angel Hall
 
-      %a{:href => "events.html"}
-        %button.btn.btn3{:name => "btn"} View All
-      .strip
+        %a{:href => "events.html"}
+          %button.btn.btn3{:name => "btn"} View All
+        .strip
 
-  .two-clumns
-    .half{:style => "background:url(../../assets/building-img.png);"}
-      %h1 Alumni Search
-      %ul.foy
-        %li
-          %input{:name => "text", :type => "text", :value => "Name"}/
-        %li
-          %input{:name => "text", :type => "text", :value => "City"}/
-        %li
-          %select.selectyze2{:name => "style2"}
-            %option Field
-            %option Software
-            %option Software
-            %option Software
-            %option Software
-            %option Software
-        %li
-          %input{:name => "text", :type => "text", :value => "Major"}/
-        %li
-          %input{:name => "text", :type => "text", :value => "Grade Year"}/
-        %li
-          %a{:href => "search.html"}
-            %button.btn.btn3.ch{:name => "btn"} Access Your Network
-    / half
-    .green
-      %h2 College Updates
-      %a{"data-target" => "#college_update", "data-toggle" => "modal"}
-        %p
-          Club Name Lorem dollar sit amet, consectetur adipiscing elit, sed diam non
-          %span >>
+    .two-clumns
+      .half{:style => "background:url(../../assets/building-img.png);"}
+        %h1 Alumni Search
+        %ul.foy
+          %li
+            %input{:name => "text", :type => "text", :value => "Name"}/
+          %li
+            %input{:name => "text", :type => "text", :value => "City"}/
+          %li
+            %select.selectyze2{:name => "style2"}
+              %option Field
+              %option Software
+              %option Software
+              %option Software
+              %option Software
+              %option Software
+          %li
+            %input{:name => "text", :type => "text", :value => "Major"}/
+          %li
+            %input{:name => "text", :type => "text", :value => "Grade Year"}/
+          %li
+            %a{:href => "search.html"}
+              %button.btn.btn3.ch{:name => "btn"} Access Your Network
+
+
+      .green
+        %h2 College Updates
+        %a{"data-target" => "#college_update", "data-toggle" => "modal"}
+          %p
+            Club Name Lorem dollar sit amet, consectetur adipiscing elit, sed diam non
+            %span >>
 
 
 = render 'shared/college_update'
 
-:javascript
-  $(document).ready(function(){
-  $('.selectyze2').Selectyze({
-      theme : 'mac'
-  });
-  $(".nsw").on('click', function() {
-     $(".showaa").hide();
-     $(".hid").show();
-  });
-  });
-   $(window).load(function() {
-      $("#flexiselDemo1").flexisel({
-          enableResponsiveBreakpoints: true,
-          responsiveBreakpoints: {
-              portrait: {
-                  changePoint:480,
-                  visibleItems: 1
-              },
-              landscape: {
-                  changePoint:640,
-                  visibleItems: 2
-              },
-              tablet: {
-                  changePoint:768,
-                  visibleItems: 3
-              }
-          }
-      }); });
