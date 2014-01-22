@@ -14,7 +14,7 @@
     = csrf_meta_tags
     = yield(:head)
   %body
-    .container-full
+    .container-full{:id => "#{action_name}"}
       .row
         = render 'layouts/static_navigation'
         .col-md-10.no-padding
