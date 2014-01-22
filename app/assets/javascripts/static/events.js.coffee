@@ -1,29 +1,20 @@
 $(document).ready ->
   $("#datepicker").datepicker inline: true
   $(".selectyze2").Selectyze theme: "mac"
-  $(".nna").on "click", ->
+
+  $(".monthly").on "click", ->
     $(".events-list").hide()
     $(".mon").show()
     $(".di").css "color", "#00D689"
 
-  $(".nnaa").on "click", ->
+  $(".daily").on "click", ->
     $(".mon").hide()
     $(".events-list").show()
     $(".di").css "color", "#00D689"
 
-  $(".nnaa5").on "click", ->
+  $(".weekly").on "click", ->
     $(".mon").hide()
     $(".mon22").show()
-    $(".di").css "color", "#00D689"
-
-  $(".nnaa5").on "click", ->
-    $(".events-list").hide()
-    $(".mon22").show()
-    $(".di").css "color", "#00D689"
-
-  $(".nna").on "click", ->
-    $(".mon22").hide()
-    $(".mon").show()
     $(".di").css "color", "#00D689"
 
   $("#selector").gentleSelect()

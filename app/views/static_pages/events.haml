@@ -24,99 +24,48 @@
           December 15, 2013
           %a{:href => "#"} >>
       .session
-        %a{:href => "#"} Free Food
-        %a.nnaa{:href => "#"} Daily
-        %a.nnaa5{:href => "#"} Weekly
-        %a.nna{:href => "#"} Monthly
-      %ul.events-list.nnaa5
-        %li.light
-          %strong
-            SUN 12.15
-            %br/
-            10:00 am
-            %br/
-            Location Here
-          %span
+        %a.freefood{:href => "#"} Free Food
+        %a.weekly{:href => "#"} Weekly
+        %a.montly{:href => "#"} Monthly
+
+      .row.event-listing
+        .col-md-3.date
+          %p SUN 12.15
+          %p 10:00 am
+          %p Location Here
+        .col-md-8.event-title
           %h3 Event Title / Headline Here
-          Brief description / subhead here.
-          %a{:href => "#"} Click for more info.
-        %li.dark
-          %strong
-            SUN 12.15
-            %br/
-            10:00 am
-            %br/
-            Location Here
-          %span
+          %p Brief description / subhead here. Click for more info.
+
+      .row.event-listing
+        .col-md-3.date
+          %p SUN 12.15
+          %p 10:00 am
+          %p Location Here
+        .col-md-8.event-title
           %h3 Event Title / Headline Here
-          Brief description / subhead here.
-          %a{:href => "#"} Click for more info.
-        %li.light
-          %strong
-            SUN 12.15
-            %br/
-            10:00 am
-            %br/
-            Location Here
-          %span
+          %p Brief description / subhead here. Click for more info.
+
+      .row.event-listing
+        .col-md-3.date
+          %p SUN 12.15
+          %p 10:00 am
+          %p Location Here
+        .col-md-8.event-title
           %h3 Event Title / Headline Here
-          Brief description / subhead here.
-          %a{:href => "#"} Click for more info.
-        %li.dark
-          %strong
-            SUN 12.15
-            %br/
-            10:00 am
-            %br/
-            Location Here
-          %span
+          %p Brief description / subhead here. Click for more info.
+
+      .row.event-listing
+        .col-md-3.date
+          %p SUN 12.15
+          %p 10:00 am
+          %p Location Here
+        .col-md-8.event-title
           %h3 Event Title / Headline Here
-          Brief description / subhead here.
-          %a{:href => "#"} Click for more info.
-        %li.light
-          %strong
-            SUN 12.15
-            %br/
-            10:00 am
-            %br/
-            Location Here
-          %span
-          %h3 Event Title / Headline Here
-          Brief description / subhead here.
-          %a{:href => "#"} Click for more info.
-        %li.dark
-          %strong
-            SUN 12.15
-            %br/
-            10:00 am
-            %br/
-            Location Here
-          %span
-          %h3 Event Title / Headline Here
-          Brief description / subhead here.
-          %a{:href => "#"} Click for more info.
-        %li.light
-          %strong
-            SUN 12.15
-            %br/
-            10:00 am
-            %br/
-            Location Here
-          %span
-          %h3 Event Title / Headline Here
-          Brief description / subhead here.
-          %a{:href => "#"} Click for more info.
-        %li.dark
-          %strong
-            SUN 12.15
-            %br/
-            10:00 am
-            %br/
-            Location Here
-          %span
-          %h3 Event Title / Headline Here
-          Brief description / subhead here.
-          %a{:href => "#"} Click for more info.
+          %p Brief description / subhead here. Click for more info.
+
+
+
       .mon
         = image_tag('mon.png', class: 'imd', height: '355', width: '590')
       .mon22
@@ -157,20 +106,20 @@
             %a{:href => "#"} Click for more info.
 
     .col-md-5.no-padding
-      .nna
-        .info
-          %button.btn77{:name => "btn"} Event Title
-        .pro-data
-          = image_tag('circle-img.png')
-          %p
-            SUN 12.15, 10:00 am
-            %br/
-            Location Here
-            %br/
-            %a{:href => "#"} Running Club
-          %span Event Description here. Lorem ipsum dolor sit amet, ectetuer. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed  I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed  I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed  I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore doloetctuer adipaicse. Lore dolor consetctuer adipaicse.
-          %button.btn8{:name => "btn"} Interested
-          %button.btn8{:name => "btn"} Next Event
+      .event-area-title
+        %p
+          Event Title
+      .pro-data
+        = image_tag('circle-img.png')
+        %p
+          SUN 12.15, 10:00 am
+          %br/
+          Location Here
+          %br/
+          %a{:href => "#"} Running Club
+        %span Event Description here. Lorem ipsum dolor sit amet, ectetuer. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed  I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed  I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed  I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore doloetctuer adipaicse. Lore dolor consetctuer adipaicse.
+        %button.btn8{:name => "btn"} Interested
+        %button.btn8{:name => "btn"} Next Event
 
     .mon
       .info{:style => "position:relative; z-index:1; width:100%; float:left;"}
