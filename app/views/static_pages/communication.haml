@@ -1,3 +1,6 @@
+= stylesheet_link_tag 'static/communication', 'static/buttons'
+= javascript_include_tag 'static/communication'
+
 .no-margin.col-md-6
   .title
     %h1 Communication
@@ -138,30 +141,3 @@
     %button.btn8{:name => "btn"} Accept
     %button.btn8{:name => "btn"} Decline
     %button.btn8{:name => "btn"} Recommend
-
-
-:javascript
-  $(document).ready(function(){
-    $('.selectyze2').Selectyze({
-        theme : 'mac'
-    });
-    $('ul').accordion();
-  $(".lala").on('click', function() {
-     $(".lal").hide();
-     $(".showass").show();
-  });
-  $(".lalas").on('click', function() {
-     $(".showass").hide();
-     $(".lal").show();
-  });
-  $("#mes").click(function(){
-    if($('#uni').css('display')=='none')
-    {
-        $('#uni').css('display', 'block');
-    }
-    else
-    {
-        $('#uni').css('display', 'none');
-    }
-  });
-  });
