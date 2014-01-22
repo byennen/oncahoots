@@ -1,3 +1,6 @@
+= stylesheet_link_tag 'static/running_club', 'static/buttons'
+= javascript_include_tag 'static/running_club'
+
 .no-margin.col-md-6
   .title
     %h1 Clubs
@@ -181,16 +184,3 @@
           Brief description / subhead here.
           %br/
           Click for more info.
-
-:javascript
-  $(document).ready(function(){
-    $('.selectyze2').Selectyze({
-        theme : 'mac'
-    });
-    $('#selector').gentleSelect(); // apply gentleSelect with default options
-    $('#selector2').gentleSelect(); // apply gentleSelect with default options
-    $("#nsw").on('click', function() {
-     $(".showa").hide();
-     $(".hid").show();
-  });
-  });

@@ -1,3 +1,6 @@
+= stylesheet_link_tag 'static/members', 'static/buttons'
+= javascript_include_tag 'static/members'
+
 .no-margin.col-md-6
   .title
     %h1 Clubs
@@ -154,30 +157,3 @@
 
 
 = render 'shared/create_club'
-
-:javascript
-  $(document).ready(function(){
-    $('.selectyze2').Selectyze({
-        theme : 'mac'
-    });
-  $('#selector').gentleSelect(); // apply gentleSelect with default options
-    $('#selector2').gentleSelect(); // apply gentleSelect with default options
-  $("#hidShow").click(function(){
-    if($('.sub-com').css('display')=='block')
-    {
-        $('.sub-com').css('display', 'none');
-    }
-    else
-    {
-        $('.sub-com').css('display', 'block');
-    }
-  });
-  $(".hid").on('click', function() {
-     $(this).hide();
-     $(".showa").show();
-  });
-  $("#nsw").on('click', function() {
-     $(".showa").hide();
-     $(".hid").show();
-  });
-  });
