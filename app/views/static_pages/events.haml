@@ -1,122 +1,118 @@
-= stylesheet_link_tag 'static/events', 'static/buttons'
-= javascript_include_tag 'static/events'
+= content_for :head do
+  = stylesheet_link_tag 'static/events', 'static/buttons'
+  = javascript_include_tag 'static/events'
 
-.col-md-10.no-padding#events-page
-  .row
-    .col-md-7.no-padding
-      .title
-        %h1
-          Events
-          %a{:href => "#", "data-toggle" => "modal", "data-target" => "#create_event"}
-            Add Event
-            %span.green-text >>
-          %a{:href => "#"}
-            My Events
-            %span.green-text >>
-    .col-md-5.no-padding
-      = render 'shared/search'
+= content_for :page_title do
+  .title
+    %h1
+      Events
+      %a{:href => "#", "data-toggle" => "modal", "data-target" => "#create_event"}
+        Add Event
+        %span.green-text >>
+      %a{:href => "#"}
+        My Events
+        %span.green-text >>
 
-  .row
-    .col-md-7.no-padding
-      .caltitle
+= content_for :left_side do
+  .caltitle
+    %p
+      %a{:href => "#"} <<
+      December 15, 2013
+      %a{:href => "#"} >>
+  .session
+    %a.freefood{:href => "#"} Free Food
+    %a.weekly{:href => "#"} Weekly
+    %a.monthly{:href => "#"} Monthly
+
+  #events-list
+    .row.event-listing
+      .col-md-3.date
+        %p SUN 12.15
+        %p 10:00 am
+        %p Location Here
+      .col-md-8.event-title
+        %h3 Event Title / Headline Here
+        %p Brief description / subhead here. Click for more info.
+
+    .row.event-listing
+      .col-md-3.date
+        %p SUN 12.15
+        %p 10:00 am
+        %p Location Here
+      .col-md-8.event-title
+        %h3 Event Title / Headline Here
+        %p Brief description / subhead here. Click for more info.
+
+    .row.event-listing
+      .col-md-3.date
+        %p SUN 12.15
+        %p 10:00 am
+        %p Location Here
+      .col-md-8.event-title
+        %h3 Event Title / Headline Here
+        %p Brief description / subhead here. Click for more info.
+
+    .row.event-listing
+      .col-md-3.date
+        %p SUN 12.15
+        %p 10:00 am
+        %p Location Here
+      .col-md-8.event-title
+        %h3 Event Title / Headline Here
+        %p Brief description / subhead here. Click for more info.
+
+  #monthly-events-calendar
+    .row
+      .col-md-12.no-padding
+        = image_tag('mon.png')
+
+= content_for :right_side do
+  #event-area-single
+    .event-area-title
+      %p
+        Event Title
+    .event-area-content
+      = image_tag('circle-img.png')
+      %p
+        SUN 12.15, 10:00 am
+        %br/
+        Location Here
+        %br/
+        %a{:href => "#"} Running Club
+      %span Event Description here. Lorem ipsum dolor sit amet, ectetuer. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed  I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed  I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed  I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore doloetctuer adipaicse. Lore dolor consetctuer adipaicse.
+      %button.btn8{:name => "btn"} Interested
+      %button.btn8{:name => "btn"} Next Event
+
+  #event-area-monthly-listing
+    .monthly-event-listing
+      .event-area-title
         %p
-          %a{:href => "#"} <<
-          December 15, 2013
-          %a{:href => "#"} >>
-      .session
-        %a.freefood{:href => "#"} Free Food
-        %a.weekly{:href => "#"} Weekly
-        %a.monthly{:href => "#"} Monthly
-
-      #events-list
-        .row.event-listing
-          .col-md-3.date
-            %p SUN 12.15
-            %p 10:00 am
-            %p Location Here
-          .col-md-8.event-title
-            %h3 Event Title / Headline Here
-            %p Brief description / subhead here. Click for more info.
-
-        .row.event-listing
-          .col-md-3.date
-            %p SUN 12.15
-            %p 10:00 am
-            %p Location Here
-          .col-md-8.event-title
-            %h3 Event Title / Headline Here
-            %p Brief description / subhead here. Click for more info.
-
-        .row.event-listing
-          .col-md-3.date
-            %p SUN 12.15
-            %p 10:00 am
-            %p Location Here
-          .col-md-8.event-title
-            %h3 Event Title / Headline Here
-            %p Brief description / subhead here. Click for more info.
-
-        .row.event-listing
-          .col-md-3.date
-            %p SUN 12.15
-            %p 10:00 am
-            %p Location Here
-          .col-md-8.event-title
-            %h3 Event Title / Headline Here
-            %p Brief description / subhead here. Click for more info.
-
-      #monthly-events-calendar
-        .row
-          .col-md-12.no-padding
-            = image_tag('mon.png')
-
-    .col-md-5.no-padding
-      #event-area-single
-        .event-area-title
-          %p
-            Event Title
-        .event-area-content
-          = image_tag('circle-img.png')
-          %p
-            SUN 12.15, 10:00 am
-            %br/
-            Location Here
-            %br/
-            %a{:href => "#"} Running Club
-          %span Event Description here. Lorem ipsum dolor sit amet, ectetuer. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed  I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed  I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed  I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore doloetctuer adipaicse. Lore dolor consetctuer adipaicse.
-          %button.btn8{:name => "btn"} Interested
-          %button.btn8{:name => "btn"} Next Event
-
-      #event-area-monthly-listing
-        .monthly-event-listing
-          .event-area-title
-            %p
-              My December Events
-          %table.table
-            %tr
-              %td.text-center
-                = image_tag('circle.png', class: "event-img-small")
-              %td
-                %p Event Title
-                %p Date &amp; Time
-              %td
-                %p Short event description here.
-            %tr.dark
-              %td.text-center
-                = image_tag('circle.png', class: "event-img-small")
-              %td
-                %p Event Title
-                %p Date &amp; Time
-              %td
-                %p Short event description here.
-            %tr
-              %td.text-center
-                = image_tag('circle.png', class: "event-img-small")
-              %td
-                %p Event Title
-                %p Date &amp; Time
-              %td
-                %p Short event description here.
+          My December Events
+      %table.table
+        %tr
+          %td.text-center
+            = image_tag('circle.png', class: "event-img-small")
+          %td
+            %p Event Title
+            %p Date &amp; Time
+          %td
+            %p Short event description here.
+        %tr.dark
+          %td.text-center
+            = image_tag('circle.png', class: "event-img-small")
+          %td
+            %p Event Title
+            %p Date &amp; Time
+          %td
+            %p Short event description here.
+        %tr
+          %td.text-center
+            = image_tag('circle.png', class: "event-img-small")
+          %td
+            %p Event Title
+            %p Date &amp; Time
+          %td
+            %p Short event description here.
 
 
   = render 'shared/create_event'
