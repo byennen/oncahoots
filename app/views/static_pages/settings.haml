@@ -1,32 +1,29 @@
-= stylesheet_link_tag "static/settings"
+= content_for :head do
+  = stylesheet_link_tag "static/settings"
 
-.col-md-10.no-padding#settings-page
-  .row
-    .col-md-6.no-padding
-      .title
-        %h1 Settings
-    .col-md-6.no-padding
-      = render 'shared/search'
+= content_for :page_title do
+  .title
+    %h1 Settings
 
-  .row
-    .col-md-offset-3.col-md-6
-      .settings-form
-        %h3 Edit User
-        %input{:name => "text", :placeholder => "FIRST NAME", :type => "text"}/
-        %input{:name => "text", :placeholder => "LAST NAME", :type => "text"}/
-        %select#alumni_selector
-          %option STUDENT
-          %option ALUMNI
-        %input{:name => "text", :placeholder => "EMAIL", :type => "text"}/
-        %p Leave blank if you don't want to change it.
-        %input{:name => "password", :placeholder => "PASSWORD", :type => "password"}/
-        %input{:name => "password", :placeholder => "CONFIRM", :type => "password"}/
-        %p We need your current password to confirm.
-        %input{:name => "password", :placeholder => "CURRENT PASSWORD", :type => "password"}/
-        %button.btn.btn-lg Update
+= content_for :left_side do
+  .col-md-offset-3.settings-form
+    %h3 Edit User
+    %input{:name => "text", :placeholder => "FIRST NAME", :type => "text"}/
+    %input{:name => "text", :placeholder => "LAST NAME", :type => "text"}/
+    %select#alumni_selector
+      %option STUDENT
+      %option ALUMNI
+    %input{:name => "text", :placeholder => "EMAIL", :type => "text"}/
+    %p Leave blank if you don't want to change it.
+    %input{:name => "password", :placeholder => "PASSWORD", :type => "password"}/
+    %input{:name => "password", :placeholder => "CONFIRM", :type => "password"}/
+    %p We need your current password to confirm.
+    %input{:name => "password", :placeholder => "CURRENT PASSWORD", :type => "password"}/
+    %button.btn.btn-lg Update
 
 
-        .text-center
-          %a.delete-link{:href => "#"} Delete your account.
-          %span To edit your profile information,
-          %a{:href => "network.html"} CLICK HERE.
+    .text-center
+      %a.delete-link{:href => "#"} Delete your account.
+      %span To edit your profile information,
+      %a{:href => "network.html"} CLICK HERE.
+
