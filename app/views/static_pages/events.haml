@@ -1,6 +1,6 @@
 = content_for :head do
   = stylesheet_link_tag 'static/events', 'static/buttons'
-  = javascript_include_tag 'static/events'
+
 
 = content_for :page_title do
   .title
@@ -12,6 +12,7 @@
       %a{:href => "#"}
         My Events
         %span.green-text >>
+
 
 = content_for :left_side do
   .caltitle

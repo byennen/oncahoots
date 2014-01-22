@@ -2,13 +2,13 @@ $(document).ready ->
   $("#datepicker").datepicker inline: true
   $(".selectyze2").Selectyze theme: "mac"
 
-  $("#selector").gentleSelect()
-  $("#selector2").gentleSelect()
-  $("#selector3").gentleSelect()
-  $("#selector4").gentleSelect()
-  $("#selector5").gentleSelect()
-  $("#selector6").gentleSelect()
-  $("#selector7").gentleSelect()
+  $("#category-select").gentleSelect()
+  $("#time-ampm-select").gentleSelect()
+  $("#time-minute-select").gentleSelect()
+  $("#time-hour-select").gentleSelect()
+  $("#club-event-select").gentleSelect()
+  $("#club-select").gentleSelect()
+  $("#free-food-select").gentleSelect()
 
   $(".freefood").on "click", ->
     $("#monthly-events-calendar").hide()
