@@ -1,6 +1,14 @@
 h1. Cahoots Connect
 
+"Static Design(Static Design)":http://oncahoots.github.io
+
+"Dev URL(Dev URL)":http://oncahoots-dev.herokuapp.com
+
 "Staging URL(Staging URL)":http://cahoots:cahoots2013@oncahoots-staging.herokuapp.com
+
+Staging HTTP username and password
+u: cahoots
+p: cahoots2013
 
 h2. Test Users
 
