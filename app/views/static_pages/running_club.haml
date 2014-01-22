@@ -5,65 +5,14 @@
   .title
     %h1 Clubs
     %p
-      %a{"data-target" => "#myModal3", "data-toggle" => "modal", :href => "#"} Create Your Own Club
+      %a{"data-target" => "#create_club", "data-toggle" => "modal", :href => "#"} Create Your Own Club
       %span >>
-    #myModal3.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
-      .modal-dialog
-        .modal-content
-          .modal-header
-            %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"}
-            %h4#myModalLabel.modal-title Create Club
-          / modal-header
-          .modal-body
-            %form.forms
-              .half
-                %label Club Name
-                %input{:name => "text", :type => "text"}/
-                %label Private
-                %select#selector{:name => "style2"}
-                  %option Yes, this club is private
-                  %option No, this club is not private
-                  %option Yes, this club is private
-                  %option No, this club is not private
-                  %option Yes, this club is private
-                  %option No, this club is not private
-              / half
-              .half
-                %label Category
-                %select#selector2{:name => "style2"}
-                  %option Academic
-                  %option Non Academic
-                  %option Academic
-                  %option Non Academic
-                  %option Academic
-                  %option Non Academic
-                %label &nbsp;
-                %button.btnx{:name => "btn"} Choose File
-              / half
-              .clearfix
-              %label.ne Description
-              %textarea.texta
-              %button.btng{:name => "btn"} Create Club
-            .clearfix
-          / modal-body
-        / modal-content
-      / modal-dialog
-    / modal
-  / title
+
   .run-club{:style => "background:url(../../assets/running-club-img.png) no-repeat; height:320px;"}
     %button.btn9{:name => "btn"} Running Club
-  / run-club
-  %ul.sub-nav
-    %li
-      %a{:href => "lowdown.html"} Lowdown
-    %li
-      %a{:href => "members.html"} Members
-    %li
-      %a{:href => "about.html"} About
-    %li
-      %a{:href => "money.html"} Money
-    %li
-      %a{:href => "photos.html"} Photos
+
+  = render 'static_pages/running_club'
+
   .cent
     %p
       This content is restricted.
@@ -71,10 +20,10 @@
       Join club to view Lowdown.
     %a{:href => "lowdown.html"}
       %button.btn9.mod2{:name => "btn"} Join Club
-  / cent
-  .clearfix
-/ col-lg-6
+
 .no-margin.col-md-4
   = render 'shared/search'
   = render 'static_pages/newsletter'
   = render 'static_pages/calendar'
+
+= render 'shared/create_club'
