@@ -1,6 +1,8 @@
+= stylesheet_link_tag "static/events"
+
 .col-md-10.no-padding#events-page
   .row
-    .col-md-6.no-padding
+    .col-md-7.no-padding
       .title
         %h1
           Events
@@ -10,34 +12,115 @@
           %a{:href => "#"}
             My Events
             %span.green-text >>
-    .col-md-6.no-padding
+    .col-md-5.no-padding
       = render 'shared/search'
 
   .row
-    .col-md-6.no-padding
-      .calendar
-        .caltitle
-          %p
-            %a{:href => "#"} <<
-            December 15, 2013
-            %a{:href => "#"} >>
-        .session
-          %a{:href => "#"} Free Food
-          %a.nnaa{:href => "#"} Daily
-          %a.nnaa5{:href => "#"} Weekly
-          %a.nna{:href => "#"} Monthly
-        %ul.events-list.nnaa5
-          %li.light
-            %strong
-              SUN 12.15
-              %br/
-              10:00 am
-              %br/
-              Location Here
-            %span
-            %h3 Event Title / Headline Here
-            Brief description / subhead here.
-            %a{:href => "#"} Click for more info.
+    .col-md-7.no-padding
+      .caltitle
+        %p
+          %a{:href => "#"} <<
+          December 15, 2013
+          %a{:href => "#"} >>
+      .session
+        %a{:href => "#"} Free Food
+        %a.nnaa{:href => "#"} Daily
+        %a.nnaa5{:href => "#"} Weekly
+        %a.nna{:href => "#"} Monthly
+      %ul.events-list.nnaa5
+        %li.light
+          %strong
+            SUN 12.15
+            %br/
+            10:00 am
+            %br/
+            Location Here
+          %span
+          %h3 Event Title / Headline Here
+          Brief description / subhead here.
+          %a{:href => "#"} Click for more info.
+        %li.dark
+          %strong
+            SUN 12.15
+            %br/
+            10:00 am
+            %br/
+            Location Here
+          %span
+          %h3 Event Title / Headline Here
+          Brief description / subhead here.
+          %a{:href => "#"} Click for more info.
+        %li.light
+          %strong
+            SUN 12.15
+            %br/
+            10:00 am
+            %br/
+            Location Here
+          %span
+          %h3 Event Title / Headline Here
+          Brief description / subhead here.
+          %a{:href => "#"} Click for more info.
+        %li.dark
+          %strong
+            SUN 12.15
+            %br/
+            10:00 am
+            %br/
+            Location Here
+          %span
+          %h3 Event Title / Headline Here
+          Brief description / subhead here.
+          %a{:href => "#"} Click for more info.
+        %li.light
+          %strong
+            SUN 12.15
+            %br/
+            10:00 am
+            %br/
+            Location Here
+          %span
+          %h3 Event Title / Headline Here
+          Brief description / subhead here.
+          %a{:href => "#"} Click for more info.
+        %li.dark
+          %strong
+            SUN 12.15
+            %br/
+            10:00 am
+            %br/
+            Location Here
+          %span
+          %h3 Event Title / Headline Here
+          Brief description / subhead here.
+          %a{:href => "#"} Click for more info.
+        %li.light
+          %strong
+            SUN 12.15
+            %br/
+            10:00 am
+            %br/
+            Location Here
+          %span
+          %h3 Event Title / Headline Here
+          Brief description / subhead here.
+          %a{:href => "#"} Click for more info.
+        %li.dark
+          %strong
+            SUN 12.15
+            %br/
+            10:00 am
+            %br/
+            Location Here
+          %span
+          %h3 Event Title / Headline Here
+          Brief description / subhead here.
+          %a{:href => "#"} Click for more info.
+      .mon
+        = image_tag('mon.png', class: 'imd', height: '355', width: '590')
+      .mon22
+        = image_tag('wcal.png', class: 'imd', width: '590')
+        %ul.events-listss
           %li.dark
             %strong
               SUN 12.15
@@ -71,90 +154,8 @@
             %h3 Event Title / Headline Here
             Brief description / subhead here.
             %a{:href => "#"} Click for more info.
-          %li.light
-            %strong
-              SUN 12.15
-              %br/
-              10:00 am
-              %br/
-              Location Here
-            %span
-            %h3 Event Title / Headline Here
-            Brief description / subhead here.
-            %a{:href => "#"} Click for more info.
-          %li.dark
-            %strong
-              SUN 12.15
-              %br/
-              10:00 am
-              %br/
-              Location Here
-            %span
-            %h3 Event Title / Headline Here
-            Brief description / subhead here.
-            %a{:href => "#"} Click for more info.
-          %li.light
-            %strong
-              SUN 12.15
-              %br/
-              10:00 am
-              %br/
-              Location Here
-            %span
-            %h3 Event Title / Headline Here
-            Brief description / subhead here.
-            %a{:href => "#"} Click for more info.
-          %li.dark
-            %strong
-              SUN 12.15
-              %br/
-              10:00 am
-              %br/
-              Location Here
-            %span
-            %h3 Event Title / Headline Here
-            Brief description / subhead here.
-            %a{:href => "#"} Click for more info.
-        .mon
-          = image_tag('mon.png', class: 'imd', height: '355', width: '590')
-        .mon22
-          = image_tag('wcal.png', class: 'imd', width: '590')
-          %ul.events-listss
-            %li.dark
-              %strong
-                SUN 12.15
-                %br/
-                10:00 am
-                %br/
-                Location Here
-              %span
-              %h3 Event Title / Headline Here
-              Brief description / subhead here.
-              %a{:href => "#"} Click for more info.
-            %li.light
-              %strong
-                SUN 12.15
-                %br/
-                10:00 am
-                %br/
-                Location Here
-              %span
-              %h3 Event Title / Headline Here
-              Brief description / subhead here.
-              %a{:href => "#"} Click for more info.
-            %li.dark
-              %strong
-                SUN 12.15
-                %br/
-                10:00 am
-                %br/
-                Location Here
-              %span
-              %h3 Event Title / Headline Here
-              Brief description / subhead here.
-              %a{:href => "#"} Click for more info.
 
-    .col-md-6.no-padding
+    .col-md-5.no-padding
       .nna
         .info
           %button.btn77{:name => "btn"} Event Title
