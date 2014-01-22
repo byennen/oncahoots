@@ -1,14 +1,16 @@
-= stylesheet_link_tag 'static/clubs'
-= stylesheet_link_tag 'static/buttons'
-= javascript_include_tag 'static/clubs'
+= content_for :head do
+  = stylesheet_link_tag 'static/clubs'
+  = stylesheet_link_tag 'static/buttons'
+  = javascript_include_tag 'static/clubs'
 
-.no-margin.col-md-6
+= content_for :page_title do
   .title
     %h1 Clubs
     %p
       %a{"data-target" => "#create_club", "data-toggle" => "modal", :href => "#"} Create Your Own Club
       %span >>
 
+= content_for :left_side do
   .clubs-inner
     %h2 What kind of club are you looking for?
     %ul.inline
@@ -54,8 +56,7 @@
           %strong Running Club >>
       %p Summary about club here.
 
-.no-margin.col-md-4
-  = render 'shared/search'
+= content_for :right_side do
   .info
     %span.btn4 My Clubs
     .div

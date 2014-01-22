@@ -1,11 +1,14 @@
-= javascript_include_tag 'static/about'
+= content_for :head do
+  = javascript_include_tag 'static/about'
 
-.no-margin.col-md-6
+= content_for :page_title do
   .title
     %h1 Clubs
     %p
       %a{"data-target" => "#create_club", "data-toggle" => "modal", :href => "#"} Create Your Own Club
       %span >>
+
+= content_for :left_side do
   .run-club{:style => "background:url(../../assets/running-club-img.png) no-repeat; height:320px;"}
     %button.btn9{:name => "btn"} Running Club
     %button.btn10{:name => "btn"} Join Club
@@ -46,58 +49,8 @@
       %br/
       %br/
       Lorem dolor sit amet, consectetuer adipiscing elit, sed diam nonuy. Lorem ipsum dolor sit amet, conetuer adipiscing elit, sed diam nonummy nibh euaismod tincidunt ut laoreet dolore magna alaarhiquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate Records
-      %br/
-      %br/
-      %a{:href => "#"} 12.8.13
-      Lorem dolor sit amet, consectetuer adipiscing elit, sed diam nonummy.
-      %a{:href => "#"} Download PDF
-      %br/
-      %br/
-      %a{:href => "#"} 11.18.13
-      Ipsum dolor sit amet, ectetuer adipiscing elit, sed diam nonummy.
-      %a{:href => "#"} Download PDF
-      %br/
-      %br/
-      %a{:href => "#"} 10.4.13
-      Adipiscing elit, sed diam nonummy.
-      %a{:href => "#"} Download PDF
-      %br/
-      %br/
-      %a{:href => "#"} 10.4.13
-      Adipiscing elit, sed diam nonummy.
-      %a{:href => "#"} Download PDF
-      %br/
-      %br/
-      %a{:href => "#"} 10.4.13
-      Adipiscing elit, sed diam nonummy.
-      %a{:href => "#"} Download PDF
-      %br/
-      %br/
-      %a{:href => "#"} 10.4.13
-      Adipiscing elit, sed diam nonummy.
-      %a{:href => "#"} Download PDF
-      %br/
-      %br/
-      %a{:href => "#"} 10.4.13
-      Adipiscing elit, sed diam nonummy.
-      %a{:href => "#"} Download PDF
-      %br/
-      %br/
-      %a{:href => "#"} 10.4.13
-      Adipiscing elit, sed diam nonummy.
-      %a{:href => "#"} Download PDF
-      %br/
-      %br/
-      %a{:href => "#"} 10.4.13
-      Adipiscing elit, sed diam nonummy.
-      %a{:href => "#"} Download PDF
-      %br/
-      %br/
-  / members
-  .clearfix
-/ col-lg-6
-.no-margin.col-md-4
-  = render 'shared/search'
+
+= content_for :right_side do
   = render 'static_pages/newsletter'
   = render 'static_pages/calendar'
 

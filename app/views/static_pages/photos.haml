@@ -1,13 +1,15 @@
-= stylesheet_link_tag 'static/photos', 'static/buttons'
-= javascript_include_tag 'static/photos'
+= content_for :head do
+  = stylesheet_link_tag 'static/photos', 'static/buttons'
+  = javascript_include_tag 'static/photos'
 
-.no-margin.col-md-6
+= content_for :page_title do
   .title
     %h1 Clubs
     %p
       %a{"data-target" => "#create_club", "data-toggle" => "modal", :href => "#"} Create Your Own Club
       %span >>
 
+= content_for :left_side do
   .run-club{:style => "background:url(../../assets/running-club-img.png) no-repeat; height:320px;"}
     %button.btn9{:name => "btn"} Running Club
     %button.btn10{:name => "btn"} Join Club
@@ -75,8 +77,7 @@
                   %span UserName
                   comment lorem Ipsum dolor sit amet, ectetuer adipiscing elit, sed diam nonummy. Lorem dolor sit amet, consect!
 
-.no-margin.col-md-4
-  = render 'shared/search'
+= content_for :right_side do
   = render 'static_pages/newsletter'
   = render 'static_pages/calendar'
 
