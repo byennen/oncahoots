@@ -21,13 +21,13 @@
       padding: 10px 0px 10px 20px;
     }
     h3 {
-      font-size: 26px;
+      font-size: 24px;
       margin-bottom: 0px;
       font-weight: 400;
     }
     p {
       margin: 0px;
-      font-size: 16px;
+      font-size: 14px;
       font-weight: 400;
     }
     .event-title {
@@ -53,6 +53,23 @@
       cursor: default;
     }
   }
+  .event-area-content {
+    text-align: center;
+    width: 100%;
+    p {
+      font-size: 20px;
+      margin-top: 20px;
+      a {
+        color: #0dc489;
+      }
+    }
+    span {
+      text-align: justify;
+      font-size: 16px;
+      display: block;
+      padding: 0 25px;
+    }
+  }
   .event-area-title {
     min-height: 73px;
     text-align: center;
@@ -70,6 +87,26 @@
       font-size: 27px;
       display: block;
       padding-top: 20px;
+    }
+  }
+  #event-area-monthly-listing table{
+    .event-img-small {
+      max-width: 75px;
+    }
+    p {
+      font-size: 12px;
+      margin: 0px;
+    }
+    td {
+      vertical-align: middle;
+      border: none;
+    }
+  }
+
+  #monthly-events-calendar, #weekly-events-calendar {
+    img {
+      width: 80%;
+      margin: 40px 10%;
     }
   }
 

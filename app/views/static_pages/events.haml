@@ -7,7 +7,7 @@
       .title
         %h1
           Events
-          %a{:href => "#"}
+          %a{:href => "#", "data-toggle" => "modal", "data-target" => "#create_event"}
             Add Event
             %span.green-text >>
           %a{:href => "#"}
@@ -26,123 +26,97 @@
       .session
         %a.freefood{:href => "#"} Free Food
         %a.weekly{:href => "#"} Weekly
-        %a.montly{:href => "#"} Monthly
+        %a.monthly{:href => "#"} Monthly
 
-      .row.event-listing
-        .col-md-3.date
-          %p SUN 12.15
-          %p 10:00 am
-          %p Location Here
-        .col-md-8.event-title
-          %h3 Event Title / Headline Here
-          %p Brief description / subhead here. Click for more info.
-
-      .row.event-listing
-        .col-md-3.date
-          %p SUN 12.15
-          %p 10:00 am
-          %p Location Here
-        .col-md-8.event-title
-          %h3 Event Title / Headline Here
-          %p Brief description / subhead here. Click for more info.
-
-      .row.event-listing
-        .col-md-3.date
-          %p SUN 12.15
-          %p 10:00 am
-          %p Location Here
-        .col-md-8.event-title
-          %h3 Event Title / Headline Here
-          %p Brief description / subhead here. Click for more info.
-
-      .row.event-listing
-        .col-md-3.date
-          %p SUN 12.15
-          %p 10:00 am
-          %p Location Here
-        .col-md-8.event-title
-          %h3 Event Title / Headline Here
-          %p Brief description / subhead here. Click for more info.
-
-
-
-      .mon
-        = image_tag('mon.png', class: 'imd', height: '355', width: '590')
-      .mon22
-        = image_tag('wcal.png', class: 'imd', width: '590')
-        %ul.events-listss
-          %li.dark
-            %strong
-              SUN 12.15
-              %br/
-              10:00 am
-              %br/
-              Location Here
-            %span
+      #events-list
+        .row.event-listing
+          .col-md-3.date
+            %p SUN 12.15
+            %p 10:00 am
+            %p Location Here
+          .col-md-8.event-title
             %h3 Event Title / Headline Here
-            Brief description / subhead here.
-            %a{:href => "#"} Click for more info.
-          %li.light
-            %strong
-              SUN 12.15
-              %br/
-              10:00 am
-              %br/
-              Location Here
-            %span
+            %p Brief description / subhead here. Click for more info.
+
+        .row.event-listing
+          .col-md-3.date
+            %p SUN 12.15
+            %p 10:00 am
+            %p Location Here
+          .col-md-8.event-title
             %h3 Event Title / Headline Here
-            Brief description / subhead here.
-            %a{:href => "#"} Click for more info.
-          %li.dark
-            %strong
-              SUN 12.15
-              %br/
-              10:00 am
-              %br/
-              Location Here
-            %span
+            %p Brief description / subhead here. Click for more info.
+
+        .row.event-listing
+          .col-md-3.date
+            %p SUN 12.15
+            %p 10:00 am
+            %p Location Here
+          .col-md-8.event-title
             %h3 Event Title / Headline Here
-            Brief description / subhead here.
-            %a{:href => "#"} Click for more info.
+            %p Brief description / subhead here. Click for more info.
+
+        .row.event-listing
+          .col-md-3.date
+            %p SUN 12.15
+            %p 10:00 am
+            %p Location Here
+          .col-md-8.event-title
+            %h3 Event Title / Headline Here
+            %p Brief description / subhead here. Click for more info.
+
+      #monthly-events-calendar
+        .row
+          .col-md-12.no-padding
+            = image_tag('mon.png')
 
     .col-md-5.no-padding
-      .event-area-title
-        %p
-          Event Title
-      .pro-data
-        = image_tag('circle-img.png')
-        %p
-          SUN 12.15, 10:00 am
-          %br/
-          Location Here
-          %br/
-          %a{:href => "#"} Running Club
-        %span Event Description here. Lorem ipsum dolor sit amet, ectetuer. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed  I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed  I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed  I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore doloetctuer adipaicse. Lore dolor consetctuer adipaicse.
-        %button.btn8{:name => "btn"} Interested
-        %button.btn8{:name => "btn"} Next Event
+      #event-area-single
+        .event-area-title
+          %p
+            Event Title
+        .event-area-content
+          = image_tag('circle-img.png')
+          %p
+            SUN 12.15, 10:00 am
+            %br/
+            Location Here
+            %br/
+            %a{:href => "#"} Running Club
+          %span Event Description here. Lorem ipsum dolor sit amet, ectetuer. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed  I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed  I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed  I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore doloetctuer adipaicse. Lore dolor consetctuer adipaicse.
+          %button.btn8{:name => "btn"} Interested
+          %button.btn8{:name => "btn"} Next Event
 
-    .mon
-      .info{:style => "position:relative; z-index:1; width:100%; float:left;"}
-        %button.btn77{:name => "btn", :style => "margin-bottom:0;"} My December Events
-      / info
-      .comment-box
-        = link_to image_tag('circle.png'), '#', class: 'com-img', width: '85', height: '85'
-        %a.com-name{:href => "#"}
-          %span
-            Event Title
-            %br/
-            Date &amp; Time
-        %p{:style => "text-align:left; margin-top:25px;"} Short event description here.
-      / comment-box
-      .clearfix
-      .comment-box.dark
-        = link_to image_tag('circle.png'), '#', class: 'com-img', width: '85', height: '85'
-        %a.com-name{:href => "#"}
-          %span
-            Event Title
-            %br/
-            Date &amp; Time
-        %p{:style => "text-align:left; margin-top:25px;"} Short event description here.
+      #event-area-monthly-listing
+        .monthly-event-listing
+          .event-area-title
+            %p
+              My December Events
+          %table.table
+            %tr
+              %td.text-center
+                = image_tag('circle.png', class: "event-img-small")
+              %td
+                %p Event Title
+                %p Date &amp; Time
+              %td
+                %p Short event description here.
+            %tr.dark
+              %td.text-center
+                = image_tag('circle.png', class: "event-img-small")
+              %td
+                %p Event Title
+                %p Date &amp; Time
+              %td
+                %p Short event description here.
+            %tr
+              %td.text-center
+                = image_tag('circle.png', class: "event-img-small")
+              %td
+                %p Event Title
+                %p Date &amp; Time
+              %td
+                %p Short event description here.
 
 
   = render 'shared/create_event'
