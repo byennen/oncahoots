@@ -7,7 +7,7 @@
   %h1 Settings
 
 = content_for :full_page do
-  .col-md-6.col-md-offset-3.settings-form
+  .col-md-3.col-md-offset-4.settings-form
     %h3 Edit User
     %input{:name => "text", :placeholder => "FIRST NAME", :type => "text"}/
     %input{:name => "text", :placeholder => "LAST NAME", :type => "text"}/
@@ -18,9 +18,9 @@
     %p Leave blank if you don't want to change it.
     %input{:name => "password", :placeholder => "PASSWORD", :type => "password"}/
     %input{:name => "password", :placeholder => "CONFIRM", :type => "password"}/
-    %p We need your current password to confirm.
     %input{:name => "password", :placeholder => "CURRENT PASSWORD", :type => "password"}/
-    %button.btn.btn-lg Update
+    %p.current_password_message We need your current password to confirm.
+    %button.btn.btn-lg.btn-block.btn-primary Update
 
 
     .text-center

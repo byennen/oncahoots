@@ -4,19 +4,21 @@
   %h1 Settings
 = content_for :full_page do
   #settings
-    .col-md-6.col-md-offset-3.settings-form
+    .col-md-3.col-md-offset-4.settings-form
       %h3 Edit User
       = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put}) do |f|
         = f.text_field :first_name, autofocus: true, :placeholder => "FIRST NAME"
         = f.text_field :last_name, :placeholder => "LAST NAME"
-        = f.select :alumni, options_for_select([["STUDENT", false], ["ALUMNI", true]], resource.alumni)
+        - unless current_user.super_admin?
+          = f.select :alumni, options_for_select([["STUDENT", false], ["ALUMNI", true]], resource.alumni)
         = f.text_field :email, placeholder: "EMAIL"
         %p Leave blank if you don't want to change it.
         = f.password_field :password, placeholder: "PASSWORD"
         = f.password_field :password_confirmation, placeholder: "CONFIRM"
-        %p We need your current password to confirm
         = f.password_field :current_password, placeholder: "CURRENT PASSWORD"
-        = f.submit 'Update', :class => 'btn btn-lg'
+        %p.current_password_message We need your current password to confirm
+        %button.btn.btn-lg.btn-block.btn-primary Update
+        -#= f.submit 'Update', :class => 'btn btn-lg btn-block btn-primary'
 
       .text-center
         = link_to "delete your account", registration_path(resource_name), method: :delete, confirm: "are you sure?", class: "delete-link"
