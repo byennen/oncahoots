@@ -1073,7 +1073,6 @@ $green: #00c088;
 
 .lhs span {
   float: right;
-  margin-top: 20px;
   margin-right: 10px;
 }
 
@@ -1099,3 +1098,55 @@ $green: #00c088;
   display: none;
 }
 
+
+.red{
+  color: red;
+}
+.top{
+  margin-top: 10px;
+}
+.top2{
+  margin-top: 20px;
+}
+
+.circular{
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -khtml-border-radius: 50%;
+  box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+  -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+  -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+}
+
+.square{
+  box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+  -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+  -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+}
+
+.cir-img{
+  background-color: #ccc;
+  float: left;
+  text-align: center;
+}
+
+.green-text{
+  color: #04C189;
+}
+
+.thumb{
+  width: 100px;
+}
+
+.small{
+  width: 77px;
+}
+
+.medium{
+  width: 145px;
+}
+
+.large{
+  width: 185px;
+}

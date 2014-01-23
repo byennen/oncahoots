@@ -8,6 +8,7 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def edit
+    @full_page = true
     super
   end
 

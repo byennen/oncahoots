@@ -28,7 +28,7 @@ class MetropolitanClubsController < ApplicationController
   end
 
   def show
-    @metropolitan_club = MetropolitanClub.find params[:id]
+    @club = MetropolitanClub.find params[:id]
     @membership = Membership.new
     init_data
   end
@@ -58,18 +58,18 @@ class MetropolitanClubsController < ApplicationController
 
   private
     def init_data
-      @university = @metropolitan_club.university
-      @leaderships = @metropolitan_club.memberships.where(admin: true)
-      @my_photos = @metropolitan_club.club_photos.by_user(current_user)
-      @updates = @metropolitan_club.updates
-      @updateable = @metropolitan_club
-      @posts = @metropolitan_club.posts
-      if current_user.manage_club?(@metropolitan_club)
-        @conversations = @metropolitan_club.mailbox.inbox
-        @sentbox = @metropolitan_club.mailbox.sentbox
+      @university = @club.university
+      @leaderships = @club.memberships.where(admin: true)
+      @my_photos = @club.club_photos.by_user(current_user)
+      @updates = @club.updates
+      @updateable = @club
+      @posts = @club.posts
+      if current_user.manage_club?(@club)
+        @conversations = @club.mailbox.inbox
+        @sentbox = @club.mailbox.sentbox
       else
-        @conversations = current_user.conversations_for(@metropolitan_club)
-        @sentbox = current_user.sent_to(@metropolitan_club)
+        @conversations = current_user.conversations_for(@club)
+        @sentbox = current_user.sent_to(@club)
       end
     end 
 end

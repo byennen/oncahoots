@@ -47,8 +47,7 @@ module ApplicationHelper
 
   def display_image(image, size, options={})
     if image.blank?
-      #"<img id='#{options[:id]}' src='/assets/bg.png' class='circular cir-img #{size}'></image><div class='no-img-title title-#{size}'><div class='title-in'>No Image</div></div>".html_safe
-      image_tag "post-img.png"
+      "<img id='#{options[:id]}' src='/assets/transprent.png' class='circular cir-img #{size}'></image>".html_safe
     else
       image_tag image.send(size), class: "circular cir-img", id: options[:id]
     end
@@ -56,7 +55,7 @@ module ApplicationHelper
 
   def display_image_square(image, size)
     if image.blank?
-      "<img src='/assets/bg.png' class='square cir-img #{size}'></image><div class='no-img-title title-#{size}'><div class='title-in'>No Image</div></div>".html_safe
+      "<img src='/assets/transprent.png' class='square cir-img #{size}'></image>".html_safe
     else
       image_tag image.send(size), class: "square cir-img"
     end

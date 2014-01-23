@@ -14,12 +14,33 @@
     = csrf_meta_tags
     = yield(:head)
   %body
-    .container-full
+    / .container-full
+    /   .row
+    /     = render 'layouts/navigation'
+    /     .no-margin.col-md-6
+    /       = yield :page_title
+    /       = yield
+    /     .no-margin.col-md-4
+    /       = render 'shared/search'
+    /       = yield :right_side
+    .container-full{:id => "#{action_name}"}
       .row
         = render 'layouts/navigation'
-        .no-margin.col-md-6
-          = yield :page_title
-          = yield
-        .no-margin.col-md-4
-          = render 'shared/search'
-          = yield :right_side
+        .col-md-10.no-padding
+          .row
+            .col-md-7.no-padding.title
+              = yield :page_title
+            .col-md-5.no-padding
+              = render 'shared/search'
+            - if @full_page == true
+              .row
+                .col-md-12.no-padding
+                  = render 'layouts/messages'
+                  = yield :full_page
+            - else
+              .row
+                = render 'layouts/messages'
+                .col-md-7.no-padding
+                  = yield :left_side
+                .col-md-5.no-padding
+                  = yield :right_side

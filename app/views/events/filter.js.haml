@@ -1,0 +1,14 @@
+$(".events-slide").html("#{escape_javascript(render partial: 'slide', locals: {events: @events})}");
+- if params[:free_food]=='true'
+  $('span.all-ev-filter').addClass('hide');
+  $('span.free_food-ev-filter').removeClass('hide');
+- else
+  $('span.all-ev-filter').removeClass('hide');
+  $('span.free_food-ev-filter').addClass('hide');
+
+- if params[:today]=='true'
+  $('span.all_days-filter').addClass('hide');
+  $('span.today-filter').removeClass('hide');
+- else
+  $('span.all_days-filter').removeClass('hide');
+  $('span.today-filter').addClass('hide');
