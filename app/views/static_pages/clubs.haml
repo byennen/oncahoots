@@ -4,11 +4,12 @@
   = javascript_include_tag 'static/clubs'
 
 = content_for :page_title do
-  .title
+  .col-md-2
     %h1 Clubs
-    %p
-      %a{"data-target" => "#create_club", "data-toggle" => "modal", :href => "#"} Create Your Own Club
+  .col-md-10.link
+    = link_to "#", "data-target" => "#create_club", "data-toggle" => "modal" do
       %span >>
+      Create Your Own Club
 
 = content_for :left_side do
   .clubs-inner
