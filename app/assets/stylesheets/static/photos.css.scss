@@ -1,0 +1,42 @@
+.item img {
+  margin: 0 auto;
+}
+
+.mod5 {
+  width: 60%;
+  margin-top: -10px;
+  margin-left: 10px;
+  float: left;
+  .item {
+    border: 8px solid #ebebeb;
+  }
+  .carousel-control {
+    top: 40%;
+    opacity: 1;
+    filter: alpha(opacity = 100);
+  }
+  .left {
+    left: -35px;
+  }
+  .right {
+    right: -35px;
+  }
+}
+
+.cap {
+  float: right;
+  width: 38%;
+  margin-top: -20px;
+  font-size: 12px;
+  p {
+    font-size: 12px;
+    span {
+      color: #04c189;
+    }
+  }
+}
+
+.wig {
+  width: 9%;
+}
+

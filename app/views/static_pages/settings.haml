@@ -1,25 +1,18 @@
-#ssp3.col-lg-6
+- @full_page = true
+
+= content_for :head do
+  = stylesheet_link_tag "static/settings"
+
+= content_for :page_title do
   .title
     %h1 Settings
-  / title
-  .clearfix
-/ col-lg-6
-#mar.col-lg-4
-  #ssp4
-    .search
-      %input{:name => "text", :placeholder => "Search", :type => "text"}/
-      %a{:href => "search.html"}
-        %button{:name => "btn"}
-          %img{:alt => "Image", :src => "img/search-icon.png"}/
-    / search
-  / ssp4
-/ col-lg-4
-.col-lg-offset-3.col-lg-4
-  .form2
+
+= content_for :full_page do
+  .col-md-6.col-md-offset-3.settings-form
     %h3 Edit User
     %input{:name => "text", :placeholder => "FIRST NAME", :type => "text"}/
     %input{:name => "text", :placeholder => "LAST NAME", :type => "text"}/
-    %select#selector{:name => "style2"}
+    %select#alumni_selector
       %option STUDENT
       %option ALUMNI
     %input{:name => "text", :placeholder => "EMAIL", :type => "text"}/
@@ -28,26 +21,10 @@
     %input{:name => "password", :placeholder => "CONFIRM", :type => "password"}/
     %p We need your current password to confirm.
     %input{:name => "password", :placeholder => "CURRENT PASSWORD", :type => "password"}/
-    %button.btn.btn5{:name => "btn"} Update
-    %p
-      %a.sl{:href => "javascript:void(0);"} Delete your account.
-      %br/
-      %br/
-      %br/
-      %span To edit your profile information,
-      %br/
-      %a{:href => "network.html"} CLICK HERE.
-  / form2
-/ col-lg-3
-.col-lg-offset-4
-/ col-lg-offset-4
-/ row
-.clearfix
+    %button.btn.btn-lg Update
 
-:javascript
-  $(document).ready(function(){
-    $('.selectyze2').Selectyze({
-        theme : 'mac'
-    });
-    $('#selector').gentleSelect(); // apply gentleSelect with default options
-  });
+
+    .text-center
+      %a.delete-link{:href => "#"} Delete your account.
+      %span To edit your profile information,
+      %a{:href => "network.html"} CLICK HERE.

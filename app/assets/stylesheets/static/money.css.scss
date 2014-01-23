@@ -1,0 +1,62 @@
+div.selectOptions {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  width: 129px;
+  border: 1px solid #ebebeb;
+  overflow: hidden;
+  background: white;
+  padding-top: 2px;
+  display: none;
+  z-index: 1000;
+}
+
+span.selectOption {
+  display: block;
+  width: 100%;
+  line-height: 20px;
+  text-indent: 15px;
+  padding: 5px 0;
+  &:hover {
+    color: white;
+    background: #0ebe7a;
+  }
+}
+
+.posd {
+  padding: 20px;
+}
+
+.sem {
+  position: relative;
+  display: block;
+  background-color: #ebebeb;
+  padding: 15px 20px;
+  margin-bottom: 15px;
+  span {
+    font-size: 20px;
+  }
+}
+
+.mod4 {
+  float: right;
+  font-size: 13px;
+  width: 15%;
+  padding: 4px 0;
+}
+
+.sem {
+  .selected, .selectOption {
+    font-size: 13px;
+    color: #444444 !important;
+    line-height: 25px;
+    cursor: pointer;
+  }
+  .selectBox {
+    float: right;
+    margin-top: 2px;
+  }
+  .selectOptions {
+    top: 24px;
+  }
+}

@@ -1,5 +1,5 @@
 class UniversitiesController < ApplicationController
-  layout "static"
+
   def index
     @universities = University.all
   end

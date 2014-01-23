@@ -1,0 +1,35 @@
+.form3 {
+  margin-top: 125px;
+  text-align: center;
+}
+
+.bigf {
+  height: 60px;
+  width: 80%;
+  font-size: 25px;
+  display: block;
+  padding: 15px;
+  border: none;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+#tab1x input, #tab2x input, #tab4x input {
+  border: none;
+  padding: 8px;
+  color: #888888;
+  margin: 15px 5px;
+  margin-bottom: 0;
+}
+
+#tab3x {
+  text-align: left;
+  label {
+    font-size: 18px;
+    float: left;
+    margin-right: 10px;
+    margin-top: 5px;
+    color: #666666;
+  }
+}

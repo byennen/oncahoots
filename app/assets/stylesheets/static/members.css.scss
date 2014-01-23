@@ -1,0 +1,52 @@
+.filter {
+  width: 100%;
+  float: left;
+  ul {
+    float: left;
+    width: 100%;
+    margin-bottom: 30px;
+    li {
+      float: left;
+      margin-left: 15px;
+      font-size: 18px;
+      a {
+        color: #cccccc;
+        &:hover, &:active, &:focus {
+          text-decoration: none;
+          color: #04c189;
+        }
+      }
+    }
+  }
+}
+
+.mem {
+  float: left;
+  width: 100%;
+  li {
+    float: left;
+    width: 33%;
+    margin-left: 1px;
+    margin-bottom: 25px;
+  }
+}
+
+.onw {
+  float: left;
+  margin-right: 8px;
+}
+
+.mem li {
+  strong a {
+    display: block;
+    margin-top: 15px;
+    color: #04c189;
+    font-size: 13px;
+    font-weight: normal;
+    text-transform: uppercase;
+  }
+  small {
+    display: block;
+    font-size: 13px;
+  }
+}

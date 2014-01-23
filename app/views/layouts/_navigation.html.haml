@@ -1,0 +1,43 @@
+.col-md-2.no-padding
+  .navbar
+    .navbar-header
+      %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      = link_to image_tag('logo.png'), root_path, class: 'logo'
+    / navbar-header
+    .navbar-collapse.collapse
+      %ul.nav.navbar-nav
+        %li
+          = link_to current_user.university do
+            %i.icon-same
+              = image_tag('college-icon.png')
+            College
+        %li
+          = link_to university_clubs_path(current_user.university) do
+            %i.icon-same.margin10
+              = image_tag('clubs-icon.png')
+            Clubs
+        %li
+          %a{:href => "network.html"}
+            %i.icon-same.margin5
+              = image_tag('network-icon.png')
+            Network
+        %li
+          %a{:href => "communication.html"}
+            %i.icon-same.margin5
+              = image_tag('communication-icon.png')
+            Communication
+        %li
+          %a{:href => "events.html"}
+            %i.icon-same.margin5
+              = image_tag('events-icon.png')
+            Events
+        %li
+          %a{:href => "settings.html"}
+            %i.icon-same.margin5
+              = image_tag('settings-icon.png')
+            Settings
+        %li
+          %a{:href => "/sign_out"} Logout

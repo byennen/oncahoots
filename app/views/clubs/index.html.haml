@@ -2,10 +2,10 @@
   .title
     %h1 Club
     %p
-      %a#create-club-link{"data-target" => "#create_club", "data-toggle" => "modal", :href => "javascript:void(0);"} Create Your Own Club
+      %a#create-club-link{"data-target" => "#create_club", "data-toggle" => "modal", :href => "#"} Create Your Own Club
       %span >>
 = content_for :right_side do
-  .info{:style => "background:url(../../assets/bg.png) repeat center top; position:relative; z-index:10; width:100%; float:left"}
+  .info
     %span.btn4 My Clubs
     .con{:style => "height:790px;"}
       - current_user.clubs.each do |club|

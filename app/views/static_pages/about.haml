@@ -1,24 +1,20 @@
-#ssp3.col-lg-6
+= content_for :head do
+  = javascript_include_tag 'static/about'
+
+= content_for :page_title do
   .title
     %h1 Clubs
     %p
-      %a{"data-target" => "#create_club", "data-toggle" => "modal", :href => "javascript:void(0);"} Create Your Own Club
+      %a{"data-target" => "#create_club", "data-toggle" => "modal", :href => "#"} Create Your Own Club
       %span >>
+
+= content_for :left_side do
   .run-club{:style => "background:url(../../assets/running-club-img.png) no-repeat; height:320px;"}
     %button.btn9{:name => "btn"} Running Club
     %button.btn10{:name => "btn"} Join Club
-  / run-club
-  %ul.sub-nav
-    %li
-      %a{:href => "lowdown.html"} Lowdown
-    %li
-      %a{:href => "members.html"} Members
-    %li
-      %a.current{:href => "about.html"} About
-    %li
-      %a{:href => "money.html"} Money
-    %li
-      %a{:href => "photos.html"} Photos
+
+  = render 'static_pages/club_navigation'
+
   .members{:style => "padding-top:0;"}
     .eboard
       %h3 eBoard
@@ -53,183 +49,9 @@
       %br/
       %br/
       Lorem dolor sit amet, consectetuer adipiscing elit, sed diam nonuy. Lorem ipsum dolor sit amet, conetuer adipiscing elit, sed diam nonummy nibh euaismod tincidunt ut laoreet dolore magna alaarhiquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate Records
-      %br/
-      %br/
-      %a{:href => "javascript:void(0);"} 12.8.13
-      Lorem dolor sit amet, consectetuer adipiscing elit, sed diam nonummy.
-      %a{:href => "javascript:void(0);"} Download PDF
-      %br/
-      %br/
-      %a{:href => "javascript:void(0);"} 11.18.13
-      Ipsum dolor sit amet, ectetuer adipiscing elit, sed diam nonummy.
-      %a{:href => "javascript:void(0);"} Download PDF
-      %br/
-      %br/
-      %a{:href => "javascript:void(0);"} 10.4.13
-      Adipiscing elit, sed diam nonummy.
-      %a{:href => "javascript:void(0);"} Download PDF
-      %br/
-      %br/
-      %a{:href => "javascript:void(0);"} 10.4.13
-      Adipiscing elit, sed diam nonummy.
-      %a{:href => "javascript:void(0);"} Download PDF
-      %br/
-      %br/
-      %a{:href => "javascript:void(0);"} 10.4.13
-      Adipiscing elit, sed diam nonummy.
-      %a{:href => "javascript:void(0);"} Download PDF
-      %br/
-      %br/
-      %a{:href => "javascript:void(0);"} 10.4.13
-      Adipiscing elit, sed diam nonummy.
-      %a{:href => "javascript:void(0);"} Download PDF
-      %br/
-      %br/
-      %a{:href => "javascript:void(0);"} 10.4.13
-      Adipiscing elit, sed diam nonummy.
-      %a{:href => "javascript:void(0);"} Download PDF
-      %br/
-      %br/
-      %a{:href => "javascript:void(0);"} 10.4.13
-      Adipiscing elit, sed diam nonummy.
-      %a{:href => "javascript:void(0);"} Download PDF
-      %br/
-      %br/
-      %a{:href => "javascript:void(0);"} 10.4.13
-      Adipiscing elit, sed diam nonummy.
-      %a{:href => "javascript:void(0);"} Download PDF
-      %br/
-      %br/
-  / members
-  .clearfix
-/ col-lg-6
-#mar.col-lg-4
-  #ssp4
-    = render 'shared/search'
-    .info{:style => "background:none; background-color:#FFF; padding:20px 0;"}
-      .news-letter
-        %h4 Newsletters
-        %ul.hid
-          %li
-            %small
-              %span 12.8.13 Newsletter Headline/Title Here
-              %br/
-              First few words of newsletter or summary. Lorem dolor sit amet, consecteturer adipiscing elit, send diam nonumy
-              %span >>
-              %br/
-              %br/
-              %a{:href => "javascript:void(0);"} Post Comment
-          %li
-            %small
-              %span 12.8.13 Newsletter Headline/Title Here
-              %br/
-              First few words of newsletter or summary. Lorem dolor sit amet.
-              %span >>
-              %br/
-              %br/
-              %a{:href => "javascript:void(0);"} Post Comment
-          %li
-            %small
-              %span 12.8.13 Newsletter Headline/Title Here
-              %br/
-              First few words of newsletter or summary. Lorem dolor sit amet.
-              %span >>
-              %br/
-              %br/
-              %a{:href => "javascript:void(0);"} Post Comment
-        %a.ciew{:href => "javascript:void(0);"}
-          View More
-          %span >>
-        .showa
-          %h2 Crazy With the Color Run
-          %span 12.8.13
-          %br/
-          %p
-            Here is the full newsletter story. The user will scroll down to read the
-            full story. When he reaches the end of the story, he will see an arrow
-            to take him back to "newsletter main." Lorem dolor sit amet, consec
-            tetuer adipiscing elit, sed diam nonummy.
-            %br/
-            %br/
-            Here is the full newsletter story. The user will scroll down to read the
-            full story. When he reaches the end of the story, he will see an arrow
-            to take him back to "newsletter main." Lorem dolor sit amet, consec
-            tetuer adipiscing elit, sed diam nonummy. Lorem dolor sit amet,
-            consec tetuer adipiscing elit, sed diam nonummy.
-            %br/
-            %br/
-            Dolor sit amet, consec tetuer adipiscing elit, sed diam nonummy.
-            Lorem dolor sit amet, consec tetuer adipiscing elit, sed diam non-Lorem dolor sit amet, consec tetuer adipiscing elit, sed diam nonummy.
-            Here is the full newsletter story. The user will scroll down to read the
-            full story. When he reaches the end of the story, he will see an arrow
-            to take him back to "newsletter main." Lorem dolor sit amet, consec
-            tetuer adipiscing elit, sed diam nonummy. Lorem dolor sit amet,
-            consec tetuer adipiscing elit, sed diam nonummy.
-            %br/
-            %br/
-            Dolor sit amet, consec tetuer adipiscing elit, sed diam nonummy.
-            Lorem dolor sit amet, consec tetuer adipiscing elit, sed diam nonummy.
-            Lorem dolor sit amet, consec tetuer adipiscing elit, sed diam
-            nonummy.
-            %br/
-            %br/
-          %img{:alt => "Image", :height => "200", :src => "../../assets/running-club-img.png"}/
-        / showa
-      / news-letter
-      .calendar
-        .caltitle
-          %p{:style => "padding-bottom:0; float:none; font-size:22px;"}
-            %a{:href => "javascript:void(0);"} <<
-            Week of November 15, 2013
-            %a{:href => "javascript:void(0);"} >>
-        / caltitle
-        %ul.events-list.mod3
-          %li.light
-            %strong SUN 12.15
-            %span
-            %h3 Event Title / Headline Here
-            Brief description / subhead here.
-            %a{:href => "javascript:void(0);"} Click for more info.
-          %li.dark
-            %strong SUN 12.15
-            %span
-            %h3 Event Title / Headline Here
-            Brief description / subhead here.
-            %a{:href => "javascript:void(0);"} Click for more info.
-          %li.light
-            %strong SUN 12.15
-            %span
-            %h3 Event Title / Headline Here
-            Brief description / subhead here.
-            %a{:href => "javascript:void(0);"} Click for more info.
-          %li.dark
-            %strong SUN 12.15
-            %span
-            %h3 Event Title / Headline Here
-            Brief description / subhead here.
-            %a{:href => "javascript:void(0);"} Click for more info.
+
+= content_for :right_side do
+  = render 'static_pages/newsletter'
+  = render 'static_pages/calendar'
 
 = render 'shared/create_club'
-
-:javascript
-  $(document).ready(function(){
-    $('.selectyze2').Selectyze({
-        theme : 'mac'
-    });
-    $('#selector').gentleSelect(); // apply gentleSelect with default options
-    $('#selector2').gentleSelect(); // apply gentleSelect with default options
-  $("#hidShow").click(function(){
-    if($('.sub-com').css('display')=='block')
-    {
-        $('.sub-com').css('display', 'none');
-    }
-    else
-    {
-        $('.sub-com').css('display', 'block');
-    }
-  });
-  $(".hid").on('click', function() {
-     $(this).hide();
-     $(".showa").show();
-  });
-  });

@@ -23,6 +23,10 @@
 //= require plugins/jquery.flexisel
 //= require plugins/jquery.accordion.source
 
+// Static pages
+//= require static/settings.js.coffee
+//= require static/events.js.coffee
+
 // Keep main last
 //= require main
 //
@@ -55,6 +59,6 @@ $(function() {
 
 });
 
-$(document).on('ready page:load', function(){ 
+$(document).on('ready page:load', function(){
   $('.datepicker').datepicker({ format: 'mm/dd/yyyy' });
 });

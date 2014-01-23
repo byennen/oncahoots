@@ -1,2 +1,14 @@
 @import "bootstrap";
 @import "bootstrap/theme";
+
+body {
+  background: #f7f7f7
+}
+
+.navbar {
+  border: none;
+}
+
+body.modal-open {
+  margin: 0;
+}

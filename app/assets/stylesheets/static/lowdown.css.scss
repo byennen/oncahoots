@@ -1,0 +1,72 @@
+.cent {
+  width: 100%;
+  text-align: center;
+  float: left;
+  margin: 100px 0;
+}
+
+.post {
+  text-align: left;
+}
+
+.npost {
+  font-size: 18px;
+  color: #444444;
+  float: right;
+  margin: 15px;
+  span {
+    color: #04c189;
+  }
+}
+
+.lat-posts {
+  position: relative;
+  display: block;
+  padding: 0 10px;
+  margin-top: -20px;
+  float: left;
+  width: 100%;
+  li {
+    float: left;
+    padding: 15px 0;
+    width: 100%;
+  }
+}
+
+.img2 {
+  padding: 0 20px;
+  float: left;
+}
+
+.lat-posts li {
+  h3 {
+    display: inline-block;
+    margin-bottom: 0;
+    margin-top: 10px;
+    a {
+      color: #444444;
+    }
+  }
+  span {
+    font-size: 17px;
+    display: inline;
+  }
+}
+
+.po-cm {
+  color: #04c189;
+  font-size: 14px;
+  &:hover, &:active, &:focus {
+    color: #04c189;
+  }
+}
+
+.mod3 li {
+  a.evs {
+    color: #444444 !important;
+  }
+  &:hover a.evs, &:active a.evs, &:focus a.evs, &:hover a.evs span, &:active a.evs span, &:focus a.evs span, &:hover a.evs strong, &:active a.evs strong, &:focus a.evs strong {
+    text-decoration: none;
+    color: white;
+  }
+}

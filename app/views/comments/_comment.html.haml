@@ -3,7 +3,7 @@
   = comment.comment
   %br
 - else
-  .col-lg-12.top.pull-left
+  .col-md-12.top.pull-left
     = link_to user_path(comment.user) do
       = display_image comment.user.profile.image, "small"
     %span.green-text= comment.user.name

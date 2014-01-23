@@ -1,15 +1,20 @@
-#ssp3.col-lg-6
+= content_for :head do
+  = stylesheet_link_tag 'static/clubs'
+  = stylesheet_link_tag 'static/buttons'
+  = javascript_include_tag 'static/clubs'
+
+= content_for :page_title do
   .title
     %h1 Clubs
     %p
-      %a{"data-target" => "#create_club", "data-toggle" => "modal", :href => "javascript:void(0);"} Create Your Own Club
+      %a{"data-target" => "#create_club", "data-toggle" => "modal", :href => "#"} Create Your Own Club
       %span >>
 
+= content_for :left_side do
   .clubs-inner
     %h2 What kind of club are you looking for?
-    %ul.btns2
-      %li
-        %button.btn{:name => "btn"} Arts
+    %ul.inline
+      %li= link_to 'Arts', '', class: 'btn btn-lg'
       %li
         %button.btn{:name => "btn"} Academic
       %li
@@ -32,7 +37,7 @@
       %li
         %button.btn{:name => "btn"} Social
   / clubs-inner
-  .con
+  .div
     .music
       .music-img
         = link_to image_tag('running-club-img.png'), 'running-club.html'
@@ -51,24 +56,13 @@
           %strong Running Club >>
       %p Summary about club here.
 
-#mar.col-lg-4
-  #ssp4
-    = render 'shared/search'
-    .info{:style => "background:url(../../assets/bg.png) repeat center top; position:relative; z-index:10; width:100%; float:left"}
-      %span.btn4 My Clubs
-      .con{:style => "height:790px;"}
-        %a.bka{:href => "lowdown.html"} Davidson Chicago
-        %a{:href => "lowdown.html"}
-          = image_tag('side-club.png')
-        %p You do not belong to any clubs! Click around to join clubs that interest you.(or some directional statement here)
+= content_for :right_side do
+  .info
+    %span.btn4 My Clubs
+    .div
+      %a.bka{:href => "lowdown.html"} Davidson Chicago
+      %a{:href => "lowdown.html"}
+        = image_tag('side-club.png')
+      %p You do not belong to any clubs! Click around to join clubs that interest you.(or some directional statement here)
 
 = render 'shared/create_club'
-
-:javascript
-  $(document).ready(function(){
-    $('.selectyze2').Selectyze({
-        theme : 'mac'
-    });
-    $('#selector').gentleSelect(); // apply gentleSelect with default options
-    $('#selector2').gentleSelect(); // apply gentleSelect with default options
-  });

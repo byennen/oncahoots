@@ -1,21 +1,15 @@
-#ssp3.col-lg-6
+- @full_page = true
+
+= content_for :head do
+  = stylesheet_link_tag 'static/search_detail', 'static/search', 'static/buttons'
+  = javascript_include_tag 'static/search'
+
+= content_for :page_title do
   .title
     %h1 Search
-  / title
-  .clearfix
-/ col-lg-6
-#mar.col-lg-4
-  #ssp4
-    .search
-      %input{:name => "text", :placeholder => "Search", :type => "text"}/
-      %a{:href => "search.html"}
-        %button{:name => "btn"}
-          %img{:alt => "Image", :src => "img/search-icon.png"}/
-    / search
-  / ssp4
-/ col-lg-4
-.col-lg-offset-3.col-lg-4
-  .form3
+
+= content_for :full_page do
+  .col-md-6.col-md-offset-3.form3
     %h3 What are you looking for?
     %input.bigf{:name => "text", :placeholder => "SEARCH TERMS", :type => "text"}/
     %ul.tabsx
@@ -59,38 +53,3 @@
     / tab_container
     %a{:href => "search-detail.html"}
       %button.btn.btn6{:name => "btn"} Search
-  / form3
-/ col-lg-3
-.col-lg-offset-4
-/ col-lg-offset-4
-/ row
-.clearfix
-
-:javascript
-  $(document).ready(function(){
-  $('#selector').gentleSelect(); // apply gentleSelect with default options
-    $('#datepicker').datepicker({
-        inline: true
-    });
-    $('#datepicker2').datepicker({
-        inline: true
-    });
-    $('.selectyze2').Selectyze({
-        theme : 'mac'
-    });
-    $('.basic').fancySelect();
-    //Default Action
-    $(".tab_content").hide(); //Hide all content
-    $("ul.tabsx li:first").addClass("activex").show(); //Activate first tab
-    $(".tab_content:first").show(); //Show first tab content
-
-    //On Click Event
-    $("ul.tabsx li").click(function() {
-        $("ul.tabsx li").removeClass("activex"); //Remove any "active" class
-        $(this).addClass("activex"); //Add "active" class to selected tab
-        $(".tab_content").hide(); //Hide all tab content
-        var activeTab = $(this).find("a").attr("href"); //Find the rel attribute value to identify the active tab + content
-        $(activeTab).fadeIn(); //Fade in the active content
-        return false;
-    });
-  });

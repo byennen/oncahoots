@@ -1,0 +1,65 @@
+.gentleselect-data {
+  display: none;
+}
+
+.gentleselect-label {
+  background: url(../assets/select2.png) white right no-repeat;
+  width: 100%;
+  height: 36px;
+  cursor: pointer;
+  color: #777777;
+  float: left;
+  padding-top: 7px;
+  text-indent: 5px;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+#sops .gentleselect-label {
+  background: url(../assets/select2.png) #ebebeb !important;
+}
+
+.gentleselect-dialog {
+  width: 100%;
+  margin-left: -1px;
+  position: absolute;
+  z-index: 500;
+  display: none;
+  background-color: white;
+  border: 1px solid #ebebeb;
+  margin: 0;
+  padding: 0;
+  margin-top: 7px;
+  > ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    > li {
+      margin: 0;
+      padding: 3px 20px 3px 15px;
+      cursor: pointer;
+      &.selected {
+        font-weight: bold;
+        color: white;
+        background-color: #1bc973;
+      }
+      &.gentleselect-dummy:hover {
+        background-color: white;
+      }
+      &:hover {
+        background-color: #1bc973;
+        color: white;
+      }
+    }
+    .gentleselect-title {
+      display: block;
+      text-align: center;
+      margin: 0;
+      padding: 2px;
+      background-color: #1bc973;
+      font-size: 0.8em;
+      color: #666666;
+      overflow: hidden;
+    }
+  }
+}

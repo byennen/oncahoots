@@ -1,25 +1,21 @@
-#ssp3.col-lg-6
+= content_for :head do
+  = stylesheet_link_tag 'static/lowdown', 'static/buttons'
+  = javascript_include_tag 'static/lowdown'
+
+= content_for :page_title do
   .title
     %h1 Clubs
     %p
       %a{"data-target" => "#club_name", "data-toggle" => "modal", :href => "#"} Create Your Own Club
       %span >>
 
+= content_for :left_side do
   .run-club{:style => "background:url(../../assets/running-club-img.png) no-repeat; height:320px;"}
     %button.btn9{:name => "btn"} Running Club
     %button.btn10{:name => "btn"} Join Club
-  / run-club
-  %ul.sub-nav
-    %li
-      %a.current{:href => "lowdown.html"} Lowdown
-    %li
-      %a{:href => "members.html"} Members
-    %li
-      %a{:href => "about.html"} About
-    %li
-      %a{:href => "money.html"} Money
-    %li
-      %a{:href => "photos.html"} Photos
+
+  = render 'static_pages/club_navigation'
+
   .cent{:style => "margin:0; background-color:#f7f7f7;"}
     .post
       %a.npost{:href => "#"}
@@ -35,148 +31,8 @@
           %br/
           %a.po-cm{:href => "#"} Post comment
 
-#mar.col-lg-4
-  #ssp4
-    = render 'shared/search'
-    .info{:style => "background:none; background-color:#FFF; padding:20px 0;"}
-      .news-letter
-        %h4 Newsletters
-        %ul.hid
-          %li
-            %small
-              %span 12.8.13 Newsletter Headline/Title Here
-              %br/
-              First few words of newsletter or summary. Lorem dolor sit amet, consecteturer adipiscing elit, send diam nonumy
-              %span >>
-              %br/
-              %br/
-              %a{:href => "#"} Post Comment
-          %li
-            %small
-              %span 12.8.13 Newsletter Headline/Title Here
-              %br/
-              First few words of newsletter or summary. Lorem dolor sit amet.
-              %span >>
-              %br/
-              %br/
-              %a{:href => "#"} Post Comment
-          %li
-            %small
-              %span 12.8.13 Newsletter Headline/Title Here
-              %br/
-              First few words of newsletter or summary. Lorem dolor sit amet.
-              %span >>
-              %br/
-              %br/
-              %a{:href => "#"} Post Comment
-        .showa
-          %h2 Crazy With the Color Run
-          %span 12.8.13
-          %br/
-          %p
-            Here is the full newsletter story. The user will scroll down to read the
-            full story. When he reaches the end of the story, he will see an arrow
-            to take him back to "newsletter main." Lorem dolor sit amet, consec
-            tetuer adipiscing elit, sed diam nonummy.
-            %br/
-            %br/
-            Here is the full newsletter story. The user will scroll down to read the
-            full story. When he reaches the end of the story, he will see an arrow
-            to take him back to "newsletter main." Lorem dolor sit amet, consec
-            tetuer adipiscing elit, sed diam nonummy. Lorem dolor sit amet,
-            consec tetuer adipiscing elit, sed diam nonummy.
-            %br/
-            %br/
-            Dolor sit amet, consec tetuer adipiscing elit, sed diam nonummy.
-            Lorem dolor sit amet, consec tetuer adipiscing elit, sed diam non-Lorem dolor sit amet, consec tetuer adipiscing elit, sed diam nonummy.
-            Here is the full newsletter story. The user will scroll down to read the
-            full story. When he reaches the end of the story, he will see an arrow
-            to take him back to "newsletter main." Lorem dolor sit amet, consec
-            tetuer adipiscing elit, sed diam nonummy. Lorem dolor sit amet,
-            consec tetuer adipiscing elit, sed diam nonummy.
-            %br/
-            %br/
-            Dolor sit amet, consec tetuer adipiscing elit, sed diam nonummy.
-            Lorem dolor sit amet, consec tetuer adipiscing elit, sed diam nonummy.
-            Lorem dolor sit amet, consec tetuer adipiscing elit, sed diam
-            nonummy.
-            %br/
-            %br/
-          = image_tag('running-club-img.png', height: '200')
-          %button#nsw.btn8.pull-right{:name => "btn"} Go Back
-        / showa
-      / news-letter
-      .calendar
-        .caltitle
-          %p{:style => "padding-bottom:0; float:none; font-size:22px;"}
-            %a{:href => "#"} <<
-            Week of November 15, 2013
-            %a{:href => "#"} >>
-        / caltitle
-        %ul.events-list.mod3
-          %li.light
-            %a.evs{:href => "events.html"}
-              %strong SUN 12.15
-              %span
-            %h3 Event Title / Headline Here
-            Brief description / subhead here.
-            %br/
-            Click for more info.
-          %li.dark
-            %a.evs{:href => "events.html"}
-              %strong SUN 12.15
-              %span
-            %h3 Event Title / Headline Here
-            Brief description / subhead here.
-            %br/
-            Click for more info.
-          %li.light
-            %a.evs{:href => "events.html"}
-              %strong SUN 12.15
-              %span
-            %h3 Event Title / Headline Here
-            Brief description / subhead here.
-            %br/
-            Click for more info.
-          %li.dark
-            %a.evs{:href => "events.html"}
-              %strong SUN 12.15
-              %span
-            %h3 Event Title / Headline Here
-            Brief description / subhead here.
-            %br/
-            Click for more info.
+= content_for :right_side do
+  = render 'static_pages/newsletter'
+  = render 'static_pages/calendar'
 
 = render 'shared/club_name'
-
-:javascript
-  $(document).ready(function(){
-    $('.selectyze2').Selectyze({
-        theme : 'mac'
-    });
-    $('#selector').gentleSelect(); // apply gentleSelect with default options
-    $('#selector2').gentleSelect(); // apply gentleSelect with default options
-  $("#hidShow").click(function(){
-    if($('.sub-com').css('display')=='block')
-    {
-        $('.sub-com').css('display', 'none');
-    }
-    else
-    {
-        $('.sub-com').css('display', 'block');
-    }
-  });
-  $(".hid").on('click', function() {
-     $(this).hide();
-     $(".showa").show();
-  });
-  $("#nsw").on('click', function() {
-     $(".showa").hide();
-     $(".hid").show();
-  });
-  $("#edt").click(function() {
-  $(".edtitor9b").val(
-         $(".text9b").hide().text()
-     ).show();
-  });
-  });
