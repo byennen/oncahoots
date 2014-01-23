@@ -1,5 +1,7 @@
 $(document).ready ->
-  $(".selectyze2").Selectyze theme: "mac"
+  # $("#field-select").Selectyze theme: "mac"
+  $(".alumni-search select").gentleSelect()
+
   $(".nsw").on "click", ->
     $(".showaa").hide()
     $(".hid").show()

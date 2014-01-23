@@ -2,6 +2,8 @@
   = stylesheet_link_tag 'static/college', 'static/buttons'
   = javascript_include_tag 'static/college'
 
+- @full_page = true
+
 = content_for :page_title do
   .row
     .col-md-11.no-padding
@@ -9,100 +11,107 @@
     .col-md-1.no-padding
       = image_tag('user-img.png', class: "user-gravatar")
 
-= content_for :left_side do
-  .find-your-passion
-    %ul.btns.showaa
-      %li
-        %a{:href => "search.html"}
-          %button.btn.btn2{:name => "btn"} Find your club. Find your passion. >>
-      %li
-        %a
-          %button.btn.btn2{:name => "btn"} Arts
-
-  .pos
-    %a{:href => "clubs.html"}
-    .club{:style => "background:url(../../assets/football-img.png);"}
-      .blank Soccer Club (55)
-      %button.btn.btn3{:name => "btn", :style => "z-index:100; position:relative;"} All Clubs
-
-    .updates
-      %h2 Club Updates
-      %p.nsw
-        %span
-          %a{:href => "clubs.html"} Club Name
-        Lorem dollar sit amet, consectetur adipiscing elit, sed diam non
-        %span
-          %a{:href => "clubs.html"} >>
-      %p.nsw
-        %span
-          %a{:href => "clubs.html"} Club Name
-        Dollar sit ame nsectetur adipiscing elit, sed diam >>
-      %p.nsw
-        %span
-          %a{:href => "clubs.html"} Club Name
-        Lorem sit amet consecer adiiscing elit, sed diam
-        %span
-          %a{:href => "clubs.html"} >>
-
-= content_for :right_side do
-  .col-md-5.no-margin
-    .slider
-      %h2
-        Find
-        %span
-          Free Food
-          = image_tag('arrow-down.png')
-          %a.anc{:href => "events.html"} All Events
-        %span#datepicker9
-          Today
-          = image_tag('arrow-down.png')
-          %a.anc{:href => "events.html"} All Days
-      .carus
-        %ul#flexiselDemo1
-          %li
-            = link_to image_tag('slider-img.png'), '#'
-            .spo Brief event description here.
-            %br/
-            %p
-              Event Name 9.27
-              %br/
-              9:30 am, Angel Hall
-
-        %a{:href => "events.html"}
-          %button.btn.btn3{:name => "btn"} View All
-        .strip
-
-    .two-clumns
-      .half{:style => "background:url(../../assets/building-img.png);"}
-        %h1 Alumni Search
-        %ul.foy
-          %li
-            %input{:name => "text", :type => "text", :value => "Name"}/
-          %li
-            %input{:name => "text", :type => "text", :value => "City"}/
-          %li
-            %select.selectyze2{:name => "style2"}
-              %option Field
-              %option Software
-              %option Software
-              %option Software
-              %option Software
-              %option Software
-          %li
-            %input{:name => "text", :type => "text", :value => "Major"}/
-          %li
-            %input{:name => "text", :type => "text", :value => "Grade Year"}/
+= content_for :full_page do
+  .row
+    .col-md-6.no-padding
+      .find-your-passion
+        %ul.btns.showaa
           %li
             %a{:href => "search.html"}
-              %button.btn.btn3.ch{:name => "btn"} Access Your Network
+              %button.btn.btn2{:name => "btn"} Find your club. Find your passion. >>
+          %li
+            %a
+              %button.btn.btn2{:name => "btn"} Arts
 
+      .row
+        .col-md-6.no-padding
+          .all-clubs
+            = link_to "clubs.html" do
+              .blank Soccer Club (55)
+              %button.btn.btn3{:name => "btn"} All Clubs
+        .col-md-6.no-padding
+          .club-updates
+            %h2 Club Updates
+            %p.nsw
+              %span
+                %a{:href => "clubs.html"} Club Name
+              Lorem dollar sit amet, consectetur adipiscing elit, sed diam non
+              %span
+                %a{:href => "clubs.html"} >>
+            %p.nsw
+              %span
+                %a{:href => "clubs.html"} Club Name
+              Dollar sit ame nsectetur adipiscing elit, sed diam >>
+            %p.nsw
+              %span
+                %a{:href => "clubs.html"} Club Name
+              Lorem sit amet consecer adiiscing elit, sed diam
+              %span
+                %a{:href => "clubs.html"} >>
 
-      .green
-        %h2 College Updates
-        %a{"data-target" => "#college_update", "data-toggle" => "modal"}
-          %p
-            Club Name Lorem dollar sit amet, consectetur adipiscing elit, sed diam non
-            %span >>
+    .col-md-6.no-padding
+      .slider
+        %h2
+          Find
+          %span
+            Free Food
+            = image_tag('arrow-down.png')
+            %a.find-by-food{:href => "events.html"} All Events
+          %span#datepicker9
+            Today
+            = image_tag('arrow-down.png')
+            %a.find-by-date{:href => "events.html"} All Days
+
+        .row#event-carousel
+          .col-md-4
+            = link_to image_tag('slider-img.png'), '#'
+            %p Event Name 9.27
+            %p 9:30 am, Angel Hall
+          .col-md-4
+            = link_to image_tag('slider-img.png'), '#'
+            %p Event Name 9.27
+            %p 9:30 am, Angel Hall
+          .col-md-4
+            = link_to image_tag('slider-img.png'), '#'
+            %p Event Name 9.27
+            %p 9:30 am, Angel Hall
+          .strip
+
+          %a{:href => "#"}
+            %button.btn.btn3 View All
+
+      .row
+        .col-md-6.no-padding
+          .alumni-search
+            %h2 Alumni Search
+            %ul
+              %li
+                %input{:name => "text", :type => "text", :value => "Name"}/
+              %li
+                %input{:name => "text", :type => "text", :value => "City"}/
+              %li
+                %select#field-select
+                  %option Field
+                  %option Software
+                  %option Software
+                  %option Software
+                  %option Software
+                  %option Software
+              %li
+                %input{:name => "text", :type => "text", :value => "Major"}/
+              %li
+                %input{:name => "text", :type => "text", :value => "Grade Year"}/
+              %li
+                %a{:href => "search.html"}
+                  %button.btn.btn3{:name => "btn"} Access Your Network
+
+        .col-md-6.no-padding
+          .college-updates
+            %h2 College Updates
+            %a{"data-target" => "#college_update", "data-toggle" => "modal"}
+              %p
+                Club Name Lorem dollar sit amet, consectetur adipiscing elit, sed diam non
+                %span >>
 
 
 = render 'shared/college_update'

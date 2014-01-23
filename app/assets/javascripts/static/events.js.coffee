@@ -1,6 +1,5 @@
 $(document).ready ->
   $("#datepicker").datepicker inline: true
-  $(".selectyze2").Selectyze theme: "mac"
 
   $("#category-select").gentleSelect()
   $("#time-ampm-select").gentleSelect()
