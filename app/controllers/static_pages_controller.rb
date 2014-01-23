@@ -1,5 +1,4 @@
 class StaticPagesController < ActionController::Base
-  before_filter :authenticate_user!
   layout 'static'
 
 
@@ -7,6 +6,7 @@ class StaticPagesController < ActionController::Base
   #   using ajax to pass event data to controller
   #   then re-rendering the event_area partial with this data
   def show_event
+    before_filter :authenticate_user!
     @date = params[:event][:date]
     @time = params[:event][:time]
     @location = params[:event][:location]

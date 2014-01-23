@@ -1,36 +1,376 @@
-.login
-  .span12{style: "margin-bottom: 23%"}
-    .span8
-      .span9
-        .welcome
-          %p Professional alumni network +
-          %p Vibrant college campus =
-          %p The best four years of your life brought to the real world 
-    .span4
-      .span11
-        = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-vertical login-form'}) do |f|
-          %input#user_email.string.email.fioled0{:name => 'user[email]', :autofocus => 'autofocus', :type => 'email', :placeholder => 'Email'}
-          %input#user_password.password.fioled0{:name => 'user[password]', :autofocus => 'autofocus', :type => 'password', :placeholder => 'Password'}
-          = link_to "Forgot password?", "#"
-          .clearfix
-          .top
-            %a.btn.btn-success.submit{style: "width: 35%;"} Login
-            %a.btn.btn-success{href: new_user_registration_path, style: "width: 35%"} Register
-            %a.top{href: "/auth/linkedin"}
-              %i.linkedin
-          .transparent=f.submit
-      .span10.top2
-        .span8= text_field_tag :request_school, "", placeholder: "Request your school", class: "fioled0"
-        .span3.top= link_to "request", "javascript:;", class: "btn btn-success"
+= content_for :head do
+  = stylesheet_link_tag 'static/login'
 
+.row.login_banner_image
+  .col-md-12
+    = link_to image_tag('logo.png'), root_path, class: 'logo2'
+.row
+  .col-md-12.text-center
+    %p Professional Alumni Network + Vibrant College Campus =
+    %h2 The best four years of your life brought to the real world.
+.row
+  .col-lg-offset-3.col-lg-6
+    = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-vertical'}) do |f|
+      = f.input :email, placeholder: 'Email', label: false
+      = f.input :password, placeholder: 'Password', label: false
+      = link_to "Forgot password?", "#", class: 'fos'
+      .row
+        .col-lg-12
+          = f.submit "Login", class: 'btn btn-primary'
+          %a.btn.btn-primary{href: new_user_registration_path, style: "width: 35%"} Register
+      .row
+        .col-lg-12
+          %a.ico{:href => "#"}
+            = image_tag('linkedin.png')
+          %a.ico{:href => "#"}
+            = image_tag('facebook.png')
 
-  .span12
-    .welcome.offset2
-      %p Your network is waiting for you. On Cahoots.
-      %br
-      %br
-
-:javascript
-  $("a.submit").click(function(){
-    $(this).closest("form").submit();
-  });
+-#.part
+-#  .row
+-#    .col-md-12
+-#    .col-lg-offset-3
+-#    / col-lg-offset-3
+-#    .col-lg-4.hidees2
+-#      .centerx
+-#        %a.mod6.btn6{:href => "#students"} For Students
+-#      / centerx
+-#    / col-lg-4
+-#    .col-lg-4.hidees2
+-#      .centerx
+-#        %a.mod6.btn6{:href => "#alumni"} For Alumni
+-#      / centerx
+-#    / col-lg-4
+-#    .col-lg-4.hidees2.las
+-#      .centerx
+-#        %a.mod6.btn6{:href => "#alumni"} About Us
+-#      / centerx
+-#    / col-lg-4
+-#    .col-lg-offset-3.col-lg-6.showw.none
+-#      .hidee2
+-#        .half.pull-left.ins
+-#          .lhs
+-#            %p CHOOSE ONE:
+-#            %a.btn9.cn{:href => "#"} Student
+-#            %i or
+-#            %a#onee2.bns{:href => "#"} Alumni
+-#            .clearfix
+-#            %input{:name => "text", :placeholder => "First Name", :type => "text"}/
+-#            %input{:name => "text", :placeholder => "Last Name", :type => "text"}/
+-#            %input{:name => "text", :placeholder => "Email", :type => "text"}/
+-#            %input{:name => "password", :placeholder => "Password", :type => "password"}/
+-#            %input{:name => "password", :placeholder => "Confirm it", :type => "password"}/
+-#          / lhs
+-#        / half
+-#        .half.pull-right.ins
+-#          .lhs
+-#            %small Select the area nearest your hometown or select other.
+-#            %select#selector{:name => "style2"}
+-#              %option Hometown
+-#              %option Name Here
+-#            %select#selector5{:name => "style2"}
+-#              %option University
+-#              %option Name Here
+-#            %a.btn7.cols.bnss{:href => "#"} Request College
+-#            %span Don't see your school
+-#            %select#selector6{:name => "style2"}
+-#              %option Graduation Year
+-#              %option Name Here
+-#            %input{:name => "text", :placeholder => "Major", :type => "text"}/
+-#            %input{:name => "text", :placeholder => "Double Major", :type => "text"}/
+-#            %input.noak{:name => "text", :placeholder => "College Name", :type => "text"}/
+-#            %button.btn7.sign.btn-div{:name => "btn"} Sign Up
+-#          / lhs
+-#        / half
+-#    / col-lg-6
+-#    .col-lg-offset-3
+-#    / col-lg-offset-3
+-#    .col-lg-offset-3.col-lg-6.showw2.none
+-#      .half.pull-left.ins
+-#        .lhs
+-#          %p CHOOSE ONE:
+-#          %a#onee3.bns{:href => "#"} Student
+-#          %i or
+-#          %a.btn9.cn{:href => "#"} Alumni
+-#          .clearfix
+-#          %input{:name => "text", :placeholder => "First Name", :type => "text"}/
+-#          %input{:name => "text", :placeholder => "Last Name", :type => "text"}/
+-#          %input{:name => "text", :placeholder => "Email", :type => "text"}/
+-#          %input{:name => "password", :placeholder => "Password", :type => "password"}/
+-#          %input{:name => "password", :placeholder => "Confirm it", :type => "password"}/
+-#        / lhs
+-#      / half
+-#      .half.pull-right.ins
+-#        .lhs
+-#          %small Select the area nearest your hometown or select other.
+-#          %select#selector4{:name => "style2"}
+-#            %option Current City
+-#            %option Name Here
+-#          %select#selector2{:name => "style2"}
+-#            %option University
+-#            %option Name Here
+-#          %a.btn7.cols{:href => "#"} Request College
+-#          %span Don't see your school
+-#          %select#selector3{:name => "style2"}
+-#            %option Graduation Year
+-#            %option Name Here
+-#          %input{:name => "text", :placeholder => "Major", :type => "text"}/
+-#          %input{:name => "text", :placeholder => "Double Major", :type => "text"}/
+-#          %input{:name => "text", :placeholder => "Proffesional Field", :type => "text"}/
+-#          %button.btn7.sign{:name => "btn", :style => "margin-top:15px;"} Sign Up
+-#        / lhs
+-#      / half
+-#    / col-lg-6
+-#    .col-lg-offset-3
+-#    / col-lg-offset-3
+-#  / row
+-#  .clearfix
+-#  / clearfix
+-#/ part
+-#.row
+-#  #students.sectio2
+-#    .col-lg-3
+-#      .heading
+-#        %p For Students
+-#      / heading
+-#    / col-lg-3
+-#    .col-lg-6
+-#      .cent-text
+-#        %h3 Find Free Food on Your Campus
+-#        %p
+-#          View every campus event that offers free food every day.
+-#          %br/
+-#          Hunger, be gone!
+-#      / cent-text
+-#    / col-lg-6
+-#    .clearfix
+-#    .col-lg-offset-3
+-#    / col-lg-offset-3
+-#    .col-lg-12
+-#      .ss3
+-#        .carus.strit
+-#          %ul#flexiselDemo1
+-#            %li= link_to image_tag('im1.png', width: '160'), "#"
+-#            %li= link_to image_tag('im2.png', width: '160'), "#"
+-#            %li= link_to image_tag('im3.png', width: '160'), "#"
+-#        %i
+-#      / ss3
+-#    / col-lg-12
+-#    .col-lg-offset-1.col-lg-5
+-#      #new.cent-text
+-#        %h3 Organize Your Clubs and Organizations
+-#        %p
+-#          Any student organization can create its own webpage for both internal organization and external communication.
+-#          On Cahoots will make leaders of us all.
+-#      / cent-text
+-#    / col-lg-5
+-#    .col-lg-5
+-#      .cent-text.newt2
+-#        %h3 Access Your College Network
+-#        %p The easiest way to access your network - view a map of all alumni around the world. Filter alums based on their location, field, grad year or major.
+-#      / cent-text
+-#    / col-lg-5
+-#    .clearfix
+-#    .col-lg-offset-1
+-#    / col-lg-offset-1
+-#  / sectio2
+-#/ row
+-#.clearfix
+-#/ clearfix
+-#.row
+-#  #alumni.sectio2.nom
+-#    .col-lg-3
+-#      .heading
+-#        %p For Alumni
+-#      / heading
+-#    / col-lg-3
+-#    .col-lg-6
+-#      .cent-text
+-#        %h3 Access to Your College Network
+-#        %p Reach out to old college friends or connect with other alums in your field. Since your time is valuable, set contact requirements to limit communication from students.
+-#      / cent-text
+-#    / col-lg-6
+-#    .clearfix
+-#    .col-lg-offset-3
+-#    / col-lg-offset-3
+-#    .col-lg-12
+-#      .ss3
+-#        .carus.strit
+-#          %ul#flexiselDemo12
+-#            %li= link_to image_tag('im11.png', width: '160'), "#"
+-#            %li= link_to image_tag('im22.png', width: '160'), "#"
+-#            %li= link_to image_tag('im33.png', width: '160'), "#"
+-#        / carus
+-#        %i
+-#      / ss3
+-#    / col-lg-12
+-#    .col-lg-offset-1.col-lg-5
+-#      .cent-text.newt
+-#        %h3 Find Your College Wherever You Go
+-#        %p When moving or travelling a new city, click on the alumni map to see who is nearby. Checkout news posted by your college network on each city's Cahoots page.
+-#      / cent-text
+-#    / col-lg-5
+-#    .col-lg-5
+-#      .cent-text.newt2
+-#        %h3 Stay In Touch with Your College Clubs
+-#        %p Remain an alum member of all the organizations that made your college experience so memorable. What is a cause without a community?
+-#      / cent-text
+-#    / col-lg-5
+-#    .clearfix
+-#    .col-lg-offset-1
+-#    / col-lg-offset-1
+-#  / sectio2
+-#/ row
+-#.clearfix
+-#.row
+-#  #about.sectio2.nom2
+-#    .col-lg-3
+-#      .heading
+-#        %p About Us
+-#      / heading
+-#    / col-lg-3
+-#    .col-lg-6
+-#      #new.cent-text
+-#        %h3 Your Network is Waiting For You. On Cahoots.
+-#        %br/
+-#        %p The college experience isn't just those unforgettable four years. It is the creattive interaction that abounds when athletes, artists, academics, and adventurers meet and collaborate on ideas. It is about whta happens next with the new abilities, talents and confidence instilled by a college education. Imagine the potential of keeping your college community always in contact. On Cahoots creates meaningful relationships between alumni and students in order to maintain cohesive college communities.
+-#        %br/
+-#        %a#onee4.btn7.pads.btn-div{:href => "#"} Register
+-#      / cent-text
+-#    / lcol-lg-6
+-#    .col-lg-offset-3
+-#    / col-lg-offset-3
+-#    .clearfix
+-#  / sectio2
+-#/ row
+-#.clearfix
+-#/ container
+-#= javascript_include_tag 'plugins/jquery-gentleSelect'
+-#= javascript_include_tag 'plugins/jquery.flexisel'
+-#= javascript_include_tag 'plugins/jquery.scrollTo'
+-#= javascript_include_tag 'plugins/jquery.nav'
+-#= javascript_include_tag 'main'
+-#
+-#:javascript
+-#  $(document).ready(function(){
+-#  //$("#onee").on('click', function() {
+-#  //   $(".hidee").hide();
+-#  //   $(".showw").show();
+-#  //});
+-#  //$("#onee").on('click', function() {
+-#  //   $(".hidees2").hide();
+-#  //   $(".showw").show();
+-#  //});
+-#  //$(".bnss").on('click', function() {
+-#  //   $(".noak").show();
+-#  //});
+-#  //$("#onee2").on('click', function() {
+-#  //   $(".hidee2").hide();
+-#  //   $(".showw2").show();
+-#  //});
+-#  //$("#onee3").on('click', function() {
+-#  //   $(".showw2").hide();
+-#  //   $(".hidee2").show();
+-#  //});
+-#  //$("#onee4").on('click', function() {
+-#  //   $(".hidee").hide();
+-#  //   $(".showw").show();
+-#  //});
+-#    $('#selector').gentleSelect(); // apply gentleSelect with default options
+-#    $('#selector2').gentleSelect(); // apply gentleSelect with default options
+-#    $('#selector3').gentleSelect(); // apply gentleSelect with default options
+-#    $('#selector4').gentleSelect(); // apply gentleSelect with default options
+-#    $('#selector5').gentleSelect(); // apply gentleSelect with default options
+-#    $('#selector6').gentleSelect(); // apply gentleSelect with default options
+-#    $('#datepicker').datepicker({
+-#        inline: true
+-#    });
+-#    $('#datepicker2').datepicker({
+-#        inline: true
+-#    });
+-#    $('.selectyze2').Selectyze({
+-#        theme : 'mac'
+-#    });
+-#    $('.basic').fancySelect();
+-#  $(window).load(function() {
+-#      $("#flexiselDemo1").flexisel({
+-#          enableResponsiveBreakpoints: true,
+-#          responsiveBreakpoints: {
+-#              portrait: {
+-#                  changePoint:480,
+-#                  visibleItems: 1
+-#              },
+-#              landscape: {
+-#                  changePoint:640,
+-#                  visibleItems: 2
+-#              },
+-#              tablet: {
+-#                  changePoint:768,
+-#                  visibleItems: 3
+-#              }
+-#          }
+-#      });
+-#  $("#flexiselDemo12").flexisel({
+-#          enableResponsiveBreakpoints: true,
+-#          responsiveBreakpoints: {
+-#              portrait: {
+-#                  changePoint:480,
+-#                  visibleItems: 1
+-#              },
+-#              landscape: {
+-#                  changePoint:640,
+-#                  visibleItems: 2
+-#              },
+-#              tablet: {
+-#                  changePoint:768,
+-#                  visibleItems: 3
+-#              }
+-#          }
+-#      });
+-#  });
+-#  $('#nav2').onePageNav({
+-#        begin: function() {
+-#        console.log('start')
+-#        },
+-#        end: function() {
+-#        console.log('stop')
+-#        }
+-#    });
+-#  });
+-#
+-#-#
+-#-#.login
+-#-#  .span12{style: "margin-bottom: 23%"}
+-#-#    .span8
+-#-#      .span9
+-#-#        .welcome
+-#-#          %p Professional alumni network +
+-#-#          %p Vibrant college campus =
+-#-#          %p The best four years of your life brought to the real world
+-#-#    .span4
+-#-#      .span11
+-#-#        = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-vertical login-form'}) do |f|
+-#-#          %input#user_email.string.email.fioled0{:name => 'user[email]', :autofocus => 'autofocus', :type => 'email', :placeholder => 'Email'}
+-#-#          %input#user_password.password.fioled0{:name => 'user[password]', :autofocus => 'autofocus', :type => 'password', :placeholder => 'Password'}
+-#-#          = link_to "Forgot password?", "#"
+-#-#          .clearfix
+-#-#          .top
+-#-#            %a.btn.btn-success.submit{style: "width: 35%;"} Login
+-#-#            %a.btn.btn-success{href: new_user_registration_path, style: "width: 35%"} Register
+-#-#            %a.top{href: "/auth/linkedin"}
+-#-#              %i.linkedin
+-#-#          .transparent=f.submit
+-#-#      .span10.top2
+-#-#        .span8= text_field_tag :request_school, "", placeholder: "Request your school", class: "fioled0"
+-#-#        .span3.top= link_to "request", "javascript:;", class: "btn btn-success"
+-#-#
+-#-#
+-#-#  .span12
+-#-#    .welcome.offset2
+-#-#      %p Your network is waiting for you. On Cahoots.
+-#-#      %br
+-#-#      %br
+-#-#
+-#-#:javascript
+-#-#  $("a.submit").click(function(){
+-#-#    $(this).closest("form").submit();
+-#-#  });

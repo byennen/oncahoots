@@ -15,7 +15,7 @@
       %span.left Current City
       = f.select :city_id, options_for_select(City.order(:name).collect{ |c| [c.name, c.id] } + [["Other", 0]], resource.city_id), prompt: "Current City"
       %span#other-city= f.input :other_city, label: false, input_html: {placeholder: "other city", class: "fioled0"}
-      = f.select :graduation_year, options_for_select(2020.downto(1940).to_a, resource.graduation_year), { prompt: "Graduation year", class: "fioled0" } 
+      = f.select :graduation_year, options_for_select(2020.downto(1940).to_a, resource.graduation_year), { prompt: "Graduation year", class: "fioled0" }
       .clearfix
       = f.input :major, label: false, input_html: {placeholder: "major", class: "fioled0"}
       = f.input :double_major, label: false, input_html: {placeholder: "double major", class: "fioled0"}
@@ -28,7 +28,7 @@
         = f.select :professional_field_id, options_from_collection_for_select(ProfessionalField.all.sort_by(&:name), :id, :name, resource.professional_field_id)
 
       %button.btn.btn-success.btn4.chang6 Register
-      
+
       %strong
         .left
           = link_to "Forgot your password?", new_password_path(resource_name)
