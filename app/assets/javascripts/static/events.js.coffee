@@ -1,14 +1,6 @@
 $(document).ready ->
   $("#datepicker").datepicker inline: true
 
-  $("#category-select").gentleSelect()
-  $("#time-ampm-select").gentleSelect()
-  $("#time-minute-select").gentleSelect()
-  $("#time-hour-select").gentleSelect()
-  $("#club-event-select").gentleSelect()
-  $("#club-select").gentleSelect()
-  $("#free-food-select").gentleSelect()
-
   $(".freefood").on "click", ->
     $("#monthly-events-calendar").hide()
     $("#event-area-monthly-listing").hide()
@@ -30,3 +22,22 @@ $(document).ready ->
   # hide monthly calendar on initial load
   $("#monthly-events-calendar").hide()
   $("#event-area-monthly-listing").hide()
+
+
+  # ADD NEW EVENT FORM
+  $("#category-select select").gentleSelect()
+  $("#time-ampm-select select").gentleSelect()
+  $("#time-minute-select select").gentleSelect()
+  $("#time-hour-select select").gentleSelect()
+  $("#club-event-select select").gentleSelect()
+  $("#club-select select").gentleSelect()
+  $("#free-food-select select").gentleSelect()
+
+  # Hide "select club" dropdown unless club event is "yes"
+  $('#club-select').hide()
+  $('#club-event-select select').on 'change', (e) ->
+    if $('#club-event-select li.selected').html() == "Yes"
+      $('#club-select').show()
+    else
+      $('#club-select').hide()
+

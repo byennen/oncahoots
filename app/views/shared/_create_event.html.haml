@@ -11,15 +11,8 @@
           .row
             .col-md-2
               %label *Title
-            .col-md-4.no-padding
+            .col-md-10.no-padding
               %input{:name => "text", :type => "text"}
-
-            .col-md-2
-              %label Category
-            .col-md-4.no-padding
-              %select#category-select{:name => "style2"}
-                %option Yes, this club is private
-                %option No, this club is not private
 
           .row
             .col-md-2
@@ -37,8 +30,8 @@
               %label Time
             .col-md-4.no-padding
               .row
-                .col-md-4.no-padding
-                  %select#time-hour-select{:name => "style2"}
+                .col-md-4.no-padding#time-hour-select
+                  %select{:name => "style2"}
                     %option hr
                     %option 01
                     %option 02
@@ -52,8 +45,8 @@
                     %option 10
                     %option 11
                     %option 12
-                .col-md-4.no-padding
-                  %select#time-minute-select{:name => "style2"}
+                .col-md-4.no-padding#time-minute-select
+                  %select{:name => "style2"}
                     %option min
                     %option 01
                     %option 02
@@ -115,8 +108,8 @@
                     %option 58
                     %option 59
                     %option 00
-                .col-md-4.no-padding
-                  %select#time-ampm-select{:name => "style2"}
+                .col-md-4.no-padding#time-ampm-select
+                  %select{:name => "style2"}
                     %option am
                     %option pm
 
@@ -124,12 +117,12 @@
               %label Club Event
             .col-md-4.no-padding
               .row
-                .col-md-4.no-padding
-                  %select#club-event-select{:name => "style2"}
+                .col-md-4.no-padding#club-event-select
+                  %select{:name => "style2"}
                     %option No
                     %option Yes
-                .col-md-8.no-padding
-                  %select#club-select{:name => "style2"}
+                .col-md-8.no-padding#club-select
+                  %select{:name => "style2"}
                     %option Select Club
                     %option Club New York
                     %option Club London
@@ -144,8 +137,8 @@
               %label Free Food
             .col-md-4.no-padding
               .row
-                .col-md-4.no-padding
-                  %select#free-food-select{:name => "style2"}
+                .col-md-4.no-padding#free-food-select
+                  %select{:name => "style2"}
                     %option Yes
                     %option No
 
