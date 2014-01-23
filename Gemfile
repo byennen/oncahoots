@@ -10,6 +10,7 @@ end
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'bootstrap-sass'
+gem 'bourbon'
 gem 'bootstrap-datepicker-rails'
 gem 'cancan'
 gem 'devise'
