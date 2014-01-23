@@ -1,0 +1,15 @@
+#event-area-single
+  .event-area-title
+    %p
+      Event Title
+  .event-area-content
+    = image_tag('circle-img.png')
+    %p
+      = "#{date}, #{time}"
+      %br/
+      = location
+      %br/
+      %a{:href => "#"}= title
+    %span= description
+    %button.btn8{:name => "btn"} Interested
+    %button.btn8{:name => "btn"} Next Event

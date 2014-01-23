@@ -17,6 +17,7 @@ CahootsConnect::Application.routes.draw   do
   match '/static/search-detail', to: 'static_pages#search_detail'
   match '/static/settings', to: 'static_pages#settings'
 
+  get '/static/show-event' => 'static_pages#show_event'
 
 
   match '/auth/:provider/callback' => 'authentications#create'
@@ -94,7 +95,7 @@ CahootsConnect::Application.routes.draw   do
     collection do
       get :auto_search
     end
-    
+
     resources :club_events, only: [:create, :update, :destroy] do
       collection do
         get :week_events
@@ -115,7 +116,7 @@ CahootsConnect::Application.routes.draw   do
   end
 
   resources :transactions, only: [:create]
-  
+
   match "/metropolitan_club", to: "metropolitan_clubs#home"
 
   match "/next_week/:week_start", to: "university_events#next_week"
@@ -141,9 +142,9 @@ CahootsConnect::Application.routes.draw   do
   get '/search/person', to: "search#person"
   get '/search/event', to: "search#event", as: "search_event"
 
-  devise_for :users, :controllers => { :registrations => "registrations", 
+  devise_for :users, :controllers => { :registrations => "registrations",
     :sessions => "sessions"}
-  
+
   get 'registrations/finish', to: "registrations#finish"
   devise_scope :user do
     get "sign_out", :to => "sessions#destroy"

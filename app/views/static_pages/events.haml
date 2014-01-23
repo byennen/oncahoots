@@ -18,7 +18,7 @@
   .caltitle
     %p
       %a{:href => "#"} <<
-      December 15, 2013
+      December, 2013
       %a{:href => "#"} >>
   .session
     %a.freefood{:href => "#"} Free Food
@@ -32,57 +32,61 @@
         %p 10:00 am
         %p Location Here
       .col-md-8.event-title
-        %h3 Event Title / Headline Here
-        %p Brief description / subhead here. Click for more info.
+        %h3 Event Title 1
+        %p Here's a description for event 1.
 
     .row.event-listing
       .col-md-3.date
         %p SUN 12.15
         %p 10:00 am
-        %p Location Here
+        %p Campus
       .col-md-8.event-title
-        %h3 Event Title / Headline Here
-        %p Brief description / subhead here. Click for more info.
+        %h3 Event Title 2
+        %p And here's another description for event 2.
+
+    .row.event-listing
+      .col-md-3.date
+        %p TUE 12.15
+        %p 9:00 am
+        %p Gymnasium
+      .col-md-8.event-title
+        %h3 Event Title 3
+        %p Event 3 will be the best of them all!
 
     .row.event-listing
       .col-md-3.date
         %p SUN 12.15
-        %p 10:00 am
-        %p Location Here
+        %p 1:00 pm
+        %p Chalmers Building 214
       .col-md-8.event-title
-        %h3 Event Title / Headline Here
-        %p Brief description / subhead here. Click for more info.
-
-    .row.event-listing
-      .col-md-3.date
-        %p SUN 12.15
-        %p 10:00 am
-        %p Location Here
-      .col-md-8.event-title
-        %h3 Event Title / Headline Here
-        %p Brief description / subhead here. Click for more info.
+        %h3 Event 4
+        %p Shouldn't you consider event 4?
 
   #monthly-events-calendar
     .row
       .col-md-12.no-padding
         = image_tag('mon.png')
+    .row.event-listing
+      .col-md-3.date
+        %p THU 12.18
+        %p 10:00 am
+        %p Location 1
+      .col-md-8.event-title
+        %h3 Event Title / Headline Here
+        %p Brief description / subhead here. Click for more info.
+
+    .row.event-listing
+      .col-md-3.date
+        %p SUN 12.15
+        %p 10:00 am
+        %p Location Here
+      .col-md-8.event-title
+        %h3 Event Title / Headline Here
+        %p Brief description / subhead here. Click for more info.
 
 = content_for :right_side do
-  #event-area-single
-    .event-area-title
-      %p
-        Event Title
-    .event-area-content
-      = image_tag('circle-img.png')
-      %p
-        SUN 12.15, 10:00 am
-        %br/
-        Location Here
-        %br/
-        %a{:href => "#"} Running Club
-      %span Event Description here. Lorem ipsum dolor sit amet, ectetuer. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed  I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed  I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed  I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore doloetctuer adipaicse. Lore dolor consetctuer adipaicse.
-      %button.btn8{:name => "btn"} Interested
-      %button.btn8{:name => "btn"} Next Event
+  = render partial: "static_pages/event_partials/event_area", locals: {title: "EVENTS", date: "SUN 12.15", time: "10:00 am", location: "Location Here", description: "Event Description here. Lorem ipsum dolor sit amet, ectetuer. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Hey! How are you?"}
+
 
   #event-area-monthly-listing
     .monthly-event-listing
