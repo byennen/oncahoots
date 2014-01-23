@@ -1,4 +1,20 @@
+$green: #00c088;
+
 #events {
+  .title {
+    h1 {
+      a {
+        color: #333;
+        font-size: 16px;
+        font-weight: 400;
+        margin: 0px 5px;
+        &:hover {
+          text-decoration: none;
+          color: $green;
+        }
+      }
+    }
+  }
   .session {
     background-color: #e7e7e8;
     width: 100%;
