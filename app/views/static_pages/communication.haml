@@ -1,10 +1,12 @@
-= stylesheet_link_tag 'static/communication', 'static/buttons'
-= javascript_include_tag 'static/communication'
+= content_for :head do
+  = stylesheet_link_tag 'static/communication', 'static/buttons'
+  = javascript_include_tag 'static/communication'
 
-.no-margin.col-md-6
+= content_for :page_title do
   .title
     %h1 Communication
-  / title
+
+= content_for :left_side do
   .communication
     .com-title
       %a{:href => "#"} Notifications (2)
@@ -108,8 +110,7 @@
           %p I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse.
         / comment-box
 
-.no-margin.col-md-4
-  = render 'shared/search'
+= content_for :right_side do
   .showass
     .info{:style => "position:relative; z-index:10000; width:100%; float:left"}
       %button.btn7{:name => "btn"} Comments

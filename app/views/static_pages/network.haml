@@ -1,13 +1,15 @@
-= stylesheet_link_tag 'static/network', 'static/buttons'
-= javascript_include_tag 'static/network'
+= content_for :head do
+  = stylesheet_link_tag 'static/network', 'static/buttons'
+  = javascript_include_tag 'static/network'
 
-.no-margin.col-md-6
+= content_for :page_title do
   .title
     %h1 Network
     %p
       My Profile
       %span >>
-  / title
+
+= content_for :left_side do
   .user-profile
     %a.pro-pic{:href => "#"}
       My Name
@@ -317,8 +319,7 @@
             experience, GPA, major etc.  We know your time is valuable.
           %textarea.texta4.same{:placeholder => "Add contact requirements (Optional)"}
 
-.no-margin.col-md-4
-  = render 'shared/search'
+= content_for :right_side do
   .info
     %span.btn4 My Contacts
   / info

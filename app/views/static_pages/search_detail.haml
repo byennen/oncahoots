@@ -1,204 +1,207 @@
-= stylesheet_link_tag 'static/search_detail', 'static/buttons'
-= javascript_include_tag 'static/search_detail'
+- @full_page = true
 
-.no-margin.col-md-6
+= content_for :head do
+  = stylesheet_link_tag 'static/search_detail', 'static/buttons'
+  = javascript_include_tag 'static/search_detail'
+
+= content_for :page_title do
   .title
     %h1 Search
-.no-margin.col-md-4
-  = render 'shared/search'
 
-.col-md-offset-1.col-md-8
-  .search-detail
-    %h3 6 Results
-    %span Search:
-    %input{:name => "text", :placeholder => "DANIEL KORENEVSKY", :type => "text"}/
-  / search-detail
-  .empty
-    %ul.tabsx
-      %li.activex
-        %a{:href => "#tab1x"} students
-      %li
-        %a{:href => "#tab2x"} alumni
-      %li
-        %a{:href => "#tab3x"} club
-      %li
-        %a{:href => "#tab4x"} event
-    %p 2013
-    %p ADVERTISING
-  / empty
-  .tab_container
-    #tab1x.tab_content
-      .con
-        .half
-          .paddings
-            %a.csthumb{:href => "#"}
-            %a{:href => "running-club.html"}
-            %h4 running club
-            %br/
-            %p
-              Members (52)
+= content_for :full_page do
+  .col-md-offset-1.col-md-12
+    .search-detail
+      %h3 6 Results
+      %span Search:
+      %input{:name => "text", :placeholder => "DANIEL KORENEVSKY", :type => "text"}/
+    / search-detail
+    .empty
+      %ul.tabsx
+        %li.activex
+          %a{:href => "#tab1x"} students
+        %li
+          %a{:href => "#tab2x"} alumni
+        %li
+          %a{:href => "#tab3x"} club
+        %li
+          %a{:href => "#tab4x"} event
+      %p 2013
+      %p ADVERTISING
+    / empty
+    .tab_container
+      #tab1x.tab_content
+        .con
+          .half
+            .paddings
+              %a.csthumb{:href => "#"}
+              %a{:href => "running-club.html"}
+              %h4 running club
               %br/
-              Claritas est etiam pr dynamicdfus, qui sequitur mutationem consuetudium lectorum.
+              %p
+                Members (52)
+                %br/
+                Claritas est etiam pr dynamicdfus, qui sequitur mutationem consuetudium lectorum.
+                %br/
+                %a{:href => "#"}
+                  VIEW PAGE
+                  %span >>
+            / paddings
+          / half
+          .half
+            .paddings
+              %a.csthumb{:href => "#"}
+              %a{:href => "running-club.html"}
+              %h4 running club
               %br/
-              %a{:href => "#"}
-                VIEW PAGE
-                %span >>
-          / paddings
-        / half
-        .half
-          .paddings
-            %a.csthumb{:href => "#"}
-            %a{:href => "running-club.html"}
-            %h4 running club
-            %br/
-            %p
-              Members (52)
+              %p
+                Members (52)
+                %br/
+                Claritas est etiam pr dynamicdfus, qui sequitur mutationem consuetudium lectorum.
+                %br/
+                %a{:href => "#"}
+                  VIEW PAGE
+                  %span >>
+            / paddings
+          / half
+          .half
+            .paddings
+              %a.csthumb{:href => "#"}
+              %a{:href => "running-club.html"}
+              %h4 running club
               %br/
-              Claritas est etiam pr dynamicdfus, qui sequitur mutationem consuetudium lectorum.
+              %p
+                Members (52)
+                %br/
+                Claritas est etiam pr dynamicdfus, qui sequitur mutationem consuetudium lectorum.
+                %br/
+                %a{:href => "#"}
+                  VIEW PAGE
+                  %span >>
+            / paddings
+          / half
+          .half
+            .paddings
+              %a.csthumb{:href => "#"}
+              %a{:href => "running-club.html"}
+              %h4 running club
               %br/
-              %a{:href => "#"}
-                VIEW PAGE
-                %span >>
-          / paddings
-        / half
-        .half
-          .paddings
-            %a.csthumb{:href => "#"}
-            %a{:href => "running-club.html"}
-            %h4 running club
-            %br/
-            %p
-              Members (52)
+              %p
+                Members (52)
+                %br/
+                Claritas est etiam pr dynamicdfus, qui sequitur mutationem consuetudium lectorum.
+                %br/
+                %a{:href => "#"}
+                  VIEW PAGE
+                  %span >>
+            / paddings
+          / half
+          .half
+            .paddings
+              %a.csthumb{:href => "#"}
+              %a{:href => "running-club.html"}
+              %h4 running club
               %br/
-              Claritas est etiam pr dynamicdfus, qui sequitur mutationem consuetudium lectorum.
+              %p
+                Members (52)
+                %br/
+                Claritas est etiam pr dynamicdfus, qui sequitur mutationem consuetudium lectorum.
+                %br/
+                %a{:href => "#"}
+                  VIEW PAGE
+                  %span >>
+            / paddings
+          / half
+          .half
+            .paddings
+              %a.csthumb{:href => "#"}
+              %a{:href => "running-club.html"}
+              %h4 running club
               %br/
-              %a{:href => "#"}
-                VIEW PAGE
-                %span >>
-          / paddings
-        / half
-        .half
-          .paddings
-            %a.csthumb{:href => "#"}
-            %a{:href => "running-club.html"}
-            %h4 running club
-            %br/
-            %p
-              Members (52)
+              %p
+                Members (52)
+                %br/
+                Claritas est etiam pr dynamicdfus, qui sequitur mutationem consuetudium lectorum.
+                %br/
+                %a{:href => "#"}
+                  VIEW PAGE
+                  %span >>
+            / paddings
+          / half
+          .half
+            .paddings
+              %a.csthumb{:href => "#"}
+              %a{:href => "running-club.html"}
+              %h4 running club
               %br/
-              Claritas est etiam pr dynamicdfus, qui sequitur mutationem consuetudium lectorum.
+              %p
+                Members (52)
+                %br/
+                Claritas est etiam pr dynamicdfus, qui sequitur mutationem consuetudium lectorum.
+                %br/
+                %a{:href => "#"}
+                  VIEW PAGE
+                  %span >>
+            / paddings
+          / half
+          .half
+            .paddings
+              %a.csthumb{:href => "#"}
+              %a{:href => "running-club.html"}
+              %h4 running club
               %br/
-              %a{:href => "#"}
-                VIEW PAGE
-                %span >>
-          / paddings
-        / half
-        .half
-          .paddings
-            %a.csthumb{:href => "#"}
-            %a{:href => "running-club.html"}
-            %h4 running club
-            %br/
-            %p
-              Members (52)
-              %br/
-              Claritas est etiam pr dynamicdfus, qui sequitur mutationem consuetudium lectorum.
-              %br/
-              %a{:href => "#"}
-                VIEW PAGE
-                %span >>
-          / paddings
-        / half
-        .half
-          .paddings
-            %a.csthumb{:href => "#"}
-            %a{:href => "running-club.html"}
-            %h4 running club
-            %br/
-            %p
-              Members (52)
-              %br/
-              Claritas est etiam pr dynamicdfus, qui sequitur mutationem consuetudium lectorum.
-              %br/
-              %a{:href => "#"}
-                VIEW PAGE
-                %span >>
-          / paddings
-        / half
-        .half
-          .paddings
-            %a.csthumb{:href => "#"}
-            %a{:href => "running-club.html"}
-            %h4 running club
-            %br/
-            %p
-              Members (52)
-              %br/
-              Claritas est etiam pr dynamicdfus, qui sequitur mutationem consuetudium lectorum.
-              %br/
-              %a{:href => "#"}
-                VIEW PAGE
-                %span >>
-          / paddings
-        / half
-        .half
-          .paddings
-            %a.csthumb{:href => "#"}
-            %a{:href => "running-club.html"}
-            %h4 running club
-            %br/
-            %p
-              Members (52)
-              %br/
-              Claritas est etiam pr dynamicdfus, qui sequitur mutationem consuetudium lectorum.
-              %br/
-              %a{:href => "#"}
-                VIEW PAGE
-                %span >>
-          / paddings
-        / half
-        %a{:href => "search.html"}
-          %button.btn9.btnd{:name => "btn"} Start Over
-      / con
-      .clearfix
-    / tab_content
-    .col-md-offset-3.col-md-5
-      #tab2x.tab_content
-        %input{:name => "text", :placeholder => "MAJOR", :type => "text"}/
-        %input{:name => "text", :placeholder => "GRAD YEAR", :type => "text"}/
-        %input{:name => "text", :placeholder => "LOCATION", :type => "text"}/
-        .selectBox
-          %span.selected
-          .selectOptions
-            %span.selectOption{:value => "Option 1"} FIELD
-            %span.selectOption{:value => "Option 2"} DESIGNER
-            %span.selectOption{:value => "Option 3"} DEVELOPER
-          / selectOptions
-        / selectBox
+              %p
+                Members (52)
+                %br/
+                Claritas est etiam pr dynamicdfus, qui sequitur mutationem consuetudium lectorum.
+                %br/
+                %a{:href => "#"}
+                  VIEW PAGE
+                  %span >>
+            / paddings
+          / half
+          %a{:href => "search.html"}
+            %button.btn9.btnd{:name => "btn"} Start Over
+        / con
+        .clearfix
       / tab_content
-      #tab3x.tab_content
-        %br/
-        #sops
-          %label Category
-          %select#selector{:name => "style2"}
-            %option Yes, this club is private
-            %option No, this club is not private
-            %option Yes, this club is private
-            %option No, this club is not private
-            %option Yes, this club is private
-            %option No, this club is not private
-          .clearfix
-      / tab_content
-      #tab4x.tab_content
-        %input#datepicker{:name => "text", :placeholder => "START DATE", :type => "text"}/
-        %input#datepicker2{:name => "text", :placeholder => "END DATE", :type => "text"}/
-      / tab_content
-    / col-md-4
-    .col-md-offset-3
-    / col-md-offset-4
-  / tab_container
-/ col-md-10
-.col-md-offset-1
-/ col-md-offset-4
-/ row
-.clearfix
+      .col-md-offset-3.col-md-5
+        #tab2x.tab_content
+          %input{:name => "text", :placeholder => "MAJOR", :type => "text"}/
+          %input{:name => "text", :placeholder => "GRAD YEAR", :type => "text"}/
+          %input{:name => "text", :placeholder => "LOCATION", :type => "text"}/
+          .selectBox
+            %span.selected
+            .selectOptions
+              %span.selectOption{:value => "Option 1"} FIELD
+              %span.selectOption{:value => "Option 2"} DESIGNER
+              %span.selectOption{:value => "Option 3"} DEVELOPER
+            / selectOptions
+          / selectBox
+        / tab_content
+        #tab3x.tab_content
+          %br/
+          #sops
+            %label Category
+            %select#selector{:name => "style2"}
+              %option Yes, this club is private
+              %option No, this club is not private
+              %option Yes, this club is private
+              %option No, this club is not private
+              %option Yes, this club is private
+              %option No, this club is not private
+            .clearfix
+        / tab_content
+        #tab4x.tab_content
+          %input#datepicker{:name => "text", :placeholder => "START DATE", :type => "text"}/
+          %input#datepicker2{:name => "text", :placeholder => "END DATE", :type => "text"}/
+        / tab_content
+      / col-md-4
+      .col-md-offset-3
+      / col-md-offset-4
+    / tab_container
+  / col-md-10
+  .col-md-offset-1
+  / col-md-offset-4
+  / row
+  .clearfix
+

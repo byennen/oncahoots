@@ -23,8 +23,13 @@
               = yield :page_title
             .col-md-5.no-padding
               = render 'shared/search'
-          .row
-            .col-md-7.no-padding
-              = yield :left_side
-            .col-md-5.no-padding
-              = yield :right_side
+            - if @full_page == true
+              .row
+                .col-md-12.no-padding
+                  = yield :full_page
+            - else
+              .row
+                .col-md-7.no-padding
+                  = yield :left_side
+                .col-md-5.no-padding
+                  = yield :right_side
