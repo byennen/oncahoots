@@ -6,7 +6,7 @@
         %span.icon-bar
         %span.icon-bar
       = link_to image_tag('logo.png'), root_path, class: 'logo'
-    / navbar-header
+
     .navbar-collapse.collapse
       %ul.nav.navbar-nav
         %li
@@ -15,7 +15,7 @@
               = image_tag('college-icon.png')
             College
         %li
-          %a.activea{:href => "clubs"}
+          %a{:href => "clubs"}
             %i.icon-same.margin10
               = image_tag('clubs-icon.png')
             Clubs
@@ -41,3 +41,6 @@
             Settings
         %li
           %a{:href => "#"} Logout
+
+:javascript
+  $('li a:contains(#{action_name.capitalize})').addClass('active-nav')
