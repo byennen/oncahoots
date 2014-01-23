@@ -32,12 +32,15 @@
               = yield :page_title
             .col-md-5.no-padding
               = render 'shared/search'
+              
             - if @full_page == true
               .row
                 .col-md-12.no-padding
+                  = render 'layouts/messages'
                   = yield :full_page
             - else
               .row
+                = render 'layouts/messages'
                 .col-md-7.no-padding
                   = yield :left_side
                 .col-md-5.no-padding
