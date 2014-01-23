@@ -4,30 +4,35 @@ $(document).ready ->
   $(".freefood").on "click", ->
     $("#monthly-events-calendar").hide()
     $("#event-area-monthly-listing").hide()
+    $("#weekly-events-calendar").hide()
     $("#events-list").show()
     $("#event-area-single").show()
 
   $(".weekly").on "click", ->
     $("#monthly-events-calendar").hide()
     $("#event-area-monthly-listing").hide()
-    $("#events-list").show()
+    $("#events-list").hide()
+    $("#weekly-events-calendar").show()
     $("#event-area-single").show()
 
   $(".monthly").on "click", ->
     $("#events-list").hide()
     $("#event-area-single").hide()
+    $("#weekly-events-calendar").hide()
     $("#monthly-events-calendar").show()
     $("#event-area-monthly-listing").show()
 
   # hide monthly calendar on initial load
   $("#monthly-events-calendar").hide()
   $("#event-area-monthly-listing").hide()
+  $("#weekly-events-calendar").hide()
 
-  $('.event-listing').on "click", ->
+  $('#monthly-events-calendar .event-listing').on "click", ->
     $("#monthly-events-calendar").hide()
     $("#event-area-monthly-listing").hide()
-    $("#events-list").show()
     $("#event-area-single").show()
+    $("#weekly-events-calendar").show()
+
 
 
   # clicking event from monthly list
