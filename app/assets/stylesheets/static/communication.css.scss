@@ -1,21 +1,14 @@
 @import "bourbon";
 
-.communication {
-  width: 100%;
-  float: left;
-  clear: left;
-  position: relative;
+#communication{
+  ul {list-style-type: none;}
 }
-
 .com-title {
-  width: 100%;
-  position: relative;
   @include linear-gradient(#5c6067, #3c4449);
   min-height: 81px;
-  text-align: left;
-  text-indent: 15px;
+  text-align: center;
   a {
-    font-size: 25px;
+    font-size: 20px;
     color: white;
     display: inline-block;
     padding: 22px 0;

@@ -7,12 +7,15 @@
     %h1 Communication
 
 = content_for :left_side do
-  .communication
-    .com-title
+  .row.com-title
+    .col-md-4.no-padding
       %a{:href => "#"} Notifications (2)
+    .col-md-4.no-padding
       %a{:href => "#"} Messages (2)
+    .col-md-4.no-padding
       %a{:href => "#"} Requests (1)
-    / com-title
+
+  .row#com-notifications
     %ul.accordion
       %li
         %a.nots2.sa.lala{:href => "#"}
@@ -29,7 +32,7 @@
               YESTERDAY
               %br/
               %a.small-text{:href => "#"} "Couldn't agree more. Looking forward to seeing how it all works out. I've..."
-          / tiffny
+
           .tiffny
             %a.tif-img{:href => "#"}
             %p
@@ -39,7 +42,7 @@
               YESTERDAY
               %br/
               %a.small-text{:href => "#"} "Couldn't agree more. Looking forward to seeing how it all works out. I've..."
-          / tiffny
+
           .tiffny
             %a.tif-img{:href => "#"}
             %p
@@ -49,7 +52,7 @@
               YESTERDAY
               %br/
               %a.small-text{:href => "#"} "Couldn't agree more. Looking forward to seeing how it all works out. I've..."
-          / tiffny
+
           .tiffny
             %a.tif-img{:href => "#"}
             %p
@@ -59,7 +62,7 @@
               YESTERDAY
               %br/
               %a.small-text{:href => "#"} "Couldn't agree more. Looking forward to seeing how it all works out. I've..."
-          / tiffny
+
           .tiffny
             %a.tif-img{:href => "#"}
             %p
@@ -69,7 +72,7 @@
               YESTERDAY
               %br/
               %a.small-text{:href => "#"} "Couldn't agree more. Looking forward to seeing how it all works out. I've..."
-          / tiffny
+
           .tiffny
             %a.tif-img{:href => "#"}
             %p
@@ -79,8 +82,8 @@
               YESTERDAY
               %br/
               %a.small-text{:href => "#"} "Couldn't agree more. Looking forward to seeing how it all works out. I've..."
-          / tiffny
-    .clearfix
+
+  .row#com-messages
     %li
       %a#mes.nots2.lala{:href => "#"}
         %strong Messages
@@ -94,8 +97,8 @@
             %br/
             %span 1998
           %p I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse.
-        / comment-box
 
+  .row#com-requests
     %li
       %a.nots2.sa.lalas{:href => "#"}
         %strong Requests
@@ -108,13 +111,13 @@
             %br/
             %span 1998
           %p I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse.
-        / comment-box
+
 
 = content_for :right_side do
   .showass
     .info{:style => "position:relative; z-index:10000; width:100%; float:left"}
       %button.btn7{:name => "btn"} Comments
-    / info
+
     .comment-box
       = link_to image_tag('circle.png'), '#', class: 'com-img'
       %a.com-name{:href => "#"}
@@ -122,21 +125,21 @@
         %br/
         %span 1998
       %p Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed  I was hoping to touch base with Lore dolor consetctuer adipaicse.
-    / comment-box
+
 
     %textarea.text2{:name => "textarea"}
     %button#uni.btn8.pull-right{:name => "btn"} Reply
-  / showass
+
   .lal
     .info{:style => "position:relative; z-index:10000; width:100%; float:left"}
       %button.btn7{:name => "btn"} Connect
-    / info
+
     .comment-box
       = link_to image_tag('circle.png'), '#', class: 'com-img'
       .com-name
         %span Andy Howard
       %p Here's Andy's full introductions. Lorem ipsum dolor sit amet, ectetuer. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed  I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed  I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed  I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore doloetctuer adipaicse. Lore dolor consetctuer adipaicse.
-    / comment-box
+
     .clearfix
     %textarea.text2{:name => "textarea", :placeholder => "Write an optional message here"}
     %button.btn8{:name => "btn"} Accept
