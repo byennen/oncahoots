@@ -16,132 +16,156 @@
       %a{:href => "#"} Requests (1)
 
   .row#com-notifications
-    %ul.accordion
-      %li
-        %a.nots2.sa.lala{:href => "#"}
+    .col-md-12.no-padding#accordion
+      %a{"data-toggle" => "collapse", "data-parent" => "#accordion", "href" => "#collapseNotifications"}
+        .panel-heading
           %strong Notifications
-          %i
-        .clearfix
-        .ddd
-          .tiffny
-            %a.tif-img{:href => "#"}
-            %p
-              %a.tif-name{:href => "#"} tiffany wisnieski
-              Commented on your post.
-              %br/
-              YESTERDAY
-              %br/
-              %a.small-text{:href => "#"} "Couldn't agree more. Looking forward to seeing how it all works out. I've..."
+      #collapseNotifications.collapse
+        .row
+          .notification-box
+            .col-md-2.no-padding
+              = image_tag('circle.png', class: "tif-img")
+            .col-md-4
+              %p
+                %a.tif-name{:href => "#"} tiffany wisnieski
+                Commented on your post.
+                %br/
+                YESTERDAY
+                %br/
+                %a.small-text{:href => "#"} "Couldn't agree more. Looking forward to seeing how it all works out. I've..."
 
-          .tiffny
-            %a.tif-img{:href => "#"}
-            %p
-              %a.tif-name{:href => "#"} tiffany wisnieski
-              Commented on your post.
-              %br/
-              YESTERDAY
-              %br/
-              %a.small-text{:href => "#"} "Couldn't agree more. Looking forward to seeing how it all works out. I've..."
+          .notification-box
+            .col-md-2.no-padding
+              = image_tag('circle.png', class: "tif-img")
+            .col-md-4
+              %p
+                %a.tif-name{:href => "#"} tiffany wisnieski
+                Commented on your post.
+                %br/
+                YESTERDAY
+                %br/
+                %a.small-text{:href => "#"} "Couldn't agree more. Looking forward to seeing how it all works out. I've..."
 
-          .tiffny
-            %a.tif-img{:href => "#"}
-            %p
-              %a.tif-name{:href => "#"} tiffany wisnieski
-              Commented on your post.
-              %br/
-              YESTERDAY
-              %br/
-              %a.small-text{:href => "#"} "Couldn't agree more. Looking forward to seeing how it all works out. I've..."
+        .row
+          .notification-box
+            .col-md-2.no-padding
+              = image_tag('circle.png', class: "tif-img")
+            .col-md-4
+              %p
+                %a.tif-name{:href => "#"} tiffany wisnieski
+                Commented on your post.
+                %br/
+                YESTERDAY
+                %br/
+                %a.small-text{:href => "#"} "Couldn't agree more. Looking forward to seeing how it all works out. I've..."
 
-          .tiffny
-            %a.tif-img{:href => "#"}
-            %p
-              %a.tif-name{:href => "#"} tiffany wisnieski
-              Commented on your post.
-              %br/
-              YESTERDAY
-              %br/
-              %a.small-text{:href => "#"} "Couldn't agree more. Looking forward to seeing how it all works out. I've..."
-
-          .tiffny
-            %a.tif-img{:href => "#"}
-            %p
-              %a.tif-name{:href => "#"} tiffany wisnieski
-              Commented on your post.
-              %br/
-              YESTERDAY
-              %br/
-              %a.small-text{:href => "#"} "Couldn't agree more. Looking forward to seeing how it all works out. I've..."
-
-          .tiffny
-            %a.tif-img{:href => "#"}
-            %p
-              %a.tif-name{:href => "#"} tiffany wisnieski
-              Commented on your post.
-              %br/
-              YESTERDAY
-              %br/
-              %a.small-text{:href => "#"} "Couldn't agree more. Looking forward to seeing how it all works out. I've..."
+          .notification-box
+            .col-md-2.no-padding
+              = image_tag('circle.png', class: "tif-img")
+            .col-md-4
+              %p
+                %a.tif-name{:href => "#"} tiffany wisnieski
+                Commented on your post.
+                %br/
+                YESTERDAY
+                %br/
+                %a.small-text{:href => "#"} "Couldn't agree more. Looking forward to seeing how it all works out. I've..."
 
   .row#com-messages
-    %li
-      %a#mes.nots2.lala{:href => "#"}
-        %strong Messages
-        \&nbsp; &nbsp; &nbsp; Edit &nbsp; &nbsp; &nbsp; New Message
-        %i
-      .ddd
-        .comment-box
-          = link_to image_tag('circle.png'), '#', class: 'com-img'
-          %a.com-name{:href => "#"}
-            Jane Doe
-            %br/
-            %span 1998
-          %p I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse.
+    .col-md-12.no-padding#accordion
+      %a{"data-toggle" => "collapse", "data-parent" => "#accordion", "href" => "#collapseMessages"}
+        .panel-heading
+          %strong Messages
+      #collapseMessages.collapse
+        .row
+          .col-md-2.no-padding
+            = image_tag('circle.png', class: "tif-img")
+          .col-md-2.no-padding
+            %a.com-name{:href => "#"}
+              Jane Doe
+              %br/
+              %span 1998
+          .col-md-8.no-padding
+            %p I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse.
+
+        .row.dark
+          .col-md-2.no-padding
+            = image_tag('circle.png', class: "tif-img")
+          .col-md-2.no-padding
+            %a.com-name{:href => "#"}
+              Jane Doe
+              %br/
+              %span 1998
+          .col-md-8.no-padding
+            %p I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse.
 
   .row#com-requests
-    %li
-      %a.nots2.sa.lalas{:href => "#"}
-        %strong Requests
-        %i
-      .ddd
-        .comment-box
-          = link_to image_tag('circle.png'), '#', class: 'com-img'
-          %a.com-name{:href => "#"}
-            Jane Doe
-            %br/
-            %span 1998
-          %p I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse.
+    .col-md-12.no-padding#accordion
+      %a{"data-toggle" => "collapse", "data-parent" => "#accordion", "href" => "#collapseRequests"}
+        .panel-heading
+          %strong Requests
+      #collapseRequests.collapse
+        .row
+          .col-md-2.no-padding
+            = image_tag('circle.png', class: "tif-img")
+          .col-md-2.no-padding
+            %a.com-name{:href => "#"}
+              Jane Doe
+              %br/
+              %span 1998
+          .col-md-8.no-padding
+            %p I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse.
+
+        .row.dark
+          .col-md-2.no-padding
+            = image_tag('circle.png', class: "tif-img")
+          .col-md-2.no-padding
+            %a.com-name{:href => "#"}
+              Jane Doe
+              %br/
+              %span 1998
+          .col-md-8.no-padding
+            %p I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse.
+
+
+
 
 
 = content_for :right_side do
-  .showass
-    .info{:style => "position:relative; z-index:10000; width:100%; float:left"}
-      %button.btn7{:name => "btn"} Comments
+  #com-comments-box
+    .row
+      .col-md-12.comments-header
+        %p Comments
 
-    .comment-box
-      = link_to image_tag('circle.png'), '#', class: 'com-img'
-      %a.com-name{:href => "#"}
-        Your Post
-        %br/
-        %span 1998
-      %p Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed  I was hoping to touch base with Lore dolor consetctuer adipaicse.
+    .row
+      .col-md-2.no-padding
+        = image_tag('circle.png', class: "tif-img")
+      .col-md-2.no-padding
+        %a.com-name{:href => "#"}
+          Your Post
+          %br/
+          %span 1998
+      .col-md-8.no-padding
+        %p.comment-description Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed  I was hoping to touch base with Lore dolor consetctuer adipaicse.
+
+    .row
+      .col-md-12
+        %textarea.text2{:placeholder => "Write an optional message here"}
+        %button.btn8.pull-right Reply
 
 
-    %textarea.text2{:name => "textarea"}
-    %button#uni.btn8.pull-right{:name => "btn"} Reply
+  #com-connect-box
+    .row
+      .col-md-12.connect-header
+        %p Connect
 
-  .lal
-    .info{:style => "position:relative; z-index:10000; width:100%; float:left"}
-      %button.btn7{:name => "btn"} Connect
+    .row
+      .col-md-12.connect-body
+        = link_to image_tag('circle.png'), '#'
+        %h4 Andy Howard
+        %p.text-left Here's Andy's full introductions. Lorem ipsum dolor sit amet, ectetuer. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed  I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed  I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed  I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore doloetctuer adipaicse. Lore dolor consetctuer adipaicse.
 
-    .comment-box
-      = link_to image_tag('circle.png'), '#', class: 'com-img'
-      .com-name
-        %span Andy Howard
-      %p Here's Andy's full introductions. Lorem ipsum dolor sit amet, ectetuer. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed  I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed  I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed  I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore doloetctuer adipaicse. Lore dolor consetctuer adipaicse.
-
-    .clearfix
-    %textarea.text2{:name => "textarea", :placeholder => "Write an optional message here"}
-    %button.btn8{:name => "btn"} Accept
-    %button.btn8{:name => "btn"} Decline
-    %button.btn8{:name => "btn"} Recommend
+        %textarea.text2{:placeholder => "Write an optional message here"}
+        %button.btn8 Accept
+        %button.btn8 Decline
+        %button.btn8 Recommend
