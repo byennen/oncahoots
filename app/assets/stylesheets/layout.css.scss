@@ -7,6 +7,7 @@ $green: #00c088;
 
 .title {
   height: 70px;
+  overflow: hidden; // todo: not a great way to fix this
   @include linear-gradient(#fff, #ededed);
   h1 {
     font-size: 35px;

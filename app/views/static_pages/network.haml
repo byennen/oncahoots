@@ -5,56 +5,62 @@
 = content_for :page_title do
   .title
     %h1 Network
-    %p
-      My Profile
-      %span >>
 
 = content_for :left_side do
-  .user-profile
-    %a.pro-pic{:href => "#"}
-      My Name
-      %span '07
-    %p
-      Hi! My name is
-      %input.edtitor{:type => "text"}/
-      = succeed "." do
-        %i.text1 Jane Smith
-      I am a/an
-      %input.edtitor2{:type => "text"}/
-      %i.text22 Business Major
-      and
-      %input.edtitor3{:type => "text"}/
-      %i.text3 Double Major
-      at
-      %input.edtitor4{:type => "text"}/
-      = succeed "." do
-        %i.text4 Davidson College
-      I will graduate in
-      %input.edtitor5{:type => "text"}/
-      = succeed "." do
-        %i.text5 2015
-      My current city is
-      %input.edtitor6{:type => "text"}/
-      = succeed "." do
-        %i.text6 City Name
-    %textarea.same.textarea1{:name => "textarea", :placeholder => "Additional information.(Optional)"}
-    .pos2
-      %ul.tabs
-        %li
-          %a.active2{:href => "#tab1"} Resume
-        %li
-          %a{:href => "#tab2"} Portfolio
-        %li
-          %a{:href => "#tab3"} FAQs &amp; Contact Requirements
-      %a#edt.edit{:href => "#"}
-        Edit
-        %i
-          = image_tag('edit-icon.png')
-    / pos2
-  / user-profile
-  .clearfix
-  .tab_container
-    #tab1.tab_content
+  .row
+    .col-md-5
+      .profile-main-photo
+        = image_tag('frame.png')
+        %p.profile-main-photo-text
+          My Name
+          %span '07
+
+    .col-md-7
+      .profile-text
+        %p
+          Hi! My name is
+          %input.edtitor{:type => "text"}/
+          = succeed "." do
+            %span.form-field Jane Smith
+          I am a/an
+          %input.edtitor2{:type => "text"}/
+          %span.form-field Business Major
+          and
+          %input.edtitor3{:type => "text"}/
+          %span.form-field Double Major
+          at
+          %input.edtitor4{:type => "text"}/
+          = succeed "." do
+            %span.form-field Davidson College
+          I will graduate in
+          %input.edtitor5{:type => "text"}/
+          = succeed "." do
+            %span.form-field 2015
+          My current city is
+          %input.edtitor6{:type => "text"}/
+          = succeed "." do
+            %span.form-field City Name
+
+        / %textarea.same.textarea1{:name => "textarea", :placeholder => "Additional information.(Optional)"}
+
+        %ul.nav.nav-pills
+          %li
+            %a{:href => "#resume", "data-toggle" => "tab"}
+              Resume
+          %li
+            %a{:href => "#portfolio", "data-toggle" => "tab"}
+              Portfolio
+          %li
+            %a{:href => "#faq", "data-toggle" => "tab"}
+              FAQs &amp; Contact Requirements
+        %a#edt.edit{:href => "#"}
+          Edit
+          %i
+            = image_tag('edit-icon.png')
+
+
+  .tab-content
+    #resume.tab-pane.fade.in
       .paragraph
         .title2
           %ul.tabs2
@@ -244,12 +250,13 @@
           %textarea.same.texta3{:name => "textarea", :placeholder => "Additional description"}
         %button#add3.same.chn.button{:name => "btn", :style => "margin-left:0;"}
           %img{:alt => "Image", :src => "img/ads.png"}/
-        .clearfix
-      / paragraph2
-    / tab_content
-    #tab2.tab_content Portfolio
-    / tab_content
-    #tab3.tab_content
+
+
+    #portfolio.tab-pane.fade
+      %p Portfolio
+
+
+    #faq.tab-pane.fade
       .paragraph2
         .title2
           %h4 FAQs
