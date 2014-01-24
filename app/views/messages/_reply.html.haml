@@ -1,5 +1,3 @@
-%br
-= simple_form_for Message.new, url: reply_message_path(@conversation.id), remote: true, html: { multipart: true} do |f|
-  = f.input :body, as: :text, label: false, input_html: {class: "span12", rows: 4}
-  = f.input :attachment
-  = f.submit "Reply", class: "btn btn-success"
+= form_for Message.new, url: reply_message_path(@conversation.id), remote: true, html: { multipart: true} do |f|
+  = f.text_area :body, class: "text2"
+  = f.submit "Reply", class: "btn8 pull-right"
