@@ -10,6 +10,7 @@ class Update < ActiveRecord::Base
   validates_presence_of :body
   validates_presence_of :headline
 
+  default_scope order("created_at desc")
   def as_json options={}
 		super(
 			only: [:id, :headline, :body, :image, :created_at],
