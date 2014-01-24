@@ -1,108 +1,105 @@
-#ssp.col-lg-5
-  .banner{:style => "background:url(#{@university.banner}) no-repeat;"}
-    .dropfil
-      %a.dra{:href => "javascript:void(0);"}= @university.name
-      %span
-        = display_image_square(current_user.profile.image, "small")
-    .dropfil.mod
-      %a{:href => "javascript:;", :style => "float:right;"}
-        %button.btn.btn1{:name => "btn"}
-          %i.icon2
-            = image_tag('search-icon.png')
-      %input.field1{:name => "text", :placeholder => "Search", :type => "text"}/
-    / dropfil
-    .clearfix
-    %ul.btns.showaa
-      %li
-        %a{:href => "javascript::"}
-          %button.btn.btn2.sep{:name => "btn"} Find your club. Find your passion. >>
-      - @clubs.each do |club|
-        %li
-          %a{:href => university_club_path(@university, club)}
-            %button.btn.btn2{:name => "btn"}= club.name
-  / banner
-  .clearfix
-  .pos
-    %a{:href => "clubs.html"}
-    .club{:style => "background:url(../../assets/football-img.png);"}
-      .blank Soccer Club (55)
-      = link_to university_clubs_path(@university) do
-        %button.btn.btn3{:name => "btn", :style => "z-index:100; position:relative;"} All Clubs
-    / club
-    .updates
-      %h2 Club Updates
-      - @club_updates.each do |update|
-        - club = update.updateable
-        %p.nsw
-          %span
-            %a{:href => university_club_path(@university, club)}= club.name
-          = update.body.html_safe
-          %span
-            %a{:href => university_club_path(@university, club)} >>
+= content_for :head do
+  = stylesheet_link_tag 'static/college', 'static/buttons'
+  = javascript_include_tag 'static/college'
+
+- @full_page = true
+
+= content_for :page_title do
+  .row
+    .col-md-11.no-padding
+      %a.dra{:href => "#"}= @university.name
+    .col-md-1.no-padding
+      = image_tag(current_user.profile.image.small, class: "user-gravatar")
+= content_for :full_page do
+  .row
+    .col-md-6.no-padding
+      .find-your-passion
+        %ul.btns.showaa
+          %li
+            %a{:href => "search.html"}
+              %button.btn.btn2{:name => "btn"} Find your club. Find your passion. >>
+          - @clubs.each do |club|
+            %li
+              %a{:href => university_club_path(@university, club)}
+                %button.btn.btn2{:name => "btn"}= club.name
+
+      .row
+        .col-md-6.no-padding
+          .all-clubs
+            = link_to university_clubs_path(@university) do
+              .blank Soccer Club (55)
+              %button.btn.btn3 All Clubs
+        .col-md-6.no-padding
+          .club-updates
+            %h2 Club Updates
+            - @club_updates.each do |update|
+              - club = update.updateable
+              %p.nsw
+                %span
+                  %a{:href => university_club_path(@university, club)}= club.name
+                = truncate update.body, length: 30
+                %span
+                  %a{href: "#update#{update.id}-popup", data: {toggle: "modal"}} >>
+
+    .col-md-6.no-padding
+      .slider
+        %h2
+          Find
+          %span.all-ev-filter
+            All Events
+            = image_tag('arrow-down.png')
+            = link_to "Free Food", filter_university_events_path(@university, free_food: 'true'), remote: true, class: 'find-by-food'
+          %span.free_food-ev-filter.hide
+            Free Food
+            = image_tag('arrow-down.png')
+            = link_to "All Events", filter_university_events_path(@university, free_food: 'false'), remote: true, class: 'find-by-food'
+          %span.day-filter.all_days-filter
+            All Days
+            = image_tag('arrow-down.png')
+            = link_to "Today", filter_university_events_path(@university, today: "true"), remote: true, class: 'find-by-date'
+          %span.day-filter.today-filter.hide
+            Today
+            = image_tag('arrow-down.png')
+            = link_to "All Days", filter_university_events_path(@university, today: "false"), remote: true, class: 'find-by-date'
       
-    / updates
-/ col-lg-5
-#ssp2.col-lg-5
-  .slider
-    %h2
-      Find
-      %span.all-ev-filter
-        All Events
-        = image_tag('arrow-down.png')
-        = link_to "Free Food", filter_university_events_path(@university, free_food: 'true'), remote: true, class: 'anc'
-      %span.free_food-ev-filter.hide
-        Free Food
-        = image_tag('arrow-down.png')
-        = link_to "All Events", filter_university_events_path(@university, free_food: 'false'), remote: true, class: 'anc'
-      %span.day-filter.all_days-filter
-        All Days
-        = image_tag('arrow-down.png')
-        = link_to "Today", filter_university_events_path(@university, today: "true"), remote: true, class: 'anc'
-      %span.day-filter.today-filter.hide
-        Today
-        = image_tag('arrow-down.png')
-        = link_to "All Days", filter_university_events_path(@university, today: "false"), remote: true, class: 'anc'
-  
-    .carus
-      .events-slide= render partial: "events/slide", locals: {events: @events} 
-      %a{:href => university_events_path(@university)}
-        %button.btn.btn3{:name => "btn"} View All
-      .strip
+        .row#event-carousel
+          .events-slide= render partial: "events/slide", locals: {events: @events} 
+          %a{:href => university_events_path(@university)}
+            %button.btn.btn3{:name => "btn"} View All
+          .strip
 
-  .two-clumns
-    .half{:style => "background:url(../../assets/building-img.png);"}
-      %h1 Alumni Search
-      %ul.foy
-        %li
-          %input{:name => "text", :type => "text", :value => "Name"}/
-        %li
-          %input{:name => "text", :type => "text", :value => "City"}/
-        %li
-          %select.selectyze2{:name => "style2"}
-            %option Field
-            %option Software
-            %option Software
-            %option Software
-            %option Software
-            %option Software
-        %li
-          %input{:name => "text", :type => "text", :value => "Major"}/
-        %li
-          %input{:name => "text", :type => "text", :value => "Grade Year"}/
-        %li
-          %a{:href => "search.html"}
-            %button.btn.btn3.ch{:name => "btn"} Access Your Network
-    / half
-    .green
-      %h2 College Updates
-      %a{"data-target" => "#college_update", "data-toggle" => "modal"}
-        %p
-          Club Name Lorem dollar sit amet, consectetur adipiscing elit, sed diam non
-          %span >>
+      .row
+        .col-md-6.no-padding
+          .alumni-search
+            %h2 Alumni Search0
+            = form_tag :search do
+              %ul
+                %li
+                  = text_field_tag :name, "", placeholder: "Name"
+                %li
+                  = select_tag :city_id, options_from_collection_for_select(City.all, :id, :name), prompt: "City"
+                %li
+                  = select_tag :professional_field_id, options_from_collection_for_select(ProfessionalField.all.sort_by(&:name), :id, :name), prompt: "Field"
+                %li
+                  = text_field_tag :major, "", placeholder: "Major"
+                %li
+                  = text_field_tag :graduation_year, "", placeholder: "Grade Year"
+                %li
+                  %button.btn.btn3{type: "submit"} Access Your Network
 
+        .col-md-6.no-padding
+          .college-updates
+            %h2 College Updates
+            - @updates.each do |update|
+              %a{href: "#update#{update.id}-popup", data: {toggle: "modal"}}
+                %p
+                  = truncate update.body.html_safe, length: 30
+                  %span >>
+  - @updates.each do |update|
+    = render partial: 'updates/update', locals: {update: update}
 
-= render 'shared/college_update'
-
+  - @club_updates.each do |update|
+    = render partial: 'updates/update', locals: {update: update}
 :javascript
   $(document).ready(function(){
   $('.selectyze2').Selectyze({

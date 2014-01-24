@@ -14,7 +14,7 @@ namespace :dev do
         graduation_year: '2005',
         major: 'Computer Science',
         location_id: 1+rand(3),
-        city: City.find(i+1).name,
+        city_id: i+1,
         state: "US"
       )
     end

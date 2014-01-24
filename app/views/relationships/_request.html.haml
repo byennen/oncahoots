@@ -1,21 +1,20 @@
-.span3
-  %a{href: "javascript:;"}
-    = display_image(request.relation.profile.image, "thumb")
-  %a.btn.btn-success.btn-mini.mar2{href: user_path(request.relation)} View Profile
-%p.left
-  = request.relation.name
-  %br
-  = request.relation.intro_para
-.left= request.message
-.clearfix
+.lal
+  .info{:style => "position:relative; z-index:10000; width:100%; float:left"}
+    %button.btn7{:name => "btn"} Connect
+  .comment-box
+    = link_to user_path(request.relation) do
+      = display_image(request.relation.profile.image, "thumb")
+    .com-name
+      %span= request.relation.name
+    %p= request.message
+  .clearfix
 
-- if request.pending?
-  .span3= link_to "Accept",  accept_relationship_path(request), method: :post, class: 'btn btn-success btn-small'
-  .span3= link_to "Decline", decline_relationship_path(request), method: :post, class: "btn btn-danger btn-small"
-  .span3
-    = link_to "Recommend", "#recommend-#{request.id}", class: "btn btn-warning btn-small", data: {toggle: "modal"}
-- else
-  .span4{style: "padding-left: 100px;"}
-    = link_to "Yes", accept_recommendation_relationship_path(request), method: :post, class: 'btn btn-success btn-small'
-  .span4{style: "padding-left: 100px;"}
-    = link_to "No", decline_recommendation_relationship_path(request), method: :post, class: 'btn btn-danger btn-small'
+  - if request.pending?
+    = link_to "Accept",  accept_relationship_path(request), method: :post, class: 'btn8'
+    = link_to "Decline", decline_relationship_path(request), method: :post, class: "btn8"
+    = link_to "Recommend", "#recommend-#{request.id}", class: "btn8", data: {toggle: "modal"}
+  - else
+    .span4{style: "padding-left: 100px;"}
+      = link_to "Yes", accept_recommendation_relationship_path(request), method: :post, class: 'btn8'
+    .span4{style: "padding-left: 100px;"}
+      = link_to "No", decline_recommendation_relationship_path(request), method: :post, class: 'btn8'

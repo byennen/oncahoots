@@ -4,11 +4,11 @@
   .span8
     %h5
       = sender_name(message)
+      %small= time_ago_in_words(message.created_at) + " ago"
     = simple_format message.body
     %br
   .span10
     %small.fright
-      = time_ago_in_words(message.created_at) + " ago"
       - unless message.attachment.blank?
         = " | attachment: "
         = link_to message.attachment.file.filename, message.attachment.url, target: "_blank"

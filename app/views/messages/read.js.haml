@@ -1,5 +1,5 @@
-$(".left-side ul.msg li").css("background", "none");
-$("#message-#{@conversation.id}").css("background", "#ddd");
+$(".comment-box").css("background", "none");
+$("#con-#{@conversation.id}").css("background", "#9ce8c6");
 $("#current_conversation").html("#{escape_javascript(render partial: 'comment_box', object: @conversation)}");
 - if @unread_messages.size==0
   $("#unread_messages").hide();
