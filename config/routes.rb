@@ -189,5 +189,6 @@ CahootsConnect::Application.routes.draw   do
     root to: 'dashboard#index'
   end
 
+  get "/communication", to: "communication#index", as: "communication"
   root :to => "universities#home"
 end

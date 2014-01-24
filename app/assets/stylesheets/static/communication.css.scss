@@ -24,8 +24,13 @@
   float: left;
   margin-left: 1%;
   margin-top: 25px;
+  width: 100%;
+  img{ margin-right: 10px;}
 }
 
+#current_conversation{
+  img{ margin-right: 10px;}
+}
 .tif-img {
   background: url(../../assets/circle.png) no-repeat center left;
   height: 126px;
@@ -98,6 +103,7 @@
   display: inline-block;
   position: relative;
   padding: 15px 20px;
+  width: 100%;
 }
 
 .com-img {

@@ -82,10 +82,12 @@ module ApplicationHelper
 
   def alert_name(alertable)
     Rails.logger.debug(alertable.inspect)
-    if alertable.class == User
-      return alertable.name
-    else
-      return alertable.name
+    if alertable
+      if alertable.class == User
+        return alertable.name
+      else
+        return alertable.name
+      end
     end
   end
 

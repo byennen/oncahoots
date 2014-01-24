@@ -2,11 +2,11 @@ module MessagesHelper
   def sender_image(msg_obj)
     sender = msg_obj.sender
     if sender.is_a?(User) && sender.super_admin?
-      image_tag "/assets/logo.png", class: "circular cir-img small", style: "height: 77px;"
+      image_tag "/assets/logo.png", class: "circular cir-img thumb", style: "height: 77px;"
     elsif sender.is_a?(User) && sender.university_admin?
       image_tag sender.university.image.small, class: "circular cir-img"
     else
-      display_image(sender.image, "small")
+      display_image(sender.image, "thumb")
     end
   end
 
