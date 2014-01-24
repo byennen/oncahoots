@@ -9,9 +9,9 @@
 = content_for :left_side do
   .row.com-title
     .col-md-4.no-padding
-      %a{:href => "#"} Notifications (#{@notices.size})
+      %a{:href => "#"} Notifications <span id='unread_alerts'>(#{@notices.size})</span>
     .col-md-4.no-padding
-      %a{:href => "#"} Messages (#{@unread_messages.size})
+      %a{:href => "#"} Messages <span id='unread_messages'>(#{@unread_messages.size})</span>
     .col-md-4.no-padding
       %a{:href => "#"} Requests (#{@requests.size})
 
@@ -33,17 +33,7 @@
                 %a.tif-name{:href => "#"}= alert_name(notice.alert.alertable)
                 %br/
                 %a.small-text{:href => "#"}
-                  = truncate(notice.alert.message.html_safe, length: 70) unless notice.alert.message.blank?
-
-          .tiffny
-            %a.tif-img{:href => "#"}
-            %p
-              %a.tif-name{:href => "#"} tiffany wisnieski
-              Commented on your post.
-              %br/
-              YESTERDAY
-              %br/
-              %a.small-text{:href => "#"} "Couldn't agree more. Looking forward to seeing how it all works out. I've..."
+                  = notice.alert.message.html_safe unless notice.alert.message.blank?
 
   .row#com-messages
     %li
@@ -80,34 +70,3 @@
 
 = content_for :right_side do
   #current_conversation
-  .showass
-    .info{:style => "position:relative; z-index:10000; width:100%; float:left"}
-      %button.btn7{:name => "btn"} Comments
-
-    .comment-box
-      = link_to image_tag('circle.png'), '#', class: 'com-img'
-      %a.com-name{:href => "#"}
-        Your Post
-        %br/
-        %span 1998
-      %p Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed  I was hoping to touch base with Lore dolor consetctuer adipaicse.
-
-
-    %textarea.text2{:name => "textarea"}
-    %button#uni.btn8.pull-right{:name => "btn"} Reply
-
-  .lal
-    .info{:style => "position:relative; z-index:10000; width:100%; float:left"}
-      %button.btn7{:name => "btn"} Connect
-
-    .comment-box
-      = link_to image_tag('circle.png'), '#', class: 'com-img'
-      .com-name
-        %span Andy Howard
-      %p Here's Andy's full introductions. Lorem ipsum dolor sit amet, ectetuer. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed  I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed  I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed  I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore doloetctuer adipaicse. Lore dolor consetctuer adipaicse.
-
-    .clearfix
-    %textarea.text2{:name => "textarea", :placeholder => "Write an optional message here"}
-    %button.btn8{:name => "btn"} Accept
-    %button.btn8{:name => "btn"} Decline
-    %button.btn8{:name => "btn"} Recommend

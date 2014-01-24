@@ -1,9 +1,8 @@
 .conversation{id: "conv-#{@conversation.id}"}
+  .info{:style => "position:relative; z-index:10000; width:100%; float:left"}
+    %button.btn7{:name => "btn"} Comments
   = render partial: 'message', collection: @conversation.messages.reverse
-.span10
-  %small.fright= link_to "Delete", message_path(@conversation), method: :delete, remote: true, class: "btn btn-danger btn-sm", confirm: "are you sure?"
-#conversation_reply.hide
-  = render partial: 'reply'
+= render partial: 'reply'
   
 :javascript
   $(function () {

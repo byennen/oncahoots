@@ -2,7 +2,7 @@
   .info{:style => "position:relative; z-index:10000; width:100%; float:left"}
     %button.btn7{:name => "btn"} Connect
   .comment-box
-    = link_to user_path(request.relation) do
+    = link_to user_path(request.relation), class: "com-img" do
       = display_image(request.relation.profile.image, "thumb")
     .com-name
       %span= request.relation.name
@@ -10,9 +10,12 @@
   .clearfix
 
   - if request.pending?
-    = link_to "Accept",  accept_relationship_path(request), method: :post, class: 'btn8'
-    = link_to "Decline", decline_relationship_path(request), method: :post, class: "btn8"
-    = link_to "Recommend", "#recommend-#{request.id}", class: "btn8", data: {toggle: "modal"}
+    = link_to accept_relationship_path(request), method: :post do
+      %button.btn8 Accept
+    = link_to decline_relationship_path(request), method: :post do
+      %button.btn8 Decline
+    = link_to "#recommend-#{request.id}", data: {toggle: "modal"} do
+      %button.btn8 Recomment
   - else
     .span4{style: "padding-left: 100px;"}
       = link_to "Yes", accept_recommendation_relationship_path(request), method: :post, class: 'btn8'

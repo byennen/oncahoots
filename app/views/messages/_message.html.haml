@@ -1,14 +1,8 @@
-.comment-box.bottom{id: "message-#{message.id}"}
-  %a{href: "javascript:;", style: "margin-top: 0"}
+.comment-box{id: "message-#{message.id}"}
+  %a{href: "javascript:;", class: "com-img"}
     = sender_image(message)
-  .span8
-    %h5
-      = sender_name(message)
-      %small= time_ago_in_words(message.created_at) + " ago"
-    = simple_format message.body
+  = link_to "javascript:;", class: "com-name" do
+    = sender_name(message)
     %br
-  .span10
-    %small.fright
-      - unless message.attachment.blank?
-        = " | attachment: "
-        = link_to message.attachment.file.filename, message.attachment.url, target: "_blank"
+    %span= message.sender.graduation_year
+  %p= simple_format message.body
