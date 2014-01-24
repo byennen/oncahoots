@@ -1,21 +1,84 @@
 @import "bourbon";
 
+// TODO: remove unused css
+
 #communication{
-  ul {list-style-type: none;}
+  ul {
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+  }
 }
 .com-title {
   @include linear-gradient(#5c6067, #3c4449);
-  min-height: 81px;
   text-align: center;
   a {
     font-size: 20px;
     color: white;
     display: inline-block;
-    padding: 22px 0;
+    padding: 16px 0;
     &:hover, &:active, &:focus {
       text-decoration: none;
       color: #ebebeb;
     }
+  }
+}
+
+#com-notifications{
+}
+
+#accordion {
+  .panel-heading {
+    display: block;
+    position: relative;
+    padding: 25px 35px;
+    color: #555555;
+    background-color: #e7e7e8;
+    font-size: 15px;
+    strong {
+      font-size: 25px;
+      font-weight: normal;
+    }
+    &:hover, &:active, &:focus {
+      @include linear-gradient(#56d988, #02c189);
+      color: white;
+      text-decoration: none;
+    }
+  }
+  a {
+    &:hover, &:active, &:focus {
+      text-decoration: none;
+      color: #59da88;
+    }
+  }
+  i {
+    display: block;
+    float: right;
+    cursor: pointer;
+    background: url(/assets/down-arr2.png) no-repeat center right;
+    position: absolute;
+    right: 35px;
+    top: 35px;
+    z-index: 1000;
+    width: 31px;
+    height: 29px;
+  }
+
+  #collapseNotifications {
+    padding-top: 20px;
+  }
+  #collapseMessages, #collapseRequests {
+    p {
+      margin-top: 20px;
+    }
+  }
+}
+
+#collapseMessages .row, #com-requests .row {
+  &:hover, &:active, &:focus {
+    background-color: rgb(156,231,198);
+    text-decoration: none;
+    cursor: pointer;
   }
 }
 
@@ -32,19 +95,11 @@
   img{ margin-right: 10px;}
 }
 .tif-img {
-  background: url(../../assets/circle.png) no-repeat center left;
-  height: 126px;
-  width: 126px;
-  float: left;
-  overflow: hidden;
-  position: relative;
-  border: 8px solid #f7f7f7;
-  border-radius: 70px;
-  -moz-border-radius: 70px;
-  -o-border-radius: 70px;
-  -webkit-border-radius: 70px;
-  -khtml-border-radius: 70px;
-  -ms-border-radius: 70px;
+  // border: 8px solid #f7f7f7;
+  margin: 5px;
+  border-radius: 50px;
+  width: 100%;
+
   &:hover, &:active, &:focus {
     border: 8px solid #59da88;
   }
@@ -74,29 +129,8 @@
   }
 }
 
-.nots2 {
-  display: block;
-  position: relative;
-  padding: 25px 35px;
-  color: #555555;
-  background-color: #e7e7e8;
-  font-size: 15px;
-  &:hover, &:active, &:focus {
-    @include linear-gradient(#56d988, #02c189);
-    color: white;
-    text-decoration: none;
-  }
-}
-
 .sa {
   background-color: #f7f7f7;
-}
-
-.nots2 {
-  strong {
-    font-size: 35px;
-    font-weight: normal;
-  }
 }
 
 .comment-box {
@@ -134,40 +168,13 @@
 }
 
 .text2 {
-  border-radius: 0;
   border: none;
   background-color: #e7e7e8;
-  width: 95%;
   padding: 5px 10px;
-  float: left;
   resize: none;
   margin-bottom: 20px;
-  clear: left;
   height: 100px;
-  margin-left: 20px;
-  margin-right: 20px;
-}
-
-.accordion {
-  .nots2 {
-    display: block;
-    cursor: pointer;
-    position: relative;
-  }
-  li {
-    .nots2 i {
-      display: block;
-      float: right;
-      cursor: pointer;
-      background: url(../assets/down-arr2.png) no-repeat center right;
-      position: absolute;
-      right: 35px;
-      top: 35px;
-      z-index: 1000;
-      width: 31px;
-      height: 29px;
-    }
-  }
+  width: 100%;
 }
 
 .ddd {
@@ -183,9 +190,26 @@
   }
 }
 
-.showass {
-  display: none;
+#com-comments-box { display: none; }
+.comment-description { margin-top: 20px; }
+.comments-header, .connect-header {
+  height: 60px;
+  text-align: center;
+  @include linear-gradient(#56d988, #02c189);
+  p {
+    color: white;
+    font-size: 20px;
+    display: block;
+    padding: 16px 0;
+  }
 }
+
+.connect-body {
+  text-align: center;
+  margin-top: 20px;
+}
+
+
 
 .ddd .comment-box {
   &:hover, &:active, &:focus {
@@ -210,6 +234,3 @@
   }
 }
 
-#uni {
-  display: none;
-}

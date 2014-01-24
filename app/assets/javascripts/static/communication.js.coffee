@@ -1,16 +1,9 @@
 $(document).ready ->
-  $(".selectyze2").Selectyze theme: "mac"
-  $("ul").accordion()
-  $(".lala").on "click", ->
-    $(".lal").hide()
-    $(".showass").show()
 
-  $(".lalas").on "click", ->
-    $(".showass").hide()
-    $(".lal").show()
+  $(".notification-box").click ->
+    $('#com-connect-box').hide()
+    $('#com-comments-box').show()
 
-  $("#mes").click ->
-    if $("#uni").css("display") is "none"
-      $("#uni").css "display", "block"
-    else
-      $("#uni").css "display", "none"
+  $('#collapseMessages .row, #com-requests .row').click ->
+    $('#com-comments-box').hide()
+    $('#com-connect-box').show()
