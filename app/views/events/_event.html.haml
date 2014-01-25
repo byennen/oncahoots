@@ -1,0 +1,25 @@
+#event-area-single
+  .event-area-title
+    %p= event.title
+  .event-area-content
+    .row= display_image event.image, "large"
+    %p
+      = "#{event.date}, #{event.time}"
+      %br/
+      = event.location
+      %br/
+      %a{:href => "#"}= event.title
+    %span= event.description
+    .col-md-6.interested
+      - unless params[:filter]=='monthly'
+        - if current_user.interested_event?(event)
+          %h4.green-text Interested
+        - else
+          = link_to interested_university_event_path(event.university, event), remote: true do
+            %button.btn8{:name => "btn"} Interested
+      - else
+        = link_to "javascript:;", class: "back" do
+          %button.btn8{:name => "btn"} Back
+    .col-md-6
+      = link_to "javascript:;", class: "next-event", "data-id" => next_e do
+        %button.btn8{:name => "btn"} Next Event

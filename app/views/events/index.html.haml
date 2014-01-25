@@ -1,0 +1,81 @@
+= content_for :head do
+  = stylesheet_link_tag 'static/events', 'static/buttons'
+  = javascript_include_tag 'events'
+
+= content_for :page_title do
+  .title
+    %h1
+      Events
+      %a#new-event-link{:href => "#", "data-toggle" => "modal", "data-target" => "#event-popup"}
+        Add Event
+        %span.green-text >>
+      %a{:href => "#"}
+        My Events
+        %span.green-text >>
+
+
+= content_for :left_side do
+  .caltitle
+    %p.month_slide
+      = render partial: "month_bar", locals: {date: Date.today}
+
+  .session
+    = link_to "Free Food", university_events_path(@university, filter: "freefood"), remote: true, class: "free_food"
+    = link_to "Weekly", university_events_path(@university, filter: "weekly"), remote: true, class: "weekly"
+    = link_to "Monthly", university_events_path(@university, filter: "monthly"), remote: true, class: "monthly"
+
+     
+  #weekly-events-calendar
+    .row
+      .col-md-12.no-padding
+        = image_tag('wcal.png')
+
+  #monthly-events-calendar
+    .row
+      .col-md-12.no-padding
+        = image_tag('mon.png')
+
+  #events-list
+    = render partial: "list", locals: {events: @events}
+
+= content_for :right_side do
+  #event-detail
+    = render partial: "detail_list", locals: {events: @events}
+    
+  #event-area-monthly-listing
+    .monthly-event-listing
+      .event-area-title
+        %p
+          My #{Date.today.strftime("%B")} Events
+      %table.table
+        - @events.each do |event|
+          %tr.event-item{"data-id" => event.id}
+            %td.text-center
+              = display_image event.image, "small"
+            %td
+              %p= event.title
+              %p= event.date
+            %td
+              %p= truncate event.description, length: 70
+        
+  = render partial: 'events/form', locals: {event: @event}
+  #error.hide= @event.errors.blank? ? 'f' : 't'
+  :javascript
+    $(document).ready(function(){
+      if($("#error").text()=='t'){
+        $("#new-event-link").click();
+      }
+      $(document).on("click", ".event-item", function(){
+        $(".event-display").addClass("hide");
+        $("#event-show" + $(this).data("id")).removeClass("hide");
+      });
+      $(document).on("click", ".next-event", function(){
+        $(".event-display").addClass("hide");
+        $("#event-show" + $(this).data("id")).removeClass("hide");
+      });
+      $(document).on("click", ".back", function(){
+        $(".event-display").addClass('hide');
+        $("#event-area-monthly-listing").show();
+      });
+    
+    });

@@ -1,12 +1,11 @@
 class StaticPagesController < ActionController::Base
   layout 'static'
-
+  before_filter :authenticate_user!
 
   # This is just an experiment and will need to be redone for dynamic pages:
   #   using ajax to pass event data to controller
   #   then re-rendering the event_area partial with this data
   def show_event
-    before_filter :authenticate_user!
     @date = params[:event][:date]
     @time = params[:event][:time]
     @location = params[:event][:location]

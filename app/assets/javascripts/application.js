@@ -25,7 +25,6 @@
 
 // Static pages
 //= require static/settings.js.coffee
-//= require static/events.js.coffee
 
 // Keep main last
 //= require main

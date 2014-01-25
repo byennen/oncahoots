@@ -811,3 +811,64 @@ $green: #00c088;
 .large{
   width: 185px;
 }
+
+.event-popup {
+  form {
+    label {
+      text-align: right;
+      font-weight: normal;
+      color: #444444;
+      font-size: 16px;
+      margin-top: 7px;
+      margin-bottom: 30px;
+      float: right;
+    }
+    input {
+      background-color: #ebebeb;
+      border: none;
+      border-radius: 0;
+      height: 40px;
+      float: left;
+      width: 100%;
+      padding-left: 15px;
+      margin-bottom: 20px;
+    }
+    textarea {
+      width: 100%;
+      height: 100px;
+      margin-top: 10px;
+      padding: 10px;
+      background-color: #ebebeb;
+      border: none;
+    }
+    .gentleselect-label {
+      background-color: #ebebeb;
+    }
+    .btnx {
+      width: 100%;
+      height: 40px;
+      margin: 0px;
+      padding: 0px;
+    }
+  }
+}
+
+.red{color : red;}
+.datepicker{
+  z-index: 100000 !important;
+}
+
+.event-time{
+  .gentleselect-label{
+    width: 45% !important;
+  }
+}
+
+.event-area-content{
+  .row{
+    text-align: center;
+    img{
+      float: center;
+    }
+  }
+}

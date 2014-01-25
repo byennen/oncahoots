@@ -1,0 +1,4 @@
+$("#events-list").html("#{escape_javascript(render partial: 'list', locals: {events: @events})}");
+$("#event-detail").html("#{escape_javascript(render partial: 'detail_list', locals: {events: @events})}");
+- unless @date.blank?
+  $("p.month_slide").html("#{escape_javascript(render partial: 'month_bar', locals: {date: @date})}");
