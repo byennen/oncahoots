@@ -46,14 +46,14 @@ $(document).ready ->
     false
 
   $("#edt").click ->
-    $(".edtitor").val($(".text1").hide().text()).show()
-    $(".edtitor2").val($(".text22").hide().text()).show()
-    $(".edtitor3").val($(".text3").hide().text()).show()
-    $(".edtitor4").val($(".text4").hide().text()).show()
-    $(".edtitor5").val($(".text5").hide().text()).show()
-    $(".edtitor6").val($(".text6").hide().text()).show()
-    $(".edtitor7").val($(".text7").hide().text()).show()
-    $(".edtitor8").val($(".text8").hide().text()).show()
+    $(".edtitor").val($(this).find("span.form-field").hide().text()).show()
+    $(".edtitor2").val($(this).find("span.form-field").hide().text()).show()
+    $(".edtitor3").val($(this).find("span.form-field").hide().text()).show()
+    $(".edtitor4").val($(this).find("span.form-field").hide().text()).show()
+    $(".edtitor5").val($(this).find("span.form-field").hide().text()).show()
+    $(".edtitor6").val($(this).find("span.form-field").hide().text()).show()
+    $(".edtitor7").val($(this).find("span.form-field").hide().text()).show()
+    $(".edtitor8").val($(this).find("span.form-field").hide().text()).show()
     $(".edtitor9").val($(".text9").hide().text()).show()
     $(".edtitor1a").val($(".text1a").hide().text()).show()
     $(".edtitor2a").val($(".text2a").hide().text()).show()

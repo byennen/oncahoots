@@ -1,399 +1,428 @@
 @import "bourbon";
+$green: #00c088;
 
-.carousel {
-  margin-top: 40px;
-  background: none;
-}
-
-.carousel-control {
-  top: 24%;
-  background-image: none !important;
-}
-
-.user-profile {
-  display: block;
-  position: relative;
-  float: left;
-  width: 100%;
-  padding-top: 20px;
-  background-color: white;
-}
-
-.pro-pic {
-  background: url(../assets/frame.png) no-repeat;
-  width: 220px;
-  height: 206px;
-  text-align: center;
-  color: #333333;
-  font-size: 25px;
-  display: block;
-  margin-left: 30px;
-  line-height: 325px;
-  margin-right: 20px;
-  float: left;
-  position: relative;
-  z-index: 1000;
-  &:hover, &:active, &:focus {
-    color: black;
-    text-decoration: none;
+#network {
+  .carousel {
+    margin-top: 40px;
+    background: none;
   }
-  span {
-    color: white;
-  }
-}
 
-.user-profile p {
-  font-size: 13px;
-  line-height: 22px;
-  padding-right: 20px;
-  i {
-    color: #00c088;
-    font-style: normal;
+  .carousel-control {
+    top: 24%;
+    background-image: none !important;
   }
-}
 
-.pos2 {
-  position: absolute;
-  height: 48px;
-  @include linear-gradient(white, #f0f0f1);
-  bottom: 9%;
-  width: 100%;
-  float: left;
-  ul {
+  .profile-main-photo {
     display: block;
+    position: relative;
     float: left;
-    margin-left: 40%;
-    li {
+    width: 100%;
+    padding-top: 20px;
+    p {
+      font-size: 13px;
+      line-height: 22px;
+      padding-right: 20px;
+    }
+    .profile-main-photo-text {
+      position: absolute;
+      top: 76%;
+      left: 22%;
+      font-size: 22px;
+      color: #333;
+      span { color: white; }
+    }
+  }
+
+  .profile-text {
+    margin-top: 30px;
+    font-size: 12px;
+    line-height: 20px;
+    color: #777;
+    font-weight: 100;
+    span.form-field {
+      color: $green;
+    }
+  }
+
+  ul.nav-pills {
+    @include linear-gradient(#fff, #ededed);
+    a {
+      font-size: 10px;
+      padding: 5px;
+      color: #777;
+    }
+  }
+
+
+  // REMOVE THIS
+  .pro-pic {
+    background: url(../assets/frame.png) no-repeat;
+    width: 220px;
+    height: 206px;
+    text-align: center;
+    color: #333333;
+    font-size: 25px;
+    display: block;
+    margin-left: 30px;
+    line-height: 325px;
+    margin-right: 20px;
+    float: left;
+    position: relative;
+    z-index: 1000;
+    &:hover, &:active, &:focus {
+      color: black;
+      text-decoration: none;
+    }
+    span {
+      color: white;
+    }
+  }
+
+  // Is this needed?
+  .pos2 {
+    position: absolute;
+    height: 48px;
+    @include linear-gradient(white, #f0f0f1);
+    bottom: 9%;
+    width: 100%;
+    float: left;
+    ul {
+      display: block;
       float: left;
-      a {
-        display: block;
-        font-size: 11px;
-        color: #555555;
-        margin: 17px 10px;
-        display: block;
+      margin-left: 40%;
+      li {
         float: left;
-        &:hover, &:active, &:focus {
-          color: #02cd92;
-          text-decoration: none;
+        a {
+          display: block;
+          font-size: 11px;
+          color: #555555;
+          margin: 17px 10px;
+          display: block;
+          float: left;
+          &:hover, &:active, &:focus {
+            color: #02cd92;
+            text-decoration: none;
+          }
         }
       }
     }
   }
-}
 
-.edit {
-  float: right;
-  display: block;
-  margin-top: 17px;
-  float: left;
-  margin-left: 5px;
-  color: #555555;
-  font-size: 11px;
-  i {
+  .edit {
+    float: right;
     display: block;
-    padding: 5px;
-    margin-left: 10px;
-    background-color: #c7c8ca;
-    border-radius: 15px;
-    float: right;
-    margin-top: -20px;
-  }
-  &:hover, &:active, &:focus {
-    color: #02cd92;
-    text-decoration: none;
-  }
-  &:hover i, &:active i, &:focus i {
-    background-color: #00c089;
-  }
-}
-
-.paragraph {
-  display: block;
-  padding: 0 0 20px 0;
-  margin-left: 30px;
-  margin-right: 15px;
-  background-color: white;
-  margin-top: 10px;
-  text-align: center;
-}
-
-.title2 {
-  height: 30px;
-  width: 100%;
-  background-color: #e7e7e8;
-  text-align: left;
-  h4 {
+    margin-top: 17px;
     float: left;
-    margin-left: 10px;
-    margin-top: 5px;
+    margin-left: 5px;
+    color: #555555;
+    font-size: 11px;
+    i {
+      display: block;
+      padding: 5px;
+      margin-left: 10px;
+      background-color: #c7c8ca;
+      border-radius: 15px;
+      float: right;
+      margin-top: -20px;
+    }
+    &:hover, &:active, &:focus {
+      color: #02cd92;
+      text-decoration: none;
+    }
+    &:hover i, &:active i, &:focus i {
+      background-color: #00c089;
+    }
+  }
+
+  .paragraph {
+    display: block;
+    padding: 0 0 20px 0;
+    margin-left: 30px;
+    margin-right: 15px;
+    background-color: white;
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  .title2 {
+    height: 30px;
+    width: 100%;
+    background-color: #e7e7e8;
+    text-align: left;
+    h4 {
+      float: left;
+      margin-left: 10px;
+      margin-top: 5px;
+      font-size: 20px;
+    }
+    i {
+      float: right;
+    }
+  }
+
+  .paragraph p {
+    text-align: left;
     font-size: 20px;
-  }
-  i {
-    float: right;
-  }
-}
-
-.paragraph p {
-  text-align: left;
-  font-size: 20px;
-  float: left;
-  padding: 50px 30px;
-  margin: 0;
-  padding-right: 0;
-  margin-bottom: 40px;
-  i {
-    color: #00c089;
-    font-weight: normal;
-    font-style: normal;
-    font-size: 20px !important;
-  }
-}
-
-.paragraph2 {
-  display: block;
-  margin-left: 30px;
-  margin-right: 15px;
-  background-color: white;
-  margin-top: 30px;
-  height: 500px;
-  text-align: center;
-}
-
-.title3 {
-  height: 62px;
-  width: 100%;
-  background-color: #e7e7e8;
-  text-align: left;
-  h4 {
     float: left;
-    margin-left: 10px;
-    margin-top: 5px;
-    font-size: 25px;
-    line-height: 52px;
+    padding: 50px 30px;
+    margin: 0;
+    padding-right: 0;
+    margin-bottom: 40px;
+    i {
+      color: #00c089;
+      font-weight: normal;
+      font-style: normal;
+      font-size: 20px !important;
+    }
   }
-  i {
+
+  .paragraph2 {
+    display: block;
+    margin-left: 30px;
+    margin-right: 15px;
+    background-color: white;
+    margin-top: 30px;
+    height: 500px;
+    text-align: center;
+  }
+
+  .title3 {
+    height: 62px;
+    width: 100%;
+    background-color: #e7e7e8;
+    text-align: left;
+    h4 {
+      float: left;
+      margin-left: 10px;
+      margin-top: 5px;
+      font-size: 25px;
+      line-height: 52px;
+    }
+    i {
+      float: right;
+    }
+  }
+
+  .paragraph2 p {
+    display: block;
+    position: relative;
+    text-align: left;
+    text-align: left;
+    width: 85%;
+    padding: 30px 0;
+    font-size: 11px;
+    font-style: normal;
+  }
+
+  .lists {
+    float: left;
+    width: 100%;
+    position: relative;
+    li {
+      float: left;
+      clear: left;
+      width: 100%;
+      padding: 5px 0;
+      display: block;
+      a {
+        i {
+          float: left;
+          margin-left: 10px;
+        }
+        span {
+          font-size: 20px;
+          color: #333333;
+          float: left;
+          margin-left: 20px;
+          margin-top: 20px;
+        }
+      }
+      button {
+        z-index: 1000;
+        position: relative;
+        float: right;
+        margin-right: 30px;
+        margin-top: 30px;
+        color: white;
+        border: none;
+        @include linear-gradient(#5c6067, #3c4449);
+        border-radius: 0;
+        &:hover, &:active, &:focus {
+          @include linear-gradient(#3c4449, #5c6067);
+          color: white;
+        }
+      }
+    }
+  }
+
+  .active2 {
+    color: #00c089 !important;
+  }
+
+  .car2 .item p {
+    font-size: 15px;
+    padding: 0 70px;
+    color: #444444;
+    width: 100%;
+    float: left;
+    text-align: left;
+    span {
+      color: #00c089;
+      text-transform: uppercase;
+    }
+    small {
+      font-size: 15px;
+    }
+  }
+
+  .ss2 p {
+    font-size: 15px;
+    padding: 20px 0 20px 45px;
+    color: #444444;
+    text-align: left;
+    float: left;
+    span {
+      color: #00c089;
+      text-transform: uppercase;
+    }
+  }
+
+  .edtitor, .edtitor2, .edtitor3, .edtitor4, .edtitor5, .edtitor6, .edtitor7, .edtitor8, .edtitor9, .edtitor1a, .edtitor2a, .edtitor3a, .edtitor4a, .edtitor5a, .edtitor6a, .edtitor7a, .edtitor8a, .edtitor9a, .edtitor1b, .edtitor2b, .edtitor3b, .edtitor4b, .edtitor5b, .edtitor6b, .edtitor7b, .edtitor8b {
+    display: none;
+    font-size: 12px;
+    border: none;
+    background-color: #ebebeb;
+    padding: 2px;
+    width: 94px !important;
+  }
+
+  .same {
+    display: none;
+    float: left;
+  }
+
+  .chn {
+    float: left;
+    margin-left: 50px;
+    margin-bottom: 40px;
+    background: none;
+    border: none;
+  }
+
+  .ssys {
+    position: relative;
+    float: left;
+    width: 100%;
+    left: 0;
+    min-height: 104px;
+    opacity: 0.9;
+    background-color: #0eb886;
+    position: absolute;
+    top: 0;
+    display: inline-block;
+    color: white;
+    small {
+      font-size: 14px;
+      width: 66%;
+      float: left;
+      margin: 20px 0 0 20px;
+    }
+  }
+
+  .lists li {
+    position: relative;
+    .ssys {
+      display: none;
+    }
+    &:hover .ssys {
+      display: block;
+    }
+  }
+
+  .textarea1 {
     float: right;
+    text-indent: 10px;
+    line-height: 20px;
+    width: 54.7%;
+    resize: none;
+    margin-top: -95px;
+    margin-right: 20px;
+    background: #ebebeb;
+    border: none;
+    height: 50px;
   }
-}
 
-.paragraph2 p {
-  display: block;
-  position: relative;
-  text-align: left;
-  text-align: left;
-  width: 85%;
-  padding: 30px 0;
-  font-size: 11px;
-  font-style: normal;
-}
+  .texta2 {
+    float: left;
+    text-indent: 5px;
+    line-height: 20px;
+    width: 80%;
+    font-size: 12px;
+    margin-top: -20px;
+    margin-bottom: 20px;
+    margin-left: 30px;
+    resize: none;
+    margin-right: 20px;
+    background: #ebebeb;
+    border: none;
+    height: 80px;
+  }
 
-.lists {
-  float: left;
-  width: 100%;
-  position: relative;
-  li {
+  .texta3 {
+    float: right;
+    text-indent: 5px;
+    line-height: 20px;
+    width: 100%;
+    font-size: 12px;
+    margin-top: -50px;
+    resize: none;
+    margin-left: 20px !important;
+    background: #ebebeb;
+    border: none;
+    height: 50px;
+    margin-bottom: 10px;
+  }
+
+  .texta4 {
+    float: left;
+    text-indent: 5px;
+    line-height: 20px;
+    width: 100%;
+    font-size: 12px;
+    resize: none;
+    background: #ebebeb;
+    border: none;
+    height: 100px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  .car2 .item p input {
+    width: 100% !important;
+    margin: 5px 0;
     float: left;
     clear: left;
-    width: 100%;
-    padding: 5px 0;
-    display: block;
-    a {
-      i {
-        float: left;
-        margin-left: 10px;
-      }
-      span {
-        font-size: 20px;
-        color: #333333;
-        float: left;
-        margin-left: 20px;
-        margin-top: 20px;
-      }
-    }
-    button {
-      z-index: 1000;
-      position: relative;
-      float: right;
-      margin-right: 30px;
-      margin-top: 30px;
-      color: white;
-      border: none;
-      @include linear-gradient(#5c6067, #3c4449);
-      border-radius: 0;
-      &:hover, &:active, &:focus {
-        @include linear-gradient(#3c4449, #5c6067);
-        color: white;
-      }
-    }
+    height: 30px;
   }
-}
 
-.active2 {
-  color: #00c089 !important;
-}
-
-.car2 .item p {
-  font-size: 15px;
-  padding: 0 70px;
-  color: #444444;
-  width: 100%;
-  float: left;
-  text-align: left;
-  span {
-    color: #00c089;
-    text-transform: uppercase;
-  }
-  small {
-    font-size: 15px;
-  }
-}
-
-.ss2 p {
-  font-size: 15px;
-  padding: 20px 0 20px 45px;
-  color: #444444;
-  text-align: left;
-  float: left;
-  span {
-    color: #00c089;
-    text-transform: uppercase;
-  }
-}
-
-.edtitor, .edtitor2, .edtitor3, .edtitor4, .edtitor5, .edtitor6, .edtitor7, .edtitor8, .edtitor9, .edtitor1a, .edtitor2a, .edtitor3a, .edtitor4a, .edtitor5a, .edtitor6a, .edtitor7a, .edtitor8a, .edtitor9a, .edtitor1b, .edtitor2b, .edtitor3b, .edtitor4b, .edtitor5b, .edtitor6b, .edtitor7b, .edtitor8b {
-  display: none;
-  font-size: 12px;
-  border: none;
-  background-color: #ebebeb;
-  padding: 2px;
-  width: 94px !important;
-}
-
-.same {
-  display: none;
-  float: left;
-}
-
-.chn {
-  float: left;
-  margin-left: 50px;
-  margin-bottom: 40px;
-  background: none;
-  border: none;
-}
-
-.ssys {
-  position: relative;
-  float: left;
-  width: 100%;
-  left: 0;
-  min-height: 104px;
-  opacity: 0.9;
-  background-color: #0eb886;
-  position: absolute;
-  top: 0;
-  display: inline-block;
-  color: white;
-  small {
-    font-size: 14px;
-    width: 66%;
+  .doe {
     float: left;
-    margin: 20px 0 0 20px;
-  }
-}
-
-.lists li {
-  position: relative;
-  .ssys {
+    clear: left;
+    display: block;
+    padding: 15px;
+    text-align: left;
     display: none;
   }
-  &:hover .ssys {
-    display: block;
+
+  #edt {
+    &:hover, &:active, &:focus {
+      text-decoration: none;
+    }
   }
-}
 
-.textarea1 {
-  float: right;
-  text-indent: 10px;
-  line-height: 20px;
-  width: 54.7%;
-  resize: none;
-  margin-top: -95px;
-  margin-right: 20px;
-  background: #ebebeb;
-  border: none;
-  height: 50px;
-}
-
-.texta2 {
-  float: left;
-  text-indent: 5px;
-  line-height: 20px;
-  width: 80%;
-  font-size: 12px;
-  margin-top: -20px;
-  margin-bottom: 20px;
-  margin-left: 30px;
-  resize: none;
-  margin-right: 20px;
-  background: #ebebeb;
-  border: none;
-  height: 80px;
-}
-
-.texta3 {
-  float: right;
-  text-indent: 5px;
-  line-height: 20px;
-  width: 100%;
-  font-size: 12px;
-  margin-top: -50px;
-  resize: none;
-  margin-left: 20px !important;
-  background: #ebebeb;
-  border: none;
-  height: 50px;
-  margin-bottom: 10px;
-}
-
-.texta4 {
-  float: left;
-  text-indent: 5px;
-  line-height: 20px;
-  width: 100%;
-  font-size: 12px;
-  resize: none;
-  background: #ebebeb;
-  border: none;
-  height: 100px;
-  margin-top: 20px;
-  margin-bottom: 10px;
-}
-
-.car2 .item p input {
-  width: 100% !important;
-  margin: 5px 0;
-  float: left;
-  clear: left;
-  height: 30px;
-}
-
-.doe {
-  float: left;
-  clear: left;
-  display: block;
-  padding: 15px;
-  text-align: left;
-  display: none;
-}
-
-#edt {
-  &:hover, &:active, &:focus {
-    text-decoration: none;
+  #echo p {
+    padding-left: 30px;
+    padding-right: 15px;
   }
-}
 
-#echo p {
-  padding-left: 30px;
-  padding-right: 15px;
 }
