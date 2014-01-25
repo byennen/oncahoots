@@ -29,8 +29,8 @@ $(document).ready ->
 
   $('#monthly-events-calendar .event-listing').on "click", ->
     $("#monthly-events-calendar").hide()
-    $("#event-area-monthly-listing").hide()
-    $("#event-area-single").show()
+    #$("#event-area-monthly-listing").hide()
+    #$("#event-area-single").show()
     $("#weekly-events-calendar").show()
 
 
@@ -42,23 +42,7 @@ $(document).ready ->
 
     # static: change button from "interested" to "back"
     # Should be set based on whether this user is already interested in this event in dynamic views
-    $("#event-area-single button:first-of-type").html("Back")
-
-
-
-  $('.event-listing').on "click", ->
-    date = $(this).find('.date p:nth-child(1)').html()
-    time = $(this).find('.date p:nth-child(2)').html()
-    location = $(this).find('.date p:nth-child(3)').html()
-    title = $(this).find('.event-title h3').html()
-    description = $(this).find('.event-title p').html()
-    data = {date: date, time: time, location: location, title: title, description: description}
-    $.ajax
-      url: '/static/show-event'
-      method: 'get'
-      dataType: 'script'
-      data: {event: data}
-
+    #$("#event-area-single button:first-of-type").html("Back")
 
 
   # ADD NEW EVENT FORM

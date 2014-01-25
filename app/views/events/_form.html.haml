@@ -1,0 +1,67 @@
+.event-popup.modal.fade{id: "event#{event.id}-popup","aria-hidden" => "true", "aria-labelledby" => "createEvent", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"}
+        %h4#myModalLabel.modal-title Add Event
+      .modal-body
+        = form_for [@university, event] do |f|
+          - unless event.errors.blank?
+            .red= event.errors.full_messages.join("<br>")
+          .row
+            .col-md-2
+              %label *Title
+            .col-md-10.no-padding
+              = f.text_field :title
+          .row
+            .col-md-2
+              %label Date
+            .col-md-4.no-padding
+              = f.text_field :on_date, class: 'datepicker'
+            .col-md-2
+              %label Image
+            .col-md-4.no-padding
+              = f.file_field :image
+          .row
+            .col-md-2
+              %label Time
+            .col-md-4.no-padding
+              .row.event-time
+                = f.time_select :at_time, ampm: true, time_separator: ""
+                
+            .col-md-2
+              %label Club Event
+            .col-md-4.no-padding
+              .row
+                .col-md-4.no-padding#club-event-select
+                  %select#club_event
+                    %option No
+                    %option Yes
+                .col-md-8.no-padding#club-select
+                  = f.select :club_id, options_from_collection_for_select(@university.clubs.sup_club, :id, :name)
+          .row
+            .col-md-2
+              %label Location
+            .col-md-4.no-padding
+              = f.text_field :location
+            .col-md-2
+              %label Free Food
+            .col-md-4.no-padding
+              .row
+                .col-md-4.no-padding#free-food-select
+                  = select_tag :free_food, options_for_select([["No", false], ["Yes", true]])
+          .row
+            .col-md-2
+              %label Description
+            .col-md-10.no-padding
+              = f.text_area :description
+              %button.btng.ch2s{:name => "btn", type: "submit"} Save
+
+:javascript
+  $(document).ready(function(){
+    $(".event-popup form").submit(function(e){
+      if($("#club_event").val()=="No"){
+        $("#club-select select").val(Null);
+      }
+    });
+  });

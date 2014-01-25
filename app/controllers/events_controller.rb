@@ -6,8 +6,12 @@ class EventsController < ApplicationController
     @university = University.find(params[:university_id])
     @event = @university.events.new(params[:event])
     @event.user_id = current_user.id
-    @event.save
-    respond_to :js
+    if @event.save
+      redirect_to university_events_path(@university)
+    else
+      init
+      render :index
+    end
   end
 
   def destroy
@@ -25,8 +29,25 @@ class EventsController < ApplicationController
   end
 
   def index
-    @event = Event.new
-    init
+    respond_to do |format|
+      format.html do
+        init
+      end
+      format.js do
+        unless params[:date]
+          @events = @university.events.this_month 
+        else
+          @events = @university.events.by_month(params[:date])
+          @date=Date.strptime(params[:date],"%m%y")
+        end
+        case params[:filter]
+          when 'freefood' 
+            @events = @events.free_food
+          when 'weekly'
+            @events = @university.events.this_week
+        end
+      end
+    end
   end
 
   def interested
@@ -81,10 +102,11 @@ class EventsController < ApplicationController
 
     def init
       @event ||=Event.new
-      @week_start = DateTime.now.beginning_of_week - 1.days
-      @university_events = @university.events.all
-      @university_clubs  = @university.clubs.order(:name)
-      @events = events_of_day(Date.today)
+      #@week_start = DateTime.now.beginning_of_week - 1.days
+      #@university_events = @university.events.all
+      #@university_clubs  = @university.clubs.order(:name)
+      #@events = events_of_day(Date.today)
+      @events = @university.events.this_month
     end
 
 end

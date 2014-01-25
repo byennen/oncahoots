@@ -13,12 +13,14 @@ class Event < ActiveRecord::Base
   scope :free_food, where(free_food: true)
   scope :non_free_food, where(free_food: !true)
   scope :display_on_university_calendar, where(display_on_wc: true)
-  scope :active, where("on_date >= ?", Date.today)
+  scope :active, where("events.on_date >= ?", Date.today)
+  scope :this_month, where("events.on_date >= ? AND events.on_date <= ?", Time.now.beginning_of_month, Time.now.end_of_month)
+  scope :this_week, where("events.on_date >= ? AND events.on_date <= ?", Time.now.beginning_of_week, Time.now.end_of_week)
 
   validates :title, presence: true
 
   def date
-    on_date.strftime("%m/%d/%Y") if on_date
+    on_date.strftime("%a %m.%d") if on_date
   end
 
   def time
@@ -26,6 +28,11 @@ class Event < ActiveRecord::Base
   end
 
   class << self
+    def by_month(str)
+      date = Date.strptime(str,"%m%y")
+      where("events.on_date >= ? AND events.on_date <= ?", date.beginning_of_month, date.end_of_month)
+    end
+
     def search_all(params)
       return where("1=1") if params.blank?
       search_title(params[:title]).search_date(params[:on_date]).search_time(params[:time])

@@ -26,6 +26,9 @@ CahootsConnect::Application.routes.draw   do
 
     resources :events do
       get :filter, on: :collection
+      member do
+        get :interested
+      end
     end
     member do
       get :search_events
