@@ -25,6 +25,7 @@
     /       = yield :right_side
     - id = controller_name
     - id = "college" if id=='universities'
+    - id = "network" if id=='profiles'
     .container-full{:id => "#{id}"}
       .row
         = render 'layouts/navigation'

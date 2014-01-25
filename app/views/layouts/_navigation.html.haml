@@ -18,7 +18,7 @@
             %i.icon-same.margin10
               = image_tag('clubs-icon.png')
         %li
-          %a{:href => "network.html"}
+          %a{:href => user_profile_path(current_user, current_user.profile)}
             %i.icon-same.margin5
               = image_tag('network-icon.png')
         %li
