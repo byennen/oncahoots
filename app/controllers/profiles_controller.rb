@@ -14,10 +14,11 @@ class ProfilesController < ApplicationController
 
   def show
     @user = User.find_by_id(params[:user_id]) || current_user
-    @messages = @user.mailbox.conversations
-    @unread_messages = @user.mailbox.inbox(unread: true)
-    @requests = @user.relationships.where(status: 'pending')
-    @contacts = @user.relationships.where(status: 'accepted')
+    @profile = @user.profile
+    # @messages = @user.mailbox.conversations
+    # @unread_messages = @user.mailbox.inbox(unread: true)
+    # @requests = @user.relationships.where(status: 'pending')
+    # @contacts = @user.relationships.where(status: 'accepted')
   end
 
   def create
