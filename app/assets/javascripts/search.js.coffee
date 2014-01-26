@@ -1,5 +1,6 @@
 $(document).ready ->
-  $("#selector").gentleSelect() # apply gentleSelect with default options
+  $("#club_private").gentleSelect() # apply gentleSelect with default options
+  $("#club_category").gentleSelect() 
   $("#datepicker").datepicker inline: true
   $("#datepicker2").datepicker inline: true
   $(".selectyze2").Selectyze theme: "mac"
@@ -18,3 +19,13 @@ $(document).ready ->
     activeTab = $(this).find("a").attr("href") #Find the rel attribute value to identify the active tab + content
     $(activeTab).fadeIn() #Fade in the active content
     false
+
+  $(".search-btn").click ->
+    terms = $("input#terms").val()
+    object = $(this).data("object")
+    href = "/search_results?object=#{object}&terms=#{terms}"
+
+    $(@).closest(".tab_content").find("input, select").each ->
+      href = href + "&#{$(this).attr('name')}=#{$(this).val()}"
+
+    location.href = href

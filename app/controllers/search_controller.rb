@@ -28,8 +28,44 @@ class SearchController < ApplicationController
     @events = events.search_all(params[:event])
   end
 
+  def results
+    if params[:object]=="student"
+      search_user("student")
+    elsif params[:object]=="alumni"
+      search_user("alumni")
+    elsif params[:object]=="club"
+      search_club
+    elsif params[:object]=='event'
+      search_event
+    else
+      search_event
+      search_club
+      search_user('all')
+    end
+  end
+
   private
     def load_university
       @university=params[:university_id] ? University.find(params[:university_id]) : current_user.university
+    end
+
+    def search_event
+      params[:event]||={}
+      events = current_user.super_admin? ? Event : current_user.university.events
+      @events = events.search_all(params[:event].merge(title: params[:terms]))
+    end
+
+    def search_club
+      params[:club]||={}
+      clubs = current_user.super_admin? ? Club.sup_club : current_user.university.clubs.sup_club
+      @clubs = clubs.search_all(params[:club].merge(name: params[:terms]))
+    end
+
+    def search_user(utype)
+      params[:user]||={}
+      users = current_user.super_admin? ? User : current_user.university.users
+      users = users.alumni if utype=='alumni'
+      users = users.student if utype=='student'
+      @users = users.search_all(params[:user].merge(name: params[:terms]))
     end
 end

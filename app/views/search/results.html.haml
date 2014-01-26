@@ -1,0 +1,66 @@
+- @full_page = true
+
+= content_for :head do
+  = stylesheet_link_tag 'static/search_detail', 'static/buttons'
+  = javascript_include_tag 'static/search_detail'
+
+= content_for :page_title do
+  .title
+    %h1 Search
+
+= content_for :full_page do
+  .col-md-offset-1.col-md-12
+    - unless @users.blank?
+      .search-detail
+        %h3= "#{@users.size} Results for User"
+      - @users.each do |user|
+        .con
+          .half
+            .paddings
+              = link_to user_path(user), class: "csthumb" do
+                = display_image user.profile.image, "medium"
+              %h4= user.name
+              %br
+              = user.graduation_year
+              %br
+              = user.major
+              %br
+              = user.city.name
+    - unless @clubs.blank?
+      .search-detail
+        %h3= "#{@clubs.size} Results for Club"
+      - @clubs.each do |club|
+        .con
+          .half
+            .paddings
+              = link_to university_club_path(@university, club), class: "csthumb" do
+                = display_image club.image, "medium"
+              %h4= club.name
+              %br
+              %p
+                Members (#{club.members.count})
+                %br
+                = club.description
+                %br
+                = link_to university_club_path(@university, club) do
+                  VIEW PAGE
+                  %span >>
+    - unless @events.blank?
+      .search-detail
+        %h3= "#{@events.size} Results for Event"
+      - @events.each do |event|
+        .con
+          .half
+            .paddings
+              = link_to "#university_event_path(@university, event)", class: "csthumb" do
+                = display_image event.image, "medium"
+              %h4= event.title
+              %br
+              %p
+                = "#{event.date}, #{event.time}"
+                %br
+                = event.location
+                %br
+                = truncate event.description, length: 100 unless event.description.blank?
+    %a{:href => "/search"}
+      %button.btn9.btnd{:name => "btn"} Start Over

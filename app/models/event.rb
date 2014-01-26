@@ -37,6 +37,7 @@ class Event < ActiveRecord::Base
       return where("1=1") if params.blank?
       search_title(params[:title]).search_date(params[:on_date]).search_time(params[:time])
       .search_location(params[:location]).search_category(params[:category]).search_free_food(params[:free_food])
+      .search_range(params[:start_date], params[:end_date])
     end
 
     def search_title(title)
@@ -71,6 +72,13 @@ class Event < ActiveRecord::Base
       min=Time.strptime("2000/01/01 #{hmin}:00 UTC","%Y/%m/%d %H:%M %Z")
       max=Time.strptime("2000/01/01 #{hmax}:59 UTC","%Y/%m/%d %H:%M %Z")
       where("at_time >= ? and at_time <= ?", min, max)
+    end
+
+    def search_range(start_date, end_date)
+      return where("1=1") if start_date.blank? && end_date.blank?
+      result = where("events.on_date >= ?", start_date) unless start_date.blank?
+      result = result.where("events.on_date <= ?", end_date) unless end_date.blank?
+      result
     end
 
   end
