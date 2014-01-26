@@ -24,7 +24,8 @@ class Club < ActiveRecord::Base
   validates :university_id, presence: true
 
   scope :sup_club, where(type: nil)
-
+  scope :privates, where(:private => true)
+  scope :publics, where("clubs.private is null or clubs.private=false")
   CATEGORIES = [
     "Academic",
     "Alumni",
@@ -68,7 +69,7 @@ class Club < ActiveRecord::Base
 
   class << self
     def search_all(params)
-      search_name(params[:name]).search_category(params[:category])
+      search_name(params[:name]).search_category(params[:category]).search_private(params[:private])
     end
     def search_name(name)
       return where("1=1") if name.blank?
@@ -79,5 +80,11 @@ class Club < ActiveRecord::Base
       return where("1=1") if(category.blank? || category == "All categories")
       where("category=?", category)
     end
+
+    def search_private(priv)
+      return where("1=1") if priv.blank?
+      priv=="true" ? privates : publics    
+    end
+
   end
 end

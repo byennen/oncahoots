@@ -10,9 +10,9 @@
 
 = content_for :full_page do
   .col-md-offset-1.col-md-12
-    .search-detail
-      %h3= "#{@count} Results"
     - unless @users.blank?
+      .search-detail
+        %h3= "#{@users.size} Results for User"
       - @users.each do |user|
         .con
           .half
@@ -27,6 +27,8 @@
               %br
               = user.city.name
     - unless @clubs.blank?
+      .search-detail
+        %h3= "#{@clubs.size} Results for Club"
       - @clubs.each do |club|
         .con
           .half
@@ -44,6 +46,8 @@
                   VIEW PAGE
                   %span >>
     - unless @events.blank?
+      .search-detail
+        %h3= "#{@events.size} Results for Event"
       - @events.each do |event|
         .con
           .half

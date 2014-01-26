@@ -1,5 +1,20 @@
 .search
-  %input{:name => "text", :placeholder => "Search", :type => "text"}/
-  %a{:href => "search.html"}
+  %input#search-text{:name => "search_terms", :placeholder => "Search", :type => "text"}/
+  %a#search-btn{:href => "javascript:;"}
     %button{:name => "btn"}
       = image_tag('search-icon.png')
+
+:javascript
+  $("#search-btn").click(function(){
+    terms = $("input#search-text").val();
+    href = "/search_results?object=all&terms=" + terms;
+    location.href = href;
+  });
+
+  $("#search-text").keydown(function(e){
+    if(e.keyCode == 13){
+      terms = $(this).val();
+      href = "/search_results?object=all&terms=" + terms;
+      location.href = href;
+    }
+  });
