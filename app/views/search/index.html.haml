@@ -1,3 +1,64 @@
+- @full_page = true
+
+= content_for :head do
+  = stylesheet_link_tag 'static/search_detail', 'search', 'static/buttons'
+  = javascript_include_tag 'search'
+
+= content_for :page_title do
+  .title
+    %h1 Search
+
+= content_for :full_page do
+  .col-md-6.col-md-offset-3.form3
+    %h3 What are you looking for?
+    = text_field_tag :terms, "", placeholder: "SEARCH TERMS", class: "bigf"
+    %ul.tabsx
+      %li.activex
+        %a{:href => "#tab1x"} students
+      %li
+        %a{:href => "#tab2x"} alumni
+      %li
+        %a{:href => "#tab3x"} club
+      %li
+        %a{:href => "#tab4x"} event
+    .tab_container
+      #tab1x.tab_content
+        = form_tag :search do
+          = text_field :user, :major, placeholder: "MAJOR"
+          = text_field :user, :graduation_year, placeholder: "GRAD YEAR"
+        %a.search-btn{href: "javascript:;", "data-object" => "student"}
+          %button.btn.btn6{:name => "btn"} Search
+
+      / tab_content
+      #tab2x.tab_content
+        = form_tag :search do
+          = text_field :user, :major, placeholder: "MAJOR"
+          = text_field :user, :graduation_year, placeholder: "GRAD YEAR"
+          .clearfix
+          = text_field :user, :city, placeholder: "LOCATION"
+          = text_field :user, :field, placeholder: "FIELD"
+        %a.search-btn{href: "javascript:;", "data-object" => "alumni"}
+          %button.btn.btn6{:name => "btn"} Search
+
+      / tab_content
+      #tab3x.tab_content
+        = form_tag :search do
+          .col-md-6= select :club, :private, options_for_select([["Not Private", false],["Private", true]]), prompt: "All"
+          .col-md-6= select :club, :category, options_for_select(Club::CATEGORIES), prompt: "All Category"
+
+          .clearfix
+        %a.search-btn{href: "javascript:;", "data-object" => "club"}
+          %button.btn.btn6{:name => "btn"} Search
+
+      / tab_content
+      #tab4x.tab_content
+        = form_tag :search do
+          = text_field :event, :start_date, :placeholder => "START DATE", class: "datepicker"
+          = text_field :event, :end_date, :placeholder => "END DATE", class: "datepicker"
+        %a.search-btn{href: "javascript:;", "data-object" => "event"}
+          %button.btn.btn6{:name => "btn"} Search
+
+      
 = content_for :header do
   .span10.page-title.top2.bottom2
     %span#person-title who are you looking for?

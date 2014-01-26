@@ -208,7 +208,7 @@ class User < ActiveRecord::Base
     def search_all(params)
       return where("1=1") if params.blank?
       search_name(params[:name]).search_type(params[:type])
-      .search_major(params[:major]).search_graduation_year(params[:year]).search_professional_field(params[:field]).search_city(params[:city])
+      .search_major(params[:major]).search_graduation_year(params[:graduation_year]).search_professional_field(params[:field]).search_city(params[:city])
     end
 
     def search_name(name)

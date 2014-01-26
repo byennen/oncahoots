@@ -141,6 +141,7 @@ CahootsConnect::Application.routes.draw   do
 
   match '/signup/:invitation_token', to: 'memberships#new', as: 'signup'
   get '/search', to: 'search#index', as: 'search'
+  get '/search_results', to: 'search#results', as: 'search_results'
   get '/search/club', to: "search#club"
   get '/search/person', to: "search#person"
   get '/search/event', to: "search#event", as: "search_event"
