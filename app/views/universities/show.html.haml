@@ -1,5 +1,5 @@
 = content_for :head do
-  = stylesheet_link_tag 'static/college', 'static/buttons'
+  = stylesheet_link_tag 'college', 'static/buttons'
   = javascript_include_tag 'static/college'
 
 - @full_page = true
@@ -59,7 +59,7 @@
                 %li
                   = text_field_tag :name, "", placeholder: "Name"
                 %li
-                  = select_tag :city_id, options_from_collection_for_select(City.all, :id, :name), prompt: "City"
+                  = text_field_tag :city, "", placeholder: "City"
                 %li
                   = select_tag :professional_field_id, options_from_collection_for_select(ProfessionalField.all.sort_by(&:name), :id, :name), prompt: "Field"
                 %li

@@ -1,6 +1,5 @@
 $(document).ready ->
   # $("#field-select").Selectyze theme: "mac"
-  $(".alumni-search select#city_id").gentleSelect()
   $(".alumni-search select#professional_field_id").gentleSelect()
   
   $(".nsw").on "click", ->
