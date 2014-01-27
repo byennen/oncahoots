@@ -11,7 +11,7 @@ class Profile < ActiveRecord::Base
   attr_accessible :user_id, :education, :experience, :skills, :skill1, :skill2, :skill3, :view_profile,
                   :experiences_attributes, :image, :portfolio_items_attributes,
                   :faqs_attributes, :hometown, :contact_requirement_attributes,
-                  :educations_attributes
+                  :educations_attributes, :interested1, :interested2, :interested3
 
   accepts_nested_attributes_for :experiences, allow_destroy: true
   accepts_nested_attributes_for :portfolio_items, allow_destroy: true
@@ -39,11 +39,11 @@ class Profile < ActiveRecord::Base
     client = LinkedIn::Client.new
     client.authorize_from_access(token, secret)
     in_profile = client.profile(id: omniauth['uid'], :fields => [:headline, :first_name, :last_name, :educations, :skills, :positions])
-    
+
     in_educations = in_profile["educations"].all
     unless in_educations.blank?
       in_educations.each do |edu|
-        self.educations.create(university: edu["school_name"], degree_type: edu["degree"], major: edu["field_of_study"], graduation_year: edu["end_date"]["year"] ) 
+        self.educations.create(university: edu["school_name"], degree_type: edu["degree"], major: edu["field_of_study"], graduation_year: edu["end_date"]["year"] )
       end
     end
 

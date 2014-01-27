@@ -15,6 +15,7 @@ class ProfilesController < ApplicationController
   def show
     @user = User.find_by_id(params[:user_id]) || current_user
     @profile = @user.profile
+    @contact_requirements = @profile.contact_requirement.present? ? @profile.contact_requirement : @profile.build_contact_requirement
     # @messages = @user.mailbox.conversations
     # @unread_messages = @user.mailbox.inbox(unread: true)
     # @requests = @user.relationships.where(status: 'pending')
@@ -37,9 +38,9 @@ class ProfilesController < ApplicationController
     if @profile.update_attributes(params[:profile])
       # Update the notifications
       create_notifications(params[:profile])
-      redirect_to edit_user_profile_path(current_user, current_user.profile), notice: 'Profile was successfully updated.'
+      redirect_to edit_user_profile_path(current_user, current_user.profile), notice: 'Profile was successfully updated.' if !request.xhr?
     else
-      format.html { render action: "edit" }
+      format.html { render action: "edit" if !request.xhr? }
     end
   end
 
@@ -57,14 +58,14 @@ class ProfilesController < ApplicationController
   def contact_requirements
     @profile = current_user.profile
     if @profile.contact_requirement.present?
-      @contat_requirement = @profile.contact_requirement
-      @contact_requirement.attributes(params[:contact_requirement])
+      @contact_requirement = @profile.contact_requirement
+      @contact_requirement.update_attributes(params[:contact_requirement])
     else
       @contact_requirement = @profile.create_contact_requirement(params[:contact_requirement])
     end
     if @contact_requirement.save
       respond_to do |format|
-        format.html { redirect_to edit_user_profile_path(current_user, current_user.profile), notice: "Profile was successfully updated" }
+        format.html { redirect_to edit_user_profile_path(current_user, current_user.profile), notice: "Profile was successfully updated" } if !request.xhr?
       end
     end
   end

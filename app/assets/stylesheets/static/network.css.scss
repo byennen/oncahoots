@@ -424,5 +424,11 @@ $green: #00c088;
     padding-left: 30px;
     padding-right: 15px;
   }
-
+  #bottom-alert{
+    position: fixed;
+    bottom: 0;
+    color: #468847;
+    background-color: #dff0d8;
+    width: 100%;
+  }
 }

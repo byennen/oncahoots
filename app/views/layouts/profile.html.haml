@@ -34,9 +34,7 @@
               = yield
         - if params[:action] != "new" && can_view?(current_user, @user)
           = yield(:content_bottom)
-      .seps
       .row-fluid
         .container
           .span12
-            .seperator
-      = render 'layouts/footer'
+            = render 'layouts/footer'
