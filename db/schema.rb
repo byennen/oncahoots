@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140127083710) do
+ActiveRecord::Schema.define(:version => 20140127230507) do
 
   create_table "albums", :force => true do |t|
     t.integer  "club_id"
@@ -127,6 +127,7 @@ ActiveRecord::Schema.define(:version => 20140127083710) do
     t.string   "high_school"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.text     "description"
   end
 
   create_table "events", :force => true do |t|
@@ -159,6 +160,7 @@ ActiveRecord::Schema.define(:version => 20140127083710) do
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
     t.boolean  "present"
+    t.text     "description"
   end
 
   create_table "faqs", :force => true do |t|

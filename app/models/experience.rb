@@ -1,7 +1,7 @@
 class Experience < ActiveRecord::Base
   belongs_to :profile
 
-  attr_accessible :company_name, :date_ended, :date_started, :position_name, :present
+  attr_accessible :company_name, :date_ended, :date_started, :position_name, :present, :description
 
   def started
     date_started.strftime("%m/%d/%Y") if date_started

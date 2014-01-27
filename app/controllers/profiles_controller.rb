@@ -36,6 +36,7 @@ class ProfilesController < ApplicationController
     @user = current_user
     @profile = current_user.profile
     if @profile.update_attributes(params[:profile])
+      @contact_requirements = @profile.contact_requirement.present? ? @profile.contact_requirement : @profile.build_contact_requirement
       # Update the notifications
       create_notifications(params[:profile])
       redirect_to edit_user_profile_path(current_user, current_user.profile), notice: 'Profile was successfully updated.' if !request.xhr?
@@ -66,6 +67,7 @@ class ProfilesController < ApplicationController
     if @contact_requirement.save
       respond_to do |format|
         format.html { redirect_to edit_user_profile_path(current_user, current_user.profile), notice: "Profile was successfully updated" } if !request.xhr?
+        format.js
       end
     end
   end
