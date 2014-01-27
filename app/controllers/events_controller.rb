@@ -22,8 +22,8 @@ class EventsController < ApplicationController
 
   def filter
     @events = @university.events.active
-    @events = @events.free_food if params[:free_food]=='true'
-    @events = @events.search_date(Date.today) if params[:today]=='true'
+    @events = @events.free_food unless params[:free_food]=='false'
+    @events = @events.search_date(Date.today) unless params[:today]=='false'
     @events.order(:at_time)
     respond_to :js
   end
