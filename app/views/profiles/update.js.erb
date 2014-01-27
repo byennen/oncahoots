@@ -1,0 +1,7 @@
+<% if @profile.errors.any? %>
+  $('#bottom-alert').html('<%= @profile.errors.full_messages.join(". - ") %>')
+<% else %>
+  $('#bottom-alert').html('Profile was successfully updated')
+<% end %>
+$('#bottom-alert').show()
+setTimeout("$('#bottom-alert').hide()", 1000);

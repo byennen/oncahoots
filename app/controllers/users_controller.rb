@@ -34,11 +34,11 @@ class UsersController < ApplicationController
     @user = current_user
     if @user.update_attributes(params[:user])
       create_notification
-      redirect_to edit_user_profile_path(current_user, current_user.profile), notice: "Profile was successfully updated"
+      redirect_to edit_user_profile_path(current_user, current_user.profile), notice: "Profile was successfully updated" if !request.xhr?
     else
       @profile = current_user.profile
       @contact_requirements = @profile.contact_requirement.present? ? @profile.contact_requirement : @profile.build_contact_requirement
-      render controller: :profile, action: :edit
+      render controller: :profile, action: :edit if !request.xhr?
     end
   end
 

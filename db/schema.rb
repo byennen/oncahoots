@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140120061506) do
+ActiveRecord::Schema.define(:version => 20140127083710) do
 
   create_table "albums", :force => true do |t|
     t.integer  "club_id"
@@ -291,6 +291,9 @@ ActiveRecord::Schema.define(:version => 20140120061506) do
     t.string   "skill1"
     t.string   "skill2"
     t.string   "skill3"
+    t.string   "interested1"
+    t.string   "interested2"
+    t.string   "interested3"
   end
 
   create_table "receipts", :force => true do |t|
