@@ -1,0 +1,64 @@
+.members{:style => "padding:0; float:left; width:100%;"}
+  .music{:style => "margin-bottom:30px;"}
+    %p Album Title Here.
+    %a.npost{"data-target" => "#create_album", "data-toggle" => "modal", :href => "#"} New Album >>
+
+    .music-img
+      %a{"data-target" => "#album_title", "data-toggle" => "modal", :href => "#"}
+        %img{:alt => "Image", :src => "img/club-img.png"}/
+
+  .clearfix
+  .music
+    %p Album Title Here.
+    .music-img
+      %a{"data-target" => "#myModal2", "data-toggle" => "modal", :href => "#"}
+        %img{:alt => "Image", :src => "img/club-img.png"}/
+    / music-img
+    Lance
+    #myModal2.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+      .modal-dialog
+        .modal-content
+          .modal-header
+            %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"}
+            %h4#myModalLabel.modal-title Album Title Here
+          / modal-header
+          .modal-body
+            #carousel-example-generic.carousel.slide.mod5{"data-ride" => "carousel"}
+              .carousel-inner
+                .item.active
+                  %img{:alt => "Image", :src => "img/running-club-img.png"}/
+                / item
+                .item
+                  %img{:alt => "Image", :src => "img/running-club-img.png"}/
+                / item
+                .item
+                  %img{:alt => "Image", :src => "img/running-club-img.png"}/
+                / item
+                .item
+                  %img{:alt => "Image", :src => "img/running-club-img.png"}/
+                / item
+              / carousel-inner
+              %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-example-generic"}
+                %img{:alt => "Image", :src => "img/slider-left.png"}/
+              %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-example-generic"}
+                %img{:alt => "Image", :src => "img/slider-right.png"}/
+              %p Photo caption here
+              %br/
+              %br/
+            / carousel
+            .cap
+              %p
+                %span
+                  Post comments
+                  %br/
+                  %br/
+                  UserName
+                comment lorem Ipsum dolor sit amet, ectetuer adipiscing elit, sed diam nonummy. Lorem dolor sit amet, consect!
+                %br/
+                %br/
+                %span UserName
+                comment lorem Ipsum dolor sit amet, ectetuer adipiscing elit, sed diam nonummy. Lorem dolor sit amet, consect!
+
+= render 'shared/create_club'
+= render 'shared/create_album'
+= render 'shared/album_title'
