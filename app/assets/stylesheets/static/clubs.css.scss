@@ -1,84 +1,132 @@
-.clubs-inner {
-  display: block;
-  position: relative;
-  padding: 10px 35px;
-  float: left;
-}
+@import "bourbon";
+$green: #00c088;
 
-.music-img {
-  border: 9px solid #ebebeb;
-  width: 100%;
-  height: 250px;
-  float: left;
-  position: relative;
-  overflow: hidden;
-  &:hover, &:active, &:focus {
-    border: 9px solid #00c089;
-  }
-}
 
-.music {
-  display: inline-block;
-  padding: 0 30px;
-  width: 100%;
-  float: left;
-  margin-bottom: 70px;
-  position: relative;
-  a span {
-    background: url(../assets/title-img.png) no-repeat;
-    width: 264px;
-    height: 70px;
-    position: absolute;
-    left: 17px;
-    color: #444444;
-    bottom: 80px;
-  }
-  &:hover a span, &:active a span, &:focus a span {
-    background: url(../assets/title-img-hover.png) no-repeat !important;
-    color: white;
-  }
-  p {
-    font-size: 20px;
-    margin: 10px 15px;
+#clubs {
+  .clubs-inner {
+    display: block;
+    position: relative;
+    padding: 10px 35px;
     float: left;
   }
-  span strong {
-    font-size: 31px;
-    float: left;
-    margin: 20px 0 20px 14px;
-    font-weight: normal;
-  }
-}
 
-.info {
-  background: white;
-  padding: 20px 0;
-  a.bka {
-    width: 100%;
-    text-align: left;
-    padding: 0;
-    float: left;
-    margin-top: 0;
-    height: 80px;
-    color: #3a4348;
-    line-height: 73px;
-    background-color: #00bf89;
-    text-indent: 30px;
-    font-size: 28px;
-    &:hover, &:active, &:focus {
-      text-decoration: none;
-      color: white;
+  ul.club-tabs {
+    padding: 0px;
+    li {
+      display:inline;
+      button {
+        margin-bottom: 5px;
+        @include linear-gradient(#5c6067, #3c4449);
+        color: white;
+        border-radius: 0;
+        font-size: 12px;
+        padding: 7px 20px;
+      }
     }
   }
-  img {
-    float: left;
+
+  .music-img {
+    border: 9px solid #ebebeb;
     width: 100%;
-    margin-top: -10px;
-  }
-  p {
-    font-size: 19px;
-    display: block;
-    padding: 150px 45px;
+    height: 250px;
     float: left;
+    position: relative;
+    overflow: hidden;
+    &:hover, &:active, &:focus {
+      border: 9px solid #00c089;
+    }
+  }
+
+  .music {
+    display: inline-block;
+    padding: 0 30px;
+    width: 100%;
+    float: left;
+    margin-bottom: 70px;
+    position: relative;
+    a span {
+      background: url(/assets/title-img.png) no-repeat;
+      width: 264px;
+      height: 70px;
+      position: absolute;
+      left: 17px;
+      color: #444444;
+      bottom: 80px;
+      .glyphicon {
+        top: -3px;
+        padding: 0px;
+        font-size: 14px;
+      }
+    }
+    &:hover a span, &:active a span, &:focus a span {
+      background: url(/assets/title-img-hover.png) no-repeat !important;
+      color: white;
+    }
+    p {
+      font-size: 20px;
+      margin: 10px 15px;
+      float: left;
+    }
+    span strong {
+      font-size: 31px;
+      float: left;
+      margin: 20px 0 20px 14px;
+      font-weight: normal;
+    }
+  }
+
+  .my-clubs {
+    overflow: hidden;
+    a {
+      text-decoration: none;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+    .club-title {
+      font-size: 26px;
+      background: $green;
+      padding: 10px 30px;
+      color: #333;
+      text-decoration: none;
+    }
+    .no-clubs {
+      padding: 50px 30px;
+      text-align: center;
+    }
+
+  }
+
+  .info {
+    background: white;
+    padding: 20px 0;
+    a.bka {
+      width: 100%;
+      text-align: left;
+      padding: 0;
+      float: left;
+      margin-top: 0;
+      height: 80px;
+      color: #3a4348;
+      line-height: 73px;
+      background-color: #00bf89;
+      text-indent: 30px;
+      font-size: 28px;
+      &:hover, &:active, &:focus {
+        text-decoration: none;
+        color: white;
+      }
+    }
+    img {
+      float: left;
+      width: 100%;
+      margin-top: -10px;
+    }
+    p {
+      font-size: 19px;
+      display: block;
+      padding: 150px 45px;
+      float: left;
+    }
   }
 }
