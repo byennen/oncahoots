@@ -1,5 +1,5 @@
 = content_for :head do
-  = stylesheet_link_tag 'static/college', 'static/buttons'
+  = stylesheet_link_tag 'college', 'static/buttons'
   = javascript_include_tag 'static/college'
 
 - @full_page = true
@@ -43,41 +43,23 @@
 
     .col-md-6.no-padding
       .slider
-        %h2
-          Find
-          %span.all-ev-filter
-            All Events
-            = image_tag('arrow-down.png')
-            = link_to "Free Food", filter_university_events_path(@university, free_food: 'true'), remote: true, class: 'find-by-food'
-          %span.free_food-ev-filter.hide
-            Free Food
-            = image_tag('arrow-down.png')
-            = link_to "All Events", filter_university_events_path(@university, free_food: 'false'), remote: true, class: 'find-by-food'
-          %span.day-filter.all_days-filter
-            All Days
-            = image_tag('arrow-down.png')
-            = link_to "Today", filter_university_events_path(@university, today: "true"), remote: true, class: 'find-by-date'
-          %span.day-filter.today-filter.hide
-            Today
-            = image_tag('arrow-down.png')
-            = link_to "All Days", filter_university_events_path(@university, today: "false"), remote: true, class: 'find-by-date'
+        #filter_bar= render partial: "events/filter_bar"
       
-        .row#event-carousel
-          .events-slide= render partial: "events/slide", locals: {events: @events} 
-          %a{:href => university_events_path(@university)}
-            %button.btn.btn3{:name => "btn"} View All
-          .strip
-
+        .row#event-carousel{style: "min-height: 150px"}
+          .events-slide= render partial: "events/slide", locals: {events: @events}
+        %a{:href => university_events_path(@university)}
+          %button.btn.btn3{:name => "btn"} View All
+      
       .row
         .col-md-6.no-padding
           .alumni-search
-            %h2 Alumni Search0
+            %h2 Alumni Search
             = form_tag :search do
               %ul
                 %li
                   = text_field_tag :name, "", placeholder: "Name"
                 %li
-                  = select_tag :city_id, options_from_collection_for_select(City.all, :id, :name), prompt: "City"
+                  = text_field_tag :city, "", placeholder: "City"
                 %li
                   = select_tag :professional_field_id, options_from_collection_for_select(ProfessionalField.all.sort_by(&:name), :id, :name), prompt: "Field"
                 %li
