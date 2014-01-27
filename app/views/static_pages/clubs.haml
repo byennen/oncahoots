@@ -4,12 +4,7 @@
   = javascript_include_tag 'static/clubs'
 
 = content_for :page_title do
-  .col-md-3
-    %h1 Clubs
-  .col-md-9.link
-    = link_to "#", "data-target" => "#create_club", "data-toggle" => "modal" do
-      Create Your Own Club
-      %span >>
+  = render 'static_pages/club_partials/title'
 
 = content_for :left_side do
   .clubs-inner

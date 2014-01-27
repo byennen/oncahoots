@@ -97,36 +97,4 @@ $green: #00c088;
 
   }
 
-  .info {
-    background: white;
-    padding: 20px 0;
-    a.bka {
-      width: 100%;
-      text-align: left;
-      padding: 0;
-      float: left;
-      margin-top: 0;
-      height: 80px;
-      color: #3a4348;
-      line-height: 73px;
-      background-color: #00bf89;
-      text-indent: 30px;
-      font-size: 28px;
-      &:hover, &:active, &:focus {
-        text-decoration: none;
-        color: white;
-      }
-    }
-    img {
-      float: left;
-      width: 100%;
-      margin-top: -10px;
-    }
-    p {
-      font-size: 19px;
-      display: block;
-      padding: 150px 45px;
-      float: left;
-    }
-  }
 }

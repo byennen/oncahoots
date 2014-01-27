@@ -1,13 +1,9 @@
 = content_for :head do
-  = stylesheet_link_tag 'static/lowdown', 'static/buttons'
+  = stylesheet_link_tag 'static/lowdown', 'static/running_club', 'static/buttons'
   = javascript_include_tag 'static/lowdown'
 
 = content_for :page_title do
-  .title
-    %h1 Clubs
-    %p
-      %a{"data-target" => "#club_name", "data-toggle" => "modal", :href => "#"} Create Your Own Club
-      %span >>
+  = render 'static_pages/club_partials/title'
 
 = content_for :left_side do
   .run-club{:style => "background:url(../../assets/running-club-img.png) no-repeat; height:320px;"}

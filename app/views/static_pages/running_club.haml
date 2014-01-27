@@ -3,11 +3,7 @@
   = javascript_include_tag 'static/running_club'
 
 = content_for :page_title do
-  .title
-    %h1 Clubs
-    %p
-      %a{"data-target" => "#create_club", "data-toggle" => "modal", :href => "#"} Create Your Own Club
-      %span >>
+  = render 'static_pages/club_partials/title'
 
 = content_for :left_side do
   .run-club{:style => "background:url(../../assets/running-club-img.png) no-repeat; height:320px;"}
@@ -15,7 +11,7 @@
 
   = render 'static_pages/club_navigation'
 
-  .cent
+  .not-joined
     %p
       This content is restricted.
       %br/
