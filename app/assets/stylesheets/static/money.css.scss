@@ -1,62 +1,79 @@
-div.selectOptions {
-  position: absolute;
-  top: 30px;
-  left: 0;
-  width: 129px;
-  border: 1px solid #ebebeb;
-  overflow: hidden;
-  background: white;
-  padding-top: 2px;
-  display: none;
-  z-index: 1000;
-}
+@import "bourbon";
+$green: #00c088;
 
-span.selectOption {
-  display: block;
-  width: 100%;
-  line-height: 20px;
-  text-indent: 15px;
-  padding: 5px 0;
-  &:hover {
-    color: white;
-    background: #0ebe7a;
+#money {
+  div.selectOptions {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    width: 129px;
+    border: 1px solid #ebebeb;
+    overflow: hidden;
+    background: white;
+    padding-top: 2px;
+    display: none;
+    z-index: 1000;
   }
-}
 
-.posd {
-  padding: 20px;
-}
-
-.sem {
-  position: relative;
-  display: block;
-  background-color: #ebebeb;
-  padding: 15px 20px;
-  margin-bottom: 15px;
-  span {
-    font-size: 20px;
+  span.selectOption {
+    display: block;
+    width: 100%;
+    line-height: 20px;
+    text-indent: 15px;
+    padding: 5px 0;
+    &:hover {
+      color: white;
+      background: #0ebe7a;
+    }
   }
-}
 
-.mod4 {
-  float: right;
-  font-size: 13px;
-  width: 15%;
-  padding: 4px 0;
-}
-
-.sem {
-  .selected, .selectOption {
-    font-size: 13px;
-    color: #444444 !important;
-    line-height: 25px;
-    cursor: pointer;
+  .posd {
+    padding: 20px;
   }
-  .selectBox {
+
+  .sem {
+    position: relative;
+    display: block;
+    background-color: #ebebeb;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    span {
+      font-size: 20px;
+    }
+    .gentleselect-label {
+      width: 200px;
+      float: right;
+      margin-right: 10px;
+      font-size: 13px;
+      height: 28px;
+    }
+    .selected, .selectOption {
+      font-size: 13px;
+      color: #444444 !important;
+      line-height: 25px;
+      cursor: pointer;
+    }
+    .selectBox {
+      float: right;
+      margin-top: 2px;
+    }
+    .selectOptions {
+      top: 24px;
+    }
+  }
+
+  .mod4 {
     float: right;
-    margin-top: 2px;
+    padding: 4px 0;
+    text-align: center;
+    color: white;
+    font-size: 13px;
+    @include linear-gradient(#56d988, #02c189);
+    border: none;
+    padding: 5px 10px;
+    &:hover, &:active, &:focus {
+      @include linear-gradient(#02c189, #4bc69f);
+    }
   }
-  .selectOptions {
-    top: 24px;
-  }
+
 }

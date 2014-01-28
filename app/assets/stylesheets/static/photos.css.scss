@@ -1,3 +1,28 @@
+@import "bourbon";
+$green: #00c088;
+
+#club-photos {
+  .photo-box {
+    width: 100%;
+    img {
+      width: 100%;
+      border: 5px solid #ddd;
+      &:hover {
+        border: 5px solid $green;
+      }
+    }
+  }
+}
+
+
+#album_title {
+  .carousel-control {
+    img {
+      margin-top: 150px;
+    }
+  }
+}
+
 .item img {
   margin: 0 auto;
 }
