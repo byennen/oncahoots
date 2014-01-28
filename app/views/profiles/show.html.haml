@@ -17,41 +17,29 @@
 
     .col-md-7
       .profile-text
-        = form_for @user, remote: true do |f|
-          %p
-            Hi! My name is
-            = f.text_field :first_name, placeholder: "First Name", class: 'edtitor field-edit'
-            = f.text_field :last_name, placeholder: "Last Name", class: 'edtitor field-edit'
-            = succeed "." do
-              %span.form-field= @user.name
-            - if @user.alumni?
-              I was a/an
-            - else
-              I am a/an
-            = f.text_field :major, placeholder: "Major", class: 'edtitor2 field-edit'
-            %span.form-field= @user.major
-            and
-            = f.text_field :double_major, placeholder: "Double Major", class: 'edtitor3 field-edit'
-            %span.form-field= @user.double_major
-            at
-            = f.select :university_id, options_from_collection_for_select(University.all, :id, :name, @user.university_id), {}, prompt: "University", class: 'edtitor4 field-edit'
-            = succeed "." do
-              %span.form-field= @user.university.name
-            ="I graduated in" if @user.alumni?
-            ="I will graduate in" unless @user.alumni?
-            = f.select :graduation_year, options_for_select((Date.today.year + 7).downto(1940).to_a, @user.graduation_year), {}, placeholder: "Grad Year", class: 'edtitor5 field-edit'
-            = succeed "." do
-              %span.form-field= @user.graduation_year
-            My current city is
-            = f.select :city_id, options_for_select(City.order(:name).collect{ |c| [c.name, c.id] } + [["Other", 0]], selected: @user.city_id), {}, class: 'edtitor6 field-edit'
-            = f.text_field :other_city, placeholder: "Other City", class: 'edtitor6 field-edit'
-            = succeed "." do
-              %span.form-field= @user.display_city
+        %p
+          Hi! My name is
+          = succeed "." do
+            %span.form-field= @user.name
+          - if @user.alumni?
+            I was a/an
+          - else
+            I am a/an
+          %span.form-field= @user.major
+          and
+          %span.form-field= @user.double_major
+          at
+          = succeed "." do
+            %span.form-field= @user.university.name
+          ="I graduated in" if @user.alumni?
+          ="I will graduate in" unless @user.alumni?
+          = succeed "." do
+            %span.form-field= @user.graduation_year
+          My current city is
+          = succeed "." do
+            %span.form-field= @user.display_city
 
-            / %textarea.same.textarea1{:name => "textarea", :placeholder => "Additional information.(Optional)"}
-            .span11.fright.pull-right
-              %input.btn.btn-small.btn-success.form-field(style='display:none' name="commit" type="submit" value="Save")
-            .clearfix
+          .clearfix
         %ul.nav.nav-pills
           %li
             %a{:href => "#resume", "data-toggle" => "tab"}
@@ -62,7 +50,7 @@
           %li
             %a{:href => "#faq", "data-toggle" => "tab"}
               FAQs &amp; Contact Requirements
-        %a#edt.edit{:href => "#"}
+        %a#edt.edit{:href => "#{edit_user_profile_path(current_user, current_user.profile)}"}
           Edit
           %i
             = image_tag('edit-icon.png')
@@ -83,79 +71,53 @@
         .clearfix
         .tab_container
           #tab11.tab_content2.tab-cont
-            ~ nested_form_for [@user, @profile], remote: true do |f|
-              - @profile.educations.build if @profile.educations.blank?
-              = f.fields_for :educations do |e|
-                - edu = e.object
-                .circlee
-                  %p{:style => "padding-bottom:0;"}
-                    I graduated from
-                    = e.text_field :university, placeholder: "University", class: 'edtitor7 field-edit'
-                    %i.text7
-                      %strong.form-field= edu.university || edu.high_school
-                    in
-                    = e.select :graduation_year, options_for_select((Date.today.year + 7).downto(1940).to_a, e.object.graduation_year), {}, class: 'edtitor8 field-edit'
-                    = succeed "." do
-                      %i.text8
-                        %strong.form-field= edu.graduation_year
-                    %br/
-                    I received my
-                    = e.text_field :degree_type, placeholder: "Degree Type", class: 'edtitor9 field-edit'
-                    %i.text9
-                      %strong.form-field= edu.degree_type
-                    in
-                    = e.text_field :major, placeholder: "Study", class: 'edtitor1a field-edit'
-                    = succeed "." do
-                      %i.text1a
-                        %strong.form-field= edu.major
-                  / %textarea.same.texta2{:name => "textarea", :placeholder => "Additional description"}
-                  .clearfix
-                  = e.link_to_remove "<i class='icon-remove'></i>".html_safe
-              .span11.text-left= f.link_to_add "Add", :educations, class: "btn btn-primary btn-mini fleft field-edit", style: "display:none;margin-left: 30px"
-              .span11.fright
-                = f.submit "Save", class: "btn btn-small btn-success fright form-field", class: 'form-field', style:'display:none'
-              /%button#add.same.chn.button{:name => "btn", value: 'Add'}
-              /%img{:alt => "Image", :src => "img/ads.png"}/
+            - @profile.educations.each do |edu|
+              .circlee
+                %p{:style => "padding-bottom:0;"}
+                  I graduated from
+                  %i.text7
+                    %strong.form-field= edu.university || edu.high_school
+                  in
+                  = succeed "." do
+                    %i.text8
+                      %strong.form-field= edu.graduation_year
+                  %br/
+                  I received my
+                  %i.text9
+                    %strong.form-field= edu.degree_type
+                  in
+                  = succeed "." do
+                    %i.text1a
+                      %strong.form-field= edu.major
+                .clearfix
             .clearfix
           / paragraph
         / tab_content2
         #tab22.tab_content2.tab-cont
           .paragraph2
             .circlee2
-              ~ form_for [@user, @profile], remote: true do |f|
-                %p{:style => "font-size:17px;"}
-                  I am skilled at
-                  = f.text_field :skill1, placeholder: "skill 1", class: 'edtitor6a field-edit'
-                  %i.text6a.form-field
-                    %strong= @profile.skill1
-                  #{',' if !@profile.skill1.blank? && !@profile.skill2.blank?}
-                  = f.text_field :skill2, placeholder: "skill 2", class: 'edtitor7a field-edit'
-                  %i.text7a.form-field
-                    %strong= @profile.skill2
-                  #{'and' if !@profile.skill3.blank? && (!@profile.skill1.blank? || !@profile.skill2.blank?) }
-                  = f.text_field :skill3, placeholder: "skill 3", class: 'edtitor8a field-edit'
-                  %i.text8a.form-field
-                    %strong= @profile.skill3
-                  %br/
-                  %br/
-                  I am interested in
-                  = f.text_field :interested1, placeholder: "interested 1", class: 'edtitor9a field-edit'
-                  %i.text9a.form-field
-                    %strong= @profile.interested1
-                  #{',' if !@profile.interested1.blank? && !@profile.interested2.blank?}
-                  = f.text_field :interested2, placeholder: "interested 2", class: 'edtitor1b field-edit'
-                  %i.text1b.form-field
-                    %strong= @profile.interested2
-                  #{'and' if !@profile.interested3.blank? && (!@profile.interested1.blank? || !@profile.interested2.blank?) }
-                  = f.text_field :interested3, placeholder: "interested 3", class: 'edtitor2b field-edit'
-                  %i.text2b.form-field
-                    %strong= @profile.interested3
-                  .clearfix
-                  .span11.fright
-                    = f.submit "Save", class: "btn btn-small btn-success fright form-field field-edit", class: 'form-field', style: 'display:none'
-
-            / %button#add2.same.chn.button{:name => "btn"}
-            / %img{:alt => "Image", :src => "img/ads.png"}/
+              %p{:style => "font-size:17px;"}
+                I am skilled at
+                %i.text6a.form-field
+                  %strong= @profile.skill1
+                #{',' if !@profile.skill1.blank? && !@profile.skill2.blank?}
+                %i.text7a.form-field
+                  %strong= @profile.skill2
+                #{'and' if !@profile.skill3.blank? && (!@profile.skill1.blank? || !@profile.skill2.blank?) }
+                %i.text8a.form-field
+                  %strong= @profile.skill3
+                %br/
+                %br/
+                I am interested in
+                %i.text9a.form-field
+                  %strong= @profile.interested1
+                #{',' if !@profile.interested1.blank? && !@profile.interested2.blank?}
+                %i.text1b.form-field
+                  %strong= @profile.interested2
+                #{'and' if !@profile.interested3.blank? && (!@profile.interested1.blank? || !@profile.interested2.blank?) }
+                %i.text2b.form-field
+                  %strong= @profile.interested3
+                .clearfix
             .clearfix
           / paragraph
         / tab_content2
@@ -165,68 +127,43 @@
           %h4 Experience
           %i= image_tag('large-curve.png')
         / title3
-        ~ nested_form_for [@user, @profile], remote: true do |f|
-          - @profile.experiences.build if @profile.experiences.blank?
-          = f.fields_for :experiences do |ef|
-            - experience = ef.object
-            .circlee3
-              %p
-                = ef.text_field :company_name, placeholder: "Company Name", class: 'edtitor2a field-edit'
-                %i.text2a.form-field
-                  %span= experience.company_name
-                %br/
-                %br/
-                I worked as a
-                = ef.text_field :position_name, placeholder: "Position Name", class: 'edtitor3a field-edit'
-                %i.text3a.form-field
-                  %span= experience.position_name
-                from
-                = ef.text_field :date_started, class: "date-inputmask edtitor4a field-edit", placeholder: "Date Started", value: ef.object.started
-                %i.text4a.form-field
-                  %span= experience.date_started
-                to
-                = ef.text_field :date_ended, class: "date-inputmask edtitor5a field-edit", placeholder: "Date Ended", value: ef.object.ended
-                = succeed "." do
-                  %i.text5a.form-field
-                    %span= experience.date_ended
-                %br/
-                Additional Description of your position at this company as you wrote it. Click edit to change.
-                %br/
-                %br/
-                %br/
-                %textarea.same.texta3{:name => "textarea", :placeholder => "Additional description"}
-                = ef.link_to_remove "<i class='icon-remove'></i>".html_safe
-          .span11.text-left= f.link_to_add "Add", :experiences, class: "btn btn-primary btn-mini fleft field-edit", style: "display:none;margin-left: 30px"
-          .span11.fright
-            = f.submit "Save", class: "btn btn-small btn-success fright form-field", class: 'form-field', style: 'display:none'
-            /%button#add3.same.chn.button{:name => "btn", :style => "margin-left:0;"}
-            /%img{:alt => "Image", :src => "img/ads.png"}/
+        - @profile.experiences.each do |experience|
+          .circlee3
+            %p
+              %i.text2a.form-field
+                %span= experience.company_name
+              %br/
+              %br/
+              I worked as a
+              %i.text3a.form-field
+                %span= experience.position_name
+              from
+              %i.text4a.form-field
+                %span= experience.date_started
+              to
+              = succeed "." do
+                %i.text5a.form-field
+                  %span= experience.date_ended
+              %br/
+              Additional Description of your position at this company as you wrote it. Click edit to change.
+              %br/
 
     #portfolio.tab-pane.fade
       .paragraph2
         .title3
           %h4 Portfolio
-        - @profile.portfolio_items.build if @profile.portfolio_items.blank?
-        ~ nested_form_for [@user, @profile], remote: true do |f|
-          = f.fields_for :portfolio_items do |pf|
-            .span11
-              Here is a portfolio of my work:
-              %br
-              .span2
-                = display_image_square pf.object.image, 'thumb'
+        - @profile.portfolio_items.each do |port|
+          .span11
+            Here is a portfolio of my work:
+            %br
+            .span2
+              = display_image_square port.image, 'thumb'
 
-              .span9
-                .span9= pf.file_field :image, style: "width: 100%"
-                .clearfix
-                .span9.no-lmar= pf.text_field :name, placeholder: "Project Name", class: "span9"
-                .span9.no-lmar= pf.text_field :organization_name, placeholder: "Project Organization Name", class: "span9"
-                .span9.no-lmar= pf.text_area :description, placeholder: "Description", rows: 5, class: "span9"
-              .span1= pf.link_to_remove "<i class='icon-remove'></i>".html_safe
+            .span9
+              .span9.no-lmar= port.name
+              .span9.no-lmar= port.organization_name
+              .span9.no-lmar= raw port.description
           .clearfix
-          .span11.text-left= f.link_to_add "Add", :portfolio_items, class: "btn btn-primary btn-mini fleft field-edit", style: "display:none;margin-left: 80px"
-          .span11.fright
-            = submit_tag "Save", class: "btn btn-small btn-success fright", class: 'form-field', style: 'display:none'
-
     #faq.tab-pane.fade
       .paragraph2
         .title2
@@ -234,25 +171,13 @@
         / title2
         #carousel-example-generic.carousel.slide.car2{"data-ride" => "carousel"}
           .carousel-inner
-            - ind = 0
-            ~ nested_form_for [@user, @profile], remote: true do |f|
-              - @profile.faqs.build if @profile.faqs.blank?
-              = f.fields_for :faqs do |fq|
-                - faq = fq.object
-                .item(class="#{'active' if ind == 0}")
-                  %p
-                    = fq.text_field :question, placeholder: "Question", class: 'edtitor3b field-edit'
-                    %small.text3b.form-field
-                      %span= faq.question
-                    %br/
-                    = fq.text_field :answer, placeholder: "Answer", class: 'edtitor4b field-edit'
-                    %small.text4b.form-field= faq.answer
-                    = fq.link_to_remove "<i class='icon-remove'></i>".html_safe
-              .span11.text-left= f.link_to_add "Add", :faqs, class: "btn btn-primary btn-mini fleft field-edit", style: "display:none;margin-left: 80px"
-              .span11.fright
-                = submit_tag "Save", class: "btn btn-small btn-success fright", class: 'form-field', style: 'display:none'
-              .clearfix
-              - ind += 1
+            - @profile.faqs.each_with_index do |faq, index|
+              .item(class="#{'active' if index == 0}")
+                %p
+                  %small.text3b.form-field
+                    %span= faq.question
+                  %br/
+                  %small.text4b.form-field= faq.answer
             / item
           / carousel-inner
           %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-example-generic"}
@@ -260,40 +185,25 @@
           %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-example-generic"}
             = image_tag('rights.png')
         / carousel
-        .clearfix
+      .clearfix
       / paragraph
       .paragraph2.ss2
         .title2
           %h4 Contact Requirements
         / title2
-        ~ form_for @contact_requirements, url: contact_requirements_user_profile_path, remote: true do |f|
-          .low1
-            %p.span11
-              My contact requirements for students include:
-              .clearfix
-              GPA Requirement    :
-              = f.text_field :gpa_requirement, class: 'field-edit', style: 'display:none'
-              .form-field= @profile.contact_requirement.try(:gpa_requirement)
-              .clearfix
-              Major Requirement:
-              = f.text_field :major_requirement, class: 'field-edit', style: 'display:none'
-              .form-field= @profile.contact_requirement.try(:major_requirement)
-              .clearfix
-              Years of Experience:
-              = f.text_field :years_working_experience, class: 'field-edit', style: 'display:none'
-              .form-field= @profile.contact_requirement.try(:years_working_experience)
-              .clearfix
-              Field of Experience:
-              = f.text_field :fields_of_interest, class: 'field-edit', style: 'display:none'
-              .form-field= @profile.contact_requirement.try(:fields_of_interest)
-          .clearfix
-          .doe1
-            %small
-              Do you want to limit the types of students who can contact you? If so, set contact requirements based on
-              experience, GPA, major etc.  We know your time is valuable.
-            %textarea.texta4.same{:placeholder => "Add contact requirements (Optional)"}
-          .span11.fright
-            = f.submit "save", class: "btn btn-success btn-small fright", class: 'form-field', style: 'display:none'
+        .low
+          %p
+            My contact requirements for students include:
+            %br/
+            GPA Requirement:
+            %span= @profile.contact_requirement.try(:gpa_requirement)
+            , Major Requirement:
+            %span= @profile.contact_requirement.try(:major_requirement)
+            , Years of Experience:
+            %span= @profile.contact_requirement.try(:years_working_experience)
+            , Field of Experience:
+            %span= @profile.contact_requirement.try(:fields_of_interest)
+        .clearfix
 
   :javascript
     $(function(){

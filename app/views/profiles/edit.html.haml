@@ -1,208 +1,282 @@
-= content_for :header do
-  #avatar.span3.top2
-    = link_to "<i class='icon-plus icon-white'></i>".html_safe, "javascript:;", class: "btn btn-success btn-mini", style: "margin-top: 40px; margin-left: -70px;"
-    = link_to "#" do
-      = display_image @profile.image, "xxlarge", id: "profile-avatar"
-  .span8.top4
-    .pro-user.top4
-      %p Hi! My name is #{@user.name} and I'm #{@user.display_major} from #{@user.display_city}. Let's connect!
+= content_for :head do
+  = stylesheet_link_tag 'static/network', 'static/buttons'
+  = javascript_include_tag 'static/network'
 
-.row-fluid
-  .container
-    .span10.offset2
-      %a.span11.slide-tab.toggle{href: "javascript:;", :"data-toggle" => ".slide-content", :"data-target" => "#title"}
-        = image_tag 'old_images/edit.png', style: "width: 40px;"
-        Key Info
-        %i.icon-white.icon-minus{style: "float:right; margin-top: 10px; margin-right: 10px"}
-      #title.slide-content.hide
-        ~ form_for @user do |f|
-          %p.span11
-            Hi! My name is
-            = f.text_field :first_name, placeholder: "First Name"
-            = f.text_field :last_name, placeholder: "Last Name"
-            - if @user.alumni?
-              I was a/an
-            - else
-              I am a/an
-            = f.text_field :major, placeholder: "Major"
-            and
-            = f.text_field :double_major, placeholder: "Double Major"
-            major at
-            = f.select :university_id, options_from_collection_for_select(University.all, :id, :name, @user.university_id), prompt: "University"
-            =". I graduated in" if @user.alumni?
-            =". I will graduate in" unless @user.alumni?
-            = f.select :graduation_year, options_for_select((Date.today.year + 7).downto(1940).to_a, @user.graduation_year), placeholder: "Grad Year"
-            =". My current city"
-            = f.select :city_id, options_for_select(City.order(:name).collect{ |c| [c.name, c.id] } + [["Other", 0]], selected: @user.city_id)
-            %span#other-city= f.text_field :other_city, placeholder: "Other City"
-            - if @user.alumni?
-              =". I work in"
-              = f.select :professional_field_id, options_from_collection_for_select(ProfessionalField.all, :id, :name, @user.professional_field_id)
-          .span11.fright{style: "margin-right: 10px;"}
-            %a.cancel.btn.btn-small.btn-danger.fright cancel
-            = f.submit "Save", class: "button btn btn-small btn-success fright"
+= content_for :page_title do
+  .title
+    %h1 Network
 
-      %a.span11.slide-tab.toggle{href: "javascript:;", :"data-toggle" => ".slide-content", :"data-target" => "#education"}
-        = image_tag 'old_images/edit.png', style: "width: 40px;"
-        Education
-        %i.icon-white.icon-minus{style: "float:right; margin-top: 10px; margin-right: 10px"}
-      #education.slide-content.hide
-        ~ nested_form_for [@user, @profile] do |f|
-          - @profile.educations.build if @profile.educations.blank?
-          = f.fields_for :educations do |e|
-            .span11= e.select :completed, options_for_select(["Completed Additional School", "Still in Additional School"], e.object.completed), style: "width: 220px;"
-            %p.span11
-              I studied
-              = e.text_field :major, placeholder: "Study"
+= content_for :left_side do
+  #edit-profile
+    .row
+      .col-md-5
+        .profile-main-photo
+          = image_tag('frame.png')
+          %p.profile-main-photo-text
+            = @user.name
+            %span '07
+
+      .col-md-7
+        .profile-text
+          = form_for @user, remote: true do |f|
+            %p
+              Hi! My name is
+              = f.text_field :first_name, placeholder: "First Name", class: 'edtitor field-edit'
+              = f.text_field :last_name, placeholder: "Last Name", class: 'edtitor field-edit'
+              \.
+              - if @user.alumni?
+                I was a/an
+              - else
+                I am a/an
+              = f.text_field :major, placeholder: "Major", class: 'edtitor2 field-edit'
+              and
+              = f.text_field :double_major, placeholder: "Double Major", class: 'edtitor3 field-edit'
               at
-              = e.text_field :university, placeholder: "University"
-              = ". I graduated with a"
-              = e.text_field :degree_type, placeholder: "Degree Type"
-              in
-              = e.select :graduation_year, options_for_select((Date.today.year + 7).downto(1940).to_a, e.object.graduation_year)
-              = e.link_to_remove "<i class='icon-remove'></i>".html_safe
-          = f.link_to_add "Add", :educations, class: "btn btn-primary btn-mini fleft", style: "margin-right: 100px"
-          .span11.fright
-            = f.submit "Save", class: "btn btn-small btn-success fright"
-      %a.span11.slide-tab.toggle{href: "javascript:;", :"data-toggle" => ".slide-content", :"data-target" => "#skill"}
-        = image_tag 'old_images/edit.png', style: "width: 40px;"
-        Skills
-        %i.icon-white.icon-minus{style: "float:right; margin-top: 10px; margin-right: 10px"}
-      #skill.slide-content.hide
-        ~ form_for [@user, @profile] do |f|
-          %p.span11
-            I am skilled at
-            = f.text_field :skill1, placeholder: "skill 1"
-            =", "
-            = f.text_field :skill2, placeholder: "skill 2"
-            and
-            = f.text_field :skill3, placeholder: "last skill"
-          .span11.fright
-            = submit_tag "Save", class: "btn btn-small btn-success fright"
-      %a.span11.slide-tab.toggle{href: "javascript:;", :"data-toggle" => ".slide-content", :"data-target" => "#experience"}
-        = image_tag 'old_images/edit.png', style: "width: 40px;"
-        Experience
-        %i.icon-white.icon-minus{style: "float:right; margin-top: 10px; margin-right: 10px"}
-      #experience.slide-content.hide
-        ~ nested_form_for [@user, @profile] do |f|
-          - @profile.experiences.build if @profile.experiences.blank?
-          = f.fields_for :experiences do |ef|
-            %p.span11
-              I worked as a/an
-              = ef.text_field :position_name, placeholder: "Position Name"
-              at
-              = ef.text_field :company_name, placeholder: "Company Name"
-              from
-              = ef.text_field :date_started, class: "date-inputmask", placeholder: "Date Started", value: ef.object.started
-              to
-              = ef.text_field :date_ended, class: "date-inputmask", placeholder: "Date Ended", value: ef.object.ended
-              = ef.link_to_remove "<i class='icon-remove'></i>".html_safe
-          = f.link_to_add "Add", :experiences, class: "btn btn-primary btn-mini fleft", style: "margin-right: 100px"
-          .span11.fright
-            = submit_tag "Save", class: "btn btn-small btn-success fright"
+              = f.select :university_id, options_from_collection_for_select(University.all, :id, :name, @user.university_id), {}, prompt: "University", class: 'edtitor4 field-edit'
+              \.
+              ="I graduated in" if @user.alumni?
+              ="I will graduate in" unless @user.alumni?
+              = f.select :graduation_year, options_for_select((Date.today.year + 7).downto(1940).to_a, @user.graduation_year), {}, placeholder: "Grad Year", class: 'edtitor5 field-edit'
+              \.
+              My current city is
+              = f.select :city_id, options_for_select(City.order(:name).collect{ |c| [c.name, c.id] } + [["Other", 0]], selected: @user.city_id), {}, class: 'edtitor6 field-edit'
+              = f.text_field :other_city, placeholder: "Other City", class: 'edtitor6 field-edit'
+              \.
 
-      %a.span11.slide-tab.toggle{href: "javascript:;", :"data-toggle" => ".slide-content", :"data-target" => "#portfolio"}
-        = image_tag 'old_images/edit.png', style: "width: 40px;"
-        Portfolio
-        %i.icon-white.icon-minus{style: "float:right; margin-top: 10px; margin-right: 10px"}
-      #portfolio.slide-content.hide
-        %p.span11
-          Here is a portfolio of my work:
-          %br
-        - @profile.portfolio_items.build if @profile.portfolio_items.blank?
-        ~ nested_form_for [@user, @profile] do |f|
-          = f.fields_for :portfolio_items do |pf|
-            .span11
-              .span2
-                = display_image_square pf.object.image, 'thumb'
+              / %textarea.same.textarea1{:name => "textarea", :placeholder => "Additional information.(Optional)"}
+              .span11.fright.pull-right
+                %input.btn.btn-small.btn-success.form-field(name="commit" type="submit" value="Save")
+              .clearfix
+          %ul.nav.nav-pills
+            %li
+              %a{:href => "#resume", "data-toggle" => "tab"}
+                Resume
+            %li
+              %a{:href => "#portfolio", "data-toggle" => "tab"}
+                Portfolio
+            %li
+              %a{:href => "#faq", "data-toggle" => "tab"}
+                FAQs &amp; Contact Requirements
 
-              .span9
-                .span9= pf.file_field :image, style: "width: 100%"
-                .clearfix
-                .span9.no-lmar= pf.text_field :name, placeholder: "Project Name", class: "span9"
-                .span9.no-lmar= pf.text_field :organization_name, placeholder: "Project Organization Name", class: "span9"
-                .span9.no-lmar= pf.text_area :description, placeholder: "Description", rows: 5, class: "span9"
-              .span1= pf.link_to_remove "<i class='icon-remove'></i>".html_safe
-          = f.link_to_add "Add", :portfolio_items, class: "btn btn-primary btn-mini fleft", style: "margin-right: 100px"
-          .span11.fright
-            = submit_tag "Save", class: "btn btn-small btn-success fright"
-      - if current_user.alumni?
-        %a.span11.slide-tab.toggle{href: "javascript:;", data: {toggle: ".slide-content", target: "#faqs"}}
-          = image_tag 'old_images/edit.png', style: "width: 40px;"
-          FAQ's
-        #faqs.slide-content.hide
+    .tab-content
+      #resume.tab-pane.fade.in
+        .paragraph
+          .title2
+            %ul.tabs2
+            %h4
+              %li.active22
+                %a.slide-tab{:href => "javascript:void(0)", rel: 'tab11'} Education
+              %li
+                %a.slide-tab{:href => "javascript:void(0)", rel: "tab22"} Skills &amp; Interests
+            %i
+              = image_tag('small-curve.png')
           .clearfix
-          ~ nested_form_for [@user, @profile] do |f|
-            - @profile.faqs.build if @profile.faqs.blank?
-            = f.fields_for :faqs do |faq|
-              .span9
-                = faq.text_field :question, style: "width: 700px;", placeholder: "Question"
-                = faq.text_area :answer, style: "width: 700px; height: 50px;", placeholder: "Answer"
-              .span1= faq.link_to_remove "<i class='icon-remove'></i>".html_safe
+          .tab_container
+            #tab11.tab_content2.tab-cont
+              ~ nested_form_for [@user, @profile], remote: true do |f|
+                - @profile.educations.build if @profile.educations.blank?
+                = f.fields_for :educations do |e|
+                  - edu = e.object
+                  = e.hidden_field :id
+                  .circlee
+                    %p{:style => "padding-bottom:0;"}
+                      I graduated from
+                      = e.text_field :university, placeholder: "University", class: 'edtitor7 field-edit'
+                      in
+                      = e.select :graduation_year, options_for_select((Date.today.year + 7).downto(1940).to_a, e.object.graduation_year), {}, class: 'edtitor8 field-edit'
+                      \.
+                      %br/
+                      I received my
+                      = e.text_field :degree_type, placeholder: "Degree Type", class: 'edtitor9 field-edit'
+                      in
+                      = e.text_field :major, placeholder: "Study", class: 'edtitor1a field-edit'
+                      \.
+                    .clearfix
+                    = e.text_area :description, placeholder: "Additional description", rows: "2", class: "same texta2", style: 'display:block'
+                    = e.link_to_remove "<i class='icon-remove'></i>".html_safe
+                .span11.text-left= f.link_to_add "Add", :educations, class: "btn btn-primary btn-mini fleft field-edit", style: "margin-left: 30px"
+                .span11.fright
+                  = f.submit "Save", class: "btn btn-small btn-success fright form-field", class: 'form-field'
+              .clearfix
+            / paragraph
+          / tab_content2
+          #tab22.tab_content2.tab-cont
+            .paragraph2
+              .circlee2
+                ~ form_for [@user, @profile], remote: true do |f|
+                  %p{:style => "font-size:17px;"}
+                    I am skilled at
+                    = f.text_field :skill1, placeholder: "skill 1", class: 'edtitor6a field-edit'
+                    #{',' if !@profile.skill1.blank? && !@profile.skill2.blank?}
+                    = f.text_field :skill2, placeholder: "skill 2", class: 'edtitor7a field-edit'
+                    #{'and' if !@profile.skill3.blank? && (!@profile.skill1.blank? || !@profile.skill2.blank?) }
+                    = f.text_field :skill3, placeholder: "skill 3", class: 'edtitor8a field-edit'
+                    %br/
+                    %br/
+                    I am interested in
+                    = f.text_field :interested1, placeholder: "interested 1", class: 'edtitor9a field-edit'
+                    #{',' if !@profile.interested1.blank? && !@profile.interested2.blank?}
+                    = f.text_field :interested2, placeholder: "interested 2", class: 'edtitor1b field-edit'
+                    #{'and' if !@profile.interested3.blank? && (!@profile.interested1.blank? || !@profile.interested2.blank?) }
+                    = f.text_field :interested3, placeholder: "interested 3", class: 'edtitor2b field-edit'
+                    .clearfix
+                    .span11.fright
+                      = f.submit "Save", class: "btn btn-small btn-success fright form-field field-edit", class: 'form-field'
 
-            = f.link_to_add "Add", :faqs, class: "btn btn-primary btn-mini fleft", style: "margin-right: 100px"
+              / %button#add2.same.chn.button{:name => "btn"}
+              / %img{:alt => "Image", :src => "img/ads.png"}/
+              .clearfix
+            / paragraph
+          / tab_content2
+        / tab_container
+        #echo.paragraph2
+          .title3
+            %h4 Experience
+            %i= image_tag('large-curve.png')
+          / title3
+          ~ nested_form_for [@user, @profile], remote: true do |f|
+            - @profile.experiences.build if @profile.experiences.blank?
+            = f.fields_for :experiences do |ef|
+              - experience = ef.object
+              .circlee3
+                %p
+                  = ef.text_field :company_name, placeholder: "Company Name", class: 'edtitor2a field-edit'
+                  %br/
+                  %br/
+                  I worked as a
+                  = ef.text_field :position_name, placeholder: "Position Name", class: 'edtitor3a field-edit'
+                  from
+                  = ef.text_field :date_started, class: "date-inputmask edtitor4a field-edit", placeholder: "Date Started", value: ef.object.started
+                  to
+                  = ef.text_field :date_ended, class: "date-inputmask edtitor5a field-edit", placeholder: "Date Ended", value: ef.object.ended
+                  \.
+                  %br/
+                  Additional Description of your position at this company as you wrote it. Click edit to change.
+                  %br/
+                  %br/
+                  %br/
+                  .clearfix
+                  = ef.text_area :description, placeholder: "Additional description", rows: "2", class: "same texta3", style: 'display:block'
+                  = ef.link_to_remove "<i class='icon-remove'></i>".html_safe
+            .span11.text-left= f.link_to_add "Add", :experiences, class: "btn btn-primary btn-mini fleft field-edit", style: "margin-left: 30px"
             .span11.fright
-              = submit_tag "Save", class: "btn btn-small btn-success fright"
-        %a.span11.slide-tab.toggle{href: "javascript:;", :"data-toggle" => ".slide-content", :"data-target" => "#contact_requirements"}
-          = image_tag 'old_images/edit.png', style: "width: 40px;"
-          Contact Requirements
-          %i.icon-white.icon-minus{style: "float:right; margin-top: 10px; margin-right: 10px"}
-        #contact_requirements.slide-content.hide
-          ~ form_for @contact_requirements, url: contact_requirements_user_profile_path do |f|
-            %p.span11
-              My contact requirements for students include: GPA Requirement
-              = f.text_field :gpa_requirement
-              , Major Requirement
-              = f.text_field :major_requirement
-              , Years of Experience
-              = f.text_field :years_working_experience
-              , Field of Experience
-              = f.text_field :fields_of_interest
+              = f.submit "Save", class: "btn btn-small btn-success fright form-field", class: 'form-field'
+
+      #portfolio.tab-pane.fade
+        .paragraph2
+          .title3
+            %h4 Portfolio
+          - @profile.portfolio_items.build if @profile.portfolio_items.blank?
+          ~ nested_form_for [@user, @profile], remote: true do |f|
+            = f.fields_for :portfolio_items do |pf|
+              .span11
+                Here is a portfolio of my work:
+                %br
+                .span2
+                  = display_image_square pf.object.image, 'thumb'
+
+                .span9
+                  .span9= pf.file_field :image, style: "width: 100%"
+                  .clearfix
+                  .span9.no-lmar= pf.text_field :name, placeholder: "Project Name", class: "span9"
+                  .span9.no-lmar= pf.text_field :organization_name, placeholder: "Project Organization Name", class: "span9"
+                  .span9.no-lmar= pf.text_area :description, placeholder: "Description", rows: 5, class: "span9"
+                .span1= pf.link_to_remove "<i class='icon-remove'></i>".html_safe
+            .clearfix
+            %br
+            .span11.text-left= f.link_to_add "Add", :portfolio_items, class: "btn btn-primary btn-mini fleft field-edit", style: "margin-left: 80px"
             .span11.fright
-              = f.submit "save", class: "btn btn-success btn-small fright"
-#avatar_form{style: "opacity: 0"}
-  = form_for @profile, url: upload_avatar_path, method: :post do |f|
-    = f.file_field :image, id: "avatar_field"
+              = submit_tag "Save", class: "btn btn-small btn-success fright", class: 'form-field'
 
-= render partial: "shared/waiting_widget"
+      #faq.tab-pane.fade
+        .paragraph2
+          .title2
+            %h4 FAQs
+          / title2
+          #carousel-example-generic.carousel.slide.car2{"data-ride" => "carousel"}
+            .carousel-inner
+              - ind = 0
+              ~ nested_form_for [@user, @profile], remote: true do |f|
+                - @profile.faqs.build if @profile.faqs.blank?
+                = f.fields_for :faqs do |fq|
+                  - faq = fq.object
+                  .item(class="#{'active' if ind == 0}")
+                    %p
+                      = fq.text_field :question, placeholder: "Question", class: 'edtitor3b field-edit'
+                      %br/
+                      = fq.text_field :answer, placeholder: "Answer", class: 'edtitor4b field-edit'
+                      = fq.link_to_remove "<i class='icon-remove'></i>".html_safe
+                .span11.text-left= f.link_to_add "Add", :faqs, class: "btn btn-primary btn-mini fleft field-edit", style: "margin-left: 80px"
+                .span11.fright
+                  = submit_tag "Save", class: "btn btn-small btn-success fright", class: 'form-field'
+                .clearfix
+                - ind += 1
+              / item
+            / carousel-inner
+            %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-example-generic"}
+              = image_tag('lefts.png')
+            %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-example-generic"}
+              = image_tag('rights.png')
+          / carousel
+          .clearfix
+        / paragraph
+        .paragraph2.ss2
+          .title2
+            %h4 Contact Requirements
+          / title2
+          ~ form_for @contact_requirements, url: contact_requirements_user_profile_path, remote: true do |f|
+            .low1
+              %p.span11
+                My contact requirements for students include:
+                .clearfix
+                GPA Requirement    :
+                = f.text_field :gpa_requirement, class: 'field-edit'
+                .clearfix
+                Major Requirement:
+                = f.text_field :major_requirement, class: 'field-edit'
+                .clearfix
+                Years of Experience:
+                = f.text_field :years_working_experience, class: 'field-edit'
+                .clearfix
+                Field of Experience:
+                = f.text_field :fields_of_interest, class: 'field-edit'
+            .clearfix
+            .doe1
+              %small
+                Do you want to limit the types of students who can contact you? If so, set contact requirements based on
+                experience, GPA, major etc.  We know your time is valuable.
+              %textarea.texta4.same{:placeholder => "Add contact requirements (Optional)"}
+            .span11.fright
+              = f.submit "save", class: "btn btn-success btn-small fright", class: 'form-field'
 
-:javascript
-  $(document).ready(function(){
-    $("#avatar").on("click", "a", function(){
-      $("#avatar_form input").trigger("click");
-    });
-    $("#avatar_form").on("change", "input[type=file]",function(){
-      $("a#show_waiting").click();
-      $(this).closest("form").submit();
-    });
-    $(".slide-tab").click(function(){
-      closing = $(this).find("i").hasClass("icon-minus");
-      $(".slide-tab i").addClass("icon-minus");
-      $(".slide-tab i").removeClass("icon-plus");
+  :javascript
+    $(function(){
+      $('a.slide-tab').click(function(){
+        $('.tab-cont').hide()
+        $('#' + $(this).attr('rel')).show()
+      });
+      $(document).on('nested:fieldAdded:faqs', function(event){
+        var field = event.field;
+        field.find('.field-edit').show()
+      });
+    })
 
-      if(closing){
-        $(this).find("i").addClass("icon-plus");
-        $(this).find("i").removeClass("icon-minus");
-      }
-
-    });
-
-    $(".cancel").click(function(){
-      $(this).closest(".slide-content").addClass("hide");
-      $(".slide-tab").find("i").addClass("icon-minus");
-      $(".slide-tab").find("i").removeClass("icon-plus");
-    });
-
-    $("#user_city_id").change(function(){
-      set_other_city();
-    });
-
-    set_other_city();
-    function set_other_city(){
-      if($("#user_city_id").val()=="0"){
-        $("#other-city").removeClass("hide");
-      }else{
-        $("#other-city").addClass("hide");
-      }
-    }
-  });
+= content_for :right_side do
+  .info
+    %span.btn4 My Contacts
+  / info
+  %ul.lists.ssy
+    - ind = -1
+    - @user.contacts.each do |contact|
+      - ind += 1
+      %li(class="#{ind == 0 ? 'light' : 'dark' }")
+        %a{:href => "#"}
+          %i
+            = image_tag('profile-img.png')
+          %span
+            = contact.name
+            %br/
+            = contact.graduation_year
+        %button.btna7{:name => "btm"} Message
+        .ssys
+          %small= contact.intro_para
