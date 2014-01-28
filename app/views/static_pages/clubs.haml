@@ -4,24 +4,20 @@
   = javascript_include_tag 'static/clubs'
 
 = content_for :page_title do
-  .col-md-2
-    %h1 Clubs
-  .col-md-10.link
-    = link_to "#", "data-target" => "#create_club", "data-toggle" => "modal" do
-      %span >>
-      Create Your Own Club
+  = render 'static_pages/club_partials/title'
 
 = content_for :left_side do
   .clubs-inner
     %h2 What kind of club are you looking for?
-    %ul.inline
-      %li= link_to 'Arts', '', class: 'btn btn-lg'
+    %ul.club-tabs
+      %li
+        %button.btn{:name => "btn"} Arts
       %li
         %button.btn{:name => "btn"} Academic
       %li
         %button.btn{:name => "btn"} Alumni
       %li
-        %a{:href => "running-club.html"}
+        = link_to "running-club.html" do
           %button.btn{:name => "btn"} Health
       %li
         %button.btn{:name => "btn"} Gender
@@ -37,33 +33,40 @@
         %button.btn{:name => "btn"} Performance
       %li
         %button.btn{:name => "btn"} Social
-  / clubs-inner
+
   .div
     .music
       .music-img
         = link_to image_tag('running-club-img.png'), 'running-club.html'
-      / music-img
       %a{:href => "running-club.html"}
         %span
-          %strong Running Club >>
+          %strong
+            Running Club
+            .glyphicon.glyphicon-chevron-right.btn-sm
       %p Summary about club here.
 
     .music
       .music-img
         = link_to image_tag('club-img.png'), 'running-club.html'
-      / music-img
       %a{:href => "running-club.html"}
         %span
-          %strong Running Club >>
+          %strong
+            Running Club
+            .glyphicon.glyphicon-chevron-right.btn-sm
       %p Summary about club here.
 
 = content_for :right_side do
-  .info
-    %span.btn4 My Clubs
-    .div
-      %a.bka{:href => "lowdown.html"} Davidson Chicago
-      %a{:href => "lowdown.html"}
-        = image_tag('side-club.png')
-      %p You do not belong to any clubs! Click around to join clubs that interest you.(or some directional statement here)
+  .my-clubs
+    .btn4.text-center
+      My Clubs
+    = link_to "lowdown.html" do
+      .club-title
+        Davidson Chicago
+      = image_tag('side-club.png')
+    .no-clubs
+      %p
+        You do not belong to any clubs! Click around to join clubs that interest you.
+        %br
+        (or some directional statement here)
 
 = render 'shared/create_club'

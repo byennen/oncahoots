@@ -16,7 +16,7 @@ $green: #00c088;
     margin-top: 17px;
   }
   .link {
-    margin-top: 30px;
+    margin-top: 32px;
     a {
       color: #333;
       font-size: 16px;
@@ -116,19 +116,13 @@ $green: #00c088;
   margin-bottom: 30px;
 }
 
-/* IE6-8 */
-
-
 .run-club {
   position: relative;
   display: block;
-  float: left;
   width: 100%;
 }
 
 
-
-/* IE6-8 */
 
 .sub-nav {
   width: 100%;
@@ -162,15 +156,15 @@ $green: #00c088;
   ul {
     position: relative;
     display: block;
+    padding: 0px;
     li {
       display: inline-block;
       width: 100%;
       color: #444444;
-      padding: 10px 0;
+      padding: 10px 30px;
       small {
-        font-size: 15px;
-        margin: 0 30px;
-        display: inline-block;
+        font-size: 13px;
+        margin: 0px;
         span, a {
           color: #04c189;
         }
@@ -183,20 +177,6 @@ $green: #00c088;
         color: white;
       }
     }
-  }
-}
-
-.ciew {
-  color: #444444;
-  font-size: 16px;
-  float: right;
-  margin-right: 30px;
-  span {
-    color: #04c189;
-  }
-  &:hover, &:active, &:focus {
-    text-decoration: none;
-    color: #04c189;
   }
 }
 

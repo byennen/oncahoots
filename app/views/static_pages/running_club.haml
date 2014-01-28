@@ -1,27 +1,39 @@
 = content_for :head do
-  = stylesheet_link_tag 'static/running_club', 'static/buttons'
+  = stylesheet_link_tag 'static/running_club', 'static/lowdown', 'static/members', 'static/about', 'static/money', 'static/photos', 'static/buttons'
   = javascript_include_tag 'static/running_club'
 
 = content_for :page_title do
-  .title
-    %h1 Clubs
-    %p
-      %a{"data-target" => "#create_club", "data-toggle" => "modal", :href => "#"} Create Your Own Club
-      %span >>
+  = render 'static_pages/club_partials/title'
 
 = content_for :left_side do
   .run-club{:style => "background:url(../../assets/running-club-img.png) no-repeat; height:320px;"}
     %button.btn9{:name => "btn"} Running Club
+    %button.btn10{:name => "btn"} Join Club
 
   = render 'static_pages/club_navigation'
 
-  .cent
+  .tab-content
+    #lowdown.tab-pane.active
+      = render 'static_pages/club_partials/lowdown'
+    #members.tab-pane
+      = render 'static_pages/club_partials/members'
+    #about.tab-pane
+      = render 'static_pages/club_partials/about'
+    #money.tab-pane
+      = render 'static_pages/club_partials/money'
+    #photos.tab-pane
+      = render 'static_pages/club_partials/photos'
+
+  / Right now, this isn't being displayed in static pages.
+  / However, it would display in dynamic pages when user has not yet joined the club
+  .not-joined{style: "display:none;"}
     %p
       This content is restricted.
       %br/
       Join club to view Lowdown.
     %a{:href => "lowdown.html"}
       %button.btn9.mod2{:name => "btn"} Join Club
+
 
 = content_for :right_side do
   = render 'static_pages/newsletter'
