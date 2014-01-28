@@ -11,17 +11,20 @@
           %br
         = form_for [@university, club], html: {class: "forms"}, remote: true do |f|
           .half
-            %label Club Name
-            = f.text_field :name
+            .col-md-12
+              %label.col-md-3 Club Name
+              .col-md-8= f.text_field :name
             .clearfix
-            %label Private
-            = f.check_box :private
-          / half
-          .half
-            %label Category
-            = f.select :category, options_for_select(Club::CATEGORIES), class: "gentle"
-            %label &nbsp;
-            = f.file_field :image
+            .col-md-12
+              %label.col-md-3 Private
+              .col-md-8= f.check_box :private
+            .col-md-12
+              %label.col-md-3 Category
+              .col-md-6= f.select :category, options_for_select(Club::CATEGORIES), class: "gentle"
+              .clearfix
+            .col-md-12
+              %label.col-md-3 Image
+              .col-md-8= f.file_field :image
           / half
           .clearfix
           %label.ne Description
