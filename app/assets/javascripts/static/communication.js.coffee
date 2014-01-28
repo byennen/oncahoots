@@ -4,6 +4,6 @@ $(document).ready ->
     $('#com-connect-box').hide()
     $('#com-comments-box').show()
 
-  $('#collapseMessages .row, #com-requests .row').click ->
+  $('#collapseMessages .row, #collapseRequests .row').click ->
     $('#com-comments-box').hide()
     $('#com-connect-box').show()

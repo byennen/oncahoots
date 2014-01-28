@@ -59,14 +59,18 @@
 
 = content_for :right_side do
   .my-clubs
-    .btn4.text-center
-      My Clubs
-    = link_to "lowdown.html" do
-      .club-title
-        Davidson Chicago
-      = image_tag('side-club.png')
-    .no-clubs
-      %p
-        You do not belong to any clubs! Click around to join clubs that interest you.
-        %br
-        (or some directional statement here)
+    .row
+      .col-md-12.no-padding
+        .btn4.text-center
+          %p My Clubs
+        = link_to "lowdown.html" do
+          .club-title
+            Davidson Chicago
+          = image_tag('side-club.png')
+    .row
+      .col-md-12.no-padding
+        .no-clubs
+          %p
+            You do not belong to any clubs! Click around to join clubs that interest you.
+            %br
+            (or some directional statement here)
