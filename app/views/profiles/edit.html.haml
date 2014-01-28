@@ -95,8 +95,8 @@
                     = e.text_area :description, placeholder: "Additional description", rows: "2", class: "same texta2", style: 'display:block'
                     = e.link_to_remove "<i class='icon-remove'></i>".html_safe
                 .span11.text-left= f.link_to_add "Add", :educations, class: "btn btn-primary btn-mini fleft field-edit", style: "margin-left: 30px"
-                .span11.fright
-                  = f.submit "Save", class: "btn btn-small btn-success fright form-field", class: 'form-field'
+                .col-md-11.pull-right
+                  = f.submit "Save", class: "btng ch2s"
               .clearfix
             / paragraph
           / tab_content2
@@ -120,8 +120,8 @@
                     #{'and' if !@profile.interested3.blank? && (!@profile.interested1.blank? || !@profile.interested2.blank?) }
                     = f.text_field :interested3, placeholder: "interested 3", class: 'edtitor2b field-edit'
                     .clearfix
-                    .span11.fright
-                      = f.submit "Save", class: "btn btn-small btn-success fright form-field field-edit", class: 'form-field'
+                    .col-md-11.pull-right
+                      = f.submit "Save", class: "btng ch2s"
 
               / %button#add2.same.chn.button{:name => "btn"}
               / %img{:alt => "Image", :src => "img/ads.png"}/
@@ -159,8 +159,8 @@
                   = ef.text_area :description, placeholder: "Additional description", rows: "2", class: "same texta3", style: 'display:block'
                   = ef.link_to_remove "<i class='icon-remove'></i>".html_safe
             .span11.text-left= f.link_to_add "Add", :experiences, class: "btn btn-primary btn-mini fleft field-edit", style: "margin-left: 30px"
-            .span11.fright
-              = f.submit "Save", class: "btn btn-small btn-success fright form-field", class: 'form-field'
+            .col-md-11.pull-right
+              = f.submit "Save", class: "btng ch2s"
 
       #portfolio.tab-pane.fade
         .paragraph2
@@ -168,25 +168,25 @@
             %h4 Portfolio
           - @profile.portfolio_items.build if @profile.portfolio_items.blank?
           ~ nested_form_for [@user, @profile], remote: true do |f|
+            .col-md-12 Here is a portfolio of my work:
             = f.fields_for :portfolio_items do |pf|
-              .span11
-                Here is a portfolio of my work:
+              .col-md-12
                 %br
-                .span2
+                .col-md-4
                   = display_image_square pf.object.image, 'thumb'
 
-                .span9
-                  .span9= pf.file_field :image, style: "width: 100%"
+                .col-md-6
+                  .col-md-12= pf.file_field :image, style: "width: 100%"
                   .clearfix
-                  .span9.no-lmar= pf.text_field :name, placeholder: "Project Name", class: "span9"
-                  .span9.no-lmar= pf.text_field :organization_name, placeholder: "Project Organization Name", class: "span9"
-                  .span9.no-lmar= pf.text_area :description, placeholder: "Description", rows: 5, class: "span9"
-                .span1= pf.link_to_remove "<i class='icon-remove'></i>".html_safe
+                  .col-md-12.top= pf.text_field :name, placeholder: "Project Name", class: ""
+                  .col-md-12.top= pf.text_field :organization_name, placeholder: "Project Organization Name", class: ""
+                  .col-md-12.top= pf.text_area :description, placeholder: "Description", rows: 5, class: ""
+                .col-md-2= pf.link_to_remove "<i class='glyphicon glyphicon-remove'></i>".html_safe
             .clearfix
             %br
-            .span11.text-left= f.link_to_add "Add", :portfolio_items, class: "btn btn-primary btn-mini fleft field-edit", style: "margin-left: 80px"
-            .span11.fright
-              = submit_tag "Save", class: "btn btn-small btn-success fright", class: 'form-field'
+            .col-md-11.text-left= f.link_to_add "Add", :portfolio_items, class: "btn btn-primary btn-mini fleft field-edit", style: "margin-left: 80px"
+            .col-md-11.pull-right
+              = f.submit "Save", class: "btng ch2s"
 
       #faq.tab-pane.fade
         .paragraph2
@@ -207,8 +207,8 @@
                       = fq.text_field :answer, placeholder: "Answer", class: 'edtitor4b field-edit'
                       = fq.link_to_remove "<i class='icon-remove'></i>".html_safe
                 .span11.text-left= f.link_to_add "Add", :faqs, class: "btn btn-primary btn-mini fleft field-edit", style: "margin-left: 80px"
-                .span11.fright
-                  = submit_tag "Save", class: "btn btn-small btn-success fright", class: 'form-field'
+                .col-md-11.pull-right
+                  = f.submit "Save", class: "btng ch2s"
                 .clearfix
                 - ind += 1
               / item
@@ -246,8 +246,8 @@
                 Do you want to limit the types of students who can contact you? If so, set contact requirements based on
                 experience, GPA, major etc.  We know your time is valuable.
               %textarea.texta4.same{:placeholder => "Add contact requirements (Optional)"}
-            .span11.fright
-              = f.submit "save", class: "btn btn-success btn-small fright", class: 'form-field'
+            .col-md-11.pull-right
+              = f.submit "Save", class: "btng ch2s"
 
   :javascript
     $(function(){
