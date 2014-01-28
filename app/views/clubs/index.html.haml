@@ -1,32 +1,39 @@
+= content_for :head do
+  = stylesheet_link_tag 'static/clubs'
+  = stylesheet_link_tag 'static/buttons'
+  = javascript_include_tag 'static/clubs'
+
 = content_for :page_title do
-  .title
-    %h1 Club
-    %p
-      %a#create-club-link{"data-target" => "#create_club", "data-toggle" => "modal", :href => "#"} Create Your Own Club
-      %span >>
+  = render 'static_pages/club_partials/title'
+
+= content_for :left_side do
+  .clubs-inner
+    %h2 What kind of club are you looking for?
+    %ul.club-tabs
+      - Club::CATEGORIES.each do |category|
+        %li
+          = link_to search_university_clubs_path(@university, club: {category: category}), remote: true do
+            %button.btn= category
+
+  #club-list
+    = render partial: "clubs"
+
+  #club-popup= render partial: 'form', locals: {club: @club}
+
 = content_for :right_side do
-  .info
-    %span.btn4 My Clubs
-    .con{:style => "height:790px;"}
-      - current_user.clubs.each do |club|
-        - path = club.is_a?(MetropolitanClub) ? metropolitan_club_path(club) : university_club_path(@university, club)
-        %a.bka{:href => path}= club.name
-        %a{:href => path}
-          = image_tag club.image
-      - if current_user.clubs.blank?
-        %p You do not belong to any clubs! Click around to join clubs that interest you.(or some directional statement here)
-.clubs-inner
-  %h2 What kind of club are you looking for?
-  %ul.btns2
-    - Club::CATEGORIES.each do |category|
-      %li
-        = link_to search_university_clubs_path(@university, club: {category: category}), remote: true do
-          %button.btn= category
+  .my-clubs
+    .btn4.text-center My Clubs
+    - current_user.clubs.each do |club|
+      - path = club.is_a?(MetropolitanClub) ? metropolitan_club_path(club) : university_club_path(@university, club)
+      = link_to path do
+        .club-title= club.name
+        = image_tag club.image 
+    - if current_user.clubs.blank?
+      .no-clubs
+        %p You do not belong to any clubs! Click around to join clubs that interest you.
+        %br
+        (or some directional statement here)
 
-#club-list.con
-  = render partial: "clubs"
-
-#club-popup= render partial: 'form', locals: {club: @club}
 
 :javascript
   $(".toggle-btn").click(function(){

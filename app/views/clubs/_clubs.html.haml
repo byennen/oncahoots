@@ -1,17 +1,3 @@
-/ .span12.top2
-/   - @clubs.each do |club|
-/     .fleft.left2.top4.bottom2
-/       .users
-/         = link_to university_club_path(@university, club) do
-/           = image_tag club.image.xlarge, class: "img-circle"
-/           %span{style: "margin-left: 20px"}= club.name
-/         .hovers{style: "margin-left: -5px;"}
-/           %p= club.description
-/           - path = club.instance_of?(MetropolitanClub) ? metropolitan_club_path(club) : university_club_path(@university, club)
-/           = link_to "view", path
-/   - if @clubs.blank?
-/     .top2
-/       No club found
 - @clubs.each do |club|
   .music
     .music-img
@@ -19,5 +5,7 @@
         = image_tag club.image
     = link_to university_club_path(@university, club) do
       %span
-        %strong= "#{truncate(club.name, length: 12)} >>"
+        %strong
+          = "#{truncate(club.name, length: 12)}"
+          .glyphicon.glyphicon-chevron-right.btn-sm
     %p= club.description

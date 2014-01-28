@@ -54,7 +54,7 @@
             Running Club
             .glyphicon.glyphicon-chevron-right.btn-sm
       %p Summary about club here.
-
+  = render 'shared/create_club'
 = content_for :right_side do
   .my-clubs
     .btn4.text-center
@@ -68,5 +68,3 @@
         You do not belong to any clubs! Click around to join clubs that interest you.
         %br
         (or some directional statement here)
-
-= render 'shared/create_club'
