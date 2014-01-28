@@ -8,7 +8,7 @@
       .modal-body
         %form.forms
           .half
-            %label Alb.Name
+            %label Name
             %input{:name => "text", :type => "text"}/
             .clearfix
             %label Location
@@ -16,11 +16,9 @@
             .clearfix
 
           .half
-            %label &nbsp;
-            .clearfix
             %label Images
             %button.btnx.pull-left{:name => "btn"} Choose File
-
-          %label.ne.wig Description
-          %textarea.texta
-          %button.btng{:name => "btn"} Create Album
+            .clearfix
+            %label.ne.wig Description
+            %textarea
+            %button.create-album Create Album

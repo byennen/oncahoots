@@ -1,7 +1,7 @@
 #club-photos.members
-  / %a.npost{"data-target" => "#create_album", "data-toggle" => "modal", :href => "#"}
-  /   New Album
-  /   %span >>
+  %a.new-album{"data-target" => "#create_album", "data-toggle" => "modal", :href => "#"}
+    New Album
+    %span >>
 
   .photo-box
     %h4 Album Title Here
@@ -14,6 +14,5 @@
       %img{:alt => "Image", :src => "/assets/club-img.png"}/
 
 
-= render 'shared/create_club'
 = render 'shared/create_album'
 = render 'shared/album_title'

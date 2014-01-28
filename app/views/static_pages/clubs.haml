@@ -1,6 +1,5 @@
 = content_for :head do
-  = stylesheet_link_tag 'static/clubs'
-  = stylesheet_link_tag 'static/buttons'
+  = stylesheet_link_tag 'static/clubs', 'static/buttons', 'static/new_club'
   = javascript_include_tag 'static/clubs'
 
 = content_for :page_title do
@@ -54,7 +53,10 @@
             Running Club
             .glyphicon.glyphicon-chevron-right.btn-sm
       %p Summary about club here.
+
   = render 'shared/create_club'
+
+
 = content_for :right_side do
   .my-clubs
     .btn4.text-center
