@@ -9,47 +9,45 @@
     %h1 Search
 
 = content_for :full_page do
-  .col-md-6.col-md-offset-3.form3
-    %h3 What are you looking for?
-    %input.bigf{:name => "text", :placeholder => "SEARCH TERMS", :type => "text"}/
-    %ul.tabsx
-      %li.activex
-        %a{:href => "#tab1x"} students
-      %li
-        %a{:href => "#tab2x"} alumni
-      %li
-        %a{:href => "#tab3x"} club
-      %li
-        %a{:href => "#tab4x"} event
-    .tab_container
-      #tab1x.tab_content
-        %input{:name => "text", :placeholder => "MAJOR", :type => "text"}/
-        %input{:name => "text", :placeholder => "GRAD YEAR", :type => "text"}/
-      / tab_content
-      #tab2x.tab_content
-        %input{:name => "text", :placeholder => "MAJOR", :type => "text"}/
-        %input{:name => "text", :placeholder => "GRAD YEAR", :type => "text"}/
-        .clearfix
-        %input{:name => "text", :placeholder => "LOCATION", :type => "text"}/
-        %input{:name => "text", :placeholder => "FIELD", :type => "text"}/
-      / tab_content
-      #tab3x.tab_content
-        %br/
-        #sops
-          %label Category
-          %select#selector{:name => "style2"}
-            %option Yes, this club is private
-            %option No, this club is not private
-            %option Yes, this club is private
-            %option No, this club is not private
-            %option Yes, this club is private
-            %option No, this club is not private
+  .row.text-center#search-box
+    .col-md-6.col-md-offset-3
+      %h3 What are you looking for?
+      %input.large-search{:name => "text", :placeholder => "SEARCH TERMS", :type => "text"}/
+
+      %ul.nav.nav-pills
+        %li.active
+          %a{:href => "#student_search", "data-toggle" => "tab"} students
+        %li
+          %a{:href => "#alumni_search", "data-toggle" => "tab"} alumni
+        %li
+          %a{:href => "#club_search", "data-toggle" => "tab"} club
+        %li
+          %a{:href => "#event_search", "data-toggle" => "tab"} event
+
+      .tab-content
+        #student_search.tab-pane.fade.in.active
+          %input{:name => "text", :placeholder => "MAJOR", :type => "text"}/
+          %input{:name => "text", :placeholder => "GRAD YEAR", :type => "text"}/
+
+        #alumni_search.tab-pane.fade
+          %input{:name => "text", :placeholder => "MAJOR", :type => "text"}/
+          %input{:name => "text", :placeholder => "GRAD YEAR", :type => "text"}/
           .clearfix
-      / tab_content
-      #tab4x.tab_content
-        %input#datepicker{:name => "text", :placeholder => "START DATE", :type => "text"}/
-        %input#datepicker2{:name => "text", :placeholder => "END DATE", :type => "text"}/
-      / tab_content
-    / tab_container
-    %a{:href => "search-detail.html"}
-      %button.btn.btn6{:name => "btn"} Search
+          %input{:name => "text", :placeholder => "LOCATION", :type => "text"}/
+          %input{:name => "text", :placeholder => "FIELD", :type => "text"}/
+
+        #club_search.tab-pane.fade
+          %ul
+            - ["Arts", "Academic", "Alumni"].each do |club_type|
+              %li
+                %a
+                  %button.btn.btn2{:name => "btn"}= club_type
+
+
+
+        #event_search.tab-pane.fade
+          %input#datepicker{:name => "text", :placeholder => "START DATE", :type => "text"}/
+          %input#datepicker2{:name => "text", :placeholder => "END DATE", :type => "text"}/
+
+      %a{:href => "search-detail.html"}
+        %button.btn.btn6{:name => "btn"} Search
