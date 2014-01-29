@@ -22,7 +22,8 @@ class Club < ActiveRecord::Base
 
   validates :name, presence: true
   validates :university_id, presence: true
-
+  validates :image, presence: true
+  
   scope :sup_club, where(type: nil)
   scope :privates, where(:private => true)
   scope :publics, where("clubs.private is null or clubs.private=false")

@@ -7,17 +7,17 @@ $(document).ready ->
   $(".basic").fancySelect()
 
   #Default Action
-  $(".tab_content").hide() #Hide all content
-  $("ul.tabsx li:first").addClass("activex").show() #Activate first tab
-  $(".tab_content:first").show() #Show first tab content
+  #$(".tab_content").hide() #Hide all content
+  #$("ul.tabsx li:first").addClass("activex").show() #Activate first tab
+  #$(".tab_content:first").show() #Show first tab content
 
   #On Click Event
   $("ul.tabsx li").click ->
     $("ul.tabsx li").removeClass "activex" #Remove any "active" class
     $(this).addClass "activex" #Add "active" class to selected tab
-    $(".tab_content").hide() #Hide all tab content
+    $(".tab_content").addClass("hide")#Hide all tab content
     activeTab = $(this).find("a").attr("href") #Find the rel attribute value to identify the active tab + content
-    $(activeTab).fadeIn() #Fade in the active content
+    $(activeTab).removeClass('hide') #Fade in the active content
     false
 
   $(".search-btn").click ->

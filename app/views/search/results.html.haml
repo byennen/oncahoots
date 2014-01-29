@@ -1,14 +1,17 @@
 - @full_page = true
 
 = content_for :head do
-  = stylesheet_link_tag 'static/search_detail', 'static/buttons'
-  = javascript_include_tag 'static/search_detail'
+  = stylesheet_link_tag 'static/search_detail', 'static/buttons', "search"
+  = javascript_include_tag 'search'
 
 = content_for :page_title do
   .title
     %h1 Search
 
 = content_for :full_page do
+  .col-md-offset-1.col-md-6.form3{style: "margin-top: 20px;"}
+    = render partial: "form"
+  .clearfix
   .col-md-offset-1.col-md-12
     - unless @users.blank?
       .search-detail
