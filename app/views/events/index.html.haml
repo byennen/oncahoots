@@ -21,7 +21,7 @@
 
   .session
     = link_to "Free Food", university_events_path(@university, filter: "freefood"), remote: true, class: "free_food"
-    = link_to "Weekly", university_events_path(@university, filter: "weekly"), remote: true, class: "weekly"
+    = link_to "Weekly", university_events_path(@university, filter: "weekly"), remote: true, class: "weekly current"
     = link_to "Monthly", university_events_path(@university, filter: "monthly"), remote: true, class: "monthly"
 
      

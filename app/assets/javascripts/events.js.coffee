@@ -2,21 +2,25 @@ $(document).ready ->
   $("#datepicker").datepicker inline: true
 
   $(".freefood").on "click", ->
+    $(".session a").removeClass('current')
+    $(@).addClass('current')
     $("#monthly-events-calendar").hide()
     $("#event-area-monthly-listing").hide()
     $("#weekly-events-calendar").hide()
-    $("#events-list").show()
+    #$("#events-list").show()
     $("#event-area-single").show()
 
   $(".weekly").on "click", ->
+    $(".session a").removeClass('current')
+    $(@).addClass('current')
     $("#monthly-events-calendar").hide()
     $("#event-area-monthly-listing").hide()
-    $("#events-list").hide()
     $("#weekly-events-calendar").show()
     $("#event-area-single").show()
 
   $(".monthly").on "click", ->
-    $("#events-list").hide()
+    $(".session a").removeClass('current')
+    $(@).addClass('current')
     $("#event-area-single").hide()
     $("#weekly-events-calendar").hide()
     $("#monthly-events-calendar").show()

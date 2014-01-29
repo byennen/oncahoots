@@ -1,0 +1,50 @@
+- params[:user] ||= {}
+- params[:club] ||= {}
+- params[:event] ||= {}
+= text_field_tag :terms, params[:terms], placeholder: "SEARCH TERMS", class: "bigf"
+%ul.tabsx.col-md-12.col-md-offset-3
+  %li{class: "#{'activex' if params[:object].blank? || params[:object]=='students'}"}
+    %a.btn{:href => "#tab1x"} students
+  %li{class: "#{'activex' if params[:object]=='alumni'}"}
+    %a.btn{:href => "#tab2x"} alumni
+  %li{class: "#{'activex' if params[:object]=='club'}"}
+    %a.btn{:href => "#tab3x"} club
+  %li{class: "#{'activex' if params[:object]=='event'}"}
+    %a.btn{:href => "#tab4x"} event
+  .clearfix
+  %br
+.tab_container
+  #tab1x.tab_content{class: "#{'hide' unless (params[:object].blank? || params[:object]=='students')}"}
+    = form_tag :search do
+      = text_field :user, :major, value: params[:user][:major],placeholder: "MAJOR"
+      = text_field :user, :graduation_year, value: params[:user][:graduation_year], placeholder: "GRAD YEAR"
+    %a.search-btn{href: "javascript:;", "data-object" => "student"}
+      %button.btn.btn6{:name => "btn"} Search
+
+  / tab_content
+  #tab2x.tab_content{class: "#{'hide' unless params[:object]=='alumni'}"}
+    = form_tag :search do
+      = text_field :user, :major, value: params[:user][:major], placeholder: "MAJOR"
+      = text_field :user, :graduation_year, value: params[:user][:graduation_year], placeholder: "GRAD YEAR"
+      .clearfix
+      = text_field :user, :city, value: params[:user][:city], placeholder: "LOCATION"
+      = text_field :user, :field, value: params[:user][:field], placeholder: "FIELD"
+    %a.search-btn{href: "javascript:;", "data-object" => "alumni"}
+      %button.btn.btn6{:name => "btn"} Search
+
+  / tab_content
+  #tab3x.tab_content{class: "#{'hide' unless params[:object]=='club'}"}
+    = form_tag :search do
+      .col-md-6= select :club, :private, options_for_select([["Not Private", false],["Private", true]], params[:club][:private]), prompt: "All"
+      .col-md-6= select :club, :category, options_for_select(Club::CATEGORIES, params[:club][:category]), prompt: "All Category"
+
+      .clearfix
+    %a.search-btn{href: "javascript:;", "data-object" => "club"}
+      %button.btn.btn6{:name => "btn"} Search
+  / tab_content
+  #tab4x.tab_content{class: "#{'hide' unless params[:object]=='event'}"}
+    = form_tag :search do
+      = text_field :event, :start_date, value: params[:event][:start_date], :placeholder => "START DATE", class: "datepicker"
+      = text_field :event, :end_date, value: params[:event][:end_date], :placeholder => "END DATE", class: "datepicker"
+    %a.search-btn{href: "javascript:;", "data-object" => "event"}
+      %button.btn.btn6{:name => "btn"} Search
