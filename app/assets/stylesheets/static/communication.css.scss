@@ -1,5 +1,6 @@
 @import "bourbon";
 $green: #00c088;
+$hover_green: rgb(156,231,198);
 
 // TODO: remove unused css
 
@@ -97,7 +98,7 @@ $green: #00c088;
 
 #collapseMessages .row, #collapseRequests .row {
   &:hover, &:active, &:focus {
-    background-color: rgb(156,231,198);
+    background-color: $hover_green;
     text-decoration: none;
     cursor: pointer;
   }
@@ -120,10 +121,6 @@ $green: #00c088;
   margin: 5px;
   border-radius: 50px;
   width: 100%;
-
-  &:hover, &:active, &:focus {
-    border: 8px solid #59da88;
-  }
 }
 
 .tif-name {
@@ -178,6 +175,10 @@ $green: #00c088;
   margin-right: 15px;
   span {
     color: #444444;
+  }
+  &:hover, &:active, &:focus {
+    text-decoration: none;
+    color: #444;
   }
 }
 

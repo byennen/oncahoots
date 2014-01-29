@@ -1,5 +1,6 @@
 @import "bourbon";
 $green: #00c088;
+$hover_green: rgb(156,231,198);
 
 #events {
   .title {
@@ -57,8 +58,7 @@ $green: #00c088;
       background-color: #e7e7e8;
     }
     &:hover, &:active, &:focus {
-      @include linear-gradient(#56d988, #02c189);
-      color: white;
+      background: $hover_green;
       cursor: default;
     }
   }
@@ -104,8 +104,7 @@ $green: #00c088;
     }
     tr {
       &:hover, &:active, &:focus {
-        @include linear-gradient(#56d988, #02c189);
-        color: white;
+        background-color: $hover_green;
         cursor: default;
       }
     }

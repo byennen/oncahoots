@@ -1,5 +1,7 @@
 @import "bourbon";
 $green: #00c088;
+$hover_green: rgb(156,231,198);
+
 
 #college{
   .user-gravatar{
@@ -224,11 +226,11 @@ $green: #00c088;
         color: #00c088;
       }
       &:hover, &:active, &:focus {
-        @include linear-gradient(#56d988, #02c189);
-        color: white;
+        background-color: $hover_green;
+        cursor: pointer;
       }
       &:hover a, &:active a, &:focus a {
-        color: white;
+        // color: #444;
       }
     }
   }
