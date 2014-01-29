@@ -30,7 +30,7 @@
           .clearfix
           %label.ne Description
           = f.text_area :description, class: "texta"
-          %button.btng{:name => "btn", type: "submit"} Create Club
+          = f.submit "Create Club", class: "btng"
         .clearfix
 :javascript
   $(document).ready(function(){
