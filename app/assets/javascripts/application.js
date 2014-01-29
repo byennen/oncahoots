@@ -56,6 +56,10 @@ $(function() {
     $(this).inputmask("mm/dd/yyyy");
   });
 
+  $('#navigation .navbar-nav a').each(function() {
+    $(this).tooltip();
+  });
+
 });
 
 $(document).on('ready page:load', function(){

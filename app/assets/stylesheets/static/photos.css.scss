@@ -1,3 +1,64 @@
+@import "bourbon";
+$green: #00c088;
+
+#club-photos {
+  .new-album {
+    font-size: 18px;
+    color: #333;
+    float: right;
+    margin-top: -20px;
+  }
+  .photo-box {
+    width: 100%;
+    img {
+      width: 100%;
+      border: 5px solid #ddd;
+      &:hover {
+        border: 5px solid $green;
+      }
+    }
+  }
+}
+
+
+#album_title {
+  .carousel-control {
+    img {
+      margin-top: 150px;
+    }
+  }
+}
+
+
+#create_album {
+  textarea {
+    width: 70%;
+    resize: none;
+    margin-top: 10px;
+    padding: 10px 15px;
+    height: 220px;
+    background-color: #ebebeb;
+    border-radius: 0;
+    border: none;
+    margin-bottom: 60px;
+  }
+  button.create-album {
+    clear: right;
+    float: right;
+    margin-top: -40px;
+    margin-right: 23px;
+    border: none;
+    border-radius: 0;
+    text-align: center;
+    padding: 6px 15px;
+    color: white;
+    font-size: 16px;
+    @include linear-gradient(#56d988, #02c189);
+  }
+}
+
+
+
 .item img {
   margin: 0 auto;
 }

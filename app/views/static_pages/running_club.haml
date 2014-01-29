@@ -1,6 +1,6 @@
 = content_for :head do
-  = stylesheet_link_tag 'static/running_club', 'static/lowdown', 'static/members', 'static/about', 'static/money', 'static/photos', 'static/buttons'
-  = javascript_include_tag 'static/running_club'
+  = stylesheet_link_tag 'static/running_club', 'static/lowdown', 'static/members', 'static/money', 'static/photos', 'static/buttons', 'static/new_club'
+  = javascript_include_tag 'static/running_club', 'static/clubs'
 
 = content_for :page_title do
   = render 'static_pages/club_partials/title'
@@ -35,8 +35,11 @@
       %button.btn9.mod2{:name => "btn"} Join Club
 
 
+  = render 'shared/create_club'
+
+
 = content_for :right_side do
   = render 'static_pages/newsletter'
   = render 'static_pages/calendar'
 
-= render 'shared/create_club'
+

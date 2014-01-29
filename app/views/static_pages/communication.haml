@@ -7,125 +7,117 @@
     %h1 Communication
 
 = content_for :left_side do
-  .row.com-title
-    .col-md-4.no-padding
-      %a{:href => "#"} Notifications (2)
-    .col-md-4.no-padding
-      %a{:href => "#"} Messages (2)
-    .col-md-4.no-padding
-      %a{:href => "#"} Requests (1)
+  .row
+    .col-md-12.no-padding
+      .com-title
+        %ul.nav.nav-tabs
+          %li.active
+            %a{"data-toggle" => "tab", "href" => "#collapseNotifications"}
+              Notifications (2)
+          %li
+            %a{"data-toggle" => "tab", "href" => "#collapseMessages"}
+              Messages (2)
+          %li
+            %a{"data-toggle" => "tab", "href" => "#collapseRequests"}
+              Requests (1)
 
-  .row#com-notifications
-    .col-md-12.no-padding#accordion
-      %a{"data-toggle" => "collapse", "data-parent" => "#accordion", "href" => "#collapseNotifications"}
-        .panel-heading
-          %strong Notifications
-      #collapseNotifications.collapse
-        .row
-          .notification-box
+      .tab-content
+        #collapseNotifications.tab-pane.active
+          .row
+            .notification-box
+              .col-md-2.no-padding
+                = image_tag('circle.png', class: "tif-img")
+              .col-md-4
+                %p
+                  %a.tif-name{:href => "#"} tiffany wisnieski
+                  Commented on your post.
+                  %br/
+                  YESTERDAY
+                  %br/
+                  %a.small-text{:href => "#"} "Couldn't agree more. Looking forward to seeing how it all works out. I've..."
+
+            .notification-box
+              .col-md-2.no-padding
+                = image_tag('circle.png', class: "tif-img")
+              .col-md-4
+                %p
+                  %a.tif-name{:href => "#"} tiffany wisnieski
+                  Commented on your post.
+                  %br/
+                  YESTERDAY
+                  %br/
+                  %a.small-text{:href => "#"} "Couldn't agree more. Looking forward to seeing how it all works out. I've..."
+
+          .row
+            .notification-box
+              .col-md-2.no-padding
+                = image_tag('circle.png', class: "tif-img")
+              .col-md-4
+                %p
+                  %a.tif-name{:href => "#"} tiffany wisnieski
+                  Commented on your post.
+                  %br/
+                  YESTERDAY
+                  %br/
+                  %a.small-text{:href => "#"} "Couldn't agree more. Looking forward to seeing how it all works out. I've..."
+
+            .notification-box
+              .col-md-2.no-padding
+                = image_tag('circle.png', class: "tif-img")
+              .col-md-4
+                %p
+                  %a.tif-name{:href => "#"} tiffany wisnieski
+                  Commented on your post.
+                  %br/
+                  YESTERDAY
+                  %br/
+                  %a.small-text{:href => "#"} "Couldn't agree more. Looking forward to seeing how it all works out. I've..."
+
+        #collapseMessages.tab-pane
+          .row
             .col-md-2.no-padding
               = image_tag('circle.png', class: "tif-img")
-            .col-md-4
-              %p
-                %a.tif-name{:href => "#"} tiffany wisnieski
-                Commented on your post.
+            .col-md-2.no-padding
+              %a.com-name{:href => "#"}
+                Jane Doe
                 %br/
-                YESTERDAY
-                %br/
-                %a.small-text{:href => "#"} "Couldn't agree more. Looking forward to seeing how it all works out. I've..."
+                %span 1998
+            .col-md-8.no-padding
+              %p I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse.
 
-          .notification-box
+          .row.dark
             .col-md-2.no-padding
               = image_tag('circle.png', class: "tif-img")
-            .col-md-4
-              %p
-                %a.tif-name{:href => "#"} tiffany wisnieski
-                Commented on your post.
+            .col-md-2.no-padding
+              %a.com-name{:href => "#"}
+                Jane Doe
                 %br/
-                YESTERDAY
-                %br/
-                %a.small-text{:href => "#"} "Couldn't agree more. Looking forward to seeing how it all works out. I've..."
+                %span 1998
+            .col-md-8.no-padding
+              %p I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse.
 
-        .row
-          .notification-box
+        #collapseRequests.tab-pane
+          .row
             .col-md-2.no-padding
               = image_tag('circle.png', class: "tif-img")
-            .col-md-4
-              %p
-                %a.tif-name{:href => "#"} tiffany wisnieski
-                Commented on your post.
+            .col-md-2.no-padding
+              %a.com-name{:href => "#"}
+                Jane Doe 2
                 %br/
-                YESTERDAY
-                %br/
-                %a.small-text{:href => "#"} "Couldn't agree more. Looking forward to seeing how it all works out. I've..."
+                %span 1998
+            .col-md-8.no-padding
+              %p I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse.
 
-          .notification-box
+          .row.dark
             .col-md-2.no-padding
               = image_tag('circle.png', class: "tif-img")
-            .col-md-4
-              %p
-                %a.tif-name{:href => "#"} tiffany wisnieski
-                Commented on your post.
+            .col-md-2.no-padding
+              %a.com-name{:href => "#"}
+                Jane Doe
                 %br/
-                YESTERDAY
-                %br/
-                %a.small-text{:href => "#"} "Couldn't agree more. Looking forward to seeing how it all works out. I've..."
-
-  .row#com-messages
-    .col-md-12.no-padding#accordion
-      %a{"data-toggle" => "collapse", "data-parent" => "#accordion", "href" => "#collapseMessages"}
-        .panel-heading
-          %strong Messages
-      #collapseMessages.collapse
-        .row
-          .col-md-2.no-padding
-            = image_tag('circle.png', class: "tif-img")
-          .col-md-2.no-padding
-            %a.com-name{:href => "#"}
-              Jane Doe
-              %br/
-              %span 1998
-          .col-md-8.no-padding
-            %p I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse.
-
-        .row.dark
-          .col-md-2.no-padding
-            = image_tag('circle.png', class: "tif-img")
-          .col-md-2.no-padding
-            %a.com-name{:href => "#"}
-              Jane Doe
-              %br/
-              %span 1998
-          .col-md-8.no-padding
-            %p I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse.
-
-  .row#com-requests
-    .col-md-12.no-padding#accordion
-      %a{"data-toggle" => "collapse", "data-parent" => "#accordion", "href" => "#collapseRequests"}
-        .panel-heading
-          %strong Requests
-      #collapseRequests.collapse
-        .row
-          .col-md-2.no-padding
-            = image_tag('circle.png', class: "tif-img")
-          .col-md-2.no-padding
-            %a.com-name{:href => "#"}
-              Jane Doe
-              %br/
-              %span 1998
-          .col-md-8.no-padding
-            %p I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse.
-
-        .row.dark
-          .col-md-2.no-padding
-            = image_tag('circle.png', class: "tif-img")
-          .col-md-2.no-padding
-            %a.com-name{:href => "#"}
-              Jane Doe
-              %br/
-              %span 1998
-          .col-md-8.no-padding
-            %p I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse.
+                %span 1998
+            .col-md-8.no-padding
+              %p I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse.
 
 
 

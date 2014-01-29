@@ -1,0 +1,35 @@
+#create_club {
+  label {
+    font-weight: normal;
+    font-size: 19px;
+    margin-top: 5px;
+  }
+  input {
+    background-color: #ebebeb;
+    border: none;
+    border-radius: 0;
+    height: 36px;
+    padding-left: 15px;
+    width: 100%;
+  }
+
+  #sops .gentleselect-label {
+    background-color: #ebebeb;
+  }
+
+  .input-label {
+    text-align: right;
+    padding-right: 10px;
+  }
+
+  textarea {
+    width: 100%;
+    resize: none;
+    margin-top: 10px;
+    padding: 10px 15px;
+    height: 220px;
+    background-color: #ebebeb;
+    border-radius: 0;
+    border: none;
+  }
+}

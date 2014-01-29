@@ -41,7 +41,6 @@ $green: #00c088;
     display: inline-block;
     padding: 0 30px;
     width: 100%;
-    float: left;
     margin-bottom: 70px;
     position: relative;
     a span {
@@ -76,12 +75,14 @@ $green: #00c088;
   }
 
   .my-clubs {
-    overflow: hidden;
     a {
       text-decoration: none;
       &:hover {
         text-decoration: none;
       }
+    }
+    img {
+      width: 100%;
     }
     .club-title {
       font-size: 26px;
@@ -98,3 +99,4 @@ $green: #00c088;
   }
 
 }
+
