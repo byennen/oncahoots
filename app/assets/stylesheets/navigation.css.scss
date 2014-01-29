@@ -1,4 +1,5 @@
 @import "bourbon";
+$green: #00c088;
 
 #navigation {
   background: #e7e7e8;
@@ -14,6 +15,15 @@
 
 .navbar {
   border: none;
+}
+
+.tooltip .tooltip-arrow {
+  display: none;
+}
+.tooltip-inner {
+  margin-top: -30px;
+  color: white;
+  background: #5c6067;
 }
 
 .navbar-header {

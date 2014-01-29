@@ -9,6 +9,9 @@ $green: #00c088;
     li {
       list-style-type: none;
     }
+    li.active a{
+      background: #f7f7f7;
+    }
   }
 
   .not-joined {

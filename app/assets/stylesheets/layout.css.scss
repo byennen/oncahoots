@@ -32,6 +32,20 @@ $green: #00c088;
   }
 }
 
+@media (max-width: 768px) {
+  .modal-dialog {
+    width: 90% !important;
+  }
+}
+
+@media (max-width: 991px) {
+  .modal-dialog label {
+    float: left;
+    margin: 0px 10px 0px 0px;
+  }
+}
+
+
 //#############################
 //CLEANED CSS ABOVE THIS LINE
 //#############################
