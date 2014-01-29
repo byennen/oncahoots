@@ -12,15 +12,18 @@
   .col-md-6.col-md-offset-3.form3
     %h3 What are you looking for?
     = text_field_tag :terms, "", placeholder: "SEARCH TERMS", class: "bigf"
-    %ul.tabsx
+    %ul.tabsx.col-md-12.col-md-offset-3
       %li.activex
-        %a{:href => "#tab1x"} students
+        %a.btn{:href => "#tab1x"} students
       %li
-        %a{:href => "#tab2x"} alumni
+        %a.btn{:href => "#tab2x"} alumni
       %li
-        %a{:href => "#tab3x"} club
+        %a.btn{:href => "#tab3x"} club
       %li
-        %a{:href => "#tab4x"} event
+        %a.btn{:href => "#tab4x"} event
+    .clearfix
+    %br
+    %br
     .tab_container
       #tab1x.tab_content
         = form_tag :search do
