@@ -1,19 +1,20 @@
-%li
-  %small
-    %span= update.headline
-    %br
-    = update.body.truncate(100)
-    %span >>
-    %br
-    %br
-    = link_to "Post Comment", "javascript:;"
-  .showa
-    %h2= update.headline
-    %span= update.created_at.strftime("%m.%d.%y")
-    %br
-    %p= update.body.html_safe
-    = image_tag update.image, height: "200"
-    %button.btn8.pull-right Go Back
+- unless update.headline.blank?
+  %li
+    %small
+      %span= update.headline
+      %br
+      = update.body.truncate(100) if update.body
+      %span >>
+      %br
+      %br
+      = link_to "Post Comment", "javascript:;"
+    .showa
+      %h2= update.headline
+      %span= update.created_at.strftime("%m.%d.%y") if update.created_at
+      %br
+      %p= update.body.html_safe if update.body
+      = image_tag update.image, height: "200"
+      %button.btn8.pull-right Go Back
 / %li{style: "padding: 10px; clear: both;"}
 /   .span4
 /     = link_to "javascript:;", "data-src" =>  update.image, class: "update-image" do
