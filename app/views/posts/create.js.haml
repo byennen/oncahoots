@@ -1,5 +1,6 @@
 - if @post.errors.blank?
   window.location.reload();
 - else
+  $('input[type="submit"]').removeAttr('disabled');
   $("#post-popup").html("#{escape_javascript(render partial: 'form', locals: {post: @post})}");
   $("#post-new-link").click();
