@@ -11,7 +11,7 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
-//= require old_javascripts/jquery.timeago.js
+//= require plugins/jquery.timeago.js
 //= require jquery.ui.all
 //= require jquery_ujs
 //= require bootstrap

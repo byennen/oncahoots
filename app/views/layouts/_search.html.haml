@@ -1,7 +1,0 @@
-- unless controller_name=="search" || controller_name=='contacts' || controller_name=="transactions" || (controller_name== "profiles" && params[:action]=='edit') || (controller_name== "clubs" && params[:action]=='index')
-  .offset9.search_all
-    %a#search-btn.btn.btn2.btn-success{style: "margin-right: 20px;", href: "javascript:;"}
-      %i
-        = image_tag('old_images/search-icon.png')
-    %input#search_field.field{name: 'search_field', type: 'text'}
-    = link_to "Advanced", search_path, class: 'advance'

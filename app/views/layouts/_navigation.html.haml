@@ -11,11 +11,11 @@
       %ul.nav.navbar-nav
         %li
           = link_to current_user.university do
-            %i.icon-same
+            %i.icon-same.margin5
               = image_tag('college-icon.png')
         %li
           = link_to university_clubs_path(current_user.university) do
-            %i.icon-same.margin10
+            %i.icon-same.margin5
               = image_tag('clubs-icon.png')
         %li
           %a{:href => user_profile_path(current_user, current_user.profile)}
