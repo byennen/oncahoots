@@ -4,3 +4,4 @@
   $(".modal-backdrop").hide();
   $("#club-popup").html("#{escape_javascript(render partial: 'form', locals: {club: @club})}");
   $("#create-club-link").click();
+  $("input[type=submit]").removeAttr('disabled');
