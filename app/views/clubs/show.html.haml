@@ -96,5 +96,7 @@
         $('.filter-content').addClass("hide");
         $($(this).data("target")).removeClass('hide');
       });
-
+      $("form").submit(function(){
+        $('input[type="submit"]').attr('disabled','disabled');
+      });
     });
