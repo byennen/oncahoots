@@ -1,6 +1,6 @@
 $(document).ready ->
   $("#club_private").gentleSelect() # apply gentleSelect with default options
-  $("#club_category").gentleSelect() 
+  $("#club_category").gentleSelect()
   $("#datepicker").datepicker inline: true
   $("#datepicker2").datepicker inline: true
   $(".selectyze2").Selectyze theme: "mac"

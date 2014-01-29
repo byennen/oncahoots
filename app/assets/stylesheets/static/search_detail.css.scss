@@ -1,4 +1,5 @@
 @import "bourbon";
+$green: #00c088;
 
 .search-detail {
   position: relative;
@@ -24,6 +25,29 @@
   }
 }
 
+.search-results-listing {
+  margin-top: 30px;
+  .result-listing {
+    margin-bottom: 20px;
+    h4 {
+      color: #00c089;
+      text-transform: uppercase;
+    }
+    p {
+      font-size: 15px;
+      color: #555;
+      a {
+        color: #555;
+        padding-top: 5px;
+        display: block;
+        span {
+          color: $green;
+        }
+      }
+    }
+  }
+}
+
 .empty {
   width: 100%;
   float: left;
@@ -43,10 +67,7 @@
   }
 }
 
-.paddings {
-  display: block;
-  padding: 35px 10px 35px 0;
-}
+
 
 .csthumb {
   display: block;
@@ -73,65 +94,22 @@
       padding-top: 5px;
       display: block;
       span {
-        color: #00c089;
+        color: $green;
       }
     }
   }
 }
 
-#tab1x .half {
-  min-height: 0;
-}
 
 .btnd {
   float: right;
-  width: 20%;
+  width: 20% !important;
   font-size: 25px;
   padding: 5px 0;
   margin-right: 15%;
   margin-bottom: 20px;
 }
 
-.paddings a {
-  &:hover, &:active, &:focus {
-    text-decoration: none;
-  }
-}
-
-#tab2x .selectBox {
-  float: right;
-  margin-right: 12px;
-  margin-top: 13px;
-}
-
-.activex {
-  display: inline-block;
-  position: relative;
-  border-bottom: 1px solid #999999;
-  border-top: 1px solid #999999;
-  li {
-    float: left;
-    a {
-      display: block;
-      position: relative;
-      padding: 9px 12px;
-      color: #666666;
-      background-color: white;
-      border-left: 1px solid #999999;
-      float: left;
-      font-size: 14px;
-      text-transform: uppercase;
-    }
-    &:last-child a {
-      border-right: 1px solid #999999;
-    }
-    a {
-      &:hover, &:active, &:focus {
-        color: white !important;
-        text-decoration: none;
-        @include linear-gradient(#5c6067, #3c4449);
-        text-decoration: none;
-      }
-    }
-  }
+.start-over {
+  margin-top: 30px;
 }

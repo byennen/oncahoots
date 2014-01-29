@@ -1,7 +1,7 @@
 - @full_page = true
 
 = content_for :head do
-  = stylesheet_link_tag 'static/search_detail', 'static/buttons'
+  = stylesheet_link_tag 'static/search_detail', 'static/buttons', 'static/search'
   = javascript_include_tag 'static/search_detail'
 
 = content_for :page_title do
@@ -9,199 +9,92 @@
     %h1 Search
 
 = content_for :full_page do
-  .col-md-offset-1.col-md-12
-    .search-detail
-      %h3 6 Results
-      %span Search:
-      %input{:name => "text", :placeholder => "DANIEL KORENEVSKY", :type => "text"}/
-    / search-detail
-    .empty
-      %ul.tabsx
-        %li.activex
-          %a{:href => "#tab1x"} students
-        %li
-          %a{:href => "#tab2x"} alumni
-        %li
-          %a{:href => "#tab3x"} club
-        %li
-          %a{:href => "#tab4x"} event
-      %p 2013
-      %p ADVERTISING
-    / empty
-    .tab_container
-      #tab1x.tab_content
-        .con
-          .half
-            .paddings
-              %a.csthumb{:href => "#"}
-              %a{:href => "running-club.html"}
-              %h4 running club
-              %br/
-              %p
-                Members (52)
-                %br/
-                Claritas est etiam pr dynamicdfus, qui sequitur mutationem consuetudium lectorum.
-                %br/
-                %a{:href => "#"}
-                  VIEW PAGE
-                  %span >>
-            / paddings
-          / half
-          .half
-            .paddings
-              %a.csthumb{:href => "#"}
-              %a{:href => "running-club.html"}
-              %h4 running club
-              %br/
-              %p
-                Members (52)
-                %br/
-                Claritas est etiam pr dynamicdfus, qui sequitur mutationem consuetudium lectorum.
-                %br/
-                %a{:href => "#"}
-                  VIEW PAGE
-                  %span >>
-            / paddings
-          / half
-          .half
-            .paddings
-              %a.csthumb{:href => "#"}
-              %a{:href => "running-club.html"}
-              %h4 running club
-              %br/
-              %p
-                Members (52)
-                %br/
-                Claritas est etiam pr dynamicdfus, qui sequitur mutationem consuetudium lectorum.
-                %br/
-                %a{:href => "#"}
-                  VIEW PAGE
-                  %span >>
-            / paddings
-          / half
-          .half
-            .paddings
-              %a.csthumb{:href => "#"}
-              %a{:href => "running-club.html"}
-              %h4 running club
-              %br/
-              %p
-                Members (52)
-                %br/
-                Claritas est etiam pr dynamicdfus, qui sequitur mutationem consuetudium lectorum.
-                %br/
-                %a{:href => "#"}
-                  VIEW PAGE
-                  %span >>
-            / paddings
-          / half
-          .half
-            .paddings
-              %a.csthumb{:href => "#"}
-              %a{:href => "running-club.html"}
-              %h4 running club
-              %br/
-              %p
-                Members (52)
-                %br/
-                Claritas est etiam pr dynamicdfus, qui sequitur mutationem consuetudium lectorum.
-                %br/
-                %a{:href => "#"}
-                  VIEW PAGE
-                  %span >>
-            / paddings
-          / half
-          .half
-            .paddings
-              %a.csthumb{:href => "#"}
-              %a{:href => "running-club.html"}
-              %h4 running club
-              %br/
-              %p
-                Members (52)
-                %br/
-                Claritas est etiam pr dynamicdfus, qui sequitur mutationem consuetudium lectorum.
-                %br/
-                %a{:href => "#"}
-                  VIEW PAGE
-                  %span >>
-            / paddings
-          / half
-          .half
-            .paddings
-              %a.csthumb{:href => "#"}
-              %a{:href => "running-club.html"}
-              %h4 running club
-              %br/
-              %p
-                Members (52)
-                %br/
-                Claritas est etiam pr dynamicdfus, qui sequitur mutationem consuetudium lectorum.
-                %br/
-                %a{:href => "#"}
-                  VIEW PAGE
-                  %span >>
-            / paddings
-          / half
-          .half
-            .paddings
-              %a.csthumb{:href => "#"}
-              %a{:href => "running-club.html"}
-              %h4 running club
-              %br/
-              %p
-                Members (52)
-                %br/
-                Claritas est etiam pr dynamicdfus, qui sequitur mutationem consuetudium lectorum.
-                %br/
-                %a{:href => "#"}
-                  VIEW PAGE
-                  %span >>
-            / paddings
-          / half
+  .row#search-detail-box
+    .col-md-offset-1.col-md-11
+      .search-detail
+        %h3 6 Results
+        %span Search:
+        %input{:name => "text", :placeholder => "DANIEL KORENEVSKY", :type => "text"}/
+
+
+      .row
+        .col-md-5
+          %ul.nav.nav-pills
+            %li.active
+              %a{:href => "#student_search", "data-toggle" => "tab"} students
+            %li
+              %a{:href => "#alumni_search", "data-toggle" => "tab"} alumni
+            %li
+              %a{:href => "#club_search", "data-toggle" => "tab"} club
+            %li
+              %a{:href => "#event_search", "data-toggle" => "tab"} event
+
+        .col-md-6
+          .tab-content
+            #student_search.tab-pane.fade.in.active
+              %input{:name => "text", :placeholder => "MAJOR", :type => "text"}/
+              %input{:name => "text", :placeholder => "GRAD YEAR", :type => "text"}/
+
+            #alumni_search.tab-pane.fade
+              %input{:name => "text", :placeholder => "MAJOR", :type => "text"}/
+              %input{:name => "text", :placeholder => "GRAD YEAR", :type => "text"}/
+              .clearfix
+              %input{:name => "text", :placeholder => "LOCATION", :type => "text"}/
+              %input{:name => "text", :placeholder => "FIELD", :type => "text"}/
+
+            #club_search.tab-pane.fade
+              %ul
+                - ["Arts", "Academic", "Alumni"].each do |club_type|
+                  %li
+                    %a
+                      %button.btn.btn2{:name => "btn"}= club_type
+
+            #event_search.tab-pane.fade
+              %input#datepicker{:name => "text", :placeholder => "START DATE", :type => "text"}/
+              %input#datepicker2{:name => "text", :placeholder => "END DATE", :type => "text"}/
+
+
+      .row.search-results-listing
+        .col-md-6
+          / looping here just for data on static pages
+          - (1..4).each do |row_num|
+            .row.result-listing
+              .col-md-4.no-padding
+                %a.csthumb{:href => "#"}
+                %a{:href => "running-club.html"}
+              .col-md-8.no-padding
+                %h4 running club
+                %p
+                  Members (52)
+                  %br/
+                  Claritas est etiam pr dynamicdfus, qui sequitur mutationem consuetudium lectorum.
+                  %br/
+                  %a{:href => "#"}
+                    VIEW PAGE
+                    %span >>
+
+        .col-md-6
+          / looping here just for data on static pages
+          - (1..4).each do |row_num|
+            .row.result-listing
+              .col-md-4.no-padding
+                %a.csthumb{:href => "#"}
+                %a{:href => "running-club.html"}
+              .col-md-8.no-padding
+                %h4 running club
+                %p
+                  Members (52)
+                  %br/
+                  Claritas est etiam pr dynamicdfus, qui sequitur mutationem consuetudium lectorum.
+                  %br/
+                  %a{:href => "#"}
+                    VIEW PAGE
+                    %span >>
+
+
+      .row.start-over
+        .col-md-12
           %a{:href => "search.html"}
             %button.btn9.btnd{:name => "btn"} Start Over
-        / con
-        .clearfix
-      / tab_content
-      .col-md-offset-3.col-md-5
-        #tab2x.tab_content
-          %input{:name => "text", :placeholder => "MAJOR", :type => "text"}/
-          %input{:name => "text", :placeholder => "GRAD YEAR", :type => "text"}/
-          %input{:name => "text", :placeholder => "LOCATION", :type => "text"}/
-          .selectBox
-            %span.selected
-            .selectOptions
-              %span.selectOption{:value => "Option 1"} FIELD
-              %span.selectOption{:value => "Option 2"} DESIGNER
-              %span.selectOption{:value => "Option 3"} DEVELOPER
-            / selectOptions
-          / selectBox
-        / tab_content
-        #tab3x.tab_content
-          %br/
-          #sops
-            %label Category
-            %select#selector{:name => "style2"}
-              %option Yes, this club is private
-              %option No, this club is not private
-              %option Yes, this club is private
-              %option No, this club is not private
-              %option Yes, this club is private
-              %option No, this club is not private
-            .clearfix
-        / tab_content
-        #tab4x.tab_content
-          %input#datepicker{:name => "text", :placeholder => "START DATE", :type => "text"}/
-          %input#datepicker2{:name => "text", :placeholder => "END DATE", :type => "text"}/
-        / tab_content
-      / col-md-4
-      .col-md-offset-3
-      / col-md-offset-4
-    / tab_container
-  / col-md-10
-  .col-md-offset-1
-  / col-md-offset-4
-  / row
-  .clearfix
+
 
