@@ -4,36 +4,41 @@
       .modal-header
         %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"}
         %h4#myModalLabel.modal-title Create Club
-      / modal-header
+
       .modal-body
         %form#sops.forms
-          .half
-            %label Club Name
-            %input{:name => "text", :type => "text"}/
-            .clearfix
-            %label Private
-            %select#selector{:name => "style2"}
-              %option Yes, this club is private
-              %option No, this club is not private
-              %option Yes, this club is private
-              %option No, this club is not private
-              %option Yes, this club is private
-              %option No, this club is not private
-          / half
-          .half
-            %label Category
-            %select#selector2{:name => "style2"}
-              %option Academic
-              %option Non Academic
-              %option Academic
-              %option Non Academic
-              %option Academic
-              %option Non Academic
-            %label &nbsp;
-            %button.btnx{:name => "btn"} Choose File
-          / half
-          .clearfix
-          %label.ne Description
-          %textarea.texta
-          %button.btng{:name => "btn"} Create Club
-        .clearfix
+          .row
+            .col-md-2.no-padding.input-label
+              %label Club Name
+            .col-md-4.no-padding
+              %input{:name => "text", :type => "text"}/
+
+            .col-md-2.no-padding.input-label
+              %label Category
+            .col-md-4.no-padding
+              %select{:name => "style2"}
+                %option Academic
+                %option Non Academic
+
+          .row
+            .col-md-2.no-padding.input-label
+              %label Private
+            .col-md-4.no-padding
+              %select{:name => "style2"}
+                %option Yes, this club is private
+                %option No, this club is not private
+
+            .col-md-2.no-padding.input-label
+              %label Image
+            .col-md-4.no-padding
+              %button.btnx{:name => "btn"} Choose File
+
+          .row
+            .col-md-2.no-padding.input-label
+              %label Description
+            .col-md-10.no-padding
+              %textarea
+
+          .row
+            .col-md-12.pull-right
+              %button.btng{:name => "btn"} Create Club

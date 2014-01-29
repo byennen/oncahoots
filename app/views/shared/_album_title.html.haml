@@ -4,40 +4,42 @@
       .modal-header
         %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"}
         %h4#myModalLabel.modal-title Album Title Here
-      / modal-header
+
       .modal-body
-        #carousel-example-generic.carousel.slide.mod5{"data-ride" => "carousel"}
-          .carousel-inner
-            .item.active
-              %img{:alt => "Image", :src => "img/running-club-img.png"}/
-            / item
-            .item
-              %img{:alt => "Image", :src => "img/running-club-img.png"}/
-            / item
-            .item
-              %img{:alt => "Image", :src => "img/running-club-img.png"}/
-            / item
-            .item
-              %img{:alt => "Image", :src => "img/running-club-img.png"}/
-            / item
-          / carousel-inner
-          %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-example-generic"}
-            %img{:alt => "Image", :src => "img/slider-left.png"}/
-          %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-example-generic"}
-            %img{:alt => "Image", :src => "img/slider-right.png"}/
-          %p Photo caption here
-          %br/
-          %br/
-        / carousel
-        .cap
-          %p
-            %span
-              Post comments
+        .row
+          .col-md-8
+            #carousel-example-generic.carousel.slide{"data-ride" => "carousel"}
+              .carousel-inner
+                .item.active
+                  %img{:alt => "Image", :src => "/assets/running-club-img.png"}/
+
+                .item
+                  %img{:alt => "Image", :src => "/assets/running-club-img.png"}/
+
+                .item
+                  %img{:alt => "Image", :src => "/assets/running-club-img.png"}/
+
+                .item
+                  %img{:alt => "Image", :src => "/assets/running-club-img.png"}/
+
+
+              %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-example-generic"}
+                %img{:alt => "Image", :src => "/assets/slider-left.png"}/
+              %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-example-generic"}
+                %img{:alt => "Image", :src => "/assets/slider-right.png"}/
+              %p Photo caption here
               %br/
               %br/
-              UserName
-            comment lorem Ipsum dolor sit amet, ectetuer adipiscing elit, sed diam nonummy. Lorem dolor sit amet, consect!
-            %br/
-            %br/
-            %span UserName
-            comment lorem Ipsum dolor sit amet, ectetuer adipiscing elit, sed diam nonummy. Lorem dolor sit amet, consect!
+
+          .col-md-4
+            %p
+              %span
+                Post comments
+                %br/
+                %br/
+                UserName
+              comment lorem Ipsum dolor sit amet, ectetuer adipiscing elit, sed diam nonummy. Lorem dolor sit amet, consect!
+              %br/
+              %br/
+              %span UserName
+              comment lorem Ipsum dolor sit amet, ectetuer adipiscing elit, sed diam nonummy. Lorem dolor sit amet, consect!

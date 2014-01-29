@@ -1,14 +1,29 @@
 @import "bourbon";
+$green: #00c088;
 
 #navigation {
   background: #e7e7e8;
   height: 100%;
-  height: 100%;
   min-height: 100%;
+}
+@media (max-width: 991px) {
+  #navigation {
+    height: auto;
+    min-height: 0%;
+  }
 }
 
 .navbar {
   border: none;
+}
+
+.tooltip .tooltip-arrow {
+  display: none;
+}
+.tooltip-inner {
+  margin-top: -30px;
+  color: white;
+  background: #5c6067;
 }
 
 .navbar-header {

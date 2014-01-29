@@ -25,7 +25,7 @@
               %br
               = user.major
               %br
-              = user.city.name
+              = user.city.name unless user.city.blank?
     - unless @clubs.blank?
       .search-detail
         %h3= "#{@clubs.size} Results for Club"

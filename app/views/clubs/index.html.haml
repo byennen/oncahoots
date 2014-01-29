@@ -1,7 +1,6 @@
 = content_for :head do
   = stylesheet_link_tag 'static/clubs'
   = stylesheet_link_tag 'static/buttons'
-  = javascript_include_tag 'static/clubs'
 
 = content_for :page_title do
   = render partial: 'title'
@@ -35,26 +34,10 @@
         (or some directional statement here)
 
 
-:javascript
-  $(".toggle-btn").click(function(){
-    $(".toggle-btn").removeClass("btn-success");
-    $(".toggle-btn").addClass("btn-inverse");
-    $(this).addClass("btn-success");
-    $(this).removeClass("btn-inverse");
-  });
+  :javascript
+    $(document).ready(function(){
+      $("form").submit(function(){
+        $('input[type="submit"]').attr('disabled','disabled');
+      });
 
-  $(document).ready(function(){
-    $("#uni-club_field").keydown(function (e){
-      if(e.keyCode == 13){
-        $(".toggle-btn").removeClass("btn-success");
-        $(".toggle-btn").addClass("btn-inverse");
-        $.get("#{search_university_clubs_path(@university)}", {club: {name: $(this).val()}});
-      }
     });
-
-    $("#search-uni-club").click(function(){
-      $(".toggle-btn").removeClass("btn-success");
-      $(".toggle-btn").addClass("btn-inverse");
-      $.get("#{search_university_clubs_path(@university)}", {club: {name: $("#uni-club_field").val()}});
-    });
-  });

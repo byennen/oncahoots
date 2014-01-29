@@ -32,6 +32,20 @@ $green: #00c088;
   }
 }
 
+@media (max-width: 768px) {
+  .modal-dialog {
+    width: 90% !important;
+  }
+}
+
+@media (max-width: 991px) {
+  .modal-dialog label {
+    float: left;
+    margin: 0px 10px 0px 0px;
+  }
+}
+
+
 //#############################
 //CLEANED CSS ABOVE THIS LINE
 //#############################
@@ -223,53 +237,9 @@ $green: #00c088;
   }
 }
 
-.members {
-  overflow: auto;
-  padding: 30px;
-  background-color: #f7f7f7;
-}
 
-.eboard {
-  display: block;
-  position: relative;
-  width: 100%;
-  padding: 10px 0;
-  h3 {
-    padding: 20px 0;
-    margin: 0;
-    float: left;
-    margin-right: 25px;
-  }
-  strong {
-    margin-top: 5px !important;
-  }
-}
 
-.abo {
-  display: block;
-  padding-left: 15px;
-  li {
-    float: left;
-    margin-left: 1px;
-    margin-bottom: 25px;
-    a {
-      float: left;
-      margin-right: 5px;
-    }
-    strong a {
-      display: block;
-      margin-top: 10px;
-      color: #04c189;
-      font-size: 12px;
-      font-weight: normal;
-      text-transform: uppercase;
-    }
-    small {
-      display: block;
-      font-size: 13px;
-    }
-  }
-}
+
 
 .mis {
   font-size: 15px;
@@ -755,6 +725,13 @@ $green: #00c088;
 }
 .top2{
   margin-top: 20px;
+}
+
+.bottom{
+  margin-bottom: 10px;
+}
+.bottom2{
+  margin-bottom: 20px;
 }
 
 .circular{

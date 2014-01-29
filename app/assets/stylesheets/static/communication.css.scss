@@ -1,4 +1,5 @@
 @import "bourbon";
+$green: #00c088;
 
 // TODO: remove unused css
 
@@ -7,6 +8,26 @@
     list-style-type: none;
     padding: 0px;
     margin: 0px;
+    height: 60px;
+    margin-bottom: 20px;
+  }
+  .nav-tabs {
+    a {
+      color: white;
+      border: none;
+      background-color: transparent;
+      &:hover, &:active, &:focus {
+        color: $green;
+        border: none;
+        background-color: transparent;
+      }
+    }
+    li {
+      margin-top: 7px;
+    }
+    li.active a {
+      color: $green;
+    }
   }
 }
 .com-title {
@@ -74,7 +95,7 @@
   }
 }
 
-#collapseMessages .row, #com-requests .row {
+#collapseMessages .row, #collapseRequests .row {
   &:hover, &:active, &:focus {
     background-color: rgb(156,231,198);
     text-decoration: none;

@@ -18,6 +18,7 @@
             .col-md-12
               %label.col-md-3 Private
               .col-md-8= f.check_box :private
+            .clearfix
             .col-md-12
               %label.col-md-3 Category
               .col-md-6= f.select :category, options_for_select(Club::CATEGORIES), class: "gentle"
@@ -29,7 +30,7 @@
           .clearfix
           %label.ne Description
           = f.text_area :description, class: "texta"
-          %button.btng{:name => "btn", type: "submit"} Create Club
+          = f.submit "Create Club", class: "btng"
         .clearfix
 :javascript
   $(document).ready(function(){

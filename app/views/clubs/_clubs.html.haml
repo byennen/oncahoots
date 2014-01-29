@@ -1,7 +1,7 @@
 - @clubs.each do |club|
   .music
-    .music-img
-      = link_to university_club_path(@university, club) do 
+    = link_to university_club_path(@university, club) do 
+      .music-img
         = image_tag club.image
     = link_to university_club_path(@university, club) do
       %span
