@@ -2,7 +2,7 @@
   %small
     %span= update.headline
     %br
-    = update.body.truncate(100)
+    = update.body.truncate(100) if update.body.present?
     %span >>
     %br
     %br
