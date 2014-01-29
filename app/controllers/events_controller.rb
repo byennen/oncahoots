@@ -35,7 +35,7 @@ class EventsController < ApplicationController
       end
       format.js do
         unless params[:date]
-          @events = @university.events.this_month 
+          @events = @university.events.this_month
         else
           @events = @university.events.by_month(params[:date])
           @date=Date.strptime(params[:date],"%m%y")
@@ -106,7 +106,7 @@ class EventsController < ApplicationController
       #@university_events = @university.events.all
       #@university_clubs  = @university.clubs.order(:name)
       #@events = events_of_day(Date.today)
-      @events = @university.events.this_month
+      @events = @university.events.this_week
     end
 
 end
