@@ -4,34 +4,47 @@
       .modal-header
         %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"}
         %h4#myModalLabel.modal-title Create Club
-      / modal-header
+
       .modal-body
         - club.errors.full_messages.each do |msg|
           .red= msg
           %br
-        = form_for [@university, club], html: {class: "forms"}, remote: true do |f|
-          .half
-            .col-md-12
-              %label.col-md-3 Club Name
-              .col-md-8= f.text_field :name
-            .clearfix
-            .col-md-12
-              %label.col-md-3 Private
-              .col-md-8= f.check_box :private
-            .clearfix
-            .col-md-12
-              %label.col-md-3 Category
-              .col-md-6= f.select :category, options_for_select(Club::CATEGORIES), class: "gentle"
-              .clearfix
-            .col-md-12
-              %label.col-md-3 Image
-              .col-md-8= f.file_field :image
-          / half
-          .clearfix
-          %label.ne Description
-          = f.text_area :description, class: "texta"
-          = f.submit "Create Club", class: "btng"
-        .clearfix
+        = form_for [@university, club], html: {class: "forms", id: "sops"}, remote: true do |f|
+          .row
+            .col-md-2.no-padding.input-label
+              %label Club Name
+            .col-md-4.no-padding
+              = f.text_field :name
+
+            .col-md-2.no-padding.input-label
+              %label Category
+            .col-md-4.no-padding
+              = f.select :category, options_for_select(Club::CATEGORIES), class: "gentle"
+
+          .row
+            .col-md-2.no-padding.input-label
+              %label Private
+            .col-md-4.no-padding
+              = f.check_box :private
+
+            .col-md-2.no-padding.input-label
+              %label Image
+            .col-md-4.no-padding
+              %span.btn.btnx.btn-file
+                Choose File
+                = f.file_field :image
+
+          .row
+            .col-md-2.no-padding.input-label
+              %label Description
+            .col-md-10.no-padding
+              = f.text_area :description
+
+          .row
+            .col-md-12.pull-right
+              = f.submit "Create Club", class: "btng"
+
+
 :javascript
   $(document).ready(function(){
     $('select#club_category').gentleSelect();

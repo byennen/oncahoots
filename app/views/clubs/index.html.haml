@@ -1,6 +1,5 @@
 = content_for :head do
-  = stylesheet_link_tag 'static/clubs'
-  = stylesheet_link_tag 'static/buttons'
+  = stylesheet_link_tag 'static/clubs', 'static/new_club', 'static/buttons'
 
 = content_for :page_title do
   = render partial: 'title'
@@ -26,7 +25,7 @@
       - path = club.is_a?(MetropolitanClub) ? metropolitan_club_path(club) : university_club_path(@university, club)
       = link_to path do
         .club-title= club.name
-        = image_tag club.image 
+        = image_tag club.image
     - if current_user.clubs.blank?
       .no-clubs
         %p You do not belong to any clubs! Click around to join clubs that interest you.

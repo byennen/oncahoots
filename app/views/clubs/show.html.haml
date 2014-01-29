@@ -1,15 +1,15 @@
 = content_for :head do
-  = stylesheet_link_tag 'club', 'static/lowdown', 'static/members', 'static/money', 'static/photos', 'static/buttons'
+  = stylesheet_link_tag 'club', 'static/new_club', 'static/lowdown', 'static/members', 'static/money', 'static/photos', 'static/buttons'
   = javascript_include_tag 'static/running_club'
 
 = content_for :page_title do
   = render partial: "title"
-  
+
 = content_for :left_side do
   .rub-club{style: "background: url(#{@club.image}) no-repeat; height: 320px;"}
     %button.btn9= @club.name
     - if current_user.joinable?(@club)
-      = link_to join_club_path(@club) do 
+      = link_to join_club_path(@club) do
         %button.btn10 Join Club
   %ul.sub-nav.nav.nav-tabs
     %li.active= link_to "Lowdown", "#lowdown", "data-toggle" => "tab"
@@ -39,7 +39,7 @@
           %ul.lat-posts.top
             - @posts.each do |post|
               = render partial: "posts/post", locals: {post: post}
-              
+
     #members.members.tab-pane
       .filter
         %ul
@@ -53,7 +53,7 @@
         #all-mems.filter-content= render partial: "members", locals: {members: @club.members}
         #alumnis.hide.filter-content= render partial: "members", locals: {members: @club.members.alumni}
         #students.hide.filter-content= render partial: "members", locals: {members: @club.members.student}
-       
+
     #about.members.tab-pane
       = render partial: "about"
 

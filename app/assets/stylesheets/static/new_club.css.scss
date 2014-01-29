@@ -12,8 +12,32 @@
     padding-left: 15px;
     width: 100%;
   }
+  input[type=submit] {
+    width: 20%;
+    min-width: 150px;
+  }
 
-  #sops .gentleselect-label {
+  .btn-file {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    input[type=file] {
+      position: absolute;
+      top: 0;
+      right: 0;
+      min-width: 100%;
+      min-height: 100%;
+      font-size: 999px;
+      text-align: right;
+      filter: alpha(opacity=0);
+      opacity: 0;
+      background: red;
+      cursor: inherit;
+      display: block;
+    }
+  }
+
+  .gentleselect-label {
     background-color: #ebebeb;
   }
 
