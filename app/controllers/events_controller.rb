@@ -41,7 +41,7 @@ class EventsController < ApplicationController
           @date=Date.strptime(params[:date],"%m%y")
         end
         case params[:filter]
-          when 'freefood' 
+          when 'freefood'
             @events = @events.free_food
           when 'weekly'
             @events = @university.events.this_week

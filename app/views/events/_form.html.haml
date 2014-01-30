@@ -28,7 +28,7 @@
             .col-md-4.no-padding
               .row.event-time
                 = f.time_select :at_time, ampm: true, time_separator: ""
-                
+
             .col-md-2
               %label Club Event
             .col-md-4.no-padding
@@ -49,7 +49,7 @@
             .col-md-4.no-padding
               .row
                 .col-md-4.no-padding#free-food-select
-                  = select_tag :free_food, options_for_select([["No", false], ["Yes", true]])
+                  = f.select :free_food, options_for_select([["No", false], ["Yes", true]])
           .row
             .col-md-2
               %label Description

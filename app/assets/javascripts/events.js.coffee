@@ -1,13 +1,13 @@
 $(document).ready ->
   $("#datepicker").datepicker inline: true
 
-  $(".freefood").on "click", ->
+  $(".free_food").on "click", ->
     $(".session a").removeClass('current')
     $(@).addClass('current')
     $("#monthly-events-calendar").hide()
     $("#event-area-monthly-listing").hide()
     $("#weekly-events-calendar").hide()
-    #$("#events-list").show()
+    $("#events-list").show()
     $("#event-area-single").show()
 
   $(".weekly").on "click", ->
@@ -29,7 +29,7 @@ $(document).ready ->
   # hide monthly calendar on initial load
   $("#monthly-events-calendar").hide()
   $("#event-area-monthly-listing").hide()
-  $("#weekly-events-calendar").hide()
+  $("#weekly-events-calendar").show()
 
   $('#monthly-events-calendar .event-listing').on "click", ->
     $("#monthly-events-calendar").hide()
