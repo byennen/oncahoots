@@ -2,7 +2,7 @@
 $green: #00c088;
 
 
-#clubs, ,#metropolitan_clubs {
+#clubs, #metropolitan_clubs {
   li{
     list-style-type: none !important;
   }
@@ -55,4 +55,103 @@ $green: #00c088;
   .music-img{
     img{max-width: 636px;}
   }
+}
+
+#clubs {
+  .clubs-inner {
+    display: block;
+    position: relative;
+    padding: 10px 35px;
+    float: left;
+  }
+
+  ul.club-tabs {
+    padding: 0px;
+    li {
+      display:inline;
+      button {
+        margin-bottom: 5px;
+        @include linear-gradient(#5c6067, #3c4449);
+        color: white;
+        border-radius: 0;
+        font-size: 12px;
+        padding: 7px 20px;
+      }
+    }
+  }
+
+  .music-img {
+    border: 9px solid #ebebeb;
+    width: 100%;
+    height: 250px;
+    float: left;
+    position: relative;
+    overflow: hidden;
+    &:hover, &:active, &:focus {
+      border: 9px solid #00c089;
+    }
+  }
+
+  .music {
+    display: inline-block;
+    padding: 0 30px;
+    width: 100%;
+    margin-bottom: 70px;
+    position: relative;
+    a span {
+      background: url(/assets/title-img.png) no-repeat;
+      width: 264px;
+      height: 70px;
+      position: absolute;
+      left: 17px;
+      color: #444444;
+      bottom: 80px;
+      .glyphicon {
+        top: -3px;
+        padding: 0px;
+        font-size: 14px;
+      }
+    }
+    &:hover a span, &:active a span, &:focus a span {
+      background: url(/assets/title-img-hover.png) no-repeat !important;
+      color: white;
+    }
+    p {
+      font-size: 20px;
+      margin: 10px 15px;
+      float: left;
+    }
+    span strong {
+      font-size: 31px;
+      float: left;
+      margin: 20px 0 20px 14px;
+      font-weight: normal;
+    }
+  }
+
+  .my-clubs {
+    a {
+      text-decoration: none;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+    img {
+      width: 100%;
+      max-height: 230px;
+    }
+    .club-title {
+      font-size: 26px;
+      background: $green;
+      padding: 10px 30px;
+      color: #333;
+      text-decoration: none;
+    }
+    .no-clubs {
+      padding: 50px 30px;
+      text-align: center;
+    }
+
+  }
+
 }

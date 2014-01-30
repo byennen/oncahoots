@@ -1,8 +1,7 @@
-= content_for :head do
-  = stylesheet_link_tag 'college', 'static/buttons'
-  = javascript_include_tag 'static/college'
-
 - @full_page = true
+
+= content_for :head do
+  = javascript_include_tag 'static/college'
 
 = content_for :page_title do
   .row

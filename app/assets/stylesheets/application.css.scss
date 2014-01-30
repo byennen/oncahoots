@@ -9,11 +9,27 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require bootstrap_and_overrides
- *= require jquery.ui.all
- *= require jquery.tagsinput
  *= require bootstrap-datepicker
- *= require layout
  *= require flexisel
  *= require gentleselect
+ *= require jquery.ui.all
+ *= require jquery.tagsinput
+ *= require buttons
+ *= require club
+ *= require college
+ *= require communication
+ *= require events
+ *= require login
+ *= require lowdown
+ *= require members
+ *= require money
  *= require navigation
+ *= require network
+ *= require new_club
+ *= require photos
+ *= require running_club
+ *= require search
+ *= require search_detail
+ *= require settings
+ *= require layout
 */
