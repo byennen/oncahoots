@@ -8,7 +8,7 @@ $(document).ready ->
     $("#event-area-monthly-listing").hide()
     $("#weekly-events-calendar").hide()
     $("#events-list").show()
-    $("#event-area-single").show()
+    $("#event-detail").show()
 
   $(".weekly").on "click", ->
     $(".session a").removeClass('current')
@@ -16,12 +16,12 @@ $(document).ready ->
     $("#monthly-events-calendar").hide()
     $("#event-area-monthly-listing").hide()
     $("#weekly-events-calendar").show()
-    $("#event-area-single").show()
+    $("#event-detail").show()
 
   $(".monthly").on "click", ->
     $(".session a").removeClass('current')
     $(@).addClass('current')
-    $("#event-area-single").hide()
+    $("#event-detail").hide()
     $("#weekly-events-calendar").hide()
     $("#monthly-events-calendar").show()
     $("#event-area-monthly-listing").show()
@@ -31,22 +31,30 @@ $(document).ready ->
   $("#event-area-monthly-listing").hide()
   $("#weekly-events-calendar").show()
 
-  $('#monthly-events-calendar .event-listing').on "click", ->
-    $("#monthly-events-calendar").hide()
-    #$("#event-area-monthly-listing").hide()
-    #$("#event-area-single").show()
-    $("#weekly-events-calendar").show()
 
+  $("#new-event-link").click() if $("#error").text() is "t"
+
+  $(document).on "click", ".event-item", ->
+    $(".event-display").addClass "hide"
+    $("#event-show" + $(this).data("id")).removeClass "hide"
+    $("#event-area-monthly-listing").hide()
+    $("#event-detail").show()
+
+  $(document).on "click", ".next-event", ->
+    $(".event-display").addClass "hide"
+    $("#event-show" + $(this).data("id")).removeClass "hide"
+
+  $(document).on "click", ".back", ->
+    $(".event-display").addClass "hide"
+    $("#event-area-monthly-listing").show()
 
 
   # clicking event from monthly list
   $('#event-area-monthly-listing table tr').on "click", ->
-    $("#event-area-single").show()
+    $("#event-detail").show()
     $("#event-area-monthly-listing").hide()
 
-    # static: change button from "interested" to "back"
-    # Should be set based on whether this user is already interested in this event in dynamic views
-    #$("#event-area-single button:first-of-type").html("Back")
+
 
 
   # ADD NEW EVENT FORM

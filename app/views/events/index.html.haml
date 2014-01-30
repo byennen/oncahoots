@@ -60,22 +60,3 @@
 
   = render partial: 'events/form', locals: {event: @event}
   #error.hide= @event.errors.blank? ? 'f' : 't'
-  :javascript
-    $(document).ready(function(){
-      if($("#error").text()=='t'){
-        $("#new-event-link").click();
-      }
-      $(document).on("click", ".event-item", function(){
-        $(".event-display").addClass("hide");
-        $("#event-show" + $(this).data("id")).removeClass("hide");
-      });
-      $(document).on("click", ".next-event", function(){
-        $(".event-display").addClass("hide");
-        $("#event-show" + $(this).data("id")).removeClass("hide");
-      });
-      $(document).on("click", ".back", function(){
-        $(".event-display").addClass('hide');
-        $("#event-area-monthly-listing").show();
-      });
-
-    });
