@@ -24,7 +24,7 @@
     = link_to "Weekly", university_events_path(@university, filter: "weekly"), remote: true, class: "weekly current"
     = link_to "Monthly", university_events_path(@university, filter: "monthly"), remote: true, class: "monthly"
 
-     
+
   #weekly-events-calendar
     .row
       .col-md-12.no-padding
@@ -41,7 +41,7 @@
 = content_for :right_side do
   #event-detail
     = render partial: "detail_list", locals: {events: @events}
-    
+
   #event-area-monthly-listing
     .monthly-event-listing
       .event-area-title
@@ -57,7 +57,7 @@
               %p= event.date
             %td
               %p= truncate event.description, length: 70
-        
+
   = render partial: 'events/form', locals: {event: @event}
   #error.hide= @event.errors.blank? ? 'f' : 't'
   :javascript
@@ -77,5 +77,5 @@
         $(".event-display").addClass('hide');
         $("#event-area-monthly-listing").show();
       });
-    
+
     });
