@@ -1,7 +1,7 @@
 %ul.flexisel
   - events.each do |event|
     %li
-      = link_to display_image(event.image, "large"), '#'
+      = link_to display_image(event.image, "medium"), '#'
       %br/
       %p
         = event.title
@@ -11,5 +11,7 @@
 
 :javascript
   $(document).ready(function(){
-    $(".flexisel").flexisel();
+    $(".flexisel").flexisel({
+      visibleItems: 3
+    });
   });
