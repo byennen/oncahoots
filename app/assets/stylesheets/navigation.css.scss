@@ -89,6 +89,12 @@ $green: #00c088;
 
 .active-nav {
   border: 8px solid white;
+  i {
+    padding-top: 0px !important;
+  }
+  .clubs-nav-link {
+    margin-left: -9px;
+  }
 }
 
 .navbar-nav li {

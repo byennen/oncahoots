@@ -37,4 +37,4 @@
           %a{:href => "#"} Logout
 
 :javascript
-  $('li a:contains(#{action_name.capitalize})').addClass('active-nav')
+  $('li a[href*=#{action_name.downcase}]').addClass('active-nav')
