@@ -1,5 +1,5 @@
 - if @club.errors.blank?
-  location.reload();
+  location.reload(true);
 - else
   $(".modal-backdrop").hide();
   $("#club-popup").html("#{escape_javascript(render partial: 'form', locals: {club: @club})}");
