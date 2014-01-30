@@ -40,6 +40,11 @@ body {
   max-height: 100%;
 }
 
+a:active, a:focus {
+  outline: none;
+  ie-dummy: expression(this.hideFocus=true);
+}
+
 .row {
   height: 100%;
   min-height: 100%;
