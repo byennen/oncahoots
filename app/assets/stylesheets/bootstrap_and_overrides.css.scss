@@ -19,10 +19,15 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 html{
   height: 100%;
+  background: url(/assets/bg.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 body {
-  background: #f7f7f7;
+  background: none;
   font-family: 'varela_roundregular';
   min-height: 100%;
   max-height: 100%;
@@ -75,6 +80,7 @@ body.modal-open {
   border: none;
   outline: 0;
 }
+
 
 @media (max-width: $screen-xs-max) {
   #navigation {
