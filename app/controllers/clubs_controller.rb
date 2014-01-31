@@ -70,7 +70,7 @@ class ClubsController < ApplicationController
     @club.user_id = current_user.id
     if @club.save
       @club.memberships.create(user_id: current_user.id, admin: true)
-      redirect_to action: :index
+      redirect_to university_club_path(@university, @club)
     else
       flash[:error] = 'Error creating club with invalid or missing information'
       render :index
@@ -110,7 +110,7 @@ class ClubsController < ApplicationController
       end
     end
   end
-  
+
   def auto_search
     if current_user.super_admin?
       clubs = Club.where("lower(name) like ?", "%#{params[:term].downcase}%")
