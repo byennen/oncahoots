@@ -20,23 +20,22 @@
     .container-full{:id => "#{id}"}
       .row
         = render 'layouts/navigation'
-        .col-md-11.no-padding
-          .row
+        #content-container.col-md-11.no-padding
+          .row#content-top-bar
             .col-md-7.no-padding.title
               = yield :page_title
             .col-md-5.no-padding
               = render 'shared/search'
-          - if @full_page == true
-            .row
+          .row#content-main
+            - if @full_page == true
               .col-md-12.no-padding
                 = render 'layouts/messages'
                 = yield :full_page
-          - else
-            .row
+            - else
               = render 'layouts/messages'
-              .col-md-7.no-padding
+              .col-md-7.no-padding.scroll-section
                 = yield :left_side
-              .col-md-5.no-padding
+              .col-md-5.no-padding.scroll-section
                 = yield :right_side
-          .row
+          .row.auto-height
             .span12#bottom-alert(style='display:none')

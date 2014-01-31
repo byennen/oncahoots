@@ -5,19 +5,20 @@
   = render partial: "title"
 
 = content_for :left_side do
-  .rub-club{style: "background: url(#{@club.image}) no-repeat; height: 320px;"}
-    %button.btn9= @club.name
-    - if current_user.joinable?(@club)
-      = link_to join_club_path(@club) do
-        %button.btn10 Join Club
-  %ul.sub-nav.nav.nav-tabs
-    %li.active= link_to "Lowdown", "#lowdown", "data-toggle" => "tab"
-    %li= link_to "Members", "#members", "data-toggle" => "tab"
-    %li= link_to "About", "#about", "data-toggle" => "tab"
-    %li= link_to "Money", "#money", "data-toggle" => "tab"
-    %li= link_to "Photos", "#photos", "data-toggle" => "tab"
+  .club-box-top-left
+    .rub-club{style: "background: url(#{@club.image}) no-repeat; height: 80%;"}
+      %button.btn9= @club.name
+      - if current_user.joinable?(@club)
+        = link_to join_club_path(@club) do
+          %button.btn10 Join Club
+    %ul.sub-nav.nav.nav-tabs
+      %li.active= link_to "Lowdown", "#lowdown", "data-toggle" => "tab"
+      %li= link_to "Members", "#members", "data-toggle" => "tab"
+      %li= link_to "About", "#about", "data-toggle" => "tab"
+      %li= link_to "Money", "#money", "data-toggle" => "tab"
+      %li= link_to "Photos", "#photos", "data-toggle" => "tab"
 
-  .tab-content
+  .club-box-bottom-left.tab-content
     #lowdown.tab-pane.active
       - if @club.private? && !current_user.member_of?(@club)
         .cent

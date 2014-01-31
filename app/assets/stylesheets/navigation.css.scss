@@ -3,8 +3,56 @@ $green: #00c088;
 
 #navigation {
   background: #e7e7e8;
-
+  height: 100%;
+  overflow-y: scroll;
 }
+
+
+
+/**********************
+ * FIXED SECTION HEIGHT
+ **********************/
+
+#content-container {
+  height: 100%;
+  overflow-y: hidden;
+  #content-top-bar {
+    height: 70px;
+    min-height: 0px;
+  }
+  #content-main {
+    height: calc(100% - 70px);
+    height: -moz-calc(100% - 70px);
+    height: -webkit-calc(100% - 70px);
+    height: -o-calc(100% - 70px);
+    overflow-y: scroll;
+  }
+}
+.auto-height {
+  height: auto;
+  min-height: 0px;
+}
+.scroll-section {
+  height: 100%;
+  overflow-y: scroll;
+}
+.club-box-top-left {
+  height: 320px;
+}
+.club-box-bottom-left {
+  height: calc(100% - 320px);
+  height: -moz-calc(100% - 320px);
+  height: -webkit-calc(100% - 320px);
+  height: -o-calc(100% - 320px);
+
+  // todo: what should this be?
+  min-height: 200px;
+
+  overflow-y: scroll;
+}
+
+
+
 
 .navbar {
   border: none;
@@ -44,7 +92,6 @@ $green: #00c088;
   width: 100%;
   float: left;
   height: 100%;
-  padding-bottom: 30px;
 }
 
 .navbar-nav li {
@@ -107,7 +154,9 @@ $green: #00c088;
     background: none;
     font-size: 14px;
     padding-top: 0;
-    height: 50px;
+    height: auto;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
   }
   a i {
     display: block;
