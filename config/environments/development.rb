@@ -39,7 +39,8 @@ CahootsConnect::Application.configure do
   config.assets.compress = false
 
   # Expands the lines which load the assets
-  config.assets.debug = true
+  # NOTE: When true, it was still concatenating files as application.js while serving separate files, thus having jQuery cause double submit on remote=true Rails forms
+  config.assets.debug = false
 
   config.action_mailer.smtp_settings = {
     address: "smtp.gmail.com",
