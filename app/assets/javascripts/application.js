@@ -81,7 +81,6 @@ $(function() {
       var button = field.find('button.tooltip');
       button.val("data-title", errorMessage);
       label.html("");
-      console.log(fieldInputLabel.find('label').html());
       button.tooltip({container: fieldInputLabel.find('label'), trigger: 'manual'});
     }
   }
