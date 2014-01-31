@@ -72,9 +72,11 @@ $green: #00c088;
     border: 8px solid #ebebeb;
   }
   .carousel-control {
-    top: 40%;
+    padding-top: 40%;
     opacity: 1;
     filter: alpha(opacity = 100);
+    background: none;
+    margin: 0px 30px;
   }
   .left {
     left: -35px;
