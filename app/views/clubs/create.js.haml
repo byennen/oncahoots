@@ -1,9 +1,0 @@
-- if @club.errors.blank?
-  console.log('@club.errors.blank? is true')
-  -#location.reload(true);
-- else
-  console.log('@club.errors.blank? is false')
-  $(".modal-backdrop").hide();
-  $("#club-popup").html("#{escape_javascript(render partial: 'form', locals: {club: @club})}");
-  $("#create-club-link").click();
-  $("input[type=submit]").removeAttr('disabled');

@@ -9,36 +9,41 @@
         - club.errors.full_messages.each do |msg|
           .red= msg
           %br
-        = form_for [@university, club], html: {class: "forms", id: "sops"}, remote: true do |f|
+        = form_for [@university, club], html: {class: "forms", id: "sops"}, validate: true do |f|
           .row
-            .col-md-2.no-padding.input-label
-              %label Club Name
-            .col-md-4.no-padding
-              = f.text_field :name
+            %div.field
+              .col-md-2.no-padding.input-label
+                %label Club Name
+              .col-md-4.no-padding
+                = f.text_field :name
 
-            .col-md-2.no-padding.input-label
-              %label Category
-            .col-md-4.no-padding
-              = f.select :category, options_for_select(Club::CATEGORIES), class: "gentle"
-
-          .row
-            .col-md-2.no-padding.input-label
-              %label Private
-            .col-md-4.no-padding
-              = f.check_box :private
-
-            .col-md-2.no-padding.input-label
-              %label Image
-            .col-md-4.no-padding
-              %span.btn.btnx.btn-file
-                Choose File
-                = f.file_field :image
+            %div.field
+              .col-md-2.no-padding.input-label
+                %label Category
+              .col-md-4.no-padding
+                = f.select :category, options_for_select(Club::CATEGORIES), class: "gentle"
 
           .row
-            .col-md-2.no-padding.input-label
-              %label Description
-            .col-md-10.no-padding
-              = f.text_area :description
+            %div.field
+              .col-md-2.no-padding.input-label
+                %label Private
+              .col-md-4.no-padding
+                = f.check_box :private
+
+            %div.field
+              .col-md-2.no-padding.input-label
+                %label Image
+              .col-md-4.no-padding
+                %span.btn.btnx.btn-file
+                  Choose File
+                  = f.file_field :image
+
+          .row
+            %div.field
+              .col-md-2.no-padding.input-label
+                %label Description
+              .col-md-10.no-padding
+                = f.text_area :description
 
           .row
             .col-md-12.pull-right

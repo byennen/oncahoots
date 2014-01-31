@@ -22,6 +22,7 @@
 //= require plugins/jquery-gentleSelect
 //= require plugins/jquery.flexisel
 //= require plugins/jquery.accordion.source
+//= require rails.validations
 
 // Static pages
 //= require static/settings.js.coffee
@@ -60,6 +61,42 @@ $(function() {
     $(this).tooltip();
   });
 
+  $('#create_club').on('shown.bs.modal', function () {
+    $("#create_club form").enableClientSideValidations();
+  })
+
+  $('#create_club').on('hidden.bs.modal', function () {
+    $("#create_club form").disableClientSideValidations();
+  })
+
+  window.ClientSideValidations.callbacks.element.fail = function(element, message, callback) {
+    callback();
+    if (element.data('valid') !== false) {
+      var field = $(element).closest('.field');
+      var fieldInputLabel = field.find('.input-label');
+      var label = field.find('label.message');
+      var errorMessage = label.html();
+      fieldInputLabel.append('<button class="tooltip error-tooltip" data-toggle="tooltip" data-placement="bottom" data-title="' + errorMessage + '"></buton>');
+      field = $(element).closest('.field');
+      var button = field.find('button.tooltip');
+      button.val("data-title", errorMessage);
+      label.html("");
+      console.log(fieldInputLabel.find('label').html());
+      button.tooltip({container: fieldInputLabel.find('label'), trigger: 'manual'});
+    }
+  }
+
+  window.ClientSideValidations.callbacks.form.fail = function (element, eventData) {
+    $(element).find("input[type=submit]").removeAttr('disabled');
+  }
+  window.ClientSideValidations.callbacks.form.before = function (element, eventData) {
+    $('.error-tooltip').tooltip('hide');
+    $('.error-tooltip').remove();
+  }
+  window.ClientSideValidations.callbacks.form.after = function (element, eventData) {
+    $('.error-tooltip').tooltip('show');
+    $(element).resetClientSideValidations();
+  }
 });
 
 $(document).on('ready page:load', function(){

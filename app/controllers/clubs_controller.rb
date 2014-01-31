@@ -65,12 +65,16 @@ class ClubsController < ApplicationController
   end
 
   def create
+    @clubs = @university.clubs.sup_club
     @club = @university.clubs.new(params[:club])
     @club.user_id = current_user.id
     if @club.save
       @club.memberships.create(user_id: current_user.id, admin: true)
+      redirect_to action: :index
+    else
+      flash[:error] = 'Error creating club with invalid or missing information'
+      render :index
     end
-    respond_to :js
   end
 
   def edit
