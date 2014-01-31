@@ -38,7 +38,7 @@ class ClubsController < ApplicationController
     @updateable = @club
     if @club
       @posts = @club.posts.order("created_at desc")
-      @my_photos = @club.club_photos.by_user(current_user)
+      @my_photos = user_signed_in? ? @club.club_photos.by_user(current_user) :[]
       @membership = Membership.new
       @members = @club.users
       @memberships = @club.memberships
