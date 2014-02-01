@@ -30,7 +30,7 @@
                 - if @university.most_popular_club
                   #{@university.most_popular_club.name} (#{@university.most_popular_club.memberships.count})
                 - else
-                  All Clubs (#{Club.count})
+                  All Clubs (#{@university.clubs.count})
             = link_to university_clubs_path(@university), "class" => "all-clubs-action" do
               %button.btn.btn3 All Clubs
         .col-md-6.no-padding
