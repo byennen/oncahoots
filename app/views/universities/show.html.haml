@@ -24,9 +24,14 @@
 
       .row
         .col-md-6.no-padding
-          .all-clubs
-            = link_to university_clubs_path(@university) do
-              .blank Soccer Club (55)
+          .university-most-popular-club
+            = link_to @university.most_popular_club ? university_club_path(@university, @university.most_popular_club) : university_clubs_path(@university), "class" => "university-most-popular-club-action", "data-background-image" => @university.  most_popular_club ? @university.most_popular_club.image.xxlarge.url : image_path('blank_image.png') do
+              .blank
+                - if @university.most_popular_club
+                  #{@university.most_popular_club.name} (#{@university.most_popular_club.memberships.count})
+                - else
+                  All Clubs (#{Club.count})
+            = link_to university_clubs_path(@university), "class" => "all-clubs-action" do
               %button.btn.btn3 All Clubs
         .col-md-6.no-padding
           .club-updates

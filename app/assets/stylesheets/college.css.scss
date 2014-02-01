@@ -133,7 +133,7 @@ $hover_green: rgb(156,231,198);
     }
   }
 
-  .all-clubs {
+  .university-most-popular-club {
     background: url(/assets/football-img.png) no-repeat center center;
     background-size: cover;
     height: 400px;
@@ -482,38 +482,6 @@ $hover_green: rgb(156,231,198);
       font-size: 19px;
       padding: 13px 50px;
       margin-top: 380px;
-    }
-  }
-
-  .all-clubs {
-    background: url(/assets/football-img.png) no-repeat center center;
-    background-size: cover;
-    height: 400px;
-    position: relative;
-    width: 100%;
-    background-color: #e7e7e8;
-    overflow: hidden;
-    float: left;
-    &:hover {
-      .blank { display: block; }
-    }
-    .blank {
-      display: none;
-      background-color: black;
-      opacity: 0.8;
-      height: 100%;
-      position: absolute;
-      width: 100%;
-      font-size: 25px;
-      color: white;
-      text-align: center;
-      padding: 75% 15px;
-    }
-    button {
-      position: absolute;
-      bottom: 30px;
-      left: 50%;
-      margin-left: -78px;
     }
   }
 

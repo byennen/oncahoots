@@ -14,11 +14,20 @@ class University < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: :slugged
 
+  after_create :create_metropolitan_clubs
+
   def metropolitan_club(city_id)
     metropolitan_clubs.find_by_city_id city_id
   end
 
-  after_create :create_metropolitan_clubs
+  def most_popular_club
+    unless @most_popular_club.present?
+      club_ids = clubs.pluck(:id)
+      most_popular_club_grouped_membership = Membership.select("count(*) as membership_count, club_id").group(:club_id).where("club_id in (?)", club_ids).order("membership_count desc").limit(1).first
+      @most_popular_club = most_popular_club_grouped_membership.present? ? most_popular_club_grouped_membership.club : Club.find_by_id(club_ids[rand(club_ids.length)])
+    end
+    @most_popular_club
+  end
 
   private
     def create_metropolitan_clubs

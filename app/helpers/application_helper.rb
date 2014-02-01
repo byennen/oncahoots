@@ -91,4 +91,9 @@ module ApplicationHelper
     end
   end
 
+  def javascript_include_action_specific
+    controller_javascript_path = File.join('app', 'assets', 'javascripts', "#{controller_path}.js*")
+    javascript_include_tag controller_path if Dir.glob(controller_javascript_path).present?
+  end
+
 end
