@@ -16,19 +16,23 @@ $green: #00c088;
     display: block;
     position: relative;
     float: left;
-    width: 100%;
+    width: 291px;
+    height: 226px;
     padding-top: 20px;
-    p {
-      font-size: 13px;
-      line-height: 22px;
-      padding-right: 20px;
-    }
-    .profile-main-photo-text {
-      position: absolute;
-      top: 76%;
-      left: 22%;
+    background: image-url('blank_image.png') no-repeat center center;
+    p.profile-main-photo-text {
+      position: relative;
+      top: 160px;
+      width: 220px;
+      height: 48px;
+      margin-left: auto;
+      margin-right: auto;
       font-size: 22px;
       color: #333;
+      line-height: 22px;
+      padding: 13px;
+      text-align: center;
+      background-color: #00C089;
       span { color: white; }
     }
   }

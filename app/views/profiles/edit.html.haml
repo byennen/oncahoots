@@ -9,11 +9,7 @@
   #edit-profile
     .row
       .col-md-5
-        .profile-main-photo
-          = image_tag('frame.png')
-          %p.profile-main-photo-text
-            = @user.name
-            %span '07
+        = render 'profile_photo', user: @user
 
       .col-md-7
         .profile-text

@@ -47,18 +47,26 @@ module ApplicationHelper
 
   def display_image(image, size, options={})
     if image.blank?
-      "<img id='#{options[:id]}' src='/assets/blank_image.png' class='circular blank-cir-img #{size}'></image>".html_safe
+      blank_image_circle(size, options)
     else
       image_tag image.send(size), class: "circular cir-img", id: options[:id]
     end
   end
 
+  def blank_image_circle(size, options={})
+    "<img id='#{options[:id]}' src='/assets/blank_image.png' class='circular blank-cir-img #{size}'></image>".html_safe
+  end
+
   def display_image_square(image, size)
     if image.blank?
-      "<img src='/assets/blank_image.png' class='square blank-cir-img #{size}'></image>".html_safe
+      blank_image_squere(size)
     else
       image_tag image.send(size), class: "square cir-img"
     end
+  end
+
+  def blank_image_squere(size)
+    "<img src='/assets/blank_image.png' class='square blank-cir-img #{size}'></image>".html_safe
   end
 
   def bg_class
