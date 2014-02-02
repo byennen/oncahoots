@@ -60,12 +60,3 @@
   }
 }
 
-.mod3 li {
-  a.evs {
-    color: #444444 !important;
-  }
-  &:hover a.evs, &:active a.evs, &:focus a.evs, &:hover a.evs span, &:active a.evs span, &:focus a.evs span, &:hover a.evs strong, &:active a.evs strong, &:focus a.evs strong {
-    text-decoration: none;
-    color: white;
-  }
-}

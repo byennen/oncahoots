@@ -1,6 +1,8 @@
 @import "bourbon";
 $green: #00c088;
 $hover_green: rgb(156,231,198);
+$light: #f7f7f7;
+$dark: #e7e7e8;
 
 #events {
   .title {
@@ -161,6 +163,35 @@ $hover_green: rgb(156,231,198);
         padding: 0px;
       }
     }
+  }
+
+}
+
+table.events-list {
+  position: relative;
+  top: -10px;
+
+  td {
+    &.event_date_column {
+      width: 150px;
+      text-align: center;
+      font-size: 1.15em;
+    }
+
+    &.event_information_column {
+      padding-top: 10px;
+    }
+
+    .event_title {
+      text-transform: uppercase;
+    }
+
+    .event_title, .event_location {
+      color: $green;
+    }
+  }
+  tr:nth-child(odd) {
+    background-color: $dark;
   }
 
 }

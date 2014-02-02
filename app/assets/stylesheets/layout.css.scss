@@ -1,5 +1,7 @@
 @import "bourbon";
 $green: #00c088;
+$light: #f7f7f7;
+$dark: #e7e7e8;
 
 .green-text {
   color: $green;
@@ -96,11 +98,11 @@ $green: #00c088;
 }
 
 .light {
-  background-color: #f7f7f7;
+  background-color: $light;
 }
 
 .dark {
-  background-color: #e7e7e8;
+  background-color: $dark;
 }
 
 .caltitle {
@@ -191,21 +193,6 @@ $green: #00c088;
         color: white;
       }
     }
-  }
-}
-
-.mod3 li {
-  text-align: left;
-  padding-bottom: 10px;
-  h3 {
-    font-size: 15px;
-    color: #04c189;
-  }
-  strong {
-    margin-top: 20px;
-  }
-  &:hover h3, &:active h3, &:focus h3 {
-    color: white;
   }
 }
 

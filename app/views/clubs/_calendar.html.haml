@@ -3,13 +3,14 @@
     = link_to "<<", week_events_club_club_events_path(@club, w_begin: (w_begin - 7.days).strftime("%y%m%d")), remote: true
     = "Week of #{w_begin.strftime("%B %d, %Y")}"
     = link_to ">>", week_events_club_club_events_path(@club, w_begin: (w_begin + 7.days).strftime("%y%m%d")), remote: true
-%ul.events-list.mod3
+%table.events-list.light
   - events.each do |event|
-    %li.light
-      = link_to "javascript:;", class: "evs" do
-        %strong= event.on_date.strftime("%a %m.%d")
-        %span
-      %h3= event.title
-      = event.description.html_safe
-      %br
-      Click for more info.
+    %tr
+      %td.event_date_column
+        %strong= "#{event.on_date.strftime("%a")[0]} #{event.on_date.strftime("%I:%M %P")}"
+      %td.event_information_column
+        %span.event_title #{event.title}
+        \:
+        %span.event_location #{event.location}
+        %p.event_description
+          = event.description.html_safe
