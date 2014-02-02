@@ -189,6 +189,7 @@ CahootsConnect::Application.routes.draw   do
     resources :universities
     resources :locations
     resources :clubs
+    resources :metropolitan_clubs, :controller => 'admin/clubs'
     resources :users
     root to: 'dashboard#index'
   end
