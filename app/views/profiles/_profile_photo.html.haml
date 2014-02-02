@@ -1,4 +1,5 @@
 .profile-main-photo
+  = display_image(user.profile.image, :medium, id: user.friendly_id)
   %p.profile-main-photo-text
     = user.name
     %span '07

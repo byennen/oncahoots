@@ -26,6 +26,8 @@ class User < ActiveRecord::Base
   has_many :alert_user_notifications
   has_many :alerts, through: :alert_user_notifications
 
+  accepts_nested_attributes_for :profile
+
   rolify
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -35,7 +37,7 @@ class User < ActiveRecord::Base
 
   attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me,
                   :university_id, :location_id, :graduation_year, :major, :double_major, :slug,
-                  :city_id, :other_city, :state, :alumni, :professional_field_id, :role_ids, :university_id, :graduation_year
+                  :city_id, :other_city, :state, :alumni, :professional_field_id, :role_ids, :university_id, :graduation_year, :profile_attributes
 
   validates_presence_of :university_id, :graduation_year, :major
 

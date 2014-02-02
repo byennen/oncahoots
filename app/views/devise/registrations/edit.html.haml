@@ -25,4 +25,4 @@
       .text-center
         = link_to "delete your account", registration_path(resource_name), method: :delete, confirm: "are you sure?", class: "delete-link"
         %span To edit your profile information,
-        %a{:href => "javascript:;"} CLICK HERE.
+        = link_to "CLICK HERE.", user_profile_path(resource, resource.profile)

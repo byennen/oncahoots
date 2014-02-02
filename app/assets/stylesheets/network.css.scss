@@ -17,12 +17,16 @@ $green: #00c088;
     position: relative;
     float: left;
     width: 291px;
-    height: 226px;
+    height: 252px;
     padding-top: 20px;
-    background: image-url('blank_image.png') no-repeat center center;
+    img {
+      position: absolute;
+      top: 30px;
+      left: 73px;
+    }
     p.profile-main-photo-text {
       position: relative;
-      top: 160px;
+      top: 173px;
       width: 220px;
       height: 48px;
       margin-left: auto;

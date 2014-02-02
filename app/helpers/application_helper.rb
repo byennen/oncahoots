@@ -59,13 +59,13 @@ module ApplicationHelper
 
   def display_image_square(image, size)
     if image.blank?
-      blank_image_squere(size)
+      blank_image_square(size)
     else
       image_tag image.send(size), class: "square cir-img"
     end
   end
 
-  def blank_image_squere(size)
+  def blank_image_square(size)
     "<img src='/assets/blank_image.png' class='square blank-cir-img #{size}'></image>".html_safe
   end
 

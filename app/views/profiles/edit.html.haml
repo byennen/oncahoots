@@ -13,12 +13,12 @@
 
       .col-md-7
         .profile-text
-          = form_for @user, remote: true do |f|
+          = form_for @user, html: { multipart: true} do |f|
             %p
               Hi! My name is
               = f.text_field :first_name, placeholder: "First Name", class: 'edtitor field-edit'
               = f.text_field :last_name, placeholder: "Last Name", class: 'edtitor field-edit'
-              \.
+            %p
               - if @user.alumni?
                 I was a/an
               - else
@@ -28,17 +28,21 @@
               = f.text_field :double_major, placeholder: "Double Major", class: 'edtitor3 field-edit'
               at
               = f.select :university_id, options_from_collection_for_select(University.all, :id, :name, @user.university_id), {}, prompt: "University", class: 'edtitor4 field-edit'
-              \.
+            %p
               ="I graduated in" if @user.alumni?
               ="I will graduate in" unless @user.alumni?
               = f.select :graduation_year, options_for_select((Date.today.year + 7).downto(1940).to_a, @user.graduation_year), {}, placeholder: "Grad Year", class: 'edtitor5 field-edit'
-              \.
+            %p
               My current city is
               = f.select :city_id, options_for_select(City.order(:name).collect{ |c| [c.name, c.id] } + [["Other", 0]], selected: @user.city_id), {}, class: 'edtitor6 field-edit'
               = f.text_field :other_city, placeholder: "Other City", class: 'edtitor6 field-edit'
-              \.
-
+              %br
               / %textarea.same.textarea1{:name => "textarea", :placeholder => "Additional information.(Optional)"}
+            = f.fields_for :profile do |profile_fields|
+              %p
+                Profile photo
+                = profile_fields.file_field :image
+            %p
               .span11.fright.pull-right
                 %input.btn.btn-small.btn-success.form-field(name="commit" type="submit" value="Save")
               .clearfix
