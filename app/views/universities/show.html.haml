@@ -17,7 +17,7 @@
           %li
             %a{:href => "search.html"}
               %button.btn.btn2{:name => "btn"} Find your club. Find your passion. >>
-          - @clubs.each do |club|
+          - @clubs.to_a[0,5].each do |club|
             %li
               %a{:href => university_club_path(@university, club)}
                 %button.btn.btn2{:name => "btn"}= club.name
