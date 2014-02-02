@@ -165,46 +165,6 @@ $hover_green: rgb(156,231,198);
     }
   }
 
-  .alumni-search {
-    background: url(/assets/building-img.png) no-repeat center center;
-    background-size: cover;
-    height: 400px;
-    position: relative;
-    h2 {
-      font-weight: 400;
-      padding: 15px 0px 10px 20px;
-      margin: 0px;
-    }
-    ul {
-      padding: 0px 30px;
-      li {
-        width: 100%;
-        float: left;
-        margin-top: 8px;
-        input, .gentleselect-label, button{
-          width: 100%;
-          height: 36px;
-          color: white;
-          font-size: 20px;
-          padding: 5px 10px;
-          background-color: $green;
-          float: left;
-          border: none;
-          text-indent: 0px;
-          margin: 0px;
-        }
-        button {
-          height: 50px;
-          font-size: 16px;
-        }
-      }
-    }
-    .gentleselect-dialog {
-      overflow-y: scroll;
-      height: 200px;
-    }
-  }
-
   .club-updates {
     background-color: #e7e7e8;
     float: left;
@@ -212,11 +172,6 @@ $hover_green: rgb(156,231,198);
     max-height: 400px;
     overflow: hidden;
     width: 100%;
-    h2 {
-      padding: 15px 0px 10px 20px;
-      font-weight: 400;
-      margin: 0px;
-    }
     p {
       font-size: 16px;
       color: #444444;
@@ -226,14 +181,15 @@ $hover_green: rgb(156,231,198);
         color: #00c088;
       }
       &:hover, &:active, &:focus {
-        background-color: $hover_green;
-        cursor: pointer;
+        @include linear-gradient(#56d988, #02c189);
+        color: white;
       }
       &:hover a, &:active a, &:focus a {
-        // color: #444;
+        color: white;
       }
     }
   }
+
 
   .two-clumns {
     float: left;
@@ -249,30 +205,6 @@ $hover_green: rgb(156,231,198);
     padding: 18px 8px;
     font-size: 20px;
     margin-left: 2px;
-  }
-
-  .college-updates {
-    min-height: 400px;
-    background-color: $green;
-    p {
-      font-size: 19px;
-      color: #444444;
-      padding: 10px 20px;
-    }
-    h2 {
-      font-weight: 400;
-      padding: 15px 0px 10px 20px;
-      margin: 0px;
-    }
-    p {
-      span {
-        color: white;
-      }
-      &:hover, &:active, &:focus {
-        @include linear-gradient(#56d988, #02c189);
-        color: white;
-      }
-    }
   }
 
   #event-carousel{
@@ -490,11 +422,6 @@ $hover_green: rgb(156,231,198);
     background-size: cover;
     height: 400px;
     position: relative;
-    h2 {
-      font-weight: 400;
-      padding: 15px 0px 10px 20px;
-      margin: 0px;
-    }
     ul {
       padding: 0px 30px;
       li {
@@ -525,33 +452,13 @@ $hover_green: rgb(156,231,198);
     }
   }
 
-  .club-updates {
-    background-color: #e7e7e8;
-    float: left;
-    min-height: 400px;
-    max-height: 400px;
-    overflow: hidden;
-    width: 100%;
+  .college-information {
     h2 {
-      padding: 15px 0px 10px 20px;
       font-weight: 400;
+      padding: 15px 0 10px 0;
       margin: 0px;
-    }
-    p {
-      font-size: 16px;
-      color: #444444;
-      padding: 5px 15px;
-      margin: 0px;
-      span a {
-        color: #00c088;
-      }
-      &:hover, &:active, &:focus {
-        @include linear-gradient(#56d988, #02c189);
-        color: white;
-      }
-      &:hover a, &:active a, &:focus a {
-        color: white;
-      }
+      font-size: 2.5em;
+      text-align: center;
     }
   }
 
@@ -578,11 +485,6 @@ $hover_green: rgb(156,231,198);
       font-size: 19px;
       color: #444444;
       padding: 10px 20px;
-    }
-    h2 {
-      font-weight: 400;
-      padding: 15px 0px 10px 20px;
-      margin: 0px;
     }
     p {
       span {

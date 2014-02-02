@@ -34,7 +34,7 @@
             = link_to university_clubs_path(@university), "class" => "all-clubs-action" do
               %button.btn.btn3 All Clubs
         .col-md-6.no-padding
-          .club-updates
+          .club-updates.college-information
             %h2 Club Updates
             - @club_updates.each do |update|
               - club = update.updateable
@@ -56,7 +56,7 @@
       
       .row
         .col-md-6.no-padding
-          .alumni-search
+          .alumni-search.college-information
             %h2 Alumni Search
             = form_tag :search do
               %ul
@@ -74,7 +74,7 @@
                   %button.btn.btn3{type: "submit"} Access Your Network
 
         .col-md-6.no-padding
-          .college-updates
+          .college-updates.college-information
             %h2 College Updates
             - @updates.each do |update|
               %a{href: "#update#{update.id}-popup", data: {toggle: "modal"}}
