@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
       @updateable = @university
       @updates = @updateable.updates
       @events = @university.events.active.free_food.search_date(Date.today)
-      @clubs = @university.clubs.sup_club.order(:name)
+      @clubs = @university.clubs.sup_club.limit(5).order(:name)
       @club ||= @university.clubs.build
       @club_updates = Update.where(updateable_type: "Club").where(updateable_id: @clubs.map(&:id)).order("created_at DESC")
     end
