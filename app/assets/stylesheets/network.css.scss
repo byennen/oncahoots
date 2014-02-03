@@ -19,24 +19,27 @@ $green: #00c088;
     width: 291px;
     height: 252px;
     padding-top: 20px;
+
     img {
       position: absolute;
       top: 30px;
-      left: 73px;
+      left: 65px;
+      border: solid 8px $green;
     }
     p.profile-main-photo-text {
       position: relative;
-      top: 173px;
-      width: 220px;
-      height: 48px;
+      top: 123px;
+      width: 200px;
+      height: 33px;
       margin-left: auto;
       margin-right: auto;
-      font-size: 22px;
+      font-size: 20px;
       color: #333;
       line-height: 22px;
-      padding: 14px 0 0 0;
+      padding: 6px 0 0 0;
       text-align: center;
       background-color: #00C089;
+      box-shadow: 0 0 8px rgba(0, 0, 0, .8);
       span { color: white; }
     }
   }
