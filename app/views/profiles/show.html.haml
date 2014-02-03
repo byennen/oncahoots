@@ -21,8 +21,10 @@
           - else
             I am a/an
           %span.form-field= @user.major
-          and
-          %span.form-field= @user.double_major
+          - if @user.double_major.present?
+            and
+            %span.form-field= @user.double_major
+          = @user.double_major.present? ? 'double major' : 'major'
           at
           = succeed "." do
             %span.form-field= @user.university.name
