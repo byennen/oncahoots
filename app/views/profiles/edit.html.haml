@@ -53,9 +53,7 @@
             %li
               %a{:href => "#portfolio", "data-toggle" => "tab"}
                 Portfolio
-            %li
-              %a{:href => "#faq", "data-toggle" => "tab"}
-                FAQs &amp; Contact Requirements
+            = render 'faq_and_contact_requirements'
 
     .tab-content
       #resume.tab-pane.fade.in

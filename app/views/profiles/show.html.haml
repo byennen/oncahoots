@@ -44,9 +44,7 @@
           %li
             %a{:href => "#portfolio", "data-toggle" => "tab"}
               Portfolio
-          %li
-            %a{:href => "#faq", "data-toggle" => "tab"}
-              FAQs &amp; Contact Requirements
+          = render 'faq_and_contact_requirements'
         %a#edt.edit{:href => "#{edit_user_profile_path(current_user, current_user.profile)}"}
           Edit
           %i
