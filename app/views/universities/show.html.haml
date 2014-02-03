@@ -5,10 +5,10 @@
 
 = content_for :page_title do
   .row
-    .col-md-11.no-padding
+    .col-md-12.no-padding
       %a.dra{:href => "#"}= @university.name
-    .col-md-1.no-padding
-      = image_tag(current_user.profile.image.small, class: "user-gravatar")
+      = link_to user_profile_path(current_user, current_user.profile) do
+        = image_tag(current_user.profile.image.small, class: "user-gravatar")
 = content_for :full_page do
   .row
     .col-md-6.no-padding
