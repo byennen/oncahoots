@@ -7,65 +7,47 @@
 
 = content_for :left_side do
   .row.com-title
-    .col-md-4.no-padding
-      %a{:href => "#"} Notifications <span id='unread_alerts'>(#{@notices.size})</span>
-    .col-md-4.no-padding
-      %a{:href => "#"} Messages <span id='unread_messages'>(#{@unread_messages.size})</span>
-    .col-md-4.no-padding
-      %a{:href => "#"} Requests (#{@requests.size})
+    .nav.nav-tabs
+      .col-md-4.no-padding
+        %a{"data-toggle" => "tab", href: "#notifications"} Notifications <span id='unread_alerts'>(#{@notices.size})</span>
+      .col-md-4.no-padding
+        %a{"data-toggle" => "tab", href: "#messages"} Messages <span id='unread_messages'>(#{@unread_messages.size})</span>
+      .col-md-4.no-padding
+        %a{"data-toggle" => "tab", href: "#messages"} Requests (#{@requests.size})
 
-  .row#com-notifications
-    %ul.accordion
-      %li
-        %a.nots2.sa.lala{:href => "#"}
-          %strong Notifications
-          %i
-        .clearfix
-        .ddd
-          - @notices.each do |notice|
-            .tiffny
-              - if notice.alert.alertable.class == User
-                = link_to display_image(notice.alert.alertable.profile.image,"thumb"), read_alert_path(notice.alert), remote: true
-              - elsif notice.alert.alertable.class == Club
-                = link_to display_image(notice.alert.alertable.image,"thumb"), read_alert_path(notice.alert), remote: true
-              %p
-                %a.tif-name{:href => "#"}= alert_name(notice.alert.alertable)
-                %br/
-                %a.small-text{:href => "#"}
-                  = notice.alert.message.html_safe unless notice.alert.message.blank?
 
-  .row#com-messages
-    %li
-      %a#mes.nots2.lala{:href => "#"}
-        %strong Messages
-        \&nbsp; &nbsp; &nbsp; Edit &nbsp; &nbsp; &nbsp; New Message
-        %i
-      .ddd
-        - @conversations.each do |con|
-          - message = con.messages.first
-          .comment-box{id: "con-#{con.id}"}
-            = link_to sender_image(message), read_message_path(con), remote: true, class: 'com-img'
-            %a.com-name{:href => "#"}
-              = sender_name(message)
-              %br/
-              %span= message.sender.graduation_year if message.sender.is_a?(User)
-            %p= truncate(con.messages.first.body, length: 50).html_safe
-
-  .row#com-requests
-    %li
-      %a.nots2.sa.lalas{:href => "#"}
-        %strong Requests
-        %i
-      .ddd
-        - @requests.each do |relationship|
-          .comment-box
-            = link_to display_image(relationship.relation.profile.image,"thumb"), read_relationship_path(relationship), remote: true
-            %a.com-name{:href => "#"}
-              = relationship.relation.name
-              %br/
-              %span= relationship.relation.graduation_year
-            %p= relationship.relation.intro_para
-
+  .row.tab-content
+    #notifications.tab-pane.active
+      - @notices.each do |notice|
+        .tiffny
+          - if notice.alert.alertable.class == User
+            = link_to display_image(notice.alert.alertable.profile.image,"thumb"), read_alert_path(notice.alert), remote: true
+          - elsif notice.alert.alertable.class == Club
+            = link_to display_image(notice.alert.alertable.image,"thumb"), read_alert_path(notice.alert), remote: true
+          %p
+            %a.tif-name{:href => "#"}= alert_name(notice.alert.alertable)
+            %br/
+            %a.small-text{:href => "#"}
+              = notice.alert.message.html_safe unless notice.alert.message.blank?
+    #messages.tab-pane
+      - @conversations.each do |con|
+        - message = con.messages.first
+        .comment-box{id: "con-#{con.id}"}
+          = link_to sender_image(message), read_message_path(con), remote: true, class: 'com-img'
+          %a.com-name{:href => "#"}
+            = sender_name(message)
+            %br/
+            %span= message.sender.graduation_year if message.sender.is_a?(User)
+          %p= truncate(con.messages.first.body, length: 50).html_safe
+    #requests.tab-pane
+      - @requests.each do |relationship|
+        .comment-box
+          = link_to display_image(relationship.relation.profile.image,"thumb"), read_relationship_path(relationship), remote: true
+          %a.com-name{:href => "#"}
+            = relationship.relation.name
+            %br/
+            %span= relationship.relation.graduation_year
+          %p= relationship.relation.intro_para
 
 = content_for :right_side do
   #current_conversation
