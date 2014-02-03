@@ -23,9 +23,9 @@
         = render 'layouts/navigation'
         #content-container.col-md-11.no-padding
           .row#content-top-bar
-            .col-md-7.no-padding.title
+            .col-md-6.no-padding.title
               = yield :page_title
-            .col-md-5.no-padding
+            .col-md-6.no-padding
               = render 'shared/search'
           .row#content-main
             - if @full_page == true
