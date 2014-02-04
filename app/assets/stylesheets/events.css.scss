@@ -118,7 +118,12 @@ $dark: #e7e7e8;
       margin: 40px 20%;
     }
   }
-  #create_event {
+  #create_event, #new_event {
+    .gentleselect-dialog {
+      overflow-y: scroll;
+      height: 145px;
+      width: 140px;
+    }
     form {
       label {
         text-align: right;
