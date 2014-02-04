@@ -1,271 +1,507 @@
+= content_for :head do
+  = javascript_include_tag 'static/network'
+
 = content_for :page_title do
   .title
-    %h1 Profile
+    %h1 Network
 
 = content_for :left_side do
-  .span3
-    = link_to "#" do
-      = display_image @user.profile.image, "xxlarge"
-  .span8
-    .pro-user{style: "min-height: 120px;"}
-      %p Hi! My name is #{@user.name} and I'm #{@user.display_major} from #{@user.display_city}. Let's connect!
-    .offset9
-      - if current_user.relatable?(@user)
-        %a{href: "#add-contact", class: "btn btn-primary", data: {toggle: "modal"}, style: "margin-right: 10px;"} Add Contact
-      - elsif Relationship.reciprocal?(current_user, @user)
-        %a{href: "javascript:;", class: "btn btn-danger", style: "margin-right: 10px;"} UnContact
-  .clearfix
-  - if @user == current_user
-    = render partial: "private_tabs"
-    .clearfix
-  - if can_view?(current_user, @user)
-    %br
-    %br
-    .row-fluid
-      .container
-        .span10
-          %ul.tabs6
-            %li
-              %a{href: "#tab11"} Education &amp; Skills
-            %li
-              %a{href: "#tab22"} Experience
-            %li
-              %a{href: "#tab33"} Portfolio
-            - if @user.alumni?
-              %li
-                %a{href: "#tab44"} FAQs
-              %li
-                %a{href: "#tab55"} Contact
+  #network.row
+    .col-md-5
+      = render 'profiles/profile_photo', user: @user
+
+    .col-md-7
+      .profile-text
+        %p
+          Hi! My name is
+          = succeed "." do
+            %span.form-field= @user.name
+          - if @user.alumni?
+            I was a/an
+          - else
+            I am a/an
+          %span.form-field= @user.major
+          - if @user.double_major.present?
+            and
+            %span.form-field= @user.double_major
+          = @user.double_major.present? ? 'double major' : 'major'
+          at
+          = succeed "." do
+            %span.form-field= @user.university.name
+          ="I graduated in" if @user.alumni?
+          ="I will graduate in" unless @user.alumni?
+          = succeed "." do
+            %span.form-field= @user.graduation_year
+          My current city is
+          = succeed "." do
+            %span.form-field= @user.display_city
+
           .clearfix
-          .tab_container
-            #tab11.tab_content2
-              .two-col
-                %h3 Education
-                - education = @profile.educations.each do |education|
-                  %p
-                    I studied #{education.major} at #{education.university}.
-                    I graduated with a
-                    = "#{education.degree_type}."
-                    in
-                    = "#{education.graduation_year}."
-                    - unless education.high_school.blank?
-                      I attended #{education.high_school} high school.
-              .two-col
-                %h3 Skills &amp; Interests
+        %ul.nav.nav-pills
+          %li
+            %a{:href => "#resume", "data-toggle" => "tab"}
+              Resume
+          %li
+            %a{:href => "#portfolio", "data-toggle" => "tab"}
+              Portfolio
+          = render 'profiles/faq_and_contact_requirements'
+        %a#edt.edit{:href => "#{edit_user_profile_path(current_user, current_user.profile)}"}
+          Edit
+          %i
+            = image_tag('edit-icon.png')
+
+
+  .tab-content
+    #resume.tab-pane.fade.in
+      .paragraph
+        .title2
+          %ul.tabs2
+          %h4
+            %li.active22
+              %a.slide-tab{:href => "javascript:void(0)", rel: 'tab11'} Education
+            %li
+              %a.slide-tab{:href => "javascript:void(0)", rel: "tab22"} Skills &amp; Interests
+          %i
+            = image_tag('small-curve.png')
+        .clearfix
+        .tab_container
+          #tab11.tab_content2.tab-cont
+            - @profile.educations.each do |edu|
+              .circlee
+                %p{:style => "padding-bottom:0;"}
+                  I graduated from
+                  %i.text7
+                    %strong.form-field= edu.university || edu.high_school
+                  in
+                  = succeed "." do
+                    %i.text8
+                      %strong.form-field= edu.graduation_year
+                  %br/
+                  I received my
+                  %i.text9
+                    %strong.form-field= edu.degree_type
+                  in
+                  = succeed "." do
+                    %i.text1a
+                      %strong.form-field= edu.major
+                .clearfix
+            .clearfix
+          / paragraph
+        / tab_content2
+        #tab22.tab_content2.tab-cont
+          .paragraph2
+            .circlee2
+              %p{:style => "font-size:17px;"}
+                I am skilled at
+                %i.text6a.form-field
+                  %strong= @profile.skill1
+                #{',' if !@profile.skill1.blank? && !@profile.skill2.blank?}
+                %i.text7a.form-field
+                  %strong= @profile.skill2
+                #{'and' if !@profile.skill3.blank? && (!@profile.skill1.blank? || !@profile.skill2.blank?) }
+                %i.text8a.form-field
+                  %strong= @profile.skill3
+                %br/
+                %br/
+                I am interested in
+                %i.text9a.form-field
+                  %strong= @profile.interested1
+                #{',' if !@profile.interested1.blank? && !@profile.interested2.blank?}
+                %i.text1b.form-field
+                  %strong= @profile.interested2
+                #{'and' if !@profile.interested3.blank? && (!@profile.interested1.blank? || !@profile.interested2.blank?) }
+                %i.text2b.form-field
+                  %strong= @profile.interested3
+                .clearfix
+            .clearfix
+          / paragraph
+        / tab_content2
+      / tab_container
+      #echo.paragraph2
+        .title3
+          %h4 Experience
+          %i= image_tag('large-curve.png')
+        / title3
+        - @profile.experiences.each do |experience|
+          .circlee3
+            %p
+              %i.text2a.form-field
+                %span= experience.company_name
+              %br/
+              %br/
+              I worked as a
+              %i.text3a.form-field
+                %span= experience.position_name
+              from
+              %i.text4a.form-field
+                %span= experience.date_started
+              to
+              = succeed "." do
+                %i.text5a.form-field
+                  %span= experience.date_ended
+              %br/
+              Additional Description of your position at this company as you wrote it. Click edit to change.
+              %br/
+
+    #portfolio.tab-pane.fade
+      .paragraph2
+        .title3
+          %h4 Portfolio
+        - @profile.portfolio_items.each do |port|
+          .span11
+            Here is a portfolio of my work:
+            %br
+            .span2
+              = display_image_square port.image, 'thumb'
+
+            .span9
+              .span9.no-lmar= port.name
+              .span9.no-lmar= port.organization_name
+              .span9.no-lmar= raw port.description
+          .clearfix
+    #faq.tab-pane.fade
+      .paragraph2
+        .title2
+          %h4 FAQs
+        / title2
+        #carousel-example-generic.carousel.slide.car2{"data-ride" => "carousel"}
+          .carousel-inner
+            - @profile.faqs.each_with_index do |faq, index|
+              .item(class="#{'active' if index == 0}")
                 %p
-                  = @profile.display_skill
-            #tab22.tab_content2
-              %ul.posts.po2
-                - @experiences.each do |experience|
-                  %li
-                    %a.avatr{href: "javascript:;"}
-                    %h4
-                      = experience.company_name
-                      %br
-                      %span= experience.position_name
-                    %p= experience_string(experience)
-                    .clearfix
-            #tab33.tab_content2
-              .profile
-                - @portfolio_items.each do |portfolio|
-                  .span12.left2.top.bottom
-                    .span2
-                      = display_image_square portfolio.image, "thumb"
-                    .span10
-                      .span9
-                        %h3
-                          = portfolio.name
-                          %br
-                          %span= portfolio.organization_name
-                      .span9
-                        = simple_format portfolio.description
-            - if @user.alumni?
-              #tab44.tab_content2
-                .faq
-                  %h2 FAQ
-                  - if @profile.faqs.size > 0
-                    - split_number = (@profile.faqs.size / 2.0).floor
-                    - faqs = @profile.faqs.all.each_slice(split_number).to_a
-                    .half
-                      %p
-                        - faqs.first.each do |f|
-                          %strong= f.question
-                          %br
-                          = f.answer
-                          %br
-                          %br
-                    .half
-                      %p
-                        - faqs.last.each do |f|
-                          %strong= f.question
-                          %br
-                          = f.answer
-                          %br
-                          %br
-              #tab55.tab_content2
-                .contact_requirements
-                  - if @profile.contact_requirement
-                    %p
-                      My contact requirements for students include:
-                      %strong= @profile.contact_requirement.gpa_requirement
-                      GPA,
-                      %strong= @profile.contact_requirement.major_requirement
-                      Major,
-                      %strong= @profile.contact_requirement.years_working_experience
-                      Years of Experience,
-                      %br
-                      and a Field of Experience
-                      %strong= @profile.contact_requirement.fields_of_interest
+                  %small.text3b.form-field
+                    %span= faq.question
+                  %br/
+                  %small.text4b.form-field= faq.answer
+            / item
+          / carousel-inner
+          %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-example-generic"}
+            = image_tag('lefts.png')
+          %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-example-generic"}
+            = image_tag('rights.png')
+        / carousel
+      .clearfix
+      / paragraph
+      .paragraph2.ss2
+        .title2
+          %h4 Contact Requirements
+        / title2
+        .low
+          %p
+            My contact requirements for students include:
+            %br/
+            GPA Requirement:
+            %span= @profile.contact_requirement.try(:gpa_requirement)
+            , Major Requirement:
+            %span= @profile.contact_requirement.try(:major_requirement)
+            , Years of Experience:
+            %span= @profile.contact_requirement.try(:years_working_experience)
+            , Field of Experience:
+            %span= @profile.contact_requirement.try(:fields_of_interest)
+        .clearfix
 
-                      Between 45 and 60.
-  .clearfix
-  - unless @user == current_user
-    %br
-    %br
-    .row-fluid
-      .container
-        .span10
-          %ul.tabs5
-            %li{style: "width: 49.2%"}
-              %a{href: "#tab-cor"} Our Correspondence
-            %li{style: "width: 49.2%"}
-              %a{href: "#tab-clubs"} Our Clubs
-
-          .clearfix
-          .tab_container
-            #tab-cor.tab_content
-              - current_user.conversations_for(@user).each do |conversation|
-                .span11.border-bottom.left2.top2{id: "conversation-#{conversation.id}"}
-                  .span12.left
-                    %h3= conversation.subject
-                  - conversation.messages.order("created_at asc").each do |message|
-                    .span12.no-lmar
-                      .span2
-                        %strong= message.sender.name
-                      .span7
-                        = simple_format message.body
-                        - unless message.attachment.blank?
-                          %small.fright
-                            Attachment: 
-                            = link_to message.attachment.file.filename, message.attachment.url, target: "_blank"
-                      .span3.no-lmar
-                        .fright.green= time_ago_in_words(message.updated_at) + " ago"
-                  .span12.no-lmar
-                    .fright
-                      = link_to "Delete", message_path(conversation), method: :delete, remote: true, class: "red", confirm: "are you sure?"
-            #tab-clubs.tab_content
-
-#add-contact.modal.hide
-  = simple_form_for Relationship.new(user_id: current_user.id) do |f|
-    .modal-header
-      %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
-      %h3 Add Contact
-    .modal-body
-      = f.input :relation_id, as: :hidden, input_html: {value: @user.id}
-      = f.input :message, as: :text, input_html: {class: 'span5', rows: 10}
-    .modal-footer
-      = f.submit "Add Contact", class: "btn btn-primary"
-= render partial: "shared/new_message"
-
-:javascript
-
-  $(function () {
-    $(".tab_content").hide(); //Hide all content
-    $("ul.tabs5 li:first").addClass("active").show(); //Activate first tab
-    $(".tab_content:first").show(); //Show first tab content
-
-    //On Click Event
-    $("ul.tabs5 li").click(function() {
-      $("ul.tabs5 li").removeClass("active"); //Remove any "active" class
-      $("ul.tabs5 a").removeClass("selected");
-      $(this).addClass("active"); //Add "active" class to selected tab
-      jQuery(this).children("a").addClass('selected');
-      //console.log($(this).toSource());
-      $(".tab_content").hide(); //Hide all tab content
-      var activeTab = $(this).find("a").attr("href"); //Find the rel attribute value to identify the active tab + content
-      $(activeTab).fadeIn(); //Fade in the active content
-      return false;
-    });
-    $(".tab_content2").hide(); //Hide all content
-    $("ul.tabs6 li:first").addClass("active").show(); //Activate first tab
-    $(".tab_content2:first").show(); //Show first tab content
-
-      //On Click Event
-    $("ul.tabs6 li").click(function() {
-      $("ul.tabs6 li").removeClass("active"); //Remove any "active" class
-      $("ul.tabs6 a").removeClass("selected");
-      $(this).addClass("active"); //Add "active" class to selected tab
-      jQuery(this).children("a").addClass('selected');
-      //console.log($(this).toSource());
-      $(".tab_content2").hide(); //Hide all tab content
-      var activeTab = $(this).find("a").attr("href"); //Find the rel attribute value to identify the active tab + content
-      $(activeTab).fadeIn(); //Fade in the active content
-      return false;
-    });
-
-  });
-  // Iterate over each select element
-  $('select.select').each(function() {
-
-    // Cache the number of options
-    var $this = $(this),
-    numberOfOptions = $(this).children('option').length;
-
-    // Hides the select element
-    //$this.addClass('s-hidden');
-
-    // Wrap the select element in a div
-    $this.wrap('<div class="select"></div>');
-
-    // Insert a styled div to sit over the top of the hidden select element
-    $this.after('<div class="styledSelect"></div>');
-
-    // Cache the styled div
-    var $styledSelect = $this.next('div.styledSelect');
-
-    // Show the first select option in the styled div
-    $styledSelect.text($this.children('option').eq(0).text());
-
-    // Insert an unordered list after the styled div and also cache the list
-    var $list = $('<ul />', {
-      'class': 'options'
-    }).insertAfter($styledSelect);
-
-    // Insert a list item into the unordered list for each select option
-    for (var i = 0; i < numberOfOptions; i++) {
-      $('<li />', {
-        text: $this.children('option').eq(i).text(),
-        rel: $this.children('option').eq(i).val()
-      }).appendTo($list);
-    }
-
-    // Cache the list items
-    var $listItems = $list.children('li');
-
-    // Show the unordered list when the styled div is clicked (also hides it if the div is clicked again)
-    $styledSelect.click(function(e) {
-      e.stopPropagation();
-      $('div.styledSelect.active').each(function() {
-        $(this).removeClass('active').next('ul.options').hide();
+  :javascript
+    $(function(){
+      $('a.slide-tab').click(function(){
+        $('.tab-cont').hide()
+        $('#' + $(this).attr('rel')).show()
       });
-      $(this).toggleClass('active').next('ul.options').toggle();
-    });
+      $(document).on('nested:fieldAdded:faqs', function(event){
+        var field = event.field;
+        field.find('.field-edit').show()
+      });
+    })
 
-    // Hides the unordered list when a list item is clicked and updates the styled div to show the selected list item
-    // Updates the select element to have the value of the equivalent option
-    $listItems.click(function(e) {
-      e.stopPropagation();
-      $styledSelect.text($(this).text()).removeClass('active');
-      $this.val($(this).attr('rel'));
-      $list.hide();
-      /* alert($this.val()); Uncomment this for demonstration! */
-    });
+= content_for :right_side do
+  .info
+    %span.btn4 My Contacts
+  / info
+  %ul.lists.ssy
+    - ind = -1
+    - @user.contacts.each do |contact|
+      - ind += 1
+      %li(class="#{ind == 0 ? 'light' : 'dark' }")
+        %a{:href => "#"}
+          %i
+            = image_tag('profile-img.png')
+          %span
+            = contact.name
+            %br/
+            = contact.graduation_year
+        %button.btna7{:name => "btm"} Message
+        .ssys
+          %small= contact.intro_para
 
-    // Hides the unordered list when clicking outside of it
-    $(document).click(function() {
-      $styledSelect.removeClass('active');
-      $list.hide();
-    });
 
 
-  });
+-#= content_for :page_title do
+-#  .title
+-#    %h1 Profile
+-#
+-#= content_for :left_side do
+-#  .span3
+-#    = link_to "#" do
+-#      = display_image @user.profile.image, "xxlarge"
+-#  .span8
+-#    .pro-user{style: "min-height: 120px;"}
+-#      %p Hi! My name is #{@user.name} and I'm #{@user.display_major} from #{@user.display_city}. Let's connect!
+-#    .offset9
+-#      - if current_user.relatable?(@user)
+-#        %a{href: "#add-contact", class: "btn btn-primary", data: {toggle: "modal"}, style: "margin-right: 10px;"} Add Contact
+-#      - elsif Relationship.reciprocal?(current_user, @user)
+-#        %a{href: "javascript:;", class: "btn btn-danger", style: "margin-right: 10px;"} UnContact
+-#  .clearfix
+-#  - if @user == current_user
+-#    = render partial: "private_tabs"
+-#    .clearfix
+-#  - if can_view?(current_user, @user)
+-#    %br
+-#    %br
+-#    .row-fluid
+-#      .container
+-#        .span10
+-#          %ul.tabs6
+-#            %li
+-#              %a{href: "#tab11"} Education &amp; Skills
+-#            %li
+-#              %a{href: "#tab22"} Experience
+-#            %li
+-#              %a{href: "#tab33"} Portfolio
+-#            - if @user.alumni?
+-#              %li
+-#                %a{href: "#tab44"} FAQs
+-#              %li
+-#                %a{href: "#tab55"} Contact
+-#          .clearfix
+-#          .tab_container
+-#            #tab11.tab_content2
+-#              .two-col
+-#                %h3 Education
+-#                - education = @profile.educations.each do |education|
+-#                  %p
+-#                    I studied #{education.major} at #{education.university}.
+-#                    I graduated with a
+-#                    = "#{education.degree_type}."
+-#                    in
+-#                    = "#{education.graduation_year}."
+-#                    - unless education.high_school.blank?
+-#                      I attended #{education.high_school} high school.
+-#              .two-col
+-#                %h3 Skills &amp; Interests
+-#                %p
+-#                  = @profile.display_skill
+-#            #tab22.tab_content2
+-#              %ul.posts.po2
+-#                - @experiences.each do |experience|
+-#                  %li
+-#                    %a.avatr{href: "javascript:;"}
+-#                    %h4
+-#                      = experience.company_name
+-#                      %br
+-#                      %span= experience.position_name
+-#                    %p= experience_string(experience)
+-#                    .clearfix
+-#            #tab33.tab_content2
+-#              .profile
+-#                - @portfolio_items.each do |portfolio|
+-#                  .span12.left2.top.bottom
+-#                    .span2
+-#                      = display_image_square portfolio.image, "thumb"
+-#                    .span10
+-#                      .span9
+-#                        %h3
+-#                          = portfolio.name
+-#                          %br
+-#                          %span= portfolio.organization_name
+-#                      .span9
+-#                        = simple_format portfolio.description
+-#            - if @user.alumni?
+-#              #tab44.tab_content2
+-#                .faq
+-#                  %h2 FAQ
+-#                  - if @profile.faqs.size > 0
+-#                    - split_number = (@profile.faqs.size / 2.0).floor
+-#                    - faqs = @profile.faqs.all.each_slice(split_number).to_a
+-#                    .half
+-#                      %p
+-#                        - faqs.first.each do |f|
+-#                          %strong= f.question
+-#                          %br
+-#                          = f.answer
+-#                          %br
+-#                          %br
+-#                    .half
+-#                      %p
+-#                        - faqs.last.each do |f|
+-#                          %strong= f.question
+-#                          %br
+-#                          = f.answer
+-#                          %br
+-#                          %br
+-#              #tab55.tab_content2
+-#                .contact_requirements
+-#                  - if @profile.contact_requirement
+-#                    %p
+-#                      My contact requirements for students include:
+-#                      %strong= @profile.contact_requirement.gpa_requirement
+-#                      GPA,
+-#                      %strong= @profile.contact_requirement.major_requirement
+-#                      Major,
+-#                      %strong= @profile.contact_requirement.years_working_experience
+-#                      Years of Experience,
+-#                      %br
+-#                      and a Field of Experience
+-#                      %strong= @profile.contact_requirement.fields_of_interest
+-#
+-#                      Between 45 and 60.
+-#  .clearfix
+-#  - unless @user == current_user
+-#    %br
+-#    %br
+-#    .row-fluid
+-#      .container
+-#        .span10
+-#          %ul.tabs5
+-#            %li{style: "width: 49.2%"}
+-#              %a{href: "#tab-cor"} Our Correspondence
+-#            %li{style: "width: 49.2%"}
+-#              %a{href: "#tab-clubs"} Our Clubs
+-#
+-#          .clearfix
+-#          .tab_container
+-#            #tab-cor.tab_content
+-#              - current_user.conversations_for(@user).each do |conversation|
+-#                .span11.border-bottom.left2.top2{id: "conversation-#{conversation.id}"}
+-#                  .span12.left
+-#                    %h3= conversation.subject
+-#                  - conversation.messages.order("created_at asc").each do |message|
+-#                    .span12.no-lmar
+-#                      .span2
+-#                        %strong= message.sender.name
+-#                      .span7
+-#                        = simple_format message.body
+-#                        - unless message.attachment.blank?
+-#                          %small.fright
+-#                            Attachment:
+-#                            = link_to message.attachment.file.filename, message.attachment.url, target: "_blank"
+-#                      .span3.no-lmar
+-#                        .fright.green= time_ago_in_words(message.updated_at) + " ago"
+-#                  .span12.no-lmar
+-#                    .fright
+-#                      = link_to "Delete", message_path(conversation), method: :delete, remote: true, class: "red", confirm: "are you sure?"
+-#            #tab-clubs.tab_content
+-#
+-##add-contact.modal.hide
+-#  = simple_form_for Relationship.new(user_id: current_user.id) do |f|
+-#    .modal-header
+-#      %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+-#      %h3 Add Contact
+-#    .modal-body
+-#      = f.input :relation_id, as: :hidden, input_html: {value: @user.id}
+-#      = f.input :message, as: :text, input_html: {class: 'span5', rows: 10}
+-#    .modal-footer
+-#      = f.submit "Add Contact", class: "btn btn-primary"
+-#= render partial: "shared/new_message"
+-#
+-#:javascript
+-#
+-#  $(function () {
+-#    $(".tab_content").hide(); //Hide all content
+-#    $("ul.tabs5 li:first").addClass("active").show(); //Activate first tab
+-#    $(".tab_content:first").show(); //Show first tab content
+-#
+-#    //On Click Event
+-#    $("ul.tabs5 li").click(function() {
+-#      $("ul.tabs5 li").removeClass("active"); //Remove any "active" class
+-#      $("ul.tabs5 a").removeClass("selected");
+-#      $(this).addClass("active"); //Add "active" class to selected tab
+-#      jQuery(this).children("a").addClass('selected');
+-#      //console.log($(this).toSource());
+-#      $(".tab_content").hide(); //Hide all tab content
+-#      var activeTab = $(this).find("a").attr("href"); //Find the rel attribute value to identify the active tab + content
+-#      $(activeTab).fadeIn(); //Fade in the active content
+-#      return false;
+-#    });
+-#    $(".tab_content2").hide(); //Hide all content
+-#    $("ul.tabs6 li:first").addClass("active").show(); //Activate first tab
+-#    $(".tab_content2:first").show(); //Show first tab content
+-#
+-#      //On Click Event
+-#    $("ul.tabs6 li").click(function() {
+-#      $("ul.tabs6 li").removeClass("active"); //Remove any "active" class
+-#      $("ul.tabs6 a").removeClass("selected");
+-#      $(this).addClass("active"); //Add "active" class to selected tab
+-#      jQuery(this).children("a").addClass('selected');
+-#      //console.log($(this).toSource());
+-#      $(".tab_content2").hide(); //Hide all tab content
+-#      var activeTab = $(this).find("a").attr("href"); //Find the rel attribute value to identify the active tab + content
+-#      $(activeTab).fadeIn(); //Fade in the active content
+-#      return false;
+-#    });
+-#
+-#  });
+-#  // Iterate over each select element
+-#  $('select.select').each(function() {
+-#
+-#    // Cache the number of options
+-#    var $this = $(this),
+-#    numberOfOptions = $(this).children('option').length;
+-#
+-#    // Hides the select element
+-#    //$this.addClass('s-hidden');
+-#
+-#    // Wrap the select element in a div
+-#    $this.wrap('<div class="select"></div>');
+-#
+-#    // Insert a styled div to sit over the top of the hidden select element
+-#    $this.after('<div class="styledSelect"></div>');
+-#
+-#    // Cache the styled div
+-#    var $styledSelect = $this.next('div.styledSelect');
+-#
+-#    // Show the first select option in the styled div
+-#    $styledSelect.text($this.children('option').eq(0).text());
+-#
+-#    // Insert an unordered list after the styled div and also cache the list
+-#    var $list = $('<ul />', {
+-#      'class': 'options'
+-#    }).insertAfter($styledSelect);
+-#
+-#    // Insert a list item into the unordered list for each select option
+-#    for (var i = 0; i < numberOfOptions; i++) {
+-#      $('<li />', {
+-#        text: $this.children('option').eq(i).text(),
+-#        rel: $this.children('option').eq(i).val()
+-#      }).appendTo($list);
+-#    }
+-#
+-#    // Cache the list items
+-#    var $listItems = $list.children('li');
+-#
+-#    // Show the unordered list when the styled div is clicked (also hides it if the div is clicked again)
+-#    $styledSelect.click(function(e) {
+-#      e.stopPropagation();
+-#      $('div.styledSelect.active').each(function() {
+-#        $(this).removeClass('active').next('ul.options').hide();
+-#      });
+-#      $(this).toggleClass('active').next('ul.options').toggle();
+-#    });
+-#
+-#    // Hides the unordered list when a list item is clicked and updates the styled div to show the selected list item
+-#    // Updates the select element to have the value of the equivalent option
+-#    $listItems.click(function(e) {
+-#      e.stopPropagation();
+-#      $styledSelect.text($(this).text()).removeClass('active');
+-#      $this.val($(this).attr('rel'));
+-#      $list.hide();
+-#      /* alert($this.val()); Uncomment this for demonstration! */
+-#    });
+-#
+-#    // Hides the unordered list when clicking outside of it
+-#    $(document).click(function() {
+-#      $styledSelect.removeClass('active');
+-#      $list.hide();
+-#    });
+-#
+-#
+-#  });
