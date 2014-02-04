@@ -24,12 +24,10 @@ $green: #00c088;
     border: none;
     padding: 8px;
     color: #888888;
-    margin: 15px 5px;
-    margin-bottom: 0;
+    margin: 15px 5px 0 5px;
   }
 
   #tab3x {
-    text-align: left;
     label {
       font-size: 18px;
       float: left;
@@ -38,7 +36,7 @@ $green: #00c088;
       color: #666666;
     }
     .gentleselect-label {
-      margin-top: 15px;
+      margin: 15px 5px 0 5px;
     }
   }
 }

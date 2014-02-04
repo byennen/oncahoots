@@ -30,5 +30,10 @@ $(document).ready ->
 
     location.href = href
 
-  activeListItem = $("ul.tabsx li.activex")
-  $('ul.tabsx li:first a').click() if activeListItem.size() == 0
+  $("#terms").keyup (event) ->
+    $(".search-btn:visible, .search-btn:first").click() if event.keyCode == 13
+
+
+  # activate tab button on load if non is activated
+#  activeListItem = $("ul.tabsx li.activex")
+#  $('ul.tabsx li:first a').click() if activeListItem.size() == 0

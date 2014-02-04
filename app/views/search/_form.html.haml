@@ -37,8 +37,6 @@
     = form_tag :search do
       .col-md-6= select :club, :private, options_for_select([["Not Private", false],["Private", true]], params[:club][:private]), prompt: "All"
       .col-md-6= select :club, :category, options_for_select(Club::CATEGORIES, params[:club][:category]), prompt: "All Category"
-
-      .clearfix
     %a.search-btn{href: "javascript:;", "data-object" => "club"}
       %button.btn.btn6{:name => "btn"} Search
   / tab_content
