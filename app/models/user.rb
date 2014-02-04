@@ -123,8 +123,26 @@ class User < ActiveRecord::Base
   end
 
   def name
-    [first_name, last_name].join(' ')
+    [first_name, last_name].compact.join(' ')
   end
+
+  ### Used for Searching
+
+  def name=(name)
+    name_match = /^([^ ]*) ?(.*)$/.match(name.to_s)
+    self.first_name = name_match[1]
+    self.last_name = name_match[2]
+  end
+
+  def field
+    @field || (professional_field && professional_field.name)
+  end
+
+  def field=(field)
+    @field = field
+  end
+
+  ### end (Used for Searching)
 
   def metropolitan_club_admin?
     metropolitan_club.leaders.include?(self)
@@ -210,7 +228,7 @@ class User < ActiveRecord::Base
     def search_all(params)
       return where("1=1") if params.blank?
       search_name(params[:name]).search_type(params[:type])
-      .search_major(params[:major]).search_graduation_year(params[:graduation_year]).search_professional_field(params[:field]).search_city(params[:city])
+      .search_major(params[:major]).search_graduation_year(params[:graduation_year]).search_professional_field(params[:professional_field_id] || params[:field]).search_city(params[:city])
     end
 
     def search_name(name)
@@ -220,7 +238,7 @@ class User < ActiveRecord::Base
 
     def search_city(city_name)
       return where("1=1") if city_name.blank? || city_name == "All cities"
-      city = City.find_by_name(city_name)
+      city = City.where("name ILIKE '#{city_name}'").first
       return where("1=2") unless city
       where(city_id: city.id)
     end
@@ -239,7 +257,7 @@ class User < ActiveRecord::Base
 
     def search_major(major)
       return where("1=1") if major.blank?
-      where(major: major)
+      where("major ILIKE '#{major}'") #case-insensitive search
     end
 
     def search_graduation_year(year)
@@ -247,11 +265,15 @@ class User < ActiveRecord::Base
       where(graduation_year: year)
     end
 
-    def search_professional_field(field_name)
-      return where("1=1") if field_name.blank? || field_name=="All Fields"
-      field = ProfessionalField.find_by_name(field_name)
-      return where("1=2") unless field
-      where(professional_field_id: field.id)
+    def search_professional_field(field_name_or_id)
+      return where("1=1") if field_name_or_id.blank? || field_name_or_id=="All Fields"
+      field_id = nil
+      unless field_name_or_id.match(/^\d+$/)
+        field = ProfessionalField.find_by_name(field_name_or_id)
+        return where("1=2") unless field
+        field_id = field.id
+      end
+      where(professional_field_id: field_id)
     end
 
   end

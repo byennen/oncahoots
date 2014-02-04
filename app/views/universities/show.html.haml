@@ -58,18 +58,19 @@
         .col-md-6.no-padding
           .alumni-search.college-information
             %h2 Alumni Search
-            = form_tag :search do
+            = form_for User.new, as: 'user', url: '/search_results', method: :get do |f|
+              = hidden_field_tag :object, 'alumni'
               %ul
                 %li
-                  = text_field_tag :name, "", placeholder: "Name"
+                  = f.text_field :name, placeholder: "Name"
                 %li
-                  = text_field_tag :city, "", placeholder: "City"
+                  = f.text_field :city, placeholder: "City"
                 %li
-                  = select_tag :professional_field_id, options_from_collection_for_select(ProfessionalField.all.sort_by(&:name), :id, :name), prompt: "Field"
+                  = f.select :professional_field_id, options_from_collection_for_select(ProfessionalField.all.sort_by(&:name), :id, :name), prompt: "Field"
                 %li
-                  = text_field_tag :major, "", placeholder: "Major"
+                  = f.text_field :major, placeholder: "Major"
                 %li
-                  = text_field_tag :graduation_year, "", placeholder: "Grade Year"
+                  = f.text_field :graduation_year, placeholder: "Grade Year"
                 %li
                   %button.btn.btn3{type: "submit"} Access Your Network
 

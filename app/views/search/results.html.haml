@@ -19,9 +19,10 @@
         .con
           .half
             .paddings
-              = link_to user_path(user), class: "csthumb" do
+              = link_to user_profile_path(user, user.profile), class: "csthumb" do
                 = display_image user.profile.image, "medium"
-              %h4= user.name
+              = link_to user_profile_path(user, user.profile) do
+                %h4= user.name
               %br
               = user.graduation_year
               %br
