@@ -50,10 +50,6 @@
             %a{:href => "#portfolio", "data-toggle" => "tab"}
               Portfolio
           = render 'profiles/faq_and_contact_requirements'
-        %a#edt.edit{:href => "#{edit_user_profile_path(current_user, current_user.profile)}"}
-          Edit
-          %i
-            = image_tag('edit-icon.png')
 
 
   .tab-content
