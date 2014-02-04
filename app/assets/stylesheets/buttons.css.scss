@@ -12,13 +12,13 @@
 }
 
 .btn6 {
-  width: 50%;
+  width: 30%;
   margin: 0 auto;
   color: white;
-  font-size: 25px;
+  font-size: 20px;
   @include linear-gradient(#56d988, #02c189);
   border-radius: 0;
-  padding: 12px 0;
+  //padding: 12px 0;
   margin-top: 25px;
   &:hover, &:active, &:focus {
     @include linear-gradient(#02c189, #4bc69f);

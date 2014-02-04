@@ -7,7 +7,10 @@
 :javascript
   $("#search-btn").click(function(){
     terms = $("input#search-text").val();
-    href = "/search_results?object=all&terms=" + terms;
+    if (terms.trim() == "")
+      href = "/search";
+    else
+      href = "/search_results?object=all&terms=" + terms;
     location.href = href;
   });
 

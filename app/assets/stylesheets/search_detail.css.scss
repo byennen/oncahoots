@@ -7,7 +7,8 @@ $green: #00c088;
   width: 100%;
   float: left;
   h3 {
-    font-size: 32px;
+    font-size: 28px;
+    margin: 5px 0;
     color: #444444;
     float: left;
   }
@@ -68,12 +69,21 @@ $green: #00c088;
 }
 
 .con {
-  width: 450px;
-  height: 200px;
+  width: 350px;
+  height: 165px;
   float: left;
-  margin-top: 50px;
+  margin-top: 15px;
 }
 
+.tab_container {
+  margin-bottom: 20px;
+}
+
+.results_area {
+  max-height: 600px;
+  overflow-y: scroll;
+  width: 820px;
+}
 
 .csthumb {
   display: block;
@@ -95,6 +105,8 @@ $green: #00c088;
   p {
     font-size: 15px;
     margin-top: -10px;
+    max-height: 130px;
+    overflow-y: hidden;
     a {
       color: #444444;
       padding-top: 5px;
