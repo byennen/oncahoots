@@ -35,8 +35,13 @@
           My current city is
           = succeed "." do
             %span.form-field= @user.display_city
+      .row
+        .col-md-12
+          - if current_user.relatable?(@user)
+            %a{href: "#add-contact", class: "btn btn-primary", data: {toggle: "modal"}, style: "margin-right: 10px;"} Connect
+          - elsif Relationship.reciprocal?(current_user, @user)
+            %a{href: "javascript:;", class: "btn btn-danger", style: "margin-right: 10px;"} UnConnect
 
-          .clearfix
         %ul.nav.nav-pills
           %li
             %a{:href => "#resume", "data-toggle" => "tab"}
