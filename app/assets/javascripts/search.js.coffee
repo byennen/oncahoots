@@ -8,7 +8,7 @@ $(document).ready ->
 
   #Default Action
   #$(".tab_content").hide() #Hide all content
-  #$("ul.tabsx li:first").addClass("activex").show() #Activate first tab
+#  $("ul.tabsx li:first").addClass("activex").find("a") #Activate first tab
   #$(".tab_content:first").show() #Show first tab content
 
   #On Click Event
@@ -29,3 +29,6 @@ $(document).ready ->
       href = href + "&#{$(this).attr('name')}=#{$(this).val()}"
 
     location.href = href
+
+  activeListItem = $("ul.tabsx li.activex")
+  $('ul.tabsx li:first a').click() if activeListItem.size() == 0

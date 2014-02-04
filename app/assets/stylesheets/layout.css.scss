@@ -2,6 +2,10 @@
 $green: #00c088;
 $light: #f7f7f7;
 $dark: #e7e7e8;
+$darkgray: #5c6067;
+$darkgraylighter: #3c4449;
+$middarkgray: #7F8588;
+$middarkgraylighter: #919A9C;
 
 .green-text {
   color: $green;
@@ -363,7 +367,29 @@ $dark: #e7e7e8;
 .activex a {
   color: white !important;
   text-decoration: none;
-  @include linear-gradient(#5c6067, #3c4449);
+  @include linear-gradient($middarkgraylighter, $middarkgray);
+  text-transform: uppercase;
+  font-family: inherit;
+}
+
+.tabsx {
+  li {
+    a {
+      text-transform: uppercase;
+      font-family: inherit;
+      color: $middarkgraylighter;
+      background-color: white;
+      border-radius: 0;
+    }
+
+    border: solid 1px $middarkgraylighter;
+    padding: 0;
+    margin: 0;
+  }
+  display: inline-block;
+  padding: 0;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* IE6-8 */
