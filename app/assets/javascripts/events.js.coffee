@@ -60,14 +60,14 @@ $(document).ready ->
   # ADD NEW EVENT FORM
   $("#category-select select").gentleSelect()
   $("#time-ampm-select select").gentleSelect()
-  $("#time-minute-select select").gentleSelect()
-  $("#time-hour-select select").gentleSelect()
+  $("#time-minute-select select").gentleSelect({rows: 10, itemWidth: 60})
+  $("#time-hour-select select").gentleSelect({rows: 6, itemWidth: 24})
   $("#club-event-select select").gentleSelect()
   $("#club-select select").gentleSelect()
   $("#free-food-select select").gentleSelect()
   $("#event_at_time_4i, #event_at_time_5i").addClass("col-md-6 no-padding")
-  $("#event_at_time_4i").gentleSelect()
-  $("#event_at_time_5i").gentleSelect()
+  $("#event_at_time_4i").gentleSelect({rows: 6, itemWidth: 24})
+  $("#event_at_time_5i").gentleSelect({rows: 10, itemWidth: 60})
 
   # Hide "select club" dropdown unless club event is "yes"
   $('#club-select').hide()
