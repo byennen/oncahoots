@@ -69,11 +69,20 @@ $green: #00c088;
 
 .con {
   width: 450px;
-  height: 200px;
+  height: 165px;
   float: left;
-  margin-top: 50px;
+  margin-top: 15px;
 }
 
+.tab_container {
+  margin-bottom: 20px;
+}
+
+.results_area {
+  max-height: 600px;
+  overflow-y: auto;
+  width: 950px;
+}
 
 .csthumb {
   display: block;

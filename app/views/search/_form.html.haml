@@ -13,7 +13,6 @@
     %li{class: "#{'activex' if params[:object]=='event'}"}
       %a.btn{:href => "#tab4x"} event
 .clearfix
-%br
 .tab_container
   #tab1x.tab_content{class: "#{'hide' unless (params[:object].blank? || params[:object]=='students')}"}
     = form_tag :search do

@@ -8,7 +8,7 @@
   .col-md-offset-1.col-md-6.form3{style: "margin-top: 20px;"}
     = render partial: "form"
   .clearfix
-  .col-md-offset-1.col-md-12
+  .col-md-offset-1.col-md-11.results_area
     - unless @users.blank?
       .search-detail
         %h3= "#{@users.size} Results for User"
@@ -62,5 +62,6 @@
                 = event.location
                 %br
                 = truncate event.description, length: 100 unless event.description.blank?
+    .clearfix
     %a{:href => "/search"}
       %button.btn9.btnd{:name => "btn"} Start Over
