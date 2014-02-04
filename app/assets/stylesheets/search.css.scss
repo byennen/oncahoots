@@ -3,7 +3,6 @@ $green: #00c088;
 
 #search {
   h3 {
-    margin-top: 35px;
     font-family: 'varela_roundregular';
   }
 
@@ -37,6 +36,9 @@ $green: #00c088;
       margin-right: 10px;
       margin-top: 5px;
       color: #666666;
+    }
+    .gentleselect-label {
+      margin-top: 15px;
     }
   }
 }
@@ -107,9 +109,9 @@ $green: #00c088;
 }
 
 .bigf {
-  height: 60px;
+  height: 50px;
   width: 80%;
-  font-size: 25px;
+  font-size: 20px;
   display: block;
   padding: 15px;
   border: none;
