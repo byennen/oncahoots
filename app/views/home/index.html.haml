@@ -8,31 +8,85 @@
   .row.login_banner_image
     .col-md-12
       = link_to image_tag('logo.png'), root_path, class: 'logo2'
-  .row
+  #login.row
     .col-md-12.text-center
       %h1 Professional Alumni Network + Vibrant College Campus =
       %h2
         THE BEST FOUR YEARS OF YOUR LIFE BROUGHT
         %br
         TO THE REAL WORLD.
-  .row
-    .col-md-offset-4.col-md-4.col-sm-12
-      = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-vertical'}) do |f|
-        = f.input :email, placeholder: 'Email', label: false
-        = f.input :password, placeholder: 'Password', label: false
-        = link_to "Forgot password?", "#", class: 'fos'
-        .row
-          .col-md-12
-            %button.btn.btn-primary.col-md-5 Login
-            %a.btn.btn-primary.col-md-5.col-md-offset-2{href: new_user_registration_path} Register
-        .row
-          .col-md-12
-            %a.ico{:href => "#"}
-              = image_tag('linkedin.png')
-            %a.ico{:href => "#"}
-              = image_tag('facebook.png')
+    .row
+      .col-md-offset-4.col-md-4.col-sm-12
+        = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-vertical'}) do |f|
+          = f.input :email, placeholder: 'Email', label: false
+          = f.input :password, placeholder: 'Password', label: false
+          = link_to "Forgot password?", "#", class: 'fos'
+          .row
+            .col-md-12
+              %button.btn.btn-primary.col-md-5 Login
+              %a.register_button.btn.btn-primary.col-md-5.col-md-offset-2{href: '#'} Register
+          .row
+            .col-md-12
+              %a.ico{:href => "#"}
+                = image_tag('linkedin.png')
+              %a.ico{:href => "#"}
+                = image_tag('facebook.png')
+  #register.row
+    .col-md-offset-3.col-md-6
+      = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'login-form' }) do |f|
+        = f.error_notification
+        = display_base_errors resource
+        .col-md-6.ins
+          .lhs
+            %p CHOOSE ONE:
+            %a.btn9.cn{:href => "#"} Student
+            %i or
+            %a#onee2.bns{:href => "#"} Alumni
+            .clearfix
+            = f.input :first_name, :autofocus => true, :required => true, label: false, input_html: {placeholder: "first name"}
+            = f.input :last_name, :required => true, label: false, input_html: {placeholder: "last name"}
+            = f.input :email, :required => true, label: false, input_html: {placeholder: "email"}
+            = f.input :password, :required => true, label: false, input_html: {placeholder: "password"}
+            = f.input :password_confirmation, :required => true, label: false, input_html: {placeholder: "password confirmation"}
+          / lhs
+        / half
+        .col-md-6.ins
+          .lhs
+            %small Select the area nearest your hometown or select other.
+            = f.select :city_id, options_for_select(City.order(:name).collect{ |c| [c.name, c.id] } + [["Other", 0]], resource.city_id), prompt: "Current City"
+            .clearfix
+            = f.select :university_id, options_from_collection_for_select(University.all.sort_by(&:name), :id, :name, resource.university_id), prompt: "University"
+            .clearfix
 
-  .row.visible-lg
+            %a.btn7.cols.bnss{:href => "#"} Request College
+            %span Don't see your school
+            .clearfix
+
+            = f.select :graduation_year, options_for_select(2020.downto(1940).to_a, resource.graduation_year), { prompt: "Graduation year"}
+            .clearfix
+
+            = f.input :major, label: false, input_html: {placeholder: "major"}
+            = f.input :double_major, label: false, input_html: {placeholder: "double major"}
+
+            %button.btn7.sign.btn-div{:name => "btn"} Sign Up
+
+          -#.clearfix
+          -#.clearfix
+          -#%label.left
+          -#%span.left Current City
+          -#%span#other-city= f.input :other_city, label: false, input_html: {placeholder: "other city", class: "fioled0"}
+          -#.clearfix
+          -#
+          -#.clearfix
+          -#= f.check_box :alumni, class: "checkb"
+          -#%span Sign up As Alumni
+          -#.clearfix
+          -##professional_fields.hide
+          -#  %span.left Professional Field
+          -#  = f.select :professional_field_id, options_from_collection_for_select(ProfessionalField.all.sort_by(&:name), :id, :name, resource.professional_field_id)
+          -#
+          -#%button.btn.btn-success.btn4.chang6 Register
+  #homepage_options.row.visible-lg
     .col-md-12
     .col-md-offset-3
     / col-lg-offset-3
@@ -48,45 +102,7 @@
     / col-lg-4
     .col-md-4
       .centerx
-        %a.mod6.btn6{:href => "#alumni"} About Us
-    / centerx
-  / col-lg-4
-  -#.col-md-offset-3.col-md-6
-  -#  .half.pull-left.ins
-  -#    .lhs
-  -#      %p CHOOSE ONE:
-  -#      %a.btn9.cn{:href => "#"} Student
-  -#      %i or
-  -#      %a#onee2.bns{:href => "#"} Alumni
-  -#      .clearfix
-  -#      %input{:name => "text", :placeholder => "First Name", :type => "text"}/
-  -#      %input{:name => "text", :placeholder => "Last Name", :type => "text"}/
-  -#      %input{:name => "text", :placeholder => "Email", :type => "text"}/
-  -#      %input{:name => "password", :placeholder => "Password", :type => "password"}/
-  -#      %input{:name => "password", :placeholder => "Confirm it", :type => "password"}/
-  -#    / lhs
-  -#  / half
-  -#  .half.pull-right.ins
-  -#    .lhs
-  -#      %small Select the area nearest your hometown or select other.
-  -#      %select#selector{:name => "style2"}
-  -#        %option Hometown
-  -#        %option Name Here
-  -#      %select#selector5{:name => "style2"}
-  -#        %option University
-  -#        %option Name Here
-  -#      %a.btn7.cols.bnss{:href => "#"} Request College
-  -#      %span Don't see your school
-  -#      %select#selector6{:name => "style2"}
-  -#        %option Graduation Year
-  -#        %option Name Here
-  -#      %input{:name => "text", :placeholder => "Major", :type => "text"}/
-  -#      %input{:name => "text", :placeholder => "Double Major", :type => "text"}/
-  -#      %input.noak{:name => "text", :placeholder => "College Name", :type => "text"}/
-  -#      %button.btn7.sign.btn-div{:name => "btn"} Sign Up
-
-
-
+        %a.mod6.btn6{:href => "#about"} About Us
 
 .row
   #students.sectio2
@@ -190,7 +206,7 @@
         %br/
         %p The college experience isn't just those unforgettable four years. It is the creattive interaction that abounds when athletes, artists, academics, and adventurers meet and collaborate on ideas. It is about whta happens next with the new abilities, talents and confidence instilled by a college education. Imagine the potential of keeping your college community always in contact. On Cahoots creates meaningful relationships between alumni and students in order to maintain cohesive college communities.
         %br/
-        %a#onee4.btn7.pads.btn-div{:href => "#"} Register
+        %a.register_button.btn7.pads.btn-div{:href => "#"} Register
       / cent-text
     / lcol-lg-6
     .col-md-offset-3
@@ -208,41 +224,18 @@
 
 :javascript
   $(document).ready(function(){
-  //$("#onee").on('click', function() {
-  //   $(".hidee").hide();
-  //   $(".showw").show();
-  //});
-  //$("#onee").on('click', function() {
-  //   $(".hidees2").hide();
-  //   $(".showw").show();
-  //});
-  //$(".bnss").on('click', function() {
-  //   $(".noak").show();
-  //});
-  //$("#onee2").on('click', function() {
-  //   $(".hidee2").hide();
-  //   $(".showw2").show();
-  //});
-  //$("#onee3").on('click', function() {
-  //   $(".showw2").hide();
-  //   $(".hidee2").show();
-  //});
-  //$("#onee4").on('click', function() {
-  //   $(".hidee").hide();
-  //   $(".showw").show();
-  //});
-    $('#selector').gentleSelect(); // apply gentleSelect with default options
-    $('#selector2').gentleSelect(); // apply gentleSelect with default options
-    $('#selector3').gentleSelect(); // apply gentleSelect with default options
-    $('#selector4').gentleSelect(); // apply gentleSelect with default options
-    $('#selector5').gentleSelect(); // apply gentleSelect with default options
-    $('#selector6').gentleSelect(); // apply gentleSelect with default options
-    $('#datepicker').datepicker({
-        inline: true
+    $('#register').hide();
+    $(".register_button").on('click', function() {
+       $("#login").hide();
+       $("#homepage_options").removeClass("visible-lg");
+       $("#homepage_options").hide();
+       $("#register").show();
     });
-    $('#datepicker2').datepicker({
-        inline: true
-    });
+
+    $('#user_city_id').gentleSelect(); // apply gentleSelect with default options
+    $('#user_university_id').gentleSelect(); // apply gentleSelect with default options
+    $('#user_graduation_year').gentleSelect(); // apply gentleSelect with default options
+
     $('.selectyze2').Selectyze({
         theme : 'mac'
     });
