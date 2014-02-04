@@ -1,10 +1,9 @@
-class HomeController < ApplicationController
+class HomeController < ActionController::Base
+  layout 'sessions'
+
   def index
-    @users = User.all
     if current_user
-      @universities = [current_user.university]
-    else
-      @universities = University.all
+      redirect_to university_path(current_user.university)
     end
   end
 end
