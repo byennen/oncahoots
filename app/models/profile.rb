@@ -17,7 +17,7 @@ class Profile < ActiveRecord::Base
   accepts_nested_attributes_for :portfolio_items, allow_destroy: true
   accepts_nested_attributes_for :faqs, allow_destroy: true
   accepts_nested_attributes_for :contact_requirement
-  accepts_nested_attributes_for :educations
+  accepts_nested_attributes_for :educations, :allow_destroy => true
 
   mount_uploader :image, ImageUploader
 
