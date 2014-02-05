@@ -3,6 +3,10 @@ $green: #00c088;
 
 
 #clubs, #metropolitan_clubs {
+  .carousel-inner {
+    height: 300px;
+  }
+
   li{
     list-style-type: none !important;
   }
@@ -57,7 +61,7 @@ $green: #00c088;
   }
 }
 
-#clubs {
+#clubs, #metropolitan_clubs {
   .clubs-inner {
     display: block;
     position: relative;
