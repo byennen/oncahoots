@@ -7,10 +7,11 @@ class MetropolitanClub < Club
 
   class << self
     def metropolitan_clubs_sorted_by_popularity
-      unless @metropolitan_clubs_sorted_by_popularity
-        @metropolitan_clubs_sorted_by_popularity = Membership.memberships_sorted_by_popularity.where("clubs.type = 'MetropolitanClub'").limit(200).to_a.map(&:club_id).map {|club_id| Club.find_by_id(club_id)}.compact
+      Rails.cache.fetch 'metropolitan_clubs_sorted_by_popularity', expires_in: 1.day do
+        metropolitan_clubs_with_membership = Membership.memberships_sorted_by_popularity.where("clubs.type = 'MetropolitanClub'").limit(200).to_a.map(&:club_id).map { |club_id| Club.find_by_id(club_id) }
+        other_metropolitan_clubs = MetropolitanClub.includes(:memberships).where(memberships: {club_id: nil}).limit(200).to_a
+        (metropolitan_clubs_with_membership + other_metropolitan_clubs).compact
       end
-      @metropolitan_clubs_sorted_by_popularity
     end
   end
 
