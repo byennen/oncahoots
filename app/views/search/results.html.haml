@@ -16,9 +16,9 @@
         .con
           .half
             .paddings
-              = link_to user_profile_path(user, user.profile), class: "csthumb" do
+              = link_to user_path(user), class: "csthumb" do
                 = display_image user.profile.image, "medium"
-              = link_to user_profile_path(user, user.profile) do
+              = link_to user_path(user) do
                 %h4= user.name
               %br
               = user.graduation_year
@@ -52,7 +52,7 @@
         .con
           .half
             .paddings
-              = link_to "#university_event_path(@university, event)", class: "csthumb" do
+              = link_to university_event_path(@university, event), class: "csthumb" do
                 = display_image event.image, "medium"
               %h4= event.title
               %br

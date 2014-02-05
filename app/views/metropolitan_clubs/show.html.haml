@@ -41,10 +41,10 @@
         #alumnis.hide.filter-content= render partial: "clubs/members", locals: {members: @club.members.alumni}
         #students.hide.filter-content= render partial: "clubs/members", locals: {members: @club.members.student}
        
-    #about.members.tab-pane{:style => "padding-top:0;"}
+    #about.members.tab-pane
       = render partial: "clubs/about"
 
-    #photos.members.tab-pane{:style => "padding:0; float:left; width:100%;"}
+    #photos.members.tab-pane
       %a#create-album-link.npost{"data-target" => "#create_album", "data-toggle" => "modal", :href => "#"} New Album >>
       - @club.albums.each do |album|
         .music
@@ -82,6 +82,10 @@
         $(this).addClass('current');
         $('.filter-content').addClass("hide");
         $($(this).data("target")).removeClass('hide');
+      });
+
+      $("form").submit(function(){
+        $('input[type="submit"]').attr('disabled','disabled');
       });
 
     });
