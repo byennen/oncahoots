@@ -25,4 +25,9 @@ class MetropolitanClub < Club
     mems.where("id not in (?)", leaders.map(&:id))
   end
 
+  def city_name
+    # using splitter for orders of magnitude faster performance
+    name.split(' ').to_a.last || (city && city.name) || name
+  end
+
 end
