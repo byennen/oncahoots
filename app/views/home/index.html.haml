@@ -1,13 +1,8 @@
-:css
-  #homepage_banner {
-    background: url(../../assets/homepage_banner.jpg) no-repeat;
-    padding-bottom: 100px;
-    background-size: 100% 800px;
-  }
 #homepage_banner
   .row.login_banner_image
     .col-md-12
       = link_to image_tag('logo.png'), root_path, class: 'logo2'
+
   #login.row
     .col-md-12.text-center
       %h1 Professional Alumni Network + Vibrant College Campus =
@@ -16,21 +11,24 @@
         %br
         TO THE REAL WORLD.
     .row
-      .col-md-offset-4.col-md-4.col-sm-12
+      .col-md-offset-4.col-lg-4.col-md-4.col-sm-12
         = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-vertical'}) do |f|
           = f.input :email, placeholder: 'Email', label: false
           = f.input :password, placeholder: 'Password', label: false
-          = link_to "Forgot password?", "#", class: 'fos'
           .row
             .col-md-12
-              %button.btn.btn-primary.col-md-5 Login
-              %a.register_button.btn.btn-primary.col-md-5.col-md-offset-2{href: '#'} Register
+              = link_to 'Forgotten Password?', 'users/password/new', class: 'fos'
+          #options.row
+            .col-md-12
+              %button.btn.btn-primary.col-md-5.btn-homepage Login
+              %a.register_button.btn.btn-primary.col-md-5.col-md-offset-2.btn-homepage{href: '#'} Register
           .row
             .col-md-12
               %a.ico{:href => "#"}
                 = image_tag('linkedin.png')
               %a.ico{:href => "#"}
                 = image_tag('facebook.png')
+
   #register.row
     .col-md-offset-3.col-md-6
       = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'login-form' }) do |f|
@@ -48,8 +46,7 @@
             = f.input :email, :required => true, label: false, input_html: {placeholder: "email"}
             = f.input :password, :required => true, label: false, input_html: {placeholder: "password"}
             = f.input :password_confirmation, :required => true, label: false, input_html: {placeholder: "password confirmation"}
-          / lhs
-        / half
+
         .col-md-6.ins
           .lhs
             %small Select the area nearest your hometown or select other.
@@ -70,256 +67,94 @@
 
             %button.btn7.sign.btn-div{:name => "btn"} Sign Up
 
-          -#.clearfix
-          -#.clearfix
-          -#%label.left
-          -#%span.left Current City
-          -#%span#other-city= f.input :other_city, label: false, input_html: {placeholder: "other city", class: "fioled0"}
-          -#.clearfix
-          -#
-          -#.clearfix
-          -#= f.check_box :alumni, class: "checkb"
-          -#%span Sign up As Alumni
-          -#.clearfix
-          -##professional_fields.hide
-          -#  %span.left Professional Field
-          -#  = f.select :professional_field_id, options_from_collection_for_select(ProfessionalField.all.sort_by(&:name), :id, :name, resource.professional_field_id)
-          -#
-          -#%button.btn.btn-success.btn4.chang6 Register
   #homepage_options.row.visible-lg
-    .col-md-12
-    .col-md-offset-3
-    / col-lg-offset-3
     .col-md-4
       .centerx
-        %a.mod6.btn6{:href => "#students"} For Students
-      / centerx
-    / col-lg-4
-    .col-md-4
-      .centerx
-        %a.mod6.btn6{:href => "#alumni"} For Alumni
-      / centerx
-    / col-lg-4
-    .col-md-4
-      .centerx
-        %a.mod6.btn6{:href => "#about"} About Us
+        %a.mod6.btn-primary.btn-homepage{:href => "#students"} For Students
 
-.row
-  #students.sectio2
+    .col-md-4
+      .centerx
+        %a.mod6.btn-primary.btn-homepage{:href => "#alumni"} For Alumni
+
+    .col-md-4
+      .centerx
+        %a.mod6.btn-primary.btn-homepage{:href => "#about"} About Us
+
+#students.section-background.row
+  .row
     .col-md-3
       .heading
         %p For Students
-      / heading
-    / col-lg-3
-    .col-md-6
-      .cent-text
-        %h3 Find Free Food on Your Campus
-        %p
-          View every campus event that offers free food every day.
-          %br/
-          Hunger, be gone!
-      / cent-text
-    / col-lg-6
-    .clearfix
-    .col-md-offset-3
-    / col-lg-offset-3
+  .row
+    .col-md-12.cent-text
+      %h3 Find Free Food on Your Campus
+      %p
+        View every campus event that offers free food every day.
+        %br/
+        Hunger, be gone!
+
+  .row
     .col-md-12
-      .carus.strit
+      .slider
         %ul#flexiselDemo1
           %li= link_to image_tag('im1.png', width: '160'), "#"
           %li= link_to image_tag('im2.png', width: '160'), "#"
           %li= link_to image_tag('im3.png', width: '160'), "#"
-        %i
+      .slider-background
+  .row
+    .col-md-offset-1.col-md-5
+      .cent-text
+        %h3 Organize Your Clubs and Organizations
+        %p
+          Any student organization can create its own webpage for both internal organization and external communication.
+          On Cahoots will make leaders of us all.
 
-      .col-md-offset-1.col-md-5
-        .cent-text
-          %h3 Organize Your Clubs and Organizations
-          %p
-            Any student organization can create its own webpage for both internal organization and external communication.
-            On Cahoots will make leaders of us all.
-
-      .col-md-5
-        .cent-text
-          %h3 Access Your College Network
-          %p The easiest way to access your network - view a map of all alumni around the world. Filter alums based on their location, field, grad year or major.
-    .clearfix
-
-    .col-md-offset-1
-    / col-lg-offset-1
-  / sectio2
-/ row
+    .col-md-5
+      .cent-text
+        %h3 Access Your College Network
+        %p The easiest way to access your network - view a map of all alumni around the world. Filter alums based on their location, field, grad year or major.
 .clearfix
-/ clearfix
-.row
-  #alumni.sectio2.nom
+
+.row#alumni.section-background.nom
+  .row
     .col-md-3
       .heading
         %p For Alumni
-      / heading
-    / col-lg-3
-    .col-md-6
-      .cent-text
-        %h3 Access to Your College Network
-        %p Reach out to old college friends or connect with other alums in your field. Since your time is valuable, set contact requirements to limit communication from students.
-      / cent-text
-    / col-lg-6
-    .clearfix
-    .col-md-offset-3
-    / col-lg-offset-3
+  .row
+    .col-md-12.cent-text
+      %h3 Access to Your College Network
+      %p Reach out to old college friends or connect with other alums in your field. Since your time is valuable, set contact requirements to limit communication from students.
+  .row
     .col-md-12
-      .carus.strit
-        %ul#flexiselDemo12
+      .slider
+        %ul#flexiselDemo2
           %li= link_to image_tag('im11.png', width: '160'), "#"
           %li= link_to image_tag('im22.png', width: '160'), "#"
           %li= link_to image_tag('im33.png', width: '160'), "#"
-      / carus
-      %i
-
+      .slider-background
+  .row
     .col-md-offset-1.col-md-5
       .cent-text.newt
         %h3 Find Your College Wherever You Go
         %p When moving or travelling a new city, click on the alumni map to see who is nearby. Checkout news posted by your college network on each city's Cahoots page.
-      / cent-text
-    / col-lg-5
+
     .col-md-5
       .cent-text.newt2
         %h3 Stay In Touch with Your College Clubs
         %p Remain an alum member of all the organizations that made your college experience so memorable. What is a cause without a community?
-      / cent-text
-    / col-lg-5
-    .clearfix
-    .col-md-offset-1
-    / col-lg-offset-1
-  / sectio2
-/ row
 .clearfix
-.row
-  #about.sectio2.nom2
-    .col-md-3
-      .heading
-        %p About Us
-      / heading
-    / col-lg-3
-    .col-md-6
-      #new.cent-text
-        %h3 Your Network is Waiting For You. On Cahoots.
-        %br/
-        %p The college experience isn't just those unforgettable four years. It is the creattive interaction that abounds when athletes, artists, academics, and adventurers meet and collaborate on ideas. It is about whta happens next with the new abilities, talents and confidence instilled by a college education. Imagine the potential of keeping your college community always in contact. On Cahoots creates meaningful relationships between alumni and students in order to maintain cohesive college communities.
-        %br/
-        %a.register_button.btn7.pads.btn-div{:href => "#"} Register
-      / cent-text
-    / lcol-lg-6
-    .col-md-offset-3
-    / col-lg-offset-3
-    .clearfix
-  / sectio2
-/ row
+
+
+#about.row
+  .col-md-4
+    .heading
+      %p About Us
+
+  .col-md-4
+    #new.cent-text
+      %h3 Your Network is Waiting For You. On Cahoots.
+      %br/
+      %p The college experience isn't just those unforgettable four years. It is the creattive interaction that abounds when athletes, artists, academics, and adventurers meet and collaborate on ideas. It is about whta happens next with the new abilities, talents and confidence instilled by a college education. Imagine the potential of keeping your college community always in contact. On Cahoots creates meaningful relationships between alumni and students in order to maintain cohesive college communities.
+      %br/
+      %a.register_button.btn7.pads.btn-div{:href => "#"} Register
 .clearfix
-/ container
-= javascript_include_tag 'plugins/jquery-gentleSelect'
-= javascript_include_tag 'plugins/jquery.flexisel'
-= javascript_include_tag 'plugins/jquery.scrollTo'
-= javascript_include_tag 'plugins/jquery.nav'
-= javascript_include_tag 'main'
-
-:javascript
-  $(document).ready(function(){
-    $('#register').hide();
-    $(".register_button").on('click', function() {
-       $("#login").hide();
-       $("#homepage_options").removeClass("visible-lg");
-       $("#homepage_options").hide();
-       $("#register").show();
-    });
-
-    $('#user_city_id').gentleSelect(); // apply gentleSelect with default options
-    $('#user_university_id').gentleSelect(); // apply gentleSelect with default options
-    $('#user_graduation_year').gentleSelect(); // apply gentleSelect with default options
-
-    $('.selectyze2').Selectyze({
-        theme : 'mac'
-    });
-    $('.basic').fancySelect();
-  $(window).load(function() {
-      $("#flexiselDemo1").flexisel({
-          enableResponsiveBreakpoints: true,
-          responsiveBreakpoints: {
-              portrait: {
-                  changePoint:480,
-                  visibleItems: 1
-              },
-              landscape: {
-                  changePoint:640,
-                  visibleItems: 2
-              },
-              tablet: {
-                  changePoint:768,
-                  visibleItems: 3
-              }
-          }
-      });
-  $("#flexiselDemo12").flexisel({
-          enableResponsiveBreakpoints: true,
-          responsiveBreakpoints: {
-              portrait: {
-                  changePoint:480,
-                  visibleItems: 1
-              },
-              landscape: {
-                  changePoint:640,
-                  visibleItems: 2
-              },
-              tablet: {
-                  changePoint:768,
-                  visibleItems: 3
-              }
-          }
-      });
-  });
-  $('#nav2').onePageNav({
-        begin: function() {
-        console.log('start')
-        },
-        end: function() {
-        console.log('stop')
-        }
-    });
-  });
-
--#
--#.login
--#  .span12{style: "margin-bottom: 23%"}
--#    .span8
--#      .span9
--#        .welcome
--#          %p Professional alumni network +
--#          %p Vibrant college campus =
--#          %p The best four years of your life brought to the real world
--#    .span4
--#      .span11
--#        = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-vertical login-form'}) do |f|
--#          %input#user_email.string.email.fioled0{:name => 'user[email]', :autofocus => 'autofocus', :type => 'email', :placeholder => 'Email'}
--#          %input#user_password.password.fioled0{:name => 'user[password]', :autofocus => 'autofocus', :type => 'password', :placeholder => 'Password'}
--#          = link_to "Forgot password?", "#"
--#          .clearfix
--#          .top
--#            %a.btn.btn-success.submit{style: "width: 35%;"} Login
--#            %a.btn.btn-success{href: new_user_registration_path, style: "width: 35%"} Register
--#            %a.top{href: "/auth/linkedin"}
--#              %i.linkedin
--#          .transparent=f.submit
--#      .span10.top2
--#        .span8= text_field_tag :request_school, "", placeholder: "Request your school", class: "fioled0"
--#        .span3.top= link_to "request", "javascript:;", class: "btn btn-success"
--#
--#
--#  .span12
--#    .welcome.offset2
--#      %p Your network is waiting for you. On Cahoots.
--#      %br
--#      %br
--#
--#:javascript
--#  $("a.submit").click(function(){
--#    $(this).closest("form").submit();
--#  });
