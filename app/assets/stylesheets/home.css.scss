@@ -48,13 +48,9 @@
     margin: 20px 0;
   }
   .btn-homepage {
-    line-height: 3;
-    font-size: 20px;
     font-weight: bold;
   }
   .form-control {
-    font-size: 20px;
-    height: 70px;
     color: black;
     @include placeholder {
       color: black;

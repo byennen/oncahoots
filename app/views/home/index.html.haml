@@ -34,7 +34,7 @@
       = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'login-form' }) do |f|
         = f.error_notification
         = display_base_errors resource
-        .col-md-6.ins
+        .col-md-6
           .lhs
             %p CHOOSE ONE:
             %a.btn9.cn{:href => "#"} Student
@@ -47,7 +47,7 @@
             = f.input :password, :required => true, label: false, input_html: {placeholder: "password"}
             = f.input :password_confirmation, :required => true, label: false, input_html: {placeholder: "password confirmation"}
 
-        .col-md-6.ins
+        .col-md-6
           .lhs
             %small Select the area nearest your hometown or select other.
             = f.select :city_id, options_for_select(City.order(:name).collect{ |c| [c.name, c.id] } + [["Other", 0]], resource.city_id), prompt: "Current City"
