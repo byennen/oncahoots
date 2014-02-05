@@ -37,6 +37,9 @@ class ClubsController < ApplicationController
     @club = @university.clubs.find_by_slug(params[:id])
     @updateable = @club
     if @club
+      if @club.is_a?(MetropolitanClub)
+        return redirect_to metropolitan_club_path(@club)
+      end
       @posts = @club.posts.order("created_at desc")
       @my_photos = user_signed_in? ? @club.club_photos.by_user(current_user) :[]
       @membership = Membership.new

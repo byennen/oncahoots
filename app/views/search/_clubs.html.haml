@@ -2,12 +2,12 @@
   - @clubs.each do |club|
     %li.span3{style: "margin-left: 20px; margin-top: 50px;"}
       .users
-        = link_to university_club_path(@university, club) do
+        = link_to club_link_path(@university, club) do
           = display_image club.image, "xlarge"
           %span{style: "margin-left: 21px;"}= club.name
         .hovers
           %p= club.description
-          - path = club.instance_of?(MetropolitanClub) ? metropolitan_club_path(club) : university_club_path(@university, club)
+          - path = club.instance_of?(MetropolitanClub) ? metropolitan_club_path(club) : club_link_path(@university, club)
           = link_to "view", path, style: "margin-left: 45%"
 %h4.left
   = "No results found" if @clubs.blank?

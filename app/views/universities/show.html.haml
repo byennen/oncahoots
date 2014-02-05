@@ -19,13 +19,13 @@
               %button.btn.btn2{:name => "btn"} Find your club. Find your passion. >>
           - @clubs.each do |club|
             %li
-              %a{:href => university_club_path(@university, club)}
+              %a{:href => club_link_path(@university, club)}
                 %button.btn.btn2{:name => "btn"}= club.name
 
       .row
         .col-md-6.no-padding
           .university-most-popular-club
-            = link_to @university.most_popular_club ? university_club_path(@university, @university.most_popular_club) : university_clubs_path(@university), "class" => "university-most-popular-club-action", "data-background-image" => @university.  most_popular_club ? @university.most_popular_club.image.xxlarge.url : image_path('blank_image.png') do
+            = link_to @university.most_popular_club ? club_link_path(@university, @university.most_popular_club) : university_clubs_path(@university), "class" => "university-most-popular-club-action", "data-background-image" => @university.  most_popular_club ? @university.most_popular_club.image.xxlarge.url : image_path('blank_image.png') do
               .blank
                 - if @university.most_popular_club
                   #{@university.most_popular_club.name} (#{@university.most_popular_club.memberships.count})
@@ -40,20 +40,15 @@
               - club = update.updateable
               %p.nsw
                 %span
-                  %a{:href => university_club_path(@university, club)}= club.name
+                  %a{:href => club_link_path(@university, club)}= club.name
                 = truncate update.body, length: 30
                 %span
                   %a{href: "#update#{update.id}-popup", data: {toggle: "modal"}} >>
 
     .col-md-6.no-padding
       .slider
-        #filter_bar= render partial: "events/filter_bar"
-      
-        .row#event-carousel{style: "min-height: 150px"}
-          .events-slide= render partial: "events/slide", locals: {events: @events}
-        %a{:href => university_events_path(@university)}
-          %button.btn.btn3{:name => "btn"} View All
-      
+        = render 'slider', university: @university, events: @events
+
       .row
         .col-md-6.no-padding
           .alumni-search.college-information

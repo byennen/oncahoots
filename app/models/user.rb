@@ -169,7 +169,7 @@ class User < ActiveRecord::Base
   end
 
   def member_of?(club)
-    clubs.include?(club)
+    clubs.map(&:id).include?(club.id)
   end
 
   def manage_club?(club)

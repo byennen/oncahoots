@@ -6,7 +6,7 @@
   
 = content_for :left_side do
   .rub-club{style: "background: url(#{@club.image}) no-repeat; height: 320px;"}
-    %button.btn9= @club.city.name
+    %button.btn9= @club.city && @club.city.name
 
   %ul.sub-nav
     %li.active= link_to "Bulletin Board", "#bboard", "data-toggle" => "tab"

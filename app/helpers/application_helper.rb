@@ -104,4 +104,7 @@ module ApplicationHelper
     javascript_include_tag controller_path if Dir.glob(controller_javascript_path).present?
   end
 
+  def club_link_path(university, club)
+    club.is_a?(MetropolitanClub) ? metropolitan_club_path(club) : university_club_path(university, club)
+  end
 end

@@ -23,7 +23,7 @@ class University < ActiveRecord::Base
   def most_popular_club
     unless @most_popular_club.present?
       club_ids = clubs.pluck(:id)
-      most_popular_club_grouped_membership = Membership.select("count(*) as membership_count, club_id").group(:club_id).where("club_id in (?)", club_ids).order("membership_count desc").limit(1).first
+      most_popular_club_grouped_membership = Membership.memberships_sorted_by_popularity.where("club_id in (?)", club_ids).limit(1).first
       @most_popular_club = most_popular_club_grouped_membership.present? ? most_popular_club_grouped_membership.club : Club.find_by_id(club_ids[rand(club_ids.length)])
     end
     @most_popular_club

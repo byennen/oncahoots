@@ -33,7 +33,7 @@
         .con
           .half
             .paddings
-              = link_to university_club_path(@university, club), class: "csthumb" do
+              = link_to club_link_path(@university, club), class: "csthumb" do
                 = display_image club.image, "medium"
               %h4= club.name
               %br
@@ -42,7 +42,7 @@
                 %br
                 = club.description
                 %br
-                = link_to university_club_path(@university, club) do
+                = link_to club_link_path(@university, club) do
                   VIEW PAGE
                   %span >>
     - unless @events.blank?

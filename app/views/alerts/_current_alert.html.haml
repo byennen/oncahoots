@@ -2,6 +2,6 @@
   - if current_alert.alertable.class == User
     = link_to display_image(current_alert.alertable.profile.image,"thumb"), user_path(current_alert.alertable)
   - else
-    = link_to display_image(current_alert.alertable.image,"thumb"), university_club_path(current_alert.alertable.university, current_alert.alertable)
+    = link_to display_image(current_alert.alertable.image,"thumb"), club_link_path(current_alert.alertable.university, current_alert.alertable)
   %p.comp
     #{alert_name(current_alert.alertable)} #{current_alert.message.html_safe}
