@@ -96,6 +96,8 @@ $(function() {
     $('.error-tooltip').tooltip('show');
     $(element).resetClientSideValidations();
   }
+
+  $('.gentle').gentleSelect();
 });
 
 $(document).on('ready page:load', function(){

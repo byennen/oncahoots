@@ -1,0 +1,17 @@
+#filter_bar= render "events/filter_bar", university: university
+
+- if current_user.alumni?
+  .most_popular_metropolitan_clubs
+    - university.metropolitan_clubs_sorted_by_popularity[0, 3].each do |club|
+      .popular_metropolitan_club
+        = link_to university_club_path(university, club) do
+          = image_tag club.image.medium, alt: club.name, class: "circular cir-img"
+          %p= club.name
+  %a{:href => university_clubs_path(university)}
+    %button.btn.btn3{:name => "btn"} View All
+- else
+  .row#event-carousel{style: "min-height: 150px"}
+    .events-slide= render partial: "events/slide", locals: {events: events}
+  %a{:href => university_events_path(university)}
+    %button.btn.btn3{:name => "btn"} View All
+

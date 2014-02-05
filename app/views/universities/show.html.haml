@@ -47,13 +47,8 @@
 
     .col-md-6.no-padding
       .slider
-        #filter_bar= render partial: "events/filter_bar"
-      
-        .row#event-carousel{style: "min-height: 150px"}
-          .events-slide= render partial: "events/slide", locals: {events: @events}
-        %a{:href => university_events_path(@university)}
-          %button.btn.btn3{:name => "btn"} View All
-      
+        = render 'slider', university: @university, events: @events
+
       .row
         .col-md-6.no-padding
           .alumni-search.college-information

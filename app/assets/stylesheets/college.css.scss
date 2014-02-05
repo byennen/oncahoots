@@ -68,7 +68,51 @@ $hover_green: rgb(156,231,198);
     text-align: center;
   }
 
+  .most_popular_metropolitan_clubs {
+    .popular_metropolitan_club {
+      @include inline-block;
+      text-align: center;
+      vertical-align: middle;
+      img.circular.cir-img {
+        width: 145px;
+        height: 145px;
+        margin: 10px;
+      }
+    }
+    clear: both;
+  }
+
+  #filter_bar {
+    margin-top: -25px;
+    margin-bottom: -15px;
+    .title {
+      @include inline-block;
+      font-size: 18px;
+      vertical-align: top;
+      @include linear-gradient(transparent, transparent);
+      padding-top: 10px;
+    }
+    .club-filter {
+      @include inline-block;
+      vertical-align: top;
+      text-align: left;
+      .gentleselect-label {
+        @include inline-block;
+        width: 170px;
+        float: none;
+        margin: 0;
+        padding-top: 10px;
+      }
+      .gentleselect-dialog {
+        width: 200px;
+      }
+    }
+  }
+
   .slider {
+    .btn3 {
+      margin: 0 0 10px 0;
+    }
     display: block;
     position: relative;
     text-align: center;
