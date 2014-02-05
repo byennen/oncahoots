@@ -8,7 +8,7 @@
       .fleft.left2
         - if event.club
           %strong Club
-          = link_to event.club.name, university_club_path(event.university, event.club)
+          = link_to event.club.name, club_link_path(event.university, event.club)
           %br
         - if event.free_food
           %strong Free food 

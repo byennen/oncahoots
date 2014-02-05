@@ -2,9 +2,9 @@
 
 - if current_user.alumni?
   .most_popular_metropolitan_clubs
-    - university.metropolitan_clubs_sorted_by_popularity[0, 3].each do |club|
+    - MetropolitanClub.metropolitan_clubs_sorted_by_popularity[0, 3].each do |club|
       .popular_metropolitan_club
-        = link_to university_club_path(university, club) do
+        = link_to club_link_path(university, club) do
           = image_tag club.image.medium, alt: club.name, class: "circular cir-img"
           %p= club.name
   %a{:href => university_clubs_path(university)}

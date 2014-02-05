@@ -2,7 +2,7 @@
   .span12.top2.no-lmar{id: "event-#{event.id}"}
     .span2.no-lmar
       - if event.club && event.club.instance_of?(Club)
-        = link_to university_club_path(@university, event.club) do
+        = link_to club_link_path(@university, event.club) do
           = display_image event.club.image, "thumb"
       - elsif event.club && event.club.instance_of?(MetropolitanClub)
         = link_to metropolitan_club_path(event.club) do

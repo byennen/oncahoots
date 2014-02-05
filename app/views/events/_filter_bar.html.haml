@@ -2,7 +2,7 @@
   %h2.title
     Access your network wherever you go.
   %h2.club-filter
-    = select_tag "metropolitan_club", options_from_collection_for_select(university.metropolitan_clubs_sorted_by_popularity, "slug", "name"), :prompt => "Select City", :id => "metropolitan_club_city_selector", :class => "gentle"
+    = select_tag "metropolitan_club", options_from_collection_for_select(MetropolitanClub.metropolitan_clubs_sorted_by_popularity, "slug", "name"), :prompt => "Select City", :id => "metropolitan_club_city_selector", :class => "gentle"
 - else
   %h2
     Find

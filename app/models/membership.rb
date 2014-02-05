@@ -1,4 +1,4 @@
-class Membership < ActiveRecord::Base
+  class Membership < ActiveRecord::Base
   belongs_to :user
   belongs_to :club
 
@@ -6,6 +6,12 @@ class Membership < ActiveRecord::Base
 
   #validates_presence_of :invitation_id, :message => 'is required'
   #validates_uniqueness_of :invitation_id
+
+  class << self
+    def memberships_sorted_by_popularity
+      Membership.select("count(*) as membership_count, club_id, clubs.type as club_type").group("club_id, clubs.type").joins("inner join clubs on club_id = clubs.id").order("membership_count desc")
+    end
+  end
 
   def invitation_token
     invitation.token if invitation

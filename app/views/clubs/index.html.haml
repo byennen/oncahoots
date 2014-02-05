@@ -19,8 +19,7 @@
   .my-clubs
     .btn4.text-center My Clubs
     - current_user.clubs.each do |club|
-      - path = club.is_a?(MetropolitanClub) ? metropolitan_club_path(club) : university_club_path(@university, club)
-      = link_to path do
+      = link_to club_link_path(@university, club) do
         .club-title= club.name
         = image_tag club.image
     - if current_user.clubs.blank?

@@ -1,10 +1,9 @@
 - @clubs.each do |club|
-  - club_link_path = club.is_a?(MetropolitanClub) ? metropolitan_club_path(club) : university_club_path(@university, club)
   .music
-    = link_to club_link_path do
+    = link_to club_link_path(@university, club) do
       .music-img
         = image_tag club.image
-    = link_to club_link_path do
+    = link_to club_link_path(@university, club) do
       %span
         %strong
           = "#{truncate(club.name, length: 12)}"

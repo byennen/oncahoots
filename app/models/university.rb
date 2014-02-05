@@ -20,22 +20,10 @@ class University < ActiveRecord::Base
     metropolitan_clubs.find_by_city_id city_id
   end
 
-  def metropolitan_clubs_sorted_by_popularity
-    unless @metropolitan_clubs_sorted_by_popularity
-      club_ids = metropolitan_clubs.pluck(:id)
-      @metropolitan_clubs_sorted_by_popularity = memberships_sorted_by_popularity(club_ids).limit(200).to_a.map(&:club_id).map {|club_id| Club.find_by_id(club_id)}.compact
-    end
-    @metropolitan_clubs_sorted_by_popularity
-  end
-
-  def memberships_sorted_by_popularity(club_ids)
-    Membership.select("count(*) as membership_count, club_id").group(:club_id).where("club_id in (?)", club_ids).order("membership_count desc")
-  end
-
   def most_popular_club
     unless @most_popular_club.present?
       club_ids = clubs.pluck(:id)
-      most_popular_club_grouped_membership = memberships_sorted_by_popularity(club_ids).limit(1).first
+      most_popular_club_grouped_membership = Membership.memberships_sorted_by_popularity.where("club_id in (?)", club_ids).limit(1).first
       @most_popular_club = most_popular_club_grouped_membership.present? ? most_popular_club_grouped_membership.club : Club.find_by_id(club_ids[rand(club_ids.length)])
     end
     @most_popular_club
