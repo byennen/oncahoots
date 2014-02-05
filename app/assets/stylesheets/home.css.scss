@@ -53,9 +53,8 @@
     font-weight: bold;
   }
   .form-control {
-    font-size: 32px;
+    font-size: 20px;
     height: 70px;
-    line-height: 3;
     color: black;
     @include placeholder {
       color: black;
