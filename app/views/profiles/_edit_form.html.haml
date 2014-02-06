@@ -35,7 +35,7 @@
             = profile_fields.file_field :image
         %p
           .span11.fright.pull-right
-            %input.btn.btn-small.btn-success.form-field(name="commit" type="submit" value="Save")
+            %input.btng.btn.btn-small.btn-success.form-field(name="commit" type="submit" value="Save")
         .clearfix
       %ul.nav.nav-pills
         %li
@@ -63,19 +63,21 @@
                 = e.text_field :university, placeholder: "University", class: 'edtitor7 field-edit'
                 in
                 = e.select :graduation_year, options_for_select((Date.today.year + 7).downto(1940).to_a, e.object.graduation_year), {}, class: 'edtitor8 field-edit'
-                \.
                 %br/
                 I received my
                 = e.text_field :degree_type, placeholder: "Degree Type", class: 'edtitor9 field-edit'
                 in
                 = e.text_field :major, placeholder: "Study", class: 'edtitor1a field-edit'
-                \.
-              .clearfix
+              %br.clearfix
+              %br.clearfix
               = e.text_area :description, placeholder: "Additional description", rows: "2", class: "same texta2", style: 'display:block'
+              %br.clearfix
               = e.link_to_remove "<i class='icon-remove'></i>".html_safe
+            %br.clearfix
           .span11.text-left= f.link_to_add "Add", :educations, class: "btn btn-primary btn-mini fleft field-edit", style: "margin-left: 30px"
           .span11.fright.col-md-11.pull-right
             = f.submit "Save", class: "btn btn-small btn-success fright form-field btng ch2s"
+          .clearfix
       #echo.paragraph
         .title3
           %h4 Skills &amp; Interests
@@ -99,7 +101,7 @@
               = f.text_field :interested3, placeholder: "interested 3", class: 'edtitor2b field-edit'
               .clearfix
               .span11.fright
-                = f.submit "Save", class: "btn btn-small btn-success fright form-field field-edit", class: 'form-field'
+                = f.submit "Save", class: "btn btn-small btn-success fright form-field btng ch2s"
 
         .clearfix
       #echo.paragraph2
@@ -132,7 +134,7 @@
                 = ef.link_to_remove "<i class='icon-remove'></i>".html_safe
           .span11.text-left= f.link_to_add "Add", :experiences, class: "btn btn-primary btn-mini fleft field-edit", style: "margin-left: 30px"
           .span11.fright.col-md-11.pull-right
-            = f.submit "Save", class: "btn btn-small btn-success fright form-field btng ch2s", class: 'form-field'
+            = f.submit "Save", class: "btn btn-small btn-success fright btng ch2s form-field"
 
     #portfolio.tab-pane.fade
       .paragraph2
