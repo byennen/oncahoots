@@ -1,0 +1,186 @@
+#network.profile_main_content.row
+  .col-md-5
+    = render 'profiles/profile_photo', user: @user
+
+  .col-md-7
+    .profile-text
+      %p
+        Hi! My name is
+        = succeed "." do
+          %span.form-field= @user.name
+        - if @user.alumni?
+          I was a/an
+        - else
+          I am a/an
+        %span.form-field= @user.major
+        - if @user.double_major.present?
+          and
+          %span.form-field= @user.double_major
+        = @user.double_major.present? ? 'double major' : 'major'
+        at
+        = succeed "." do
+          %span.form-field= @user.university.name
+        ="I graduated in" if @user.alumni?
+        ="I will graduate in" unless @user.alumni?
+        = succeed "." do
+          %span.form-field= @user.graduation_year
+        My current city is
+        = succeed "." do
+          %span.form-field= @user.display_city
+
+        .clearfix
+      - if user_signed_in?
+        .row
+          .col-md-12
+            - if current_user.relatable?(@user)
+              %a{href: "#add-contact", class: "btn btn-primary", data: {toggle: "modal"}, style: "margin-right: 10px;"} Connect
+            - elsif Relationship.reciprocal?(current_user, @user)
+              %a{href: "javascript:;", class: "btn btn-danger", style: "margin-right: 10px;"} UnConnect
+
+      %ul.nav.nav-pills
+        %li
+          %a{:href => "#resume", "data-toggle" => "tab"}
+            Resume
+        %li
+          %a{:href => "#portfolio", "data-toggle" => "tab"}
+            Portfolio
+        = render 'profiles/faq_and_contact_requirements', user: @user
+      - if user_signed_in? && current_user == @user
+        %a#edt.edit{:href => "#{edit_user_profile_path(current_user, current_user.profile)}"}
+          Edit
+          %i
+            = image_tag('edit-icon.png')
+
+  .clearfix
+  .tab-content
+    #resume.tab-pane.fade.in
+      #echo.paragraph
+        .title3
+          %h4 Education
+          %i= image_tag('large-curve.png')
+        - @profile.educations.each do |edu|
+          .circlee
+            %p{:style => "padding-bottom:0;"}
+              I graduated from
+              %i.text7
+                %strong.form-field= edu.university || edu.high_school
+              in
+              = succeed "." do
+                %i.text8
+                  %strong.form-field= edu.graduation_year
+              %br/
+              I received my
+              %i.text9
+                %strong.form-field= edu.degree_type
+              in
+              = succeed "." do
+                %i.text1a
+                  %strong.form-field= edu.major
+      #echo.paragraph
+        .title3
+          %h4 Skills &amp; Interests
+          %i= image_tag('large-curve.png')
+        .circlee2
+          %p{:style => "font-size:17px;"}
+            I am skilled at
+            %i.text6a.form-field
+              %strong= @profile.skill1
+            #{',' if !@profile.skill1.blank? && !@profile.skill2.blank?}
+            %i.text7a.form-field
+              %strong= @profile.skill2
+            #{'and' if !@profile.skill3.blank? && (!@profile.skill1.blank? || !@profile.skill2.blank?) }
+            %i.text8a.form-field
+              %strong= @profile.skill3
+            %br/
+            %br/
+            I am interested in
+            %i.text9a.form-field
+              %strong= @profile.interested1
+            #{',' if !@profile.interested1.blank? && !@profile.interested2.blank?}
+            %i.text1b.form-field
+              %strong= @profile.interested2
+            #{'and' if !@profile.interested3.blank? && (!@profile.interested1.blank? || !@profile.interested2.blank?) }
+            %i.text2b.form-field
+              %strong= @profile.interested3
+      #echo.paragraph2
+        .title3
+          %h4 Experience
+          %i= image_tag('large-curve.png')
+        .clearfix
+        - @profile.experiences.each do |experience|
+          .circlee3
+            %p
+              Company
+              %i.text2a.form-field
+                %span= experience.company_name
+              %br/
+              %br/
+              I worked as a
+              %i.text3a.form-field
+                %span= experience.position_name
+              from
+              %i.text4a.form-field
+                %span= experience.date_started
+              to
+              = succeed "." do
+                %i.text5a.form-field
+                  %span= experience.date_ended
+              %br/
+              Additional Description of your position at this company as you wrote it. Click edit to change.
+              %br/
+      .clearfix
+
+    #portfolio.tab-pane.fade
+      .paragraph
+        .title3
+          %h4 Portfolio
+          %i= image_tag('large-curve.png')
+        - @profile.portfolio_items.each do |port|
+          .span11
+            Here is a portfolio of my work:
+            %br
+            .span2
+              = display_image_square port.image, 'thumb'
+
+            .span9
+              .span9.no-lmar= port.name
+              .span9.no-lmar= port.organization_name
+              .span9.no-lmar= raw port.description
+          .clearfix
+    #faq.tab-pane.fade
+      .paragraph
+        .title3
+          %h4 FAQs
+          %i= image_tag('large-curve.png')
+        #carousel-example-generic.carousel.slide.car2{"data-ride" => "carousel"}
+          .carousel-inner
+            - @profile.faqs.each_with_index do |faq, index|
+              .item(class="#{'active' if index == 0}")
+                %p
+                  %small.text3b.form-field
+                    %span= faq.question
+                  %br/
+                  %small.text4b.form-field= faq.answer
+          %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-example-generic"}
+            = image_tag('lefts.png')
+          %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-example-generic"}
+            = image_tag('rights.png')
+      .clearfix
+      .paragraph.ss2
+        .title3
+          %h4 Contact Requirements
+          %i= image_tag('large-curve.png')
+        .low
+          %p
+            My contact requirements for students include:
+            %br/
+            GPA Requirement:
+            %span= @profile.contact_requirement.try(:gpa_requirement)
+            , Major Requirement:
+            %span= @profile.contact_requirement.try(:major_requirement)
+            , Years of Experience:
+            %span= @profile.contact_requirement.try(:years_working_experience)
+            , Field of Experience:
+            %span= @profile.contact_requirement.try(:fields_of_interest)
+        .clearfix
+

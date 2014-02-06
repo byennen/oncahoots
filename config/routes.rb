@@ -157,6 +157,7 @@ CahootsConnect::Application.routes.draw   do
   resources :users do
     resources :profiles
     resource :profile do
+      put :contact_requirements, on: :member
       post :contact_requirements, on: :member
     end
     resources :contacts do
