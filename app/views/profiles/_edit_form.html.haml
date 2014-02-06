@@ -28,7 +28,6 @@
           = f.select :city_id, options_for_select(City.order(:name).collect{ |c| [c.name, c.id] } + [["Other", 0]], selected: @user.city_id), {}, class: 'edtitor6 field-edit'
           = f.text_field :other_city, placeholder: "Other City", class: 'edtitor6 field-edit'
           %br
-          / %textarea.same.textarea1{:name => "textarea", :placeholder => "Additional information.(Optional)"}
         = f.fields_for :profile do |profile_fields|
           %p
             Profile photo
@@ -52,7 +51,7 @@
         .title3
           %h4 Education
           %i= image_tag('large-curve.png')
-        ~ nested_form_for [@user, @profile], remote: true do |f|
+        ~ nested_form_for [@user, @profile] do |f|
           - @profile.educations.build if @profile.educations.blank?
           = f.fields_for :educations do |e|
             - edu = e.object
@@ -83,7 +82,7 @@
           %h4 Skills &amp; Interests
           %i= image_tag('large-curve.png')
         .circlee2
-          ~ form_for [@user, @profile], remote: true do |f|
+          ~ form_for [@user, @profile] do |f|
             %p{:style => "font-size:17px;"}
               I am skilled at
               = f.text_field :skill1, placeholder: "skill 1", class: 'edtitor6a field-edit'
@@ -99,49 +98,47 @@
               = f.text_field :interested2, placeholder: "interested 2", class: 'edtitor1b field-edit'
               #{'and' if !@profile.interested3.blank? && (!@profile.interested1.blank? || !@profile.interested2.blank?) }
               = f.text_field :interested3, placeholder: "interested 3", class: 'edtitor2b field-edit'
-              .clearfix
-              .span11.fright
-                = f.submit "Save", class: "btn btn-small btn-success fright form-field btng ch2s"
-
-        .clearfix
-      #echo.paragraph2
+            .span11.fright.col-md-11.pull-right
+              = f.submit "Save", class: "btn btn-small btn-success fright form-field btng ch2s"
+            .clearfix
+      #echo.paragraph
         .title3
           %h4 Experience
           %i= image_tag('large-curve.png')
-        ~ nested_form_for [@user, @profile], remote: true do |f|
-          - @profile.experiences.build if @profile.experiences.blank?
+        .clearfix
+        ~ nested_form_for [@user, @profile] do |f|
+          - @profile.experiences.order(:id).build if @profile.experiences.blank?
           = f.fields_for :experiences do |ef|
             - experience = ef.object
             .circlee3
               %p
+                Company
                 = ef.text_field :company_name, placeholder: "Company Name", class: 'edtitor2a field-edit'
-                %br/
                 %br/
                 I worked as a
                 = ef.text_field :position_name, placeholder: "Position Name", class: 'edtitor3a field-edit'
                 from
-                = ef.text_field :date_started, class: "date-inputmask edtitor4a field-edit", placeholder: "Date Started", value: ef.object.started
+                = ef.text_field :date_started, class: "datepicker edtitor4a field-edit", placeholder: "Date Started", value: ef.object.started
                 to
-                = ef.text_field :date_ended, class: "date-inputmask edtitor5a field-edit", placeholder: "Date Ended", value: ef.object.ended
-                \.
-                %br/
-                Additional Description of your position at this company as you wrote it. Click edit to change.
-                %br/
-                %br/
-                %br/
-                .clearfix
-                = ef.text_area :description, placeholder: "Additional description", rows: "2", class: "same texta3", style: 'display:block'
+                = ef.text_field :date_ended, class: "datepicker edtitor5a field-edit", placeholder: "Date Ended", value: ef.object.ended
+                %br.clearfix
+                %br.clearfix
+                = ef.text_area :description, placeholder: "Additional description", rows: "2", class: "same texta2", style: 'display:block'
+                %br.clearfix
                 = ef.link_to_remove "<i class='icon-remove'></i>".html_safe
+          %br.clearfix
           .span11.text-left= f.link_to_add "Add", :experiences, class: "btn btn-primary btn-mini fleft field-edit", style: "margin-left: 30px"
           .span11.fright.col-md-11.pull-right
-            = f.submit "Save", class: "btn btn-small btn-success fright btng ch2s form-field"
-
+            = f.submit "Save", class: "btn btn-small btn-success fright form-field btng ch2s"
+          .clearfix
+      .clearfix
     #portfolio.tab-pane.fade
-      .paragraph2
+      .paragraph
         .title3
           %h4 Portfolio
+          %i= image_tag('large-curve.png')
         - @profile.portfolio_items.build if @profile.portfolio_items.blank?
-        ~ nested_form_for [@user, @profile], remote: true do |f|
+        ~ nested_form_for [@user, @profile] do |f|
           .col-md-12 Here is a portfolio of my work:
           = f.fields_for :portfolio_items do |pf|
             .col-md-12
@@ -161,15 +158,17 @@
           .col-md-11.text-left= f.link_to_add "Add", :portfolio_items, class: "btn btn-primary btn-mini fleft field-edit", style: "margin-left: 80px"
           .span11.fright.col-md-11.pull-right
             = submit_tag "Save", class: "btn btn-small btn-success fright btng ch2s form-field"
-
+          .clearfix
+      .clearfix
     #faq.tab-pane.fade
-      .paragraph2
-        .title2
+      .paragraph
+        .title3
           %h4 FAQs
+          %i= image_tag('large-curve.png')
         #carousel-example-generic.carousel.slide.car2{"data-ride" => "carousel"}
           .carousel-inner
             - ind = 0
-            ~ nested_form_for [@user, @profile], remote: true do |f|
+            ~ nested_form_for [@user, @profile] do |f|
               - @profile.faqs.build if @profile.faqs.blank?
               = f.fields_for :faqs do |fq|
                 - faq = fq.object
@@ -181,18 +180,15 @@
                     = fq.link_to_remove "<i class='icon-remove'></i>".html_safe
               .span11.text-left= f.link_to_add "Add", :faqs, class: "btn btn-primary btn-mini fleft field-edit", style: "margin-left: 80px"
               .span11.fright.col-md-11.pull-right
-                = submit_tag "Save", class: "btn btn-small btn-success fright btng ch2s form-field"
+                = f.submit "Save", class: "btn btn-small btn-success fright btng ch2s form-field"
               .clearfix
               - ind += 1
-          %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-example-generic"}
-            = image_tag('lefts.png')
-          %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-example-generic"}
-            = image_tag('rights.png')
         .clearfix
-      .paragraph2.ss2
-        .title2
+      .paragraph.ss2
+        .title3
           %h4 Contact Requirements
-        ~ form_for @contact_requirements, url: contact_requirements_user_profile_path, remote: true do |f|
+          %i= image_tag('large-curve.png')
+        ~ form_for @contact_requirements, url: contact_requirements_user_profile_path do |f|
           .low1
             %p.span11
               My contact requirements for students include:
@@ -216,3 +212,5 @@
             %textarea.texta4.same{:placeholder => "Add contact requirements (Optional)"}
           .span11.fright.col-md-11.pull-right
             = f.submit "save", class: "btn btn-success btn-small fright btng ch2s form-field"
+          .clearfix
+      .clearfix

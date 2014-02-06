@@ -3,16 +3,16 @@
 <% else %>
   $('#bottom-alert').html('Profile was successfully updated')
 <% end %>
-$('#bottom-alert').show()
+$('#bottom-alert').fadeIn()
 setTimeout("$('#bottom-alert').hide()", 1000);
 
 $("#edit-profile").html("<%= escape_javascript(render('edit_form')) %>");
 
 $(document).on('nested:fieldAdded:faqs', function(event){
   var field = event.field;
-  field.find('.field-edit').show()
+  field.find('.field-edit').fadeIn()
 });
 
-$(".tab_content2").hide()
-$("ul.tabs2 li:first a").addClass("active22").show()
-$(".tab_content2:first").show()
+$(".tab_content2").fadeOut()
+$("ul.tabs2 li:first a").addClass("active22").fadeIn()
+$(".tab_content2:first").fadeIn()

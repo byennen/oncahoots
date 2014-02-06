@@ -106,9 +106,11 @@
         .title3
           %h4 Experience
           %i= image_tag('large-curve.png')
+        .clearfix
         - @profile.experiences.each do |experience|
           .circlee3
             %p
+              Company
               %i.text2a.form-field
                 %span= experience.company_name
               %br/
@@ -126,6 +128,7 @@
               %br/
               Additional Description of your position at this company as you wrote it. Click edit to change.
               %br/
+      .clearfix
 
     #portfolio.tab-pane.fade
       .paragraph2
