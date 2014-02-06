@@ -131,9 +131,10 @@
       .clearfix
 
     #portfolio.tab-pane.fade
-      .paragraph2
+      .paragraph
         .title3
           %h4 Portfolio
+          %i= image_tag('large-curve.png')
         - @profile.portfolio_items.each do |port|
           .span11
             Here is a portfolio of my work:
@@ -147,10 +148,10 @@
               .span9.no-lmar= raw port.description
           .clearfix
     #faq.tab-pane.fade
-      .paragraph2
-        .title2
+      .paragraph
+        .title3
           %h4 FAQs
-        / title2
+          %i= image_tag('large-curve.png')
         #carousel-example-generic.carousel.slide.car2{"data-ride" => "carousel"}
           .carousel-inner
             - @profile.faqs.each_with_index do |faq, index|
@@ -165,9 +166,10 @@
           %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-example-generic"}
             = image_tag('rights.png')
       .clearfix
-      .paragraph2.ss2
-        .title2
+      .paragraph.ss2
+        .title3
           %h4 Contact Requirements
+          %i= image_tag('large-curve.png')
         .low
           %p
             My contact requirements for students include:
