@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
   before_filter :check_completed_info
   before_filter :load_data
+  before_filter :select_tab
+
   helper_method :load_university_data, :return_auto_json
 
   protect_from_forgery
@@ -49,5 +51,9 @@ class ApplicationController < ActionController::Base
 
   def check_completed_info
     redirect_to finish_signup_path if current_user && !current_user.valid?
+  end
+
+  def select_tab
+    flash[:tab_id] ||= params[:tab_id] if params[:tab_id]
   end
 end

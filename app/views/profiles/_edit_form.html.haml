@@ -1,10 +1,12 @@
-#network.profile_main_content.row
+#network.profile_main_content.row{"data-tab-id" => flash[:tab_id]}
+
   .col-md-5
     = render 'profile_photo', user: @user
 
   .col-md-7
     .profile-text
       = form_for @user, html: { multipart: true} do |f|
+        = hidden_field_tag :tab_id, "resume"
         %p
           Hi! My name is
           = f.text_field :first_name, placeholder: "First Name", class: 'edtitor field-edit'
@@ -52,6 +54,7 @@
           %h4 Education
           %i= image_tag('large-curve.png')
         ~ nested_form_for [@user, @profile] do |f|
+          = hidden_field_tag :tab_id, "resume"
           - @profile.educations.build if @profile.educations.blank?
           = f.fields_for :educations do |e|
             - edu = e.object
@@ -83,6 +86,7 @@
           %i= image_tag('large-curve.png')
         .circlee2
           ~ form_for [@user, @profile] do |f|
+            = hidden_field_tag :tab_id, "resume"
             %p{:style => "font-size:17px;"}
               I am skilled at
               = f.text_field :skill1, placeholder: "skill 1", class: 'edtitor6a field-edit'
@@ -107,6 +111,7 @@
           %i= image_tag('large-curve.png')
         .clearfix
         ~ nested_form_for [@user, @profile] do |f|
+          = hidden_field_tag :tab_id, "resume"
           - @profile.experiences.order(:id).build if @profile.experiences.blank?
           = f.fields_for :experiences do |ef|
             - experience = ef.object
@@ -139,6 +144,7 @@
           %i= image_tag('large-curve.png')
         - @profile.portfolio_items.build if @profile.portfolio_items.blank?
         ~ nested_form_for [@user, @profile] do |f|
+          = hidden_field_tag :tab_id, "portfolio"
           .col-md-12 Here is a portfolio of my work:
           = f.fields_for :portfolio_items do |pf|
             .col-md-12
@@ -169,6 +175,7 @@
           .carousel-inner
             - ind = 0
             ~ nested_form_for [@user, @profile] do |f|
+              = hidden_field_tag :tab_id, "faq"
               - @profile.faqs.build if @profile.faqs.blank?
               = f.fields_for :faqs do |fq|
                 - faq = fq.object
@@ -189,6 +196,7 @@
           %h4 Contact Requirements
           %i= image_tag('large-curve.png')
         ~ form_for @contact_requirements, url: contact_requirements_user_profile_path do |f|
+          = hidden_field_tag :tab_id, "faq"
           .low1
             %p.span11
               My contact requirements for students include:
