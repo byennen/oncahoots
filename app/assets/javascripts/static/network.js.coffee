@@ -73,4 +73,15 @@ $(document).ready ->
     field = event.field;
     field.find('.field-edit').fadeIn()
 
-  $('a[href="#resume"]').click()
+
+  $('.profile_main_content ul.nav.nav-pills li a').on 'click', (event) ->
+    tab_id = $(event.target).attr('href').match(/^#(.*)$/)[1]
+    if $('a#edt.edit').size() > 0
+      href = $('a#edt.edit').attr('href').match(/^([^\?]*)\??.*$/)[1]
+      href = href + "?tab_id=" + tab_id
+      $('a#edt.edit').attr('href', href)
+
+  tabName = $('#network.profile_main_content').attr("data-tab-id")
+  tabName = "resume" if !tabName || tabName == ""
+  $('a[href="#'+tabName+'"]').click()
+
