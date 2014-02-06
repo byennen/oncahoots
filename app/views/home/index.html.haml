@@ -53,11 +53,11 @@
           .clearfix
           = f.select :university_id, options_from_collection_for_select(University.all.sort_by(&:name), :id, :name, resource.university_id), prompt: "University"
           .clearfix
-          .dont-see-your-school.row
-            .text.col-md-5
-              %span Don't see your school
-            .col-md-7
-              %a.btn.btn-primary{:href => "#"} Request College
+          -#.dont-see-your-school.row
+          -#  .text.col-md-5
+          -#    %span Don't see your school
+          -#  .col-md-7
+          -#    %a.btn.btn-primary{:href => "#"} Request College
 
           = f.select :graduation_year, options_for_select(2020.downto(1940).to_a, resource.graduation_year), { prompt: "Graduation year"}
           .clearfix
