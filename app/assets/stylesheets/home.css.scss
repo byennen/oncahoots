@@ -51,9 +51,18 @@
     font-weight: bold;
   }
   .form-control {
-    color: black;
     @include placeholder {
       color: black;
+    }
+  }
+  .dont-see-your-school {
+    margin: 30px 0;
+    .text {
+      margin-top: 12px;
+    }
+    .btn-primary {
+      width: 100%;
+      line-height: 30px;
     }
   }
   .centerx {
@@ -78,6 +87,14 @@
     p {
       font-size: 16px;
     }
+  }
+  .sign_up {
+    float: right;
+    width: 50%;
+    padding: 0;
+    height: 45px;
+    margin-right: 7px;
+    font-size: 20px;
   }
   #flexiselDemo1, #flexiselDemo2 {
     display: none;

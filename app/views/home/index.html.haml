@@ -20,8 +20,8 @@
               = link_to 'Forgotten Password?', 'users/password/new', class: 'fos'
           #options.row
             .col-md-12
-              %button.btn.btn-primary.col-md-5.btn-homepage Login
-              %a.register_button.btn.btn-primary.col-md-5.col-md-offset-2.btn-homepage{href: '#'} Register
+              %a.register_button.btn.btn-primary.col-md-5.btn-homepage{href: '#'} Register
+              %button.btn.btn-primary.col-md-5.btn-homepage.col-md-offset-2 Login
           .row
             .col-md-12
               %a.ico{:href => "#"}
@@ -30,42 +30,42 @@
                 = image_tag('facebook.png')
 
   #register.row
-    .col-md-offset-3.col-md-6
+    .col-md-offset-2.col-md-12
       = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'login-form' }) do |f|
         = f.error_notification
         = display_base_errors resource
-        .col-md-6
-          .lhs
-            %p CHOOSE ONE:
-            %a.btn9.cn{:href => "#"} Student
-            %i or
-            %a#onee2.bns{:href => "#"} Alumni
-            .clearfix
-            = f.input :first_name, :autofocus => true, :required => true, label: false, input_html: {placeholder: "first name"}
-            = f.input :last_name, :required => true, label: false, input_html: {placeholder: "last name"}
-            = f.input :email, :required => true, label: false, input_html: {placeholder: "email"}
-            = f.input :password, :required => true, label: false, input_html: {placeholder: "password"}
-            = f.input :password_confirmation, :required => true, label: false, input_html: {placeholder: "password confirmation"}
+        .col-md-4.lhs
+          %p CHOOSE ONE:
+          %a.btn9.cn.col-md-6{:href => "#"} Student
+          %i or
+          %a#onee2.bns.col-md-6{:href => "#"} Alumni
+          .clearfix
+          = f.input :first_name, :autofocus => true, :required => true, label: false, input_html: {placeholder: "first name"}
+          = f.input :last_name, :required => true, label: false, input_html: {placeholder: "last name"}
+          = f.input :email, :required => true, label: false, input_html: {placeholder: "email"}
+          = f.input :password, :required => true, label: false, input_html: {placeholder: "password"}
+          = f.input :password_confirmation, :required => true, label: false, input_html: {placeholder: "password confirmation"}
 
-        .col-md-6
-          .lhs
+        .col-md-4.lhs
+          %p
             %small Select the area nearest your hometown or select other.
-            = f.select :city_id, options_for_select(City.order(:name).collect{ |c| [c.name, c.id] } + [["Other", 0]], resource.city_id), prompt: "Current City"
-            .clearfix
-            = f.select :university_id, options_from_collection_for_select(University.all.sort_by(&:name), :id, :name, resource.university_id), prompt: "University"
-            .clearfix
+          = f.select :city_id, options_for_select(City.order(:name).collect{ |c| [c.name, c.id] } + [["Other", 0]], resource.city_id), prompt: "Current City"
+          .clearfix
+          = f.select :university_id, options_from_collection_for_select(University.all.sort_by(&:name), :id, :name, resource.university_id), prompt: "University"
+          .clearfix
+          .dont-see-your-school.row
+            .text.col-md-5
+              %span Don't see your school
+            .col-md-7
+              %a.btn.btn-primary{:href => "#"} Request College
 
-            %a.btn7.cols.bnss{:href => "#"} Request College
-            %span Don't see your school
-            .clearfix
+          = f.select :graduation_year, options_for_select(2020.downto(1940).to_a, resource.graduation_year), { prompt: "Graduation year"}
+          .clearfix
 
-            = f.select :graduation_year, options_for_select(2020.downto(1940).to_a, resource.graduation_year), { prompt: "Graduation year"}
-            .clearfix
+          = f.input :major, label: false, input_html: {placeholder: "major"}
+          = f.input :double_major, label: false, input_html: {placeholder: "double major"}
 
-            = f.input :major, label: false, input_html: {placeholder: "major"}
-            = f.input :double_major, label: false, input_html: {placeholder: "double major"}
-
-            %button.btn7.sign.btn-div{:name => "btn"} Sign Up
+          %button.btn7.sign_up.btn-div{:name => "btn"} Sign Up
 
   #homepage_options.row.visible-lg
     .col-md-4
@@ -80,7 +80,7 @@
       .centerx
         %a.mod6.btn-primary.btn-homepage{:href => "#about"} About Us
 
-#students.section-background.row
+#students.section-background.row.hidden-xs
   .row
     .col-md-3
       .heading
@@ -115,13 +115,13 @@
         %p The easiest way to access your network - view a map of all alumni around the world. Filter alums based on their location, field, grad year or major.
 .clearfix
 
-.row#alumni.section-background.nom
+.row#alumni.section-background.hidden-xs
   .row
     .col-md-3
       .heading
         %p For Alumni
   .row
-    .col-md-12.cent-text
+    .col-md-11.cent-text
       %h3 Access to Your College Network
       %p Reach out to old college friends or connect with other alums in your field. Since your time is valuable, set contact requirements to limit communication from students.
   .row
@@ -145,7 +145,7 @@
 .clearfix
 
 
-#about.row
+#about.row.hidden-xs
   .col-md-4
     .heading
       %p About Us

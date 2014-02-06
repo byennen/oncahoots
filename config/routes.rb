@@ -146,8 +146,7 @@ CahootsConnect::Application.routes.draw   do
   get '/search/person', to: "search#person"
   get '/search/event', to: "search#event", as: "search_event"
 
-  devise_for :users, :controllers => { :registrations => "registrations",
-    :sessions => "sessions"}
+  devise_for :users, :controllers => { :registrations => "registrations", :sessions => "sessions"}
 
   get 'registrations/finish', to: "registrations#finish"
   devise_scope :user do
