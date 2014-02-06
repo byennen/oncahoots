@@ -36,15 +36,6 @@ $(document).ready ->
   $("ul.tabs2 li:first a").addClass("active22").show() #Activate first tab
   $(".tab_content2:first").show() #Show first tab content
 
-  #On Click Event
-  $("ul.tabs2 li").click ->
-    $("ul.tabs2 li").removeClass "active22" #Remove any "active" class
-    $(this).addClass "active22" #Add "active" class to selected tab
-    $(".tab_content2").hide() #Hide all tab content
-    activeTab = $(this).find("a").attr("href") #Find the rel attribute value to identify the active tab + content
-    $(activeTab).fadeIn() #Fade in the active content
-    false
-
   $("#edt").click ->
     $(".form-field").hide()
     $(".form-field[type=submit]").show()
@@ -77,3 +68,9 @@ $(document).ready ->
     $(".edtitor7b").show()
     $(".edtitor8b").show()
     $(".edtitor9b").show()
+
+  $(document).on 'nested:fieldAdded:faqs', ->
+    field = event.field;
+    field.find('.field-edit').fadeIn()
+
+  $('a[href="#resume"]').click()

@@ -8,10 +8,6 @@ setTimeout("$('#bottom-alert').hide()", 1000);
 
 $("#edit-profile").html("<%= escape_javascript(render('edit_form')) %>");
 
-$('a.slide-tab').click(function(){
-  $('.tab-cont').hide()
-  $('#' + $(this).attr('rel')).show()
-});
 $(document).on('nested:fieldAdded:faqs', function(event){
   var field = event.field;
   field.find('.field-edit').show()

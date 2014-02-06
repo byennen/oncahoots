@@ -7,7 +7,7 @@ class ClubNewslettersController < ApplicationController
     @update = @club.updates.new(params[:update])
     if @update.save
       respond_to do |format|
-        format.html { redirect_to university_club_path(@university, @club), notice: "Newsletter Creaetd" }
+        format.html { redirect_to university_club_path(@university, @club), notice: "Newsletter Created" }
       end
     end
   end
