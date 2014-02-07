@@ -21,25 +21,29 @@
     %link{:href => "http://fonts.googleapis.com/css?family=Ubuntu:300,400,700&subset=latin,cyrillic-ext,greek-ext,greek,latin-ext,cyrillic", :rel => "stylesheet", :type => "text/css"}
 
   %body{:class => "#{controller_name} #{action_name}"}
-    .navbar.navbar-inverse.navbar-fixed-top
-      .navbar-inner
-        .container
-          %button.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse", :type => "button"}
+    .navbar.navbar-inverse.navbar-fixed-top{role: "navigation"}
+      .container
+        .navbar-header
+          %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", type: "button"}
+            %span.sr-only Toggle navigation
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          %a.brand{:href => admin_root_path} OnCahoots
-          .nav-collapse.collapse
-            - if current_user.present?
-              %ul.nav
-                -#%li= link_to 'Orders', admin_orders_path
-                -#%li= link_to 'Belts', admin_belts_path
-                -#%li= link_to 'Buckles', admin_buckles_path
-                -#%li= link_to 'Users', admin_users_path
+          %a.navbar-brand{href: admin_root_path} OnCahoots
+        .collapse.navbar-collapse
+          %ul.nav.navbar-nav
+            - if current_user.has_role? :super_admin
+              %li= link_to 'Users', admin_users_path
+              %li= link_to 'Universities', admin_universities_path
+              %li= link_to 'Locations', admin_locations_path
+              %li= link_to 'Clubs', admin_clubs_path
+            - else current_user.has_role? :university_admin
+              %li= link_to 'Users', admin_users_path
+
+          %ul.nav.navbar-nav.pull-right
+            %li= link_to 'Homepage', root_path
 
 
-              %ul.nav.pull-right
-                %li= link_to 'Homepage', root_path
     .container
       = render 'layouts/messages'
       = yield
