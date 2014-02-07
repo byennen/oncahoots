@@ -1,0 +1,13 @@
+#add-contact.modal.fade
+  = simple_form_for Relationship.new(user_id: current_user.id) do |f|
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} &times;
+          %h4.modal-title Add Contact
+        .modal-body
+          = f.input :relation_id, as: :hidden, input_html: {value: @user.id}
+          = f.input :message, as: :text, input_html: {class: 'span5', rows: 10}
+        .modal-footer
+          = f.submit "Add Contact", class: "btn btn-primary"
+= render partial: "shared/new_message"

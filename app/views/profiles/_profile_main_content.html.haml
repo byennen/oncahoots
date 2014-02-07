@@ -45,11 +45,13 @@
           %a{:href => "#portfolio", "data-toggle" => "tab"}
             Portfolio
         = render 'profiles/faq_and_contact_requirements', user: @user
-      - if user_signed_in? && current_user == @user
-        %a#edt.edit{:href => "#{edit_user_profile_path(current_user, current_user.profile)}"}
-          Edit
-          %i
-            = image_tag('edit-icon.png')
+        - if user_signed_in? && current_user == @user
+          %li
+            %a#edt.edit{:href => "#{edit_user_profile_path(current_user, current_user.profile)}"}
+              Edit
+              %i
+                = image_tag('edit-icon.png')
+
 
   .clearfix
   .tab-content
@@ -184,3 +186,5 @@
             %span= @profile.contact_requirement.try(:fields_of_interest)
         .clearfix
 
+
+= render 'profiles/connect'
