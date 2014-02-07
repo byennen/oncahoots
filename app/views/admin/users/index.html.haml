@@ -22,6 +22,7 @@
                 %a.btn.btn-xs.btn-default{"data-toggle" => "modal", :href => "#role-options-#{user.id}", :type => "button"} Change role
                 = render user
               %td= link_to("Delete user", admin_user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-default btn-xs') unless user == current_user
+    %hr
     .form-group
       .col-sm-12
         = link_to 'New User', '', :class => 'btn btn-primary', "data-toggle" => "modal", :href => "#new_user", :type => "button"

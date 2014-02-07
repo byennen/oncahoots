@@ -191,7 +191,7 @@ CahootsConnect::Application.routes.draw   do
     resources :clubs
     resources :metropolitan_clubs, :controller => 'admin/clubs'
     resources :users
-    root to: 'dashboard#index'
+    root to: 'users#index'
   end
 
   get "/communication", to: "communication#index", as: "communication"

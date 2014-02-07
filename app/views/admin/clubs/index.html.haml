@@ -1,24 +1,26 @@
-%h1 Listing clubs
+.row
+  .col-sm-12
+    %h1 Clubs
+    %table.table.table-hover
+      %thead
+        %tr
+          %th Name
+          %th Category
+          %th Description
+          -#%th
+          %th
+          %th
 
-%table.table.table-condensed
-  %tr
-    %th Name
-    %th Category
-    %th Description
-    -#%th
-    %th
-    %th
-
-  - @clubs.each do |club|
-    %tbody
-      %tr
-        %td= club.name
-        %td= club.category
-        %td= club.description
-        -#%td= link_to 'Show', university_club_path(@university, club)
-        %td= link_to 'Edit', edit_admin_club_path(club)
-        %td= link_to 'Destroy', admin_club_path(club), :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Club', new_admin_club_path, class: 'btn'
+      - @clubs.each do |club|
+        %tbody
+          %tr
+            %td= club.name
+            %td= club.category
+            %td= club.description
+            -#%td= link_to 'Show', university_club_path(@university, club)
+            %td= link_to 'Edit', edit_admin_club_path(club), class: 'btn btn-default btn-xs'
+            %td= link_to 'Destroy', admin_club_path(club), :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-default btn-xs'
+    %hr
+    .form-group
+      .col-sm-12
+        = link_to 'New Club', new_admin_club_path, class: 'btn btn-primary'
