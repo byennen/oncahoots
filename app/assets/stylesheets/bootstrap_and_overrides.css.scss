@@ -2,6 +2,8 @@
 @import "bootstrap";
 @import "bootstrap/theme";
 
+$green: #00c088;
+
 @font-face {
   font-family: 'varela_roundregular';
   src:url('../../assets/VarelaRound-Regular-webfont.eot');
@@ -87,6 +89,22 @@ body.modal-open {
   outline: 0;
 }
 
+.nav-tabs li.active a, .nav-tabs li.active a:hover, .nav-tabs li.active a:focus {
+  background: none;
+  color: $green;
+  border: none;
+}
+
+.nav-tabs li.active a, .nav-tabs li.active a:hover, .nav-tabs li.active a:focus {
+  background: none;
+  color: $green;
+  border: none;
+}
+
+.sub-nav li a, .nav-tabs li a:hover, .nav-tabs li a:focus {
+  background: none;
+  border: none;
+}
 
 @media (max-width: $screen-xs-max) {
   #navigation {
