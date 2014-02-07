@@ -15,7 +15,7 @@ class Admin::UsersController < Admin::ApplicationController
   def create
     if current_user.super_admin?
       @user = User.new(params[:user])
-      @user.add_role :super_admin
+      #@user.add_role :super_admin
     end
     if current_user.university_admin?
       @user = User.new(params[:user])
@@ -32,7 +32,7 @@ class Admin::UsersController < Admin::ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update_attributes(params[:user], :as => :admin)
+    if @user.update_attributes(params[:user], :as => :super_admin)
       redirect_to admin_users_path, :notice => "User updated."
     else
       redirect_to admin_users_path, :alert => "Unable to update user."

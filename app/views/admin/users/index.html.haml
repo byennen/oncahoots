@@ -1,7 +1,7 @@
-%h3 Users
 .row
-  .span12
-    %table.table.table-condensed
+  .col-sm-12
+    %h1 Users
+    %table.table.table-hover
       %thead
         %tr
           %th Username
@@ -19,11 +19,13 @@
             %td= user.roles.first.name.titleize unless user.roles.first.nil?
             - if current_user.super_admin?
               %td
-                %a.btn.btn-mini{"data-toggle" => "modal", :href => "#role-options-#{user.id}", :type => "button"} Change role
+                %a.btn.btn-xs.btn-default{"data-toggle" => "modal", :href => "#role-options-#{user.id}", :type => "button"} Change role
                 = render user
-              %td= link_to("Delete user", admin_user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini') unless user == current_user
-    .form-actions
-      = link_to 'New User', '', :class => 'btn btn-primary', "data-toggle" => "modal", :href => "#new_user", :type => "button"
-      = render 'new'
-      or
-      = link_to "Back", url_for(:back), :class => 'btn'
+              %td= link_to("Delete user", admin_user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-default btn-xs') unless user == current_user
+    .form-group
+      .col-sm-12
+        = link_to 'New User', '', :class => 'btn btn-primary', "data-toggle" => "modal", :href => "#new_user", :type => "button"
+        or
+        = link_to "Back", url_for(:back), :class => 'btn btn-default'
+
+= render 'admin/users/new'

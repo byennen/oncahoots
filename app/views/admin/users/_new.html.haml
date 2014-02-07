@@ -1,19 +1,21 @@
-.modal{:id => "new_user", :style => "display: none;"}
+.modal.fade{:id => "new_user"}
   = simple_form_for([:admin, @user]) do |f|
-    .modal-header
-      %a.close{"data-dismiss" => "modal"} ×
-      %h3 New User
-    .modal-body
-      = f.error_notification
-      - if current_user.super_admin?
-        = f.input :role_ids, :collection => Role.all, :as => :radio_buttons, :label_method => lambda {|t| t.name.titleize}, :label => false, :item_wrapper_class => 'inline'
-        = f.association :university
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+          %h4.modal-title New User
+        .modal-body
+          = f.error_notification
+          - if current_user.super_admin?
+            = f.input :role_ids, :collection => Role.all, :as => :radio_buttons, :label_method => lambda {|t| t.name.titleize}, :label => false, :item_wrapper_class => 'inline'
+            = f.association :university
 
-      = f.input :first_name
-      = f.input :last_name
-      = f.input :email, :required => true
-      = f.input :password, :required => true
-      = f.input :password_confirmation, :required => true
-    .modal-footer
-      = f.submit "Add User", :class => "btn btn-primary"
-      %a.btn.btn-warning{"data-dismiss" => "modal", :href => "#"} Close
+          = f.input :first_name
+          = f.input :last_name
+          = f.input :email, :required => true
+          = f.input :password, :required => true
+          = f.input :password_confirmation, :required => true
+        .modal-footer
+          = f.submit "Add User", :class => "btn btn-primary"
+          %a.btn.btn-warning{"data-dismiss" => "modal", :href => "#"} Close

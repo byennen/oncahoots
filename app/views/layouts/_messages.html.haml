@@ -1,5 +1,5 @@
 - flash.reject {|k,v| [:tab_id].include?(k)}.each do |name, msg|
   - if msg.is_a?(String)
     %div{:class => "alert alert-#{name == :notice ? "success" : "danger"}"}
-      %a.close{"data-dismiss" => "alert", style: "margin-top: -20px !important; margin-right: -15px !important"}
+      %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", type: "button"} ×
       = msg.html_safe

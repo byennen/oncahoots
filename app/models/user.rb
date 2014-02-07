@@ -39,6 +39,8 @@ class User < ActiveRecord::Base
                   :university_id, :location_id, :graduation_year, :major, :double_major, :slug,
                   :city_id, :other_city, :state, :alumni, :professional_field_id, :role_ids, :university_id, :graduation_year, :profile_attributes
 
+  attr_accessible :role_ids, :as => :super_admin
+
   validates_presence_of :university_id, :graduation_year, :major
 
   after_create :create_user_profile
