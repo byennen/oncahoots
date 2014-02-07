@@ -9,11 +9,11 @@
             Requests
             - if @requests.size > 0
               %i= @requests.size
-        %li
-          %a{href: "#tab3"}
-            Notifications
-            - if @unread_alerts.size > 0
-              %i#unread_alerts= @unread_alerts.size
+        -#%li
+        -#  %a{href: "#tab3"}
+        -#    Notifications
+        -#    - if @unread_alerts.size > 0
+        -#      %i#unread_alerts= @unread_alerts.size
         %li
           %a{href: "#tab4"}
             Messages

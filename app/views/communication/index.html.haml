@@ -8,8 +8,8 @@
 = content_for :left_side do
   .row.com-title
     .nav.nav-tabs
-      .col-md-4.no-padding
-        %a{"data-toggle" => "tab", href: "#notifications"} Notifications <span id='unread_alerts'>(#{@notices.size})</span>
+      -#.col-md-4.no-padding
+      -#  %a{"data-toggle" => "tab", href: "#notifications"} Notifications <span id='unread_alerts'>(#{@notices.size})</span>
       .col-md-4.no-padding
         %a{"data-toggle" => "tab", href: "#messages"} Messages <span id='unread_messages'>(#{@unread_messages.size})</span>
       .col-md-4.no-padding
@@ -17,18 +17,18 @@
 
 
   .row.tab-content
-    #notifications.tab-pane.active
-      - @notices.each do |notice|
-        .tiffny
-          - if notice.alert.alertable.class == User
-            = link_to display_image(notice.alert.alertable.profile.image,"thumb"), read_alert_path(notice.alert), remote: true
-          - elsif notice.alert.alertable.class == Club
-            = link_to display_image(notice.alert.alertable.image,"thumb"), read_alert_path(notice.alert), remote: true
-          %p
-            %a.tif-name{:href => "#"}= alert_name(notice.alert.alertable)
-            %br/
-            %a.small-text{:href => "#"}
-              = notice.alert.message.html_safe unless notice.alert.message.blank?
+    -##notifications.tab-pane.active
+    -#  - @notices.each do |notice|
+    -#    .tiffny
+    -#      - if notice.alert.alertable.class == User
+    -#        = link_to display_image(notice.alert.alertable.profile.image,"thumb"), read_alert_path(notice.alert), remote: true
+    -#      - elsif notice.alert.alertable.class == Club
+    -#        = link_to display_image(notice.alert.alertable.image,"thumb"), read_alert_path(notice.alert), remote: true
+    -#      %p
+    -#        %a.tif-name{:href => "#"}= alert_name(notice.alert.alertable)
+    -#        %br/
+    -#        %a.small-text{:href => "#"}
+    -#          = notice.alert.message.html_safe unless notice.alert.message.blank?
     #messages.tab-pane
       - @conversations.each do |con|
         - message = con.messages.first
