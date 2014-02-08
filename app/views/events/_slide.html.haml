@@ -1,17 +1,14 @@
-%ul.flexisel
-  - events.each do |event|
-    %li
-      = link_to display_image(event.image, "medium"), '#'
-      %br/
-      %p
-        = event.title
-        %br/
-        = "#{event.at_time.strftime("%I:%M %p")}," if event.at_time
-        = event.location
-
-:javascript
-  $(document).ready(function(){
-    $(".flexisel").flexisel({
-      visibleItems: 3
-    });
-  });
+.row
+  .col-md-12
+    .slider
+      %ul#flexiselDemo2
+        - events.each do |event|
+          %li
+            = link_to display_image(event.image, "medium"), '#'
+            %br/
+            %p
+              = event.title
+              %br/
+              = "#{event.at_time.strftime("%I:%M %p")}," if event.at_time
+              = event.location
+    .slider-background

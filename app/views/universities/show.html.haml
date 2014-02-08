@@ -21,67 +21,70 @@
             %li
               %a{:href => club_link_path(@university, club)}
                 %button.btn.btn2{:name => "btn"}= club.name
-
-      .row
-        .col-md-6.no-padding
-          .university-most-popular-club
-            = link_to @university.most_popular_club ? club_link_path(@university, @university.most_popular_club) : university_clubs_path(@university), "class" => "university-most-popular-club-action", "data-background-image" => @university.  most_popular_club ? @university.most_popular_club.image.xxlarge.url : image_path('blank_image.png') do
-              .blank
-                - if @university.most_popular_club
-                  #{@university.most_popular_club.name} (#{@university.most_popular_club.memberships.count})
-                - else
-                  All Clubs (#{@university.clubs.count})
-            = link_to university_clubs_path(@university), "class" => "all-clubs-action" do
-              %button.btn.btn3 All Clubs
-        .col-md-6.no-padding
-          .club-updates.college-information
-            %h2 Club Updates
-            - @club_updates.each do |update|
-              - club = update.updateable
-              %p.nsw
-                %span
-                  %a{:href => club_link_path(@university, club)}= club.name
-                = truncate update.body, length: 30
-                %span
-                  %a{href: "#update#{update.id}-popup", data: {toggle: "modal"}} >>
-
     .col-md-6.no-padding
       .slider
         = render 'slider', university: @university, events: @events
+  .row
+    .col-md-3.no-padding
+      .university-most-popular-club
+        = link_to @university.most_popular_club ? club_link_path(@university, @university.most_popular_club) : university_clubs_path(@university), "class" => "university-most-popular-club-action", "data-background-image" => @university.  most_popular_club ? @university.most_popular_club.image.xxlarge.url : image_path('blank_image.png') do
+          .blank
+            - if @university.most_popular_club
+              #{@university.most_popular_club.name} (#{@university.most_popular_club.memberships.count})
+            - else
+              All Clubs (#{@university.clubs.count})
+        = link_to university_clubs_path(@university), "class" => "all-clubs-action" do
+          %button.btn.btn3 All Clubs
 
-      .row
-        .col-md-6.no-padding
-          .alumni-search.college-information
-            %h2 Alumni Search
-            = form_for User.new, as: 'user', url: '/search_results', method: :get do |f|
-              = hidden_field_tag :object, 'alumni'
-              %ul
-                %li
-                  = f.text_field :name, placeholder: "Name"
-                %li
-                  = f.text_field :city, placeholder: "City"
-                %li
-                  = f.select :professional_field_id, options_from_collection_for_select(ProfessionalField.all.sort_by(&:name), :id, :name), prompt: "Field"
-                %li
-                  = f.text_field :major, placeholder: "Major"
-                %li
-                  = f.text_field :graduation_year, placeholder: "Grade Year"
-                %li
-                  %button.btn.btn3{type: "submit"} Access Your Network
+    .col-md-3.no-padding
+      .club-updates.college-information
+        %h2 Club Updates
+        - @club_updates.each do |update|
+          - club = update.updateable
+          %p.nsw
+            %span
+              %a{:href => club_link_path(@university, club)}= club.name
+            = truncate update.body, length: 30
+            %span
+              %a{href: "#update#{update.id}-popup", data: {toggle: "modal"}} >>
 
-        .col-md-6.no-padding
-          .college-updates.college-information
-            %h2 College Updates
-            - @updates.each do |update|
-              %a{href: "#update#{update.id}-popup", data: {toggle: "modal"}}
-                %p
-                  = truncate update.body.html_safe, length: 30
-                  %span >>
+    .col-md-3.no-padding
+      .alumni-search.college-information
+        %h2 Alumni Search
+        = form_for User.new, as: 'user', url: '/search_results', method: :get do |f|
+          = hidden_field_tag :object, 'alumni'
+          %ul
+            %li
+              = f.text_field :name, placeholder: "Name"
+            %li
+              = f.text_field :city, placeholder: "City"
+            %li
+              = f.select :professional_field_id, options_from_collection_for_select(ProfessionalField.all.sort_by(&:name), :id, :name), prompt: "Field"
+            %li
+              = f.text_field :major, placeholder: "Major"
+            %li
+              = f.text_field :graduation_year, placeholder: "Grade Year"
+            %li
+              %button.btn.btn3{type: "submit"} Access Your Network
+
+    .col-md-3.no-padding
+      .college-updates.college-information
+        %h2 College Updates
+        - @updates.each do |update|
+          %a{href: "#update#{update.id}-popup", data: {toggle: "modal"}}
+            %p
+              = truncate update.body.html_safe, length: 30
+              %span >>
+
+
+
+
   - @updates.each do |update|
     = render partial: 'updates/update', locals: {update: update}
 
   - @club_updates.each do |update|
     = render partial: 'updates/update', locals: {update: update}
+
 :javascript
   $(document).ready(function(){
   $('.selectyze2').Selectyze({
