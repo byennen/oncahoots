@@ -10,6 +10,7 @@ $(window).load ->
   $("#user_city_id").gentleSelect() # apply gentleSelect with default options
   $("#user_university_id").gentleSelect() # apply gentleSelect with default options
   $("#user_graduation_year").gentleSelect() # apply gentleSelect with default options
+  $("#user_professional_field_id").gentleSelect() # apply gentleSelect with default options
 
   $("#flexiselDemo1").flexisel
     enableResponsiveBreakpoints: true
