@@ -8,7 +8,7 @@ class Relationship < ActiveRecord::Base
   belongs_to :relation, class_name: 'User', foreign_key: 'relation_id'
   belongs_to :recommended_by, class_name: 'User', foreign_key: 'recommended_by_id'
 
-  default_scope where("status <> 'deleted'")
+  default_scope where("status is null or status <> 'deleted'")
 
   scope :by_user, ->(user) { where(user_id: user.id) }
   scope :by_relationship, ->(relation) { where(user_id: relation.id) }
