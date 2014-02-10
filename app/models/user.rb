@@ -35,11 +35,13 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me,
+  attr_accessible :first_name, :last_name, :name, :email, :password, :password_confirmation, :remember_me,
                   :university_id, :location_id, :graduation_year, :major, :double_major, :slug,
                   :city_id, :other_city, :state, :alumni, :professional_field_id, :role_ids, :university_id, :graduation_year, :profile_attributes
 
   attr_accessible :role_ids, :as => :super_admin
+
+  attr_accessor :name
 
   validates_presence_of :university_id, :graduation_year, :major
 

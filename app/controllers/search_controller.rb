@@ -66,6 +66,6 @@ class SearchController < ApplicationController
       users = current_user.super_admin? ? User : current_user.university.users
       users = users.alumni if utype=='alumni'
       users = users.student if utype=='student'
-      @users = users.search_all(params[:user].merge(name: params[:terms]))
+      @users = users.search_all(params[:user].reverse_merge(name: params[:terms]))
     end
 end

@@ -1,12 +1,15 @@
 class RelationshipsController < ApplicationController
 
+  before_filter :authenticate_user!
   before_filter :find_relationship, except: [:create]
 
+  rescue_from ActionController::RedirectBackError, with: lambda {redirect_to user_path(current_user)}
+
   def create
-    @relation = User.find(params[:relationship][:relation_id])
-    Relationship.request(current_user, @relation, params[:relationship][:message])
+    @relationship = User.find(params[:relationship][:relation_id])
+    Relationship.request(current_user, @relationship, params[:relationship][:message])
     respond_to do |format|
-      format.html { redirect_to :back, notice: "A request has been sent to #{@relation.name}" }
+      format.html { redirect_to :back, notice: "A request has been sent to #{@relationship.name}" }
     end
   end
 
