@@ -33,9 +33,15 @@
         .row
           .col-md-12
             - if current_user.relatable?(@user)
-              %a{href: "#add-contact", class: "btn btn-primary", data: {toggle: "modal"}, style: "margin-right: 10px;"} Connect
+              %a{href: "#add-contact", class: "btn btn-primary", data: {toggle: "modal"}} Connect
+            - elsif Relationship.requested?(current_user, @user)
+              %a{href: "#", class: "btn btn-primary disabled"} Connection Requested
+            - elsif Relationship.pending?(current_user, @user)
+              You have a pending connection request!
+              %br
+              = render "relationships/actions", request: Relationship.find_relationship(current_user, @user)
             - elsif Relationship.reciprocal?(current_user, @user)
-              %a{href: "javascript:;", class: "btn btn-danger", style: "margin-right: 10px;"} UnConnect
+              = link_to "UnConnect", relationship_path(Relationship.find_relationship(current_user, @user)), method: :delete, class: 'btn btn-danger'
 
       %ul.nav.nav-pills
         %li
@@ -83,7 +89,7 @@
           %h4 Skills &amp; Interests
           %i= image_tag('large-curve.png')
         .circlee2
-          %p{:style => "font-size:17px;"}
+          %p
             I am skilled at
             %i.text6a.form-field
               %strong= @profile.skill1

@@ -8,9 +8,11 @@ class Relationship < ActiveRecord::Base
   belongs_to :relation, class_name: 'User', foreign_key: 'relation_id'
   belongs_to :recommended_by, class_name: 'User', foreign_key: 'recommended_by_id'
 
+  default_scope where("status <> 'deleted'")
+
   scope :by_user, ->(user) { where(user_id: user.id) }
   scope :by_relationship, ->(relation) { where(user_id: relation.id) }
-  scope :accepted, where("status = ?", "accepted") 
+  scope :accepted, where("status = ?", "accepted")
 
   def self.exists?(user, relation)
      relationship = find_by_user_id_and_relation_id(user.id, relation.id)
@@ -35,6 +37,11 @@ class Relationship < ActiveRecord::Base
   def self.declined?(user, relation)
     relationship = find_relationship(user, relation)
     (relationship && relationship.declined?) ? true : false
+  end
+
+  def self.accepted?(user, relation)
+    relationship = find_relationship(user, relation)
+    (relationship && relationship.accepted?) ? true : false
   end
 
   def self.pending?(user, relation)
@@ -96,7 +103,7 @@ class Relationship < ActiveRecord::Base
 
   def accept_recommendation!
     self.remove!
-    Relationship.request(user, relation, "#{recommended_by.name} has recommended you to #{user.name}")
+    Relationship.request(user, relation, "#{recommended_by.name} has recommended you to #{user.name}") if recommended_by.present?
   end
 
   def decline_recommendation!

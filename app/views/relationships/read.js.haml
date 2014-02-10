@@ -1,3 +1,4 @@
 $(".comment-box").css("background", "none");
 $("#request-#{@relationship.id}").css("background", "#9ce8c6");
 $("#current_conversation").html("#{escape_javascript(render partial: 'request', locals: {request: @relationship})}");
+$(".contact-auto").autocomplete({source: '/users/search', minLength: 0})

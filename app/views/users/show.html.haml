@@ -6,26 +6,7 @@
   = render 'profiles/profile_main_content'
 
 = content_for :right_side do
-  .info
-    %span.btn4 My Contacts
-  / info
-  %ul.lists.ssy
-    - ind = -1
-    - @user.contacts.each do |contact|
-      - ind += 1
-      %li(class="#{ind == 0 ? 'light' : 'dark' }")
-        %a{:href => "#"}
-          %i
-            = image_tag('profile-img.png')
-          %span
-            = contact.name
-            %br/
-            = contact.graduation_year
-        %button.btna7{:name => "btm"} Message
-        .ssys
-          %small= contact.intro_para
-
-
+  = render 'profiles/contacts', user: @user
 
 -#= content_for :page_title do
 -#  .title

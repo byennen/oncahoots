@@ -1,7 +1,7 @@
 @import "bourbon";
 $green: #00c088;
 
-#network {
+#network, #users {
   .carousel {
     margin-top: 40px;
     background: none;
@@ -213,6 +213,7 @@ $green: #00c088;
     float: left;
     width: 100%;
     position: relative;
+    //list-style-type: none;
     li {
       float: left;
       clear: left;

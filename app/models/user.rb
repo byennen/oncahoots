@@ -66,9 +66,9 @@ class User < ActiveRecord::Base
   acts_as_messageable
   
   def intro_para
-    text = "Hi! My name is #{name} #{alumni? ? 'I was a' : 'I am a'} #{major}#{' and ' + double_major if double_major} "
+    text = "Hi! My name is #{name} #{alumni? ? 'I was a' : 'I am a'} #{major} major #{" and #{double_major} double major" if double_major} "
     text += "at #{university.name}. #{alumni? ? 'I graduated in' : 'I will graduate in'} #{graduation_year}. My current city is "
-    text += "#{city ? city.name : other_city}#{'. I work in ' + professional_field.name if alumni?}"
+    text += "#{city ? city.name : other_city}#{'. I work in ' + professional_field.name if alumni? && professional_field}"
   end  
   
   def self.search(query, filters={})
@@ -87,6 +87,10 @@ class User < ActiveRecord::Base
     else
       return true
     end
+  end
+
+  def relationship_with(user)
+    @relationship ||= Relationship.find_by_user_id_and_relation_id(self.id, user.id)
   end
 
   def joinable?(club)
