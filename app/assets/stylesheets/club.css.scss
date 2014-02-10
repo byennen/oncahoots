@@ -21,8 +21,13 @@ $green: #00c088;
     }
   }
 
-  .carousel-inner {
-    height: 300px;
+  .carousel {
+    .carousel-inner {
+      height: 300px;
+    }
+    .carousel-control {
+      padding-top: 150px;
+    }
   }
 
   li{
