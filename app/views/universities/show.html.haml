@@ -8,7 +8,7 @@
     .col-md-12.no-padding
       %a.dra{:href => "#"}= @university.name
       = link_to user_profile_path(current_user, current_user.profile) do
-        = image_tag(current_user.profile.image.small, class: "user-gravatar")
+        = display_image_square(current_user.profile.image, :small, class: "user-gravatar")
 = content_for :full_page do
   .row
     .col-md-6.no-padding

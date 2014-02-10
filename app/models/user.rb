@@ -185,6 +185,11 @@ class User < ActiveRecord::Base
     false
   end
 
+  def manage_club_ownership?(club)
+    return true if super_admin? || club.user_id == self.id
+    false
+  end
+
   def manage_event?(event)
     return true if admin_of?(event.university)  || event.user == self
     return true if event.club && club_admin?(event.club)

@@ -41,6 +41,7 @@ CahootsConnect::Application.routes.draw   do
     resources :clubs, only: [:show, :new, :create, :edit, :update, :index] do
       resources :events, :path => 'events', :controller => :club_events
       post 'transfer_ownership', on: :member
+      put 'transfer_ownership', on: :member
       resources :memberships do
         post 'make_admin', on: :collection
         post 'remove_admin', on: :collection
