@@ -181,7 +181,7 @@ class User < ActiveRecord::Base
   end
 
   def manage_club?(club)
-    return true if admin_of?(club.university) || club_admin?(club) || club.user_id == self.id
+    return true if super_admin? || admin_of?(club.university) || club_admin?(club) || club.user_id == self.id
     false
   end
 

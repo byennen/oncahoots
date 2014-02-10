@@ -2,7 +2,7 @@ class MembershipsController < ApplicationController
 
   before_filter :find_university, except: [:new]
   before_filter :find_club, except: [:new]
-  before_filter :find_membership, except: [:new, :create, :make_admin]
+  before_filter :find_membership, except: [:new, :create, :make_admin, :remove_admin]
 
   def new
     @user_invitation = Membership.new(:invitation_token => params[:invitation_token])
@@ -25,15 +25,18 @@ class MembershipsController < ApplicationController
     if @membership.save
       @membership.message_leader(university_club_path(@university, @club))
       respond_to do |format|
-        format.html { redirect_to university_club_path(@university, @club), notice: "Member - #{@membership.user.name} is now an admin" }
+        flash[:notice] = "Member - #{@membership.user.name} is now an admin"
+        format.html { redirect_to university_club_path(@university, @club) }
       end
     end
   end
 
   def remove_admin
-    if @membership.update_attribute(:admin, false)
+    @membership = @club.memberships.find_by_user_id(params[:membership][:user_id])
+    if @membership.update_attributes(title: nil, admin: false)
       respond_to do |format|
-        format.html { redirect_to university_club_path(@university, @club), notice: "Member - #{@membership.user.name} admin privileges have been removed" }
+        flash[:notice] = "Member - #{@membership.user.name} admin privileges have been removed"
+        format.html { redirect_to university_club_path(@university, @club) }
       end
     end
   end

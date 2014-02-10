@@ -3,6 +3,24 @@ $green: #00c088;
 
 
 #clubs, #metropolitan_clubs {
+  #transfer_power {
+    .modal-body {
+      max-height: 500px;
+      overflow-y: scroll;
+      li {
+        height: 100px;
+      }
+      form {
+        display: inline;
+      }
+      .btn3 {
+        float: right;
+        position: relative;
+        top: -30px;
+      }
+    }
+  }
+
   .carousel-inner {
     height: 300px;
   }

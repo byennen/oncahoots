@@ -38,6 +38,7 @@ class ClubsController < ApplicationController
     @updateable = @club
     if @club
       if @club.is_a?(MetropolitanClub)
+        flash.keep
         return redirect_to metropolitan_club_path(@club)
       end
       @posts = @club.posts.order("created_at desc")

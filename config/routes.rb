@@ -43,7 +43,7 @@ CahootsConnect::Application.routes.draw   do
       post 'transfer_ownership', on: :member
       resources :memberships do
         post 'make_admin', on: :collection
-        post 'remove_admin', on: :member
+        post 'remove_admin', on: :collection
       end
       get :search, on: :collection
       resources :invitations do
