@@ -36,11 +36,12 @@ class RegistrationsController < Devise::RegistrationsController
     end
   end
 
-  protected
-
-  def after_inactive_sign_up_path_for(resource)
-    root_path
+  def create
+    auth_options = { :recall => 'home#index', :scope => :user }
+    resource = warden.authenticate!(auth_options)
   end
+  
+  protected
 
   def after_sign_up_path_for(resource)
     edit_user_profile_path(current_user, current_user.profile)
