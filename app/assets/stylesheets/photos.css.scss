@@ -65,6 +65,12 @@ $green: #00c088;
 
 .modal-body {
   min-height: 400px;
+  //min-width: 1000px;
+}
+
+.album-description {
+  padding: 0 15px 10px;
+  margin-top: -20px;
 }
 
 .mod5 {
@@ -78,13 +84,29 @@ $green: #00c088;
   .item {
     .image-frame {
       border: 8px solid #ebebeb;
-      max-height: 266px;
+      max-height: 408px;
       overflow-y: hidden;
     }
-    max-height: 286px;
+    max-height: 438px;
+    p {
+      padding-top: 10px;
+    }
   }
+  .carousel {
+    .carousel-inner {
+      max-height: 400px;
+      display: inline-block;
+    }
+  }
+
+  .carousel-block {
+    display: inline-block;
+  }
+
   .carousel-control {
-    padding-top: 40%;
+    //position: relative;
+    //float: none;
+    padding-top: 200px;
     opacity: 1;
     filter: alpha(opacity = 100);
     background: none;
