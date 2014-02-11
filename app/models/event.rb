@@ -19,6 +19,8 @@ class Event < ActiveRecord::Base
 
   validates :title, presence: true
 
+  after_create :add_club_update
+
   def date
     on_date.strftime("%a %m.%d") if on_date
   end
@@ -85,8 +87,6 @@ class Event < ActiveRecord::Base
 
   TIME_RANGE = {"0 - 2 AM" => [0,2], "2 - 4 AM" => [2,4], "4 - 6 AM" => [4,6], "6 - 8 AM" => [6,8], "8 - 10 AM" => [8,10], "10AM - 12 PM" => [10,12],
      "12 - 2 PM" => [12,14], "2 - 4 PM" => [14,16], "4 - 6 PM" => [16,18], "6 - 8 PM" => [18,20], "8 - 10 PM" => [20, 22], "10 - 0 AM" => [22,24]}
-
-  after_create :add_club_update
 
   private
     def add_club_update

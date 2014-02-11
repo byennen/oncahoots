@@ -11,6 +11,7 @@
 
 
 = content_for :left_side do
+  = hidden_field_tag "selected_event_id", params[:event_id]
   .caltitle
     %p.month_slide
       = render partial: "month_bar", locals: {date: Date.today}
