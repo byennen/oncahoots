@@ -130,11 +130,12 @@
               %i.text4a.form-field
                 %span= experience.date_started
               to
-              = succeed "." do
-                %i.text5a.form-field
-                  %span= experience.date_ended
+              %i.text5a.form-field
+                %span= experience.date_ended
+              \.
               %br/
-              Additional Description of your position at this company as you wrote it. Click edit to change.
+              %br/
+              %span= experience.description.html_safe
               %br/
       .clearfix
 
