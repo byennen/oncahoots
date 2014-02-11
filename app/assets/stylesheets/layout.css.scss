@@ -188,12 +188,12 @@ $middarkgraylighter: #919A9C;
     display: block;
     padding: 0px;
     margin: 0px;
+    color: #444444;
     li {
       display: inline-block;
       width: 100%;
-      color: #444444;
-      padding: 10px 30px;
       small {
+        padding: 10px 30px;
         font-size: 13px;
         margin: 0px;
         width: 100%;
@@ -201,15 +201,15 @@ $middarkgraylighter: #919A9C;
         span, a {
           color: #04c189;
         }
-      }
-      &:hover, &:active, &:focus {
-        @include linear-gradient(#56d988, #02c189);
-        color: white;
-        cursor: pointer;
-      }
-      &:hover span, &:active span, &:focus span, &:hover a, &:active a, &:focus a {
-        color: white;
-        cursor: pointer;
+        &:hover, &:active, &:focus {
+          @include linear-gradient(#56d988, #02c189);
+          color: white;
+          cursor: pointer;
+        }
+        &:hover span, &:active span, &:focus span, &:hover a, &:active a, &:focus a {
+          color: white;
+          cursor: pointer;
+        }
       }
     }
   }
