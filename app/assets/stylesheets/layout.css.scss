@@ -175,14 +175,15 @@ $middarkgraylighter: #919A9C;
   background: #fff;
   padding: 20px 0;
   text-align: left;
-  height: 420px;
-  overflow-y: scroll;
   h4 {
     color: #04c189;
     font-size: 33px;
     text-indent: 35px;
   }
   ul {
+    min-height: 140px;
+    max-height: 340px;
+    overflow-y: scroll;
     position: relative;
     display: block;
     padding: 0px;
