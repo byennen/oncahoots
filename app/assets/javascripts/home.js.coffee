@@ -1,4 +1,18 @@
 $(window).load ->
+  $(".main").onepage_scroll
+    sectionContainer: "section"
+    responsiveFallback: 600
+    easing: "ease"
+    animationTime: 1000
+    pagination: false
+    beforeMove: (index) ->
+    afterMove: (index) ->
+      loop: false
+      keyboard: true
+      responsiveFallback: false
+  return
+
+$(window).load ->
   $("#register").hide()
   $(".register_button").on "click", ->
     $("#login").hide()
