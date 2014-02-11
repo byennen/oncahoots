@@ -1,11 +1,10 @@
 .eboard.col-md-12
   %h3 eBoard
-  %br.clearfix
   %ul.abo
     - @club.leaders.each do |admin|
       %li
         .pull-left
-          = link_to user_path(admin), width: '55' do
+          = link_to user_path(admin) do
             = display_image admin.profile.image, "small"
         .pull-left
           %strong
