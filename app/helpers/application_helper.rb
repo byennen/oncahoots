@@ -62,14 +62,14 @@ module ApplicationHelper
     if image.blank?
       blank_image_square size, options
     else
-      options[:class] + " square cir-img #{size}"
+      options[:class] += " square cir-img #{size}"
       image_tag image.send(size), options
     end
   end
 
   def blank_image_square(size, options = {})
     options[:class] ||= ""
-    options[:class] + " square blank-cir-img #{size}"
+    options[:class] += " square blank-cir-img #{size}"
     image_tag '/assets/blank_image.png', options
   end
 

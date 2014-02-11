@@ -53,7 +53,7 @@
             %small= link_to "add images", "#album-#{album.id}-upload", "data-toggle" => "modal"
           .music-img
             = link_to "#album-#{album.id}", "data-toggle" => "modal" do
-              = image_tag album.featured.image
+              = image_tag album.featured.image.album
 
     #club-popup= render partial: 'clubs/form', locals: {club: Club.new}
     #create-album-popup= render partial: 'albums/form', locals: {album: Album.new}

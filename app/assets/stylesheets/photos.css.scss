@@ -63,13 +63,25 @@ $green: #00c088;
   margin: 0 auto;
 }
 
+.modal-body {
+  min-height: 400px;
+}
+
 .mod5 {
-  width: 60%;
+  max-width: 670px;
+  //max-height: 250px;
+  width: 65%;
+  //max-height: 250px;
   margin-top: -10px;
   margin-left: 10px;
   float: left;
   .item {
-    border: 8px solid #ebebeb;
+    .image-frame {
+      border: 8px solid #ebebeb;
+      max-height: 266px;
+      overflow-y: hidden;
+    }
+    max-height: 286px;
   }
   .carousel-control {
     padding-top: 40%;
@@ -88,7 +100,8 @@ $green: #00c088;
 
 .cap {
   float: right;
-  width: 38%;
+  width: 30%;
+  //max-width: 240px;
   margin-top: -20px;
   font-size: 12px;
   p {
