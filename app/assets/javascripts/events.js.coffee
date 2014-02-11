@@ -77,3 +77,5 @@ $(document).ready ->
     else
       $('#club-select').hide()
 
+  selectedEventId = $('#selected_event_id').val()
+  $('.event-listing.event-item[data-id='+selectedEventId+']').click()

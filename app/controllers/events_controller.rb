@@ -29,24 +29,10 @@ class EventsController < ApplicationController
   end
 
   def index
+    init
     respond_to do |format|
-      format.html do
-        init
-      end
-      format.js do
-        unless params[:date]
-          @events = @university.events.this_month
-        else
-          @events = @university.events.by_month(params[:date])
-          @date=Date.strptime(params[:date],"%m%y")
-        end
-        case params[:filter]
-          when 'freefood'
-            @events = @events.free_food
-          when 'weekly'
-            @events = @university.events.this_week
-        end
-      end
+      format.html
+      format.js
     end
   end
 
@@ -106,7 +92,24 @@ class EventsController < ApplicationController
       #@university_events = @university.events.all
       #@university_clubs  = @university.clubs.order(:name)
       #@events = events_of_day(Date.today)
-      @events = @university.events.this_week
+      #@events = @university.events.this_week
+      unless params[:date]
+        @events = @university.events.this_month
+      else
+        @events = @university.events.by_month(params[:date])
+        @date=Date.strptime(params[:date],"%m%y")
+      end
+      case params[:filter]
+        when 'freefood'
+          @events = @events.free_food
+        when 'weekly'
+          if params[:w_begin]
+            @w_begin = Date.strptime(params[:w_begin],"%y%m%d")
+            @events = @university.events.where(on_date: @w_begin..(@w_begin+6.days))
+          else
+            @events = @university.events.this_week
+          end
+      end
     end
 
 end

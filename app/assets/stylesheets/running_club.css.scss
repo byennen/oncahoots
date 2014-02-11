@@ -1,7 +1,7 @@
 @import "bourbon";
 $green: #00c088;
 
-#running_club, #lowdown {
+#running_club, #lowdown, #about {
 
   .not-joined {
     text-align: center;
@@ -50,12 +50,12 @@ $green: #00c088;
     h3 {
       padding: 20px 0;
       margin: 0;
-      float: left;
       margin-right: 25px;
     }
     strong {
       margin-top: 5px !important;
     }
+
   }
 
   .abo {

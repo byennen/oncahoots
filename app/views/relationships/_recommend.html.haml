@@ -1,9 +1,11 @@
-.modal.hide.fade{id: "recommend-#{request.id}"}
+.modal.fade{id: "recommend-#{request.id}"}
   = simple_form_for(request, url: refer_relationship_path(request), method: 'post') do |f|
-    .modal-header
-      %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
-      %h3 Recommend Another Contact
-    .modal-body
-      =text_field_tag :relation_ids, "", class: 'contact-auto'
-    .modal-footer
-      = f.submit "Recommend Contact", class: "btn btn-success"
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+          %h3 Recommend Another Contact
+        .modal-body
+          =text_field_tag :relation_ids, "", class: 'contact-auto'
+        .modal-footer
+          = f.submit "Recommend Contact", class: "btn btn-success"

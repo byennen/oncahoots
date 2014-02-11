@@ -38,6 +38,7 @@ class ClubsController < ApplicationController
     @updateable = @club
     if @club
       if @club.is_a?(MetropolitanClub)
+        flash.keep
         return redirect_to metropolitan_club_path(@club)
       end
       @posts = @club.posts.order("created_at desc")
@@ -102,14 +103,21 @@ class ClubsController < ApplicationController
 
   def transfer_ownership
     @club = @university.clubs.find(params[:id])
-    @user = User.find(@club.user_id)
-    @membership = @club.memberships.find_by_user_id(@user.id)
+    @membership = @club.memberships.find_by_user_id(@club.user_id)
     @membership.admin = false
-    @new_owner = User.find(params[:club][:user_id])
-    @club.user_id = params[:club][:user_id]
-    if @membership.save && @club.save
+    club_params = params[:club] || params[:metropolitan_club]
+    @new_owner = User.find(club_params[:user_id])
+    @club.user_id = club_params[:user_id]
+    @new_owner_membership = @club.memberships.find_by_user_id(club_params[:user_id])
+    @new_owner_membership.admin = true
+    ActiveRecord::Base.transaction do
+      if @membership.save && @club.save && @new_owner_membership.save
+        flash[:notice] = "Ownership transferred to #{@new_owner.name}"
+      else
+        flash[:notice] = "Encountered error while having ownership transferred to #{@new_owner.name}"
+      end
       respond_to do |format|
-        format.html { redirect_to university_club_path(@university, @club), notice: "Ownership transferred to #{@new_owner.name}" }
+        format.html { redirect_to university_club_path(@university, @club) }
       end
     end
   end

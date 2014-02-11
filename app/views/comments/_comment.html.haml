@@ -4,8 +4,9 @@
   %br
 - else
   .col-md-12.top.pull-left
-    = link_to user_path(comment.user) do
-      = display_image comment.user.profile.image, "small"
-    %span.green-text= comment.user.name
+    - if comment.user.present?
+      = link_to user_path(comment.user) do
+        = display_image comment.user.profile.image, "small"
+      %span.green-text= comment.user.name
     = comment.comment.html_safe
   %br

@@ -4,6 +4,17 @@ $hover_green: rgb(156,231,198);
 
 
 #college{
+
+  #new_user {
+    .gentleselect-label {
+      //float: none;
+    }
+    .gentleselect-dialog {
+      margin-top: -90px;
+      max-height: 200px;
+    }
+  }
+
   .user-gravatar{
     height: 70px;
     right: 0px;

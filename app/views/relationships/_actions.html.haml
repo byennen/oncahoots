@@ -1,6 +1,22 @@
-.row-fluid
-  .span3
-  .span9
-    = link_to "Accept", accept_relationship_path(@relationship), method: :post, class: 'btn btn-success'
-    = link_to "Decline", decline_relationship_path(@relationship), method: :post, class: "btn btn-danger"
-    = link_to "Recommend", nil, class: "btn btn-warning"
+- if request.pending?
+  = link_to accept_relationship_path(request), method: :post do
+    %button.btn8 Accept
+  = link_to decline_relationship_path(request), method: :post do
+    %button.btn8 Decline
+  = link_to "#recommend-#{request.id}", data: {toggle: "modal"}, class: 'recommend' do
+    %button.btn8 Recommend
+- else
+  .span4{style: "padding-left: 100px;"}
+    = link_to "Yes", accept_recommendation_relationship_path(request), method: :post, class: 'btn8'
+  .span4{style: "padding-left: 100px;"}
+    = link_to "No", decline_recommendation_relationship_path(request), method: :post, class: 'btn8'
+
+= render 'relationships/recommend', request: request
+
+-#am 2014-02-08 Old Design?
+-#.row-fluid
+-#  .span3
+-#  .span9
+-#    = link_to "Accept", accept_relationship_path(@relationship), method: :post, class: 'btn btn-success'
+-#    = link_to "Decline", decline_relationship_path(@relationship), method: :post, class: "btn btn-danger"
+-#    = link_to "Recommend", nil, class: "btn btn-warning"

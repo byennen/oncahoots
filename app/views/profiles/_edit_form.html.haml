@@ -87,7 +87,7 @@
         .circlee2
           ~ form_for [@user, @profile] do |f|
             = hidden_field_tag :tab_id, "resume"
-            %p{:style => "font-size:17px;"}
+            %p
               I am skilled at
               = f.text_field :skill1, placeholder: "skill 1", class: 'edtitor6a field-edit'
               #{',' if !@profile.skill1.blank? && !@profile.skill2.blank?}

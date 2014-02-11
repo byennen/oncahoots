@@ -35,11 +35,13 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me,
+  attr_accessible :first_name, :last_name, :name, :email, :password, :password_confirmation, :remember_me,
                   :university_id, :location_id, :graduation_year, :major, :double_major, :slug,
                   :city_id, :other_city, :state, :alumni, :professional_field_id, :role_ids, :university_id, :graduation_year, :profile_attributes
 
   attr_accessible :role_ids, :as => :super_admin
+
+  attr_accessor :name
 
   validates_presence_of :university_id, :graduation_year, :major
 
@@ -66,9 +68,9 @@ class User < ActiveRecord::Base
   acts_as_messageable
   
   def intro_para
-    text = "Hi! My name is #{name} #{alumni? ? 'I was a' : 'I am a'} #{major}#{' and ' + double_major if double_major} "
+    text = "Hi! My name is #{name} #{alumni? ? 'I was a' : 'I am a'} #{major} major #{" and #{double_major} double major" if double_major} "
     text += "at #{university.name}. #{alumni? ? 'I graduated in' : 'I will graduate in'} #{graduation_year}. My current city is "
-    text += "#{city ? city.name : other_city}#{'. I work in ' + professional_field.name if alumni?}"
+    text += "#{city ? city.name : other_city}#{'. I work in ' + professional_field.name if alumni? && professional_field}"
   end  
   
   def self.search(query, filters={})
@@ -87,6 +89,10 @@ class User < ActiveRecord::Base
     else
       return true
     end
+  end
+
+  def relationship_with(user)
+    @relationship ||= Relationship.find_by_user_id_and_relation_id(self.id, user.id)
   end
 
   def joinable?(club)
@@ -175,7 +181,12 @@ class User < ActiveRecord::Base
   end
 
   def manage_club?(club)
-    return true if admin_of?(club.university) || club_admin?(club) || club.user_id == self.id
+    return true if super_admin? || admin_of?(club.university) || club_admin?(club) || club.user_id == self.id
+    false
+  end
+
+  def manage_club_ownership?(club)
+    return true if super_admin? || club.user_id == self.id
     false
   end
 

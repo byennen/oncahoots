@@ -66,7 +66,7 @@ class ProfilesController < ApplicationController
     end
     if @contact_requirement.save
       respond_to do |format|
-        format.html { redirect_to edit_user_profile_path(current_user, current_user.profile), notice: "Profile was successfully updated" } if !request.xhr?
+        format.html { redirect_to user_profile_path(current_user, current_user.profile), notice: "Profile was successfully updated" } if !request.xhr?
         format.js
       end
     end

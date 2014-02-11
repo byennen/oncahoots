@@ -1,0 +1,17 @@
+.alumni-search.college-information
+  %h2 Alumni Search
+  = form_for User.new, as: 'user', url: '/search_results', method: :get do |f|
+    = hidden_field_tag :object, 'alumni'
+    %ul
+      %li
+        = f.text_field :name, placeholder: "Name"
+      %li
+        = f.text_field :city, placeholder: "City"
+      %li
+        = f.select :professional_field_id, options_from_collection_for_select(ProfessionalField.all.sort_by(&:name), :id, :name), {prompt: "Field"}
+      %li
+        = f.text_field :major, placeholder: "Major"
+      %li
+        = f.select :graduation_year, options_for_select(2020.downto(1940).to_a, Date.current.year), {prompt: "Graduation year"}
+      %li
+        %button.btn.btn3{type: "submit"} Access Your Network

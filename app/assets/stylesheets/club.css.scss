@@ -3,8 +3,22 @@ $green: #00c088;
 
 
 #clubs, #metropolitan_clubs {
-  .carousel-inner {
-    height: 300px;
+  #transfer_power {
+    .modal-body {
+      max-height: 500px;
+      overflow-y: scroll;
+      li {
+        height: 100px;
+      }
+      form {
+        display: inline;
+      }
+      .btn3 {
+        float: right;
+        position: relative;
+        top: -30px;
+      }
+    }
   }
 
   li{
@@ -52,7 +66,7 @@ $green: #00c088;
   }
 
   .music-img{
-    img{max-width: 636px;}
+    img{max-width: 670px;}
   }
 }
 

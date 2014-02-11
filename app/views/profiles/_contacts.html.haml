@@ -1,0 +1,18 @@
+.info
+  %span.btn4 My Contacts
+%ul.lists.ssy
+  - ind = -1
+  - user.contacts.each do |contact|
+    - ind += 1
+    %li(class="#{ind == 0 ? 'light' : 'dark' }")
+      %a{:href => "#"}
+        %i
+          = display_image(contact.image, :thumb, {id: contact.id})
+        %span
+          = contact.name
+          %br/
+          = contact.graduation_year
+      -#TODO implement message button
+      -#%button.btna7{:name => "btm"} Message
+      .ssys
+        %small= contact.intro_para

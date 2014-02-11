@@ -84,4 +84,4 @@ $(document).ready ->
   tabName = $('#network.profile_main_content').attr("data-tab-id")
   tabName = "resume" if !tabName || tabName == ""
   $('a[href="#'+tabName+'"]').click()
-
+  $(".contact-auto").autocomplete({source: '/users/search', minLength: 0})

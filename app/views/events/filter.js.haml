@@ -1,2 +1,2 @@
-$("#filter_bar").html("#{escape_javascript(render partial: 'events/filter_bar')}");
+$("#filter_bar").html("#{escape_javascript(render partial: 'events/filter_bar', locals: {university: @university})}");
 $(".events-slide").html("#{escape_javascript(render partial: 'slide', locals: {events: @events})}");

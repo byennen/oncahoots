@@ -1,0 +1,9 @@
+#transfer_power.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+        %h3 Transfer Power To A New Member
+      .modal-body
+        = render partial: "clubs/memberships", locals: {club: club}
+      .modal-footer

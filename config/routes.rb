@@ -41,9 +41,10 @@ CahootsConnect::Application.routes.draw   do
     resources :clubs, only: [:show, :new, :create, :edit, :update, :index] do
       resources :events, :path => 'events', :controller => :club_events
       post 'transfer_ownership', on: :member
+      put 'transfer_ownership', on: :member
       resources :memberships do
         post 'make_admin', on: :collection
-        post 'remove_admin', on: :member
+        post 'remove_admin', on: :collection
       end
       get :search, on: :collection
       resources :invitations do
@@ -136,7 +137,9 @@ CahootsConnect::Application.routes.draw   do
     post :decline, on: :member
     post :refer, on: :member
     post :accept_recommendation, on: :member
+    put :accept_recommendation, on: :member
     post :decline_recommendation, on: :member
+    put :decline_recommendation, on: :member
   end
 
   match '/signup/:invitation_token', to: 'memberships#new', as: 'signup'

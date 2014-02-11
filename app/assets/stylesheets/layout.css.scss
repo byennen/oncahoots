@@ -7,6 +7,11 @@ $darkgraylighter: #3c4449;
 $middarkgray: #7F8588;
 $middarkgraylighter: #919A9C;
 
+.gentleselect-dialog {
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
 .green-text {
   color: $green;
 }
@@ -118,6 +123,7 @@ $middarkgraylighter: #919A9C;
     font-size: 27px;
     display: block;
     padding-top: 20px;
+    margin-bottom: 0;
     a {
       font-size: 18px;
       color: #04b885;
@@ -166,7 +172,34 @@ $middarkgraylighter: #919A9C;
   }
 }
 
+table.hid {
+
+}
+
+.hid {
+  .small {
+    padding: 10px 30px;
+    font-size: 13px;
+    margin: 0px;
+    width: 100%;
+    span, a {
+      color: #04c189;
+    }
+    &:hover, &:active, &:focus {
+      @include linear-gradient(#56d988, #02c189);
+      color: white;
+      cursor: pointer;
+    }
+    &:hover span, &:active span, &:focus span, &:hover a, &:active a, &:focus a {
+      color: white;
+      cursor: pointer;
+    }
+  }
+}
+
 .news-letter {
+  background: #fff;
+  padding: 20px 0 0 0;
   text-align: left;
   h4 {
     color: #04c189;
@@ -174,28 +207,17 @@ $middarkgraylighter: #919A9C;
     text-indent: 35px;
   }
   ul {
+    min-height: 140px;
+    max-height: 300px;
+    overflow-y: scroll;
     position: relative;
     display: block;
     padding: 0px;
+    margin: 0px;
+    color: #444444;
     li {
       display: inline-block;
       width: 100%;
-      color: #444444;
-      padding: 10px 30px;
-      small {
-        font-size: 13px;
-        margin: 0px;
-        span, a {
-          color: #04c189;
-        }
-      }
-      &:hover, &:active, &:focus {
-        @include linear-gradient(#56d988, #02c189);
-        color: white;
-      }
-      &:hover span, &:active span, &:focus span, &:hover a, &:active a, &:focus a {
-        color: white;
-      }
     }
   }
 }

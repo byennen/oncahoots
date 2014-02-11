@@ -16,12 +16,14 @@ class Club < ActiveRecord::Base
   has_many :transactions
 
   has_one :stripe_credential, as: :owner
+  belongs_to :user
 
   attr_accessible :category, :description, :name, :university_id, :image,
                   :remote_image_url, :user_id, :slug, :private, :mission_statement
 
   validates :name, presence: true
   validates :university_id, presence: true
+  validates :user_id, presence: true
   validates :image, presence: true
   
   scope :sup_club, where(type: nil)
