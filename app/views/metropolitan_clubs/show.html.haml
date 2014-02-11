@@ -69,7 +69,7 @@
     = render partial: 'updates/form', locals: {update: new_update}
 
 = content_for :right_side do
-  = render partial: "news_cal_side"
+  = render "clubs/news_cal_side", title: 'Announcements'
 
   :javascript
     $("document").ready(function(){

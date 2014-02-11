@@ -172,7 +172,11 @@ $middarkgraylighter: #919A9C;
 }
 
 .news-letter {
+  background: #fff;
+  padding: 20px 0;
   text-align: left;
+  height: 420px;
+  overflow-y: scroll;
   h4 {
     color: #04c189;
     font-size: 33px;
