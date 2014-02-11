@@ -173,7 +173,7 @@ $middarkgraylighter: #919A9C;
 
 .news-letter {
   background: #fff;
-  padding: 20px 0;
+  padding: 20px 0 0 0;
   text-align: left;
   h4 {
     color: #04c189;
@@ -187,6 +187,7 @@ $middarkgraylighter: #919A9C;
     position: relative;
     display: block;
     padding: 0px;
+    margin: 0px;
     li {
       display: inline-block;
       width: 100%;
