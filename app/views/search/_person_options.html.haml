@@ -37,7 +37,7 @@
         %li
           %a= year
 
-    = text_field_tag :graduation_year, "", class: "field dropdown-toggle", :"data-toggle" => 'dropdown', placeholder: "Grad year"
+    = select_tag :graduation_year, options_for_select(2020.downto(1940).to_a), {value: "", prompt: "Graduation Year", class: "field"}
 
   .span3.no-lmar.dropdown
     %a.btn.btn-success.btn2.chang.dropdown-toggle{:href => "javascript:;", :"data-toggle" => 'dropdown'}

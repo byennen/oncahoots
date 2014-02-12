@@ -21,10 +21,10 @@
           = f.text_field :double_major, placeholder: "Double Major", class: 'edtitor3 field-edit'
           at
           = f.select :university_id, options_from_collection_for_select(University.all, :id, :name, @user.university_id), {}, prompt: "University", class: 'edtitor4 field-edit'
-        %p
+        %p.year
           ="I graduated in" if @user.alumni?
           ="I will graduate in" unless @user.alumni?
-          = f.select :graduation_year, options_for_select((Date.today.year + 7).downto(1940).to_a, @user.graduation_year), {}, placeholder: "Grad Year", class: 'edtitor5 field-edit'
+          = f.select :graduation_year, options_for_select((Date.today.year + 7).downto(1940).to_a, @user.graduation_year), {}, placeholder: "Graduation Year", class: 'edtitor5 field-edit'
         %p
           My current city is
           = f.select :city_id, options_for_select(City.order(:name).collect{ |c| [c.name, c.id] } + [["Other", 0]], selected: @user.city_id), {}, class: 'edtitor6 field-edit'
