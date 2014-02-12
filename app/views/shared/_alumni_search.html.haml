@@ -12,6 +12,6 @@
       %li
         = f.text_field :major, placeholder: "Major"
       %li
-        = f.select :graduation_year, options_for_select(2020.downto(1940).to_a, Date.current.year), {prompt: "Graduation year"}
+        = f.select :graduation_year, options_for_select(2020.downto(1940).to_a), {prompt: "Graduation year"}
       %li
         %button.btn.btn3{type: "submit"} Access Your Network
