@@ -85,3 +85,6 @@ $(document).ready ->
   tabName = "resume" if !tabName || tabName == ""
   $('a[href="#'+tabName+'"]').click()
   $(".contact-auto").autocomplete({source: '/users/search', minLength: 0})
+
+  $('.portfolio_image').click ->
+    $('#portfolio_image').find('img').attr('src', $(this).data()['img'])
