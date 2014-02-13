@@ -21,6 +21,7 @@ class MembershipsController < ApplicationController
   def make_admin
     @membership = @club.memberships.find_by_user_id(params[:membership][:user_id])
     @membership.title = params[:membership][:title]
+
     @membership.admin = true
     if @membership.save
       @membership.message_leader(university_club_path(@university, @club))

@@ -7,6 +7,11 @@ class Membership < ActiveRecord::Base
   #validates_presence_of :invitation_id, :message => 'is required'
   #validates_uniqueness_of :invitation_id
 
+  scope :ordered, joins(:user).includes(:user).order("users.last_name, users.first_name")
+  scope :alumni, ordered.where(users: {alumni: true})
+  scope :student, ordered.where("users.alumni is null or users.alumni=false")
+  scope :admin, ordered.where(admin: true)
+
   class << self
     def memberships_sorted_by_popularity
       Membership.select("count(*) as membership_count, club_id, clubs.type as club_type").group("club_id, clubs.type").joins("inner join clubs on club_id = clubs.id").order("membership_count desc")

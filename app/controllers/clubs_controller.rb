@@ -105,16 +105,18 @@ class ClubsController < ApplicationController
     @club = @university.clubs.find(params[:id])
     @membership = @club.memberships.find_by_user_id(@club.user_id)
     @membership.admin = false
+    @membership.title = nil
     club_params = params[:club] || params[:metropolitan_club]
     @new_owner = User.find(club_params[:user_id])
     @club.user_id = club_params[:user_id]
     @new_owner_membership = @club.memberships.find_by_user_id(club_params[:user_id])
     @new_owner_membership.admin = true
+    @new_owner_membership.title = 'Owner'
     ActiveRecord::Base.transaction do
       if @membership.save && @club.save && @new_owner_membership.save
         flash[:notice] = "Ownership transferred to #{@new_owner.name}"
       else
-        flash[:notice] = "Encountered error while having ownership transferred to #{@new_owner.name}"
+        flash[:error] = "Encountered error while transferring ownership to #{@new_owner.name}: #{@membership.errors.inspect} / #{@club.errors.inspect} / #{@new_owner_memberhip.errors.inspect}"
       end
       respond_to do |format|
         format.html { redirect_to university_club_path(@university, @club) }
