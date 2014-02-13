@@ -5,6 +5,7 @@ $(window).load ->
     easing: "ease"
     animationTime: 1000
     pagination: false
+    updateURL: true
     beforeMove: (index) ->
     afterMove: (index) ->
       loop: false
@@ -13,7 +14,6 @@ $(window).load ->
   return
 
 $(window).load ->
-  $("#register").hide()
   $(".register_button").on "click", ->
     $("#login").hide()
     $("#homepage_options").removeClass "visible-lg"
