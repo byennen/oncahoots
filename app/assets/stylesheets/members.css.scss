@@ -28,6 +28,13 @@
       width: 33%;
       margin-left: 1px;
       margin-bottom: 25px;
+      .glyphicon {
+        color: #444444;
+        z-index: 1004;
+        &:hover {
+          color: white;
+        }
+      }
     }
   }
 
