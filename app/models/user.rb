@@ -41,8 +41,6 @@ class User < ActiveRecord::Base
 
   attr_accessible :role_ids, :as => :super_admin
 
-  attr_accessor :name
-
   validates_presence_of :university_id, :graduation_year, :major
 
   after_create :create_user_profile

@@ -23,18 +23,17 @@ $(document).ready ->
     false
 
   $(".search-btn").click ->
-    terms = $("input#terms").val()
+    term = $("input#term").val()
     object = $(this).data("object")
-    href = "/search_results?object=#{object}&terms=#{terms}"
+    href = "/search_results?object=#{object}&term=#{term}"
 
     $(@).closest(".tab_content").find("input, select").each ->
       href = href + "&#{$(this).attr('name')}=#{$(this).val()}"
 
     location.href = href
 
-  $("#terms").keyup (event) ->
+  $("#term").keyup (event) ->
     $(".search-btn:visible, .search-btn:first").click() if event.keyCode == 13
-
 
   # activate tab button on load if non is activated
 #  activeListItem = $("ul.tabsx li.activex")

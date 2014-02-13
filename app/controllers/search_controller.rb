@@ -42,6 +42,12 @@ class SearchController < ApplicationController
       search_club
       search_user('all')
     end
+    respond_to do |format|
+      format.html
+      format.json {
+        render json: auto_json((@users.to_a))
+      }
+    end
   end
 
   private
@@ -52,13 +58,13 @@ class SearchController < ApplicationController
     def search_event
       params[:event]||={}
       events = current_user.super_admin? ? Event : current_user.university.events
-      @events = events.search_all(params[:event].merge(title: params[:terms]))
+      @events = events.search_all(params[:event].merge(title: params[:term]))
     end
 
     def search_club
       params[:club]||={}
       clubs = current_user.super_admin? ? Club.sup_club : current_user.university.clubs.sup_club
-      @clubs = clubs.search_all(params[:club].merge(name: params[:terms]))
+      @clubs = clubs.search_all(params[:club].merge(name: params[:term]))
     end
 
     def search_user(utype)
@@ -66,7 +72,14 @@ class SearchController < ApplicationController
       users = current_user.super_admin? ? User : current_user.university.users
       users = users.alumni if utype=='alumni'
       users = users.student if utype=='student'
-      params[:terms] ||= params[:user][:name] if params[:terms].blank?
-      @users = users.search_all(params[:user].merge(name: params[:terms]))
+      params[:term] ||= params[:user][:name] if params[:term].blank?
+      @users = users.search_all(params[:user].reverse_merge(name: params[:term]))
     end
+
+    def auto_json(objects)
+      objects.map do |obj|
+        {id: obj.id, label: obj.name, value: obj.name, slug: obj.slug}
+      end
+    end
+
 end
