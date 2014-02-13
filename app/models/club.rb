@@ -24,7 +24,7 @@ class Club < ActiveRecord::Base
   validates :name, presence: true
   validates :university_id, presence: true
   validates :user_id, presence: true
-  validates :image, presence: true
+  validates :image, presence: true, on: :create
   
   scope :sup_club, where(type: nil)
   scope :privates, where(:private => true)

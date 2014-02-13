@@ -5,9 +5,9 @@
     = link_to "#", "data-target" => "#create_club", "data-toggle" => "modal", id: "create-club-link" do
       Create Your Own Club
       %span >>
-    - if user_signed_in? && current_user == @club.user
+    - if user_signed_in? && current_user.manage_club_ownership?(@club)
       = link_to "#", "data-target" => "#transfer_power", "data-toggle" => "modal", id: "transfer-power-link" do
         Transfer Power
         %span >>
-      #transfer-power-popup= render partial: 'clubs/transfer_power_form', locals: {club: @club, university: @university}
+      = render partial: 'clubs/transfer_power_form', locals: {club: @club, university: @university}
 

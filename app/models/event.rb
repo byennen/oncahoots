@@ -21,6 +21,8 @@ class Event < ActiveRecord::Base
 
   after_create :add_club_update
 
+  alias_attribute :name, :title
+
   def date
     on_date.strftime("%a %m.%d") if on_date
   end

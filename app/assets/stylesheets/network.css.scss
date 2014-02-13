@@ -304,36 +304,6 @@ $green: #00c088;
     border: none;
   }
 
-  .ssys {
-    position: relative;
-    float: left;
-    width: 100%;
-    left: 0;
-    min-height: 104px;
-    opacity: 0.9;
-    background-color: #0eb886;
-    position: absolute;
-    top: 0;
-    display: inline-block;
-    color: white;
-    small {
-      font-size: 14px;
-      width: 66%;
-      float: left;
-      margin: 20px 0 0 20px;
-    }
-  }
-
-  .lists li {
-    position: relative;
-    .ssys {
-      display: none;
-    }
-    &:hover .ssys {
-      display: block;
-    }
-  }
-
   .textarea1 {
     float: right;
     text-indent: 10px;
@@ -425,5 +395,35 @@ $green: #00c088;
     color: #468847;
     background-color: #dff0d8;
     width: 100%;
+  }
+}
+
+.ssys {
+  position: relative;
+  float: left;
+  width: 100%;
+  left: 0;
+  min-height: 104px;
+  opacity: 0.9;
+  background-color: #0eb886;
+  position: absolute;
+  top: 0;
+  display: inline-block;
+  color: white;
+  small {
+    font-size: 14px;
+    width: 66%;
+    float: left;
+    margin: 20px 0 0 20px;
+  }
+}
+
+.lists li {
+  position: relative;
+  .ssys {
+    display: none;
+  }
+  &:hover .ssys {
+    display: block;
   }
 }

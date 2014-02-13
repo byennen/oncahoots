@@ -1,20 +1,10 @@
-.eboard.col-md-12
-  %h3 eBoard
-  %ul.abo
-    - @club.leaders.each do |admin|
-      %li
-        .pull-left
-          = link_to user_path(admin) do
-            = display_image admin.profile.image, "small"
-        .pull-left
-          %strong
-            = link_to admin.name, user_path(admin)
-          %small
-            = @club.user_id == admin.id ? 'Founder' : 'Admin'
-            %br/
-            = major(admin)
-%p.mis
-  Mission Statement
-  %br/
-  %br/
-  = @club.description.html_safe if @club.description.present?
+.row
+  .col-md-12
+    .eboard
+      %h3 eBoard
+      =render "clubs/memberships", club: @club, transfer: false, memberships: @club.memberships.admin
+.row
+  .col-md-12
+    .mis
+      %h3 Mission Statement
+      %p= @club.description.html_safe if @club.description.present?

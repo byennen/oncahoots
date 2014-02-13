@@ -17,10 +17,16 @@ class ClubEventsController < ApplicationController
   def destroy
     @event = @club.events.find(params[:id])
     if @event.destroy
-      redirect_to university_club_path(@university, @club)
+      respond_to do |format|
+        format.html {redirect_to :back}
+        format.json {render json: true}
+      end
     else
       club_init
-      render :template => university_club_path(@university, @club)
+      respond_to do |format|
+        format.html {render :template => university_club_path(@university, @club)}
+        format.json {render json: @club, status: 422}
+      end
     end
   end
 
