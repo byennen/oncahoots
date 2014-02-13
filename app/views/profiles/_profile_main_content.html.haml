@@ -34,6 +34,7 @@
           .col-md-12
             - if current_user.relatable?(@user)
               %a{href: "#add-contact", class: "btn btn-primary", data: {toggle: "modal"}} Connect
+              %a{href: "#message-form", class: "btn btn-primary", data: {toggle: "modal"}} Message
             - elsif Relationship.requested?(current_user, @user)
               %a{href: "#", class: "btn btn-primary disabled"} Connection Requested
             - elsif Relationship.pending?(current_user, @user)
@@ -195,3 +196,4 @@
 
 
 = render 'profiles/connect'
+= render 'shared/new_message'
