@@ -145,18 +145,25 @@
         .title3
           %h4 Portfolio
           %i= image_tag('large-curve.png')
+        .row
+          .col-md-12
+            %p Here is a portfolio of my work
         - @profile.portfolio_items.each do |port|
-          .span11
-            Here is a portfolio of my work:
-            %br
-            .span2
-              = display_image_square port.image, 'thumb'
-
-            .span9
-              .span9.no-lmar= port.name
-              .span9.no-lmar= port.organization_name
-              .span9.no-lmar= raw port.description
-          .clearfix
+          .row
+            .col-md-12
+              .row
+                .col-md-12
+                  = link_to "#portfolio_image", "class" => "portfolio_image", "data-img" => port.image.modal, "data-toggle" => "modal", "data-target" => "#portfolio_image" do
+                    = display_image_square port.image, 'large_thumb', class: 'framed'
+              .row
+                .col-md-12
+                  %strong= port.name
+                  %br
+                  = port.organization_name
+                  %br
+                  = port.description
+                  %br
+      .clearfix
     #faq.tab-pane.fade
       .paragraph
         .title3
@@ -194,6 +201,14 @@
             %span= @profile.contact_requirement.try(:fields_of_interest)
         .clearfix
 
+#portfolio_image.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "portfolioImage", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"}
+      .modal-body
+        %img
+      .modal-footer
 
 = render 'profiles/connect'
 = render 'shared/new_message'

@@ -1,23 +1,30 @@
 .search
-  %input#search-text{:name => "search_terms", :placeholder => "Search", :type => "text"}/
+  %input#search-text{:name => "term", :placeholder => "Search", :type => "text"}/
   %a#search-btn{:href => "javascript:;"}
     %button{:name => "btn"}
       = image_tag('search-icon.png')
 
 :javascript
-  $("#search-btn").click(function(){
-    terms = $("input#search-text").val();
-    if (terms.trim() == "")
-      href = "/search";
-    else
-      href = "/search_results?object=all&terms=" + terms;
-    location.href = href;
-  });
-
-  $("#search-text").keydown(function(e){
-    if(e.keyCode == 13){
-      terms = $(this).val();
-      href = "/search_results?object=all&terms=" + terms;
+  $(document).ready(function(){
+    $("#search-btn").click(function(){
+      terms = $("input#search-text").val();
+      if (terms.trim() == "")
+        href = "/search";
+      else
+        href = "/search_results?object=all&term=" + terms;
       location.href = href;
-    }
+    });
+
+    $("#search-text").keydown(function(e){
+      if(e.keyCode == 13){
+        terms = $(this).val();
+        href = "/search_results?object=all&term=" + terms;
+        location.href = href;
+      }
+    });
+    $("#search-text").autocomplete({
+      source: '/search_results',
+      minLength: 0,
+      select: function( event, ui ) {location.href = "/users/" + ui.item.slug}
+    });
   });

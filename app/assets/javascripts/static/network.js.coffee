@@ -85,3 +85,10 @@ $(document).ready ->
   tabName = "resume" if !tabName || tabName == ""
   $('a[href="#'+tabName+'"]').click()
   $(".contact-auto").autocomplete({source: '/users/search', minLength: 0})
+
+  $('.portfolio_image').click ->
+    $('#portfolio_image').find('img').attr('src', $(this).data()['img'])
+
+  $('.edit_user #user_graduation_year').gentleSelect();
+  $('.edit_user #user_university_id').gentleSelect();
+  $('.edit_user #user_city_id').gentleSelect();

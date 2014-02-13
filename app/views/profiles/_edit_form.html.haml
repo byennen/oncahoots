@@ -21,10 +21,10 @@
           = f.text_field :double_major, placeholder: "Double Major", class: 'edtitor3 field-edit'
           at
           = f.select :university_id, options_from_collection_for_select(University.all, :id, :name, @user.university_id), {}, prompt: "University", class: 'edtitor4 field-edit'
-        %p
+        %p.year
           ="I graduated in" if @user.alumni?
           ="I will graduate in" unless @user.alumni?
-          = f.select :graduation_year, options_for_select((Date.today.year + 7).downto(1940).to_a, @user.graduation_year), {}, placeholder: "Grad Year", class: 'edtitor5 field-edit'
+          = f.select :graduation_year, options_for_select((Date.today.year + 7).downto(1940).to_a, @user.graduation_year), {}, placeholder: "Graduation Year", class: 'edtitor5 field-edit'
         %p
           My current city is
           = f.select :city_id, options_for_select(City.order(:name).collect{ |c| [c.name, c.id] } + [["Other", 0]], selected: @user.city_id), {}, class: 'edtitor6 field-edit'
@@ -74,7 +74,7 @@
               %br.clearfix
               = e.text_area :description, placeholder: "Additional description", rows: "2", class: "same texta2", style: 'display:block'
               %br.clearfix
-              = e.link_to_remove "<i class='icon-remove'></i>".html_safe
+              = e.link_to_remove "<i class='icon-remove glyphicon glyphicon-remove'></i>".html_safe
             %br.clearfix
           .span11.text-left= f.link_to_add "Add", :educations, class: "btn btn-primary btn-mini fleft field-edit", style: "margin-left: 30px"
           .span11.fright.col-md-11.pull-right
@@ -130,7 +130,7 @@
                 %br.clearfix
                 = ef.text_area :description, placeholder: "Additional description", rows: "2", class: "same texta2", style: 'display:block'
                 %br.clearfix
-                = ef.link_to_remove "<i class='icon-remove'></i>".html_safe
+                = ef.link_to_remove "<i class='icon-remove glyphicon glyphicon-remove'></i>".html_safe
           %br.clearfix
           .span11.text-left= f.link_to_add "Add", :experiences, class: "btn btn-primary btn-mini fleft field-edit", style: "margin-left: 30px"
           .span11.fright.col-md-11.pull-right
@@ -184,7 +184,7 @@
                     = fq.text_field :question, placeholder: "Question", class: 'edtitor3b field-edit'
                     %br/
                     = fq.text_field :answer, placeholder: "Answer", class: 'edtitor4b field-edit'
-                    = fq.link_to_remove "<i class='icon-remove'></i>".html_safe
+                    = fq.link_to_remove "<i class='icon-remove glyphicon glyphicon-remove'></i>".html_safe
               .span11.text-left= f.link_to_add "Add", :faqs, class: "btn btn-primary btn-mini fleft field-edit", style: "margin-left: 80px"
               .span11.fright.col-md-11.pull-right
                 = f.submit "Save", class: "btn btn-small btn-success fright btng ch2s form-field"

@@ -8,9 +8,9 @@ $(window).load ->
     updateURL: true
     beforeMove: (index) ->
     afterMove: (index) ->
-      loop: false
-      keyboard: true
-      responsiveFallback: false
+    loop: false
+    keyboard: true
+    responsiveFallback: false
   return
 
 $(window).load ->

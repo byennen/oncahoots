@@ -41,8 +41,6 @@ class User < ActiveRecord::Base
 
   attr_accessible :role_ids, :as => :super_admin
 
-  attr_accessor :name
-
   validates_presence_of :university_id, :graduation_year, :major
 
   after_create :create_user_profile
@@ -68,7 +66,7 @@ class User < ActiveRecord::Base
   acts_as_messageable
   
   def intro_para
-    text = "Hi! My name is #{name} #{alumni? ? 'I was a' : 'I am a'} #{major} major #{" and #{double_major} double major" if double_major} "
+    text = "Hi! My name is #{name} #{alumni? ? 'I was a' : 'I am a'} #{major} major #{" and #{double_major} double major" if double_major.present?} "
     text += "at #{university.name}. #{alumni? ? 'I graduated in' : 'I will graduate in'} #{graduation_year}. My current city is "
     text += "#{city ? city.name : other_city}#{'. I work in ' + professional_field.name if alumni? && professional_field}"
   end  

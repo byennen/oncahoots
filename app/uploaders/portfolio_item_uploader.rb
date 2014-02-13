@@ -36,6 +36,15 @@ class PortfolioItemUploader < CarrierWave::Uploader::Base
     process :resize_to_fill => [100, 100]
   end
 
+  version :large_thumb do
+    process :resize_to_fill => [300, 300]
+  end
+
+  # Create different versions of your uploaded files:
+  version :modal do
+    process :resize_to_fill => [914, 471]
+  end
+
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   # def extension_white_list

@@ -1,7 +1,7 @@
 - params[:user] ||= {}
 - params[:club] ||= {}
 - params[:event] ||= {}
-= text_field_tag :terms, params[:terms], placeholder: "SEARCH TERMS", class: "bigf"
+= text_field_tag :term, params[:term], placeholder: "SEARCH TERMS", class: "bigf"
 %div.col-md-12
   %ul.tabsx
     %li{class: "#{'activex' if params[:object].blank? || params[:object]=='students'}"}
@@ -17,7 +17,7 @@
   #tab1x.tab_content{class: "#{'hide' unless (params[:object].blank? || params[:object]=='students')}"}
     = form_tag :search do
       = text_field :user, :major, value: params[:user][:major],placeholder: "MAJOR"
-      = text_field :user, :graduation_year, value: params[:user][:graduation_year], placeholder: "GRAD YEAR"
+      = select :user, :graduation_year, options_for_select(2020.downto(1940).to_a), {value: params[:user][:graduation_year], prompt: "GRADUATION YEAR"}
     %a.search-btn{href: "javascript:;", "data-object" => "student"}
       %button.btn.btn6{:name => "btn"} Search
 
@@ -25,7 +25,7 @@
   #tab2x.tab_content{class: "#{'hide' unless params[:object]=='alumni'}"}
     = form_tag :search do
       = text_field :user, :major, value: params[:user][:major], placeholder: "MAJOR"
-      = text_field :user, :graduation_year, value: params[:user][:graduation_year], placeholder: "GRAD YEAR"
+      = select :user, :graduation_year, options_for_select(2020.downto(1940).to_a), {value: params[:user][:graduation_year], prompt: "GRADUATION YEAR"}
       .clearfix
       = text_field :user, :city, value: params[:user][:city], placeholder: "LOCATION"
       = text_field :user, :field, value: params[:user][:field], placeholder: "FIELD"

@@ -1,8 +1,37 @@
+@import "bourbon";
 #network {
   #user_university_id.edtitor4 {
     width: 150px !important;
   }
   #user_major.edtitor2, #user_double_major.edtitor3 {
     width: 110px !important;
+  }
+
+  .edit_user {
+    .gentleselect-label {
+      @include inline-block;
+      vertical-align: middle;
+      text-align: left;
+      margin: 0;
+      width: 200px;
+      float: none;
+      background-color: #ebebeb;
+    }
+    .gentleselect-dialog {
+      width: 200px;
+      text-align: left;
+      background-color: #ebebeb;
+    }
+    .year {
+      .gentleselect-label, .gentleselect-dialog {
+        width: 100px;
+      }
+    }
+  }
+}
+
+.portfolio_image {
+  img {
+    margin: 40px 0 20px 0;
   }
 }
