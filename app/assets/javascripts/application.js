@@ -102,4 +102,7 @@ $(function() {
 
 $(document).on('ready page:load', function(){
   $('.datepicker').datepicker({ format: 'mm/dd/yyyy' });
+  $(document).on('nested:fieldAdded', function(event){
+    $('.datepicker').datepicker({ format: 'mm/dd/yyyy' });
+  });
 });
