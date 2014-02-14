@@ -45,7 +45,7 @@
       = render partial: "clubs/about"
 
     #photos.members.tab-pane
-      = render 'photo_albums', club: @club
+      = render 'clubs/photo_albums', club: @club
 
     #club-popup= render 'clubs/form', club: Club.new, modal_id: 'create_club'
     #create-album-popup= render partial: 'albums/form', locals: {album: Album.new}

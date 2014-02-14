@@ -2,7 +2,7 @@
   = javascript_include_tag 'static/running_club'
 
 = content_for :page_title do
-  = render partial: "title"
+  = render "title"
 
 = content_for :left_side do
   .club-box-top-left
@@ -61,7 +61,7 @@
       = render partial: "about"
 
     #photos.members.tab-pane
-      = render 'photo_albums', club: @club
+      = render 'clubs/photo_albums', club: @club
 
   #club-popup= render 'clubs/form', club: Club.new, modal_id: 'create_club'
   #create-album-popup= render partial: 'albums/form', locals: {album: Album.new}
