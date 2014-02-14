@@ -3,12 +3,13 @@
     %li
       - if user_signed_in? && current_user.manage_club?(club)
         .actions
-          - if transfer && !membership.user.manage_club_ownership?(club)
-            .ssys
-              %small
-                = simple_form_for club, url: transfer_ownership_university_club_path(club.university, club) do |f|
-                  = f.hidden_field :user_id, value: membership.user_id
-                  = f.submit "Make Owner", class: "btng"
+          - if transfer
+            - if !membership.user.manage_club_ownership?(club)
+              .ssys
+                %small
+                  = simple_form_for club, url: transfer_ownership_university_club_path(club.university, club) do |f|
+                    = f.hidden_field :user_id, value: membership.user_id
+                    = f.submit "Make Owner", class: "btng"
           - else
             - if !membership.user.manage_club_ownership?(club)
               = link_to make_admin_university_club_memberships_path(club.university, club), method: :delete, confirm: "Are you sure you want to remove the club member #{membership.user.name}?" do
