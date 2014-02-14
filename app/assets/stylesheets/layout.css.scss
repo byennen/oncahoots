@@ -16,6 +16,28 @@ $middarkgraylighter: #919A9C;
   color: $green;
 }
 
+.edit {
+  color: #555555;
+  font-size: 11px;
+  i {
+    display: block;
+    padding: 6px 6px;
+    max-width: 29px;
+    max-height: 29px;
+    background-color: #c7c8ca;
+    border-radius: 45px;
+  }
+  &:hover, &:active, &:focus {
+    color: #02cd92;
+    text-decoration: none;
+  }
+  &:hover i, &:active i, &:focus i {
+    background-color: #00c089;
+  }
+}
+
+
+
 .title {
   height: 70px;
   overflow: hidden; // todo: not a great way to fix this

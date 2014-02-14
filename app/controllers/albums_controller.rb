@@ -16,6 +16,13 @@ class AlbumsController < ApplicationController
     redirect_to @path
   end
 
+  def destroy
+    @album = Album.find params[:id]
+    @album.destroy
+
+    redirect_to :back
+  end
+
   private
     def load_resource
       @club = Club.find (params[:club_id] || params[:metropolitan_club_id])

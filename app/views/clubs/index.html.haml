@@ -13,7 +13,7 @@
   #club-list
     = render partial: "clubs"
 
-  #club-popup= render partial: 'clubs/form', locals: {club: @club}
+  #club-popup= render 'clubs/form', club: @club, modal_id: 'create_club'
 
 = content_for :right_side do
   .my-clubs

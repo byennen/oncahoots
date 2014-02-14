@@ -119,6 +119,14 @@ $green: #00c088;
         z-index: 1004;
       }
     }
+    a.remove {
+      float: right;
+      display: block;
+      padding: 10px 15px;
+      .glyphicon {
+        vertical-align: bottom;
+      }
+    }
     &:hover a span, &:active a span, &:focus a span {
       background: url(/assets/title-img-hover.png) no-repeat !important;
       color: white;
@@ -156,6 +164,17 @@ $green: #00c088;
     .no-clubs {
       padding: 50px 30px;
       text-align: center;
+    }
+
+  }
+
+  .rub-club {
+    position: relative;
+    .edit {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      margin: 7px;
     }
 
   }
