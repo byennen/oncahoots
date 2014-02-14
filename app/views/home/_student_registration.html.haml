@@ -1,0 +1,35 @@
+= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'login-form' }) do |f|
+  = f.error_notification
+  = display_base_errors resource
+  .col-md-4.lhs
+    %p CHOOSE ONE:
+    %a.register_as_student.btn9.cn.col-md-6{:href => "javascript:;"} Student
+    %i or
+    %a.register_as_alumni.bns.col-md-6{:href => "javascript:;"} Alumni
+    .clearfix
+    = f.input :first_name, :autofocus => true, :required => true, label: false, input_html: {placeholder: "first name"}
+    = f.input :last_name, :required => true, label: false, input_html: {placeholder: "last name"}
+    = f.input :email, :required => true, label: false, input_html: {placeholder: "email"}
+    = f.input :password, :required => true, label: false, input_html: {placeholder: "password"}
+    = f.input :password_confirmation, :required => true, label: false, input_html: {placeholder: "password confirmation"}
+
+  .col-md-4.lhs
+    %p
+      %small Select the area nearest your hometown or select other.
+    = f.select :city_id, options_for_select(City.order(:name).collect{ |c| [c.name, c.id] } + [["Other", 0]], resource.city_id), prompt: "Current City"
+    .clearfix
+    = f.select :university_id, options_from_collection_for_select(University.all.sort_by(&:name), :id, :name, resource.university_id), prompt: "University"
+    .clearfix
+    -#.dont-see-your-school.row
+    -#  .text.col-md-5
+    -#    %span Don't see your school
+    -#  .col-md-7
+    -#    %a.btn.btn-primary{:href => "#"} Request College
+
+    = f.select :graduation_year, options_for_select(2020.downto(1940).to_a, resource.graduation_year), { prompt: "Graduation year"}
+    .clearfix
+
+    = f.input :major, label: false, input_html: {placeholder: "major"}
+    = f.input :double_major, label: false, input_html: {placeholder: "double major"}
+
+    %button.btn7.sign_up.btn-div{:name => "btn"} Sign Up

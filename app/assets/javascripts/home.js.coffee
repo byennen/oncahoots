@@ -18,14 +18,26 @@ $(window).load ->
     $("#login").hide()
     $("#homepage_options").removeClass "visible-lg"
     $("#homepage_options").hide()
-    $("#register").show()
+    $("#student_registration").fadeToggle()
     return
 
-  $("#user_city_id").gentleSelect() # apply gentleSelect with default options
-  $("#user_university_id").gentleSelect() # apply gentleSelect with default options
-  $("#user_graduation_year").gentleSelect() # apply gentleSelect with default options
-  $("#user_professional_field_id").gentleSelect() # apply gentleSelect with default options
+  $(".register_as_alumni").on "click", ->
+    $('#student_registration').hide();
+    $('#alumi_registration').fadeToggle();
 
+  $(".register_as_student").on "click", ->
+    $('#alumi_registration').hide();
+    $('#student_registration').fadeToggle();
+
+  $("#student_registration #user_city_id").gentleSelect() # apply gentleSelect with default options
+  $("#student_registration #user_university_id").gentleSelect() # apply gentleSelect with default options
+  $("#student_registration #user_graduation_year").gentleSelect() # apply gentleSelect with default options
+  $("#student_registration #user_professional_field_id").gentleSelect() # apply gentleSelect with default options
+  $("#alumi_registration #user_city_id").gentleSelect() # apply gentleSelect with default options
+  $("#alumi_registration #user_university_id").gentleSelect() # apply gentleSelect with default options
+  $("#alumi_registration #user_graduation_year").gentleSelect() # apply gentleSelect with default options
+  $("#alumi_registration #user_professional_field_id").gentleSelect() # apply gentleSelect with default options
+  ''
   $("#flexiselDemo1").flexisel
     enableResponsiveBreakpoints: true
     visibleItems: 3

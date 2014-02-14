@@ -1,0 +1,16 @@
+= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-vertical'}) do |f|
+  = f.input :email, placeholder: 'Email', label: false
+  = f.input :password, placeholder: 'Password', label: false
+  .row
+    .col-md-12
+      = link_to 'Forgotten Password?', 'users/password/new', class: 'fos'
+  #options.row
+    .col-md-12
+      %a.register_button.btn.btn-primary.col-md-5.btn-homepage{href: 'javascript:;'} Register
+      %button.btn.btn-primary.col-md-5.btn-homepage.col-md-offset-2 Login
+  .row
+    .col-md-12
+      %a.ico{:href => "#"}
+        = image_tag('linkedin.png')
+      %a.ico{:href => "#"}
+        = image_tag('facebook.png')
