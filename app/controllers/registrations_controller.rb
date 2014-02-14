@@ -36,10 +36,10 @@ class RegistrationsController < Devise::RegistrationsController
     end
   end
 
-  def create
-    auth_options = { :recall => 'home#index', :scope => :user }
-    resource = warden.authenticate!(auth_options)
-  end
+  #def create
+  #  auth_options = { :recall => 'home#index', :scope => :user }
+  #  resource = warden.authenticate!(auth_options)
+  #end
   
   protected
 

@@ -32,6 +32,6 @@
     = f.input :major, label: false, input_html: {placeholder: "major"}
     = f.input :double_major, label: false, input_html: {placeholder: "double major"}
     = f.select :professional_field_id, options_from_collection_for_select(ProfessionalField.all.sort_by(&:name), :id, :name, resource.professional_field_id)
-
+    = f.input :alumni, :as => :hidden, :input_html => { value: true }
 
     %button.btn7.sign_up.btn-div{:name => "btn"} Sign Up
