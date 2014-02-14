@@ -7,6 +7,9 @@
 = content_for :left_side do
   .rub-club{style: "background: url(#{@club.image}) no-repeat; height: 320px;"}
     %button.btn9= @club.city && @club.city.name
+    = link_to '#edit_club', class: 'edit', "data-toggle" => "modal" do
+      %i
+        = image_tag('edit-icon.png')
 
   %ul.sub-nav
     %li.active= link_to "Bulletin Board", "#bboard", "data-toggle" => "tab"
@@ -59,6 +62,8 @@
   - if current_user.manage_club?(@club)
     - new_update = @club.updates.build
     = render partial: 'updates/form', locals: {update: new_update}
+
+  =render 'clubs/form', club: @club, modal_id: 'edit_club'
 
 = content_for :right_side do
   = render "clubs/news_cal_side", title: 'Announcements'
