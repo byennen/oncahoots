@@ -123,31 +123,6 @@ $green: #00c088;
     }
   }
 
-  .edit {
-    float: right;
-    display: block;
-    float: left;
-    margin-left: 5px;
-    color: #555555;
-    font-size: 11px;
-    i {
-      display: block;
-      padding: 5px;
-      margin-left: 10px;
-      background-color: #c7c8ca;
-      border-radius: 15px;
-      float: right;
-      margin-top: -20px;
-    }
-    &:hover, &:active, &:focus {
-      color: #02cd92;
-      text-decoration: none;
-    }
-    &:hover i, &:active i, &:focus i {
-      background-color: #00c089;
-    }
-  }
-
   .paragraph {
     display: block;
     padding: 0 0 20px 0;

@@ -55,7 +55,7 @@
             = link_to "#album-#{album.id}", "data-toggle" => "modal" do
               = image_tag album.featured.image.album
 
-    #club-popup= render partial: 'clubs/form', locals: {club: Club.new}
+    #club-popup= render 'clubs/form', club: Club.new, modal_id: 'create_club'
     #create-album-popup= render partial: 'albums/form', locals: {album: Album.new}
 
   - @club.albums.each do |album|

@@ -160,6 +160,17 @@ $green: #00c088;
 
   }
 
+  .rub-club {
+    position: relative;
+    .edit {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      margin: 7px;
+    }
+
+  }
+
 }
 
 .input-label .tooltip-inner {

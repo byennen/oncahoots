@@ -56,7 +56,6 @@
         - if user_signed_in? && current_user == @user
           %li
             %a#edt.edit{:href => "#{edit_user_profile_path(current_user, current_user.profile)}"}
-              Edit
               %i
                 = image_tag('edit-icon.png')
 

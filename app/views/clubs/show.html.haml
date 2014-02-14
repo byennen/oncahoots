@@ -11,6 +11,9 @@
       - if current_user.joinable?(@club)
         = link_to join_club_path(@club) do
           %button.btn10 Join Club
+      = link_to '#edit_club', class: 'edit', "data-toggle" => "modal" do
+        %i
+          = image_tag('edit-icon.png')
     %ul.sub-nav.nav.nav-tabs
       %li.active= link_to "Lowdown", "#lowdown", "data-toggle" => "tab"
       %li= link_to "Members", "#members", "data-toggle" => "tab"
@@ -68,7 +71,7 @@
             = link_to "#album-#{album.id}", "data-toggle" => "modal" do
               = image_tag album.featured.image.album
 
-  #club-popup= render partial: 'form', locals: {club: Club.new}
+  #club-popup= render 'clubs/form', club: Club.new, modal_id: 'create_club'
   #create-album-popup= render partial: 'albums/form', locals: {album: Album.new}
 
   - @club.albums.each do |album|
@@ -80,6 +83,8 @@
   - if current_user.manage_club?(@club)
     - new_update = @club.updates.build
     = render partial: 'updates/form', locals: {update: new_update}
+
+  =render 'clubs/form', club: @club, modal_id: 'edit_club'
 
 = content_for :right_side do
   = render "news_cal_side", title: 'Newsletters'
