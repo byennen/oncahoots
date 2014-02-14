@@ -45,15 +45,7 @@
       = render partial: "clubs/about"
 
     #photos.members.tab-pane
-      %a#create-album-link.npost{"data-target" => "#create_album", "data-toggle" => "modal", :href => "#"} New Album >>
-      - @club.albums.each do |album|
-        .music
-          %p
-            = album.name
-            %small= link_to "add images", "#album-#{album.id}-upload", "data-toggle" => "modal"
-          .music-img
-            = link_to "#album-#{album.id}", "data-toggle" => "modal" do
-              = image_tag album.featured.image.album
+      = render 'photo_albums', club: @club
 
     #club-popup= render 'clubs/form', club: Club.new, modal_id: 'create_club'
     #create-album-popup= render partial: 'albums/form', locals: {album: Album.new}
