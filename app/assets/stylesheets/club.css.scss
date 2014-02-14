@@ -60,9 +60,6 @@ $green: #00c088;
     }
   }
 
-  .music-img{
-    img{max-width: 670px;}
-  }
 }
 
 #clubs, #metropolitan_clubs {
@@ -91,6 +88,7 @@ $green: #00c088;
   .music-img {
     border: 9px solid #ebebeb;
     width: 100%;
+    max-width: 689px;
     height: 250px;
     float: left;
     position: relative;
@@ -146,8 +144,7 @@ $green: #00c088;
       }
     }
     img {
-      width: 100%;
-      max-height: 230px;
+      max-height: 250px;
     }
     .club-title {
       font-size: 26px;
