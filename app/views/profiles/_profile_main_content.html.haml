@@ -32,7 +32,8 @@
       - if user_signed_in?
         .row
           .col-md-12
-            %a{href: "#message-form", class: "btn btn-primary", data: {toggle: "modal"}} Message
+            - unless params[:controller] == "users"
+              %a{href: "#message-form", class: "btn btn-primary", data: {toggle: "modal"}} Message
             - if current_user.relatable?(@user)
               %a{href: "#add-contact", class: "btn btn-primary", data: {toggle: "modal"}} Connect
             - elsif Relationship.requested?(current_user, @user)
