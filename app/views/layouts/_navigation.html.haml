@@ -1,11 +1,11 @@
-#navigation.col-md-1.no-padding
+#navigation
   .navbar
     .navbar-header
       %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      = link_to image_tag('logo.png'), root_path, class: 'visible-lg'
+      = link_to '', root_path, alt: "oncahoots home", class: 'visible-lg visible-md logo'
 
     .navbar-collapse.collapse
       %ul.nav.navbar-nav
@@ -37,5 +37,7 @@
           %a{:href => "/sign_out"} Logout
 
 :javascript
-  $('li a[data-link=#{controller_name.downcase}]').addClass('active-nav')
+  $(function() {
+    $('li a[data-link=#{controller_name.downcase}]').addClass('active-nav');
+  });
 

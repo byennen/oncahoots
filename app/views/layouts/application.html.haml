@@ -18,10 +18,10 @@
     - id = controller_name
     - id = "college" if id=='universities'
     - id = "network" if id=='profiles'
+    = render 'layouts/navigation'
     .container-full{:id => "#{id}"}
       .row
-        = render 'layouts/navigation'
-        #content-container.col-md-11.no-padding
+        #content-container.col-md-12.no-padding
           .row#content-top-bar
             - if controller_path == 'universities'
               .col-md-6.no-padding.title
