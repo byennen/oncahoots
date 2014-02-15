@@ -102,14 +102,13 @@ $middarkgraylighter: #919A9C;
 }
 
 .search {
-  width: 100%;
-  float: left;
+  position: relative;
   input {
-    width: 80%;
+    display: block;
+    width: 100%;
     border: none;
     font-size: 25px;
     font-weight: 400;
-    float: left;
     height: 70px;
     background-color: #f0f0f0;
     padding-left: 20px;
@@ -117,14 +116,20 @@ $middarkgraylighter: #919A9C;
     border: 1px solid rgba(92, 96, 103, 0.1);
     border-right: none;
   }
-  button {
-    width: 20%;
-    border: none;
-    @include linear-gradient(#5c6067, #3c4449);
-    border-radius: 0;
-    height: 70px;
-    &:hover, &:active, &:focus {
-      @include linear-gradient(#3c4449, #5c6067);
+  a#search-btn {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    button {
+      width: 80px;
+      border: none;
+      @include linear-gradient(#5c6067, #3c4449);
+      border-radius: 0;
+      height: 70px;
+      &:hover, &:active, &:focus {
+        @include linear-gradient(#3c4449, #5c6067);
+      }
     }
   }
 }
@@ -230,7 +235,7 @@ table.hid {
     text-indent: 35px;
   }
   ul {
-    min-height: 140px;
+    height: 300px;
     max-height: 300px;
     overflow-y: scroll;
     position: relative;
@@ -283,17 +288,24 @@ table.hid {
   background-color: #f7f7f7;
 }
 
+.modal-dialog {
+  .close {
+    margin-right: -43px;
+    margin-top: -43px !important;
+  }
+}
+
 .close {
   background: url(../assets/cross.png) no-repeat !important;
   height: 55px;
-  opacity: 1;
-  filter: alpha(opacity = 100);
   width: 55px;
   display: block;
   float: right;
-  margin-right: -43px;
-  margin-top: -43px !important;
+  margin-right: -16px;
+  margin-top: -18px !important;
   z-index: 1000;
+  opacity: 1;
+  filter: alpha(opacity = 100);
   &:hover, &:active, &:focus {
     opacity: 0.8;
     filter: alpha(opacity = 80);

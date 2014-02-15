@@ -1,4 +1,4 @@
-%a#create-album-link.npost{"data-target" => "#create_album", "data-toggle" => "modal", :href => "#"} New Album >>
+%a#create-album-link.npost{"data-target" => "#create_album", "data-toggle" => "modal", :href => "#"} New Album &raquo;
 - club.albums.each do |album|
   .music
     - if user_signed_in? && current_user.manage_club?(club)
@@ -10,3 +10,8 @@
     .music-img
       = link_to "#album-#{album.id}", "data-toggle" => "modal" do
         = image_tag album.featured.image.album
+#create-album-popup= render 'albums/form', club: club, album: Album.new
+- club.albums.each do |album|
+  = render "albums/show", album: album
+  = render "albums/upload_images", album: album
+

@@ -23,10 +23,16 @@
         = render 'layouts/navigation'
         #content-container.col-md-11.no-padding
           .row#content-top-bar
-            .col-md-6.no-padding.title
-              = yield :page_title
-            .col-md-6.no-padding
-              = render 'shared/search'
+            - if controller_path == 'universities'
+              .col-md-6.no-padding.title
+                = yield :page_title
+              .col-md-6.no-padding
+                = render 'shared/search'
+            - else
+              .col-md-7.no-padding.title
+                = yield :page_title
+              .col-md-5.no-padding
+                = render 'shared/search'
           .row#content-main
             - if @full_page == true
               .col-md-12.no-padding

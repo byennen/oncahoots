@@ -3,7 +3,7 @@
     .modal-dialog
       .modal-content
         .modal-header
-          %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} &times;
+          %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"}
           %h4.modal-title Add Contact
         .modal-body
           = f.input :relation_id, as: :hidden, input_html: {value: @user.id}

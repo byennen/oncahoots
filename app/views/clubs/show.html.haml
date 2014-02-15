@@ -37,7 +37,7 @@
           - if current_user.member_of?(@club)
             = link_to "#post-form", class: "npost", data: {toggle: "modal"} do
               New Post
-              %span >>
+              %span &raquo;
           &nbsp;
           %ul.lat-posts.top
             - @posts.each do |post|
@@ -51,7 +51,7 @@
           %li= link_to "All", "javascript:;", class: "current", "data-target" => "#all-mems"
           %li= link_to "Alumni", "javascript:;", "data-target" => "#alumnis"
           %li= link_to "Students", "javascript:;", "data-target" => "#students"
-          %li= link_to "Sponsors", "javascript:;", "data-target" => "#sponsors"
+          -#%li= link_to "Sponsors", "javascript:;", "data-target" => "#sponsors"
       %ul
         #all-mems.filter-content= render "clubs/memberships", club: @club, transfer: false, memberships: @club.memberships.ordered
         #alumnis.hide.filter-content= render "clubs/memberships", club: @club, transfer: false, memberships: @club.memberships.alumni
@@ -64,11 +64,7 @@
       = render 'clubs/photo_albums', club: @club
 
   #club-popup= render 'clubs/form', club: Club.new, modal_id: 'create_club'
-  #create-album-popup= render partial: 'albums/form', locals: {album: Album.new}
 
-  - @club.albums.each do |album|
-    = render partial: "albums/show", locals: {album: album}
-    = render partial: "albums/upload_images", locals: {album: album}
   - new_post = @club.posts.build
   = render partial: "posts/form", locals: {post: new_post}
 
