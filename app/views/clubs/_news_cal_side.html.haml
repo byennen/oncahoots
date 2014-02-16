@@ -1,6 +1,6 @@
 .info
   .news-letter
-    - if current_user.super_admin? || current_user.manage_club?(@club)
+    - if current_user.manage_club?(@club)
       = link_to "#update-form", class: 'npost', data: {toggle: "modal", target: "#update-form"} do
         %p
           New Update
