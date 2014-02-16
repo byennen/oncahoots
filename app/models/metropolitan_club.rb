@@ -5,6 +5,8 @@ class MetropolitanClub < Club
 
   attr_accessible :city_id, :university_id
 
+  before_create :default_category
+
   class << self
     def metropolitan_clubs_sorted_by_popularity
       Rails.cache.fetch 'metropolitan_clubs_sorted_by_popularity', expires_in: 1.day do
@@ -28,6 +30,11 @@ class MetropolitanClub < Club
   def city_name
     # using splitter for orders of magnitude faster performance
     name.split(' ').to_a.last || (city && city.name) || name
+  end
+
+  def default_category
+    self.category = 'Alumni' unless category.present?
+    true
   end
 
 end
