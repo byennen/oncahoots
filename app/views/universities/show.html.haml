@@ -63,7 +63,7 @@
         - @updates.each do |update|
           %a{href: "#update#{update.id}-popup", data: {toggle: "modal"}}
             %p
-              = truncate update.body.html_safe, length: 30
+              = truncate update.body.to_s.html_safe, length: 30
               %span &raquo;
 
 
