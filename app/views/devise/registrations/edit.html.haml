@@ -3,6 +3,9 @@
 = content_for :full_page do
   #settings
     .col-md-3.col-md-offset-4.settings-form
+      .text-center
+        %span To edit your profile information,
+        = link_to "CLICK HERE.", user_profile_path(resource, resource.profile)
       %h3 Edit User
       = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put}) do |f|
         .row
@@ -24,5 +27,3 @@
 
       .text-center
         = link_to "delete your account", registration_path(resource_name), method: :delete, confirm: "are you sure?", class: "delete-link"
-        %span To edit your profile information,
-        = link_to "CLICK HERE.", user_profile_path(resource, resource.profile)
