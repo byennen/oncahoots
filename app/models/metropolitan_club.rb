@@ -5,7 +5,7 @@ class MetropolitanClub < Club
 
   attr_accessible :city_id, :university_id
 
-  before_create :default_category
+  before_save :default_category
 
   class << self
     def metropolitan_clubs_sorted_by_popularity

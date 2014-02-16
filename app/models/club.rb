@@ -53,6 +53,8 @@ class Club < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: :slugged
 
+  before_save :default_category
+
 
   def admins
     @admins ||= memberships.where(admin: true).all.map(&:user)
@@ -70,6 +72,12 @@ class Club < ActiveRecord::Base
     mems.where("users.id not in (?)", leaders.map(&:id))
   end
 
+  def default_category
+    self.category = 'Alumni' unless category.present? || type != 'MetropolitanClub'
+    true
+  end
+
+
   class << self
     def search_all(params)
       search_name(params[:name]).search_category(params[:category]).search_private(params[:private])
@@ -80,8 +88,12 @@ class Club < ActiveRecord::Base
     end
 
     def search_category(category)
-      return where("1=1") if(category.blank? || category == "All categories")
-      where("category=?", category)
+      category_filter = where("1=1")
+      return category_filter if (category.blank? || category == "All categories")
+      if category != "Alumni"
+        category_filter = category_filter.sup_club
+      end
+      category_filter.where("category=?", category)
     end
 
     def search_private(priv)

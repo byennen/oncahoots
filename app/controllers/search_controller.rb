@@ -63,7 +63,7 @@ class SearchController < ApplicationController
 
     def search_club
       params[:club]||={}
-      clubs = current_user.super_admin? ? Club.sup_club : current_user.university.clubs.sup_club
+      clubs = current_user.super_admin? ? Club : current_user.university.clubs
       @clubs = clubs.search_all(params[:club].merge(name: params[:term]))
     end
 
