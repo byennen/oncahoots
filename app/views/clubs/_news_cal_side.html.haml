@@ -1,5 +1,11 @@
 .info
   .news-letter
+    - if current_user.super_admin? || current_user.manage_club?(@club)
+      = link_to "#update-form", class: 'npost', data: {toggle: "modal", target: "#update-form"} do
+        %p
+          New Update
+          %span &raquo;
+      = render 'updates/form', update: @club.updates.build
     %h4= title
     %ul.hid
       = render partial: "clubs/update", collection: @club.updates

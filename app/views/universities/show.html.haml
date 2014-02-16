@@ -54,18 +54,18 @@
     .col-md-3.no-padding
       .college-updates.college-information
         %h2 College Updates
-        = link_to "#update-form", class: 'npost', data: {toggle: "modal", target: "#update-form"} do
-          %p
-            New Update
-            %span &raquo;
+        - if current_user.super_admin? || current_user.admin_of?(@university)
+          = link_to "#update-form", class: 'npost', data: {toggle: "modal", target: "#update-form"} do
+            %p
+              New Update
+              %span &raquo;
+          = render 'updates/form', update: @university.updates.build
         - @updates.each do |update|
           %a{href: "#update#{update.id}-popup", data: {toggle: "modal"}}
             %p
               = truncate update.body.html_safe, length: 30
               %span &raquo;
 
-        - if current_user.super_admin? || current_user.admin_of?(@university)
-          = render 'updates/form', update: @university.updates.build
 
   - @updates.each do |update|
     = render partial: 'updates/update', locals: {update: update}

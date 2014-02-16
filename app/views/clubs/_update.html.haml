@@ -5,13 +5,13 @@
       %br
       = update.body.truncate(100) if update.body
       %span &raquo;
-      %br
-      %br
-      = link_to "Comments", "javascript:;"
+      -#%br
+      -#%br
+      -#= link_to "Comments", "javascript:;"
     .showa
       %h2= update.headline
       %span= update.created_at.strftime("%m.%d.%y") if update.created_at
       %br
       %p= update.body.html_safe if update.body
-      = image_tag update.image, height: "200"
+      = image_tag update.image, height: "200" if update.image.present?
       %button.btn8.pull-right Go Back
