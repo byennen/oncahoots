@@ -3,7 +3,7 @@
     .modal-content
       .modal-header
         %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"}
-        %h4#myModalLabel.modal-title College Update
+        %h4#myModalLabel.modal-title= update.headline
       / modal-header
       .modal-body
         - if update.image.present?
