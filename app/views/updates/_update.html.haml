@@ -1,13 +1,14 @@
-.modal.fade{id: "update#{update.id}-popup","aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+.update-show.modal.fade{id: "update#{update.id}-popup","aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
   .modal-dialog
     .modal-content
       .modal-header
         %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"}
-        %h4#myModalLabel.modal-title College Updates
+        %h4#myModalLabel.modal-title College Update
       / modal-header
       .modal-body
-        .tree
-          = image_tag update.image, alt: "Image"
+        - if update.image.present?
+          .tree
+            = image_tag update.image, alt: "Image"
         / tree
         .onef
           %h3= update.image.filename

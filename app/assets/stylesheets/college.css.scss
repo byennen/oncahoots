@@ -551,7 +551,9 @@ $hover_green: rgb(156,231,198);
 
   .college-updates {
     min-height: 400px;
+    max-height: 400px;
     background-color: $green;
+    overflow-y: scroll;
     p {
       font-size: 19px;
       color: #444444;
