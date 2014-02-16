@@ -15,7 +15,10 @@
               .col-md-2.no-padding.input-label
                 %label Club Name
               .col-md-4.no-padding
-                = f.text_field :name
+                - if club.is_a?(MetropolitanClub)
+                  %label= club.try(:city).name
+                - else
+                  = f.text_field :name
 
             %div.field
               .col-md-2.no-padding.input-label
