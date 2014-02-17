@@ -1,4 +1,4 @@
-$(window).load ->
+$ ->
   $(".main").onepage_scroll
     sectionContainer: "section"
     responsiveFallback: 600
@@ -11,10 +11,9 @@ $(window).load ->
     loop: false
     keyboard: true
     responsiveFallback: false
-  return
 
-$(window).load ->
   $(".register_button").on "click", ->
+    $(document).unbind('mousewheel DOMMouseScroll') #unbind onepage_scroll
     $("#login").hide()
     $("#homepage_options").removeClass "visible-lg"
     $("#homepage_options").hide()
