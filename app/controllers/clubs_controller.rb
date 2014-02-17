@@ -52,8 +52,8 @@ class ClubsController < ApplicationController
         @conversations = @club.mailbox.inbox
         @sentbox = @club.mailbox.sentbox
       else
-        @conversations = current_user.conversations_for(@club)
-        @sentbox = current_user.sent_to(@club)
+        @conversations = (current_user && current_user.conversations_for(@club)).to_a
+        @sentbox = (current_user && current_user.sent_to(@club)).to_a
       end
       @requests = [current_user && current_user.relationships.where(status: 'pending')].to_a
       @invitation = Invitation.new

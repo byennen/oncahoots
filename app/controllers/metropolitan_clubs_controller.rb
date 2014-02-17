@@ -60,7 +60,7 @@ class MetropolitanClubsController < ApplicationController
     def init_data
       @university = @club.university
       @leaderships = @club.memberships.where(admin: true)
-      @my_photos = @club.club_photos.by_user(current_user)
+      @my_photos = user_signed_in? ? @club.club_photos.by_user(current_user) : []
       @updates = @club.updates
       @updateable = @club
       @posts = @club.posts
@@ -68,8 +68,8 @@ class MetropolitanClubsController < ApplicationController
         @conversations = @club.mailbox.inbox
         @sentbox = @club.mailbox.sentbox
       else
-        @conversations = current_user.conversations_for(@club)
-        @sentbox = current_user.sent_to(@club)
+        @conversations = (current_user && current_user.conversations_for(@club)).to_a
+        @sentbox = (current_user && current_user.sent_to(@club)).to_a
       end
     end 
 end
