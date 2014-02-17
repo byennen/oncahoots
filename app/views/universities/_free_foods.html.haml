@@ -13,7 +13,7 @@
       .span10.ev-title= link_to event.title, "#event#{event.id}_detail", :"data-toggle" => "modal"
       .span2.no-lmar
         .fright
-          - if current_user.manage_event?(event)
+          - if current_user && current_user.manage_event?(event)
             = link_to "delete", university_university_event_path(@university, event), method: :delete, remote: true, class: "btn btn-danger btn-mini", confirm: "are you sure?"
             = link_to "edit", "#edit-event-#{event.id}", class: "btn btn-success btn-mini", :"data-toggle" => "modal", id: "event_link#{event.id}"
       .span12.no-lmar.bottom

@@ -1,4 +1,4 @@
-- if current_user.manage_university?(university)
+- if current_user && current_user.manage_university?(university)
   #banner-form.upload-form{style: "opacity: 0"}
     = form_for university do |f|
       = f.file_field :banner

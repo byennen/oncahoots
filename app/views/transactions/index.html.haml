@@ -7,7 +7,7 @@
       .left.top= link_to "transactions history", "#transactions-list", "data-toggle" => "modal", class: "green"
     .span12.no-lmar
       .fright
-        - if current_user.manage_club?(@club)
+        - if current_user && current_user.manage_club?(@club)
           = link_to "New Item", "#item-form", "data-toggle" => "modal", class: "btn btn-success", id: "new-item-link"
           - caption = @club.stripe_credential ? "Refesh Connect Stripe" : "Connect With Stripe"
           = link_to caption, "/auth/stripe_connect?club_id=#{@club.id}", class: "btn btn-success", target: "_blank"
@@ -28,7 +28,7 @@
             .span6
               .top3.green
                 =  "#{item.transactions.count} transactions"
-                - if current_user.manage_club?(@club)
+                - if current_user && current_user.manage_club?(@club)
                   = " | "
                   = link_to "edit", "#item-form#{item.id}", "data-toggle" => "modal", id: "edit-item-link#{item.id}"
             .span6.no-lmar
@@ -38,7 +38,7 @@
                 - if @club.stripe_credential
                   = link_to "Purchase", "#card-form#{item.id}", "data-toggle" => "modal", class: "btn btn-success"
         = render partial: "checkout", locals: {item: item}
-- if current_user.manage_club?(@club)
+- if current_user && current_user.manage_club?(@club)
   - @items.each do |item|
     %div{id: "item-popup#{item.id}"}= render partial: "items/form", locals: {item: item}
 #item-popup=render partial: "items/form", locals: {item: @item}
