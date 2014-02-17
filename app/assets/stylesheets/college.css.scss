@@ -261,11 +261,11 @@ $hover_green: rgb(156,231,198);
   #event-carousel{
     margin-top: 40px;
     img {
-      max-width: 100%;
       margin-bottom: 10px;
+      width: 140px;
+      height: 140px;
     }
     p {
-      margin: 0px;
       font-size: 12px
     }
     .btn {
@@ -357,10 +357,16 @@ $hover_green: rgb(156,231,198);
     margin: 0 auto;
     position: relative;
     z-index: 1000;
+    .nbs-flexisel-nav-left {
+      left: 0;
+    }
+    .nbs-flexisel-nav-right {
+      right: 0;
+    }
   }
   .slider-background {
     @include radial-gradient(circle at center center, #D1D1D3 0%, #F9FAFA 100%, #F9FAFA);
-    bottom: 100px;
+    bottom: 114px;
     height: 15px;
     position: relative;
     width: 100%;
@@ -567,21 +573,6 @@ $hover_green: rgb(156,231,198);
         @include linear-gradient(#56d988, #02c189);
         color: white;
       }
-    }
-  }
-
-  #event-carousel{
-    margin-top: 40px;
-    img {
-      max-width: 100%;
-      margin-bottom: 10px;
-    }
-    p {
-      margin: 0px;
-      font-size: 12px
-    }
-    .btn {
-      margin-top: 20px;
     }
   }
 

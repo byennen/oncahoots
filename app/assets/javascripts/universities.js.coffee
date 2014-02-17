@@ -11,9 +11,7 @@ $ ->
   $("#user_professional_field_id").gentleSelect() # apply gentleSelect with default options
 
 $(window).load ->
-
   $("#flexiselDemo2").flexisel
     visibleItems: 3
-
 
   return
