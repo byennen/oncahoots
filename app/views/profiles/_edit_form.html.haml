@@ -73,8 +73,8 @@
               %br.clearfix
               %br.clearfix
               = e.text_area :description, placeholder: "Additional description", rows: "2", class: "same texta2", style: 'display:block'
-              %br.clearfix
-              = e.link_to_remove "<i class='icon-remove glyphicon glyphicon-remove'></i>".html_safe
+              %p.clearfix
+                = e.link_to_remove "<i class='icon-remove glyphicon glyphicon-remove'></i>".html_safe
             %br.clearfix
           .span11.text-left= f.link_to_add "Add", :educations, class: "btn btn-primary btn-mini fleft field-edit", style: "margin-left: 30px"
           .span11.fright.col-md-11.pull-right

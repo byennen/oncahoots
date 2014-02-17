@@ -1,0 +1,9 @@
+.modal {
+  &.update-form {
+    #new_update {
+      textarea.form-control {
+        max-height: 250px;
+      }
+    }
+  }
+}

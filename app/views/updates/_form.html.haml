@@ -1,4 +1,4 @@
-.modal.fade{tabindex: "-1", role: "dialog", :"aria-labelledby" => "myModalLabel", :"aria-hidden" => "true", id: "update-form#{update.id}"}
+.update-form.modal.fade{tabindex: "-1", role: "dialog", :"aria-labelledby" => "myModalLabel", :"aria-hidden" => "true", id: "update-form#{update.id}"}
   .modal-dialog
     .modal-content
       .modal-header
@@ -8,7 +8,7 @@
         .modal-body
           = f.input :headline
           = f.input :image
-          = f.text_area :body, rows: 10, style: "width: 100%"
+          = f.input :body, as: 'text', rows: 10
         .modal-footer
           = f.hidden_field :user_id, value: update.user_id || current_user.id
           = f.button :submit, update.new_record? ? "Post" : "Update", class: "btn btn-success"

@@ -5,7 +5,7 @@ module ApplicationHelper
     messages = resource.errors[:base].map { |msg| content_tag(:p, msg) }.join
     html = <<-HTML
     <div class="alert alert-error alert-block">
-      <button type="button" class="close" data-dismiss="alert">&#215;</button>
+      <button type="button" class="close" data-dismiss="alert"></button>
       #{messages}
     </div>
     HTML
@@ -35,7 +35,7 @@ module ApplicationHelper
   end
 
   def close_modal_button
-    "<button type='button' class='close' data-dismiss='modal'>&times;</button>"
+    "<button type='button' class='close' data-dismiss='modal'></button>"
   end
 
   def week_title(week_start)

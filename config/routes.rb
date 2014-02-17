@@ -21,6 +21,7 @@ CahootsConnect::Application.routes.draw   do
 
 
   match '/auth/:provider/callback' => 'authentications#create'
+  match '/universities/:university_id/metropolitan_clubs/:id', :to => redirect('/metropolitan_clubs/%{id}')
   resources :cities
   resources :universities, only: [:show, :update] do
 
@@ -39,6 +40,26 @@ CahootsConnect::Application.routes.draw   do
     end
 
     resources :clubs, only: [:show, :new, :create, :edit, :update, :index] do
+      resources :events, :path => 'events', :controller => :club_events
+      post 'transfer_ownership', on: :member
+      put 'transfer_ownership', on: :member
+      resources :memberships do
+        post 'make_admin', on: :collection
+        post 'remove_admin', on: :collection
+      end
+      get :search, on: :collection
+      resources :invitations do
+        get :search, on: :collection
+      end
+      resources :club_photos
+      resources :statuses
+      resources :records
+      resources :club_newsletters do
+        resources :comments
+      end
+    end
+
+    resources :metropolitan_clubs, only: [:show, :new, :create, :edit, :update, :index] do
       resources :events, :path => 'events', :controller => :club_events
       post 'transfer_ownership', on: :member
       put 'transfer_ownership', on: :member

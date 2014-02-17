@@ -16,7 +16,7 @@
         %ul.btns.showaa
           %li
             %a{:href => "/search"}
-              %button.btn.btn2{:name => "btn"} Find your club. Find your passion. >>
+              %button.btn.btn2{:name => "btn"} Find your club. Find your passion. &raquo;
           - @clubs.each do |club|
             %li
               %a{:href => club_link_path(@university, club)}
@@ -46,7 +46,7 @@
               %a{:href => club_link_path(@university, club)}= club.name
             = truncate update.body, length: 30
             %span
-              %a{href: "#update#{update.id}-popup", data: {toggle: "modal"}} >>
+              %a{href: "#update#{update.id}-popup", data: {toggle: "modal"}} &raquo;
 
     .col-md-3.no-padding
       = render 'shared/alumni_search'
@@ -54,13 +54,17 @@
     .col-md-3.no-padding
       .college-updates.college-information
         %h2 College Updates
+        - if current_user.super_admin? || current_user.admin_of?(@university)
+          = link_to "#update-form", class: 'npost', data: {toggle: "modal", target: "#update-form"} do
+            %p
+              New Update
+              %span &raquo;
+          = render 'updates/form', update: @university.updates.build
         - @updates.each do |update|
           %a{href: "#update#{update.id}-popup", data: {toggle: "modal"}}
             %p
-              = truncate update.body.html_safe, length: 30
-              %span >>
-
-
+              = truncate update.body.to_s.html_safe, length: 30
+              %span &raquo;
 
 
   - @updates.each do |update|
