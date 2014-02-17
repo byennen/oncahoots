@@ -7,7 +7,8 @@
         %i{:class=>'glyphicon glyphicon-remove'}
     %p
       = album.name
-      %small= link_to "add images", "#album-#{album.id}-upload", "data-toggle" => "modal"
+      - if user_signed_in?
+        %small= link_to "add images", "#album-#{album.id}-upload", "data-toggle" => "modal"
     .music-img
       = link_to "#album-#{album.id}", "data-toggle" => "modal" do
         = image_tag album.featured.image.album

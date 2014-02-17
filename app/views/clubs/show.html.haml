@@ -27,9 +27,9 @@
       - if @club.private? && user_signed_in? && !current_user.member_of?(@club)
         .cent
           %p
-            This content is retricted.
+            This content is restricted.
             %br
-            Join club to view lowndown.
+            Join club to view lowdown.
           = link_to join_club_path(@club) do
             %button.btn9.mod2 Join Club
         .clearfix
