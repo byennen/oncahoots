@@ -25,6 +25,8 @@ module Dev
           else
             puts club.errors.full_messages.join(",")
           end
+          # this is needed because we are embedding the ID of the model in the image path; not available till after save
+          club.image.store!(File.open(@image_file))
         else
           puts "++++++++#{university.name} of #{city.name} already exits"
         end
