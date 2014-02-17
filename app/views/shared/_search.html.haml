@@ -1,5 +1,5 @@
 .search
-  %input#search-text{:name => "term", :placeholder => "Search", :type => "text"}/
+  %input#search-text.search-autocomplete{:name => "term", :placeholder => "Search", :type => "text"}/
   %a#search-btn{:href => "javascript:;"}
     %button{:name => "btn"}
       = image_tag('search-icon.png')
@@ -22,7 +22,7 @@
         location.href = href;
       }
     });
-    $("#search-text").autocomplete({
+    $(".search-autocomplete").autocomplete({
       source: '/search_results',
       minLength: 0,
       select: function( event, ui ) {location.href = "/users/" + ui.item.slug}

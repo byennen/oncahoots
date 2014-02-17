@@ -8,7 +8,7 @@
       .modal-body
         - if update.image.present?
           .tree
-            = image_tag update.image, alt: "Image"
+            = image_tag update.image.album_photo, alt: "Image"
         / tree
         .onef
           %h3= update.image.filename
