@@ -6,7 +6,7 @@
 
 = content_for :left_side do
   .club-box-top-left
-    .rub-club{style: "background: url(#{@club.image}) no-repeat; height: 80%;"}
+    .rub-club{style: "background: url(#{@club.image && @club.image.club}) no-repeat; height: 80%;"}
       %button.btn9= @club.name
       - if current_user && current_user.joinable?(@club)
         = link_to join_club_path(@club) do

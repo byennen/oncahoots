@@ -5,7 +5,7 @@
   = render partial: "clubs/title"
   
 = content_for :left_side do
-  .rub-club{style: "background: url(#{@club.image}) no-repeat; height: 320px;"}
+  .rub-club{style: "background: url(#{@club.image && @club.image.club}) no-repeat; height: 320px;"}
     %button.btn9= @club.city && @club.city.name
     - if current_user && current_user.manage_club?(@club)
       = link_to '#edit_club', class: 'edit', "data-toggle" => "modal" do
