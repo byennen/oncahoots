@@ -24,7 +24,7 @@
 
   .club-box-bottom-left.tab-content
     #lowdown.tab-pane.active
-      - if @club.private? && !current_user.member_of?(@club)
+      - if @club.private? && user_signed_in? && !current_user.member_of?(@club)
         .cent
           %p
             This content is retricted.
@@ -35,7 +35,7 @@
         .clearfix
       - else
         .post
-          - if current_user.member_of?(@club)
+          - if current_user && current_user.member_of?(@club)
             = link_to "#post-form", class: "npost", data: {toggle: "modal"} do
               New Post
               %span &raquo;
@@ -69,7 +69,7 @@
   - new_post = @club.posts.build
   = render partial: "posts/form", locals: {post: new_post}
 
-  - if current_user.manage_club?(@club)
+  - if current_user && current_user.manage_club?(@club)
     - new_update = @club.updates.build
     = render partial: 'updates/form', locals: {update: new_update}
 

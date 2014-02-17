@@ -22,7 +22,7 @@
     #bboard.tab-pane.active
       .cent{style: "margin: 0; background-color: #f7f7f7;"}
         .post
-          - if current_user.manage_club?(@club)
+          - if current_user && current_user.manage_club?(@club)
             = link_to "#post-form", class: "npost", data: {toggle: "modal"} do
               New Post
               %span &raquo;
@@ -56,7 +56,7 @@
   - new_post = @club.posts.build
   = render partial: "posts/form", locals: {post: new_post}
 
-  - if current_user.manage_club?(@club)
+  - if current_user && current_user.manage_club?(@club)
     - new_update = @club.updates.build
     = render partial: 'updates/form', locals: {update: new_update}
 

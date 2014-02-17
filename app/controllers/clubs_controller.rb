@@ -46,16 +46,16 @@ class ClubsController < ApplicationController
       @membership = Membership.new
       @members = @club.users
       @memberships = @club.memberships
-      @current_membership = @club.memberships.find_by_user_id(current_user.id)
+      @current_membership = @club.memberships.find_by_user_id(current_user && current_user.id)
       @admins = @club.memberships.where(admin: true)
-      if current_user.manage_club?(@club)
+      if current_user && current_user.manage_club?(@club)
         @conversations = @club.mailbox.inbox
         @sentbox = @club.mailbox.sentbox
       else
         @conversations = current_user.conversations_for(@club)
         @sentbox = current_user.sent_to(@club)
       end
-      @requests = current_user.relationships.where(status: 'pending')
+      @requests = [current_user && current_user.relationships.where(status: 'pending')].to_a
       @invitation = Invitation.new
       @event = Event.new
       Rails.logger.debug("non admins are #{@non_admins.inspect}")
