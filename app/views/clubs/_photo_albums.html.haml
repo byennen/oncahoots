@@ -1,4 +1,5 @@
-%a#create-album-link.npost{"data-target" => "#create_album", "data-toggle" => "modal", :href => "#"} New Album &raquo;
+- if user_signed_in?
+  %a#create-album-link.npost{"data-target" => "#create_album", "data-toggle" => "modal", :href => "#"} New Album &raquo;
 - club.albums.each do |album|
   .music
     - if user_signed_in? && current_user.manage_club?(club)

@@ -24,7 +24,7 @@
               %label Image
               = fp.file_field :image
               = fp.text_field :caption, placeholder: "image caption"
-              = fp.hidden_field :user_id, value: current_user.id
+              = fp.hidden_field :user_id, value: current_user && current_user.id
               %br
               = fp.link_to_remove "<i class='glyphicon glyphicon-remove'></i>".html_safe
               .clearfix
