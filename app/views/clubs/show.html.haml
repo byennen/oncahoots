@@ -8,12 +8,13 @@
   .club-box-top-left
     .rub-club{style: "background: url(#{@club.image}) no-repeat; height: 80%;"}
       %button.btn9= @club.name
-      - if current_user.joinable?(@club)
+      - if current_user && current_user.joinable?(@club)
         = link_to join_club_path(@club) do
           %button.btn10 Join Club
-      = link_to '#edit_club', class: 'edit', "data-toggle" => "modal" do
-        %i
-          = image_tag('edit-icon.png')
+      - if current_user && current_user.manage_club?(@club)
+        = link_to '#edit_club', class: 'edit', "data-toggle" => "modal" do
+          %i
+            = image_tag('edit-icon.png')
     %ul.sub-nav.nav.nav-tabs
       %li.active= link_to "Lowdown", "#lowdown", "data-toggle" => "tab"
       %li= link_to "Members", "#members", "data-toggle" => "tab"
