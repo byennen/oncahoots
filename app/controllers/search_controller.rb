@@ -58,13 +58,13 @@ class SearchController < ApplicationController
     def search_event
       params[:event]||={}
       events = current_user.super_admin? ? Event : current_user.university.events
-      @events = events.search_all(params[:event].merge(title: params[:term]))
+      @events = events.search_all(params[:event].merge(title: params[:term])).order(:title).limit(50) #avoids denial of service attacks
     end
 
     def search_club
       params[:club]||={}
       clubs = current_user.super_admin? ? Club : current_user.university.clubs
-      @clubs = clubs.search_all(params[:club].merge(name: params[:term]))
+      @clubs = clubs.search_all(params[:club].merge(name: params[:term])).order(:name).limit(50) #avoids denial of service attacks
     end
 
     def search_user(utype)
@@ -73,7 +73,7 @@ class SearchController < ApplicationController
       users = users.alumni if utype=='alumni'
       users = users.student if utype=='student'
       params[:term] ||= params[:user][:name] if params[:term].blank?
-      @users = users.search_all(params[:user].reverse_merge(name: params[:term]))
+      @users = users.search_all(params[:user].reverse_merge(name: params[:term])).order(:first_name).limit(50) #avoids denial of service attacks
     end
 
     def auto_json(objects)
