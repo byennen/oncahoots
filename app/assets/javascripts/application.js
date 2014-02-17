@@ -25,7 +25,7 @@
 //= require rails.validations
 
 // Static pages
-//= require static/settings.js.coffee
+//= require static/settings
 
 // Keep main last
 //= require main

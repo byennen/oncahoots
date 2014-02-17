@@ -2,6 +2,15 @@
   .col-md-12
     .slider
       %ul#flexiselDemo2
+        %li
+          = link_to image_tag('im1.png', width: '160'), "#"
+        %li= link_to image_tag('im2.png', width: '160'), "#"
+        %li= link_to image_tag('im3.png', width: '160'), "#"
+    .slider-background
+    - events.each do |event|
+      = link_to display_image(event.image, "medium"), '#'
+    .slider
+      %ul#flexiselDemo2{style: 'display: show;'}
         - events.each do |event|
           %li
             = link_to display_image(event.image, "medium"), '#'
