@@ -1,5 +1,5 @@
 - if comment.commentable_type=="Album"
-  %span= comment.user.name
+  %span= comment.user && comment.user.name
   = comment.comment
   %br
 - else
@@ -8,5 +8,5 @@
       = link_to user_path(comment.user) do
         = display_image comment.user.profile.image, "small"
       %span.green-text= comment.user.name
-    = comment.comment.html_safe
+    = comment.comment.to_s.html_safe
   %br
