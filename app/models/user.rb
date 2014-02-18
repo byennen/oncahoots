@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   has_many :relationships, dependent: :destroy
   has_many :relations, through: :relationships
   has_many :contacts, :through => :relationships, :source => :relation, :conditions => {"relationships.status" => "accepted"}
-  has_many :posts
+  has_many :posts, dependent: :destroy
   has_many :interesteds, dependent: :destroy
   has_many :interested_events, through: :interesteds, source: :interested_obj, source_type: "Event"
   has_many :customers, dependent: :destroy
