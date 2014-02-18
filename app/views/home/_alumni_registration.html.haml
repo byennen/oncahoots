@@ -16,9 +16,9 @@
   .col-md-4.lhs
     %p
       %small Select the area nearest your hometown or select other.
-    = f.select :city_id, options_for_select(City.order(:name).collect{ |c| [c.name, c.id] } + [["Other", 0]], resource.city_id), class: 'gentleSelect', prompt: "Current City"
+    = f.select :city_id, options_for_select(City.order(:name).collect{ |c| [c.name, c.id] } + [["Other", 0]], resource.city_id),  prompt: "Current City"
     .clearfix
-    = f.select :university_id, options_from_collection_for_select(University.all.sort_by(&:name), :id, :name, resource.university_id), class: 'gentleSelect', prompt: "University"
+    = f.select :university_id, options_from_collection_for_select(University.all.sort_by(&:name), :id, :name, resource.university_id), prompt: "University"
     .clearfix
     -#.dont-see-your-school.row
     -#  .text.col-md-5
@@ -31,7 +31,7 @@
 
     = f.input :major, label: false, input_html: {placeholder: "major"}
     = f.input :double_major, label: false, input_html: {placeholder: "double major"}
-    = f.select :professional_field_id, options_from_collection_for_select(ProfessionalField.all.sort_by(&:name), :id, :name, resource.professional_field_id)
+    = f.select :professional_field_id, options_from_collection_for_select(ProfessionalField.all.sort_by(&:name), :id, :name, resource.professional_field_id), { prompt: "Field"}
     = f.input :alumni, :as => :hidden, :input_html => { value: true }
 
     %button.btn7.sign_up.btn-div{:name => "btn"} Sign Up
