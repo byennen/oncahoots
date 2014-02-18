@@ -1,10 +1,12 @@
 %li.light
   .col-md-3
-    = link_to user_path(post.user), class: "img2" do
-      = display_image post.user.profile.image, "thumb"
+    - if post.user.present?
+      = link_to user_path(post.user), class: "img2" do
+        = display_image post.user.profile.image, "thumb"
   .col-md-9
     %h3
-      = link_to post.user.name, user_path(post.user)
+      - if post.user.present?
+        = link_to post.user.name, user_path(post.user)
     %br
     %span= post.content
     %br
