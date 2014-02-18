@@ -1,5 +1,5 @@
 .conversation{id: "conv-#{@conversation.id}"}
-  .info{:style => "position:relative; z-index:10000; width:100%; float:left"}
+  .info
     %button.btn7{:name => "btn"} Comments
   = render partial: 'message', collection: @conversation.messages.reverse
 = render partial: 'reply'
