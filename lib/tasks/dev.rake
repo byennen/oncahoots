@@ -25,19 +25,7 @@ namespace :dev do
   end
 
   task :update_college_images => :environment do
-    file_path = "#{Rails.root}/public/raw-images/universities/banner/"
-    University.all.each do |university|
-      image_banner = "#{file_path}#{university.slug.split('-')[0].capitalize}Header.jpg"
-      image_file = "#{file_path}#{university.slug.split('-')[0].capitalize}Logo.jpg"
-      begin
-        university.banner.store!(File.open(image_banner)) if File.exist?(image_banner)
-        university.image.store!(File.open(image_file)) if File.exist?(image_file)
-        university.save!
-        puts "Created image for #{university.name}"
-      rescue Exception => e
-        p e
-      end
-    end
+    Dev.update_college_images
   end
 
 end
