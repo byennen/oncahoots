@@ -49,6 +49,7 @@ class University < ActiveRecord::Base
         club=metropolitan_clubs.build(city_id: city.id)
         club.name = "#{name} of #{city.name}"
         club.user = owner
+        club.category = 'Alumni'
         if File.exist?("#{file_path}#{city.slug}.jpeg")
           @image_file = "#{file_path}#{city.slug}.jpeg"
         elsif File.exist?("#{file_path}#{city.slug}.jpg")
