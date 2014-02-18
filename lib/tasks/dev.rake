@@ -1,6 +1,6 @@
 namespace :dev do
-  desc "Development seed"
-  
+
+  desc "Create 10 example users with emails user0@cahoots.com, user1@cahoots.com, etc... "
   task :create_users => :environment do
     10.times do |i|
       puts "Creating User#{i}"
@@ -20,10 +20,12 @@ namespace :dev do
     end
   end
 
-  task :create_metropolitan_clubs => :environment do
-    Dev.create_metropolitan_clubs
+  desc 'Destroy and recreate metropolitan clubs for all universities (WARNING: THIS DELETES ALL ASSOCIATED METRO CLUB DATA LIKE RECORDS, STATUSES, TRANSACTIONS, ETC...)'
+  task :destroy_and_recreate_metropolitan_clubs => :environment do
+    Dev.destroy_and_recreate_metropolitan_clubs
   end
 
+  desc 'Update college and metro club images from public/raw-images'
   task :update_college_images => :environment do
     Dev.update_college_images
   end
