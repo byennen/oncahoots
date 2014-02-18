@@ -7,12 +7,12 @@
             - if membership.user != club.user
               .ssys
                 %small
-                  = simple_form_for club, url: transfer_ownership_university_club_path(club.university, club) do |f|
+                  = simple_form_for club, url: transfer_ownership_university_club_path(club.university.slug, club.slug) do |f|
                     = f.hidden_field :user_id, value: membership.user_id
                     = f.submit "Make Owner", class: "btng"
           - else
             - if membership.user != club.user
-              = link_to make_admin_university_club_memberships_path(club.university, club), method: :delete, confirm: "Are you sure you want to remove the club member #{membership.user.name}?" do
+              = link_to university_club_membership_path(club.university.slug, club.slug, membership), method: :delete, confirm: "Are you sure you want to remove the club member #{membership.user.name}?" do
                 %i{:class=>'glyphicon glyphicon-remove'}
             - if membership.user.club_admin?(club)
               - if membership.user != club.user
@@ -20,7 +20,7 @@
                 .admin-action
                   %i{class: 'glyphicon glyphicon-remove unadminister'} &nbsp;
                   %small
-                    = simple_form_for Membership.new, url: remove_admin_university_club_memberships_path(club.university, club), class: 'pull-right' do |f|
+                    = simple_form_for Membership.new, url: remove_admin_university_club_memberships_path(club.university.slug, club.slug), class: 'pull-right' do |f|
                       = f.hidden_field :user_id, value: membership.user.id
                       = f.submit "Remove Admin", class: "btng"
             - else
@@ -28,7 +28,7 @@
               .admin-action
                 %i{class: 'glyphicon glyphicon-remove unadminister'} &nbsp;
                 %small
-                  = simple_form_for Membership.new, url: make_admin_university_club_memberships_path(club.university, club) do |f|
+                  = simple_form_for Membership.new, url: make_admin_university_club_memberships_path(club.university.slug, club.slug) do |f|
                     .row
                       .col-md-2
                         = f.hidden_field :user_id, value: membership.user.id
