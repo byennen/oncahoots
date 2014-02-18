@@ -50,12 +50,13 @@ class University < ActiveRecord::Base
         club.name = "#{name} of #{city.name}"
         club.user = owner
         club.category = 'Alumni'
+        image_file = nil
         if File.exist?("#{file_path}#{city.slug}.jpeg")
-          @image_file = "#{file_path}#{city.slug}.jpeg"
+          image_file = "#{file_path}#{city.slug}.jpeg"
         elsif File.exist?("#{file_path}#{city.slug}.jpg")
-          @image_file = "#{file_path}#{city.slug}.jpg"
+          image_file = "#{file_path}#{city.slug}.jpg"
         end
-        next if @image_file.nil?
+        next if image_file.nil?
         club.save(validate: false)
         club.memberships.create!(admin: true, title: 'Founder', user_id: club.user.id)
         if club.valid?
@@ -64,7 +65,7 @@ class University < ActiveRecord::Base
           puts club.errors.full_messages.join(",")
         end
         # this is needed because we are embedding the ID of the model in the image path; not available till after save
-        club.image.store!(File.open(@image_file))
+        club.image.store!(File.open(image_file))
         club.save!
       else
         puts "++++++++#{name} of #{city.name} already exits"

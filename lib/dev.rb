@@ -16,10 +16,23 @@ module Dev
           university.banner.store!(File.open(image_banner)) if File.exist?(image_banner)
           university.image.store!(File.open(image_file)) if File.exist?(image_file)
           university.save!
-          puts "Created image for #{university.name}"
+          puts "Stored image for #{university.name}"
         rescue Exception => e
           p e
         end
+      end
+      City.all.each do |city|
+        club = metropolitan_clubs.find_by_city_id(city.id)
+        image_file = nil
+        if File.exist?("#{file_path}#{city.slug}.jpeg")
+          image_file = "#{file_path}#{city.slug}.jpeg"
+        elsif File.exist?("#{file_path}#{city.slug}.jpg")
+          image_file = "#{file_path}#{city.slug}.jpg"
+        end
+        next if image_file.nil?
+        club.image.store!(File.open(image_file))
+        club.save!
+        puts "Stored image for #{university.name} Metropolitan Club at #{city.name}"
       end
     end
   end
