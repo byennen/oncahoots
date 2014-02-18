@@ -7,3 +7,5 @@ $(document).ready ->
   $('#collapseMessages .row, #collapseRequests .row').click ->
     $('#com-comments-box').hide()
     $('#com-connect-box').show()
+
+  $('#messages .com-img:nth-child(1)').click()
