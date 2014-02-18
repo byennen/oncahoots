@@ -24,6 +24,7 @@ group :development do
   gem "factory_girl_rails", "~> 4.3.0"
   gem "rspec-rails", "~> 2.14.1"
   gem "shoulda-matchers", "~> 2.5.0"
+  gem "sqlite3"
 end
 
 group :test do
