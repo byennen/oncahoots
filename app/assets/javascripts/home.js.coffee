@@ -4,7 +4,7 @@ $ ->
     responsiveFallback: 600
     easing: "ease"
     animationTime: 1000
-    pagination: false
+    pagination: true
     updateURL: true
     beforeMove: (index) ->
     afterMove: (index) ->
@@ -36,7 +36,7 @@ $ ->
   $("#alumi_registration #user_university_id").gentleSelect() # apply gentleSelect with default options
   $("#alumi_registration #user_graduation_year").gentleSelect() # apply gentleSelect with default options
   $("#alumi_registration #user_professional_field_id").gentleSelect() # apply gentleSelect with default options
-  ''
+
   $("#flexiselDemo1").flexisel
     enableResponsiveBreakpoints: true
     visibleItems: 3
@@ -70,6 +70,3 @@ $ ->
       tablet:
         changePoint: 768
         visibleItems: 3
-
-  return
-
