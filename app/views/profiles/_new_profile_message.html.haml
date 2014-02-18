@@ -8,7 +8,7 @@
         .modal-body
           = f.hidden_field :recipients, value: false
           = f.input :subject
-          = f.text_area :body, rows: 5, style: "width: 100%", placeholder: "message"
+          = f.input :body, rows: 5, style: "width: 100%", placeholder: "What would you like to say?"
           = f.input :attachment
         .modal-footer
           = f.button :submit, 'Send message', class: "btn btn-success"
