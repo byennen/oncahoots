@@ -6,7 +6,7 @@
         %h3 New Message
       = simple_form_for Message.new do |f|
         .modal-body
-          = f.hidden_field :recipients, :value => "#{@user.id}"
+          = f.hidden_field :recipients, value: false
           = f.input :subject
           = f.text_area :body, rows: 5, style: "width: 100%", placeholder: "message"
           = f.input :attachment
