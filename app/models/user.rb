@@ -108,7 +108,7 @@ class User < ActiveRecord::Base
   end
 
   def display_location
-    location ? location.name : city.name
+    location ? location.name : city && city.name
   end
 
   def display_major
