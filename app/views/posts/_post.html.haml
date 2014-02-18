@@ -10,7 +10,8 @@
     %br
     %span= post.content
     %br
-    = link_to "Post comment", "javascript:;", class: "po-cm"
+    - if user_signed_in?
+      = link_to "Post comment", "javascript:;", class: "po-cm"
     .comments.top.hide{id: "post#{post.id}-comments"}
       %span.cm-list
         - post.comments.each do |comment|
