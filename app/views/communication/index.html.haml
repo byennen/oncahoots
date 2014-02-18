@@ -33,7 +33,7 @@
     -#        %br/
     -#        %a.small-text{:href => "#"}
     -#          = notice.alert.message.html_safe unless notice.alert.message.blank?
-    #messages.tab-pane
+    #messages.tab-pane.show
       - @conversations.each do |con|
         - message = con.messages.first
         .comment-box{id: "con-#{con.id}"}
@@ -43,6 +43,9 @@
             %br/
             %span= message.sender.graduation_year if message.sender.is_a?(User)
           %p= truncate(con.messages.first.body, length: 50).html_safe
+          %p= link_to "Delete", message_path(message), method: :delete, remote: true, class: "btn red", confirm: "are you sure?"
+
+
     #requests.tab-pane
       - @requests.each do |relationship|
         .comment-box
@@ -55,3 +58,20 @@
 
 = content_for :right_side do
   #current_conversation
+    -##com-comments-box
+    -#  .row
+    -#    .col-md-12.comments-header
+    -#      %p Comments
+    -#
+    -##com-connect-box
+    -#  .row
+    -#    .col-md-12.connect-header
+    -#      %p Connect
+    -#
+    -#  .row
+    -#    .col-md-12.connect-body
+    -#      = link_to image_tag('circle.png'), '#'
+    -#      %h4 Andy Howard
+    -#      %p.text-left Here's Andy's full introductions. Lorem ipsum dolor sit amet, ectetuer. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed  I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed  I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Lore dolor consetctuer adipaicse. Hey! How are you? Ipsum dolor sit amet, ectetuer adipiscing elit, sed  I was hoping to touch base with Lore dolor consetctuer adipaicse. Lore doloetctuer adipaicse. Lore dolor consetctuer adipaicse.
+    -#
+

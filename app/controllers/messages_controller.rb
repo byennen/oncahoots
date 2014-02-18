@@ -18,7 +18,7 @@ class MessagesController < ApplicationController
       Rails.logger.debug("reciept is #{receipt.inspect}")
     end
     flash[:notice] = "Message sent."
-    redirect_to user_path(current_user)
+    redirect_to communication_path
   end
   
   def read
@@ -51,6 +51,7 @@ class MessagesController < ApplicationController
       @conversation = current_user.mailbox.inbox.find(params[:id])
       current_user.mark_as_deleted @conversation
     end
+    @unread_messages = current_user.mailbox.inbox(unread: true)
     respond_to :js
   end
 
