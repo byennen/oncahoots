@@ -27,7 +27,7 @@
   .row
     .col-md-3.no-padding
       .university-most-popular-club
-        = link_to @university.most_popular_club ? club_link_path(@university, @university.most_popular_club) : university_clubs_path(@university), "class" => "university-most-popular-club-action", "data-background-image" => @university.  most_popular_club ? @university.most_popular_club.image.xxlarge.url : image_path('blank_image.png') do
+        = link_to @university.most_popular_club ? club_link_path(@university, @university.most_popular_club) : university_clubs_path(@university), "class" => "university-most-popular-club-action", "data-background-image" => @university.  most_popular_club ? @university.most_popular_club.image.album_photo.url : image_path('blank_image.png') do
           .blank
             - if @university.most_popular_club
               #{@university.most_popular_club.name} (#{@university.most_popular_club.memberships.count})
