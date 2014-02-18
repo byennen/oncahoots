@@ -21,13 +21,21 @@ class University < ActiveRecord::Base
   end
 
   def most_popular_club
-
-    unless @most_popular_club.present?
+    club_id = Rails.cache.fetch "university_#{name}_most_popular_club", expires_in: 1.hour do
+      most_popular_club_grouped_membership_id = Membership.membership_counts_sorted_by_popularity.where("university_id = ?", id).limit(1)[0]
       club_ids = clubs.pluck(:id)
-      most_popular_club_grouped_membership = Membership.memberships_sorted_by_popularity.where("club_id in (?)", club_ids).limit(1).first
-      @most_popular_club = most_popular_club_grouped_membership.present? ? most_popular_club_grouped_membership.club : Club.find_by_id(club_ids[rand(club_ids.length)])
+      most_popular_club_grouped_membership_id.present? ? most_popular_club_grouped_membership_id.club_id : club_ids[rand(club_ids.length)]
     end
-    @most_popular_club
+    Club.find_by_id(club_id)
+  end
+
+  def metropolitan_clubs_sorted_by_popularity
+    club_ids = Rails.cache.fetch "university_#{name}_metropolitan_clubs_sorted_by_popularity", expires_in: 1.hour do
+      university_metropolitan_clubs_sorted_by_popularity = Membership.membership_counts_sorted_by_popularity.where("clubs.type = 'MetropolitanClub'").where("university_id = ?", id).limit(200).to_a.map(&:club_id)
+      other_metropolitan_clubs = MetropolitanClub.select("clubs.id").includes(:memberships).where(university_id: id, memberships: {club_id: nil}).limit(200).to_a.map(&:id)
+      (university_metropolitan_clubs_sorted_by_popularity + other_metropolitan_clubs).compact
+    end
+    MetropolitanClub.where(id: club_ids)
   end
 
   private

@@ -44,6 +44,7 @@ class User < ActiveRecord::Base
   validates_presence_of :university_id, :graduation_year, :major
 
   after_create :create_user_profile
+  after_create :join_city_metropolitan_club
 
   # Scopes
   scope :alumni, where(alumni: true)
@@ -107,7 +108,7 @@ class User < ActiveRecord::Base
   end
 
   def display_location
-    location ? location.name : city.name
+    location ? location.name : city && city.name
   end
 
   def display_major
@@ -172,6 +173,10 @@ class User < ActiveRecord::Base
 
   def create_user_profile
     Profile.create(user_id: self.id)
+  end
+
+  def join_city_metropolitan_club
+    Club.find_by_university_id_and_city_id(university_id, city_id).memberships.create!(admin: false, title: nil, user_id: id)
   end
 
   def member_of?(club)

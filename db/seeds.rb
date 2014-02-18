@@ -114,3 +114,4 @@ Profile.create(user_id: @super_admin.id, skills: 'Super Admin')
 Profile.create(user_id: @university_admin.id, skills: 'University Admin')
 
 Dev.create_metropolitan_clubs
+Dev.update_college_images
