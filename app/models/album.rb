@@ -1,7 +1,7 @@
 class Album < ActiveRecord::Base
   belongs_to :user
   belongs_to :club
-  has_many :club_photos
+  has_many :club_photos, dependent: :destroy
   has_many :comments, as: :commentable, dependent: :destroy
 
   attr_accessible :name, :location, :description, :club_photos_attributes
