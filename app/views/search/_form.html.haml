@@ -1,7 +1,7 @@
 - params[:user] ||= {}
 - params[:club] ||= {}
 - params[:event] ||= {}
-= text_field_tag :term, params[:term], placeholder: "SEARCH TERMS", class: "bigf"
+= text_field_tag :term, params[:term], placeholder: "SEARCH TERMS", class: "bigf search-autocomplete"
 %div.col-md-12
   %ul.tabsx
     %li{class: "#{'activex' if params[:object].blank? || params[:object]=='students'}"}

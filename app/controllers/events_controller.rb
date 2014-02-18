@@ -39,6 +39,7 @@ class EventsController < ApplicationController
   def interested
     @event = Event.find(params[:id])
     current_user.interested_events << @event unless current_user.interested_event?(@event)
+    Rails.logger.info "\n\n------ EVENT: INTRESTED #{@event.inspect} \n\n"
     respond_to :js
   end
 

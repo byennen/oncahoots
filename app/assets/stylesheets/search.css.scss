@@ -160,4 +160,6 @@ $green: #00c088;
 
 .ui-autocomplete {
   z-index: 10001;
+  max-height: 600px;
+  overflow-y: scroll;
 }

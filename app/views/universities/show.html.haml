@@ -43,10 +43,10 @@
           - club = update.updateable
           %p.nsw
             %span
-              %a{:href => club_link_path(@university, club)}= club.name
+              %a{:href => club_link_path(@university, club), class: 'club-name'}= club.name
             = truncate update.body, length: 30
             %span
-              %a{href: "#update#{update.id}-popup", data: {toggle: "modal"}} &raquo;
+              %a{href: "#update#{update.id}-popup", data: {toggle: "modal"}, class: "popup-action"} &raquo;
 
     .col-md-3.no-padding
       = render 'shared/alumni_search'

@@ -1,21 +1,21 @@
 class Club < ActiveRecord::Base
   belongs_to :university
 
-  has_many :memberships
+  has_many :memberships, dependent: :destroy
   has_many :users, :through => :memberships, :uniq => true
-  has_many :albums
+  has_many :albums, dependent: :destroy
   has_many :club_photos, through: :albums
-  has_many :events
-  has_many :statuses # this is lowdowns here
-  has_many :records
-  has_many :updates, as: :updateable
+  has_many :events, dependent: :destroy
+  has_many :statuses, dependent: :destroy # this is lowdowns here
+  has_many :records, dependent: :destroy
+  has_many :updates, as: :updateable, dependent: :destroy
   has_many :leaders, through: :memberships, source: :user, conditions: {"memberships.admin" => true}
-  has_many :posts
-  has_many :items
-  has_many :customers
-  has_many :transactions
+  has_many :posts, dependent: :destroy
+  has_many :items, dependent: :destroy
+  has_many :customers, dependent: :destroy
+  has_many :transactions, dependent: :destroy
 
-  has_one :stripe_credential, as: :owner
+  has_one :stripe_credential, as: :owner, dependent: :destroy
   belongs_to :user
 
   attr_accessible :category, :description, :name, :university_id, :image,

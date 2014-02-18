@@ -13,7 +13,7 @@ class Membership < ActiveRecord::Base
   scope :admin, ordered.where(admin: true)
 
   class << self
-    def memberships_sorted_by_popularity
+    def membership_counts_sorted_by_popularity
       Membership.select("count(*) as membership_count, club_id, clubs.type as club_type").group("club_id, clubs.type").joins("inner join clubs on club_id = clubs.id").order("membership_count desc")
     end
   end
