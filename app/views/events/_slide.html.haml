@@ -1,9 +1,9 @@
 .row
   .col-md-12
     .slider
-      %ul#flexiselDemo2
+      %ul#flexiselDemo2.events-list
         - events.each do |event|
-          %li
+          %li.event{"data-url" => university_events_path(university, event_id: event.id, w_begin: event.on_date.beginning_of_week.strftime("%y%m%d"), date: event.on_date.strftime("%m%y"), filter: 'weekly')}
             .row
               .col-md-12
                 = link_to display_image(event.image, "medium"), '#'

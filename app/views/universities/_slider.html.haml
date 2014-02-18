@@ -11,7 +11,7 @@
     %button.btn.btn3{:name => "btn"} View All
 - else
   .row#event-carousel{style: "min-height: 150px"}
-    .events-slide= render partial: "events/slide", locals: {events: events}
+    .events-slide= render "events/slide", university: university, events: events
   %a{:href => university_events_path(university)}
     %button.btn.btn3{:name => "btn"} View All
 
