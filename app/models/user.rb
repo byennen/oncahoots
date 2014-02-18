@@ -176,7 +176,8 @@ class User < ActiveRecord::Base
   end
 
   def join_city_metropolitan_club
-    Club.find_by_university_id_and_city_id(university_id, city_id).memberships.create!(admin: false, title: nil, user_id: id)
+    city_metro_club = Club.find_by_university_id_and_city_id(university_id, city_id)
+    city_metro_club && city_metro_club.memberships.create!(admin: false, title: nil, user_id: id)
   end
 
   def member_of?(club)
