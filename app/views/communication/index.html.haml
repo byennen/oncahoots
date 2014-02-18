@@ -37,8 +37,8 @@
       - @conversations.each do |con|
         - message = con.messages.first
         .comment-box{id: "con-#{con.id}"}
-          = link_to sender_image(message), read_message_path(con), remote: true, class: 'com-img'
-          %a.com-name{:href => "#"}
+          = link_to sender_image(message), read_message_path(message), remote: true, class: 'com-img'
+          %a.com-name{:href => read_message_path(message), "data-remote" => "true"}
             = sender_name(message)
             %br/
             %span= message.sender.graduation_year if message.sender.is_a?(User)
