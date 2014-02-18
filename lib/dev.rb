@@ -13,6 +13,7 @@ module Dev
             club=university.metropolitan_clubs.build(city_id: city.id)
             club.name = "#{university.name} of #{city.name}"
             club.user = owner
+            club.memberships.create!(admin: true, title: 'Founder', user_id: club.user.id)
             if File.exist?("#{file_path}#{city.slug}.jpeg")
               @image_file = "#{file_path}#{city.slug}.jpeg"
             elsif File.exist?("#{file_path}#{city.slug}.jpg")
