@@ -6,7 +6,7 @@ $green: #00c088;
   #transfer_power {
     .modal-body {
       max-height: 500px;
-      overflow-y: scroll;
+      overflow-y: auto;
       li {
         height: 100px;
       }

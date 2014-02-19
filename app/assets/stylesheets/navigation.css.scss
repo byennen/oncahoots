@@ -18,7 +18,7 @@ $green: #00c088;
     height: -moz-calc(100% - 70px);
     height: -webkit-calc(100% - 70px);
     height: -o-calc(100% - 70px);
-    overflow-y: scroll;
+    overflow-y: auto;
   }
 }
 .auto-height {
@@ -27,7 +27,7 @@ $green: #00c088;
 }
 .scroll-section {
   height: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 .club-box-top-left {
   height: 320px;
@@ -41,7 +41,7 @@ $green: #00c088;
   // todo: what should this be?
   min-height: 200px;
 
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 
@@ -62,7 +62,7 @@ $green: #00c088;
 
 #navigation {
   background: #e7e7e8;
-  overflow-y: scroll;
+  overflow: hidden;
   width: 130px;
   position: absolute;
 }

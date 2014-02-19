@@ -223,7 +223,7 @@ $hover_green: rgb(156,231,198);
     float: left;
     min-height: 400px;
     max-height: 400px;
-    overflow-y: scroll;
+    overflow-y: auto;
     width: 100%;
     p {
       font-size: 16px;
@@ -561,7 +561,7 @@ $hover_green: rgb(156,231,198);
     min-height: 400px;
     max-height: 400px;
     background-color: $green;
-    overflow-y: scroll;
+    overflow-y: auto;
     p {
       font-size: 19px;
       color: #444444;

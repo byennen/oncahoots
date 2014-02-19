@@ -5,7 +5,7 @@ $green: #00c088;
 
   .modal-body {
     max-height: 500px;
-    overflow-y: scroll;
+    overflow-y: auto;
     textarea {
       height: 200px;
     }
