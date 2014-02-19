@@ -1,3 +1,5 @@
-= form_for Message.new, url: reply_message_path(@conversation.id), remote: true, html: { multipart: true} do |f|
-  = f.text_area :body, class: "text2"
-  = f.submit "Reply", class: "btn8 pull-right"
+.row
+  .col-md-12
+    = form_for Message.new, url: reply_message_path(@conversation.id), remote: true, html: { multipart: true} do |f|
+      = f.text_area :body, class: "text2", placeholder: 'Write an optional message.'
+      = f.submit "Reply", class: "btn8 pull-right"
