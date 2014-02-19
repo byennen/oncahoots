@@ -53,6 +53,8 @@
         .title3
           %h4 Education
           %i= image_tag('large-curve.png')
+        %p.help
+          What subjects did you spend those late nights studying passionately about? Are you planning to be an astrophysicist, doctor, biochemist, or all of the above?
         ~ nested_form_for [@user, @profile] do |f|
           = hidden_field_tag :tab_id, "resume"
           - @profile.educations.build if @profile.educations.blank?
@@ -84,6 +86,9 @@
         .title3
           %h4 Skills &amp; Interests
           %i= image_tag('large-curve.png')
+        %p.help
+          What makes you stand out? What have you spent time perfecting? - Farsi, JavaScript, The Oboe, Photoshop,
+          or something else?
         .circlee2
           ~ form_for [@user, @profile] do |f|
             = hidden_field_tag :tab_id, "resume"
@@ -110,6 +115,9 @@
           %h4 Experience
           %i= image_tag('large-curve.png')
         .clearfix
+        %p.help
+          Tell us what makes you, you. Where have you worked? How long did you work there? What did you actually
+          do there? Did you defeat dragons, win the Tri-wizard tournament, or just get the coffee?
         ~ nested_form_for [@user, @profile] do |f|
           = hidden_field_tag :tab_id, "resume"
           - @profile.experiences.order(:id).build if @profile.experiences.blank?
