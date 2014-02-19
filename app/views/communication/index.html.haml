@@ -43,7 +43,7 @@
             %br/
             %span= message.sender.graduation_year if message.sender.is_a?(User)
           %p= truncate(con.messages.first.body, length: 50).html_safe
-          %p= link_to "Delete", message_path(message), method: :delete, remote: true, class: "btn btn-default pull-right", confirm: "are you sure?"
+          %p= link_to "Delete", message_path(con.id), method: :delete, remote: true, class: "btn btn-default pull-right", confirm: "are you sure?"
 
 
     #requests.tab-pane
