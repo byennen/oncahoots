@@ -10,7 +10,7 @@
             .row
               .col-md-12
                 %p
-                  = event.title
+                  = truncate event.title, length: 27
                 %p
                   = "#{event.at_time.strftime("%I:%M %p")}," if event.at_time
                   = event.location
