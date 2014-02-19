@@ -40,13 +40,14 @@
       .club-updates.college-information
         %h2 Club Updates
         - @club_updates.each do |update|
-          - club = update.updateable
-          %p.nsw
-            %span
-              %a{:href => club_link_path(@university, club), class: 'club-name'}= club.name
-            = truncate update.body, length: 30
-            %span
-              %a{href: "#update#{update.id}-popup", data: {toggle: "modal"}, class: "popup-action"} &raquo;
+          - if update.headline.present?
+            - club = update.updateable
+            %p.nsw
+              %span
+                %a{:href => club_link_path(@university, club), class: 'club-name'}= club.name
+              = truncate update.headline.to_s.html_safe, length: 30
+              %span
+                %a{href: "#update#{update.id}-popup", data: {toggle: "modal"}, class: "popup-action"} &raquo;
 
     .col-md-3.no-padding
       = render 'shared/alumni_search'
@@ -61,10 +62,11 @@
               %span &raquo;
           = render 'updates/form', update: @university.updates.build
         - @updates.each do |update|
-          %a{href: "#update#{update.id}-popup", data: {toggle: "modal"}}
-            %p
-              = truncate update.body.to_s.html_safe, length: 30
-              %span &raquo;
+          - if update.headline.present?
+            %a{href: "#update#{update.id}-popup", data: {toggle: "modal"}}
+              %p
+                = truncate update.headline.to_s.html_safe, length: 30
+                %span &raquo;
 
 
   - @updates.each do |update|
