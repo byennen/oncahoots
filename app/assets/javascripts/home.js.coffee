@@ -17,16 +17,16 @@ $ ->
     $("#login").hide()
     $("#homepage_options").removeClass "visible-lg"
     $("#homepage_options").hide()
-    $("#student_registration").fadeToggle()
+    $("#student_registration").fadeIn()
     return
 
   $(".register_as_alumni").on "click", ->
     $('#student_registration').hide();
-    $('#alumi_registration').fadeToggle();
+    $('#alumi_registration').fadeIn();
 
   $(".register_as_student").on "click", ->
     $('#alumi_registration').hide();
-    $('#student_registration').fadeToggle();
+    $('#student_registration').fadeIn();
 
   $("#student_registration #user_city_id").gentleSelect() # apply gentleSelect with default options
   $("#student_registration #user_university_id").gentleSelect() # apply gentleSelect with default options
