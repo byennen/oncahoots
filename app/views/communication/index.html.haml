@@ -33,7 +33,7 @@
     -#        %br/
     -#        %a.small-text{:href => "#"}
     -#          = notice.alert.message.html_safe unless notice.alert.message.blank?
-    #messages.tab-pane.show
+    #messages.tab-pane.active
       - @conversations.each do |con|
         - message = con.messages.first
         .comment-box{id: "con-#{con.id}"}
