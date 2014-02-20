@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   has_many :relationships, dependent: :destroy
   has_many :relations, through: :relationships
   has_many :contacts, :through => :relationships, :source => :relation, :conditions => {"relationships.status" => "accepted"}
-  has_many :posts
+  has_many :posts, dependent: :destroy
   has_many :interesteds, dependent: :destroy
   has_many :interested_events, through: :interesteds, source: :interested_obj, source_type: "Event"
   has_many :customers, dependent: :destroy
@@ -41,11 +41,10 @@ class User < ActiveRecord::Base
 
   attr_accessible :role_ids, :as => :super_admin
 
-  attr_accessor :name
-
   validates_presence_of :university_id, :graduation_year, :major
 
   after_create :create_user_profile
+  after_create :join_city_metropolitan_club
 
   # Scopes
   scope :alumni, where(alumni: true)
@@ -68,7 +67,7 @@ class User < ActiveRecord::Base
   acts_as_messageable
   
   def intro_para
-    text = "Hi! My name is #{name} #{alumni? ? 'I was a' : 'I am a'} #{major} major #{" and #{double_major} double major" if double_major} "
+    text = "Hi! My name is #{name} #{alumni? ? 'I was a' : 'I am a'} #{major} major #{" and #{double_major} double major" if double_major.present?} "
     text += "at #{university.name}. #{alumni? ? 'I graduated in' : 'I will graduate in'} #{graduation_year}. My current city is "
     text += "#{city ? city.name : other_city}#{'. I work in ' + professional_field.name if alumni? && professional_field}"
   end  
@@ -109,7 +108,7 @@ class User < ActiveRecord::Base
   end
 
   def display_location
-    location ? location.name : city.name
+    location ? location.name : city && city.name
   end
 
   def display_major
@@ -176,12 +175,22 @@ class User < ActiveRecord::Base
     Profile.create(user_id: self.id)
   end
 
+  def join_city_metropolitan_club
+    city_metro_club = Club.find_by_university_id_and_city_id(university_id, city_id)
+    city_metro_club && city_metro_club.memberships.create!(admin: false, title: nil, user_id: id)
+  end
+
   def member_of?(club)
     clubs.map(&:id).include?(club.id)
   end
 
   def manage_club?(club)
     return true if super_admin? || admin_of?(club.university) || club_admin?(club) || club.user_id == self.id
+    false
+  end
+
+  def manage_club_ownership?(club)
+    return true if super_admin? || club.user_id == self.id
     false
   end
 

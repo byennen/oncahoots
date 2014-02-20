@@ -8,15 +8,15 @@
     .col-md-12.no-padding
       %a.dra{:href => "#"}= @university.name
       = link_to user_profile_path(current_user, current_user.profile) do
-        = image_tag(current_user.profile.image.small, class: "user-gravatar")
+        = display_image_square(current_user.profile.image, :small, class: "user-gravatar")
 = content_for :full_page do
   .row
     .col-md-6.no-padding
       .find-your-passion
         %ul.btns.showaa
           %li
-            %a{:href => "/search.html"}
-              %button.btn.btn2{:name => "btn"} Find your club. Find your passion. >>
+            %a{:href => "/search"}
+              %button.btn.btn2{:name => "btn"} Find your club. Find your passion. &raquo;
           - @clubs.each do |club|
             %li
               %a{:href => club_link_path(@university, club)}
@@ -27,7 +27,7 @@
   .row
     .col-md-3.no-padding
       .university-most-popular-club
-        = link_to @university.most_popular_club ? club_link_path(@university, @university.most_popular_club) : university_clubs_path(@university), "class" => "university-most-popular-club-action", "data-background-image" => @university.  most_popular_club ? @university.most_popular_club.image.xxlarge.url : image_path('blank_image.png') do
+        = link_to @university.most_popular_club ? club_link_path(@university, @university.most_popular_club) : university_clubs_path(@university), "class" => "university-most-popular-club-action", "data-background-image" => @university.  most_popular_club ? @university.most_popular_club.image.album_photo.url : image_path('blank_image.png') do
           .blank
             - if @university.most_popular_club
               #{@university.most_popular_club.name} (#{@university.most_popular_club.memberships.count})
@@ -40,13 +40,14 @@
       .club-updates.college-information
         %h2 Club Updates
         - @club_updates.each do |update|
-          - club = update.updateable
-          %p.nsw
-            %span
-              %a{:href => club_link_path(@university, club)}= club.name
-            = truncate update.body, length: 30
-            %span
-              %a{href: "#update#{update.id}-popup", data: {toggle: "modal"}} >>
+          - if update.headline.present?
+            - club = update.updateable
+            %p.nsw
+              %span
+                %a{:href => club_link_path(@university, club), class: 'club-name'}= club.name
+              = truncate update.headline.to_s.html_safe, length: 30
+              %span
+                %a{href: "#update#{update.id}-popup", data: {toggle: "modal"}, class: "popup-action"} &raquo;
 
     .col-md-3.no-padding
       = render 'shared/alumni_search'
@@ -54,13 +55,18 @@
     .col-md-3.no-padding
       .college-updates.college-information
         %h2 College Updates
-        - @updates.each do |update|
-          %a{href: "#update#{update.id}-popup", data: {toggle: "modal"}}
+        - if current_user.super_admin? || current_user.admin_of?(@university)
+          = link_to "#update-form", class: 'npost', data: {toggle: "modal", target: "#update-form"} do
             %p
-              = truncate update.body.html_safe, length: 30
-              %span >>
-
-
+              New Update
+              %span &raquo;
+          = render 'updates/form', update: @university.updates.build
+        - @updates.each do |update|
+          - if update.headline.present?
+            %a{href: "#update#{update.id}-popup", data: {toggle: "modal"}}
+              %p
+                = truncate update.headline.to_s.html_safe, length: 30
+                %span &raquo;
 
 
   - @updates.each do |update|

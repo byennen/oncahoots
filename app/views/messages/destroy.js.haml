@@ -1,2 +1,7 @@
-$("#conversation-#{@conversation.id}").fadeOut();
+$("#con-#{@conversation.id}").fadeOut();
 $("#current_conversation").html("");
+$("#unread_messages").html("(#{@unread_messages.size})");
+-#- if @unread_messages.size==0
+-#  $("#unread_messages").html("");
+-#- else
+-#  $("#unread_messages").html("(#{@unread_messages.size})");

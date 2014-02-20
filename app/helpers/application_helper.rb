@@ -5,7 +5,7 @@ module ApplicationHelper
     messages = resource.errors[:base].map { |msg| content_tag(:p, msg) }.join
     html = <<-HTML
     <div class="alert alert-error alert-block">
-      <button type="button" class="close" data-dismiss="alert">&#215;</button>
+      <button type="button" class="close" data-dismiss="alert"></button>
       #{messages}
     </div>
     HTML
@@ -35,7 +35,7 @@ module ApplicationHelper
   end
 
   def close_modal_button
-    "<button type='button' class='close' data-dismiss='modal'>&times;</button>"
+    "<button type='button' class='close' data-dismiss='modal'></button>"
   end
 
   def week_title(week_start)
@@ -57,16 +57,20 @@ module ApplicationHelper
     "<img id='#{options[:id]}' src='/assets/blank_image.png' class='circular blank-cir-img #{size}'></image>".html_safe
   end
 
-  def display_image_square(image, size)
+  def display_image_square(image, size, options = {})
+    options[:class] ||= ""
     if image.blank?
-      blank_image_square(size)
+      blank_image_square size, options
     else
-      image_tag image.send(size), class: "square cir-img"
+      options[:class] += " square cir-img #{size}"
+      image_tag image.send(size), options
     end
   end
 
-  def blank_image_square(size)
-    "<img src='/assets/blank_image.png' class='square blank-cir-img #{size}'></image>".html_safe
+  def blank_image_square(size, options = {})
+    options[:class] ||= ""
+    options[:class] += " square blank-cir-img #{size}"
+    image_tag '/assets/blank_image.png', options
   end
 
   def bg_class

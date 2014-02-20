@@ -4,7 +4,7 @@ class ClubsController < ApplicationController
   before_filter :ensure_user_university, except: [:show, :join, :search_members, :send_message, :message_to_club, :auto_search, :upload_photo]
 
   def search
-    @clubs = @university.clubs.sup_club.search_all(params[:club])
+    @clubs = @university.clubs.search_all(params[:club])
     respond_to :js
   end
 
@@ -46,16 +46,16 @@ class ClubsController < ApplicationController
       @membership = Membership.new
       @members = @club.users
       @memberships = @club.memberships
-      @current_membership = @club.memberships.find_by_user_id(current_user.id)
+      @current_membership = @club.memberships.find_by_user_id(current_user && current_user.id)
       @admins = @club.memberships.where(admin: true)
-      if current_user.manage_club?(@club)
+      if current_user && current_user.manage_club?(@club)
         @conversations = @club.mailbox.inbox
         @sentbox = @club.mailbox.sentbox
       else
-        @conversations = current_user.conversations_for(@club)
-        @sentbox = current_user.sent_to(@club)
+        @conversations = (current_user && current_user.conversations_for(@club)).to_a
+        @sentbox = (current_user && current_user.sent_to(@club)).to_a
       end
-      @requests = current_user.relationships.where(status: 'pending')
+      @requests = [current_user && current_user.relationships.where(status: 'pending')].to_a
       @invitation = Invitation.new
       @event = Event.new
       Rails.logger.debug("non admins are #{@non_admins.inspect}")
@@ -103,14 +103,23 @@ class ClubsController < ApplicationController
 
   def transfer_ownership
     @club = @university.clubs.find(params[:id])
-    @user = User.find(@club.user_id)
-    @membership = @club.memberships.find_by_user_id(@user.id)
+    @membership = @club.memberships.find_by_user_id(@club.user_id)
     @membership.admin = false
-    @new_owner = User.find(params[:club][:user_id])
-    @club.user_id = params[:club][:user_id]
-    if @membership.save && @club.save
+    @membership.title = nil
+    club_params = params[:club] || params[:metropolitan_club]
+    @new_owner = User.find(club_params[:user_id])
+    @club.user_id = club_params[:user_id]
+    @new_owner_membership = @club.memberships.find_by_user_id(club_params[:user_id])
+    @new_owner_membership.admin = true
+    @new_owner_membership.title = 'Owner'
+    ActiveRecord::Base.transaction do
+      if @membership.save && @club.save && @new_owner_membership.save
+        flash[:notice] = "Ownership transferred to #{@new_owner.name}"
+      else
+        flash[:error] = "Encountered error while transferring ownership to #{@new_owner.name}: #{@membership.errors.inspect} / #{@club.errors.inspect} / #{@new_owner_memberhip.errors.inspect}"
+      end
       respond_to do |format|
-        format.html { redirect_to university_club_path(@university, @club), notice: "Ownership transferred to #{@new_owner.name}" }
+        format.html { redirect_to university_club_path(@university, @club) }
       end
     end
   end

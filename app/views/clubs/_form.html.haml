@@ -1,9 +1,9 @@
-#create_club.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1", :id => modal_id}
   .modal-dialog
     .modal-content
       .modal-header
         %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"}
-        %h4#myModalLabel.modal-title Create Club
+        %h4#myModalLabel.modal-title= modal_id.humanize.titleize
 
       .modal-body
         - club.errors.full_messages.each do |msg|
@@ -15,7 +15,10 @@
               .col-md-2.no-padding.input-label
                 %label Club Name
               .col-md-4.no-padding
-                = f.text_field :name
+                - if club.is_a?(MetropolitanClub)
+                  %label= club.try(:city).name
+                - else
+                  = f.text_field :name
 
             %div.field
               .col-md-2.no-padding.input-label
@@ -47,10 +50,4 @@
 
           .row
             .col-md-12.pull-right
-              = f.submit "Create Club", class: "btng"
-
-
-:javascript
-  $(document).ready(function(){
-    $('select#club_category').gentleSelect();
-  });
+              = f.submit 'Save', class: "btng"

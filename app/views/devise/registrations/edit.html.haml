@@ -3,14 +3,16 @@
 = content_for :full_page do
   #settings
     .col-md-3.col-md-offset-4.settings-form
+      .text-center
+        %span To edit your profile information,
+        = link_to "CLICK HERE.", user_profile_path(resource, resource.profile)
       %h3 Edit User
       = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put}) do |f|
         .row
           .col-md-12
             = f.text_field :first_name, autofocus: true, :placeholder => "FIRST NAME"
             = f.text_field :last_name, :placeholder => "LAST NAME"
-            - unless current_user.super_admin?
-              = f.select :alumni, options_for_select([["STUDENT", false], ["ALUMNI", true]], resource.alumni)
+            = f.select :alumni, options_for_select([["STUDENT", false], ["ALUMNI", true]], resource.alumni)
             = f.text_field :email, placeholder: "EMAIL"
             = f.password_field :password, placeholder: "PASSWORD"
             = f.password_field :password_confirmation, placeholder: "CONFIRM"
@@ -24,5 +26,3 @@
 
       .text-center
         = link_to "delete your account", registration_path(resource_name), method: :delete, confirm: "are you sure?", class: "delete-link"
-        %span To edit your profile information,
-        = link_to "CLICK HERE.", user_profile_path(resource, resource.profile)

@@ -1,0 +1,19 @@
+- if user_signed_in?
+  %a#create-album-link.npost{"data-target" => "#create_album", "data-toggle" => "modal", :href => "#"} New Album &raquo;
+- club.albums.each do |album|
+  .music
+    - if user_signed_in? && current_user.manage_club?(club)
+      = link_to club_album_path(club, album), method: :delete, confirm: "Are you sure you want to remove the club photo album #{album.name}?", class: 'remove' do
+        %i{:class=>'glyphicon glyphicon-remove'}
+    %p
+      = album.name
+      - if user_signed_in?
+        %small= link_to "add images", "#album-#{album.id}-upload", "data-toggle" => "modal"
+    .music-img
+      = link_to "#album-#{album.id}", "data-toggle" => "modal" do
+        = image_tag album.featured.image.album
+#create-album-popup= render 'albums/form', club: club, album: Album.new
+- club.albums.each do |album|
+  = render "albums/show", album: album
+  = render "albums/upload_images", album: album
+

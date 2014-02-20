@@ -1,13 +1,6 @@
 @import "bourbon";
+@import "bootstrap/variables";
 $green: #00c088;
-
-#navigation {
-  background: #e7e7e8;
-  height: 100%;
-  overflow-y: scroll;
-}
-
-
 
 /**********************
  * FIXED SECTION HEIGHT
@@ -25,7 +18,7 @@ $green: #00c088;
     height: -moz-calc(100% - 70px);
     height: -webkit-calc(100% - 70px);
     height: -o-calc(100% - 70px);
-    overflow-y: scroll;
+    overflow-y: auto;
   }
 }
 .auto-height {
@@ -34,7 +27,8 @@ $green: #00c088;
 }
 .scroll-section {
   height: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
+
 }
 .club-box-top-left {
   height: 320px;
@@ -48,7 +42,7 @@ $green: #00c088;
   // todo: what should this be?
   min-height: 200px;
 
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 
@@ -67,27 +61,29 @@ $green: #00c088;
   background: #5c6067;
 }
 
+#navigation {
+  background: #e7e7e8;
+  overflow: hidden;
+  width: 130px;
+  position: absolute;
+}
+
+.logo {
+  background: image-url('logo.png') no-repeat top center;
+  height: 130px;
+  width: 130px;
+  display: block;
+}
+
 .navbar-header {
-  float: left;
-  width: 100%;
   text-align: center;
   margin: 0;
   padding: 0;
   background: white;
-  width: 100%;
-  height: 70px;
-  min-height: 100%;
-  img {
-    padding: 7px;
-    width: 100%;
-    position: relative;
-    top: -13px;
-  }
 }
 
 .navbar-collapse {
   max-height: 100%;
-  float: left;
 }
 
 .navbar-nav {
@@ -164,5 +160,18 @@ $green: #00c088;
     display: block;
     padding-top: 6px;
     padding-bottom: 3px;
+  }
+}
+
+@media (max-width: $screen-xs-max) {
+  #navigation {
+    position: static;
+    width: 100%;
+  }
+  .container-full {
+    padding-left: 0;
+  }
+  .navbar {
+    margin-bottom: 0;
   }
 }

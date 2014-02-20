@@ -1,24 +1,24 @@
-#navigation.col-md-1.no-padding
+#navigation
   .navbar
     .navbar-header
       %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      = link_to image_tag('logo.png'), root_path, class: 'visible-lg'
+      = link_to '', root_path, alt: "oncahoots home", class: 'visible-lg logo'
 
     .navbar-collapse.collapse
       %ul.nav.navbar-nav
         %li
-          = link_to current_user.university, "data-toggle" => "tooltip", "data-original-title" => "College", "data-placement" => "bottom", "data-link" => "universities" do
+          = link_to current_user && current_user.university, "data-toggle" => "tooltip", "data-original-title" => "College", "data-placement" => "bottom", "data-link" => "universities" do
             %i.icon-same.margin5
               = image_tag('college-icon.png')
         %li
-          = link_to university_clubs_path(current_user.university), "data-toggle" => "tooltip", "data-original-title" => "Clubs", "data-placement" => "bottom", "data-link" => "clubs" do
+          = link_to current_user && university_clubs_path(current_user.university), "data-toggle" => "tooltip", "data-original-title" => "Clubs", "data-placement" => "bottom", "data-link" => "clubs" do
             %i.icon-same.margin5
               = image_tag('clubs-icon.png', class: "clubs-nav-link")
         %li
-          = link_to user_profile_path(current_user, current_user.profile), "data-toggle" => "tooltip", "data-original-title" => "Network", "data-placement" => "bottom", "data-link" => "profiles" do
+          = link_to current_user && user_profile_path(current_user, current_user.profile), "data-toggle" => "tooltip", "data-original-title" => "Network", "data-placement" => "bottom", "data-link" => "profiles" do
             %i.icon-same.margin5
               = image_tag('network-icon.png')
         %li
@@ -26,7 +26,7 @@
             %i.icon-same.margin5
               = image_tag('communication-icon.png')
         %li
-          = link_to university_events_path(current_user.university), "data-toggle" => "tooltip", "data-original-title" => "Events", "data-placement" => "bottom", "data-link" => "events" do
+          = link_to current_user && university_events_path(current_user.university), "data-toggle" => "tooltip", "data-original-title" => "Events", "data-placement" => "bottom", "data-link" => "events" do
             %i.icon-same.margin5
               = image_tag('events-icon.png')
         %li
@@ -37,5 +37,7 @@
           %a{:href => "/sign_out"} Logout
 
 :javascript
-  $('li a[data-link=#{controller_name.downcase}]').addClass('active-nav')
+  $(function() {
+    $('li a[data-link=#{controller_name.downcase}]').addClass('active-nav');
+  });
 

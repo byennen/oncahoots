@@ -1,7 +1,7 @@
 @import "bourbon";
 $green: #00c088;
 
-#running_club, #lowdown {
+#running_club, #lowdown, #about {
 
   .not-joined {
     text-align: center;
@@ -43,48 +43,31 @@ $green: #00c088;
     }
   }
 
-  .eboard {
-    display: inline-block;
-    padding: 10px 0;
-    width: 100%;
-    h3 {
-      padding: 20px 0;
-      margin: 0;
-      float: left;
-      margin-right: 25px;
-    }
-    strong {
-      margin-top: 5px !important;
+  .mis {
+    margin-left: 25px;
+    font-size: 15px;
+    a {
+      color: #04c189;
+      &:hover, &:active, &:focus {
+        caption-side: #04c189;
+      }
     }
   }
 
-  .abo {
-    display: block;
-    padding-left: 15px;
-    list-style-type: none;
-    li {
-      float: left;
-      margin-left: 1px;
-      margin-bottom: 25px;
-      a {
-        float: left;
-        margin-right: 5px;
-        img {
-          width: 70px;
-        }
-      }
-      strong a {
-        display: block;
-        margin-top: 10px;
-        color: #04c189;
-        font-size: 12px;
-        font-weight: normal;
-        text-transform: uppercase;
-      }
-      small {
-        display: block;
-        font-size: 13px;
-      }
+  .eboard {
+    margin-top: -10px;
+    margin-left: 25px;
+    strong {
+      margin-top: 5px !important;
+    }
+
+  }
+
+  .mis, .eboard {
+    h3 {
+      display: inline-block;
+      margin: 10px 25px 30px 0;
+      vertical-align: top;
     }
   }
 

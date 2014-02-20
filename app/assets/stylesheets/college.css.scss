@@ -109,9 +109,11 @@ $hover_green: rgb(156,231,198);
         padding-top: 10px;
       }
       .gentleselect-dialog {
+        font-family: 'varela_roundregular';
         width: 200px;
         max-height: 300px;
         overflow-y: scroll;
+        font-size: 0.8em;
       }
     }
   }
@@ -221,7 +223,7 @@ $hover_green: rgb(156,231,198);
     float: left;
     min-height: 400px;
     max-height: 400px;
-    overflow: hidden;
+    overflow-y: auto;
     width: 100%;
     p {
       font-size: 16px;
@@ -261,11 +263,11 @@ $hover_green: rgb(156,231,198);
   #event-carousel{
     margin-top: 40px;
     img {
-      max-width: 100%;
       margin-bottom: 10px;
+      width: 140px;
+      height: 140px;
     }
     p {
-      margin: 0px;
       font-size: 12px
     }
     .btn {
@@ -321,7 +323,7 @@ $hover_green: rgb(156,231,198);
     float: left;
     position: relative;
     overflow: hidden;
-    height: 450px;
+    height: 400px;
     border: 7px solid #ebebeb;
   }
 
@@ -357,10 +359,16 @@ $hover_green: rgb(156,231,198);
     margin: 0 auto;
     position: relative;
     z-index: 1000;
+    .nbs-flexisel-nav-left {
+      left: 0;
+    }
+    .nbs-flexisel-nav-right {
+      right: 0;
+    }
   }
   .slider-background {
     @include radial-gradient(circle at center center, #D1D1D3 0%, #F9FAFA 100%, #F9FAFA);
-    bottom: 100px;
+    bottom: 114px;
     height: 15px;
     position: relative;
     width: 100%;
@@ -551,7 +559,9 @@ $hover_green: rgb(156,231,198);
 
   .college-updates {
     min-height: 400px;
+    max-height: 400px;
     background-color: $green;
+    overflow-y: auto;
     p {
       font-size: 19px;
       color: #444444;
@@ -565,21 +575,6 @@ $hover_green: rgb(156,231,198);
         @include linear-gradient(#56d988, #02c189);
         color: white;
       }
-    }
-  }
-
-  #event-carousel{
-    margin-top: 40px;
-    img {
-      max-width: 100%;
-      margin-bottom: 10px;
-    }
-    p {
-      margin: 0px;
-      font-size: 12px
-    }
-    .btn {
-      margin-top: 20px;
     }
   }
 
@@ -631,7 +626,7 @@ $hover_green: rgb(156,231,198);
     float: left;
     position: relative;
     overflow: hidden;
-    height: 450px;
+    height: 400px;
     border: 7px solid #ebebeb;
   }
 
@@ -667,4 +662,12 @@ $hover_green: rgb(156,231,198);
 
 #college{
 
+}
+
+.events-list {
+  .event {
+    p {
+      padding-top: 10px;
+    }
+  }
 }

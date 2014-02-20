@@ -5,8 +5,12 @@
   = render partial: "clubs/title"
   
 = content_for :left_side do
-  .rub-club{style: "background: url(#{@club.image}) no-repeat; height: 320px;"}
+  .rub-club{style: "background: url(#{@club.image && @club.image.club}) no-repeat; height: 320px;"}
     %button.btn9= @club.city && @club.city.name
+    - if current_user && current_user.manage_club?(@club)
+      = link_to '#edit_club', class: 'edit', "data-toggle" => "modal" do
+        %i
+          = image_tag('edit-icon.png')
 
   %ul.sub-nav
     %li.active= link_to "Bulletin Board", "#bboard", "data-toggle" => "tab"
@@ -18,10 +22,10 @@
     #bboard.tab-pane.active
       .cent{style: "margin: 0; background-color: #f7f7f7;"}
         .post
-          - if current_user.club_admin?(@club)
+          - if current_user && current_user.manage_club?(@club)
             = link_to "#post-form", class: "npost", data: {toggle: "modal"} do
               New Post
-              %span >>
+              %span &raquo;
           &nbsp;
           %ul.lat-posts.top
             - @posts.each do |post|
@@ -35,44 +39,34 @@
           %li= link_to "All", "javascript:;", class: "current", "data-target" => "#all-mems"
           %li= link_to "Alumni", "javascript:;", "data-target" => "#alumnis"
           %li= link_to "Students", "javascript:;", "data-target" => "#students"
-          %li= link_to "Sponsors", "javascript:;", "data-target" => "#sponsors"
-      %ul.mem
-        #all-mems.filter-content= render partial: "clubs/members", locals: {members: @club.members}
-        #alumnis.hide.filter-content= render partial: "clubs/members", locals: {members: @club.members.alumni}
-        #students.hide.filter-content= render partial: "clubs/members", locals: {members: @club.members.student}
+          -#%li= link_to "Sponsors", "javascript:;", "data-target" => "#sponsors"
+      %ul
+        #all-mems.filter-content= render "clubs/memberships", club: @club, transfer: false, memberships: @club.memberships.ordered
+        #alumnis.hide.filter-content= render "clubs/memberships", club: @club, transfer: false, memberships: @club.memberships.alumni
+        #students.hide.filter-content= render "clubs/memberships", club: @club, transfer: false, memberships: @club.memberships.student
        
     #about.members.tab-pane
       = render partial: "clubs/about"
 
     #photos.members.tab-pane
-      %a#create-album-link.npost{"data-target" => "#create_album", "data-toggle" => "modal", :href => "#"} New Album >>
-      - @club.albums.each do |album|
-        .music
-          %p
-            = album.name
-            %small= link_to "add images", "#album-#{album.id}-upload", "data-toggle" => "modal"
-          .music-img
-            = link_to "#album-#{album.id}", "data-toggle" => "modal" do
-              = image_tag album.featured.image
+      = render 'clubs/photo_albums', club: @club
 
-    #club-popup= render partial: 'clubs/form', locals: {club: Club.new}
-    #create-album-popup= render partial: 'albums/form', locals: {album: Album.new}
+    #club-popup= render 'clubs/form', club: Club.new, modal_id: 'create_club'
 
-  - @club.albums.each do |album|
-    = render partial: "albums/show", locals: {album: album}
-    = render partial: "albums/upload_images", locals: {album: album}
   - new_post = @club.posts.build
   = render partial: "posts/form", locals: {post: new_post}
 
-  - if current_user.manage_club?(@club)
+  - if current_user && current_user.manage_club?(@club)
     - new_update = @club.updates.build
     = render partial: 'updates/form', locals: {update: new_update}
 
+  =render 'clubs/form', club: @club, modal_id: 'edit_club'
+
 = content_for :right_side do
-  = render partial: "news_cal_side"
+  = render "clubs/news_cal_side", title: 'Announcements'
 
   :javascript
-    $("document").ready(function(){
+    $(document).ready(function(){
       $('.po-cm').click(function(){
         $(this).closest("li").find(".comments").toggleClass("hide");
       });

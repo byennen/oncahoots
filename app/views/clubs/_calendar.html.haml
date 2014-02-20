@@ -3,10 +3,13 @@
     = link_to "<<", week_events_club_club_events_path(@club, w_begin: (w_begin - 7.days).strftime("%y%m%d")), remote: true
     = "Week of #{w_begin.strftime("%B %d, %Y")}"
     = link_to ">>", week_events_club_club_events_path(@club, w_begin: (w_begin + 7.days).strftime("%y%m%d")), remote: true
-%table.events-list.light
+%table.events-list.light.hid
   - events.each do |event|
-    %tr
+    %tr.event.small{"data-url" => university_events_path(@club.university, event_id: event.id, w_begin: w_begin.strftime("%y%m%d"), date: event.on_date.strftime("%m%y"), filter: 'weekly')}
       %td.event_date_column
+        - if user_signed_in? && current_user.manage_club?(@club)
+          = link_to university_club_event_path(@club.university, @club, event), method: :delete, confirm: "Are you sure to delete the event #{event.title}?" do
+            %i{:class=>'glyphicon glyphicon-remove'}
         %strong= "#{event.on_date.strftime("%a")[0]} #{event.on_date.strftime("%I:%M %P")}"
       %td.event_information_column
         %span.event_title #{event.title}
@@ -14,3 +17,4 @@
         %span.event_location #{event.location}
         %p.event_description
           = event.description.html_safe
+

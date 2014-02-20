@@ -1,0 +1,13 @@
+#new_profile_message.modal.fade{tabindex: "-1", role: "dialog", :"aria-labelledby" => "myModalLabel", :"aria-hidden" => "true"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+        %h3 New Message
+      = simple_form_for Message.new do |f|
+        .modal-body
+          = f.hidden_field :recipients, value: "#{@user.id}"
+          = f.input :body, rows: 5, style: "width: 100%", placeholder: "What would you like to say?"
+          = f.input :attachment
+        .modal-footer
+          = f.button :submit, 'Send message', class: "btn btn-success"

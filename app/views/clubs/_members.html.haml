@@ -1,7 +1,8 @@
-- members.each do |member|
+- members.order("users.last_name, users.first_name").each do |member|
   %li
     = link_to user_path(member), class: "onw" do
       = display_image member.profile.image, "small"
     %strong
       = link_to member.name, user_path(member)
     %small= major(member)
+

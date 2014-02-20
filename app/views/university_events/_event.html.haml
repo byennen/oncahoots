@@ -27,12 +27,12 @@
     .span5
       .fright.interested
         - if current_user.interested_event?(event)
-          %h5.green Interested
+          &nbsp;
         - else
           = link_to "Interested", interested_university_university_event_path(event.university, event), remote: true, class: "btn btn-success btn-mini"
   .clearfix
   .modal-footer
     %button.btn.btn-warning{type: "button", data: {dismiss: "modal"}} Close
-    - if current_user.manage_event?(event)
+    - if current_user && current_user.manage_event?(event)
       %a.btn.btn-success.edit-event{href: "#event-form#{event.id}", "data-toggle"=> "modal", id: "event#{event.id}-link"} Edit
       = link_to "delete", university_university_event_path(event.university, event), method: :delete, remote: true, class: "btn btn-danger", confirmation: "Are you sure?"

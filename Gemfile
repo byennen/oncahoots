@@ -3,9 +3,13 @@ ruby "2.0.0"
 
 group :assets do
   gem "sass-rails", "~> 3.2.6"
+  gem "bootstrap-sass", "~> 3.0.3.0"
+  gem "bootstrap-datepicker-rails", "~> 1.1.1.11"
+  gem "bootstrap-generators", "~> 3.0.2.2"
+  gem "bourbon", "~> 3.1.8"
   gem "coffee-rails", "~> 3.2.2"
   gem "uglifier", "~> 2.4.0"
-  gem "therubyracer", "~> 0.12.0", {:platforms=>:ruby}
+  gem "therubyracer", "~> 0.12.1", {:platforms=>:ruby}
 end
 
 group :development do
@@ -14,7 +18,7 @@ group :development do
   gem "guard-bundler", "~> 2.0.0"
   gem "guard-cucumber", "~> 1.4.1"
   gem "guard-rails", "~> 0.4.7"
-  gem "guard-rspec", "~> 4.2.4"
+  gem "guard-rspec", "~> 4.2.6"
   gem "html2haml", "~> 1.0.1"
   gem "quiet_assets", "~> 1.0.2"
   gem "rb-fchange", "~> 0.0.6", {:require=>false}
@@ -24,6 +28,7 @@ group :development do
   gem "factory_girl_rails", "~> 4.3.0"
   gem "rspec-rails", "~> 2.14.1"
   gem "shoulda-matchers", "~> 2.5.0"
+  gem "sqlite3", "~> 1.3.8"
 end
 
 group :test do
@@ -35,16 +40,13 @@ group :test do
   gem "database_cleaner", "~> 1.2.0"
   gem "email_spec", "~> 1.5.0"
   gem "launchy", "~> 2.4.2"
-  gem "pry", "~> 0.9.12"
+  gem "pry", "~> 0.9.12.6"
 end
 
-gem "rails", "~> 3.2.14"
+gem "rails", "~> 3.2.17"
 gem "pg", "~> 0.17.1"
 gem "jquery-rails", "~> 3.0.4"
-gem "jquery-ui-rails", "~> 4.1.1"
-gem "bootstrap-sass", "~> 3.0.3.0"
-gem "bourbon", "~> 3.1.8"
-gem "bootstrap-datepicker-rails", "~> 1.1.1.11"
+gem "jquery-ui-rails", "~> 4.1.2"
 gem "cancan", "~> 1.6.10"
 gem "devise", "~> 3.2.2"
 gem "figaro", "~> 0.7.0"
@@ -55,7 +57,6 @@ gem "nested_form", "~> 0.3.2"
 gem "tagsinput-rails", "~> 1.3.3.2"
 gem "thin", "~> 1.6.1"
 gem "friendly_id", "~> 4.0.10.1"
-gem "bootstrap-generators", "~> 3.0.0"
 gem "omniauth", "~> 1.2.1"
 gem "omniauth-linkedin", "~> 0.1.0"
 gem "linkedin", "~> 0.4.6"
@@ -67,7 +68,8 @@ gem "fog", "~> 1.19.0"
 gem "unf", "~> 0.1.3"
 gem "american_date", "~> 1.1.0"
 gem "remotipart", "~> 1.2.1"
-gem "honeybadger", "~> 1.10.1"
+gem "honeybadger", "~> 1.10.3"
 gem "mailboxer", "~> 0.11.0"
 gem "deadweight", "~> 0.2.2"
 gem "client_side_validations", "~> 3.2.6"
+gem "newrelic_rpm", "~> 3.7.2.195"

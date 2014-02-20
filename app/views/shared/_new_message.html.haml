@@ -1,28 +1,31 @@
-#message-form.modal.wide-modal.hide.fade{tabindex: "-1", role: "dialog", :"aria-labelledby" => "myModalLabel", :"aria-hidden" => "true"}
-  .modal-header
-    %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
-    %h3 New Message
-  = simple_form_for Message.new do |f|
-    .modal-body
-      .span9.no-lmar
-        Recipients
-      - if current_user.super_admin?
-        .span9
-          = check_box_tag :student
-          All Students
-          = check_box_tag :alumni
-          All Alumnis
-        .span9.no-lmar.top
-          = text_field_tag :universities, "", class: "university-auto tags"
-      - if current_user.super_admin? || current_user.university_admin?
-        .span9.no-lmar.top
-          = text_field_tag :clubs, "", class: "club-auto tags"
-      .span9.no-lmar.top= f.input :recipients, label: false, input_html: {class: "tagauto tags", value: ""}
-      = f.text_area :body, rows: 5, style: "width: 100%", placeholder: "message"
-      = f.input :attachment
-    .modal-footer
-      = f.button :submit, 'Send message', class: "btn btn-success"
-      %button.btn.btn-warning{type: "button", data: {dismiss: "modal"}} Cancel
+#message-form.modal.fade{tabindex: "-1", role: "dialog", :"aria-labelledby" => "myModalLabel", :"aria-hidden" => "true"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
+        %h3 New Message
+      = simple_form_for Message.new do |f|
+        .modal-body
+          .span9.no-lmar
+            Recipients
+          - if current_user.super_admin?
+            .span9
+              = check_box_tag :student
+              All Students
+              = check_box_tag :alumni
+              All Alumnis
+            .span9.no-lmar.top
+              = text_field_tag :universities, "", class: "university-auto tags"
+          - if current_user.super_admin? || current_user.university_admin?
+            .span9.no-lmar.top
+              = text_field_tag :clubs, "", class: "club-auto tags"
+          .span9.no-lmar.top= f.input :recipients, label: false, input_html: {class: "tagauto tags", value: ""}
+          = f.text_area :body, rows: 5, style: "width: 100%", placeholder: "message"
+          = f.input :attachment
+        .modal-footer
+          = f.button :submit, 'Send message', class: "btn btn-success"
+
+
 :javascript
   $(document).ready(function(){
     $(".university-auto").tagsInput({
@@ -36,5 +39,12 @@
       height: "35px",
       defaultText: 'clubs',
       autocomplete_url: "#{auto_search_clubs_path}",
+    });
+    $('.tagauto').tagsInput({
+      width:'90%',
+      height: "35px",
+      defaultText: 'recipients',
+      autocomplete_url: "/users/search",
+      autocomplete: {autoFocus: true}
     });
   });

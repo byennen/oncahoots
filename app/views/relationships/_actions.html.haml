@@ -3,8 +3,9 @@
     %button.btn8 Accept
   = link_to decline_relationship_path(request), method: :post do
     %button.btn8 Decline
-  = link_to "#recommend-#{request.id}", data: {toggle: "modal"}, class: 'recommend' do
-    %button.btn8 Recommend
+  -# Parking Lot: Recommend Feature
+  -#= link_to "#recommend-#{request.id}", data: {toggle: "modal"}, class: 'recommend' do
+  -#  %button.btn8 Recommend
 - else
   .span4{style: "padding-left: 100px;"}
     = link_to "Yes", accept_recommendation_relationship_path(request), method: :post, class: 'btn8'

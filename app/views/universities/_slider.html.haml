@@ -1,9 +1,9 @@
 #filter_bar= render "events/filter_bar", university: university
 
 - if current_user.alumni?
-  .most_popular_metropolitan_clubs
-    - MetropolitanClub.metropolitan_clubs_sorted_by_popularity[0, 3].each do |metro_club|
-      .popular_metropolitan_club
+  %ul#flexiselDemo2.most_popular_metropolitan_clubs
+    - university.metropolitan_clubs_sorted_by_popularity.each do |metro_club|
+      %li.popular_metropolitan_club
         = link_to club_link_path(university, metro_club) do
           = image_tag metro_club.image.medium, alt: metro_club.name, class: "circular cir-img"
           %p= metro_club.city_name
@@ -11,7 +11,7 @@
     %button.btn.btn3{:name => "btn"} View All
 - else
   .row#event-carousel{style: "min-height: 150px"}
-    .events-slide= render partial: "events/slide", locals: {events: events}
+    .events-slide= render "events/slide", university: university, events: events
   %a{:href => university_events_path(university)}
     %button.btn.btn3{:name => "btn"} View All
 

@@ -13,7 +13,7 @@
   #club-list
     = render partial: "clubs"
 
-  #club-popup= render partial: 'clubs/form', locals: {club: @club}
+  #club-popup= render 'clubs/form', club: @club, modal_id: 'create_club'
 
 = content_for :right_side do
   .my-clubs
@@ -21,7 +21,7 @@
     - current_user.clubs.each do |club|
       = link_to club_link_path(@university, club) do
         .club-title= club.name
-        = image_tag club.image
+        = image_tag club.image.album
     - if current_user.clubs.blank?
       .no-clubs
         %p You do not belong to any clubs! Click around to join clubs that interest you.

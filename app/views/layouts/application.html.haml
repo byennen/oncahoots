@@ -18,15 +18,21 @@
     - id = controller_name
     - id = "college" if id=='universities'
     - id = "network" if id=='profiles'
+    = render 'layouts/navigation'
     .container-full{:id => "#{id}"}
       .row
-        = render 'layouts/navigation'
-        #content-container.col-md-11.no-padding
+        #content-container.col-md-12.no-padding
           .row#content-top-bar
-            .col-md-6.no-padding.title
-              = yield :page_title
-            .col-md-6.no-padding
-              = render 'shared/search'
+            - if controller_path == 'universities'
+              .col-md-6.no-padding.title
+                = yield :page_title
+              .col-md-6.no-padding
+                = render 'shared/search'
+            - else
+              .col-md-7.no-padding.title
+                = yield :page_title
+              .col-md-5.no-padding
+                = render 'shared/search'
           .row#content-main
             - if @full_page == true
               .col-md-12.no-padding
@@ -41,3 +47,4 @@
           .row.auto-height
             .span12#bottom-alert(style='display:none')
         = yield :bottom
+        = render 'layouts/inspectlet' if Rails.env.production?

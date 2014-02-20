@@ -1,17 +1,20 @@
 - unless update.headline.blank?
   %li
-    %small
+    .small
+      - if current_user && current_user.manage_club?(@club)
+        = link_to [@club, update], method: :delete, confirm: "Are you sure you want to remove the newsletter update #{update.headline}?" do
+          %i{:class=>'glyphicon glyphicon-remove'}
       %span= update.headline
       %br
       = update.body.truncate(100) if update.body
-      %span >>
-      %br
-      %br
-      = link_to "Comments", "javascript:;"
+      %span &raquo;
+      -#%br
+      -#%br
+      -#= link_to "Comments", "javascript:;"
     .showa
       %h2= update.headline
       %span= update.created_at.strftime("%m.%d.%y") if update.created_at
       %br
       %p= update.body.html_safe if update.body
-      = image_tag update.image, height: "200"
+      = image_tag update.image, height: "200" if update.image.present?
       %button.btn8.pull-right Go Back

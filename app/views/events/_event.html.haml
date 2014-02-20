@@ -1,3 +1,4 @@
+- next_e = next_e rescue event.id
 #event-area-single
   .event-area-title
     %p= event.title
@@ -13,7 +14,7 @@
     .col-md-6.interested
       - unless params[:filter]=='monthly'
         - if current_user.interested_event?(event)
-          %h4.green-text Interested
+          &nbsp;
         - else
           = link_to interested_university_event_path(event.university, event), remote: true do
             %button.btn8{:name => "btn"} Interested

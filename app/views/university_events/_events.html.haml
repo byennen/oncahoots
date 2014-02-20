@@ -4,7 +4,7 @@
       .span10.left2.ev-title= link_to event.title, "#event#{event.id}_detail", :"data-toggle" => "modal"
       .span10.ev-description.top= event.description
   = render partial: "event", locals: {event: event}
-  - if current_user.manage_event?(event)
+  - if current_user && current_user.manage_event?(event)
     %div{id: "event-popup#{event.id}"}= render partial: "form", locals: {event: event}   
 - if @events.blank?
   .offset1.page-title No events this day.

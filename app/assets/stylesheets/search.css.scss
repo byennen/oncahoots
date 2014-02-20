@@ -39,6 +39,19 @@ $green: #00c088;
       margin: 15px 5px 0 5px;
     }
   }
+
+  .gentleselect-label {
+    @include inline-block;
+    vertical-align: middle;
+    text-align: left;
+    margin: 0;
+    width: 233px;
+    float: none;
+  }
+  .gentleselect-dialog {
+    width: 233px;
+    text-align: left;
+  }
 }
 
 #search-box, #search-detail-box {
@@ -104,6 +117,12 @@ $green: #00c088;
     list-style-type: none;
     float: left;
   }
+
+  .gentleselect-dialog {
+    li {
+      float: none;
+    }
+  }
 }
 
 .bigf {
@@ -141,4 +160,6 @@ $green: #00c088;
 
 .ui-autocomplete {
   z-index: 10001;
+  max-height: 600px;
+  overflow-y: scroll;
 }

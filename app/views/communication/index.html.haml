@@ -14,6 +14,10 @@
         %a{"data-toggle" => "tab", "data-count" => @unread_messages.size, href: "#messages"} Messages <span id='unread_messages'>(#{@unread_messages.size})</span>
       .col-md-4.no-padding
         %a{"data-toggle" => "tab", "data-count" => @requests.size, href: "#requests"} Requests (#{@requests.size})
+      .col-md-4.no-padding
+        %a{href: "#message-form", data: {toggle: "modal"}} New Message
+  = render 'shared/new_message'
+
 
 
   .row.tab-content
@@ -29,16 +33,31 @@
     -#        %br/
     -#        %a.small-text{:href => "#"}
     -#          = notice.alert.message.html_safe unless notice.alert.message.blank?
-    #messages.tab-pane
+    #messages.tab-pane.active
       - @conversations.each do |con|
         - message = con.messages.first
         .comment-box{id: "con-#{con.id}"}
-          = link_to sender_image(message), read_message_path(con), remote: true, class: 'com-img'
-          %a.com-name{:href => "#"}
+          = link_to sender_image(message), user_path(message.sender), class: 'com-img'
+          = link_to user_path(message.sender), class: 'com-name' do
             = sender_name(message)
             %br/
-            %span= message.sender.graduation_year if message.sender.is_a?(User)
-          %p= truncate(con.messages.first.body, length: 50).html_safe
+            %span= message.sender.graduation_year if message.sender.graduation_year.present?
+          .div{style: 'margin-top: 20px;'}
+            = truncate(con.messages.first.body, length: 50).html_safe
+          = link_to message_path(con.id), method: :delete, remote: true, class: "pull-right", confirm: "are you sure?" do
+            %span.glyphicon.glyphicon-trash.icon-white
+
+        -#- @conversation = con
+        -#:javascript
+        -#  $(document).ready(function() {
+        -#    $( ".comment-box" ).click(function() {
+        -#      alert(#{con.id})
+        -#      $("#current_conversation").html("#{escape_javascript(render partial: 'messages/comment_box', object: con.messages.first)}");
+        -#      return false;
+        -#    });
+        -#  });
+
+
     #requests.tab-pane
       - @requests.each do |relationship|
         .comment-box
@@ -48,6 +67,7 @@
             %br/
             %span= relationship.relation.graduation_year
           %p= relationship.relation.intro_para
+
 
 = content_for :right_side do
   #current_conversation

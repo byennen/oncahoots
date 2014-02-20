@@ -25,8 +25,7 @@
 //= require rails.validations
 
 // Static pages
-//= require static/settings.js.coffee
-//= require home
+//= require static/settings
 
 // Keep main last
 //= require main
@@ -103,4 +102,7 @@ $(function() {
 
 $(document).on('ready page:load', function(){
   $('.datepicker').datepicker({ format: 'mm/dd/yyyy' });
+  $(document).on('nested:fieldAdded', function(event){
+    $('.datepicker').datepicker({ format: 'mm/dd/yyyy' });
+  });
 });

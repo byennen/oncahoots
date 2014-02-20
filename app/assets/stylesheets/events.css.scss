@@ -9,7 +9,7 @@ $dark: #e7e7e8;
     h1 {
       a {
         color: #333;
-        font-size: 16px;
+        font-size: 15px;
         font-weight: 400;
         margin: 0px 5px;
         &:hover {
@@ -174,8 +174,6 @@ $dark: #e7e7e8;
 
 table.events-list {
   width: 100%;
-  position: relative;
-  top: -10px;
 
   td {
     &.event_date_column {

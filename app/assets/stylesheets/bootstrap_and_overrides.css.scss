@@ -41,6 +41,7 @@ body {
   height: 100%;
   min-height: 100%;
   max-height: 100%;
+  padding-left: 130px;
 }
 
 a:active, a:focus {
@@ -72,7 +73,7 @@ body.modal-open {
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.33);
   -webkit-font-smoothing: antialiased;
   border-radius: 0;
-  &:hover {
+  &:hover, &:focus {
     border-color: #54d988 #54d988;
     background-color: #02c189 !important;
   }
@@ -110,7 +111,6 @@ body.modal-open {
   #navigation {
     height: auto;
     min-height: 0%;
-
   }
   .navbar-collapse {
     margin: 0 auto;
@@ -125,7 +125,6 @@ body.modal-open {
   #navigation {
     height: auto;
     min-height: 0%;
-
   }
   .navbar-collapse {
     margin: 0 auto;
@@ -138,8 +137,8 @@ body.modal-open {
 
 @media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
   #navigation {
-    height: auto;
-    min-height: 0%;
+    height: 100%;
+    min-height: 100%;
   }
   .navbar-collapse {
     margin: 0 auto;
