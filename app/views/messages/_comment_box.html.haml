@@ -1,8 +1,8 @@
 .conversation{id: "conv-#{@conversation.id}"}
   .info
     %button.btn7{:name => "btn"} Comments
-  = render partial: 'message', collection: @conversation.messages.reverse
-= render partial: 'reply'
+  = render partial: 'messages/message', collection: @conversation.messages.reverse
+= render partial: 'messages/reply'
   
 :javascript
   $(function () {
