@@ -4,6 +4,5 @@
   = link_to "javascript:;", class: "com-name" do
     = sender_name(message)
     %br
-    - unless message.sender.super_admin?
-      %span= message.sender.graduation_year
+    %span= message.sender.graduation_year if message.sender.graduation_year.present?
   %p= simple_format message.body

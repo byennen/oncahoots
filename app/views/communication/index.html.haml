@@ -41,8 +41,7 @@
           = link_to user_path(message.sender), class: 'com-name' do
             = sender_name(message)
             %br/
-            - unless message.sender.super_admin?
-              %span= message.sender.graduation_year if message.sender.is_a?(User)
+            %span= message.sender.graduation_year if message.sender.graduation_year.present?
           .div{style: 'margin-top: 20px;'}
             = truncate(con.messages.first.body, length: 50).html_safe
           = link_to message_path(con.id), method: :delete, remote: true, class: "pull-right", confirm: "are you sure?" do
