@@ -4,7 +4,7 @@ module MessagesHelper
     if sender.is_a?(User) && sender.university_admin?
       image_tag sender.university.image.small, class: "circular blank-cir-img thumb"
     else
-      display_image(sender.image, "thumb")
+      display_image(sender.image, "circular blank-cir-img thumb")
     end
   end
 
