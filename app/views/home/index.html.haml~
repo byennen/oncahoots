@@ -1,0 +1,160 @@
+#homepage_banner
+  .row.login_banner_image
+    .col-md-12
+      = link_to image_tag('logo.png'), root_path, class: 'logo2'
+
+  #login.row
+    .col-md-12.text-center
+      %h1 Professional Alumni Network + Vibrant College Campus =
+      %h2
+        THE BEST FOUR YEARS OF YOUR LIFE BROUGHT
+        %br
+        TO THE REAL WORLD.
+    .row
+      .col-md-offset-4.col-lg-4.col-md-4.col-sm-12
+        = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-vertical'}) do |f|
+          = f.input :email, placeholder: 'Email', label: false
+          = f.input :password, placeholder: 'Password', label: false
+          .row
+            .col-md-12
+              = link_to 'Forgotten Password?', 'users/password/new', class: 'fos'
+          #options.row
+            .col-md-12
+              %a.register_button.btn.btn-primary.col-md-5.btn-homepage{href: '#'} Register
+              %button.btn.btn-primary.col-md-5.btn-homepage.col-md-offset-2 Login
+          .row
+            .col-md-12
+              %a.ico{:href => "#"}
+                = image_tag('linkedin.png')
+              %a.ico{:href => "#"}
+                = image_tag('facebook.png')
+
+  #register.row
+    .col-md-offset-2.col-md-12
+      = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'login-form' }) do |f|
+        = f.error_notification
+        = display_base_errors resource
+        .col-md-4.lhs
+          %p CHOOSE ONE:
+          %a.btn9.cn.col-md-6{:href => "#"} Student
+          %i or
+          %a#onee2.bns.col-md-6{:href => "#"} Alumni
+          .clearfix
+          = f.input :first_name, :autofocus => true, :required => true, label: false, input_html: {placeholder: "first name"}
+          = f.input :last_name, :required => true, label: false, input_html: {placeholder: "last name"}
+          = f.input :email, :required => true, label: false, input_html: {placeholder: "email"}
+          = f.input :password, :required => true, label: false, input_html: {placeholder: "password"}
+          = f.input :password_confirmation, :required => true, label: false, input_html: {placeholder: "password confirmation"}
+
+        .col-md-4.lhs
+          %p
+            %small Select the area nearest your hometown or select other.
+          = f.select :city_id, options_for_select(City.order(:name).collect{ |c| [c.name, c.id] } + [["Other", 0]], resource.city_id), prompt: "Current City"
+          .clearfix
+          = f.select :university_id, options_from_collection_for_select(University.all.sort_by(&:name), :id, :name, resource.university_id), prompt: "University"
+          .clearfix
+          -#.dont-see-your-school.row
+          -#  .text.col-md-5
+          -#    %span Don't see your school
+          -#  .col-md-7
+          -#    %a.btn.btn-primary{:href => "#"} Request College
+
+          = f.select :graduation_year, options_for_select(2020.downto(1940).to_a, resource.graduation_year), { prompt: "Graduation year"}
+          .clearfix
+
+          = f.input :major, label: false, input_html: {placeholder: "major"}
+          = f.input :double_major, label: false, input_html: {placeholder: "double major"}
+
+          %button.btn7.sign_up.btn-div{:name => "btn"} Sign Up
+
+  #homepage_options.row.visible-lg
+    .col-md-4
+      .centerx
+        %a.mod6.btn-primary.btn-homepage{:href => "#students"} For Students
+
+    .col-md-4
+      .centerx
+        %a.mod6.btn-primary.btn-homepage{:href => "#alumni"} For Alumni
+
+    .col-md-4
+      .centerx
+        %a.mod6.btn-primary.btn-homepage{:href => "#about"} About Us
+
+#students.section-background.row.hidden-xs
+  .row
+    .col-md-3
+      .heading
+        %p For Students
+  .row
+    .col-md-12.cent-text
+      %h3 Find Free Food on Your Campus
+      %p
+        View every campus event that offers free food every day.
+        %br/
+        Hunger, be gone!
+
+  .row
+    .col-md-12
+      .slider
+        %ul#flexiselDemo1
+          %li= link_to image_tag('im1.png', width: '160'), "#"
+          %li= link_to image_tag('im2.png', width: '160'), "#"
+          %li= link_to image_tag('im3.png', width: '160'), "#"
+      .slider-background
+  .row
+    .col-md-offset-1.col-md-5
+      .cent-text
+        %h3 Organize Your Clubs and Organizations
+        %p
+          Any student organization can create its own webpage for both internal organization and external communication.
+          On Cahoots will make leaders of us all.
+
+    .col-md-5
+      .cent-text
+        %h3 Access Your College Network
+        %p The easiest way to access your network - view a map of all alumni around the world. Filter alums based on their location, field, grad year or major.
+.clearfix
+
+.row#alumni.section-background.hidden-xs
+  .row
+    .col-md-3
+      .heading
+        %p For Alumni
+  .row
+    .col-md-11.cent-text
+      %h3 Access to Your College Network
+      %p Reach out to old college friends or connect with other alums in your field. Since your time is valuable, set contact requirements to limit communication from students.
+  .row
+    .col-md-12
+      .slider
+        %ul#flexiselDemo2
+          %li= link_to image_tag('im11.png', width: '160'), "#"
+          %li= link_to image_tag('im22.png', width: '160'), "#"
+          %li= link_to image_tag('im33.png', width: '160'), "#"
+      .slider-background
+  .row
+    .col-md-offset-1.col-md-5
+      .cent-text.newt
+        %h3 Find Your College Wherever You Go
+        %p When moving or travelling a new city, click on the alumni map to see who is nearby. Checkout news posted by your college network on each city's Cahoots page.
+
+    .col-md-5
+      .cent-text.newt2
+        %h3 Stay In Touch with Your College Clubs
+        %p Remain an alum member of all the organizations that made your college experience so memorable. What is a cause without a community?
+.clearfix
+
+
+#about.row.hidden-xs
+  .col-md-4
+    .heading
+      %p About Us
+
+  .col-md-4
+    #new.cent-text
+      %h3 Your Network is Waiting For You. On Cahoots.
+      %br/
+      %p The college experience isn't just those unforgettable four years. It is the creattive interaction that abounds when athletes, artists, academics, and adventurers meet and collaborate on ideas. It is about whta happens next with the new abilities, talents and confidence instilled by a college education. Imagine the potential of keeping your college community always in contact. On Cahoots creates meaningful relationships between alumni and students in order to maintain cohesive college communities.
+      %br/
+      %a.register_button.btn7.pads.btn-div{:href => "#"} Register
+.clearfix
