@@ -47,3 +47,4 @@
           .row.auto-height
             .span12#bottom-alert(style='display:none')
         = yield :bottom
+        = render 'layouts/inspectlet' if Rails.env.production?

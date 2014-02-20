@@ -20,3 +20,4 @@
     .wrapper
       .main
         = yield
+    = render 'layouts/inspectlet' if Rails.env.production?
