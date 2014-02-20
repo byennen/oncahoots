@@ -4,7 +4,7 @@ $ ->
     responsiveFallback: 600
     easing: "ease"
     animationTime: 1000
-    pagination: true
+    pagination: false
     updateURL: true
     beforeMove: (index) ->
     afterMove: (index) ->
