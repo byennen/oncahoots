@@ -19,7 +19,7 @@
           - if current_user.super_admin? || current_user.university_admin?
             .span9.no-lmar.top
               = text_field_tag :clubs, "", class: "club-auto tags"
-          .span9.no-lmar.top= f.input :recipients, label: false, input_html: {class: "tagauto tags", value: "", id: 'user-autocomplete'}
+          .span9.no-lmar.top= f.input :recipients, label: false, input_html: {class: "tagauto tags", value: ""}
           = f.text_area :body, rows: 5, style: "width: 100%", placeholder: "message"
           = f.input :attachment
         .modal-footer
@@ -40,8 +40,11 @@
       defaultText: 'clubs',
       autocomplete_url: "#{auto_search_clubs_path}",
     });
-  });
-  $("#user-autocomplete").autocomplete({
-    source: '/search_results',
-    minLength: 0
+    $('.tagauto').tagsInput({
+      width:'90%',
+      height: "35px",
+      defaultText: 'recipients',
+      autocomplete_url: "/users/search",
+      autocomplete: {autoFocus: true}
+    });
   });
