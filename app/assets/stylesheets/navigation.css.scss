@@ -28,7 +28,7 @@ $green: #00c088;
 .scroll-section {
   height: 100%;
   overflow-y: auto;
-  overflow-x: hidden;
+
 }
 .club-box-top-left {
   height: 320px;
@@ -84,7 +84,6 @@ $green: #00c088;
 
 .navbar-collapse {
   max-height: 100%;
-  float: left;
 }
 
 .navbar-nav {
@@ -165,19 +164,6 @@ $green: #00c088;
 }
 
 @media (max-width: $screen-xs-max) {
-  #navigation {
-    position: static;
-    width: 100%;
-  }
-  .container-full {
-    padding-left: 0;
-  }
-  .navbar {
-    margin-bottom: 0;
-  }
-}
-
-@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
   #navigation {
     position: static;
     width: 100%;
