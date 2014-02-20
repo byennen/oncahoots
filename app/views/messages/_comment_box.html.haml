@@ -1,13 +1,13 @@
 .conversation{id: "conv-#{@conversation.id}"}
   .info
-    %button.btn7{:name => "btn"} Comments
+    %button.btn7{:name => "btn"} Conversation
   = render partial: 'messages/message', collection: @conversation.messages.reverse
 = render partial: 'messages/reply'
-  
+
 :javascript
   $(function () {
     // On Click messsage received from another user
     $("div.comment-box").click(function(){
       $("#conversation_reply").show();
-    });  
+    });
   });

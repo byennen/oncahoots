@@ -157,6 +157,9 @@ $hover_green: rgb(156,231,198);
   position: relative;
   padding: 15px 20px;
   width: 100%;
+  &:hover {
+    background: #9CE8C6;
+  }
 }
 
 .com-img {
