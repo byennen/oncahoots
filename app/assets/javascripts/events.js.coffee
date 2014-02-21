@@ -30,7 +30,7 @@ $(document).ready ->
   $("#monthly-events-calendar").hide()
   $("#event-area-monthly-listing").hide()
   $("#weekly-events-calendar").show()
-
+  $("#event-detail").hide()
 
   $("#new-event-link").click() if $("#error").text() is "t"
 
