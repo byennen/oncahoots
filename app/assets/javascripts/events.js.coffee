@@ -8,7 +8,7 @@ $(document).ready ->
     $("#event-area-monthly-listing").hide()
     $("#weekly-events-calendar").hide()
     $("#events-list").show()
-    $("#event-detail").show()
+    $("#event-detail").hide()
 
   $(".weekly").on "click", ->
     $(".session a").removeClass('current')
