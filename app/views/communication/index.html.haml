@@ -33,6 +33,7 @@
     -#        %br/
     -#        %a.small-text{:href => "#"}
     -#          = notice.alert.message.html_safe unless notice.alert.message.blank?
+
     #messages.tab-pane.active
       - @conversations.each do |con|
         - message = con.messages.first
@@ -43,19 +44,9 @@
             %br/
             %span= message.sender.graduation_year if message.sender.graduation_year.present?
           .div{style: 'margin-top: 20px;'}
-            = truncate(con.messages.first.body, length: 50).html_safe
+            = link_to truncate(con.messages.first.body, length: 50).html_safe, read_message_path(con.id), remote: true
           = link_to message_path(con.id), method: :delete, remote: true, class: "pull-right", confirm: "are you sure?" do
             %span.glyphicon.glyphicon-trash.icon-white
-
-        -#- @conversation = con
-        -#:javascript
-        -#  $(document).ready(function() {
-        -#    $( ".comment-box" ).click(function() {
-        -#      alert(#{con.id})
-        -#      $("#current_conversation").html("#{escape_javascript(render partial: 'messages/comment_box', object: con.messages.first)}");
-        -#      return false;
-        -#    });
-        -#  });
 
 
     #requests.tab-pane
