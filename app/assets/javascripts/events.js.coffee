@@ -8,7 +8,7 @@ $(document).ready ->
     $("#event-area-monthly-listing").hide()
     $("#weekly-events-calendar").hide()
     $("#events-list").show()
-    $("#event-detail").show()
+    $("#event-detail").hide()
 
   $(".weekly").on "click", ->
     $(".session a").removeClass('current')
@@ -30,7 +30,7 @@ $(document).ready ->
   $("#monthly-events-calendar").hide()
   $("#event-area-monthly-listing").hide()
   $("#weekly-events-calendar").show()
-
+  $("#event-detail").hide()
 
   $("#new-event-link").click() if $("#error").text() is "t"
 
@@ -48,14 +48,10 @@ $(document).ready ->
     $(".event-display").addClass "hide"
     $("#event-area-monthly-listing").show()
 
-
   # clicking event from monthly list
   $('#event-area-monthly-listing table tr').on "click", ->
     $("#event-detail").show()
     $("#event-area-monthly-listing").hide()
-
-
-
 
   # ADD NEW EVENT FORM
   $("#category-select select").gentleSelect()
