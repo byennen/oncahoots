@@ -48,14 +48,10 @@ $(document).ready ->
     $(".event-display").addClass "hide"
     $("#event-area-monthly-listing").show()
 
-
   # clicking event from monthly list
   $('#event-area-monthly-listing table tr').on "click", ->
     $("#event-detail").show()
     $("#event-area-monthly-listing").hide()
-
-
-
 
   # ADD NEW EVENT FORM
   $("#category-select select").gentleSelect()
