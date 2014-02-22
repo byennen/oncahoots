@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
 
   has_many :authentications, dependent: :destroy
   has_many :memberships, dependent: :destroy
-  has_many :clubs, :through => :memberships
+  has_many :clubs, :through => :memberships, :uniq => true
   has_many :club_photos
   has_many :relationships, dependent: :destroy
   has_many :relations, through: :relationships
@@ -178,10 +178,14 @@ class User < ActiveRecord::Base
   def join_city_metropolitan_club
     if (university_id_changed? && university_id_was.present?) || (city_id_changed? && city_id_was.present?)
       old_city_metro_club = Club.find_by_university_id_and_city_id(university_id_was, city_id_was)
-      old_city_metro_club && old_city_metro_club.memberships.find_by_user_id(id).destroy()
+      old_memberships = old_city_metro_club && old_city_metro_club.memberships.where(user_id: id)
+
+      # get rid of all memberships (instead of just one) because the code did not have uniq true on the relationship
+      # in the past and thus some junk data might have been generated, so it is safer to do it this way.
+      old_memberships.present? && old_memberships.destroy_all
     end
     city_metro_club = Club.find_by_university_id_and_city_id(university_id, city_id)
-    city_metro_club && city_metro_club.memberships.create!(admin: false, title: nil, user_id: id)
+    city_metro_club && city_metro_club.memberships.create(admin: false, title: nil, user_id: id)
   end
 
   def member_of?(club)
