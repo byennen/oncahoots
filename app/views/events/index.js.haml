@@ -4,5 +4,5 @@ $("#event-detail").html("#{escape_javascript(render partial: 'detail_list', loca
 - if params[:filter] == 'weekly'
   $("p.month_slide").html("#{escape_javascript(render partial: 'weekly_bar', locals: {date: @date})}");
 
--else
+-elsif !@date.blank?
   $("p.month_slide").html("#{escape_javascript(render partial: 'month_bar', locals: {date: @date})}");
