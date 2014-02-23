@@ -1,0 +1,8 @@
+
+- pre = Date.today - 1.month
+- ne = Date.today + 1.month
+
+= link_to "<<", university_events_path(@university, date: pre.strftime("%m%y")), remote: true
+/ = "WEEK of #{date.strftime("%B %Y")}"
+= "Week of February 24, 2014"
+= link_to ">>", university_events_path(@university, date: ne.strftime("%m%y")), remote: true
