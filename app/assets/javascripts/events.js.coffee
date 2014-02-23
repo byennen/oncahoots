@@ -1,5 +1,6 @@
 $(document).ready ->
   $("#datepicker").datepicker inline: true
+  $("#weekly-events-calendar").datepicker inline: true
 
   $(".free_food").on "click", ->
     $(".session a").removeClass('current')
@@ -16,20 +17,20 @@ $(document).ready ->
     $("#monthly-events-calendar").hide()
     $("#event-area-monthly-listing").hide()
     $("#weekly-events-calendar").show()
-    $("#event-detail").show()
+    $("#event-detail").hide()
 
   $(".monthly").on "click", ->
     $(".session a").removeClass('current')
     $(@).addClass('current')
-    $("#event-detail").hide()
     $("#weekly-events-calendar").hide()
     $("#monthly-events-calendar").show()
     $("#event-area-monthly-listing").show()
+    $(".monthly-event-listing").hide()
 
   # hide monthly calendar on initial load
   $("#monthly-events-calendar").hide()
+  $("#weekly-events-calendar").hide();
   $("#event-area-monthly-listing").hide()
-  $("#weekly-events-calendar").show()
   $("#event-detail").hide()
 
   $("#new-event-link").click() if $("#error").text() is "t"
