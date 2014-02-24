@@ -12,7 +12,6 @@ class MessagesController < ApplicationController
         flash[:alert] = "You do not have permission to view that conversation."
         return redirect_to root_path
       end
-      receipt = current_user.reply_to_conversation(@conversation, params[:message][:body])
     else
       receipt = current_user.send_message(@recipient_list, params[:message][:body], @subject, true, params[:message][:attachment])
       Rails.logger.debug("reciept is #{receipt.inspect}")
@@ -67,7 +66,7 @@ class MessagesController < ApplicationController
     @recipient_list |= mems.student if params[:student]
     @recipient_list |= mems.alumni if params[:alumni]
 
-    slugs = params[:message][:recipients].split(',')
+    slugs = params[:message][:recipients].split(',') if params[:message][:recipients]
     @recipient_list |= User.where(slug: slugs).all unless slugs.blank?
     unless params[:universities].blank?
       uni_slugs = params[:universities].split(',')
