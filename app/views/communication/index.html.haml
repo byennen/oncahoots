@@ -39,7 +39,7 @@
         - message = con.messages.first
         .comment-box{id: "con-#{con.id}"}
           .pull-left
-            = link_to display_image(message.sender.image, :small), user_path(message.sender)
+            = link_to sender_image(message), user_path(message.sender)
           = link_to user_path(message.sender), class: 'com-name' do
             = sender_name(message)
             %br/
