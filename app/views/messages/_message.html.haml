@@ -1,6 +1,6 @@
 .comment-box{id: "message-#{message.id}"}
-  %a{href: "javascript:;", class: "com-img"}
-    = sender_image(message)
+  .pull-left
+    = link_to display_image(message.sender.image, :small), user_path(message.sender)
   = link_to "javascript:;", class: "com-name" do
     = sender_name(message)
     %br
