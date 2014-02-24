@@ -15,7 +15,7 @@
 
   .col-md-4.lhs
     %p
-      %small Select the area nearest your hometown or select other.
+      %small Select the metro area nearest you or select other.
     = f.select :city_id, options_for_select(City.order(:name).collect{ |c| [c.name, c.id] } + [["Other", 0]], resource.city_id),  prompt: "Current City"
     .clearfix
     = f.select :university_id, options_from_collection_for_select(University.all.sort_by(&:name), :id, :name, resource.university_id), prompt: "University"
