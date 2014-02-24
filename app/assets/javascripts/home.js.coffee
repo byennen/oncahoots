@@ -2,15 +2,32 @@ $ ->
   $(".main").onepage_scroll
     sectionContainer: "section"
     responsiveFallback: 600
-    easing: "ease"
+    easing: "cubic-bezier(0.175, 0.885, 0.420, 1.310)"
     animationTime: 1000
-    pagination: false
+    pagination: true
     updateURL: true
     beforeMove: (index) ->
     afterMove: (index) ->
     loop: false
     keyboard: true
     responsiveFallback: false
+
+  $(".register_button").click ->
+    $(".main").moveUp();
+    $(".main").moveUp();
+    $(".main").moveUp();
+
+  $(".for_students").click ->
+    $(".main").moveDown();
+
+  $(".for_alumni").click ->
+    $(".main").moveDown();
+    $(".main").moveDown();
+
+  $(".about_us").click ->
+    $(".main").moveDown();
+    $(".main").moveDown();
+    $(".main").moveDown();
 
   $(".register_button").on "click", ->
     $(document).unbind('mousewheel DOMMouseScroll') #unbind onepage_scroll
