@@ -1,5 +1,5 @@
 - pre = date - 1.month
 - ne = date + 1.month
 = link_to "<<", university_events_path(@university, date: pre.strftime("%m%y")), remote: true
-= date.strftime("%B, %Y")
+= date.strftime("%B %Y")
 = link_to ">>", university_events_path(@university, date: ne.strftime("%m%y")), remote: true

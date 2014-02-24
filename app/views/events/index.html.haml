@@ -9,7 +9,6 @@
         My Events
         %span.green-text &raquo;
 
-
 = content_for :left_side do
   = hidden_field_tag "selected_event_id", params[:event_id]
   .caltitle
@@ -25,7 +24,7 @@
   #weekly-events-calendar
     .row
       .col-md-12.no-padding
-        = image_tag('wcal.png')
+        #weekly-event{style: "display: none;"}
 
   #monthly-events-calendar
     .row
