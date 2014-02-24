@@ -85,4 +85,9 @@ CahootsConnect::Application.configure do
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
+  
+  #TODO: remove this from production when we go live
+  config.middleware.insert_after(Rack::Runtime, "::Rack::Auth::Basic", "OnCahoots Staging") do |u, p|
+    [u, p] == [ENV['STAGING_USERNAME'], ENV['STAGING_PASSWORD']]
+  end
 end
