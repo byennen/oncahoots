@@ -12,7 +12,10 @@ class MessagesController < ApplicationController
         flash[:alert] = "You do not have permission to view that conversation."
         return redirect_to root_path
       end
-    else
+    elsif params[:message][:recipients_id]
+      @recipient = User.find(params[:message][:recipients_id])
+      current_user.send_message(@recipient, params[:message][:body], @subject, true, params[:message][:attachment])
+    elsif
       receipt = current_user.send_message(@recipient_list, params[:message][:body], @subject, true, params[:message][:attachment])
       Rails.logger.debug("reciept is #{receipt.inspect}")
     end
