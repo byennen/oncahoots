@@ -4,6 +4,10 @@
       .modal-header
         %button{type: "button", class: "close", data: {dismiss: "modal"}} &times;
         %h3 New Message
+        %p{style: 'font-size:12px;'}
+          Please select only one option. If multiple options are selected or multiple fields are filled in, all of the students
+          in the largest group will be messaged. For example, if you select “all students” and also select “Fun Club”, the
+          message will go to all students in the entire website.
       = simple_form_for Message.new do |f|
         .modal-body
           .span9.no-lmar

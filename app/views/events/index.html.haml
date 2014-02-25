@@ -21,7 +21,7 @@
     = link_to "Monthly", university_events_path(@university, filter: "monthly"), remote: true, class: "monthly"
 
 
-  #weekly-events-calendar
+  -##weekly-events-calendar
     .row
       .col-md-12.no-padding
         #weekly-event{style: "display: none;"}
@@ -29,7 +29,7 @@
   #monthly-events-calendar
     .row
       .col-md-12.no-padding
-        = image_tag('mon.png')
+        -#= image_tag('mon.png')
 
   #events-list
     = render partial: "list", locals: {events: @events}
