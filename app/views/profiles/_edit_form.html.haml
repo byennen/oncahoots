@@ -87,6 +87,7 @@
           %h4 Skills &amp; Interests
           %i= image_tag('large-curve.png')
         %p.help What makes you stand out? What have you spent time perfecting - Farsi, JavaScript, the Oboe, or Photoshop, or something else?
+        .circlee2
           ~ form_for [@user, @profile] do |f|
             = hidden_field_tag :tab_id, "resume"
             %p
