@@ -35,7 +35,6 @@
     -#          = notice.alert.message.html_safe unless notice.alert.message.blank?
 
     #messages.tab-pane.active
-      = @conversations.inspect
       - @conversations.each do |con|
         - message = con.messages.first
         .comment-box{id: "con-#{con.id}"}
