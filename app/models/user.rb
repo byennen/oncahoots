@@ -182,10 +182,12 @@ class User < ActiveRecord::Base
 
       # get rid of all memberships (instead of just one) because the code did not have uniq true on the relationship
       # in the past and thus some junk data might have been generated, so it is safer to do it this way.
-      old_memberships.present? && old_memberships.destroy_all
+      return_value = old_memberships.present? && old_memberships.destroy_all
     end
-    city_metro_club = Club.find_by_university_id_and_city_id(university_id, city_id)
-    city_metro_club && city_metro_club.memberships.create(admin: false, title: nil, user_id: id)
+    if return_value && university_id_was.present? && city_id_was.present?
+      city_metro_club = Club.find_by_university_id_and_city_id(university_id, city_id)
+      city_metro_club && city_metro_club.memberships.create(admin: false, title: nil, user_id: id)
+    end
   end
 
   def member_of?(club)

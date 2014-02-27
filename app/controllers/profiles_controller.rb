@@ -13,7 +13,7 @@ class ProfilesController < ApplicationController
   end
 
   def show
-    @user = User.find_by_id(params[:user_id]) || current_user
+    @user = (params[:user_id].is_a?(String) ? User.find_by_slug(params[:user_id]) : User.find_by_id(params[:user_id])) || current_user
     @profile = @user.profile
     @contact_requirements = @profile.contact_requirement.present? ? @profile.contact_requirement : @profile.build_contact_requirement
     # @messages = @user.mailbox.conversations

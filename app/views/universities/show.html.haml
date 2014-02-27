@@ -12,7 +12,7 @@
 = content_for :full_page do
   .row
     .col-md-6.no-padding
-      .find-your-passion
+      .find-your-passion{style: "background: url(#{@university.image.banner.url}) no-repeat;"}
         %ul.btns.showaa
           %li
             %a{:href => "/search"}
