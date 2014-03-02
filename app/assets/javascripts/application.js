@@ -100,9 +100,10 @@ $(function() {
   $('.gentle').gentleSelect();
 });
 
-$(document).on('ready page:load', function(){
-  $('.datepicker').datepicker({ format: 'mm/dd/yyyy' });
-  $(document).on('nested:fieldAdded', function(event){
-    $('.datepicker').datepicker({ format: 'mm/dd/yyyy' });
-  });
-});
+//TODO: remove this once we confirm its doing nothing.
+//$(document).on('ready page:load', function(){
+//  $('.datepicker').datepicker({ format: 'mm/dd/yyyy' });
+//  $(document).on('nested:fieldAdded', function(event){
+//    $('.datepicker').datepicker({ format: 'mm/dd/yyyy' });
+//  });
+//});
