@@ -18,23 +18,6 @@ $(document).ready ->
         return
     return
 
-  
-  # $(".datepicker").on "click", ->  
-  #   # alert($("#monthly-events-calendar").datepicker("getDate"));
-  #   # alert($("#monthly-events-calendar").datepicker("getDate").getDate());
-  #   # alert($("#monthly-events-calendar").datepicker("getDate").getMonth() + 1);
-  #   # alert($("#monthly-events-calendar").datepicker("getDate").getFullYear());
-  #   test = $("#monthly-events-calendar").datepicker("getDate").getMonth() + 1;  
-  #   # data: {date: test}    
-  #   # university_events_path(@university, date: test.strftime("%m%y"))
-  #   $.ajax
-  #     url: "events/?date=0214"
-  #     # url: university_events_path(@university, date: test.strftime("%m%y"))
-  #     method: 'get'
-  #     dataType: 'script'
-  #     # data: {event: data}       
-    
-
   $(".free_food").on "click", ->
     $(".session a").removeClass('current')
     $(@).addClass('current')
