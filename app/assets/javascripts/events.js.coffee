@@ -1,22 +1,21 @@
-$(document).ready ->  
-
+$(document).ready ->
   $("#datepicker").datepicker inline: true
-  $("#weekly-events-calendar").datepicker inline: true  
+  $("#weekly-events-calendar").datepicker inline: true
   $("#monthly-events-calendar").datepicker inline: true
 
   $(".datepicker").on "click", ->
-    month = $("#monthly-events-calendar").datepicker("getDate").getMonth() + 1 #.parseInt();  
+    month = $("#monthly-events-calendar").datepicker("getDate").getMonth() + 1
     if month.size = 1
-      month = "0" + month      
+      month = "0" + month
     year = $("#monthly-events-calendar").datepicker("getDate").getFullYear().toString();
-    shortenedYear = year.substring(2, 4)    
+    shortenedYear = year.substring(2, 4)
     $.ajax
       type: "GET"
-      dataType: 'script'      
-      url: "events/?date="+month+shortenedYear      
-      success: (response) ->            
+      dataType: 'script'
+      url: "events/?date="+month+shortenedYear
+      success: (response) ->
         $("#datepicker").datepicker()
-        return    
+        return
     return
 
   
