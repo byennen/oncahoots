@@ -5,10 +5,11 @@ $(document).on "ready page:load", ->
   $("#monthly-events-calendar").datepicker
     inline: true
     dayNamesMin: ['S', 'M', 'T', 'W', 'T', 'F', 'S']
+    hideIfNoPrevNext: true
     onSelect: (dateText, inst) ->
       day = $(this).datepicker("getDate").getDate()
       month = $("#monthly-events-calendar").datepicker("getDate").getMonth() + 1
-      if month.size = 1
+      if month < 10
         month = "0" + month
       year = $("#monthly-events-calendar").datepicker("getDate").getFullYear().toString();
       shortenedYear = year.substring(2, 4)

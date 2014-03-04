@@ -53,6 +53,9 @@
     = render partial: "list", locals: {events: @events}
 
 = content_for :right_side do
+  #monthly-events-list
+    = render partial: "list", locals: {events: @events}
+
   #event-detail
     = render partial: "detail_list", locals: {events: @events}
 
