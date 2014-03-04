@@ -1,3 +1,5 @@
+
+
 = content_for :page_title do
   .title
     %h1
@@ -22,14 +24,30 @@
 
 
   -##weekly-events-calendar
-    .row
-      .col-md-12.no-padding
-        #weekly-event{style: "display: none;"}
 
   #monthly-events-calendar
-    .row
-      .col-md-12.no-padding
-        #monthly-events-calendar
+  :css
+     #monthly-events-calendar .ui-datepicker {
+      height: 100%;
+      width: 100%;
+    }
+    #monthly-events-calendar .ui-datepicker td a {
+      padding: 30% 43%;
+    }
+    #monthly-events-calendar .ui-widget-content {
+      background: none;
+      border: none;
+    }
+    #monthly-events-calendar .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+      background: none;
+      border: none;
+    }
+    #monthly-events-calendar .ui-state-active {
+      background: #59DA88;
+      -moz-border-radius: 60%;
+      -webkit-border-radius: 60%;
+      border-radius: 60%;
+    }
 
   #events-list
     = render partial: "list", locals: {events: @events}

@@ -1,22 +1,49 @@
-$(document).ready ->
-  $("#datepicker").datepicker inline: true
+$(document).on "ready page:load", ->
+  $("#event_on_date").datepicker inline: true
   $("#weekly-events-calendar").datepicker inline: true
-  $("#monthly-events-calendar").datepicker inline: true
 
-  $(".datepicker").on "click", ->
-    month = $("#monthly-events-calendar").datepicker("getDate").getMonth() + 1
-    if month.size = 1
-      month = "0" + month
-    year = $("#monthly-events-calendar").datepicker("getDate").getFullYear().toString();
-    shortenedYear = year.substring(2, 4)
-    $.ajax
-      type: "GET"
-      dataType: 'script'
-      url: "events/?date="+month+shortenedYear
-      success: (response) ->
-        $("#datepicker").datepicker()
-        return
-    return
+  $("#monthly-events-calendar").datepicker
+    inline: true
+    dayNamesMin: ['S', 'M', 'T', 'W', 'T', 'F', 'S']
+    onSelect: (dateText, inst) ->
+      day = $(this).datepicker("getDate").getDate()
+      month = $("#monthly-events-calendar").datepicker("getDate").getMonth() + 1
+      if month.size = 1
+        month = "0" + month
+      year = $("#monthly-events-calendar").datepicker("getDate").getFullYear().toString();
+      shortenedYear = year.substring(2, 4)
+      console.log "Month is: " + month + " day is " + day + " year is " + year
+      $.ajax
+        type: "GET"
+        dataType: 'script'
+        url: "events/?date="+month+shortenedYear
+        success: (response) ->
+          $("#monthly-events-calendar").datepicker()
+      return
+
+  $('#monthly-events-calendar').find('.ui-datepicker-header').remove();
+
+  $("#plus_month").on "click", ->
+    alert "hello"
+    month = $("#monthly-events-calendar").datepicker("getDate").getMonth()
+    alert month
+    $('#monthly-events-calendar').datepicker("setDate", month + 'm');
+
+#  $("#monthly-events-calendar").on "click", ->
+#    day = $("#monthly-events-calendar").datepicker("getDate").getDay()
+#    month = $("#monthly-events-calendar").datepicker("getDate").getMonth() + 1
+#    if month.size = 1
+#      month = "0" + month
+#    year = $("#monthly-events-calendar").datepicker("getDate").getFullYear().toString();
+#    shortenedYear = year.substring(2, 4)
+#    $.ajax
+#      type: "GET"
+#      dataType: 'script'
+#      url: "events/?date="+month+shortenedYear
+#      success: (response) ->
+#        $("#monthly-events-calendar").datepicker()
+#        return
+#    return
 
   $(".free_food").on "click", ->
     $(".session a").removeClass('current')

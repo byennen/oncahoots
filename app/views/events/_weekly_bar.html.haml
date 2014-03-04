@@ -4,4 +4,4 @@
 = link_to "<<", university_events_path(@university, date: pre.strftime("%m%y")), remote: true
 = "WEEK of #{date.strftime("%B %Y")}"
 /= "Week of February 24, 2014"
-= link_to ">>", university_events_path(@university, w_begin: 'lala', date: ne.strftime("%m%y")), remote: true
+= link_to ">>", university_events_path(@university, w_begin: 'lala', date: ne.strftime("%m%y")), remote: true, id: 'plus_month'
