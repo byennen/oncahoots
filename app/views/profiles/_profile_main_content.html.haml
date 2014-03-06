@@ -59,7 +59,7 @@
               %i
                 = image_tag('edit-icon.png')
 
-
+- if Relationship.reciprocal?(current_user, current_user.profile) || current_user == @user
   .clearfix
   .tab-content
     #resume.tab-pane.fade.in
