@@ -62,13 +62,13 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = @university.events.find(params[:id])
+    @event = @university.events.first
+      #search_range(start_date = Date.today.beginning_of_month, end_date = Date.today.end_of_month)
   end
 
   def update
     @event = @university.events.find(params[:id])
     @event.attributes = params[:event]
-    @event.save
     respond_to :js
   end
 
@@ -94,20 +94,25 @@ class EventsController < ApplicationController
       #@university_clubs  = @university.clubs.order(:name)
       #@events = events_of_day(Date.today)
       #@events = @university.events.this_week
+      @my_events = current_user.interested_events
       unless params[:date]
         @events = @university.events.this_month
+        @date = Date.today.beginning_of_month
+        @query_date = Time.now.beginning_of_month.strftime('%m%y')
       else
         @events = @university.events.by_month(params[:date])
         @date=Date.strptime(params[:date],"%m%y")
+        @query_date = params[:date]
       end
       case params[:filter]
         when 'freefood'
-          @events = @events.free_food
+          @events = @university.events.by_month(@query_date).free_food
         when 'weekly'
           if params[:w_begin]
             @w_begin = Date.strptime(params[:w_begin],"%y%m%d")
             @events = @university.events.where(on_date: @w_begin..(@w_begin+6.days))
           else
+            @w_begin = Date.today
             @events = @university.events.this_week
           end
       end

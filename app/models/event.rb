@@ -14,7 +14,7 @@ class Event < ActiveRecord::Base
   scope :non_free_food, where(free_food: !true)
   scope :display_on_university_calendar, where(display_on_wc: true)
   scope :active, where("events.on_date >= ?", Date.today)
-  scope :this_month, where("events.on_date >= ? AND events.on_date <= ?", Time.now.beginning_of_month, Time.now.end_of_month)
+  scope :this_month, where("events.on_date >= ? AND events.on_date <= ?", Time.now.beginning_of_month.strftime('%Y-%m-%d 00:00:00'), Time.now.end_of_month.strftime('%Y-%m-%d 00:00:00'))
   scope :this_week, where("events.on_date >= ? AND events.on_date <= ?", Time.now.beginning_of_week, Time.now.end_of_week)
 
   validates :title, presence: true

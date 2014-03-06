@@ -1,7 +1,7 @@
-- pre = Date.today - 1.month
-- ne = Date.today + 1.month
+- last_week = @w_begin.beginning_of_week - 1.week
+- next_week = @w_begin.beginning_of_week + 1.week
 
-= link_to "<<", university_events_path(@university, date: pre.strftime("%m%y")), remote: true
-= "WEEK of #{date.strftime("%B %Y")}"
+= link_to "<<", university_events_path(@university, w_begin: last_week.strftime("%y%m%d"), filter: 'weekly'), remote: true
+= "#{@w_begin.end_of_week.strftime("%B %d, %Y")} - #{@w_begin.beginning_of_week.strftime("%B %d, %Y")}"
 /= "Week of February 24, 2014"
-= link_to ">>", university_events_path(@university, w_begin: 'lala', date: ne.strftime("%m%y")), remote: true, id: 'plus_month'
+= link_to ">>", university_events_path(@university, w_begin: next_week.strftime("%y%m%d"), filter: 'weekly'), remote: true

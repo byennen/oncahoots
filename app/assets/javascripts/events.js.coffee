@@ -24,11 +24,11 @@ $(document).on "ready page:load", ->
 
   $('#monthly-events-calendar').find('.ui-datepicker-header').remove();
 
-  $("#plus_month").on "click", ->
-    alert "hello"
-    month = $("#monthly-events-calendar").datepicker("getDate").getMonth()
-    alert month
-    $('#monthly-events-calendar').datepicker("setDate", month + 'm');
+#  $("#plus_month").on "click", ->
+#    alert "hello"
+#    month = $("#monthly-events-calendar").datepicker("getDate").getMonth()
+#    alert month
+#    $('#monthly-events-calendar').datepicker("setDate", month + 'm');
 
 #  $("#monthly-events-calendar").on "click", ->
 #    day = $("#monthly-events-calendar").datepicker("getDate").getDay()

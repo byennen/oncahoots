@@ -25,36 +25,36 @@
 
   -##weekly-events-calendar
 
-  #monthly-events-calendar
-  :css
-     #monthly-events-calendar .ui-datepicker {
-      height: 100%;
-      width: 100%;
-    }
-    #monthly-events-calendar .ui-datepicker td a {
-      padding: 30% 43%;
-    }
-    #monthly-events-calendar .ui-widget-content {
-      background: none;
-      border: none;
-    }
-    #monthly-events-calendar .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
-      background: none;
-      border: none;
-    }
-    #monthly-events-calendar .ui-state-active {
-      background: #59DA88;
-      -moz-border-radius: 60%;
-      -webkit-border-radius: 60%;
-      border-radius: 60%;
-    }
+  -##monthly-events-calendar
+  -#:css
+  -#   #monthly-events-calendar .ui-datepicker {
+  -#    height: 100%;
+  -#    width: 100%;
+  -#  }
+  -#  #monthly-events-calendar .ui-datepicker td a {
+  -#    padding: 30% 43%;
+  -#  }
+  -#  #monthly-events-calendar .ui-widget-content {
+  -#    background: none;
+  -#    border: none;
+  -#  }
+  -#  #monthly-events-calendar .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+  -#    background: none;
+  -#    border: none;
+  -#  }
+  -#  #monthly-events-calendar .ui-state-active {
+  -#    background: #59DA88;
+  -#    -moz-border-radius: 60%;
+  -#    -webkit-border-radius: 60%;
+  -#    border-radius: 60%;
+  -#  }
 
   #events-list
     = render partial: "list", locals: {events: @events}
 
 = content_for :right_side do
   #monthly-events-list
-    = render partial: "list", locals: {events: @events}
+    = render partial: "list", locals: {events: @my_events}
 
   #event-detail
     = render partial: "detail_list", locals: {events: @events}
