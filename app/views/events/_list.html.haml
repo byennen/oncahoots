@@ -1,7 +1,7 @@
 - events.each do |event|
   .row.event-listing.event-item{"data-id" => event.id}
     .col-md-3.date
-      %p= event.on_date.strftime("%b %m.%d") if event.on_date
+      %p= event.on_date.strftime("%^a %m.%d") if event.on_date
       %p= event.at_time.strftime("%I:%M %p") if event.at_time
       %p= event.location
     .col-md-8.event-title

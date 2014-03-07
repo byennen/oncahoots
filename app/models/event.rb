@@ -14,14 +14,18 @@ class Event < ActiveRecord::Base
   scope :non_free_food, where(free_food: !true)
   scope :display_on_university_calendar, where(display_on_wc: true)
   scope :active, where("events.on_date >= ?", Date.today)
-  scope :this_month, where("events.on_date >= ? AND events.on_date <= ?", Time.now.beginning_of_month.strftime('%Y-%m-%d 00:00:00'), Time.now.end_of_month.strftime('%Y-%m-%d 00:00:00'))
-  scope :this_week, where("events.on_date >= ? AND events.on_date <= ?", Time.now.beginning_of_week, Time.now.end_of_week)
+  scope :this_month, where("events.on_date >= ? AND events.on_date <= ?", Time.now, Time.now.end_of_month)
+  scope :this_week, where("events.on_date >= ? AND events.on_date <= ?", Time.now, Time.now.end_of_week)
+  scope :my_events, where("events.on_date >= ? AND events.on_date <= ?", Time.now, Time.now.end_of_year)
 
   validates :title, presence: true
 
   after_create :add_club_update
 
   alias_attribute :name, :title
+
+  default_scope order('on_date ASC')
+  default_scope where("events.on_date >= ?", Time.now)
 
   def date
     on_date.strftime("%a %m.%d") if on_date

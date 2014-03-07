@@ -94,7 +94,7 @@ class EventsController < ApplicationController
       #@university_clubs  = @university.clubs.order(:name)
       #@events = events_of_day(Date.today)
       #@events = @university.events.this_week
-      @my_events = current_user.interested_events
+      @my_events = current_user.interested_events.my_events
       unless params[:date]
         @events = @university.events.this_month
         @date = Date.today.beginning_of_month
