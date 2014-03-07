@@ -3,6 +3,8 @@ $(document).ready ->
   $("#club_category").gentleSelect()
   $('#tab1x #user_graduation_year').gentleSelect()
   $('#tab2x #user_graduation_year').gentleSelect()
+  $('#event_start_date').datepicker inline: true
+  $('#event_end_date').datepicker inline: true
   $("#datepicker").datepicker inline: true
   $("#datepicker2").datepicker inline: true
   $(".selectyze2").Selectyze theme: "mac"
