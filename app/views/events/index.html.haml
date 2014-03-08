@@ -54,7 +54,7 @@
 
 = content_for :right_side do
   #event-detail
-    = render partial: "detail_list", locals: {events: @events}
+    = render partial: "detail_list", locals: {events: @my_events}
   .clearfix
 
   -##event-area-monthly-listing
@@ -79,10 +79,6 @@
         %p
           My Events
       = render partial: "list", locals: {events: @my_events}
-
-
-
-
 
   = render partial: 'events/form', locals: {event: @event}
   #error.hide= @event.errors.blank? ? 'f' : 't'

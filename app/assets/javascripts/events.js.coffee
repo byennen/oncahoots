@@ -117,5 +117,5 @@ $(document).on "ready page:load", ->
     else
       $('#club-select').hide()
 
-  selectedEventId = $('#selected_event_id').val()
-  $('.event-listing.event-item[data-id='+selectedEventId+']').click()
+#  selectedEventId = $('#selected_event_id').val()
+#  $('.event-listing.event-item[data-id='+selectedEventId+']').click()
