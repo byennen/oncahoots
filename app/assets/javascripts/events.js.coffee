@@ -69,7 +69,6 @@ $(document).on "ready page:load", ->
     $("#weekly-events-calendar").hide()
     $("#monthly-events-calendar").show()
     $("#event-area-monthly-listing").show()
-    $(".monthly-event-listing").hide()
 
   # hide monthly calendar on initial load
   $("#monthly-events-calendar").hide()

@@ -56,28 +56,29 @@
   #event-detail
     = render partial: "detail_list", locals: {events: @events}
   .clearfix
-  #event-area-monthly-listing
-    .monthly-event-listing
-      .event-area-title
-        %p
-          My #{Date.today.strftime("%B")} Events
-      %table.table
-        - @events.each do |event|
-          %tr.event-item{"data-id" => event.id}
-            %td.text-center
-              = display_image event.image, "small"
-            %td
-              %p= event.title
-              %p= event.date
-            %td
-              %p= truncate event.description, length: 70
+
+  -##event-area-monthly-listing
+  -#.monthly-event-listing
+  -#  .event-area-title
+  -#    %p
+  -#      My #{Date.today.strftime("%B")} Events
+  -#  %table.table
+  -#    - @events.each do |event|
+  -#      %tr.event-item{"data-id" => event.id}
+  -#        %td.text-center
+  -#          = display_image event.image, "small"
+  -#        %td
+  -#          %p= event.title
+  -#          %p= event.date
+  -#        %td
+  -#          %p= truncate event.description, length: 70
 
   #monthly-events-list
     .monthly-event-listing
       .event-area-title
         %p
           My Events
-    = render partial: "list", locals: {events: @my_events}
+      = render partial: "list", locals: {events: @my_events}
 
 
 
