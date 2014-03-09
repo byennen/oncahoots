@@ -19,6 +19,7 @@ class Event < ActiveRecord::Base
   scope :my_events, where("events.on_date >= ? AND events.on_date <= ?", Time.now, Time.now.end_of_year)
 
   validates :title, presence: true
+  validates :on_date, presence: true
 
   after_create :add_club_update
 

@@ -1,3 +1,8 @@
+- @events.each_with_index do |event, i|
+  - next_e = event
+  - next_e = @events.all[i+1] if i < @events.length - 1
+  %span.event-display{class: "#{'hide' if i!=0 || params[:filter]=='monthly'}", id: "event-show#{event.id}"}= render partial: "events/event", locals: {event: event, next_e: next_e.id}
+
 - @my_events.each_with_index do |event, i|
   - next_e = event
   - next_e = @my_events.all[i+1] if i < @my_events.length - 1
